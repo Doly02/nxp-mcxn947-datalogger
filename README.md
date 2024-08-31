@@ -4,6 +4,7 @@
 - Login: [xdolak09](https://www.vut.cz/lide/tomas-dolak-247220)
 - Email: <xdolak09@stud.fit.vutbr.cz>
 <br>
+
 - Supervisor: Martin Moštěk 
 
 The Goal of This Project Is To Developt Datalogger That Will Record Datalogs From UART Peripheral And Store Them 
@@ -72,7 +73,7 @@ make
 ```
 
 #### Potential Problem
-If The 'project.pfd' File Does Not Exist in The '/thesis' Folder, The Program Has Not Compiled Correctly, Probably Because of Missing Packages. In This Case Install Followed LaTex Packages:
+If The `project.pfd` File Does Not Exist in The `/thesis` Folder, The Program Has Not Compiled Correctly, Probably Because of Missing Packages. In This Case Install Followed LaTex Packages:
 
 ```
 sudo apt-get install texlive-lang-czechslovak
