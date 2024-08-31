@@ -41,7 +41,7 @@
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
-static void hello_task(void *pvParameters);
+static void rtc_task(void *pvParameters);
 
 /*******************************************************************************
  * Code
@@ -56,8 +56,16 @@ uint32_t LPI2C2_GetFreq(void)
 /*
  * @brief Functions of DMA That Are Used For Correct Work of RTC.
  */
-void DMA_Init(void)
+void APP_InitBoard(void)
 {
+    /* attach FRO 12M to FLEXCOMM4 (debug console) */
+    CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
+    CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
+
+	/* Attach FRO 12M To FLEXCOMM2 (I2C for RTC) */
+	CLOCK_SetClkDiv(kCLOCK_DivFlexcom2Clk, 1U);
+	CLOCK_AttachClk(kFRO12M_to_FLEXCOMM2);
+
 	/* Enable DMA Clock */
 	CLOCK_EnableClock(EXAMPLE_LPI2C_DMA_CLOCK);
 
@@ -65,6 +73,7 @@ void DMA_Init(void)
     BOARD_InitBootClocks();
     BOARD_InitDebugConsole();
 
+    /* Initialize DMA */
 	edma_config_t edmaConfig = { 0U };
 	EDMA_GetDefaultConfig(&edmaConfig);
 	EDMA_Init(EXAMPLE_LPI2C_DMA_BASEADDR, &edmaConfig);
@@ -88,18 +97,8 @@ int main(void)
 {
 	uint8_t retVal = E_FAULT;
 
-    /* Init board hardware. */
-
-    /* attach FRO 12M to FLEXCOMM4 (debug console) */
-    CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
-    CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
-
-	/* Attach FRO 12M To FLEXCOMM2 (I2C for RTC) */
-	CLOCK_SetClkDiv(kCLOCK_DivFlexcom2Clk, 1U);
-	CLOCK_AttachClk(kFRO12M_to_FLEXCOMM2);
-
-	/* Initialize DMA */
-	DMA_Init();
+    /* Initialize board hardware. */
+	APP_InitBoard();
 
 	/* Initialize Real-Time Circuit */
     retVal = RTC_Init(&I2C_MASTER);
@@ -110,7 +109,7 @@ int main(void)
     }
 
 	
-    if (xTaskCreate(hello_task, "Hello_task", configMINIMAL_STACK_SIZE + 100, NULL, hello_task_PRIORITY, NULL) !=
+    if (xTaskCreate(rtc_task, "rtc_task", configMINIMAL_STACK_SIZE + 100, NULL, hello_task_PRIORITY, NULL) !=
         pdPASS)
     {
         PRINTF("Task creation failed!.\r\n");
@@ -123,14 +122,13 @@ int main(void)
 }
 
 /*!
- * @brief Task responsible for printing of "Hello world." message.
+ * @brief Task Responsible for Time Handling.
  */
-static void hello_task(void *pvParameters)
+static void rtc_task(void *pvParameters)
 {
 	uint8_t retVal = E_FAULT;
 	RTC_time_t actTime;
 	RTC_date_t actDate;
-	char *amPm;
 
     retVal = RTC_GetState();
     if (OSC_STOPPED == retVal)	// If The Oscillator Was Stopped -> Set Time & Date
