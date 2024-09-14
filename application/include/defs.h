@@ -16,4 +16,6 @@
 #define E_FAULT					(1U)
 #define NOT_IMPLEMENTED			#error "This Feature Is Not Implemented!"
 
+#define RTC_ENABLED				(true)
+
 #endif /* DEFS_H_ */

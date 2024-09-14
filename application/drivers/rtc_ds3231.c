@@ -1,14 +1,19 @@
-/*
- *		Author: 		Tomas Dolak
- * 		File Name:		rtc_ds3231.c
- *      Description:	RTC DS3231 Driver.
- *		Created on: 	Aug 7, 2024
+/******************************
+ *  Project:        NXP MCXN947 Datalogger
+ *  File Name:      rtc_ds3231.c
+ *  Author:         Tomas Dolak
+ *  Date:           07.08.2024
+ *  Description:    RTC DS3231 Driver.
  *
- *		@author			Tomas Dolak
- * 		@brief			RTC DS3231 Driver.
- * 		@filename		rtc_ds3231.c
- */
+ * ****************************/
 
+/******************************
+ *  @package        NXP MCXN947 Datalogger
+ *  @file           rtc_ds3231.c
+ *  @author         Tomas Dolak
+ *  @date           07.08.2024
+ *  @brief          RTC DS3231 Driver.
+ * ****************************/
 
 
 /*******************************************************************************

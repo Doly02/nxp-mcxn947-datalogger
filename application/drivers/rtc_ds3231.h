@@ -1,13 +1,19 @@
-/*
- *		Author: 		Tomas Dolak
- * 		File Name:		rtc_DS3231.h
- *      Description:	Header File to RTC DS3231 Driver.
- *		Created on: 	Aug 7, 2024
+/******************************
+ *  Project:        NXP MCXN947 Datalogger
+ *  File Name:      rtc_ds3231.h
+ *  Author:         Tomas Dolak
+ *  Date:           07.08.2024
+ *  Description:    Header File to RTC DS3231 Driver.
  *
- *		@author			Tomas Dolak
- * 		@brief			Header File to RTC DS3231 Driver.
- * 		@filename		rtc_DS3231.h
- */
+ * ****************************/
+
+/******************************
+ *  @package        NXP MCXN947 Datalogger
+ *  @file           rtc_ds3231.h
+ *  @author         Tomas Dolak
+ *  @date           07.08.2024
+ *  @brief          Header File to RTC DS3231 Driver.
+ * ****************************/
 
 #ifndef RTC_DS3231_H_
 #define RTC_DS3231_H_
@@ -144,6 +150,7 @@ typedef enum
 	ALARM_INTERRUPT
 
 }RTC_interrupt_mode_t;
+
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/

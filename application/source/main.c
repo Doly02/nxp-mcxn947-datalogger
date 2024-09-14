@@ -1,10 +1,19 @@
-/*
- * Copyright (c) 2015, Freescale Semiconductor, Inc.
- * Copyright 2016-2017 NXP
- * All rights reserved.
+/******************************
+ *  Project:        NXP MCXN947 Datalogger
+ *  File Name:      mainc.c
+ *  Author:         Tomas Dolak
+ *  Date:           07.08.2024
+ *  Description:    Implements Datalogger Application.
  *
- * SPDX-License-Identifier: BSD-3-Clause
- */
+ * ****************************/
+
+/******************************
+ *  @package        NXP MCXN947 Datalogger
+ *  @file           main.c
+ *  @author         Tomas Dolak
+ *  @date           07.08.2024
+ *  @brief          Implements Datalogger Application.
+ * ****************************/
 
 /* FreeRTOS kernel includes. */
 #include "FreeRTOS.h"
@@ -62,9 +71,11 @@ void APP_InitBoard(void)
     CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
     CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
 
+#if (true == RTC_ENABLED)
 	/* Attach FRO 12M To FLEXCOMM2 (I2C for RTC) */
 	CLOCK_SetClkDiv(kCLOCK_DivFlexcom2Clk, 1U);
 	CLOCK_AttachClk(kFRO12M_to_FLEXCOMM2);
+#endif /* (true == RTC_ENABLED) */
 
 	/* Enable DMA Clock */
 	CLOCK_EnableClock(EXAMPLE_LPI2C_DMA_CLOCK);
@@ -73,11 +84,12 @@ void APP_InitBoard(void)
     BOARD_InitBootClocks();
     BOARD_InitDebugConsole();
 
+#if (true == RTC_ENABLED)
     /* Initialize DMA */
 	edma_config_t edmaConfig = { 0U };
 	EDMA_GetDefaultConfig(&edmaConfig);
 	EDMA_Init(EXAMPLE_LPI2C_DMA_BASEADDR, &edmaConfig);
-
+#endif /* (true == RTC_ENABLED) */
 	return;
 }
 
@@ -100,6 +112,7 @@ int main(void)
     /* Initialize board hardware. */
 	APP_InitBoard();
 
+#if (true == RTC_ENABLED)
 	/* Initialize Real-Time Circuit */
     retVal = RTC_Init(&I2C_MASTER);
     if (E_FAULT == retVal)
@@ -113,9 +126,9 @@ int main(void)
         pdPASS)
     {
         PRINTF("Task creation failed!.\r\n");
-        while (1)
-            ;
+        APP_HandleError();
     }
+#endif /* (true == RTC_ENABLED) */
     vTaskStartScheduler();
     for (;;)
         ;
