@@ -164,23 +164,7 @@ uint8_t g_UsbDeviceConfigurationDescriptor[] = {
     0x00U /*For high-speed bulk/control OUT endpoints, the bInterval must specify the
          maximum NAK rate of the endpoint. refer to usb spec 9.6.6*/
 };
-#if (defined(USB_DEVICE_CONFIG_CV_TEST) && (USB_DEVICE_CONFIG_CV_TEST > 0U))
-USB_DMA_INIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE)
-uint8_t g_UsbDeviceQualifierDescriptor[] = {
-    USB_DESCRIPTOR_LENGTH_DEVICE_QUALITIER, /* Size of this descriptor in bytes */
-    USB_DESCRIPTOR_TYPE_DEVICE_QUALITIER,   /* DEVICE Descriptor Type */
-    USB_SHORT_GET_LOW(USB_DEVICE_SPECIFIC_BCD_VERSION),
-    USB_SHORT_GET_HIGH(USB_DEVICE_SPECIFIC_BCD_VERSION), /* USB Specification Release Number in
-                                                            Binary-Coded Decimal (i.e., 2.10 is 210H). */
-    USB_DEVICE_CLASS,                                    /* Class code (assigned by the USB-IF). */
-    USB_DEVICE_SUBCLASS,                                 /* Subclass code (assigned by the USB-IF). */
-    USB_DEVICE_PROTOCOL,                                 /* Protocol code (assigned by the USB-IF). */
-    USB_CONTROL_MAX_PACKET_SIZE,                         /* Maximum packet size for endpoint zero
-                                                            (only 8, 16, 32, or 64 are valid) */
-    0x00U,                                               /* Number of Other-speed Configurations */
-    0x00U,                                               /* Reserved for future use, must be zero */
-};
-#endif
+
 USB_DMA_INIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE)
 uint8_t g_UsbDeviceString0[] = {
     2U + 2U,
@@ -301,17 +285,7 @@ usb_status_t USB_DeviceGetDeviceDescriptor(usb_device_handle handle,
     deviceDescriptor->length = USB_DESCRIPTOR_LENGTH_DEVICE;
     return kStatus_USB_Success;
 }
-#if (defined(USB_DEVICE_CONFIG_CV_TEST) && (USB_DEVICE_CONFIG_CV_TEST > 0U))
-/* Get device qualifier descriptor request */
-usb_status_t USB_DeviceGetDeviceQualifierDescriptor(
-    usb_device_handle handle, usb_device_get_device_qualifier_descriptor_struct_t *deviceQualifierDescriptor)
-{
-    deviceQualifierDescriptor->buffer = g_UsbDeviceQualifierDescriptor;
-    deviceQualifierDescriptor->length = USB_DESCRIPTOR_LENGTH_DEVICE_QUALITIER;
-    return kStatus_USB_Success;
-}
 
-#endif
 /* Get device configuration descriptor request */
 usb_status_t USB_DeviceGetConfigurationDescriptor(
     usb_device_handle handle, usb_device_get_configuration_descriptor_struct_t *configurationDescriptor)

@@ -34,19 +34,8 @@
 #define USB_DEVICE_CONFIG_EHCI (1U)
 #endif
 
-/*! @brief LPC USB IP3511 FS instance count */
-#ifndef USB_DEVICE_CONFIG_LPCIP3511FS
-#define USB_DEVICE_CONFIG_LPCIP3511FS (0U)
-#endif
-
-/*! @brief LPC USB IP3511 HS instance count */
-#ifndef USB_DEVICE_CONFIG_LPCIP3511HS
-#define USB_DEVICE_CONFIG_LPCIP3511HS (0U)
-#endif
-
 /*! @brief Device instance count, the sum of KHCI and EHCI instance counts*/
-#define USB_DEVICE_CONFIG_NUM \
-    (USB_DEVICE_CONFIG_KHCI + USB_DEVICE_CONFIG_EHCI + USB_DEVICE_CONFIG_LPCIP3511FS + USB_DEVICE_CONFIG_LPCIP3511HS)
+#define USB_DEVICE_CONFIG_NUM  			USB_DEVICE_CONFIG_EHCI
 
 /* @} */
 
@@ -55,26 +44,8 @@
  * @{
  */
 
-/*! @brief HID instance count */
-#define USB_DEVICE_CONFIG_HID (0U)
-
-/*! @brief CDC ACM instance count */
-#define USB_DEVICE_CONFIG_CDC_ACM (0U)
-
 /*! @brief MSC instance count */
 #define USB_DEVICE_CONFIG_MSC (1U)
-
-/*! @brief Audio instance count */
-#define USB_DEVICE_CONFIG_AUDIO (0U)
-
-/*! @brief PHDC instance count */
-#define USB_DEVICE_CONFIG_PHDC (0U)
-
-/*! @brief Video instance count */
-#define USB_DEVICE_CONFIG_VIDEO (0U)
-
-/*! @brief CCID instance count */
-#define USB_DEVICE_CONFIG_CCID (0U)
 
 /*! @brief Printer instance count */
 #define USB_DEVICE_CONFIG_PRINTER (0U)
@@ -111,27 +82,6 @@
     the test mode and CV test macroes will be set.*/
 #ifndef USB_DEVICE_CONFIG_COMPLIANCE_TEST
 #define USB_DEVICE_CONFIG_COMPLIANCE_TEST (0U)
-#endif
-
-#if ((defined(USB_DEVICE_CONFIG_COMPLIANCE_TEST)) && (USB_DEVICE_CONFIG_COMPLIANCE_TEST > 0U))
-
-/*! @brief Undefine the macro USB_DEVICE_CONFIG_USB20_TEST_MODE. */
-#undef USB_DEVICE_CONFIG_USB20_TEST_MODE
-/*! @brief Undefine the macro USB_DEVICE_CONFIG_CV_TEST. */
-#undef USB_DEVICE_CONFIG_CV_TEST
-
-/*! @brief enable the test mode. */
-#define USB_DEVICE_CONFIG_USB20_TEST_MODE (1U)
-
-/*! @brief enable the CV test */
-#define USB_DEVICE_CONFIG_CV_TEST (1U)
-
-#endif
-
-#if ((defined(USB_DEVICE_CONFIG_KHCI)) && (USB_DEVICE_CONFIG_KHCI > 0U))
-
-/*! @brief The MAX buffer length for the KHCI DMA workaround.*/
-#define USB_DEVICE_CONFIG_KHCI_DMA_ALIGN_BUFFER_LENGTH (64U)
 #endif
 
 #if ((defined(USB_DEVICE_CONFIG_EHCI)) && (USB_DEVICE_CONFIG_EHCI > 0U))

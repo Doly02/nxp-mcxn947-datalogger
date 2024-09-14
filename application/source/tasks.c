@@ -47,16 +47,11 @@
 void BOARD_InitHardware(void);
 void USB_DeviceClockInit(void);
 void USB_DeviceIsrEnable(void);
+
 #if USB_DEVICE_CONFIG_USE_TASK
 void USB_DeviceTaskFn(void *deviceHandle);
 #endif
 
-#if (defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U))
-#if !((defined FSL_FEATURE_SOC_USBPHY_COUNT) && (FSL_FEATURE_SOC_USBPHY_COUNT > 0U))
-void USB_DeviceHsPhyChirpIssueWorkaround(void);
-void USB_DeviceDisconnected(void);
-#endif
-#endif
 /*******************************************************************************
  * Variables
  ******************************************************************************/
@@ -113,12 +108,6 @@ void USB1_HS_IRQHandler(void)
     USB_DeviceEhciIsrFunction(g_msc.deviceHandle);
 }
 #endif
-#if (defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0U))
-void USB0_FS_IRQHandler(void)
-{
-    USB_DeviceKhciIsrFunction(g_msc.deviceHandle);
-}
-#endif
 
 void USB_DeviceClockInit(void)
 {
@@ -165,12 +154,7 @@ void USB_DeviceClockInit(void)
     CLOCK_EnableUsbhsClock();
     USB_EhciPhyInit(CONTROLLER_ID, BOARD_XTAL0_CLK_HZ, &phyConfig);
 #endif
-#if defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0U)
-    CLOCK_AttachClk(kCLK_48M_to_USB0);
-    CLOCK_EnableClock(kCLOCK_Usb0Ram);
-    CLOCK_EnableClock(kCLOCK_Usb0Fs);
-    CLOCK_EnableUsbfsClock();
-#endif
+
 }
 
 void USB_DeviceIsrEnable(void)
@@ -180,10 +164,7 @@ void USB_DeviceIsrEnable(void)
     uint8_t usbDeviceEhciIrq[] = USBHS_IRQS;
     irqNumber                  = usbDeviceEhciIrq[CONTROLLER_ID - kUSB_ControllerEhci0];
 #endif
-#if defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0U)
-    uint8_t usbDeviceKhciIrq[] = USBFS_IRQS;
-    irqNumber                  = usbDeviceKhciIrq[CONTROLLER_ID - kUSB_ControllerKhci0];
-#endif
+
     /* Install isr, set priority, and enable IRQ. */
     NVIC_SetPriority((IRQn_Type)irqNumber, USB_DEVICE_INTERRUPT_PRIORITY);
     EnableIRQ((IRQn_Type)irqNumber);
@@ -194,11 +175,10 @@ void USB_DeviceTaskFn(void *deviceHandle)
 #if defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)
     USB_DeviceEhciTaskFunction(deviceHandle);
 #endif
-#if defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0U)
-    USB_DeviceKhciTaskFunction(deviceHandle);
-#endif
+
 }
 #endif
+
 void USB_DeviceMscApp(void)
 {
     /*TO DO*/

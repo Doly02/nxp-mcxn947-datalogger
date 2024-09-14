@@ -273,15 +273,6 @@ static usb_status_t USB_DeviceCh9SetClearFeature(usb_device_common_class_struct_
             /* Set or Clear the device remote wakeup feature. */
             error = USB_DeviceClassCallback(classHandle->handle, (uint32_t)kUSB_DeviceEventSetRemoteWakeup, &isSet);
         }
-#if ((defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)) ||                \
-     (defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U))) && \
-    (defined(USB_DEVICE_CONFIG_USB20_TEST_MODE) && (USB_DEVICE_CONFIG_USB20_TEST_MODE > 0U))
-        else if (USB_REQUEST_STANDARD_FEATURE_SELECTOR_DEVICE_TEST_MODE == setup->wValue)
-        {
-            state = kUSB_DeviceStateTestMode;
-            error = USB_DeviceSetStatus(classHandle->handle, kUSB_DeviceStatusDeviceState, &state);
-        }
-#endif
 #if (defined(USB_DEVICE_CONFIG_OTG) && (USB_DEVICE_CONFIG_OTG))
         else if (USB_REQUEST_STANDARD_FEATURE_SELECTOR_B_HNP_ENABLE == setup->wValue)
         {
@@ -1171,16 +1162,6 @@ static usb_status_t USB_DeviceControlCallback(usb_device_handle handle,
             status = s_UsbDeviceStandardRequest[deviceSetup->bRequest](classHandle, deviceSetup, &buffer, &length);
         }
     }
-#if ((defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)) ||                \
-     (defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U))) && \
-    (defined(USB_DEVICE_CONFIG_USB20_TEST_MODE) && (USB_DEVICE_CONFIG_USB20_TEST_MODE > 0U))
-    else if ((uint8_t)kUSB_DeviceStateTestMode == state)
-    {
-        uint8_t portTestControl = (uint8_t)(deviceSetup->wIndex >> 8);
-        /* Set the controller.into test mode. */
-        status = USB_DeviceSetStatus(handle, kUSB_DeviceStatusTestMode, &portTestControl);
-    }
-#endif
     else if ((0U != message->length) && (0U != deviceSetup->wLength) &&
              ((deviceSetup->bmRequestType & USB_REQUEST_TYPE_DIR_MASK) == USB_REQUEST_TYPE_DIR_OUT))
     {

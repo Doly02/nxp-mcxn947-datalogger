@@ -93,13 +93,8 @@ typedef enum _usb_endpoint_status
 #define USB_DEVICE_KHCI_MAX_FRAME_COUNT (0x000007FFU)
 
 /*! @brief usb device controller max frame count */
-#if ((defined(USB_DEVICE_CONFIG_KHCI)) && (USB_DEVICE_CONFIG_KHCI > 0U))
-#define USB_DEVICE_MAX_FRAME_COUNT (USB_DEVICE_KHCI_MAX_FRAME_COUNT)
-#elif (((defined(USB_DEVICE_CONFIG_LPCIP3511FS)) && (USB_DEVICE_CONFIG_LPCIP3511FS > 0U)) || \
-       ((defined(USB_DEVICE_CONFIG_LPCIP3511HS)) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U)))
-#define USB_DEVICE_MAX_FRAME_COUNT (USB_DEVICE_IP3511_MAX_FRAME_COUNT)
-#elif ((defined(USB_DEVICE_CONFIG_EHCI)) && (USB_DEVICE_CONFIG_EHCI > 0U))
-#define USB_DEVICE_MAX_FRAME_COUNT (USB_DEVICE_EHCI_MAX_FRAME_COUNT)
+#if ((defined(USB_DEVICE_CONFIG_EHCI)) && (USB_DEVICE_CONFIG_EHCI > 0U))
+	#define USB_DEVICE_MAX_FRAME_COUNT (USB_DEVICE_EHCI_MAX_FRAME_COUNT)
 #endif
 #endif
 
@@ -499,21 +494,6 @@ extern usb_status_t USB_DeviceDcdDisable(usb_device_handle handle);
 extern void USB_DeviceTaskFunction(void *deviceHandle);
 #endif
 
-#if ((defined(USB_DEVICE_CONFIG_KHCI)) && (USB_DEVICE_CONFIG_KHCI > 0U))
-#if ((defined(USB_DEVICE_CONFIG_USE_TASK)) && (USB_DEVICE_CONFIG_USE_TASK > 0U))
-/*!
- * @brief Device KHCI task function.
- *
- * The function is used to handle the KHCI controller message.
- * In the bare metal environment, this function should be called periodically in the main function.
- * In the RTOS environment, this function should be used as a function entry to create a task.
- *
- * @param[in] deviceHandle The device handle got from #USB_DeviceInit.
- */
-#define USB_DeviceKhciTaskFunction(deviceHandle) USB_DeviceTaskFunction(deviceHandle)
-#endif
-#endif
-
 #if ((defined(USB_DEVICE_CONFIG_EHCI)) && (USB_DEVICE_CONFIG_EHCI > 0U))
 #if ((defined(USB_DEVICE_CONFIG_USE_TASK)) && (USB_DEVICE_CONFIG_USE_TASK > 0U))
 /*!
@@ -541,59 +521,6 @@ extern void USB_DeviceEhciIsrHSDCDFunction(void *deviceHandle);
 #endif
 #endif
 
-#if (((defined(USB_DEVICE_CONFIG_LPCIP3511FS)) && (USB_DEVICE_CONFIG_LPCIP3511FS > 0U)) || \
-     ((defined(USB_DEVICE_CONFIG_LPCIP3511HS)) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U)))
-#if ((defined(USB_DEVICE_CONFIG_USE_TASK)) && (USB_DEVICE_CONFIG_USE_TASK > 0U))
-/*!
- * @brief Device LPC ip3511 controller task function.
- *
- * The function is used to handle the LPC ip3511 controller message.
- * In the bare metal environment, this function should be called periodically in the main function.
- * In the RTOS environment, this function should be used as a function entry to create a task.
- *
- * @param[in] deviceHandle The device handle got from #USB_DeviceInit.
- */
-#define USB_DeviceLpcIp3511TaskFunction(deviceHandle) USB_DeviceTaskFunction(deviceHandle)
-#endif
-#if (defined(USB_DEVICE_CONFIG_CHARGER_DETECT) && (USB_DEVICE_CONFIG_CHARGER_DETECT > 0U))
-#if (defined(FSL_FEATURE_SOC_USBHSDCD_COUNT) && (FSL_FEATURE_SOC_USBHSDCD_COUNT > 0U))
-/*!
- * @brief Device IP3511 DCD ISR function.
- *
- * The function is the IP3511 DCD interrupt service routine.
- *
- * @param[in] deviceHandle The device handle got from #USB_DeviceInit.
- */
-extern void USB_DeviceLpcIp3511IsrDCDFunction(void *deviceHandle);
-#endif
-#endif
-#endif
-
-#if ((defined(USB_DEVICE_CONFIG_KHCI)) && (USB_DEVICE_CONFIG_KHCI > 0U))
-/*!
- * @brief Device KHCI ISR function.
- *
- * The function is the KHCI interrupt service routine.
- *
- * @param[in] deviceHandle The device handle got from #USB_DeviceInit.
- */
-extern void USB_DeviceKhciIsrFunction(void *deviceHandle);
-#if (defined(USB_DEVICE_CONFIG_CHARGER_DETECT) && (USB_DEVICE_CONFIG_CHARGER_DETECT > 0U))
-#if (defined(FSL_FEATURE_SOC_USBDCD_COUNT) && (FSL_FEATURE_SOC_USBDCD_COUNT > 0U))
-#if 0U /* it is not implemented yet */
-/*!
- * @brief Device KHCI DCD ISR function.
- *
- * The function is the KHCI DCD interrupt service routine.
- *
- * @param[in] deviceHandle The device handle got from #USB_DeviceInit.
- */
-extern void USB_DeviceDcdIsrFunction(void *deviceHandle);
-#endif
-#endif
-#endif
-#endif
-
 #if ((defined(USB_DEVICE_CONFIG_EHCI)) && (USB_DEVICE_CONFIG_EHCI > 0U))
 /*!
  * @brief Device EHCI ISR function.
@@ -603,18 +530,6 @@ extern void USB_DeviceDcdIsrFunction(void *deviceHandle);
  * @param[in] deviceHandle The device handle got from #USB_DeviceInit.
  */
 extern void USB_DeviceEhciIsrFunction(void *deviceHandle);
-#endif
-
-#if (((defined(USB_DEVICE_CONFIG_LPCIP3511FS)) && (USB_DEVICE_CONFIG_LPCIP3511FS > 0U)) || \
-     ((defined(USB_DEVICE_CONFIG_LPCIP3511HS)) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U)))
-/*!
- * @brief Device LPC USB ISR function.
- *
- * The function is the LPC USB interrupt service routine.
- *
- * @param[in] deviceHandle The device handle got from #USB_DeviceInit.
- */
-extern void USB_DeviceLpcIp3511IsrFunction(void *deviceHandle);
 #endif
 
 #if (((defined(USB_DEVICE_CONFIG_DWC3)) && (USB_DEVICE_CONFIG_DWC3 > 0U)) || \

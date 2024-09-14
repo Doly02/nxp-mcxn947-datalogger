@@ -61,11 +61,7 @@
 
 extern usb_device_class_struct_t g_UsbDeviceMscConfig;
 extern usb_status_t USB_DeviceSetSpeed(usb_device_handle handle, uint8_t speed);
-#if (defined(USB_DEVICE_CONFIG_CV_TEST) && (USB_DEVICE_CONFIG_CV_TEST > 0U))
-/* Get device qualifier descriptor request */
-usb_status_t USB_DeviceGetDeviceQualifierDescriptor(
-    usb_device_handle handle, usb_device_get_device_qualifier_descriptor_struct_t *deviceQualifierDescriptor);
-#endif
+
 usb_status_t USB_DeviceGetDeviceDescriptor(usb_device_handle handle,
                                            usb_device_get_device_descriptor_struct_t *deviceDescriptor);
 
