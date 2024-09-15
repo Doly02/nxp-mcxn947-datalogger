@@ -16,6 +16,6 @@
 #define E_FAULT					(1U)
 #define NOT_IMPLEMENTED			#error "This Feature Is Not Implemented!"
 
-#define RTC_ENABLED				(true)
-
+#define RTC_ENABLED				(true) 	//!< Enables Functionality of DS3231 Real-Time Circuit. (Just For Development)
+#define MSC_ENABLED				(false)	//!< Enables Functionality of USB Mass Storage. (Just For Development)
 #endif /* DEFS_H_ */

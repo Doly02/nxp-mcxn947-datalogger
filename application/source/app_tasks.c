@@ -18,8 +18,8 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#include "tasks.h"
-
+#include "app_tasks.h"
+#include "rtc_ds3231.h"
 /*******************************************************************************
  * Global Variables.
  ******************************************************************************/
@@ -27,6 +27,44 @@
 /*******************************************************************************
  * Implementation of Functions
  ******************************************************************************/
+/*!
+ * @brief Task Responsible for Time Handling.
+ */
+void rtc_task(void *pvParameters)
+{
+	uint8_t retVal = E_FAULT;
+	RTC_time_t actTime;
+	RTC_date_t actDate;
+
+    retVal = RTC_GetState();
+    if (OSC_STOPPED == retVal)	// If The Oscillator Was Stopped -> Set Time & Date
+    {
+    	/* Set Default Time & Date (Prepare Variables) */
+    	RTC_SetDateDefault(&actDate);
+    	RTC_SetTimeDefault(&actTime);
+		/* Set Time & Date Into RTC */
+		RTC_SetDate(&actDate);
+		RTC_SetTime(&actTime);
+
+		RTC_SetOscState(OSC_OK);
+    }
+
+    /* Get Current Time */
+    memset(&actTime, 0U, sizeof(actTime));
+    memset(&actDate, 0U, sizeof(actDate));
+
+    RTC_GetTime(&actTime);
+    RTC_GetDate(&actDate);
+    /* Print The Time From RTC */
+	PRINTF("Current Date: %d\r\n",actDate.day);
+
+	/* Finish The Task */
+	vTaskSuspend(NULL);
+
+}
+
+
+
 #if USB_DEVICE_CONFIG_USE_TASK
 void USB_DeviceTask(void *handle)
 {

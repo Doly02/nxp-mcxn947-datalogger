@@ -15,13 +15,18 @@
  *  @brief          Includes Implementation of Task For FreeRTOS.
  * ****************************/
 
-#ifndef TASKS_H_
-#define TASKS_H_
+#ifndef APP_TASKS_H_
+#define APP_TASKS_H_
 
 /*******************************************************************************
  * Includes
  ******************************************************************************/
 #include "usb_msc.h"
+
+/*******************************************************************************
+ * Definitions
+ ******************************************************************************/
+#define TASK_PRIO		(4u) //<! Task Priorities.
 
 /*******************************************************************************
  * Variables
@@ -31,6 +36,12 @@
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
+/*!
+ * @brief Task Responsible for Time Handling.
+ */
+void rtc_task(void *pvParameters);
+
+
 #if USB_DEVICE_CONFIG_USE_TASK
 
 void USB_DeviceTask(void *handle);
@@ -39,4 +50,4 @@ void USB_DeviceTask(void *handle);
 
 void APP_task(void *handle);
 
-#endif /* TASKS_H_ */
+#endif /* APP_TASKS_H_ */

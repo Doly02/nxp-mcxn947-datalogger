@@ -32,25 +32,22 @@
 #include "fsl_lpi2c_cmsis.h"
 #include "rtc_ds3231.h"
 #include "defs.h"
+#include "app_tasks.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
-
-/* Task priorities. */
-#define hello_task_PRIORITY (configMAX_PRIORITIES - 1)
 
 #define LENGHT 				(9U)
 /*
  * @brief I2C Definitions.
  */
 #define I2C_MASTER         			Driver_I2C2
-#define EXAMPLE_LPI2C_DMA_BASEADDR 	(DMA0)
+#define LPI2C_DMA_BASEADDR 	(DMA0)
 #define LPI2C_CLOCK_FREQUENCY      	CLOCK_GetLPFlexCommClkFreq(2u)
-#define EXAMPLE_LPI2C_DMA_CLOCK    	kCLOCK_Dma0
+#define LPI2C_DMA_CLOCK    			kCLOCK_Dma0
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
-static void rtc_task(void *pvParameters);
 
 /*******************************************************************************
  * Code
@@ -78,7 +75,7 @@ void APP_InitBoard(void)
 #endif /* (true == RTC_ENABLED) */
 
 	/* Enable DMA Clock */
-	CLOCK_EnableClock(EXAMPLE_LPI2C_DMA_CLOCK);
+	CLOCK_EnableClock(LPI2C_DMA_CLOCK);
 
     BOARD_InitBootPins();
     BOARD_InitBootClocks();
@@ -88,7 +85,7 @@ void APP_InitBoard(void)
     /* Initialize DMA */
 	edma_config_t edmaConfig = { 0U };
 	EDMA_GetDefaultConfig(&edmaConfig);
-	EDMA_Init(EXAMPLE_LPI2C_DMA_BASEADDR, &edmaConfig);
+	EDMA_Init(LPI2C_DMA_BASEADDR, &edmaConfig);
 #endif /* (true == RTC_ENABLED) */
 	return;
 }
@@ -122,50 +119,16 @@ int main(void)
     }
 
 	
-    if (xTaskCreate(rtc_task, "rtc_task", configMINIMAL_STACK_SIZE + 100, NULL, hello_task_PRIORITY, NULL) !=
+    if (xTaskCreate(rtc_task, "rtc_task", configMINIMAL_STACK_SIZE + 100, NULL, TASK_PRIO, NULL) !=
         pdPASS)
     {
-        PRINTF("Task creation failed!.\r\n");
+        PRINTF("Task creation failed!\r\n");
         APP_HandleError();
     }
 #endif /* (true == RTC_ENABLED) */
+
     vTaskStartScheduler();
     for (;;)
         ;
 }
 
-/*!
- * @brief Task Responsible for Time Handling.
- */
-static void rtc_task(void *pvParameters)
-{
-	uint8_t retVal = E_FAULT;
-	RTC_time_t actTime;
-	RTC_date_t actDate;
-
-    retVal = RTC_GetState();
-    if (OSC_STOPPED == retVal)	// If The Oscillator Was Stopped -> Set Time & Date
-    {
-    	/* Set Default Time & Date (Prepare Variables) */
-    	RTC_SetDateDefault(&actDate);
-    	RTC_SetTimeDefault(&actTime);
-		/* Set Time & Date Into RTC */
-		RTC_SetDate(&actDate);
-		RTC_SetTime(&actTime);
-
-		RTC_SetOscState(OSC_OK);
-    }
-
-    /* Get Current Time */
-    memset(&actTime, 0U, sizeof(actTime));
-    memset(&actDate, 0U, sizeof(actDate));
-
-    RTC_GetTime(&actTime);
-    RTC_GetDate(&actDate);
-    /* Print The Time From RTC */
-	PRINTF("Current Date: %d\r\n",actDate.day);
-
-	/* Finish The Task */
-	vTaskSuspend(NULL);
-
-}
