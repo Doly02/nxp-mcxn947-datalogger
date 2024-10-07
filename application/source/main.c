@@ -187,15 +187,11 @@ int main(void)
                         3,                              /* initial priority */
                         &g_msc.application_task_handle  /* optional task handle to create */
                         ) != pdPASS)
-        {
-            usb_echo("app task create failed!\r\n");
-    #if (defined(__CC_ARM) || (defined(__ARMCC_VERSION)) || defined(__GNUC__))
-            return 1;
-#else
-		return;
-#endif
-        }
-        vTaskStartScheduler();
+	{
+		usb_echo("app task create failed!\r\n");
+		return 1;
+	}
+	vTaskStartScheduler();
 
 #if (defined(__CC_ARM) || (defined(__ARMCC_VERSION)) || defined(__GNUC__))
 	return 1;
