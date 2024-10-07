@@ -23,7 +23,8 @@
 /*******************************************************************************
  * Global Variables.
  ******************************************************************************/
-
+/* Data structure of msc device, store the information ,such as class handle */
+extern usb_msc_struct_t g_msc;
 /*******************************************************************************
  * Implementation of Functions
  ******************************************************************************/
@@ -63,8 +64,7 @@ void rtc_task(void *pvParameters)
 
 }
 
-
-
+#if 0
 #if USB_DEVICE_CONFIG_USE_TASK
 void USB_DeviceTask(void *handle)
 {
@@ -77,9 +77,8 @@ void USB_DeviceTask(void *handle)
 
 void APP_task(void *handle)
 {
-    USB_DeviceApplicationInit();
+	USB_MscInit();
 
-#if USB_DEVICE_CONFIG_USE_TASK
     if (g_msc.deviceHandle)
     {
         if (xTaskCreate(USB_DeviceTask,                  /* pointer to the task */
@@ -94,9 +93,11 @@ void APP_task(void *handle)
             return;
         }
     }
-#endif
 
     while (1)
     {
     }
 }
+#endif
+
+

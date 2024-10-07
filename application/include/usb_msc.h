@@ -71,6 +71,15 @@ usb_status_t USB_DeviceCallback(usb_device_handle handle, uint32_t event, void *
 
 void USB_DeviceMscAppTask(void);
 
-void USB_DeviceApplicationInit(void);
+/*!
+ * @brief 	Initializes Mass Storage Class In Device Mode.
+ * @details This Function Initialize The USB Stack and SDHC Driver.
+ * 			After Successful Initialization USB MSG Is Launched.
+ *
+ * @return None.
+ */
+void USB_MscInit(void);
+
+void APP_task(void *handle);
 
 #endif /* USB_MSC_H_ */

@@ -41,7 +41,7 @@
  */
 void rtc_task(void *pvParameters);
 
-
+#if 0
 #if USB_DEVICE_CONFIG_USE_TASK
 
 void USB_DeviceTask(void *handle);
@@ -49,5 +49,6 @@ void USB_DeviceTask(void *handle);
 #endif /* USB_DEVICE_CONFIG_USE_TASK */
 
 void APP_task(void *handle);
+#endif
 
 #endif /* APP_TASKS_H_ */

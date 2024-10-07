@@ -14,11 +14,45 @@
  *  @date           07.08.2024
  *  @brief          Implements Datalogger Application.
  * ****************************/
+/*
+ * Copyright (c) 2015 - 2016, Freescale Semiconductor, Inc.
+ * Copyright 2016 - 2017, 2019 NXP
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+#include <stdio.h>
+#include <stdlib.h>
+/*${standard_header_anchor}*/
+#include "usb_device_config.h"
+#include "usb.h"
+#include "usb_device.h"
 
-/*******************************************************************************
- * Includes
- ******************************************************************************/
-#include "usb_msc.h"
+#include "usb_device_class.h"
+#include "usb_device_msc.h"
+#include "usb_device_ch9.h"
+#include "usb_device_descriptor.h"
+#include "disk.h"
+
+#include "usb_disk_adapter.h"
+#include "fsl_device_registers.h"
+#include "fsl_debug_console.h"
+#include "pin_mux.h"
+#include "clock_config.h"
+#include "board.h"
+
+#if (defined(FSL_FEATURE_SOC_SYSMPU_COUNT) && (FSL_FEATURE_SOC_SYSMPU_COUNT > 0U))
+#include "fsl_sysmpu.h"
+#endif /* FSL_FEATURE_SOC_SYSMPU_COUNT */
+
+#if ((defined FSL_FEATURE_SOC_USBPHY_COUNT) && (FSL_FEATURE_SOC_USBPHY_COUNT > 0U))
+#include "usb_phy.h"
+#endif
+
+#if (USB_DEVICE_CONFIG_USE_TASK < 1)
+#error This application requires USB_DEVICE_CONFIG_USE_TASK value defined > 0 in usb_device_config.h. Please recompile with this option.
+#endif
+#include "sdmmc_config.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -26,7 +60,19 @@
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
+void BOARD_InitHardware(void);
+void USB_DeviceClockInit(void);
+void USB_DeviceIsrEnable(void);
+#if USB_DEVICE_CONFIG_USE_TASK
+void USB_DeviceTaskFn(void *deviceHandle);
+#endif
 
+#if (defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U))
+#if !((defined FSL_FEATURE_SOC_USBPHY_COUNT) && (FSL_FEATURE_SOC_USBPHY_COUNT > 0U))
+void USB_DeviceHsPhyChirpIssueWorkaround(void);
+void USB_DeviceDisconnected(void);
+#endif
+#endif
 /*******************************************************************************
  * Variables
  ******************************************************************************/
@@ -50,27 +96,30 @@ usb_device_mode_parameters_header_struct_t g_ModeParametersHeader = {
     0x00,   /*!MODE SENSE command, a Write Protected bit of zero indicates the medium is write enabled*/
     {0x00, 0x00, 0x00, 0x00} /*!<This bit should be set to zero*/
 };
-
 /* Data structure of msc device, store the information ,such as class handle */
-usb_msc_struct_t g_msc;
+extern usb_msc_struct_t g_msc;
 
 USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE) uint32_t g_mscReadRequestBuffer[USB_DEVICE_MSC_READ_BUFF_SIZE >> 2];
+#if (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
+
+USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE)
+uint32_t g_mscWriteRequestBuffer[USB_DEVICE_MSC_WRITE_BUFF_NUM][USB_DEVICE_MSC_WRITE_BUFF_SIZE >> 2];
+
+#else
+
 USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE) uint32_t g_mscWriteRequestBuffer[USB_DEVICE_MSC_WRITE_BUFF_SIZE >> 2];
+
+#endif
 
 volatile uint8_t g_sdhcTransferFailedFlag; /* SDHC transfer status. 0 means success, 1 means failed. */
 
-/* USB device class information */
-usb_device_class_config_struct_t msc_config[1] = {{
-    USB_DeviceMscCallback,
-    0,
-    &g_UsbDeviceMscConfig,
-}};
-/* USB device class configuration information */
-usb_device_class_config_list_struct_t msc_config_list = {
-    msc_config,
-    USB_DeviceCallback,
-    1,
-};
+#if (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
+void *g_writeBufferHandle;
+void *g_writeTaskHandle;
+TaskHandle_t g_usbWriteTaskHandle;
+SemaphoreHandle_t g_xMutex;
+#endif
+
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -78,6 +127,12 @@ usb_device_class_config_list_struct_t msc_config_list = {
 void USB1_HS_IRQHandler(void)
 {
     USB_DeviceEhciIsrFunction(g_msc.deviceHandle);
+}
+#endif
+#if (defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0U))
+void USB0_FS_IRQHandler(void)
+{
+    USB_DeviceKhciIsrFunction(g_msc.deviceHandle);
 }
 #endif
 
@@ -126,6 +181,12 @@ void USB_DeviceClockInit(void)
     CLOCK_EnableUsbhsClock();
     USB_EhciPhyInit(CONTROLLER_ID, BOARD_XTAL0_CLK_HZ, &phyConfig);
 #endif
+#if defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0U)
+    CLOCK_AttachClk(kCLK_48M_to_USB0);
+    CLOCK_EnableClock(kCLOCK_Usb0Ram);
+    CLOCK_EnableClock(kCLOCK_Usb0Fs);
+    CLOCK_EnableUsbfsClock();
+#endif
 }
 
 void USB_DeviceIsrEnable(void)
@@ -135,16 +196,22 @@ void USB_DeviceIsrEnable(void)
     uint8_t usbDeviceEhciIrq[] = USBHS_IRQS;
     irqNumber                  = usbDeviceEhciIrq[CONTROLLER_ID - kUSB_ControllerEhci0];
 #endif
+#if defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0U)
+    uint8_t usbDeviceKhciIrq[] = USBFS_IRQS;
+    irqNumber                  = usbDeviceKhciIrq[CONTROLLER_ID - kUSB_ControllerKhci0];
+#endif
     /* Install isr, set priority, and enable IRQ. */
     NVIC_SetPriority((IRQn_Type)irqNumber, USB_DEVICE_INTERRUPT_PRIORITY);
     EnableIRQ((IRQn_Type)irqNumber);
 }
-
 #if USB_DEVICE_CONFIG_USE_TASK
 void USB_DeviceTaskFn(void *deviceHandle)
 {
 #if defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)
     USB_DeviceEhciTaskFunction(deviceHandle);
+#endif
+#if defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0U)
+    USB_DeviceKhciTaskFunction(deviceHandle);
 #endif
 }
 #endif
@@ -154,7 +221,37 @@ void USB_DeviceMscApp(void)
     /*add user code*/
     return;
 }
+#if (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
+/*!
+ * @brief device msc write task function.
+ *
+ * This function write data to the sdcard.
+ * @param handle          The write task parameter.
+ */
+void USB_DeviceMscWriteTask(void *Handle)
+{
+    uint32_t writeInformationa[3];
+    status_t errorCode;
+    while (1)
+    {
+        xQueueReceive(g_writeTaskHandle, &writeInformationa, portMAX_DELAY);
+        xSemaphoreTake(g_xMutex, portMAX_DELAY);
+        errorCode = USB_Disk_WriteBlocks((uint8_t *)writeInformationa[0], writeInformationa[1],
+                                         writeInformationa[2] >> USB_DEVICE_DISK_BLOCK_SIZE_POWER);
+        xSemaphoreGive(g_xMutex);
+        if (kStatus_Success != errorCode)
+        {
+            g_msc.read_write_error = 1;
+            usb_echo(
+                "Write error, error = 0xx%x \t Please check write request buffer size(must be less than 128 "
+                "sectors)\r\n",
+                errorCode);
+        }
+        xQueueSend(g_writeBufferHandle, &writeInformationa[0], 0U);
+    }
+}
 
+#endif
 /*!
  * @brief device msc callback function.
  *
@@ -173,6 +270,10 @@ usb_status_t USB_DeviceMscCallback(class_handle_t handle, uint32_t event, void *
     usb_device_ufi_app_struct_t *ufi;
     usb_device_capacity_information_struct_t *capacityInformation;
 
+#if (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
+    uint32_t writeInformation[3];
+    uint32_t tempbuffer;
+#endif
     switch (event)
     {
         case kUSB_DeviceMscEventReadResponse:
@@ -180,7 +281,20 @@ usb_status_t USB_DeviceMscCallback(class_handle_t handle, uint32_t event, void *
             break;
         case kUSB_DeviceMscEventWriteResponse:
             lba = (usb_device_lba_app_struct_t *)param;
-            /*write the data to sd card*/
+/*write the data to sd card*/
+#if (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
+            writeInformation[0] = (uint32_t)lba->buffer;
+            writeInformation[1] = lba->offset;
+            writeInformation[2] = lba->size;
+            if (0 == lba->size)
+            {
+                xQueueSend(g_writeBufferHandle, &writeInformation[0], 0U);
+            }
+            else
+            {
+                xQueueSend(g_writeTaskHandle, &writeInformation, 0U);
+            }
+#else
             if (0 != lba->size)
             {
                 errorCode =
@@ -199,20 +313,31 @@ usb_status_t USB_DeviceMscCallback(class_handle_t handle, uint32_t event, void *
             {
                 error = kStatus_USB_InvalidRequest;
             }
+#endif
             break;
         case kUSB_DeviceMscEventWriteRequest:
             lba = (usb_device_lba_app_struct_t *)param;
-            /*get a buffer to store the data from host*/
-            lba->buffer = (uint8_t *)&g_mscWriteRequestBuffer[0];
+/*get a buffer to store the data from host*/
+#if (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
 
+            xQueueReceive(g_writeBufferHandle, (void *)&tempbuffer, portMAX_DELAY);
+            lba->buffer = (uint8_t *)tempbuffer;
+#else
+            lba->buffer = (uint8_t *)&g_mscWriteRequestBuffer[0];
+#endif
             break;
         case kUSB_DeviceMscEventReadRequest:
             lba         = (usb_device_lba_app_struct_t *)param;
             lba->buffer = (uint8_t *)&g_mscReadRequestBuffer[0];
 
-            /*read the data from sd card, then store these data to the read buffer*/
+/*read the data from sd card, then store these data to the read buffer*/
+#if (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
+            xSemaphoreTake(g_xMutex, portMAX_DELAY);
+#endif
             errorCode = USB_Disk_ReadBlocks(lba->buffer, lba->offset, lba->size >> USB_DEVICE_DISK_BLOCK_SIZE_POWER);
-
+#if (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
+            xSemaphoreGive(g_xMutex);
+#endif
             if (kStatus_Success != errorCode)
             {
                 g_msc.read_write_error = 1;
@@ -306,6 +431,15 @@ usb_status_t USB_DeviceCallback(usb_device_handle handle, uint32_t event, void *
             g_msc.stop                 = 0U;
             error                      = kStatus_USB_Success;
 
+#if (defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U))
+#if !((defined FSL_FEATURE_SOC_USBPHY_COUNT) && (FSL_FEATURE_SOC_USBPHY_COUNT > 0U))
+            /* The work-around is used to fix the HS device Chirping issue.
+             * Please refer to the implementation for the detail information.
+             */
+            USB_DeviceHsPhyChirpIssueWorkaround();
+#endif
+#endif
+
 #if (defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)) || \
     (defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U))
             /* Get USB speed to configure the device, including max packet size and interval of the endpoints. */
@@ -319,6 +453,11 @@ usb_status_t USB_DeviceCallback(usb_device_handle handle, uint32_t event, void *
 #if (defined(USB_DEVICE_CONFIG_DETACH_ENABLE) && (USB_DEVICE_CONFIG_DETACH_ENABLE > 0U))
         case kUSB_DeviceEventDetach:
         {
+#if (defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U))
+#if !((defined FSL_FEATURE_SOC_USBPHY_COUNT) && (FSL_FEATURE_SOC_USBPHY_COUNT > 0U))
+            USB_DeviceDisconnected();
+#endif
+#endif
             error = kStatus_USB_Success;
         }
         break;
@@ -387,6 +526,16 @@ usb_status_t USB_DeviceCallback(usb_device_handle handle, uint32_t event, void *
                                                              (usb_device_get_configuration_descriptor_struct_t *)param);
             }
             break;
+#if (defined(USB_DEVICE_CONFIG_CV_TEST) && (USB_DEVICE_CONFIG_CV_TEST > 0U))
+        case kUSB_DeviceEventGetDeviceQualifierDescriptor:
+            if (param)
+            {
+                /* Get Qualifier descriptor request */
+                error = USB_DeviceGetDeviceQualifierDescriptor(
+                    handle, (usb_device_get_device_qualifier_descriptor_struct_t *)param);
+            }
+            break;
+#endif
         case kUSB_DeviceEventGetStringDescriptor:
             if (param)
             {
@@ -398,6 +547,18 @@ usb_status_t USB_DeviceCallback(usb_device_handle handle, uint32_t event, void *
     }
     return error;
 }
+/* USB device class information */
+usb_device_class_config_struct_t msc_config[1] = {{
+    USB_DeviceMscCallback,
+    0,
+    &g_UsbDeviceMscConfig,
+}};
+/* USB device class configuration information */
+usb_device_class_config_list_struct_t msc_config_list = {
+    msc_config,
+    USB_DeviceCallback,
+    1,
+};
 
 void USB_DeviceMscAppTask(void)
 {
@@ -428,7 +589,17 @@ void USB_DeviceApplicationInit(void)
         usb_echo("Disk init failed\r\n");
         return;
     }
+#if (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
 
+    g_xMutex            = xSemaphoreCreateMutex();
+    g_writeBufferHandle = xQueueCreate(USB_DEVICE_MSC_WRITE_BUFF_NUM, sizeof(uint32_t *));
+    for (int i = 0; i < USB_DEVICE_MSC_WRITE_BUFF_NUM; i++)
+    {
+        uint8_t *bufferAddress = (uint8_t *)&g_mscWriteRequestBuffer[i][0];
+        xQueueSend(g_writeBufferHandle, &bufferAddress, 0);
+    }
+    g_writeTaskHandle = xQueueCreate(USB_DEVICE_MSC_WRITE_BUFF_NUM, sizeof(usb_device_lba_app_struct_t));
+#endif
     g_msc.speed        = USB_SPEED_FULL;
     g_msc.attach       = 0;
     g_msc.mscHandle    = (class_handle_t)NULL;
@@ -448,4 +619,51 @@ void USB_DeviceApplicationInit(void)
     /*Add one delay here to make the DP pull down long enough to allow host to detect the previous disconnection.*/
     SDK_DelayAtLeastUs(5000, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
     USB_DeviceRun(g_msc.deviceHandle);
+}
+#if USB_DEVICE_CONFIG_USE_TASK
+void USB_DeviceTask(void *handle)
+{
+    while (1U)
+    {
+        USB_DeviceTaskFn(handle);
+    }
+}
+#endif
+
+void APP_task(void *handle)
+{
+    USB_DeviceApplicationInit();
+    usb_echo("Available heap size before task creation: %d bytes\r\n", xPortGetFreeHeapSize());
+#if USB_DEVICE_CONFIG_USE_TASK
+    if (g_msc.deviceHandle)
+    {
+        if (xTaskCreate(USB_DeviceTask,                  /* pointer to the task */
+                        (char const *)"usb device task", /* task name for kernel awareness debugging */
+                        5000L / sizeof(portSTACK_TYPE),  /* task stack size */
+                        g_msc.deviceHandle,              /* optional task startup argument */
+                        4,                               /* initial priority */
+                        &g_msc.device_task_handle        /* optional task handle to create */
+                        ) != pdPASS)
+        {
+            usb_echo("usb device task create failed!\r\n");
+            return;
+        }
+    }
+#endif
+#if (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
+    if (xTaskCreate(USB_DeviceMscWriteTask,         /* pointer to the task */
+                    (char const *)"write task",     /* task name for kernel awareness debugging */
+                    2000L / sizeof(portSTACK_TYPE), /* task stack size */
+                    NULL,                           /* optional task startup argument */
+                    4,                              /* initial priority */
+                    &g_usbWriteTaskHandle           /* optional task handle to create */
+                    ) != pdPASS)
+    {
+        usb_echo("write task create failed!\r\n");
+        return;
+    }
+#endif
+    while (1)
+    {
+    }
 }

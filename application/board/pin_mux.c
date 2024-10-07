@@ -33,6 +33,7 @@ processor_version: 0.14.14
  * Description   : Calls initialization functions.
  *
  * END ****************************************************************************************************************/
+/* TODO: Delete This Function In Final Product. Due To Optimalization. */
 void BOARD_InitBootPins(void)
 {
     BOARD_InitPins();
