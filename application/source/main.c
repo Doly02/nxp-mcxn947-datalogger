@@ -90,7 +90,7 @@ void APP_SetPowModeToOverDrive(void)
  */
 void APP_InitBoard(void)
 {
-#if 0
+
     /* attach FRO 12M to FLEXCOMM4 (debug console) */
     CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
     CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
@@ -112,14 +112,15 @@ void APP_InitBoard(void)
     CLOCK_EnableClock(kCLOCK_Gpio0);
     CLOCK_EnableClock(kCLOCK_Gpio2);
 
+	/* Set DCDC To Normal Behavior And Set Safe Voltage Level For SRAM. */
+	APP_SetPowModeToOverDrive();
+
 #endif /* (true == MSC_ENABLED) */
 
 	/* Enable DMA Clock */
 	CLOCK_EnableClock(LPI2C_DMA_CLOCK);
 
 	BOARD_InitPins();
-	/* Set DCDC To Normal Behavior And Set Safe Voltage Level For SRAM. */
-	APP_SetPowModeToOverDrive();
 	BOARD_InitBootClocks();
     BOARD_InitDebugConsole();
 
@@ -138,27 +139,8 @@ void APP_InitBoard(void)
 	EDMA_GetDefaultConfig(&edmaConfig);
 	EDMA_Init(LPI2C_DMA_BASEADDR, &edmaConfig);
 #endif /* (true == RTC_ENABLED) */
-#endif
-    /* attach FRO 12M to FLEXCOMM4 (debug console) */
-    CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
-    CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
 
-    /* attach FRO HF to USDHC */
-    CLOCK_SetClkDiv(kCLOCK_DivUSdhcClk, 1u);
-    CLOCK_AttachClk(kFRO_HF_to_USDHC);
-
-    /* Enables the clock for GPIO0 */
-    CLOCK_EnableClock(kCLOCK_Gpio0);
-    /* Enables the clock for GPIO2 */
-    CLOCK_EnableClock(kCLOCK_Gpio2);
-
-    BOARD_InitBootPins();
-    BOARD_PowerMode_OD();
-    BOARD_InitBootClocks();
-    BOARD_InitDebugConsole();
-    CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
-    BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
-
+	return;
 }
 
 void APP_HandleError(void)
