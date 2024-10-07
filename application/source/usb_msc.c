@@ -464,35 +464,5 @@ void USB_DeviceApplicationInit(void)
     SDK_DelayAtLeastUs(5000, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
     USB_DeviceRun(g_msc.deviceHandle);
 }
-#if USB_DEVICE_CONFIG_USE_TASK
-void USB_DeviceTask(void *handle)
-{
-    while (1U)
-    {
-        USB_DeviceTaskFn(handle);
-    }
-}
-#endif
 
-void APP_task(void *handle)
-{
-    USB_DeviceApplicationInit();
-    usb_echo("Available heap size before task creation: %d bytes\r\n", xPortGetFreeHeapSize());
-    if (g_msc.deviceHandle)
-    {
-        if (xTaskCreate(USB_DeviceTask,                  /* pointer to the task */
-                        (char const *)"usb device task", /* task name for kernel awareness debugging */
-                        5000L / sizeof(portSTACK_TYPE),  /* task stack size */
-                        g_msc.deviceHandle,              /* optional task startup argument */
-                        4,                               /* initial priority */
-                        &g_msc.device_task_handle        /* optional task handle to create */
-                        ) != pdPASS)
-        {
-            usb_echo("usb device task create failed!\r\n");
-            return;
-        }
-    }
-    while (1)
-    {
-    }
-}
+

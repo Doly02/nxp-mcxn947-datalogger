@@ -64,8 +64,7 @@ void rtc_task(void *pvParameters)
 
 }
 
-#if 0
-#if USB_DEVICE_CONFIG_USE_TASK
+
 void USB_DeviceTask(void *handle)
 {
     while (1U)
@@ -73,19 +72,18 @@ void USB_DeviceTask(void *handle)
         USB_DeviceTaskFn(handle);
     }
 }
-#endif
 
 void APP_task(void *handle)
 {
-	USB_MscInit();
-
+    USB_DeviceApplicationInit();
+    usb_echo("Available heap size before task creation: %d bytes\r\n", xPortGetFreeHeapSize());
     if (g_msc.deviceHandle)
     {
         if (xTaskCreate(USB_DeviceTask,                  /* pointer to the task */
                         (char const *)"usb device task", /* task name for kernel awareness debugging */
                         5000L / sizeof(portSTACK_TYPE),  /* task stack size */
                         g_msc.deviceHandle,              /* optional task startup argument */
-                        5,                               /* initial priority */
+                        4,                               /* initial priority */
                         &g_msc.device_task_handle        /* optional task handle to create */
                         ) != pdPASS)
         {
@@ -93,11 +91,8 @@ void APP_task(void *handle)
             return;
         }
     }
-
     while (1)
     {
     }
 }
-#endif
-
 
