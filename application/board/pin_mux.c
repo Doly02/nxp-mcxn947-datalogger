@@ -69,6 +69,13 @@ void BOARD_InitPins(void)
     /* Enables the clock for PORT2: Enables clock */
 	CLOCK_EnableClock(kCLOCK_Port2);
 
+#if (true == USB0_DET_PIN_ENABLED)
+
+    /* Enables the clock for PORT4: Enables clock */
+	CLOCK_EnableClock(kCLOCK_Port4);
+
+#endif /* (true == USB0_DET_PIN_ENABLED) */
+
 #endif /*(true == MSC_ENABLED) */
 
     const port_pin_config_t port1_8_pinA1_config = {/* Internal pull-up/down resistor is disabled */
@@ -280,6 +287,32 @@ void BOARD_InitPins(void)
     PORT_SetPinConfig(PORT2, 7U, &port2_7_pinL2_config);
 
 #endif /*(true == MSC_ENABLED) */
+
+
+#if (true == USB0_DET_PIN_ENABLED)
+
+    const port_pin_config_t port4_12_usb0_det_config = {
+    												/* Internal pull-up resistor is disabled */
+    												kPORT_PullDisable,
+													/* (TODO Check) Low internal pull resistor value is selected. */
+													kPORT_LowPullResistor,
+													/* Slow slew rate is configured */
+													kPORT_SlowSlewRate,
+													/* Passive input filter is disabled */
+													kPORT_PassiveFilterDisable,
+													/* (TODO Check) Low drive strength is configured */
+													kPORT_LowDriveStrength,
+													/* Pin is configured as USB0_VBUS_DET */
+													kPORT_MuxAlt1,
+													/* Digital input enabled */
+													kPORT_InputBufferEnable,
+													/* Digital input is not inverted */
+													kPORT_InputNormal,
+													/* Pin Control Register fields [15:0] are not locked */
+													kPORT_UnlockRegister};
+
+    PORT_SetPinConfig(PORT4, 12U, &port4_12_usb0_det_config);
+#endif /* (true == USB0_DET_PIN_ENABLED) */
 }
 /* clang-format off */
 /*
