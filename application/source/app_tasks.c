@@ -75,13 +75,19 @@ void USB_DeviceTask(void *handle)
 
 void APP_task(void *handle)
 {
-    USB_DeviceApplicationInit();
-    usb_echo("Available heap size before task creation: %d bytes\r\n", xPortGetFreeHeapSize());
+    if (kStatus_USB_Success != USB_DeviceMscDiskStorageInit())
+    {
+        usb_echo("Disk init failed\r\n");
+        return;
+    }
+	USB_MscInit();
+
+	usb_echo("Available heap size before task creation: %d bytes\r\n", xPortGetFreeHeapSize());
     if (g_msc.deviceHandle)
     {
         if (xTaskCreate(USB_DeviceTask,                  /* pointer to the task */
                         (char const *)"usb device task", /* task name for kernel awareness debugging */
-                        5000L / sizeof(portSTACK_TYPE),  /* task stack size */
+                        10000L / sizeof(portSTACK_TYPE),  /* task stack size */
                         g_msc.deviceHandle,              /* optional task startup argument */
                         4,                               /* initial priority */
                         &g_msc.device_task_handle        /* optional task handle to create */

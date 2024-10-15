@@ -430,20 +430,13 @@ void USB_DeviceMscAppTask(void)
  *
  * @return None.
  */
-void USB_DeviceApplicationInit(void)
+void USB_MscInit(void)
 {
     USB_DeviceClockInit();
 #if (defined(FSL_FEATURE_SOC_SYSMPU_COUNT) && (FSL_FEATURE_SOC_SYSMPU_COUNT > 0U))
     SYSMPU_Enable(SYSMPU, 0);
 #endif /* FSL_FEATURE_SOC_SYSMPU_COUNT */
 
-    usb_echo("Please insert disk \r\n");
-
-    if (kStatus_USB_Success != USB_DeviceMscDiskStorageInit())
-    {
-        usb_echo("Disk init failed\r\n");
-        return;
-    }
     g_msc.speed        = USB_SPEED_FULL;
     g_msc.attach       = 0;
     g_msc.mscHandle    = (class_handle_t)NULL;
