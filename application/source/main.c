@@ -23,6 +23,8 @@
 #include "fsl_lpi2c_cmsis.h"
 #include "rtc_ds3231.h"
 #include "defs.h"
+
+#include "disk.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -69,6 +71,16 @@ void APP_InitBoard(void)
 	/* Enable DMA Clock */
 	CLOCK_EnableClock(EXAMPLE_LPI2C_DMA_CLOCK);
 
+    /* attach FRO HF to USDHC */
+    CLOCK_SetClkDiv(kCLOCK_DivUSdhcClk, 1u);
+    CLOCK_AttachClk(kFRO_HF_to_USDHC);
+
+    /* Enables the clock for GPIO0 */
+    CLOCK_EnableClock(kCLOCK_Gpio0);
+    /* Enables the clock for GPIO2 */
+    CLOCK_EnableClock(kCLOCK_Gpio2);
+
+    BOARD_PowerMode_OD();
     BOARD_InitBootPins();
     BOARD_InitBootClocks();
     BOARD_InitDebugConsole();
@@ -78,6 +90,10 @@ void APP_InitBoard(void)
 	EDMA_GetDefaultConfig(&edmaConfig);
 	EDMA_Init(EXAMPLE_LPI2C_DMA_BASEADDR, &edmaConfig);
 
+    CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
+    BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
+
+    USB_DeviceApplicationInit();
 	return;
 }
 
