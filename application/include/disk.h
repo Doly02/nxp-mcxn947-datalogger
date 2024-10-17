@@ -9,7 +9,34 @@
 #ifndef __USB_DISK_H__
 #define __USB_DISK_H__ 1
 
-/* @TEST_ANCHOR */
+#include <stdio.h>
+#include <stdlib.h>
+/*${standard_header_anchor}*/
+#include "usb_device_config.h"
+#include "usb.h"
+#include "usb_device.h"
+
+#include "usb_device_msc.h"
+#include "usb_device_ch9.h"
+#include "usb_device_descriptor.h"
+#include "disk.h"
+
+#include "usb_disk_adapter.h"
+#include "fsl_device_registers.h"
+#include "fsl_debug_console.h"
+#include "pin_mux.h"
+#include "clock_config.h"
+#include "board.h"
+
+#if (defined(FSL_FEATURE_SOC_SYSMPU_COUNT) && (FSL_FEATURE_SOC_SYSMPU_COUNT > 0U))
+#include "fsl_sysmpu.h"
+#endif /* FSL_FEATURE_SOC_SYSMPU_COUNT */
+
+#if ((defined FSL_FEATURE_SOC_USBPHY_COUNT) && (FSL_FEATURE_SOC_USBPHY_COUNT > 0U))
+#include "usb_phy.h"
+#endif
+
+#include "sdmmc_config.h"
 
 #if defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0)
 #ifndef CONTROLLER_ID
@@ -80,5 +107,10 @@ typedef struct _usb_msc_struct
     usb_msc_buffer_struct_t *taillist;
     usb_msc_buffer_struct_t *transferlist;
 } usb_msc_struct_t;
+
+void USB_DeviceApplicationInit(void);
+
+void USB_DeviceMscAppTask(void);
+
 
 #endif

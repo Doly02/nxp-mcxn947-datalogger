@@ -1,16 +1,23 @@
-/*
- * Copyright (c) 2015, Freescale Semiconductor, Inc.
- * Copyright 2016-2017 NXP
- * All rights reserved.
+/******************************
+ *  Project:        NXP MCXN947 Datalogger
+ *  File Name:      mainc.c
+ *  Author:         Tomas Dolak
+ *  Date:           07.08.2024
+ *  Description:    Implements Datalogger Application.
  *
- * SPDX-License-Identifier: BSD-3-Clause
- */
+ * ****************************/
 
-/* FreeRTOS kernel includes. */
-#include "FreeRTOS.h"
-#include "task.h"
-#include "queue.h"
-#include "timers.h"
+/******************************
+ *  @package        NXP MCXN947 Datalogger
+ *  @file           main.c
+ *  @author         Tomas Dolak
+ *  @date           07.08.2024
+ *  @brief          Implements Datalogger Application.
+ * ****************************/
+
+/*******************************************************************************
+ * Includes
+ ******************************************************************************/
 
 /* Freescale includes. */
 #include "fsl_device_registers.h"
@@ -22,9 +29,8 @@
 #include "fsl_clock.h"
 #include "fsl_lpi2c_cmsis.h"
 #include "rtc_ds3231.h"
-#include "defs.h"
 
-#include "disk.h"
+#include "app_tasks.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -40,10 +46,23 @@
 #define EXAMPLE_LPI2C_DMA_BASEADDR 	(DMA0)
 #define LPI2C_CLOCK_FREQUENCY      	CLOCK_GetLPFlexCommClkFreq(2u)
 #define EXAMPLE_LPI2C_DMA_CLOCK    	kCLOCK_Dma0
+
+/*******************************************************************************
+ * Global Variables
+ ******************************************************************************/
+/*!
+ * @brief 	Buffer for Static Stack of Mass Storage Task.
+ */
+static StackType_t mscTaskStack[MSC_STACK_SIZE];
+/*!
+ * @brief 	TCB (Task Control Block) - Metadata of Mass Storage Task.
+ * @details Includes All The Information Needed to Manage The Task Such As Job Status,
+ * 			Job Stack Pointer, Values of Variables During Context Switching.
+ */
+static StaticTask_t mscTaskTCB;
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
-static void rtc_task(void *pvParameters);
 
 /*******************************************************************************
  * Code
@@ -55,6 +74,15 @@ uint32_t LPI2C2_GetFreq(void)
 {
     return LPI2C_CLOCK_FREQUENCY;
 }
+
+void APP_HandleError(void)
+{
+	while(1)
+	{
+		; /* Error State */
+	}
+}
+
 /*
  * @brief Functions of DMA That Are Used For Correct Work of RTC.
  */
@@ -64,9 +92,13 @@ void APP_InitBoard(void)
     CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
     CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
 
+#if (true == RTC_ENABLED)
+
 	/* Attach FRO 12M To FLEXCOMM2 (I2C for RTC) */
 	CLOCK_SetClkDiv(kCLOCK_DivFlexcom2Clk, 1U);
 	CLOCK_AttachClk(kFRO12M_to_FLEXCOMM2);
+
+#endif /* (true == RTC_ENABLED) */
 
 	/* Enable DMA Clock */
 	CLOCK_EnableClock(EXAMPLE_LPI2C_DMA_CLOCK);
@@ -80,34 +112,28 @@ void APP_InitBoard(void)
     /* Enables the clock for GPIO2 */
     CLOCK_EnableClock(kCLOCK_Gpio2);
 
-    BOARD_PowerMode_OD();
     BOARD_InitBootPins();
+    BOARD_PowerMode_OD();
     BOARD_InitBootClocks();
     BOARD_InitDebugConsole();
+
+#if (true == RTC_ENABLED)
 
     /* Initialize DMA */
 	edma_config_t edmaConfig = { 0U };
 	EDMA_GetDefaultConfig(&edmaConfig);
 	EDMA_Init(EXAMPLE_LPI2C_DMA_BASEADDR, &edmaConfig);
 
+#endif /* (true == RTC_ENABLED) */
+
     CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
     BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
 
-    USB_DeviceApplicationInit();
 	return;
 }
-
-void APP_HandleError(void)
-{
-	while(1)
-	{
-		; /* Error State */
-	}
-} 
  
-
 /*!
- * @brief Application entry point.
+ * @brief Application Entry Point.
  */
 int main(void)
 {
@@ -116,6 +142,7 @@ int main(void)
     /* Initialize board hardware. */
 	APP_InitBoard();
 
+#if (true == RTC_ENABLED)
 	/* Initialize Real-Time Circuit */
     retVal = RTC_Init(&I2C_MASTER);
     if (E_FAULT == retVal)
@@ -124,51 +151,28 @@ int main(void)
     	APP_HandleError();
     }
 
-	
-    if (xTaskCreate(rtc_task, "rtc_task", configMINIMAL_STACK_SIZE + 100, NULL, hello_task_PRIORITY, NULL) !=
-        pdPASS)
+    if (pdPASS != xTaskCreate(rtc_task, "rtc_task", configMINIMAL_STACK_SIZE + 100, NULL, TASK_PRIO, NULL))
     {
-        PRINTF("Task creation failed!.\r\n");
-        while (1)
-            ;
+        PRINTF("RTC Task Creation Failed!\r\n");
+        APP_HandleError();
     }
+#endif /* (true == RTC_ENABLED) */
+
+#if (true == MSC_ENABLED)
+
+    if (pdPASS != xTaskCreateStatic(msc_task, "msc_task", MSC_STACK_SIZE, NULL, TASK_PRIO, mscTaskStack, &mscTaskTCB ))
+    {
+    	PRINTF("MSC Task Creation Failed!\r\n");
+    	APP_HandleError();
+    }
+
+#endif /* (true == MSC_ENABLED) */
+
     vTaskStartScheduler();
-    for (;;)
-        ;
-}
-
-/*!
- * @brief Task Responsible for Time Handling.
- */
-static void rtc_task(void *pvParameters)
-{
-	uint8_t retVal = E_FAULT;
-	RTC_time_t actTime;
-	RTC_date_t actDate;
-
-    retVal = RTC_GetState();
-    if (OSC_STOPPED == retVal)	// If The Oscillator Was Stopped -> Set Time & Date
+    while (1 == 1)
     {
-    	/* Set Default Time & Date (Prepare Variables) */
-    	RTC_SetDateDefault(&actDate);
-    	RTC_SetTimeDefault(&actTime);
-		/* Set Time & Date Into RTC */
-		RTC_SetDate(&actDate);
-		RTC_SetTime(&actTime);
-
-		RTC_SetOscState(OSC_OK);
+    	;
     }
 
-    /* Get Current Time */
-    memset(&actTime, 0U, sizeof(actTime));
-    memset(&actDate, 0U, sizeof(actDate));
-
-    RTC_GetTime(&actTime);
-    RTC_GetDate(&actDate);
-    /* Print The Time From RTC */
-	PRINTF("Current Date: %d\r\n",actDate.day);
-
-	/* Finish The Task */
-	vTaskSuspend(NULL);
-
+    return SUCCESS;
 }

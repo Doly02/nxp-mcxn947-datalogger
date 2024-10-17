@@ -26,6 +26,8 @@ processor_version: 0.14.14
 #include "fsl_port.h"
 #include "pin_mux.h"
 
+#include "defs.h"
+
 /* FUNCTION ************************************************************************************************************
  *
  * Function Name : BOARD_InitBootPins
@@ -108,6 +110,35 @@ void BOARD_InitPins(void)
                                                     kPORT_UnlockRegister};
     /* PORT1_9 (pin B1) is configured as FC4_P1 */
     PORT_SetPinConfig(PORT1, 9U, &port1_9_pinB1_config);
+
+#if (true == MSC_ENABLED)
+
+    /* Enables the clock for PORT2: Enables clock */
+    CLOCK_EnableClock(kCLOCK_Port2);
+
+
+    const port_pin_config_t port2_1_pinH1_config = {/* Internal pull-up/down resistor is disabled */
+                                                    kPORT_PullDisable,
+                                                    /* Low internal pull resistor value is selected. */
+                                                    kPORT_LowPullResistor,
+                                                    /* Fast slew rate is configured */
+                                                    kPORT_FastSlewRate,
+                                                    /* Passive input filter is disabled */
+                                                    kPORT_PassiveFilterDisable,
+                                                    /* Open drain output is disabled */
+                                                    kPORT_OpenDrainDisable,
+                                                    /* Low drive strength is configured */
+                                                    kPORT_LowDriveStrength,
+                                                    /* Pin is configured as PIO2_1 */
+                                                    kPORT_MuxAlt0,
+                                                    /* Digital input enabled */
+                                                    kPORT_InputBufferEnable,
+                                                    /* Digital input is not inverted */
+                                                    kPORT_InputNormal,
+                                                    /* Pin Control Register fields [15:0] are not locked */
+                                                    kPORT_UnlockRegister};
+    /* PORT2_1 (pin H1) is configured as PIO2_1 */
+    PORT_SetPinConfig(PORT2, 1U, &port2_1_pinH1_config);
 
     const port_pin_config_t port2_2_pinH3_config = {/* Internal pull-up resistor is enabled */
                                                     kPORT_PullUp,
@@ -246,6 +277,8 @@ void BOARD_InitPins(void)
                                                     kPORT_UnlockRegister};
     /* PORT2_7 (pin L2) is configured as SDHC0_D2 */
     PORT_SetPinConfig(PORT2, 7U, &port2_7_pinL2_config);
+
+#endif /* (true == MSC_ENABLED) */
 }
 /* clang-format off */
 /*

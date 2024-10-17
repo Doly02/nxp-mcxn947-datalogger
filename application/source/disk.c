@@ -5,34 +5,9 @@
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
-#include <stdio.h>
-#include <stdlib.h>
-/*${standard_header_anchor}*/
-#include "usb_device_config.h"
-#include "usb.h"
-#include "usb_device.h"
 
-#include "usb_device_msc.h"
-#include "usb_device_ch9.h"
-#include "usb_device_descriptor.h"
 #include "disk.h"
 
-#include "usb_disk_adapter.h"
-#include "fsl_device_registers.h"
-#include "fsl_debug_console.h"
-#include "pin_mux.h"
-#include "clock_config.h"
-#include "board.h"
-
-#if (defined(FSL_FEATURE_SOC_SYSMPU_COUNT) && (FSL_FEATURE_SOC_SYSMPU_COUNT > 0U))
-#include "fsl_sysmpu.h"
-#endif /* FSL_FEATURE_SOC_SYSMPU_COUNT */
-
-#if ((defined FSL_FEATURE_SOC_USBPHY_COUNT) && (FSL_FEATURE_SOC_USBPHY_COUNT > 0U))
-#include "usb_phy.h"
-#endif
-
-#include "sdmmc_config.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -1310,11 +1285,6 @@ void USB_DeviceApplicationInit(void)
         return;
     }
 
-#if (defined(USB_DEVICE_CONFIG_USE_TASK) && (USB_DEVICE_CONFIG_USE_TASK > 0)) && \
-    (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
-    USB_DeviceMscInitQueue();
-#endif
-
     usb_device_msc_ufi_struct_t *ufi = NULL;
     g_msc.speed                      = USB_SPEED_FULL;
     g_msc.attach                     = 0;
@@ -1368,45 +1338,4 @@ void USB_DeviceApplicationInit(void)
     /*Add one delay here to make the DP pull down long enough to allow host to detect the previous disconnection.*/
     SDK_DelayAtLeastUs(5000, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
     USB_DeviceRun(g_msc.deviceHandle);
-}
-
-#if defined(__CC_ARM) || (defined(__ARMCC_VERSION)) || defined(__GNUC__)
-int main(void)
-#else
-void main(void)
-#endif
-{
-    /* attach FRO 12M to FLEXCOMM4 (debug console) */
-    CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
-    CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
-
-    /* attach FRO HF to USDHC */
-    CLOCK_SetClkDiv(kCLOCK_DivUSdhcClk, 1u);
-    CLOCK_AttachClk(kFRO_HF_to_USDHC);
-
-    /* Enables the clock for GPIO0 */
-    CLOCK_EnableClock(kCLOCK_Gpio0);
-    /* Enables the clock for GPIO2 */
-    CLOCK_EnableClock(kCLOCK_Gpio2);
-
-    BOARD_InitBootPins();
-    BOARD_PowerMode_OD();
-    BOARD_InitBootClocks();
-    BOARD_InitDebugConsole();
-    CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
-    BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
-
-    USB_DeviceApplicationInit();
-
-    while (1)
-    {
-#if USB_DEVICE_CONFIG_USE_TASK
-        USB_DeviceTaskFn(g_msc.deviceHandle);
-#endif
-        USB_DeviceMscAppTask();
-#if (defined(USB_DEVICE_CONFIG_USE_TASK) && (USB_DEVICE_CONFIG_USE_TASK > 0)) && \
-    (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
-        USB_DeviceMscWriteTask();
-#endif
-    }
 }
