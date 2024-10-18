@@ -31,6 +31,7 @@
 #include "rtc_ds3231.h"
 
 #include "app_tasks.h"
+
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -137,12 +138,15 @@ void APP_InitBoard(void)
  */
 int main(void)
 {
-	uint8_t retVal = E_FAULT;
+
+	uint8_t ui8RetVal = E_FAULT;
+	TaskHandle_t mscTaskHandle = NULL;
 
     /* Initialize board hardware. */
 	APP_InitBoard();
 
 #if (true == RTC_ENABLED)
+
 	/* Initialize Real-Time Circuit */
     retVal = RTC_Init(&I2C_MASTER);
     if (E_FAULT == retVal)
@@ -160,13 +164,21 @@ int main(void)
 
 #if (true == MSC_ENABLED)
 
-    if (pdPASS != xTaskCreateStatic(msc_task, "msc_task", MSC_STACK_SIZE, NULL, TASK_PRIO, mscTaskStack, &mscTaskTCB ))
+    mscTaskHandle = xTaskCreateStatic(
+    			  msc_task,       			/* Function That Implements The Task. 		*/
+                  "msc_task",          		/* Text Name For The Task. 					*/
+				  MSC_STACK_SIZE,      		/* Number of Indexes In The xStack Array. 	*/
+                  NULL,    					/* Parameter Passed Into The Task. 			*/
+				  TASK_PRIO,				/* Priority at Which The Task Is Created. 	*/
+				  &mscTaskStack[0],         /* Array To Use As The Task's Stack.		*/
+                  &mscTaskTCB );
+    if (NULL == mscTaskHandle)
     {
     	PRINTF("MSC Task Creation Failed!\r\n");
     	APP_HandleError();
     }
-
 #endif /* (true == MSC_ENABLED) */
+
 
     vTaskStartScheduler();
     while (1 == 1)
@@ -174,5 +186,6 @@ int main(void)
     	;
     }
 
-    return SUCCESS;
+    return ui8RetVal;
+
 }
