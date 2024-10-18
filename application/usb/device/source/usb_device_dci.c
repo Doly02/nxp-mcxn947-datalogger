@@ -16,18 +16,7 @@
 
 #if ((defined(USB_DEVICE_CONFIG_NUM)) && (USB_DEVICE_CONFIG_NUM > 0U))
 
-#if ((defined(USB_DEVICE_CONFIG_KHCI)) && (USB_DEVICE_CONFIG_KHCI > 0U))
-#include "usb_device_khci.h"
-#endif
-
-#if ((defined(USB_DEVICE_CONFIG_EHCI)) && (USB_DEVICE_CONFIG_EHCI > 0U))
 #include "usb_device_ehci.h"
-#endif
-
-#if (((defined(USB_DEVICE_CONFIG_LPCIP3511FS)) && (USB_DEVICE_CONFIG_LPCIP3511FS > 0U)) || \
-     ((defined(USB_DEVICE_CONFIG_LPCIP3511HS)) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U)))
-#include "usb_device_lpcip3511.h"
-#endif
 
 #if ((defined(USB_DEVICE_CONFIG_DWC3)) && (USB_DEVICE_CONFIG_DWC3 > 0U))
 #include "usb_device_dwc3.h"
@@ -147,27 +136,10 @@ static usb_status_t USB_DeviceFreeHandle(usb_device_struct_t *handle)
     return kStatus_USB_Success;
 }
 
-#if ((defined(USB_DEVICE_CONFIG_KHCI)) && (USB_DEVICE_CONFIG_KHCI > 0U))
-/* KHCI device driver interface */
-static const usb_device_controller_interface_struct_t s_UsbDeviceKhciInterface = {
-    USB_DeviceKhciInit, USB_DeviceKhciDeinit, USB_DeviceKhciSend,
-    USB_DeviceKhciRecv, USB_DeviceKhciCancel, USB_DeviceKhciControl};
-#endif
-
-#if ((defined(USB_DEVICE_CONFIG_EHCI)) && (USB_DEVICE_CONFIG_EHCI > 0U))
 /* EHCI device driver interface */
 static const usb_device_controller_interface_struct_t s_UsbDeviceEhciInterface = {
     USB_DeviceEhciInit, USB_DeviceEhciDeinit, USB_DeviceEhciSend,
     USB_DeviceEhciRecv, USB_DeviceEhciCancel, USB_DeviceEhciControl};
-#endif
-
-#if (((defined(USB_DEVICE_CONFIG_LPCIP3511FS)) && (USB_DEVICE_CONFIG_LPCIP3511FS > 0U)) || \
-     ((defined(USB_DEVICE_CONFIG_LPCIP3511HS)) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U)))
-/* EHCI device driver interface */
-static const usb_device_controller_interface_struct_t s_UsbDeviceLpc3511IpInterface = {
-    USB_DeviceLpc3511IpInit, USB_DeviceLpc3511IpDeinit, USB_DeviceLpc3511IpSend,
-    USB_DeviceLpc3511IpRecv, USB_DeviceLpc3511IpCancel, USB_DeviceLpc3511IpControl};
-#endif
 
 #if ((defined(USB_DEVICE_CONFIG_DWC3)) && (USB_DEVICE_CONFIG_DWC3 > 0U))
 /* EHCI device driver interface */
@@ -194,32 +166,13 @@ static usb_status_t USB_DeviceGetControllerInterface(
     usb_status_t error                    = kStatus_USB_ControllerNotFound;
     usb_controller_index_t controlerIndex = (usb_controller_index_t)controllerId;
 
-#if ((defined(USB_DEVICE_CONFIG_KHCI)) && (USB_DEVICE_CONFIG_KHCI > 0U))
-    /* Get the KHCI controller driver interface */
-    if ((kUSB_ControllerKhci0 == controlerIndex) || (kUSB_ControllerKhci1 == controlerIndex))
-    {
-        *controllerInterface = (const usb_device_controller_interface_struct_t *)&s_UsbDeviceKhciInterface;
-        error                = kStatus_USB_Success;
-    }
-#endif
-#if ((defined(USB_DEVICE_CONFIG_EHCI)) && (USB_DEVICE_CONFIG_EHCI > 0U))
     /* Get the EHCI controller driver interface */
     if ((kUSB_ControllerEhci0 == controlerIndex) || (kUSB_ControllerEhci1 == controlerIndex))
     {
         *controllerInterface = (const usb_device_controller_interface_struct_t *)&s_UsbDeviceEhciInterface;
         error                = kStatus_USB_Success;
     }
-#endif
-#if (((defined(USB_DEVICE_CONFIG_LPCIP3511FS)) && (USB_DEVICE_CONFIG_LPCIP3511FS > 0U)) || \
-     ((defined(USB_DEVICE_CONFIG_LPCIP3511HS)) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U)))
-    /* Get the EHCI controller driver interface */
-    if ((kUSB_ControllerLpcIp3511Fs0 == controlerIndex) || (kUSB_ControllerLpcIp3511Fs1 == controlerIndex) ||
-        (kUSB_ControllerLpcIp3511Hs0 == controlerIndex) || (kUSB_ControllerLpcIp3511Hs1 == controlerIndex))
-    {
-        *controllerInterface = (const usb_device_controller_interface_struct_t *)&s_UsbDeviceLpc3511IpInterface;
-        error                = kStatus_USB_Success;
-    }
-#endif
+
 #if ((defined(USB_DEVICE_CONFIG_DWC3)) && (USB_DEVICE_CONFIG_DWC3 > 0U))
     /* Get the EHCI controller driver interface */
     if ((kUSB_ControllerDwc30 == controlerIndex) || (kUSB_ControllerDwc31 == controlerIndex))
@@ -1296,13 +1249,6 @@ usb_status_t USB_DeviceSetStatus(usb_device_handle handle, usb_device_status_t t
     usb_status_t status = kStatus_USB_Error;
     switch (type)
     {
-#if (defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U) ||                  \
-     (defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U))) && \
-    (defined(USB_DEVICE_CONFIG_USB20_TEST_MODE) && (USB_DEVICE_CONFIG_USB20_TEST_MODE > 0U))
-        case kUSB_DeviceStatusTestMode:
-            status = USB_DeviceControl(handle, kUSB_DeviceControlSetTestMode, param);
-            break;
-#endif
         case kUSB_DeviceStatusOtg:
             status = USB_DeviceControl(handle, kUSB_DeviceControlSetOtgStatus, param);
             break;

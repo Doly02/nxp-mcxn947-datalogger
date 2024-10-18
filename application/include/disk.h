@@ -43,21 +43,6 @@
 #define CONTROLLER_ID kUSB_ControllerEhci0
 #endif
 #endif
-#if defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0)
-#ifndef CONTROLLER_ID
-#define CONTROLLER_ID kUSB_ControllerKhci0
-#endif
-#endif
-#if defined(USB_DEVICE_CONFIG_LPCIP3511FS) && (USB_DEVICE_CONFIG_LPCIP3511FS > 0U)
-#ifndef CONTROLLER_ID
-#define CONTROLLER_ID kUSB_ControllerLpcIp3511Fs0
-#endif
-#endif
-#if defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U)
-#ifndef CONTROLLER_ID
-#define CONTROLLER_ID kUSB_ControllerLpcIp3511Hs0
-#endif
-#endif
 
 #define USB_DEVICE_INTERRUPT_PRIORITY                                                                    \
     (3U) /*! @brief enable the write task. 1U supported, 0U not supported . if this macro is enable ,the \
@@ -70,17 +55,9 @@ USB_DEVICE_CONFIG_USE_TASK macro should also be enable.*/
 /* USB MSC config*/
 /*buffer size for sd card example. the larger the buffer size ,the faster the data transfer speed is ,*/
 /*the block size should be multiple of 512, the least value is 512*/
-#if ((defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)))
 
 #define USB_DEVICE_MSC_WRITE_BUFF_SIZE (512 * 64U)
 #define USB_DEVICE_MSC_READ_BUFF_SIZE  (512 * 64U)
-
-#else
-
-#define USB_DEVICE_MSC_WRITE_BUFF_SIZE (512 * 8U)
-#define USB_DEVICE_MSC_READ_BUFF_SIZE  (512 * 8U)
-
-#endif
 
 #define USB_DEVICE_SDCARD_BLOCK_SIZE_POWER (9U)
 #define USB_DEVICE_MSC_ADMA_TABLE_WORDS    (8U)

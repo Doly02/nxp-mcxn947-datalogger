@@ -379,14 +379,6 @@ static usb_status_t USB_DeviceCh9SetClearFeature(usb_device_handle handle,
             /* Set or Clear the device remote wakeup feature. */
             error = USB_DeviceConfigureRemoteWakeup(handle, isSet);
         }
-#if (defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)) && \
-    (defined(USB_DEVICE_CONFIG_USB20_TEST_MODE) && (USB_DEVICE_CONFIG_USB20_TEST_MODE > 0U))
-        else if (USB_REQUEST_STANDARD_FEATURE_SELECTOR_DEVICE_TEST_MODE == setup->wValue)
-        {
-            state = kUSB_DeviceStateTestMode;
-            error = USB_DeviceSetStatus(handle, kUSB_DeviceStatusDeviceState, &state);
-        }
-#endif
         else
         {
         }

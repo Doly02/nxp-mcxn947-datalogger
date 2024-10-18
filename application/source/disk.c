@@ -19,16 +19,8 @@
 void BOARD_InitHardware(void);
 void USB_DeviceClockInit(void);
 void USB_DeviceIsrEnable(void);
-#if USB_DEVICE_CONFIG_USE_TASK
-void USB_DeviceTaskFn(void *deviceHandle);
-#endif
 
-#if (defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U))
-#if !((defined FSL_FEATURE_SOC_USBPHY_COUNT) && (FSL_FEATURE_SOC_USBPHY_COUNT > 0U))
-void USB_DeviceHsPhyChirpIssueWorkaround(void);
-void USB_DeviceDisconnected(void);
-#endif
-#endif
+
 /*******************************************************************************
  * Variables
  ******************************************************************************/
@@ -61,6 +53,7 @@ USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE)
 uint8_t g_formatCapacityData[sizeof(usb_device_capacity_list_header_struct_t) +
                              sizeof(usb_device_current_max_capacity_descriptor_struct_t) +
                              sizeof(usb_device_formattable_capacity_descriptor_struct_t) * 3];
+
 /* Data structure of msc device, store the information ,such as class handle */
 usb_msc_struct_t g_msc;
 usb_device_msc_struct_t *g_mscHandle = &g_msc.mscStruct;
@@ -69,49 +62,33 @@ USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE) uint32_t g_mscReadRequestBuffer[
 
 USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE) uint32_t g_mscWriteRequestBuffer[USB_DEVICE_MSC_WRITE_BUFF_SIZE >> 2];
 
-#if ((defined(USB_DEVICE_CONFIG_USE_TASK) && (USB_DEVICE_CONFIG_USE_TASK > 0)) && \
-     (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0)))
-usb_msc_buffer_struct_t dataBuffer[USB_DEVICE_MSC_BUFFER_NUMBER];
-USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE)
-uint8_t g_Buffer[USB_DEVICE_MSC_BUFFER_NUMBER][USB_DEVICE_MSC_WRITE_BUFF_SIZE]; /*!< Buffer address of the transferred
-                                                                                   data*/
-usb_msc_buffer_struct_t *currentTrasfer;
-#endif
 USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE) static uint8_t s_SetupOutBuffer[8];
 /*******************************************************************************
  * Code
  ******************************************************************************/
-#if (defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U))
 void USB1_HS_IRQHandler(void)
 {
     USB_DeviceEhciIsrFunction(g_msc.deviceHandle);
 }
-#endif
-#if (defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0U))
-void USB0_FS_IRQHandler(void)
-{
-    USB_DeviceKhciIsrFunction(g_msc.deviceHandle);
-}
-#endif
 
 void USB_DeviceClockInit(void)
 {
-#if defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)
     usb_phy_config_struct_t phyConfig = {
         BOARD_USB_PHY_D_CAL,
         BOARD_USB_PHY_TXCAL45DP,
         BOARD_USB_PHY_TXCAL45DM,
     };
-#endif
-#if defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)
     SPC0->ACTIVE_VDELAY = 0x0500;
     /* Change the power DCDC to 1.8v (By deafult, DCDC is 1.8V), CORELDO to 1.1v (By deafult, CORELDO is 1.0V) */
     SPC0->ACTIVE_CFG &= ~SPC_ACTIVE_CFG_CORELDO_VDD_DS_MASK;
     SPC0->ACTIVE_CFG |= SPC_ACTIVE_CFG_DCDC_VDD_LVL(0x3) | SPC_ACTIVE_CFG_CORELDO_VDD_LVL(0x3) |
                         SPC_ACTIVE_CFG_SYSLDO_VDD_DS_MASK | SPC_ACTIVE_CFG_DCDC_VDD_DS(0x2u);
+
     /* Wait until it is done */
     while (SPC0->SC & SPC_SC_BUSY_MASK)
-        ;
+    {
+    	;
+    }
     if (0u == (SCG0->LDOCSR & SCG_LDOCSR_LDOEN_MASK))
     {
         SCG0->TRIM_LOCK = 0x5a5a0001U;
@@ -138,224 +115,26 @@ void USB_DeviceClockInit(void)
     CLOCK_EnableUsbhsPhyPllClock(kCLOCK_Usbphy480M, 24000000U);
     CLOCK_EnableUsbhsClock();
     USB_EhciPhyInit(CONTROLLER_ID, BOARD_XTAL0_CLK_HZ, &phyConfig);
-#endif
-#if defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0U)
-    CLOCK_AttachClk(kCLK_48M_to_USB0);
-    CLOCK_EnableClock(kCLOCK_Usb0Ram);
-    CLOCK_EnableClock(kCLOCK_Usb0Fs);
-    CLOCK_EnableUsbfsClock();
-#endif
+
 }
 
 void USB_DeviceIsrEnable(void)
 {
     uint8_t irqNumber;
-#if defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)
     uint8_t usbDeviceEhciIrq[] = USBHS_IRQS;
     irqNumber                  = usbDeviceEhciIrq[CONTROLLER_ID - kUSB_ControllerEhci0];
-#endif
-#if defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0U)
-    uint8_t usbDeviceKhciIrq[] = USBFS_IRQS;
-    irqNumber                  = usbDeviceKhciIrq[CONTROLLER_ID - kUSB_ControllerKhci0];
-#endif
+
     /* Install isr, set priority, and enable IRQ. */
     NVIC_SetPriority((IRQn_Type)irqNumber, USB_DEVICE_INTERRUPT_PRIORITY);
     EnableIRQ((IRQn_Type)irqNumber);
 }
-#if USB_DEVICE_CONFIG_USE_TASK
-void USB_DeviceTaskFn(void *deviceHandle)
-{
-#if defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)
-    USB_DeviceEhciTaskFunction(deviceHandle);
-#endif
-#if defined(USB_DEVICE_CONFIG_KHCI) && (USB_DEVICE_CONFIG_KHCI > 0U)
-    USB_DeviceKhciTaskFunction(deviceHandle);
-#endif
-}
-#endif
+
 void USB_DeviceMscApp(void)
 {
     /*TO DO*/
     /*add user code*/
     return;
 }
-#if (defined(USB_DEVICE_CONFIG_USE_TASK) && (USB_DEVICE_CONFIG_USE_TASK > 0)) && \
-    (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
-/*!
- * @brief msc enter critical.
- *
- * This function is used to enter critical disable interrupt .
- *
- */
-static void USB_BmEnterCritical(uint8_t *sr)
-{
-    *sr = DisableGlobalIRQ();
-    __ASM("CPSID i");
-}
-/*!
- * @brief msc exit critical.
- *
- * This function is used to exit critical ,enable interrupt .
- *
- */
-static void USB_BmExitCritical(uint8_t sr)
-{
-    EnableGlobalIRQ(sr);
-}
-/*!
- * @brief device msc add a buffer to the tail queue function.
- *
- * This function add a buffer which contains data from the host pc to the head queue when receive write response
- * kUSB_DeviceMscEventWriteResponse
- */
-void USB_DeviceMscAddBufferToTail(usb_msc_buffer_struct_t *bufferinfo)
-{
-    usb_msc_buffer_struct_t *temp;
-    usb_msc_buffer_struct_t *pre;
-
-    temp = g_msc.taillist;
-    pre  = g_msc.taillist;
-    while (temp)
-    {
-        pre = temp;
-        if (temp == bufferinfo)
-        {
-            return;
-        }
-        temp = temp->next;
-    }
-    if (pre)
-    {
-        pre->next        = bufferinfo;
-        bufferinfo->next = NULL;
-    }
-    else
-    {
-        g_msc.taillist   = bufferinfo;
-        bufferinfo->next = NULL;
-    }
-}
-/*!
- * @brief device msc get buffer from tail queue function.
- *
- * This function get a buffer which contains data from the host pc . The write task need get those data in order from
- * the tail queue, and then write those data to sdcard.
- */
-
-void USB_DeviceMscGetBufferFromTail(usb_msc_buffer_struct_t **bufferinfo)
-{
-    if (g_msc.taillist != NULL)
-    {
-        *bufferinfo    = g_msc.taillist;
-        g_msc.taillist = g_msc.taillist->next;
-    }
-    else
-    {
-        *bufferinfo = NULL;
-    }
-}
-/*!
- * @brief device msc add a buffer to the head function.
- *
- * This function add a empty buffer to the head queue, head queue maintain the empty buffer, when usb stack will add
- * the
- *  buffer to head queue when the data in this buffer has already write into the sdcard.
- */
-void USB_DeviceMscAddBufferToHead(usb_msc_buffer_struct_t *bufferinfo)
-{
-    usb_msc_buffer_struct_t *p;
-
-    p = g_msc.headlist;
-    while (p)
-    {
-        if (p == bufferinfo)
-        {
-            return;
-        }
-        p = p->next;
-    }
-    if (g_msc.headlist == NULL)
-    {
-        g_msc.headlist = bufferinfo;
-    }
-    else
-    {
-        bufferinfo->next = g_msc.headlist;
-        g_msc.headlist   = bufferinfo;
-    }
-}
-/*!
- * @brief device msc get buffer from head function.
- *
- * This function get a empty buffer from the head queue. The stack need get a
- * empty buffer from head queue when receive a write request
- */
-void USB_DeviceMscGetBufferFromHead(usb_msc_buffer_struct_t **bufferinfo)
-{
-    if (g_msc.headlist != NULL)
-    {
-        *bufferinfo    = g_msc.headlist;
-        g_msc.headlist = g_msc.headlist->next;
-    }
-    else
-    {
-        *bufferinfo = NULL;
-    }
-}
-/*!
- * @brief device msc write task function.
- *
- * This function write data to the sdcard.
- */
-void USB_DeviceMscWriteTask(void)
-{
-    usb_msc_buffer_struct_t *temp;
-    temp = g_msc.taillist;
-    status_t errorCode;
-    usb_status_t error = kStatus_USB_Success;
-    uint8_t usbOsaCurrentSr;
-    USB_BmEnterCritical(&usbOsaCurrentSr);
-    USB_DeviceMscGetBufferFromTail(&temp);
-    USB_BmExitCritical(usbOsaCurrentSr);
-    if (NULL != temp)
-    {
-        errorCode = USB_Disk_WriteBlocks(temp->buffer, temp->offset, temp->size >> USB_DEVICE_SDCARD_BLOCK_SIZE_POWER);
-        USB_BmEnterCritical(&usbOsaCurrentSr);
-        USB_DeviceMscAddBufferToHead(temp);
-        USB_BmExitCritical(usbOsaCurrentSr);
-        if (kStatus_Success != errorCode)
-        {
-            g_msc.read_write_error = 1;
-            usb_echo(
-                "Write error, error = 0xx%x \t Please check write request buffer size(must be less than 128 "
-                "sectors)\r\n",
-                error);
-            error = kStatus_USB_Error;
-        }
-    }
-}
-void USB_DeviceMscInitQueue(void)
-{
-    uint8_t i;
-    for (i = 0; i < USB_DEVICE_MSC_BUFFER_NUMBER; i++)
-    {
-        dataBuffer[i].buffer = &g_Buffer[i][0];
-    }
-    g_msc.headlist = dataBuffer;
-    usb_msc_buffer_struct_t *pre;
-    usb_msc_buffer_struct_t *temp;
-    pre = temp = g_msc.headlist;
-    for (i = 1; i < USB_DEVICE_MSC_BUFFER_NUMBER; i++)
-    {
-        temp++;
-        pre->next = temp;
-        pre++;
-    }
-    pre->next          = NULL;
-    g_msc.taillist     = NULL;
-    g_msc.transferlist = NULL;
-}
-#endif
 
 /*!
  * @brief Send data through a specified endpoint.
@@ -453,21 +232,8 @@ usb_status_t USB_DeviceMscRecv(usb_device_msc_struct_t *mscHandle)
     lba.size =
         (mscHandle->transferRemaining > lba.size) ? lba.size : mscHandle->transferRemaining; /* whichever is smaller */
 
-#if (defined(USB_DEVICE_CONFIG_USE_TASK) && (USB_DEVICE_CONFIG_USE_TASK > 0)) && \
-    (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
-    usb_msc_buffer_struct_t *tempbuffer;
-    USB_DeviceMscGetBufferFromHead(&tempbuffer);
-    while (NULL == tempbuffer)
-    {
-        usb_echo("No buffer available");
-        USB_DeviceMscWriteTask();
-        USB_DeviceMscGetBufferFromHead(&tempbuffer);
-    }
-    lba.buffer     = tempbuffer->buffer;
-    currentTrasfer = tempbuffer;
-#else
     lba.buffer = (uint8_t *)&g_mscWriteRequestBuffer[0];
-#endif
+
     if (NULL == lba.buffer)
     {
         usb_echo("No buffer available");
@@ -743,14 +509,7 @@ usb_status_t USB_DeviceMscBulkOut(usb_device_handle deviceHandle,
     /* endpoint callback length is USB_CANCELLED_TRANSFER_LENGTH (0xFFFFFFFFU) when transfer is canceled */
     if (event->length == USB_CANCELLED_TRANSFER_LENGTH)
     {
-#if (defined(USB_DEVICE_CONFIG_USE_TASK) && (USB_DEVICE_CONFIG_USE_TASK > 0)) && \
-    (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
-        if (NULL != currentTrasfer)
-        {
-            USB_DeviceMscAddBufferToHead(currentTrasfer);
-        }
 
-#endif
         if ((mscHandle->cbwPrimeFlag == 0) && (mscHandle->inEndpointStallFlag == 0) &&
             (mscHandle->outEndpointStallFlag == 0))
         {
@@ -779,23 +538,6 @@ usb_status_t USB_DeviceMscBulkOut(usb_device_handle deviceHandle,
 
     if (mscHandle->dataOutFlag)
     {
-#if (defined(USB_DEVICE_CONFIG_USE_TASK) && (USB_DEVICE_CONFIG_USE_TASK > 0)) && \
-    (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
-        if (NULL != currentTrasfer)
-        {
-            currentTrasfer->offset = mscHandle->currentOffset;
-            currentTrasfer->size   = event->length;
-            if (0 == currentTrasfer->size)
-            {
-                USB_DeviceMscAddBufferToHead(currentTrasfer);
-            }
-            else
-            {
-                USB_DeviceMscAddBufferToTail(currentTrasfer);
-            }
-        }
-
-#else
         /*write the data to sd card*/
         if (0 != event->length)
         {
@@ -810,7 +552,6 @@ usb_status_t USB_DeviceMscBulkOut(usb_device_handle deviceHandle,
                 error = kStatus_USB_Error;
             }
         }
-#endif
 
         if (mscHandle->transferRemaining)
         {
@@ -1009,39 +750,16 @@ usb_status_t USB_DeviceCallback(usb_device_handle handle, uint32_t event, void *
             g_msc.stop   = 0U;
             error        = kStatus_USB_Success;
 
-#if (defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U))
-#if !((defined FSL_FEATURE_SOC_USBPHY_COUNT) && (FSL_FEATURE_SOC_USBPHY_COUNT > 0U))
-            /* The work-around is used to fix the HS device Chirping issue.
-             * Please refer to the implementation for the detail information.
-             */
-            USB_DeviceHsPhyChirpIssueWorkaround();
-#endif
-#endif
-
-#if (defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)) || \
-    (defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U))
             /* Get USB speed to configure the device, including max packet size and interval of the endpoints. */
             if (kStatus_USB_Success == USB_DeviceGetStatus(g_msc.deviceHandle, kUSB_DeviceStatusSpeed, &g_msc.speed))
             {
                 USB_DeviceSetSpeed(g_msc.speed);
             }
-#endif
         }
-#if (defined(USB_DEVICE_CONFIG_USE_TASK) && (USB_DEVICE_CONFIG_USE_TASK > 0)) && \
-    (defined(USB_DEVICE_MSC_USE_WRITE_TASK) && (USB_DEVICE_MSC_USE_WRITE_TASK > 0))
-            /*re-init the queue every time device is reset*/
-            USB_DeviceMscInitQueue();
-            currentTrasfer = NULL;
-#endif
             break;
 #if (defined(USB_DEVICE_CONFIG_DETACH_ENABLE) && (USB_DEVICE_CONFIG_DETACH_ENABLE > 0U))
         case kUSB_DeviceEventDetach:
         {
-#if (defined(USB_DEVICE_CONFIG_LPCIP3511HS) && (USB_DEVICE_CONFIG_LPCIP3511HS > 0U))
-#if !((defined FSL_FEATURE_SOC_USBPHY_COUNT) && (FSL_FEATURE_SOC_USBPHY_COUNT > 0U))
-            USB_DeviceDisconnected();
-#endif
-#endif
             error = kStatus_USB_Success;
         }
         break;
