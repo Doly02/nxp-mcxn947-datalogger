@@ -2200,16 +2200,6 @@ usb_status_t USB_DeviceEhciControl(usb_device_controller_handle ehciHandle, usb_
             break;
         case kUSB_DeviceControlSetOtgStatus:
             break;
-#if (defined(USB_DEVICE_CONFIG_USB20_TEST_MODE) && (USB_DEVICE_CONFIG_USB20_TEST_MODE > 0U))
-        case kUSB_DeviceControlSetTestMode:
-            if (param)
-            {
-                temp8 = (uint8_t *)param;
-                ehciState->registerBase->PORTSC1 |= ((uint32_t)(*temp8) << 16U);
-                error = kStatus_USB_Success;
-            }
-            break;
-#endif
 #if (defined(USB_DEVICE_CONFIG_CHARGER_DETECT) && (USB_DEVICE_CONFIG_CHARGER_DETECT > 0U))
 
         case kUSB_DeviceControlUpdateHwTick:

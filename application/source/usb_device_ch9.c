@@ -930,15 +930,6 @@ usb_status_t USB_DeviceControlCallback(usb_device_handle handle,
             error = s_UsbDeviceStandardRequest[deviceSetup->bRequest](handle, deviceSetup, &buffer, &length);
         }
     }
-#if (defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0U)) && \
-    (defined(USB_DEVICE_CONFIG_USB20_TEST_MODE) && (USB_DEVICE_CONFIG_USB20_TEST_MODE > 0U))
-    else if (kUSB_DeviceStateTestMode == state)
-    {
-        uint8_t portTestControl = (uint8_t)(deviceSetup->wIndex >> 8);
-        /* Set the controller.into test mode. */
-        error = USB_DeviceSetStatus(handle, kUSB_DeviceStatusTestMode, &portTestControl);
-    }
-#endif
     else if ((message->length) && (deviceSetup->wLength) &&
              ((deviceSetup->bmRequestType & USB_REQUEST_TYPE_DIR_MASK) == USB_REQUEST_TYPE_DIR_OUT))
     {
