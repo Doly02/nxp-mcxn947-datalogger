@@ -62,17 +62,17 @@
 /** External clock rate on the CLKIN pin in Hz. If not used,
     set this to 0. Otherwise, set it to the exact rate in Hz this pin is
     being driven at. */
-volatile static uint32_t s_Ext_Clk_Freq = 16000000U;
+static volatile uint32_t s_Ext_Clk_Freq = 16000000U;
 /*! @brief External XTAL32K clock frequency. */
-volatile static uint32_t s_Xtal32_Freq = 32768U;
+static volatile uint32_t s_Xtal32_Freq = 32768U;
 /*! @brief SAI MCLK clock frequency. */
-volatile static uint32_t s_Sai_Mclk_Freq[2] = {0U};
+static volatile uint32_t s_Sai_Mclk_Freq[2] = {0U};
 /*! @brief SAI TX BCLK clock frequency. */
-volatile static uint32_t s_Sai_Tx_Bclk_Freq[2] = {0U};
+static volatile uint32_t s_Sai_Tx_Bclk_Freq[2] = {0U};
 /*! @brief SAI RX BCLK clock frequency. */
-volatile static uint32_t s_Sai_Rx_Bclk_Freq[2] = {0U};
+static volatile uint32_t s_Sai_Rx_Bclk_Freq[2] = {0U};
 /*! @brief ENET TX CLK clock frequency. */
-volatile static uint32_t s_Enet_Tx_Clk_Freq = 0U;
+static volatile uint32_t s_Enet_Tx_Clk_Freq = 0U;
 
 /*! @brief external UPLL clock frequency. */
 static uint32_t s_extUpllFreq = 0U;

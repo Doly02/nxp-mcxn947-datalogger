@@ -160,6 +160,7 @@ int main(void)
         PRINTF("RTC Task Creation Failed!\r\n");
         APP_HandleError();
     }
+
 #endif /* (true == RTC_ENABLED) */
 
 #if (true == MSC_ENABLED)
@@ -177,6 +178,7 @@ int main(void)
     	PRINTF("MSC Task Creation Failed!\r\n");
     	APP_HandleError();
     }
+
 #endif /* (true == MSC_ENABLED) */
 
 
