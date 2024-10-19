@@ -32,6 +32,11 @@
 
 #include "app_tasks.h"
 
+#if (true == USB0_DET_PIN_ENABLED)
+
+#include "usb_vbus_detection.h"
+
+#endif /* (true == USB0_DET_PIN_ENABLED) */
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -106,10 +111,18 @@ void APP_InitBoard(void)
     /* Enables the clock for GPIO2 */
     CLOCK_EnableClock(kCLOCK_Gpio2);
 
+    /* Enables the clock for GPIO4 */
+	CLOCK_EnableClock(kCLOCK_Gpio4);
+
     BOARD_InitBootPins();
     BOARD_PowerMode_OD();
     BOARD_InitBootClocks();
     BOARD_InitDebugConsole();
+	PRINTF("Initialization!\r\n");
+
+#if (true == USB0_DET_PIN_ENABLED)
+    InitUSBVbusInterrupt();
+#endif /* (true == USB0_DET_PIN_ENABLED) */
 
 #if (true == RTC_ENABLED)
 
