@@ -21,6 +21,6 @@
  * @brief Enables Mass Storage Functionality.
  * */
 #define MSC_ENABLED				(true)
-#define MSC_STACK_SIZE			(9000L / sizeof(portSTACK_TYPE))
+#define MSC_STACK_SIZE			(5000L / sizeof(portSTACK_TYPE))
 
 #endif /* DEFS_H_ */
