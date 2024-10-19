@@ -243,33 +243,3 @@ void USB_EhcihostPhyDisconnectDetectCmd(uint8_t controllerId, uint8_t enable)
 #endif
 }
 
-#if ((defined FSL_FEATURE_SOC_USBPHY_COUNT) && (FSL_FEATURE_SOC_USBPHY_COUNT > 0U))
-#if ((defined FSL_FEATURE_USBHSD_HAS_EXIT_HS_ISSUE) && (FSL_FEATURE_USBHSD_HAS_EXIT_HS_ISSUE > 0U))
-void USB_PhyDeviceForceEnterFSMode(uint8_t controllerId, uint8_t enable)
-{
-    USBPHY_Type *usbPhyBase;
-
-    usbPhyBase = (USBPHY_Type *)USB_EhciPhyGetBase(controllerId);
-    if (NULL == usbPhyBase)
-    {
-        return;
-    }
-
-    if (0U != enable)
-    {
-        uint32_t delay         = 1000000;
-        usbPhyBase->DEBUG0_CLR = USBPHY_DEBUG0_CLKGATE_MASK;
-        while ((0U != (usbPhyBase->USB1_VBUS_DET_STAT & USBPHY_USB1_VBUS_DET_STAT_VBUS_VALID_3V_MASK)) && (0U != delay))
-        {
-            delay--;
-        }
-        usbPhyBase->USB1_LOOPBACK_SET = USBPHY_USB1_LOOPBACK_UTMI_TESTSTART_MASK;
-    }
-    else
-    {
-        usbPhyBase->DEBUG0_CLR        = USBPHY_DEBUG0_CLKGATE_MASK;
-        usbPhyBase->USB1_LOOPBACK_CLR = USBPHY_USB1_LOOPBACK_UTMI_TESTSTART_MASK;
-    }
-}
-#endif
-#endif

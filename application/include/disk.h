@@ -9,9 +9,12 @@
 #ifndef __USB_DISK_H__
 #define __USB_DISK_H__ 1
 
+/*******************************************************************************
+ * Includes
+ ******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
-/*${standard_header_anchor}*/
+
 #include "usb_device_config.h"
 #include "usb.h"
 #include "usb_device.h"
@@ -61,13 +64,19 @@ USB_DEVICE_CONFIG_USE_TASK macro should also be enable.*/
 
 #define USB_DEVICE_SDCARD_BLOCK_SIZE_POWER (9U)
 #define USB_DEVICE_MSC_ADMA_TABLE_WORDS    (8U)
+
+/*******************************************************************************
+ * Structures
+ ******************************************************************************/
+
 typedef struct _usb_msc_buffer_struct
 {
-    uint32_t offset; /*!< Offset of the block need to access*/
-    uint32_t size;   /*!< Size of the transfered data*/
+    uint32_t offset; 						/*!< Offset of the block need to access*/
+    uint32_t size;   						/*!< Size of the transfered data*/
     struct _usb_msc_buffer_struct *next;
-    uint8_t *buffer; /*!< Buffer address of the transferred data*/
+    uint8_t *buffer; 						/*!< Buffer address of the transferred data*/
 } usb_msc_buffer_struct_t;
+
 typedef struct _usb_msc_struct
 {
     usb_device_handle deviceHandle;
@@ -85,9 +94,17 @@ typedef struct _usb_msc_struct
     usb_msc_buffer_struct_t *transferlist;
 } usb_msc_struct_t;
 
+/*******************************************************************************
+ * Prototypes
+ ******************************************************************************/
+void BOARD_InitHardware(void);
+
+void USB_DeviceClockInit(void);
+
+void USB_DeviceIsrEnable(void);
+
 void USB_DeviceApplicationInit(void);
 
 void USB_DeviceMscAppTask(void);
 
-
-#endif
+#endif /* __USB_DISK_H__ */

@@ -6,6 +6,9 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+/*******************************************************************************
+ * Libraries
+ ******************************************************************************/
 #include "disk.h"
 
 /*******************************************************************************
@@ -13,12 +16,6 @@
  ******************************************************************************/
 /*! @brief The maximum timeout time for the transfer complete event */
 #define EVENT_TIMEOUT_TRANSFER_COMPLETE (1000U)
-/*******************************************************************************
- * Prototypes
- ******************************************************************************/
-void BOARD_InitHardware(void);
-void USB_DeviceClockInit(void);
-void USB_DeviceIsrEnable(void);
 
 
 /*******************************************************************************
@@ -63,6 +60,7 @@ USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE) uint32_t g_mscReadRequestBuffer[
 USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE) uint32_t g_mscWriteRequestBuffer[USB_DEVICE_MSC_WRITE_BUFF_SIZE >> 2];
 
 USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE) static uint8_t s_SetupOutBuffer[8];
+
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -1012,10 +1010,6 @@ void USB_DeviceApplicationInit(void)
     {
         usb_echo("USB device mass storage init failed\r\n");
         return;
-    }
-    else
-    {
-        usb_echo("USB device mass storage demo\r\n");
     }
     g_mscHandle->handle                  = g_msc.deviceHandle;
     ufi                                  = &g_mscHandle->mscUfi;

@@ -36,10 +36,6 @@
  * Definitions
  ******************************************************************************/
 
-/* Task priorities. */
-#define hello_task_PRIORITY (configMAX_PRIORITIES - 1)
-
-#define LENGHT 				(9U)
 /*
  * @brief I2C Definitions.
  */
@@ -61,9 +57,6 @@ static StackType_t mscTaskStack[MSC_STACK_SIZE];
  * 			Job Stack Pointer, Values of Variables During Context Switching.
  */
 static StaticTask_t mscTaskTCB;
-/*******************************************************************************
- * Prototypes
- ******************************************************************************/
 
 /*******************************************************************************
  * Code

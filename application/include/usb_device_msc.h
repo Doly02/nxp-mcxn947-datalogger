@@ -83,6 +83,7 @@ typedef struct _usb_device_msc_cbw
     uint8_t cbLength;            /*!< Byte 14 bCBWCBLength*/
     uint8_t cbwcb[16];           /*!< Byte 15-30 CBWCB, CBWCB is used to store ufi command*/
 } usb_device_msc_cbw_t;
+
 /*! @brief Command Status Wrapper(CSW) */
 typedef struct _usb_device_msc_csw
 {
@@ -91,12 +92,14 @@ typedef struct _usb_device_msc_csw
     uint32_t dataResidue; /*!< Byte 8-11 dCSWDataResidue*/
     uint8_t cswStatus;    /*!< Byte 12 bCSWStatus*/
 } usb_device_msc_csw_t;
+
 /*! @brief read/write information */
 typedef struct _usb_lba_transfer_information_struct
 {
     uint32_t startingLogicalBlockAddress; /*!< The logical block at which the read/write operation shall begin*/
     uint32_t transferNumber; /*!< The number of contiguous logical blocks of data that shall be transferred*/
 } usb_lba_transfer_information_struct_t;
+
 /*! @brief device information */
 typedef struct _usb_device_lba_information_struct
 {
@@ -114,6 +117,7 @@ typedef struct _usb_device_lba_app_struct
     uint32_t size;   /*!< Size of the transfered data*/
     uint8_t *buffer; /*!< Buffer address of the transfered data*/
 } usb_device_lba_app_struct_t;
+
 /*! @brief the thirteen possible cases of host expectations and device intent in the absence of
 overriding error conditions. */
 typedef struct _usb_device_msc_thirteen_case_struct
@@ -126,6 +130,7 @@ typedef struct _usb_device_msc_thirteen_case_struct
     uint8_t hostExpectedDirection;                        /*!< host excepted data direction*/
     uint8_t deviceExpectedDirection;                      /*!< device excepted data direction*/
 } usb_device_msc_thirteen_case_struct_t;
+
 /*! @brief stall flag */
 typedef enum _usb_device_msc_stall_type_t
 {
@@ -133,6 +138,7 @@ typedef enum _usb_device_msc_stall_type_t
     USB_DEVICE_MSC_STALL_IN_DATA,     /*!< Stall in data transfer*/
     USB_DEVICE_MSC_STALL_IN_CSW,      /*!< Stall in csw*/
 } usb_device_msc_stall_type_t;
+
 /*! @brief Available common EVENT types in msc class callback */
 typedef enum _usb_device_msc_event
 {
@@ -146,6 +152,7 @@ typedef enum _usb_device_msc_event
     kUSB_DeviceMscEventStopEjectMedia,      /*!< Start_stop_unit_command */
 
 } USB_DeviceMscEvent_t;
+
 /*! @brief The MSC device ufi command status structure */
 typedef struct _usb_device_msc_ufi_struct
 {
@@ -157,6 +164,7 @@ typedef struct _usb_device_msc_ufi_struct
     uint8_t *formatCapacityData;
     /*!< Capacity List*/
 } usb_device_msc_ufi_struct_t;
+
 /*! @brief The MSC device structure */
 typedef struct _usb_device_msc_struct
 {
@@ -199,6 +207,7 @@ typedef struct _usb_device_msc_struct
     uint8_t interfaceNumber;   /*!< The interface number of the class */
     uint8_t inEndpointCswCancelFlag; /*!< the state when calcel function happens, and need send the csw after cancel*/
 } usb_device_msc_struct_t;
+
 /*******************************************************************************
  * API
  ******************************************************************************/
