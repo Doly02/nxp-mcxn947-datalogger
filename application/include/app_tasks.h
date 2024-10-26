@@ -27,6 +27,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
+#include "semphr.h"
 #include "timers.h"
 
 #include "disk.h"
@@ -59,6 +60,7 @@ void rtc_task(void *pvParameters);
  */
 void msc_task(void *handle);
 
+void record_task(void *handle);
 /*!
  * @brief 	Hook Function to Provide Memory For The Idle Task in FreeRTOS.
  *

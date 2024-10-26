@@ -22,6 +22,7 @@
  * */
 #define MSC_ENABLED				(true)
 #define MSC_STACK_SIZE			(5000L / sizeof(portSTACK_TYPE))
+#define RECORD_STACK_SIZE		(5000L / sizeof(portSTACK_TYPE))
 
 /*
  * @brief Enables VBUS Detection on USB-C0.

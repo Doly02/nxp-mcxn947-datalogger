@@ -20,6 +20,7 @@
  ******************************************************************************/
 #include "app_tasks.h"
 #include "rtc_ds3231.h"
+#include "semphr.h"
 /*******************************************************************************
  * Global Variables.
  ******************************************************************************/
@@ -36,6 +37,9 @@ static StackType_t uxIdleTaskStack[configMINIMAL_STACK_SIZE];
 static StaticTask_t xTimerTaskTCB;
 
 static StackType_t uxTimerTaskStack[configTIMER_TASK_STACK_DEPTH];
+
+extern SemaphoreHandle_t g_TaskMutex;
+
 /*******************************************************************************
  * Implementation of Functions
  ******************************************************************************/
@@ -77,12 +81,47 @@ void rtc_task(void *pvParameters)
 
 void msc_task(void *handle)
 {
+#if 0
 	USB_DeviceApplicationInit();
-	while (1 == 1)
+	while(1)
 	{
 		USB_DeviceMscAppTask();
 	}
 
+#else
+	while (1)
+	{
+		/* Wait For The Moment When Mutex Is Free */
+		xSemaphoreTake(g_TaskMutex, portMAX_DELAY);
+
+		while(1)
+		{
+			USB_DeviceMscAppTask();
+
+            if (pdTRUE == xSemaphoreTake(g_TaskMutex, (TickType_t)0))
+            {
+            	/* Switch Back To Record Task */
+            	break;
+            }
+		}
+	}
+#endif /* 0 */
+}
+
+
+void record_task(void *handle)
+{
+	while (1 == 1)
+	{
+        if (xSemaphoreTake(g_TaskMutex, (TickType_t)0) == pdTRUE)
+        {
+        	/* If Mutex Is Freed Than Record Task Will Be Stopped */
+        	vTaskSuspend(NULL);
+        }
+
+		PRINTF("Record Task Enabled!\r\n");
+		SDK_DelayAtLeastUs(10000, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
+	}
 }
 
 void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,

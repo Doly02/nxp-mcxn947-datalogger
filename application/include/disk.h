@@ -31,6 +31,8 @@
 #include "clock_config.h"
 #include "board.h"
 
+#include "semphr.h"
+
 #if (defined(FSL_FEATURE_SOC_SYSMPU_COUNT) && (FSL_FEATURE_SOC_SYSMPU_COUNT > 0U))
 #include "fsl_sysmpu.h"
 #endif /* FSL_FEATURE_SOC_SYSMPU_COUNT */

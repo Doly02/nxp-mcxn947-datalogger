@@ -32,6 +32,7 @@
 
 #include "app_tasks.h"
 
+#include "semphr.h"
 #if (true == USB0_DET_PIN_ENABLED)
 
 #include "usb_vbus_detection.h"
@@ -63,6 +64,17 @@ static StackType_t mscTaskStack[MSC_STACK_SIZE];
  */
 static StaticTask_t mscTaskTCB;
 
+static StackType_t recordTaskStack[RECORD_STACK_SIZE];
+
+static StaticTask_t recordTaskTCB;
+
+usb_msc_struct_t g_msc;
+
+#if 1
+
+SemaphoreHandle_t g_TaskMutex;
+
+#endif
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -82,6 +94,21 @@ void APP_HandleError(void)
 	}
 }
 
+void APP_UsbInit(void)
+{
+	USB_DeviceClockInit();
+    g_msc.speed                      = USB_SPEED_FULL;
+    g_msc.attach                     = 0;
+    g_msc.deviceHandle               = NULL;
+
+    if (kStatus_USB_Success != USB_DeviceInit(CONTROLLER_ID, USB_DeviceCallback, &g_msc.deviceHandle))
+    {
+        usb_echo("USB device mass storage init failed\r\n");
+        return;
+    }
+
+    USB_DeviceIsrEnable();
+}
 /*
  * @brief Functions of DMA That Are Used For Correct Work of RTC.
  */
@@ -136,7 +163,7 @@ void APP_InitBoard(void)
     CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
     BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
 
-	return;
+    APP_UsbInit();
 }
  
 /*!
@@ -147,6 +174,16 @@ int main(void)
 
 	uint8_t ui8RetVal = E_FAULT;
 	TaskHandle_t mscTaskHandle = NULL;
+	TaskHandle_t recordTaskHandle = NULL;
+
+
+	g_TaskMutex = xSemaphoreCreateBinary();
+	if (NULL == g_TaskMutex)
+	{
+        PRINTF("Failed to Create Semaphore!\n");
+        APP_HandleError();
+	}
+
 
     /* Initialize board hardware. */
 	APP_InitBoard();
@@ -169,6 +206,21 @@ int main(void)
 
 #endif /* (true == RTC_ENABLED) */
 
+    recordTaskHandle = xTaskCreateStatic(
+    			  record_task,       		/* Function That Implements The Task. 		*/
+                  "record_task",          	/* Text Name For The Task. 					*/
+				  MSC_STACK_SIZE,      		/* Number of Indexes In The xStack Array. 	*/
+                  NULL,    					/* Parameter Passed Into The Task. 			*/
+				  TASK_PRIO,				/* Priority at Which The Task Is Created. 	*/
+				  &recordTaskStack[0],         /* Array To Use As The Task's Stack.		*/
+                  &recordTaskTCB );
+    if (NULL == recordTaskHandle)
+    {
+    	PRINTF("MSC Task Creation Failed!\r\n");
+    	APP_HandleError();
+    }
+
+
 #if (true == MSC_ENABLED)
 
     mscTaskHandle = xTaskCreateStatic(
@@ -176,7 +228,7 @@ int main(void)
                   "msc_task",          		/* Text Name For The Task. 					*/
 				  MSC_STACK_SIZE,      		/* Number of Indexes In The xStack Array. 	*/
                   NULL,    					/* Parameter Passed Into The Task. 			*/
-				  TASK_PRIO,				/* Priority at Which The Task Is Created. 	*/
+				  TASK_PRIO - 1,			/* Priority at Which The Task Is Created. 	*/
 				  &mscTaskStack[0],         /* Array To Use As The Task's Stack.		*/
                   &mscTaskTCB );
     if (NULL == mscTaskHandle)
@@ -186,7 +238,6 @@ int main(void)
     }
 
 #endif /* (true == MSC_ENABLED) */
-
 
     vTaskStartScheduler();
     while (1 == 1)
