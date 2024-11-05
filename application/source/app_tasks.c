@@ -111,6 +111,7 @@ void msc_task(void *handle)
 
 void record_task(void *handle)
 {
+	USB_DeviceApplicationInit();
 	while (1 == 1)
 	{
         if (xSemaphoreTake(g_TaskMutex, (TickType_t)0) == pdTRUE)

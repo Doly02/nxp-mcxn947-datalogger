@@ -163,7 +163,7 @@ void APP_InitBoard(void)
     CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
     BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
 
-    APP_UsbInit();
+    // APP_UsbInit();
 }
  
 /*!

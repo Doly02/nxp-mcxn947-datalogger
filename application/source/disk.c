@@ -75,7 +75,7 @@ void USB1_HS_IRQHandler(void)
     {
 		/* Initialize The Mass Storage Device Application 	*/
 		/* @note Initialization SD Card In Device Mode 		*/
-        USB_DeviceApplicationInit();
+        // USB_DeviceApplicationInit();
         bMscInitialized = true;
     }
     USB_DeviceEhciIsrFunction(g_msc.deviceHandle);
@@ -1009,6 +1009,7 @@ void USB_DeviceMscAppTask(void)
 
 void USB_DeviceApplicationInit(void)
 {
+    USB_DeviceClockInit();
 #if (defined(FSL_FEATURE_SOC_SYSMPU_COUNT) && (FSL_FEATURE_SOC_SYSMPU_COUNT > 0U))
     SYSMPU_Enable(SYSMPU, 0);
 #endif /* FSL_FEATURE_SOC_SYSMPU_COUNT */
@@ -1022,6 +1023,19 @@ void USB_DeviceApplicationInit(void)
     }
 
     usb_device_msc_ufi_struct_t *ufi = NULL;
+    g_msc.speed                      = USB_SPEED_FULL;
+    g_msc.attach                     = 0;
+    g_msc.deviceHandle               = NULL;
+
+    if (kStatus_USB_Success != USB_DeviceInit(CONTROLLER_ID, USB_DeviceCallback, &g_msc.deviceHandle))
+    {
+        usb_echo("USB device mass storage init failed\r\n");
+        return;
+    }
+    else
+    {
+        usb_echo("USB device mass storage demo\r\n");
+    }
     g_mscHandle->handle                  = g_msc.deviceHandle;
     ufi                                  = &g_mscHandle->mscUfi;
     g_mscHandle->mscCbw                  = &g_mscCbw;
@@ -1056,6 +1070,7 @@ void USB_DeviceApplicationInit(void)
     g_mscHandle->cbwPrimeFlag = 0;
     g_mscHandle->cswPrimeFlag = 0;
 
+    USB_DeviceIsrEnable();
 
     /*Add one delay here to make the DP pull down long enough to allow host to detect the previous disconnection.*/
     SDK_DelayAtLeastUs(5000, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
