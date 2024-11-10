@@ -104,10 +104,11 @@ usb_device_notification_t USB_State(usb_device_struct_t *pDeviceHandle)
 {
 	usb_device_ehci_state_struct_t *ehciState;
 	ehciState = (usb_device_ehci_state_struct_t *)(pDeviceHandle->controllerHandle);
-	if (0U != ehciState->isResetting)
-	{
+
+	if (0U != (ehciState->registerBase->OTGSC & USBHS_OTGSC_BSV_MASK))
+    {
 		return kUSB_DeviceNotifyAttach;
-	}
+    }
 	return kUSB_DeviceNotifyDetach;
 }
 
@@ -1028,16 +1029,11 @@ void USB_DeviceMscAppTask(void)
  * @return None.
  */
 
-void USB_DeviceApplicationInit(void)
+void USB_DeviceModeInit(void)
 {
     USB_DeviceClockInit();
-#if (defined(FSL_FEATURE_SOC_SYSMPU_COUNT) && (FSL_FEATURE_SOC_SYSMPU_COUNT > 0U))
-    SYSMPU_Enable(SYSMPU, 0);
-#endif /* FSL_FEATURE_SOC_SYSMPU_COUNT */
 
-    usb_echo("Please insert disk \r\n");
-
-    if (kStatus_USB_Success != USB_DeviceMscDiskStorageInit())
+    if (kStatus_USB_Success != USB_DeviceDiskStorageInit())
     {
         usb_echo("Card init failed\r\n");
         return;

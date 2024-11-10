@@ -91,10 +91,10 @@ void msc_task(void *handle)
         if (1 == usbAttached)
         {
             PRINTF("MSC Task Running!\r\n");
-            while (usbAttached)  // Přidáno: Spustit MSC task, dokud je USB připojeno
+            while (usbAttached)
             {
                 USB_DeviceMscAppTask();
-                taskYIELD();  // Přidáno: Umožnit ostatním úlohám běžet
+                taskYIELD();
             }
         }
         /* Switch Back To record_task, USB Not Connected */
@@ -106,15 +106,7 @@ void msc_task(void *handle)
 
 void record_task(void *handle)
 {
-	USB_DeviceApplicationInit();
-
-#if 0
-    while (1)
-    {
-        PRINTF("Record Task Running!\r\n");
-        vTaskDelay(pdMS_TO_TICKS(1000));  // Zpoždění, aby nebylo příliš rychlé
-    }
-#else
+	USB_DeviceModeInit();
     while (1)
     {
         PRINTF("Record Task Enabled!\r\n");
@@ -131,7 +123,6 @@ void record_task(void *handle)
 		/* Krátké zpoždění pro uvolnění času ostatním úlohám */
 		vTaskDelay(pdMS_TO_TICKS(10));
     }
-#endif
 }
 
 void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,

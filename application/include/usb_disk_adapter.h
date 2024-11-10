@@ -25,12 +25,12 @@
 void BOARD_USB_Disk_Config(uint32_t usbPriorty);
 
 /*!
- * @brief device msc disk init function.
+ * @brief device disk init function.
  *
  * This function initialize the disk.
  * @return kStatus_USB_Success or error.
  */
-uint8_t USB_DeviceMscDiskStorageInit(void);
+uint8_t USB_DeviceDiskStorageInit(void);
 
 /*!
  * @brief Writes data blocks to the disk.

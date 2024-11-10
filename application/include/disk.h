@@ -110,7 +110,7 @@ void USB_DeviceClockInit(void);
 
 void USB_DeviceIsrEnable(void);
 
-void USB_DeviceApplicationInit(void);
+void USB_DeviceModeInit(void);
 
 void USB_DeviceMscAppTask(void);
 

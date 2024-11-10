@@ -39,7 +39,7 @@ void BOARD_USB_Disk_Config(uint8_t usbPriorty)
  * This function initialize the card.
  * @return kStatus_USB_Success or error.
  */
-uint8_t USB_DeviceMscDiskStorageInit(void)
+uint8_t USB_DeviceDiskStorageInit(void)
 {
     usb_status_t error = kStatus_USB_Success;
     usbDeviceMscSdcard = &g_sd;

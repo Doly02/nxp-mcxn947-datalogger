@@ -99,21 +99,6 @@ void APP_HandleError(void)
 	}
 }
 
-void APP_UsbInit(void)
-{
-	USB_DeviceClockInit();
-    g_msc.speed                      = USB_SPEED_FULL;
-    g_msc.attach                     = 0;
-    g_msc.deviceHandle               = NULL;
-
-    if (kStatus_USB_Success != USB_DeviceInit(CONTROLLER_ID, USB_DeviceCallback, &g_msc.deviceHandle))
-    {
-        usb_echo("USB device mass storage init failed\r\n");
-        return;
-    }
-
-    USB_DeviceIsrEnable();
-}
 /*
  * @brief Functions of DMA That Are Used For Correct Work of RTC.
  */
@@ -183,32 +168,15 @@ int main(void)
 	g_TaskMutex = xSemaphoreCreateBinary();
 	if (NULL == g_TaskMutex)
 	{
-        PRINTF("Failed to Create Semaphore!\n");
+        PRINTF("ERR: Failed to Create Semaphore!\n");
         APP_HandleError();
 	}
+
 	/* Release Semaphore For record_task */
 	xSemaphoreGive(g_TaskMutex);
 
     /* Initialize board hardware. */
 	APP_InitBoard();
-
-#if (true == RTC_ENABLED)
-
-	/* Initialize Real-Time Circuit */
-    retVal = RTC_Init(&I2C_MASTER);
-    if (E_FAULT == retVal)
-    {
-    	PRINTF("Initialization of RTC Has Failed\r\n");
-    	APP_HandleError();
-    }
-
-    if (pdPASS != xTaskCreate(rtc_task, "rtc_task", configMINIMAL_STACK_SIZE + 100, NULL, TASK_PRIO, NULL))
-    {
-        PRINTF("RTC Task Creation Failed!\r\n");
-        APP_HandleError();
-    }
-
-#endif /* (true == RTC_ENABLED) */
 
     recordTaskHandle = xTaskCreateStatic(
     			  record_task,       		/* Function That Implements The Task. 		*/
@@ -220,7 +188,7 @@ int main(void)
                   &recordTaskTCB );
     if (NULL == recordTaskHandle)
     {
-    	PRINTF("MSC Task Creation Failed!\r\n");
+    	PRINTF("ERR: MSC Task Creation Failed!\r\n");
     	APP_HandleError();
     }
 
@@ -237,7 +205,7 @@ int main(void)
                   &mscTaskTCB );
     if (NULL == mscTaskHandle)
     {
-    	PRINTF("MSC Task Creation Failed!\r\n");
+    	PRINTF("ERR: MSC Task Creation Failed!\r\n");
     	APP_HandleError();
     }
 
