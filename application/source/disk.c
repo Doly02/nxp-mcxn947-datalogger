@@ -10,7 +10,7 @@
  * Libraries
  ******************************************************************************/
 #include "disk.h"
-
+#include "usb_vbus_detection.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -63,7 +63,10 @@ USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE) uint32_t g_mscWriteRequestBuffer
 USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE) static uint8_t s_SetupOutBuffer[8];
 
 extern SemaphoreHandle_t g_TaskMutex;
+
 static bool bMscInitialized = false;
+
+extern volatile uint8_t usbAttached;
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -73,13 +76,20 @@ void USB1_HS_IRQHandler(void)
 
     if (false == bMscInitialized)
     {
-		/* Initialize The Mass Storage Device Application 	*/
-		/* @note Initialization SD Card In Device Mode 		*/
-        // USB_DeviceApplicationInit();
         bMscInitialized = true;
     }
     USB_DeviceEhciIsrFunction(g_msc.deviceHandle);
 
+#if 1
+    if (USB_State(g_msc.deviceHandle) == kUSB_DeviceNotifyAttach)
+    {
+        usbAttached = 1;
+    }
+    else
+    {
+        usbAttached = 0;
+    }
+#endif
     /* Free The Mutex For Mass Storage Task */
     xSemaphoreGiveFromISR(g_TaskMutex, &xHigherPriorityTaskWoken);
 
@@ -88,6 +98,17 @@ void USB1_HS_IRQHandler(void)
      * Without Waiting For The Next Scheduler Tick.
      **/
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+}
+
+usb_device_notification_t USB_State(usb_device_struct_t *pDeviceHandle)
+{
+	usb_device_ehci_state_struct_t *ehciState;
+	ehciState = (usb_device_ehci_state_struct_t *)(pDeviceHandle->controllerHandle);
+	if (0U != ehciState->isResetting)
+	{
+		return kUSB_DeviceNotifyAttach;
+	}
+	return kUSB_DeviceNotifyDetach;
 }
 
 void USB_DeviceClockInit(void)

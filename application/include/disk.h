@@ -33,6 +33,9 @@
 
 #include "semphr.h"
 
+#include "usb_device_dci.h"
+#include "usb_device_ehci.h"
+
 #if (defined(FSL_FEATURE_SOC_SYSMPU_COUNT) && (FSL_FEATURE_SOC_SYSMPU_COUNT > 0U))
 #include "fsl_sysmpu.h"
 #endif /* FSL_FEATURE_SOC_SYSMPU_COUNT */
@@ -99,6 +102,8 @@ typedef struct _usb_msc_struct
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
+usb_device_notification_t USB_State(usb_device_struct_t *pDeviceHandle);
+
 void BOARD_InitHardware(void);
 
 void USB_DeviceClockInit(void);

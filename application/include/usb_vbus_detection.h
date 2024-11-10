@@ -22,15 +22,17 @@
  * Includes
  ******************************************************************************/
 #include "defs.h"
-#include "fsl_adapter_gpio.h"
 
+#if 0
+
+#include "usb_device_ehci.h"
+
+#endif
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
-#if (true == USB0_DET_PIN_ENABLED)
-
-void InitUSBVbusInterrupt(void);
-
-#endif /* (true == USB0_DET_PIN_ENABLED) */
+#if 0
+usb_device_notification_t USB_State(usb_device_struct_t *pDeviceHandle);
+#endif
 
 #endif /* USB_VBUS_DETECTION_H_ */

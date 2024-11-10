@@ -70,9 +70,14 @@ static StaticTask_t recordTaskTCB;
 
 usb_msc_struct_t g_msc;
 
+TaskHandle_t mscTaskHandle = NULL;
+TaskHandle_t recordTaskHandle = NULL;
+
 #if 1
 
 SemaphoreHandle_t g_TaskMutex;
+
+uint8_t volatile usbAttached;
 
 #endif
 /*******************************************************************************
@@ -173,9 +178,7 @@ int main(void)
 {
 
 	uint8_t ui8RetVal = E_FAULT;
-	TaskHandle_t mscTaskHandle = NULL;
-	TaskHandle_t recordTaskHandle = NULL;
-
+	usbAttached = 0;
 
 	g_TaskMutex = xSemaphoreCreateBinary();
 	if (NULL == g_TaskMutex)
@@ -183,7 +186,8 @@ int main(void)
         PRINTF("Failed to Create Semaphore!\n");
         APP_HandleError();
 	}
-
+	/* Release Semaphore For record_task */
+	xSemaphoreGive(g_TaskMutex);
 
     /* Initialize board hardware. */
 	APP_InitBoard();

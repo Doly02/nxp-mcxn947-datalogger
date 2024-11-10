@@ -24,7 +24,7 @@
 /*******************************************************************************
  * Global Variables.
  ******************************************************************************/
-
+extern volatile uint8_t usbAttached;
 /*!
  * @brief	TCB (Task Control Block) - Metadata of IDLE Task.
  */
@@ -39,6 +39,9 @@ static StaticTask_t xTimerTaskTCB;
 static StackType_t uxTimerTaskStack[configTIMER_TASK_STACK_DEPTH];
 
 extern SemaphoreHandle_t g_TaskMutex;
+
+extern TaskHandle_t mscTaskHandle;
+extern TaskHandle_t recordTaskHandle;
 
 /*******************************************************************************
  * Implementation of Functions
@@ -81,48 +84,54 @@ void rtc_task(void *pvParameters)
 
 void msc_task(void *handle)
 {
-#if 0
-	USB_DeviceApplicationInit();
-	while(1)
-	{
-		USB_DeviceMscAppTask();
-	}
-
-#else
 	while (1)
 	{
-		/* Wait For The Moment When Mutex Is Free */
-		xSemaphoreTake(g_TaskMutex, portMAX_DELAY);
+        xSemaphoreTake(g_TaskMutex, portMAX_DELAY);
 
-		while(1)
-		{
-			USB_DeviceMscAppTask();
-
-            if (pdTRUE == xSemaphoreTake(g_TaskMutex, (TickType_t)0))
+        if (1 == usbAttached)
+        {
+            PRINTF("MSC Task Running!\r\n");
+            while (usbAttached)  // Přidáno: Spustit MSC task, dokud je USB připojeno
             {
-            	/* Switch Back To Record Task */
-            	break;
+                USB_DeviceMscAppTask();
+                taskYIELD();  // Přidáno: Umožnit ostatním úlohám běžet
             }
-		}
+        }
+        /* Switch Back To record_task, USB Not Connected */
+        vTaskSuspend(NULL);
+        vTaskResume(recordTaskHandle);
 	}
-#endif /* 0 */
 }
 
 
 void record_task(void *handle)
 {
 	USB_DeviceApplicationInit();
-	while (1 == 1)
-	{
-        if (xSemaphoreTake(g_TaskMutex, (TickType_t)0) == pdTRUE)
-        {
-        	/* If Mutex Is Freed Than Record Task Will Be Stopped */
-        	vTaskSuspend(NULL);
-        }
 
-		PRINTF("Record Task Enabled!\r\n");
-		SDK_DelayAtLeastUs(10000, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
-	}
+#if 0
+    while (1)
+    {
+        PRINTF("Record Task Running!\r\n");
+        vTaskDelay(pdMS_TO_TICKS(1000));  // Zpoždění, aby nebylo příliš rychlé
+    }
+#else
+    while (1)
+    {
+        PRINTF("Record Task Enabled!\r\n");
+        PRINTF("USB Attached state: %d\r\n", usbAttached);
+        usbAttached = 0;
+        if (1 == usbAttached)
+        {
+            /* Pokud je USB připojeno, pozastavit tuto úlohu a přepnout na msc_task */
+            vTaskSuspend(NULL);  // Pozastavit tuto úlohu
+            vTaskResume(mscTaskHandle);  // Obnovit msc_task
+        }
+        PRINTF("USB Attached state after if: %d\r\n", usbAttached);
+
+		/* Krátké zpoždění pro uvolnění času ostatním úlohám */
+		vTaskDelay(pdMS_TO_TICKS(10));
+    }
+#endif
 }
 
 void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,

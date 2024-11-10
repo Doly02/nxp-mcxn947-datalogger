@@ -19,7 +19,7 @@
  * Includes
  ******************************************************************************/
 #include "usb_vbus_detection.h"
-#include "fsl_debug_console.h"
+
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -32,14 +32,7 @@
 /*******************************************************************************
  * Global Variables
  ******************************************************************************/
-#if (true == USB0_DET_PIN_ENABLED)
 
-volatile bool bVbusUsb0Detected = false;
-volatile bool bInterruptHandled = false;
-
-GPIO_HANDLE_DEFINE(s_Usb0DetGpioHandle);
-
-#endif /* (true == USB0_DET_PIN_ENABLED) */
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -47,39 +40,15 @@ GPIO_HANDLE_DEFINE(s_Usb0DetGpioHandle);
 /*******************************************************************************
  * Code
  ******************************************************************************/
-#if (true == USB0_DET_PIN_ENABLED)
-
-void InitUSBVbusInterrupt(void)
+#if 0
+usb_device_notification_t USB_State(usb_device_struct_t *pDeviceHandle)
 {
-    uint8_t pinState;
-	hal_gpio_pin_config_t sw_config = {
-	            kHAL_GpioDirectionIn,
-	            1,
-				USB0_VBUS_DET_PORT,
-				USB0_VBUS_DET_PIN,
-	        };
-	HAL_GpioInit(s_Usb0DetGpioHandle, &sw_config);
-    HAL_GpioSetTriggerMode(s_Usb0DetGpioHandle, kHAL_GpioInterruptLogicOne);
-
-    /*
-     *     	GPIO_SetPinInterruptConfig(s_GpioPort[gpioState->port], gpioState->pin, pinInt);
-     *		NVIC_SetPriority(irqNo[gpioState->port], HAL_GPIO_ISR_PRIORITY);
-     *		NVIC_EnableIRQ(irqNo[gpioState->port]);
-     * */
-
-    if (HAL_GpioGetInput(s_Usb0DetGpioHandle, &pinState) == kStatus_HAL_GpioSuccess)
-    {
-        if (pinState == 1U)
-        {
-        	PRINTF("USB Detected\r\n");
-        }
-        else
-        {
-        	PRINTF("USB Not Detected\r\n");
-        }
-    }
+	usb_device_ehci_state_struct_t *ehciState;
+	ehciState = (usb_device_ehci_state_struct_t *)(handle->controllerHandle);
+	if (0U != ehciState->isResetting)
+	{
+		return kUSB_DeviceNotifyAttach;
+	}
+	return kUSB_DeviceNotifyDetach;
 }
-
-
-
-#endif /* (true == USB0_DET_PIN_ENABLED) */
+#endif
