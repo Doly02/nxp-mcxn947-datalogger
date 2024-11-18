@@ -46,41 +46,6 @@ extern TaskHandle_t recordTaskHandle;
 /*******************************************************************************
  * Implementation of Functions
  ******************************************************************************/
-/*!
- * @brief Task Responsible for Time Handling.
- */
-void rtc_task(void *pvParameters)
-{
-	uint8_t retVal = E_FAULT;
-	RTC_time_t actTime;
-	RTC_date_t actDate;
-
-    retVal = RTC_GetState();
-    if (OSC_STOPPED == retVal)	// If The Oscillator Was Stopped -> Set Time & Date
-    {
-    	/* Set Default Time & Date (Prepare Variables) */
-    	RTC_SetDateDefault(&actDate);
-    	RTC_SetTimeDefault(&actTime);
-		/* Set Time & Date Into RTC */
-		RTC_SetDate(&actDate);
-		RTC_SetTime(&actTime);
-
-		RTC_SetOscState(OSC_OK);
-    }
-
-    /* Get Current Time */
-    memset(&actTime, 0U, sizeof(actTime));
-    memset(&actDate, 0U, sizeof(actDate));
-
-    RTC_GetTime(&actTime);
-    RTC_GetDate(&actDate);
-    /* Print The Time From RTC */
-	PRINTF("Current Date: %d\r\n",actDate.day);
-
-	/* Finish The Task */
-	vTaskSuspend(NULL);
-
-}
 
 void msc_task(void *handle)
 {
@@ -109,19 +74,18 @@ void record_task(void *handle)
 	USB_DeviceModeInit();
     while (1)
     {
-        PRINTF("Record Task Enabled!\r\n");
-        PRINTF("USB Attached state: %d\r\n", usbAttached);
+        //PRINTF("Record Task Enabled!\r\n");
         usbAttached = 0;
         if (1 == usbAttached)
         {
             /* Pokud je USB připojeno, pozastavit tuto úlohu a přepnout na msc_task */
-            vTaskSuspend(NULL);  // Pozastavit tuto úlohu
-            vTaskResume(mscTaskHandle);  // Obnovit msc_task
+            vTaskSuspend(NULL);  			// Pozastavit tuto úlohu
+            vTaskResume(mscTaskHandle);  	// Obnovit msc_task
+            /* Uloha nema co delat -> Delay */
+            /* Jedna uloha nesmi zastavit tu druhou */
         }
-        PRINTF("USB Attached state after if: %d\r\n", usbAttached);
 
-		/* Krátké zpoždění pro uvolnění času ostatním úlohám */
-		vTaskDelay(pdMS_TO_TICKS(10));
+		vTaskDelay(pdMS_TO_TICKS(10));	/* Misto vTaskSuspend */
     }
 }
 

@@ -27,8 +27,6 @@
 #include "board.h"
 
 #include "fsl_clock.h"
-#include "fsl_lpi2c_cmsis.h"
-#include "rtc_ds3231.h"
 
 #include "app_tasks.h"
 
@@ -38,17 +36,11 @@
 #include "usb_vbus_detection.h"
 
 #endif /* (true == USB0_DET_PIN_ENABLED) */
+
+#include "ctimer.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
-
-/*
- * @brief I2C Definitions.
- */
-#define I2C_MASTER         			Driver_I2C2
-#define EXAMPLE_LPI2C_DMA_BASEADDR 	(DMA0)
-#define LPI2C_CLOCK_FREQUENCY      	CLOCK_GetLPFlexCommClkFreq(2u)
-#define EXAMPLE_LPI2C_DMA_CLOCK    	kCLOCK_Dma0
 
 /*******************************************************************************
  * Global Variables
@@ -83,13 +75,6 @@ uint8_t volatile usbAttached;
 /*******************************************************************************
  * Code
  ******************************************************************************/
-/*
- * @brief Functions of I2C That Are Used For Correct Work of RTC.
- */
-uint32_t LPI2C2_GetFreq(void)
-{
-    return LPI2C_CLOCK_FREQUENCY;
-}
 
 void APP_HandleError(void)
 {
@@ -153,7 +138,7 @@ void APP_InitBoard(void)
     CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
     BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
 
-    // APP_UsbInit();
+    TIMER_Init();
 }
  
 /*!

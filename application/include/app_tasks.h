@@ -44,10 +44,7 @@
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
-/*!
- * @brief 	Task Responsible for Time Handling.
- */
-void rtc_task(void *pvParameters);
+
 
 /*!
  * @brief 	Task Responsible For Mass Storage Functionality in Device Mode.

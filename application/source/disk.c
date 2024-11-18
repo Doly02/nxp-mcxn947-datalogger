@@ -83,7 +83,7 @@ void USB1_HS_IRQHandler(void)
 #if 1
     if (USB_State(g_msc.deviceHandle) == kUSB_DeviceNotifyAttach)
     {
-        usbAttached = 1;
+        usbAttached = 1; /* Change to Semaphore */
     }
     else
     {
