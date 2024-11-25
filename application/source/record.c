@@ -159,7 +159,7 @@ uint8_t RECORD_Start(void)
 
 #endif /* (DEBUG_ENABLED == true) */
 
-	error = f_open(&g_fileObject, _T("/test_1/log_1.log"), (FA_WRITE | FA_READ | FA_CREATE_ALWAYS));
+	error = f_open(&g_fileObject, _T("/test_1/log_2.log"), (FA_WRITE | FA_READ | FA_CREATE_ALWAYS));
     if (error)
     {
         if (FR_EXIST == error)
@@ -205,4 +205,36 @@ uint8_t RECORD_Start(void)
     }
 
     return failedFlag ? -1 : 0;
+}
+
+uint8_t RECORD_Deinit(void)
+{
+	FRESULT error;
+
+	/* Close All Opened Files */
+	error = f_close(&g_fileObject);
+	if (error != FR_OK)
+	{
+		PRINTF("ERR: Failed to Close File. Error=%d\r\n", error);
+		if (error != FR_INVALID_OBJECT)
+		{
+			return -1;
+		}
+	}
+
+	/* Unmount File System From Logic Drive */
+	error = f_mount(NULL, "", 0);
+	if (error != FR_OK)
+	{
+		PRINTF("ERR: Failed to unmount filesystem. Error=%d\r\n", error);
+		return -1;
+	}
+
+#if (true == DEBUG_ENABLED)
+
+	PRINTF("DEBUG: Filesystem Deinicialized.\r\n");
+
+#endif /* (true == DEBUG_ENABLED) */
+
+	return 0;
 }

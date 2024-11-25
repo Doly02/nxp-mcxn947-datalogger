@@ -48,6 +48,9 @@ FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time);
 
 uint8_t RECORD_Init(void);
 
+uint8_t RECORD_Deinit(void);
+
 uint8_t RECORD_Start(void);
+
 
 #endif /* RECORD_H_ */

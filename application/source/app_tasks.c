@@ -77,6 +77,15 @@ void record_task(void *handle)
 	USB_DeviceModeInit();
 
 	retVal = RECORD_Start();
+	if (0 != retVal)
+	{
+		return;
+	}
+	retVal = RECORD_Deinit();
+	if (0 != retVal)
+	{
+		return;
+	}
     while (1)
     {
         //PRINTF("Record Task Enabled!\r\n");
