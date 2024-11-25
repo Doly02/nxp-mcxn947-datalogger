@@ -21,6 +21,8 @@
 #include "app_tasks.h"
 #include "rtc_ds3231.h"
 #include "semphr.h"
+
+#include "record.h"
 /*******************************************************************************
  * Global Variables.
  ******************************************************************************/
@@ -71,7 +73,10 @@ void msc_task(void *handle)
 
 void record_task(void *handle)
 {
+	uint8_t retVal = 1;
 	USB_DeviceModeInit();
+
+	retVal = RECORD_Start();
     while (1)
     {
         //PRINTF("Record Task Enabled!\r\n");

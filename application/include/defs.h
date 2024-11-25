@@ -24,6 +24,12 @@
 #define MSC_STACK_SIZE			(5000L / sizeof(portSTACK_TYPE))
 #define RECORD_STACK_SIZE		(5000L / sizeof(portSTACK_TYPE))
 
+#define DEBUG_ENABLED			(true)
+
+/**
+ * @brief Enables Timer For 1 Sec. Adjustment.
+ */
+#define TIMER_ENABLED			(false)
 /*
  * @brief Enables VBUS Detection on USB-C0.
  * */

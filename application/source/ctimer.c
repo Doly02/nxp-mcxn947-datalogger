@@ -27,12 +27,12 @@
 /**
  * @brief Variable That Will Simulate Time By Timer.
  * */
-RTC_time_t actTime;
+static RTC_time_t actTime;
 
 /**
  * @brief Variable That Will Simulate Date By Timer.
  * */
-RTC_date_t actDate;
+static RTC_date_t actDate;
 /*******************************************************************************
  * Code
  ******************************************************************************/

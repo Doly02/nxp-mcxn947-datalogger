@@ -10,7 +10,6 @@
  * Libraries
  ******************************************************************************/
 #include "disk.h"
-#include "usb_vbus_detection.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -1036,6 +1035,7 @@ void USB_DeviceModeInit(void)
     if (kStatus_USB_Success != USB_DeviceDiskStorageInit())
     {
         usb_echo("Card init failed\r\n");
+        // TODO: BLINK LED
         return;
     }
 

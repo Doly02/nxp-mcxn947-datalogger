@@ -31,12 +31,6 @@
 #include "app_tasks.h"
 
 #include "semphr.h"
-#if (true == USB0_DET_PIN_ENABLED)
-
-#include "usb_vbus_detection.h"
-
-#endif /* (true == USB0_DET_PIN_ENABLED) */
-
 #include "ctimer.h"
 /*******************************************************************************
  * Definitions
@@ -138,7 +132,11 @@ void APP_InitBoard(void)
     CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
     BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
 
+#if (true == TIMER_ENABLED)
+
     TIMER_Init();
+
+#endif /* (true == TIMER_ENABLED) */
 }
  
 /*!
