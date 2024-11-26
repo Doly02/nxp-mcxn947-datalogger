@@ -88,7 +88,6 @@ void record_task(void *handle)
 	}
     while (1)
     {
-        //PRINTF("Record Task Enabled!\r\n");
         usbAttached = 0;
         if (1 == usbAttached)
         {

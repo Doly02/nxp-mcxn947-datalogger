@@ -21,11 +21,14 @@
  * @brief Enables Mass Storage Functionality.
  * */
 #define MSC_ENABLED				(true)
+
 #define MSC_STACK_SIZE			(5000L / sizeof(portSTACK_TYPE))
+
 #define RECORD_STACK_SIZE		(5000L / sizeof(portSTACK_TYPE))
 
 #define DEBUG_ENABLED			(true)
 
+#define UART_FIFO_ENABLED		(true)
 /**
  * @brief Enables Timer For 1 Sec. Adjustment.
  */

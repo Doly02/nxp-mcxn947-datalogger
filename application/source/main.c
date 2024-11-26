@@ -137,6 +137,8 @@ void APP_InitBoard(void)
     TIMER_Init();
 
 #endif /* (true == TIMER_ENABLED) */
+
+
 }
  
 /*!
