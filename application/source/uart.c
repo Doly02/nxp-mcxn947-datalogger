@@ -49,6 +49,7 @@ void LP_FLEXCOMM7_IRQHandler(void)
 
     }
 
+    PRINTF(" ");
     /* Control of Overflow FIFO -> Prevention From Data Loss */
     if (LPUART_GetStatusFlags(LPUART7) & kLPUART_RxOverrunFlag)
     {

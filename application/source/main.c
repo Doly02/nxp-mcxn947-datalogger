@@ -116,10 +116,6 @@ void APP_InitBoard(void)
     BOARD_InitDebugConsole();
 	PRINTF("Initialization!\r\n");
 
-#if (true == USB0_DET_PIN_ENABLED)
-    InitUSBVbusInterrupt();
-#endif /* (true == USB0_DET_PIN_ENABLED) */
-
 #if (true == RTC_ENABLED)
 
     /* Initialize DMA */
