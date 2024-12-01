@@ -35,7 +35,13 @@
 #define TIMER_ENABLED			(false)
 /*
  * @brief Enables VBUS Detection on USB-C0.
- * */
+ */
 #define USB0_DET_PIN_ENABLED 	(false)
+
+/**
+ * @brief Configuration File.
+ */
+#define CONFIG_FILE "config"
+
 
 #endif /* DEFS_H_ */

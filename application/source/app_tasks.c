@@ -76,11 +76,21 @@ void record_task(void *handle)
 	uint8_t retVal = 1;
 	USB_DeviceModeInit();
 
-	retVal = RECORD_Start();
-	if (0 != retVal)
+	/* Initialize File System */
+	if (0 != RECORD_Start())
 	{
 		return;
 	}
+
+	/* Read Configuration File */
+	if (0 != RECORD_ReadConfig())
+	{
+		return;
+	}
+
+
+
+
 	retVal = RECORD_Deinit();
 	if (0 != retVal)
 	{

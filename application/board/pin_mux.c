@@ -327,7 +327,7 @@ void BOARD_InitPins(void)
                                                     /* Pin Control Register fields [15:0] are not locked */
                                                     kPORT_UnlockRegister};
     /* PORT3_3 is configured as FC7_P1 */
-    PORT_SetPinConfig(PORT3, 3U, &port3_3_pinB1_config);
+    PORT_SetPinConfig(PORT3, 3U, &port3_3_pin_config);
 
 }
 /* clang-format off */

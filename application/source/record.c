@@ -37,6 +37,8 @@ static FATFS g_fileSystem; /* File system object */
 
 static FIL g_fileObject;   /* File object */
 
+static REC_config_t g_config;
+
 /* @brief decription about the read/write buffer
  * The size of the read/write buffer should be a multiple of 512, since SDHC/SDXC card uses 512-byte fixed
  * block length and this driver example is enabled with a SDHC/SDXC card.If you are using a SDSC card, you
@@ -74,10 +76,28 @@ FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time)
 	return createdFile;
 }
 
+REC_config_t RECORD_GetConfig(void)
+{
+	return g_config;
+}
+
+REC_version_t RECORD_GetVersion(void)
+{
+	return g_config.version;
+}
+
+FRESULT RECORD_CheckFileSystem(void)
+{
+	FILINFO fno;
+	FRESULT res = f_stat("/", &fno);
+	return res;
+}
 
 uint8_t RECORD_Init(void)
 {
 	FRESULT error;
+	g_config.version 	= WCT_UNKOWN;
+	g_config.baudrate 	= 0;
 
 	/* Logic Disk */
 	const TCHAR driverNumberBuffer[3U] = {SDDISK + '0', ':', '/'};
@@ -103,12 +123,17 @@ uint8_t RECORD_Init(void)
 
 #if FF_USE_MKFS
 
-    /* Make File System */
-    if (f_mkfs(driverNumberBuffer, 0, work, sizeof work))
+    if (FR_OK != RECORD_CheckFileSystem())
     {
-        PRINTF("ERR: Init File System Failed.\r\n");
-        return -1;
+        PRINTF("INFO: File system not found. Formatting...\r\n");
+        /* Make File System */
+        if (f_mkfs(driverNumberBuffer, 0, work, sizeof work))
+        {
+            PRINTF("ERR: Init File System Failed.\r\n");
+            return -1;
+        }
     }
+
 #endif 	/* FF_USE_MKFS */
 
     return 0;
@@ -237,4 +262,114 @@ uint8_t RECORD_Deinit(void)
 #endif /* (true == DEBUG_ENABLED) */
 
 	return 0;
+}
+
+
+uint8_t RECORD_ReadConfig(void)
+{
+    FRESULT error;
+    DIR dir;           					//<! Opened Directory
+    FILINFO fno;       					//<! Information About File
+    FIL configFile;    					//<! Opened File
+    UINT bytesRead;    					//<! Number of Read Bytes
+
+    error = f_opendir(&dir, "/");
+    if (FR_OK != error)
+    {
+        PRINTF("ERR: Failed to Open Root Dir. ERR=%d\r\n", error);
+        return -1;
+    }
+
+    while (1)
+	{
+    	error = f_readdir(&dir, &fno);
+    	if (error != FR_OK || fno.fname[0] == 0)
+		{
+			break; 	// End of Directory or Error
+		}
+
+    	PRINTF("DEBUG: File Name: %s\r\n", fno.fname);
+
+    	if (!(fno.fattrib & AM_DIR))	// If Not Directory
+    	{
+    		if (0 == strcmp(fno.fname, CONFIG_FILE))	// If .config File
+			{
+    			PRINTF("DEBUG: Found .config File: %s\r\n", fno.fname);
+
+    			error = f_open(&configFile, CONFIG_FILE, FA_READ);
+    			if (FR_OK != error)
+				{
+    				PRINTF("ERR: Failed to open .config file. ERR=%d\r\n", error);
+					f_closedir(&dir); 	// Close Root Directory
+					return -1;
+				}
+    			memset(g_bufferRead, 0, sizeof(g_bufferRead));
+    			error = f_read(&configFile, g_bufferRead, sizeof(g_bufferRead) - 1, &bytesRead);
+				if (FR_OK != error)
+				{
+					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
+					f_close(&configFile);
+					f_closedir(&dir);
+					return -1;
+				}
+
+				if (SUCCESS != RECORD_ProccessConfigFile((const char *)g_bufferRead))
+				{
+					f_close(&configFile);
+					f_closedir(&dir);
+					return E_FAULT;
+				}
+
+				// Processed Configuration File
+				f_close(&configFile);
+				f_closedir(&dir);
+				return SUCCESS;
+			}
+    	}
+	}
+    PRINTF("ERR: .config file not found in root directory.\r\n");
+	f_closedir(&dir);
+	return E_FAULT;
+
+}
+
+uint8_t RECORD_ProccessConfigFile(const char *content)
+{
+    const char *key = "baudrate=";
+    char *found;
+    int32_t baudrate;
+
+    // Find Key "baudrate="
+    found = strstr(content, key);
+    if (NULL == found)
+    {
+        PRINTF("ERR: Key 'baudrate=' Not Found.\r\n");
+        return E_FAULT;
+    }
+
+    // Move Pointer Behind "baudrate="
+    found += strlen(key);
+    // Convert Value To INT
+    baudrate = atoi(found);
+    if (0 >= baudrate)
+	{
+		PRINTF("ERR: Invalid Baudrate Value.\r\n");
+		return E_FAULT;
+	}
+
+    switch (baudrate)
+	{
+		case 320400U:
+			g_config.version = WCT_AUTOS2;
+			break;
+		case 115200U:
+			g_config.version = WCT_AUTOS1;
+			break;
+		default:
+			PRINTF("ERR: Unsupported Baudrate Value: %d\r\n", baudrate);
+			return E_FAULT;
+	}
+
+    g_config.baudrate = baudrate;
+    return SUCCESS;
 }
