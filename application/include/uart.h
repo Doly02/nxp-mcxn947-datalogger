@@ -26,6 +26,7 @@
 #include "board.h"
 #include "fsl_lpuart.h"
 
+#include "fsl_debug_console.h"
 #include "fsl_clock.h"
 /*******************************************************************************
  * Definitions

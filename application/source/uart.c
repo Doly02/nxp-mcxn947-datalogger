@@ -71,27 +71,46 @@ void LP_FLEXCOMM7_IRQHandler(void)
 
 void LP_FLEXCOMM7_IRQHandler(void)
 {
-    static uint16_t bufferPos = 0; 		// Index For Ring Buffer
-    uint8_t data;
+	   uint8_t data;
+	    static bool lastWasCR = false;
 
-    /* If New Data */
-    if ((kLPUART_RxDataRegFullFlag) & LPUART_GetStatusFlags(LPUART7))
-    {
-        data = LPUART_ReadByte(LPUART7);
+	    /* If new data arrived. */
+	    if ((kLPUART_RxDataRegFullFlag)&LPUART_GetStatusFlags(DEMO_LPUART))
+	    {
+	        data = LPUART_ReadByte(DEMO_LPUART);
+	        if (data == '\r')
+	        {
+	            lastWasCR = true; // CR Received
+	        }
+	        else if (data == '\n')
+	        {
+	            if (lastWasCR)
+	            {
+	                // Detected CRLF
+	                PRINTF("\r\n");
+	            }
+	            else
+	            {
+	                // Solo LF -> New Line
+	                PRINTF("\n");
+	            }
+	            lastWasCR = false; // Reset Flag
+	        }
+	        else
+	        {
+	            if (lastWasCR)
+	            {
+	                // If It Was CR And Now Different Character Then LF
+	                PRINTF("\r");
+	            }
+	            PRINTF("%c", (char)data); 	// Print Current Character
+	            lastWasCR = false; 			// Reset Flag
+	        }
+	    }
 
-        /* Buffer Isn't Full . */
-        if (((bufferPos + 1) % DEMO_RING_BUFFER_SIZE) != bufferPos)
-        {
-            demoRingBuffer[bufferPos] = data;
-            bufferPos++;
-            bufferPos %= DEMO_RING_BUFFER_SIZE;
-        }
-        else
-        {
-            /* Process Buffer */
-        }
-    }
-    SDK_ISR_EXIT_BARRIER;
+		LPUART_ClearStatusFlags(DEMO_LPUART, kLPUART_AllClearFlags);
+	    // LPUART_ClearStatusFlags(DEMO_LPUART, kLPUART_RxDataRegFullInterruptEnable);
+	    SDK_ISR_EXIT_BARRIER;
 }
 
 #endif /* (true == UART_FIFO_ENABLED) */
@@ -105,7 +124,9 @@ void UART_Init(void)
 {
     lpuart_config_t config;
 
-    config.baudRate_Bps = 115200U;
+    LPUART_GetDefaultConfig(&config);
+
+    config.baudRate_Bps = 230400U;
     config.parityMode = kLPUART_ParityDisabled;
     config.stopBitCount = kLPUART_OneStopBit;
 
@@ -118,10 +139,22 @@ void UART_Init(void)
 
 #endif /* (true == UART_FIFO_ENABLED) */
 
-    config.enableTx = false;
-    config.enableRx = true;
+    config.isMsb        = false;
+    config.enableTx     = false;
+    config.enableRx     = true;
 
-    LPUART_Init(LPUART7, &config, LPUART_CLK_FREQ);
+    LPUART_Init(LPUART7, &config, LPUART7_CLK_FREQ);
+
+#if (true == UART_FIFO_ENABLED)
+
+    LPUART_EnableInterrupts(LPUART7, kLPUART_RxFifoUnderflowInterruptEnable);
+
+#else
+    LPUART_EnableInterrupts(DEMO_LPUART, kLPUART_TransmissionCompleteInterruptEnable);
+
+#endif /* (true == UART_FIFO_ENABLED) */
+
+	EnableIRQ(LP_FLEXCOMM7_IRQn);
 
     uint32_t rxFifoSize = 1U << ((LPUART7->PARAM & LPUART_PARAM_RXFIFO_MASK) >> LPUART_PARAM_RXFIFO_SHIFT);
     PRINTF("RX FIFO Size: %u bytes\r\n", rxFifoSize);

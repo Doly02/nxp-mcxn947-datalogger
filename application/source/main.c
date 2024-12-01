@@ -32,6 +32,8 @@
 
 #include "semphr.h"
 #include "ctimer.h"
+
+#include "uart.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -87,6 +89,12 @@ void APP_InitBoard(void)
     CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
     CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
 
+    CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
+
+    /* attach FRO 12M to FLEXCOMM7 Application UART */
+    CLOCK_SetClkDiv(kCLOCK_DivFlexcom7Clk, 1u);
+	CLOCK_AttachClk(kFRO12M_to_FLEXCOMM7);
+
 #if (true == RTC_ENABLED)
 
 	/* Attach FRO 12M To FLEXCOMM2 (I2C for RTC) */
@@ -134,7 +142,7 @@ void APP_InitBoard(void)
 
 #endif /* (true == TIMER_ENABLED) */
 
-
+    // UART_Init();
 }
  
 /*!
