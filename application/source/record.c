@@ -242,15 +242,16 @@ uint8_t RECORD_Deinit(void)
 	FRESULT error;
 
 	/* Close All Opened Files */
-	error = f_close(&g_fileObject);
-	if (error != FR_OK)
-	{
-		PRINTF("ERR: Failed to Close File. Error=%d\r\n", error);
-		if (error != FR_INVALID_OBJECT)
-		{
-			return -1;
-		}
-	}
+    if (g_fileObject.obj.fs != NULL)
+    {
+        error = f_close(&g_fileObject);
+        if (error != FR_OK)
+        {
+            PRINTF("ERR: Failed to Close File. Error=%d\r\n", error);
+            return -1;
+        }
+    }
+
 
 	/* Unmount File System From Logic Drive */
 	error = f_mount(NULL, "", 0);
