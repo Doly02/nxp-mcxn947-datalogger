@@ -112,7 +112,7 @@ uint8_t RECORD_Init(void)
 	if (f_mount(&g_fileSystem, driverNumberBuffer, 0U))
 	{
 		PRINTF("ERR: Mount Volume Failed.\r\n");
-		return -1;
+		return E_FAULT;
 	}
 
 #if (FF_FS_RPATH >= 2U)
@@ -122,7 +122,7 @@ uint8_t RECORD_Init(void)
     if (error)
     {
         PRINTF("ERR: Change drive failed.\r\n");
-        return -1;
+        return E_FAULT;
     }
 #endif	/* (FF_FS_RPATH >= 2U) */
 
@@ -135,13 +135,13 @@ uint8_t RECORD_Init(void)
         if (f_mkfs(driverNumberBuffer, 0, work, sizeof work))
         {
             PRINTF("ERR: Init File System Failed.\r\n");
-            return -1;
+            return E_FAULT;
         }
     }
 
 #endif 	/* FF_USE_MKFS */
 
-    return 0;
+    return SUCCESS;
 }
 
 uint8_t RECORD_Start(void)
@@ -158,7 +158,7 @@ uint8_t RECORD_Start(void)
 #endif /* (DEBUG_ENABLED == true) */
 
 	error = (FRESULT)RECORD_Init();
-	if (0 != error)
+	if (SUCCESS != error)
 	{
 		return (uint8_t)error;
 	}
@@ -179,7 +179,7 @@ uint8_t RECORD_Start(void)
         else
         {
             PRINTF("ERR: Make DIR Failed.\r\n");
-            return -1;
+            return E_FAULT;
         }
 	}
 
@@ -199,7 +199,7 @@ uint8_t RECORD_Start(void)
         else
         {
             PRINTF("ERR: Open File Failed.\r\n");
-            return -1;
+            return E_FAULT;
         }
     }
 
@@ -231,10 +231,10 @@ uint8_t RECORD_Start(void)
     if (f_close(&g_fileObject))
     {
         PRINTF("\r\nClose file failed.\r\n");
-        return -1;
+        return E_FAULT;
     }
 
-    return failedFlag ? -1 : 0;
+    return failedFlag ? E_FAULT : SUCCESS;
 }
 
 uint8_t RECORD_Deinit(void)
@@ -248,7 +248,7 @@ uint8_t RECORD_Deinit(void)
         if (error != FR_OK)
         {
             PRINTF("ERR: Failed to Close File. Error=%d\r\n", error);
-            return -1;
+            return E_FAULT;
         }
     }
 
@@ -258,7 +258,7 @@ uint8_t RECORD_Deinit(void)
 	if (error != FR_OK)
 	{
 		PRINTF("ERR: Failed to unmount filesystem. Error=%d\r\n", error);
-		return -1;
+		return E_FAULT;
 	}
 
 #if (true == DEBUG_ENABLED)
@@ -267,7 +267,7 @@ uint8_t RECORD_Deinit(void)
 
 #endif /* (true == DEBUG_ENABLED) */
 
-	return 0;
+	return SUCCESS;
 }
 
 
@@ -283,7 +283,7 @@ uint8_t RECORD_ReadConfig(void)
     if (FR_OK != error)
     {
         PRINTF("ERR: Failed to Open Root Dir. ERR=%d\r\n", error);
-        return -1;
+        return E_FAULT;
     }
 
     while (1)
@@ -298,7 +298,7 @@ uint8_t RECORD_ReadConfig(void)
 
     	if (!(fno.fattrib & AM_DIR))	// If Not Directory
     	{
-    		if (0 == strcmp(fno.fname, CONFIG_FILE))	// If .config File
+    		if (SUCCESS == strcmp(fno.fname, CONFIG_FILE))	// If .config File
 			{
     			PRINTF("DEBUG: Found .config File: %s\r\n", fno.fname);
 
@@ -307,7 +307,7 @@ uint8_t RECORD_ReadConfig(void)
 				{
     				PRINTF("ERR: Failed to open .config file. ERR=%d\r\n", error);
 					f_closedir(&dir); 	// Close Root Directory
-					return -1;
+					return E_FAULT;
 				}
     			memset(g_bufferRead, 0, sizeof(g_bufferRead));
     			error = f_read(&configFile, g_bufferRead, sizeof(g_bufferRead) - 1, &bytesRead);
@@ -316,7 +316,7 @@ uint8_t RECORD_ReadConfig(void)
 					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
 					f_close(&configFile);
 					f_closedir(&dir);
-					return -1;
+					return E_FAULT;
 				}
 
 				if (SUCCESS != RECORD_ProccessConfigFile((const char *)g_bufferRead))
