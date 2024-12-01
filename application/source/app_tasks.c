@@ -87,15 +87,18 @@ void record_task(void *handle)
 	{
 		return;
 	}
+	/*
+	 */
 
 
 
-
+	/*
 	retVal = RECORD_Deinit();
 	if (0 != retVal)
 	{
 		return;
 	}
+	 */
     while (1)
     {
         usbAttached = 0;

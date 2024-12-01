@@ -88,9 +88,14 @@ REC_version_t RECORD_GetVersion(void)
 
 FRESULT RECORD_CheckFileSystem(void)
 {
-	FILINFO fno;
-	FRESULT res = f_stat("/", &fno);
-	return res;
+    DIR dir;
+    /* Try To Open Root Folder */
+    FRESULT res = f_opendir(&dir, "/");
+    if (res == FR_OK)
+    {
+        f_closedir(&dir);
+    }
+    return res;
 }
 
 uint8_t RECORD_Init(void)
@@ -329,8 +334,8 @@ uint8_t RECORD_ReadConfig(void)
 	}
     PRINTF("ERR: .config file not found in root directory.\r\n");
 	f_closedir(&dir);
-	return E_FAULT;
 
+	return E_FAULT;
 }
 
 uint8_t RECORD_ProccessConfigFile(const char *content)

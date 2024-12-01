@@ -41,7 +41,7 @@
 /**
  * @brief Configuration File.
  */
-#define CONFIG_FILE "config"
+#define CONFIG_FILE 			"CONFIG"
 
 
 #endif /* DEFS_H_ */
