@@ -3,7 +3,7 @@
  *  File Name:      fatfs.h
  *  Author:         Tomas Dolak
  *  Date:           18.11.2024
- *  Description:    --
+ *  Description:    File Includes Operation For Recoding Mode.
  *
  * ****************************/
 
@@ -12,7 +12,7 @@
  *  @file           fatfs.h
  *  @author         Tomas Dolak
  *  @date           18.11.2024
- *  @brief          --
+ *  @brief          File Includes Operation For Recoding Mode.
  * ****************************/
 
 /*******************************************************************************
@@ -130,7 +130,11 @@ uint8_t RECORD_Init(void)
 
     if (FR_OK != RECORD_CheckFileSystem())
     {
-        PRINTF("INFO: File system not found. Formatting...\r\n");
+
+#if (true == DEBUG_ENABLED)
+        PRINTF("DEBUG: File system not found. Formatting...\r\n");
+#endif /* (true == DEBUG_ENABLED) */
+
         /* Make File System */
         if (f_mkfs(driverNumberBuffer, 0, work, sizeof work))
         {
@@ -151,11 +155,11 @@ uint8_t RECORD_Start(void)
 	volatile bool failedFlag           	= false;		/*<! Write Failed 				*/
 	UINT bytesRead;
 
-#if (DEBUG_ENABLED == true)
+#if (true == DEBUG_ENABLED)
 
 	PRINTF("DEBUG: Initialize File System\r\n");
 
-#endif /* (DEBUG_ENABLED == true) */
+#endif /* (true == DEBUG_ENABLED) */
 
 	error = (FRESULT)RECORD_Init();
 	if (SUCCESS != error)
@@ -163,11 +167,11 @@ uint8_t RECORD_Start(void)
 		return (uint8_t)error;
 	}
 
-#if (DEBUG_ENABLED == true)
+#if (true == DEBUG_ENABLED)
 
 	PRINTF("DEBUG: Create Directory\r\n");
 
-#endif /* (DEBUG_ENABLED == true) */
+#endif /* (true == DEBUG_ENABLED) */
 
 	error = f_mkdir(_T("/test_1"));
 	if (error)
@@ -183,11 +187,11 @@ uint8_t RECORD_Start(void)
         }
 	}
 
-#if (DEBUG_ENABLED == true)
+#if (true == DEBUG_ENABLED)
 
 	PRINTF("DEBUG: Create a File in DIR\r\n");
 
-#endif /* (DEBUG_ENABLED == true) */
+#endif /* (true == DEBUG_ENABLED) */
 
 	error = f_open(&g_fileObject, _T("/test_1/log_2.log"), (FA_WRITE | FA_READ | FA_CREATE_ALWAYS));
     if (error)
@@ -208,11 +212,11 @@ uint8_t RECORD_Start(void)
     g_bufferWrite[BUFFER_SIZE - 2U] = '\r';
     g_bufferWrite[BUFFER_SIZE - 1U] = '\n';
 
-#if (DEBUG_ENABLED == true)
+#if (true == DEBUG_ENABLED)
 
     PRINTF("\r\nWrite to above created file.\r\n");
 
-#endif /* (DEBUG_ENABLED == true) */
+#endif /* (true == DEBUG_ENABLED) */
 
     error = f_write(&g_fileObject, g_bufferWrite, sizeof(g_bufferWrite), &bytesWritten);
 	if ((error) || (bytesWritten != sizeof(g_bufferWrite)))

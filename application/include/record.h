@@ -3,7 +3,7 @@
  *  File Name:      fatfs.h
  *  Author:         Tomas Dolak
  *  Date:           18.11.2024
- *  Description:    --
+ *  Description:    File Includes Operation For Recoding Mode.
  *
  * ****************************/
 
@@ -12,7 +12,7 @@
  *  @file           fatfs.h
  *  @author         Tomas Dolak
  *  @date           18.11.2024
- *  @brief          --
+ *  @brief          File Includes Operation For Recoding Mode.
  * ****************************/
 
 #ifndef RECORD_H_
@@ -42,25 +42,40 @@
 /*******************************************************************************
  * Structures
  ******************************************************************************/
+/**
+ * @brief 	Enumeration of recording board versions.
+ *
+ * @details This enum defines the possible versions of the board for which the recording
+ * 			system is configured.
+ *
+ * @note	Difference Between AUTOS1 and AUTOS2 Is In Baudrate.
+ *
+ */
 typedef enum
 {
-	WCT_UNKOWN = 0,
-	WCT_AUTOS1,
-	WCT_AUTOS2
+	WCT_UNKOWN = 0,		/**< Unknown board version. 	*/
+	WCT_AUTOS1,			/**< AUTOS1 Reference Board. 	*/
+	WCT_AUTOS2			/**< AUTOS2 Reference Board. 	*/
 
 } REC_version_t;
 
+/**
+ * @brief 	Configuration structure for the recording system.
+ *
+ * @details	Structure Holds The Configuration Parameters Required For Initializing
+ * 			The Recording System, Including The Board Version and Baudrate.
+ */
 typedef struct
 {
-	REC_version_t 	version;	//<! Board That Will Be Recorded
-	uint32_t 		baudrate;	//<! Desired Baudrate
+	REC_version_t 	version;	/**< Board That Will Be Recorded	*/
+	uint32_t 		baudrate;	/**< Desired Baudrate				*/
 
 } REC_config_t;
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
 
-/*
+/**
  * @brief 		Creates Files Based On Time And Date.
  *
  * @param[in]	Time That Will Be Part of Filename.
@@ -70,7 +85,7 @@ typedef struct
  */
 FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time);
 
-/*
+/**
  * @brief 		Returns Active Configuration.
  *
  * @details 	This Function Returns The Global Configuration Structure That Contains
@@ -81,7 +96,7 @@ FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time);
  */
 REC_config_t RECORD_GetConfig(void);
 
-/*
+/**
  * @brief 		Returns the Version of The Device Being Recorded.
  *
  * @return		REC_version_t Current Version of Recorded Device
@@ -89,14 +104,14 @@ REC_config_t RECORD_GetConfig(void);
  */
 REC_version_t RECORD_GetVersion(void);
 
-/*
+/**
  * @brief		Checks If The File System Is Initialized
  *
  * return		F_OK If File System Initialized.
  */
 FRESULT RECORD_CheckFileSystem(void);
 
-/*
+/**
  * @brief 		Initializes The Recording System and Mounts The File System.
  *
  * @details 	This Function Performs the Initialization of The Recording System,
@@ -111,7 +126,7 @@ FRESULT RECORD_CheckFileSystem(void);
  */
 uint8_t RECORD_Init(void);
 
-/*
+/**
  * @brief 		Starts The Recording Process by Initializing the File
  * 				System, Creating a Directory, and Writing to a File.
  *
@@ -121,14 +136,15 @@ uint8_t RECORD_Init(void);
  * @return 		uint8_t Returns 0 on Success, Otherwise E_FAULT.
  */
 uint8_t RECORD_Start(void);
-/*
+
+/**
  * @brief 		De-Initializes The Recording System and Un-Mounts The File System.
  *
  * @return 		uint8_t Returns 0 on Success, Otherwise E_FAULT.
  */
 uint8_t RECORD_Deinit(void);
 
-/*
+/**
  * @brief		Reads and Processes The Configuration File From The Root directory.
  *
  * @details		This Function Scans The Root Directory For a Configuration File, If The File is Found
@@ -139,7 +155,7 @@ uint8_t RECORD_Deinit(void);
  */
 uint8_t RECORD_ReadConfig(void);
 
-/*
+/**
  * @brief 		Processes The Content of The Configuration File To Extract
  * 				and Validate The Baudrate.
  *
