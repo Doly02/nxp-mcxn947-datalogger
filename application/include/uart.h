@@ -31,16 +31,37 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+/**
+ * @brief Frequency of LPUART7.
+ */
 #define LPUART7_CLK_FREQ   CLOCK_GetLPFlexCommClkFreq(7u)
-#define LPUART7_IRQn       LP_FLEXCOMM7_IRQn
 
 
 /*******************************************************************************
  * Declarations
  ******************************************************************************/
+
+/**
+ * @brief 		Initializes LPUART7 For Recording.
+ */
 void UART_Init(void);
 
+/**
+ * @brief 		Prints Character on The Terminal.
+ *
+ * @param[in]	ch Character in uint8_t.
+ */
 void UART_Print(uint8_t ch);
+
+/**
+ * @brief 		Enables Interrupt For Application LPUART7.
+ */
+void UART_Enable(void);
+
+/**
+ * @brief 		Disables Interrupt For Application LPUART7.
+ */
+void UART_Disable(void);
 
 #endif /* UART_H_ */
 

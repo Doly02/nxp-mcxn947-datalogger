@@ -19,7 +19,7 @@
  * Includes
  ******************************************************************************/
 #include <record.h>
-
+#include <uart.h>
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -54,6 +54,7 @@ SDK_ALIGN(uint8_t g_bufferRead[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE)
 /*******************************************************************************
  * Code
  ******************************************************************************/
+#if 0
 FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time)
 {
 	FIL  *createdFile = NULL;
@@ -75,6 +76,7 @@ FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time)
 
 	return createdFile;
 }
+#endif
 
 REC_config_t RECORD_GetConfig(void)
 {
@@ -244,6 +246,11 @@ uint8_t RECORD_Start(void)
 uint8_t RECORD_Deinit(void)
 {
 	FRESULT error;
+
+	/* Stop Generating UART Interrupt */
+
+
+	/* De-Initialize UART */
 
 	/* Close All Opened Files */
     if (g_fileObject.obj.fs != NULL)
