@@ -44,76 +44,22 @@
 /*******************************************************************************
  * Global Variables
  ******************************************************************************/
-#if (true == UART_FIFO_ENABLED)
 
-
-
-#else
-
-volatile uint8_t buffer1[BUFFER_SIZE] 	= {0U};
-volatile uint8_t buffer2[BUFFER_SIZE]	= {0U};
-
-volatile uint8_t *activeBuffer 			= buffer1;
-volatile uint8_t *processBuffer 		= NULL;
-volatile bool bufferReady 				= false;
-
-volatile uint8_t index 					= 0;
-
-#endif /* (true == UART_FIFO_ENABLED) */
 /*******************************************************************************
  * Code
  ******************************************************************************/
-
-/**
- * @brief LPUART7 IRQ Handler.
- *
- */
-void LP_FLEXCOMM7_IRQHandler(void)
-{
-    uint8_t data;
-    uint32_t stat;
-
-    /* If New Data Arrived. */
-    stat = LPUART_GetStatusFlags(LPUART7);
-    if (kLPUART_RxDataRegFullFlag & stat)
-    {
-        data = LPUART_ReadByte(LPUART7);
-        activeBuffer[index++] = data;
-
-        if (index >= BUFFER_SIZE) // Buffer Is Full
-        {
-        	/* Switch The Buffer */
-        	if (activeBuffer == buffer1)
-            {
-                activeBuffer = buffer2;
-                processBuffer = buffer1;
-            }
-            else
-            {
-                activeBuffer = buffer1;
-                processBuffer = buffer2;
-            }
-
-            index = 0;
-            bufferReady = true; // Buffer Is Ready
-        }
-    }
-
-    LPUART_ClearStatusFlags(LPUART7, kLPUART_RxDataRegFullFlag);
-    SDK_ISR_EXIT_BARRIER;
-}
 
 void UART_Print(uint8_t ch)
 {
 	PRINTF("%c", (char)ch);
 }
 
-void UART_Init(void)
+void UART_Init(uint32_t baudrate)
 {
     lpuart_config_t config;
 
     LPUART_GetDefaultConfig(&config);
-    config.baudRate_Bps = 230400U;
+    config.baudRate_Bps = baudrate;
     config.parityMode 	= kLPUART_ParityDisabled;
     config.stopBitCount = kLPUART_OneStopBit;
 

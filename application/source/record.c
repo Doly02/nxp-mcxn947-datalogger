@@ -31,7 +31,7 @@
  ******************************************************************************/
 
 /*******************************************************************************
- * Variables
+ * Global Variables
  ******************************************************************************/
 static FATFS g_fileSystem; /* File system object */
 
@@ -51,9 +51,74 @@ static REC_config_t g_config;
 SDK_ALIGN(uint8_t g_bufferWrite[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 /*! @brief Data read from the card */
 SDK_ALIGN(uint8_t g_bufferRead[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+
+/**
+ * @defgroup UART Management
+ * @brief Group Contains Variables For Recording From UART.
+ * @{
+ */
+#if (true == UART_FIFO_ENABLED)
+
+
+
+#else
+
+volatile uint8_t g_buffer1[BUFFER_SIZE] = {0U};
+volatile uint8_t g_buffer2[BUFFER_SIZE]	= {0U};
+
+volatile uint8_t *gp_activeBuffer 		= g_buffer1;
+volatile uint8_t *gp_processBuffer 		= NULL;
+volatile bool g_bufferReady 			= false;
+
+volatile uint8_t g_index 				= 0;
+
+#endif /* (true == UART_FIFO_ENABLED) */
+
+/** @} */ // End of UART Management group
+
 /*******************************************************************************
  * Code
  ******************************************************************************/
+
+/**
+ * @brief LPUART7 IRQ Handler.
+ *
+ */
+void LP_FLEXCOMM7_IRQHandler(void)
+{
+    uint8_t data;
+    uint32_t stat;
+
+    /* If New Data Arrived. */
+    stat = LPUART_GetStatusFlags(LPUART7);
+    if (kLPUART_RxDataRegFullFlag & stat)
+    {
+        data = LPUART_ReadByte(LPUART7);
+        gp_activeBuffer[g_index++] = data;
+
+        if (g_index >= BUFFER_SIZE) // Buffer Is Full
+        {
+        	/* Switch The Buffer */
+        	if (gp_activeBuffer == g_buffer1)
+            {
+        		gp_activeBuffer = g_buffer2;
+        		gp_processBuffer = g_buffer1;
+            }
+            else
+            {
+            	gp_activeBuffer = g_buffer1;
+            	gp_processBuffer = g_buffer2;
+            }
+
+            g_index = 0;
+            g_bufferReady = true; // Buffer Is Ready
+        }
+    }
+
+    LPUART_ClearStatusFlags(LPUART7, kLPUART_RxDataRegFullFlag);
+    SDK_ISR_EXIT_BARRIER;
+}
+
 #if 0
 FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time)
 {
@@ -86,6 +151,11 @@ REC_config_t RECORD_GetConfig(void)
 REC_version_t RECORD_GetVersion(void)
 {
 	return g_config.version;
+}
+
+uint32_t RECORD_GetBaudrate(void)
+{
+	return g_config.baudrate;
 }
 
 FRESULT RECORD_CheckFileSystem(void)
@@ -157,88 +227,11 @@ uint8_t RECORD_Start(void)
 	volatile bool failedFlag           	= false;		/*<! Write Failed 				*/
 	UINT bytesRead;
 
-#if (true == DEBUG_ENABLED)
+	/* 1. Create File 	*/
 
-	PRINTF("DEBUG: Initialize File System\r\n");
+	/* 2. Open File 	*/
 
-#endif /* (true == DEBUG_ENABLED) */
-
-	error = (FRESULT)RECORD_Init();
-	if (SUCCESS != error)
-	{
-		return (uint8_t)error;
-	}
-
-#if (true == DEBUG_ENABLED)
-
-	PRINTF("DEBUG: Create Directory\r\n");
-
-#endif /* (true == DEBUG_ENABLED) */
-
-	error = f_mkdir(_T("/test_1"));
-	if (error)
-	{
-        if (error == FR_EXIST)
-        {
-            PRINTF("ERR: Directory Exists.\r\n");
-        }
-        else
-        {
-            PRINTF("ERR: Make DIR Failed.\r\n");
-            return E_FAULT;
-        }
-	}
-
-#if (true == DEBUG_ENABLED)
-
-	PRINTF("DEBUG: Create a File in DIR\r\n");
-
-#endif /* (true == DEBUG_ENABLED) */
-
-	error = f_open(&g_fileObject, _T("/test_1/log_2.log"), (FA_WRITE | FA_READ | FA_CREATE_ALWAYS));
-    if (error)
-    {
-        if (FR_EXIST == error)
-        {
-            PRINTF("ERR: File Exists.\r\n");
-        }
-        else
-        {
-            PRINTF("ERR: Open File Failed.\r\n");
-            return E_FAULT;
-        }
-    }
-
-    /* Prepare Buffer That Will Be Written Into SD Card */
-    strncpy((char *)g_bufferWrite, "That is The Test.", (size_t)sizeof(g_bufferWrite));
-    g_bufferWrite[BUFFER_SIZE - 2U] = '\r';
-    g_bufferWrite[BUFFER_SIZE - 1U] = '\n';
-
-#if (true == DEBUG_ENABLED)
-
-    PRINTF("\r\nWrite to above created file.\r\n");
-
-#endif /* (true == DEBUG_ENABLED) */
-
-    error = f_write(&g_fileObject, g_bufferWrite, sizeof(g_bufferWrite), &bytesWritten);
-	if ((error) || (bytesWritten != sizeof(g_bufferWrite)))
-	{
-		PRINTF("ERR: Write Into File Failed. \r\n");
-		failedFlag = true;
-	}
-
-    /* Move the file pointer */
-    if (f_lseek(&g_fileObject, 0U))
-    {
-        PRINTF("ERR: Set File Pointer Position Failed. \r\n");
-        failedFlag = true;
-    }
-
-    if (f_close(&g_fileObject))
-    {
-        PRINTF("\r\nClose file failed.\r\n");
-        return E_FAULT;
-    }
+	/* 3. Store The Content From UART Buffer Into On SD Card */
 
     return failedFlag ? E_FAULT : SUCCESS;
 }

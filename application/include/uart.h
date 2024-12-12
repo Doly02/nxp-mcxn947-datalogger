@@ -44,7 +44,7 @@
 /**
  * @brief 		Initializes LPUART7 For Recording.
  */
-void UART_Init(void);
+void UART_Init(uint32_t baudrate);
 
 /**
  * @brief 		Prints Character on The Terminal.

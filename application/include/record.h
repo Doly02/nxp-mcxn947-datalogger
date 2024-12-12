@@ -69,6 +69,8 @@ typedef struct
 {
 	REC_version_t 	version;	/**< Board That Will Be Recorded	*/
 	uint32_t 		baudrate;	/**< Desired Baudrate				*/
+								/**< Maximum File Size 				*/
+								/**< Maximal Log. Time In Per File	*/
 
 } REC_config_t;
 /*******************************************************************************
@@ -103,6 +105,14 @@ REC_config_t RECORD_GetConfig(void);
  * 				(WCT_UNKOWN, WCT_AUTOS1 or WCT_AUTOS2).
  */
 REC_version_t RECORD_GetVersion(void);
+
+/**
+ * @brief 		Returns the Baudrate of The Device Being Recorded.
+ *
+ * @return		uint32_t Baud Rate of Recorded Device
+ *
+ */
+ uint32_t RECORD_GetBaudrate(void);
 
 /**
  * @brief		Checks If The File System Is Initialized

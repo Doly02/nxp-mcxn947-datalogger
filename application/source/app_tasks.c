@@ -26,6 +26,12 @@
 /*******************************************************************************
  * Global Variables.
  ******************************************************************************/
+/**
+ * @defgroup TaskManagement Task Management
+ * @brief Group Contains Task Management Variables and Metadata.
+ * @{
+ */
+
 extern volatile uint8_t usbAttached;
 /*!
  * @brief	TCB (Task Control Block) - Metadata of IDLE Task.
@@ -43,7 +49,10 @@ static StackType_t uxTimerTaskStack[configTIMER_TASK_STACK_DEPTH];
 extern SemaphoreHandle_t g_TaskMutex;
 
 extern TaskHandle_t mscTaskHandle;
+
 extern TaskHandle_t recordTaskHandle;
+
+/** @} */ // End of TaskManagement group
 
 /*******************************************************************************
  * Implementation of Functions
@@ -73,11 +82,20 @@ void msc_task(void *handle)
 
 void record_task(void *handle)
 {
-	uint8_t retVal = 1;
+	uint8_t retVal 		= 1;
+	uint32_t baudrate 	= 0;
+
 	USB_DeviceModeInit();
 
+#if (true == DEBUG_ENABLED)
+
+	PRINTF("DEBUG: Initialize File System\r\n");
+
+#endif /* (true == DEBUG_ENABLED) */
+
 	/* Initialize File System */
-	if (0 != RECORD_Start())
+	retVal = RECORD_Init();
+	if (SUCCESS != retVal)
 	{
 		return;
 	}
@@ -87,10 +105,11 @@ void record_task(void *handle)
 	{
 		return;
 	}
-	/*
-	 */
+	baudrate = RECORD_GetBaudrate();
 
-
+	/* Initialize Application UART */
+	UART_Init(baudrate);
+	// UART_Enable();
 
 	/*
 	retVal = RECORD_Deinit();
