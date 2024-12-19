@@ -57,11 +57,6 @@ SDK_ALIGN(uint8_t g_bufferRead[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE)
  * @brief Group Contains Variables For Recording From UART.
  * @{
  */
-#if (true == UART_FIFO_ENABLED)
-
-
-
-#else
 
 volatile uint8_t g_buffer1[BUFFER_SIZE] = {0U};
 volatile uint8_t g_buffer2[BUFFER_SIZE]	= {0U};
@@ -71,8 +66,6 @@ volatile uint8_t *gp_processBuffer 		= NULL;
 volatile bool g_bufferReady 			= false;
 
 volatile uint16_t g_index 				= 0;
-
-#endif /* (true == UART_FIFO_ENABLED) */
 
 /** @} */ // End of UART Management group
 

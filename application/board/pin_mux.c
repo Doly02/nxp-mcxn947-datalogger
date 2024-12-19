@@ -284,9 +284,9 @@ void BOARD_InitPins(void)
     CLOCK_EnableClock(kCLOCK_Port3);
 
     const port_pin_config_t port3_2_pin_config = {/* Internal pull-up/down resistor is disabled */
-                                                    kPORT_PullDisable,
+                                                    kPORT_PullUp,
                                                     /* Low internal pull resistor value is selected. */
-                                                    kPORT_LowPullResistor,
+                                                    kPORT_HighPullResistor,
                                                     /* Fast slew rate is configured */
                                                     kPORT_FastSlewRate,
                                                     /* Passive input filter is disabled */
@@ -307,9 +307,9 @@ void BOARD_InitPins(void)
     PORT_SetPinConfig(PORT3, 2U, &port3_2_pin_config);
 
     const port_pin_config_t port3_3_pin_config = {/* Internal pull-up/down resistor is disabled */
-                                                    kPORT_PullDisable,
+                                                    kPORT_PullUp,
                                                     /* Low internal pull resistor value is selected. */
-                                                    kPORT_LowPullResistor,
+                                                    kPORT_HighPullResistor,
                                                     /* Fast slew rate is configured */
                                                     kPORT_FastSlewRate,
                                                     /* Passive input filter is disabled */
@@ -328,7 +328,6 @@ void BOARD_InitPins(void)
                                                     kPORT_UnlockRegister};
     /* PORT3_3 is configured as FC7_P1 */
     PORT_SetPinConfig(PORT3, 3U, &port3_3_pin_config);
-
 }
 /* clang-format off */
 /*

@@ -80,13 +80,6 @@ void UART_Init(uint32_t baudrate)
     LPUART_Init(LPUART7, &config, clk);
 
     DisableIRQ(LP_FLEXCOMM7_IRQn);
-
-#if (true == DEBUG_ENABLED)
-
-    uint32_t rxFifoSize = 1U << ((LPUART7->PARAM & LPUART_PARAM_RXFIFO_MASK) >> LPUART_PARAM_RXFIFO_SHIFT);
-    PRINTF("DEBUG: Number of Characters in Rx FIFO: %u bytes\r\n", rxFifoSize);
-
-#endif /* (true == DEBUG_ENABLED) */
 }
 
 void UART_Enable(void)

@@ -19,9 +19,16 @@
       <generate_registers_defines>false</generate_registers_defines>
    </preferences>
    <tools>
-      <pins name="Pins" version="16.0" enabled="true" update_project_code="true">
+      <pins name="Pins" version="16.0" enabled="true" update_project_code="false">
+         <generated_project_files>
+            <file path="board/pin_mux.c" update_enabled="true"/>
+            <file path="board/pin_mux.h" update_enabled="true"/>
+         </generated_project_files>
          <pins_profile>
             <processor_version>16.3.0</processor_version>
+            <external_user_signals>
+               <properties/>
+            </external_user_signals>
          </pins_profile>
          <functions_list>
             <function name="BOARD_InitPins">
@@ -174,6 +181,10 @@
          </functions_list>
       </pins>
       <clocks name="Clocks" version="14.0" enabled="true" update_project_code="true">
+         <generated_project_files>
+            <file path="board/clock_config.c" update_enabled="true"/>
+            <file path="board/clock_config.h" update_enabled="true"/>
+         </generated_project_files>
          <clocks_profile>
             <processor_version>16.3.0</processor_version>
          </clocks_profile>
@@ -380,12 +391,14 @@
                      </feature>
                   </dependency>
                </dependencies>
-               <clock_sources/>
+               <clock_sources>
+                  <clock_source id="SCG.FIRC.outFreq" value="144 MHz" locked="false" enabled="false"/>
+               </clock_sources>
                <clock_outputs>
                   <clock_output id="CLK_144M_clock.outFreq" value="144 MHz" locked="false" accuracy=""/>
                   <clock_output id="CLK_48M_clock.outFreq" value="48 MHz" locked="false" accuracy=""/>
                   <clock_output id="FRO_12M_clock.outFreq" value="12 MHz" locked="false" accuracy=""/>
-                  <clock_output id="FRO_HF_clock.outFreq" value="48 MHz" locked="false" accuracy=""/>
+                  <clock_output id="FRO_HF_clock.outFreq" value="144 MHz" locked="false" accuracy=""/>
                   <clock_output id="MAIN_clock.outFreq" value="150 MHz" locked="false" accuracy=""/>
                   <clock_output id="PLL0_CLK_clock.outFreq" value="150 MHz" locked="false" accuracy=""/>
                   <clock_output id="Slow_clock.outFreq" value="37.5 MHz" locked="false" accuracy=""/>
@@ -496,12 +509,14 @@
          </clock_configurations>
       </clocks>
       <dcdx name="DCDx" version="3.0" enabled="false" update_project_code="true">
+         <generated_project_files/>
          <dcdx_profile>
             <processor_version>N/A</processor_version>
          </dcdx_profile>
          <dcdx_configurations/>
       </dcdx>
       <periphs name="Peripherals" version="15.0" enabled="false" update_project_code="true">
+         <generated_project_files/>
          <peripherals_profile>
             <processor_version>N/A</processor_version>
          </peripherals_profile>
@@ -509,6 +524,7 @@
          <components/>
       </periphs>
       <tee name="TEE" version="7.0" enabled="false" update_project_code="true">
+         <generated_project_files/>
          <tee_profile>
             <processor_version>N/A</processor_version>
          </tee_profile>

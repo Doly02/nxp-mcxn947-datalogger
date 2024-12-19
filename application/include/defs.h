@@ -28,7 +28,7 @@
 
 #define DEBUG_ENABLED			(true)
 
-#define UART_FIFO_ENABLED		(false)
+#define UART_FIFO_ENABLED		(true)
 
 #define UART_FIFO_LENGHT		(1u)
 /**
