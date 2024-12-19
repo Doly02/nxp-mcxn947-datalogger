@@ -58,14 +58,10 @@ SDK_ALIGN(uint8_t g_bufferRead[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE)
  * @{
  */
 
-volatile uint8_t g_buffer1[BUFFER_SIZE] = {0U};
-volatile uint8_t g_buffer2[BUFFER_SIZE]	= {0U};
-
-volatile uint8_t *gp_activeBuffer 		= g_buffer1;
-volatile uint8_t *gp_processBuffer 		= NULL;
-volatile bool g_bufferReady 			= false;
-
-volatile uint16_t g_index 				= 0;
+volatile uint8_t swFifo[BUFFER_SIZE] = {0U}; 	// FIFO buffer
+volatile uint16_t writeIndex = 0;         		// Index for writing into FIFO
+volatile uint16_t readIndex = 0;          		// Index for reading from FIFO
+volatile bool fifoOverflow = false;       		// Flag indicating FIFO overflow
 
 /** @} */ // End of UART Management group
 
@@ -87,24 +83,17 @@ void LP_FLEXCOMM7_IRQHandler(void)
     if (kLPUART_RxDataRegFullFlag & stat)
     {
         data = LPUART_ReadByte(LPUART7);
-        gp_activeBuffer[g_index++] = data;
 
-        if (g_index >= BUFFER_SIZE) // Buffer Is Full
+        uint16_t nextWriteIndex = (writeIndex + 1) % BUFFER_SIZE;
+
+        if (nextWriteIndex != readIndex) // Check if FIFO is not full
         {
-        	/* Switch The Buffer */
-        	if (gp_activeBuffer == g_buffer1)
-            {
-        		gp_activeBuffer  = g_buffer2;
-        		gp_processBuffer = g_buffer1;
-            }
-            else
-            {
-            	gp_activeBuffer  = g_buffer1;
-            	gp_processBuffer = g_buffer2;
-            }
-
-            g_index = 0;
-            g_bufferReady = true; // Buffer Is Ready
+            swFifo[writeIndex] = data;   // Write data to FIFO
+            writeIndex = nextWriteIndex; // Update write index
+        }
+        else
+        {
+            fifoOverflow = true; // FIFO overflow occurred
         }
     }
 
@@ -228,23 +217,23 @@ uint8_t RECORD_Start(void)
 	/* 3. Store The Content From UART Buffer Into On SD Card */
 
 	/* Buffer Ready To Process */
-	if (g_bufferReady)
+	if (fifoOverflow)
 	{
-		g_bufferReady = false;
+		PRINTF("ERR: FIFO overflow! Data loss occurred.\r\n");
+		fifoOverflow = false; // Clear the overflow flag
+	}
 
-		if (NULL != gp_processBuffer)
-		{
-			/* Process Data In The Buffer */
-			for (uint16_t i = 0; i < BUFFER_SIZE; i++)
-			{
-				/* Print Data */
-				PRINTF("%c", gp_processBuffer[i]);
-			}
-			gp_processBuffer = NULL; // Free The Buffer After Processing
-		}
-	 }
+	/* Process data from FIFO */
+	while (readIndex != writeIndex)
+	{
+		uint8_t data = swFifo[readIndex];       // Read data from FIFO
+		readIndex = (readIndex + 1) % BUFFER_SIZE; // Update read index
 
-    return failedFlag ? E_FAULT : SUCCESS;
+		/* Print data */
+		PRINTF("%c", data);
+	}
+
+	return SUCCESS;
 }
 
 uint8_t RECORD_Deinit(void)
