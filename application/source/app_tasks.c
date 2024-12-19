@@ -94,6 +94,7 @@ void record_task(void *handle)
 #endif /* (true == DEBUG_ENABLED) */
 
 	/* Initialize File System */
+#if 1
 	retVal = RECORD_Init();
 	if (SUCCESS != retVal)
 	{
@@ -106,10 +107,12 @@ void record_task(void *handle)
 		return;
 	}
 	baudrate = RECORD_GetBaudrate();
+#endif
+	baudrate = 320400;
 
 	/* Initialize Application UART */
 	UART_Init(baudrate);
-	// UART_Enable();
+	UART_Enable();
 
 	/*
 	retVal = RECORD_Deinit();
@@ -129,8 +132,7 @@ void record_task(void *handle)
             /* Uloha nema co delat -> Delay */
             /* Jedna uloha nesmi zastavit tu druhou */
         }
-
-		vTaskDelay(pdMS_TO_TICKS(10));	/* Misto vTaskSuspend */
+        RECORD_Start();
     }
 }
 

@@ -92,8 +92,8 @@ void APP_InitBoard(void)
     CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
 
     /* attach FRO 12M to FLEXCOMM7 Application UART */
-    CLOCK_SetClkDiv(kCLOCK_DivFlexcom7Clk, 1u);
-	CLOCK_AttachClk(kFRO12M_to_FLEXCOMM7);
+	CLOCK_SetClkDiv(kCLOCK_DivFlexcom7Clk, 2u);
+	CLOCK_AttachClk(kFRO_HF_DIV_to_FLEXCOMM7);
 
 #if (true == RTC_ENABLED)
 

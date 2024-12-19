@@ -76,7 +76,8 @@ void UART_Init(uint32_t baudrate)
     config.enableTx     = false;
     config.enableRx     = true;
 
-    LPUART_Init(LPUART7, &config, LPUART7_CLK_FREQ);
+    uint32_t clk = LPUART7_CLK_FREQ;
+    LPUART_Init(LPUART7, &config, clk);
 
     DisableIRQ(LP_FLEXCOMM7_IRQn);
 

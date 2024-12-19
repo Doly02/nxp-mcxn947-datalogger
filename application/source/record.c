@@ -70,7 +70,7 @@ volatile uint8_t *gp_activeBuffer 		= g_buffer1;
 volatile uint8_t *gp_processBuffer 		= NULL;
 volatile bool g_bufferReady 			= false;
 
-volatile uint8_t g_index 				= 0;
+volatile uint16_t g_index 				= 0;
 
 #endif /* (true == UART_FIFO_ENABLED) */
 
@@ -101,12 +101,12 @@ void LP_FLEXCOMM7_IRQHandler(void)
         	/* Switch The Buffer */
         	if (gp_activeBuffer == g_buffer1)
             {
-        		gp_activeBuffer = g_buffer2;
+        		gp_activeBuffer  = g_buffer2;
         		gp_processBuffer = g_buffer1;
             }
             else
             {
-            	gp_activeBuffer = g_buffer1;
+            	gp_activeBuffer  = g_buffer1;
             	gp_processBuffer = g_buffer2;
             }
 
@@ -229,9 +229,27 @@ uint8_t RECORD_Start(void)
 
 	/* 1. Create File 	*/
 
+
 	/* 2. Open File 	*/
 
 	/* 3. Store The Content From UART Buffer Into On SD Card */
+
+	/* Buffer Ready To Process */
+	if (g_bufferReady)
+	{
+		g_bufferReady = false;
+
+		if (NULL != gp_processBuffer)
+		{
+			/* Process Data In The Buffer */
+			for (uint16_t i = 0; i < BUFFER_SIZE; i++)
+			{
+				/* Print Data */
+				PRINTF("%c", gp_processBuffer[i]);
+			}
+			gp_processBuffer = NULL; // Free The Buffer After Processing
+		}
+	 }
 
     return failedFlag ? E_FAULT : SUCCESS;
 }
@@ -241,7 +259,7 @@ uint8_t RECORD_Deinit(void)
 	FRESULT error;
 
 	/* Stop Generating UART Interrupt */
-
+	UART_Disable();
 
 	/* De-Initialize UART */
 
@@ -251,7 +269,7 @@ uint8_t RECORD_Deinit(void)
         error = f_close(&g_fileObject);
         if (error != FR_OK)
         {
-            PRINTF("ERR: Failed to Close File. Error=%d\r\n", error);
+            PRINTF("ERR: Failed to Close File. ERR=%d\r\n", error);
             return E_FAULT;
         }
     }
