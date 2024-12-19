@@ -59,9 +59,11 @@ void UART_Init(uint32_t baudrate)
     lpuart_config_t config;
 
     LPUART_GetDefaultConfig(&config);
-    config.baudRate_Bps = baudrate;
-    config.parityMode 	= kLPUART_ParityDisabled;
-    config.stopBitCount = kLPUART_OneStopBit;
+    config.baudRate_Bps 	= 230400;
+    config.isMsb        	= false;
+
+    config.enableTx     	= false;
+    config.enableRx     	= true;
 
 #if (true == UART_FIFO_ENABLED)
     config.rxFifoWatermark = UART_FIFO_LENGHT;
@@ -71,10 +73,6 @@ void UART_Init(uint32_t baudrate)
 
 #endif /* (true == UART_FIFO_ENABLED) */
     config.txFifoWatermark = 0;
-
-    config.isMsb        = false;
-    config.enableTx     = false;
-    config.enableRx     = true;
 
     uint32_t clk = LPUART7_CLK_FREQ;
     LPUART_Init(LPUART7, &config, clk);

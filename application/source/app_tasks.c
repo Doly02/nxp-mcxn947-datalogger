@@ -114,13 +114,7 @@ void record_task(void *handle)
 	UART_Init(baudrate);
 	UART_Enable();
 
-	/*
-	retVal = RECORD_Deinit();
-	if (0 != retVal)
-	{
-		return;
-	}
-	 */
+
     while (1)
     {
         usbAttached = 0;
