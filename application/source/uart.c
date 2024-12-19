@@ -77,14 +77,15 @@ void UART_Init(uint32_t baudrate)
     uint32_t clk = LPUART7_CLK_FREQ;
     LPUART_Init(LPUART7, &config, clk);
 
-    DisableIRQ(LP_FLEXCOMM7_IRQn);
 }
 
 void UART_Enable(void)
 {
+    DisableIRQ(LP_FLEXCOMM7_IRQn);
+
+    /* Enable RX interrupt. */
     LPUART_EnableInterrupts(LPUART7, kLPUART_RxDataRegFullInterruptEnable);
     EnableIRQWithPriority(LP_FLEXCOMM7_IRQn, LPUART_PRIO);
-
 }
 
 void UART_Disable(void)
