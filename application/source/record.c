@@ -25,7 +25,9 @@
  ******************************************************************************/
 
 /* buffer size (in byte) for read/write operations */
-#define BUFFER_SIZE 		513U
+#define BUFFER_SIZE 		1024U
+
+#define BLOCK_SIZE 			512U
 
 #define MAX_FILE_SIZE 		8192 // Maximum file size in bytes (8 KB)
 #define FILE_NAME_TEMPLATE 	"/log_%d.txt" // File name template
@@ -51,9 +53,11 @@ static REC_config_t g_config;
  * At the same time buffer address/size should be aligned to the cache line size if cache is supported.
  */
 /*! @brief Data written to the card */
-SDK_ALIGN(uint8_t g_bufferWrite[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+SDK_ALIGN(uint8_t g_bufferWrite[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+
+static uint16_t g_blockIndex = 0;
 /*! @brief Data read from the card */
-SDK_ALIGN(uint8_t g_bufferRead[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+// TODO: SDK_ALIGN(uint8_t g_bufferRead[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
 /**
  * @defgroup UART Management
@@ -63,9 +67,9 @@ SDK_ALIGN(uint8_t g_bufferRead[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE)
 
 SDK_ALIGN(volatile uint8_t swFifo[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);	// FIFO buffer
 
-volatile uint16_t writeIndex 		 = 0;       // Index for writing into FIFO
-volatile uint16_t readIndex 		 = 0;       // Index for reading from FIFO
-volatile bool fifoOverflow 			 = false;   // Flag indicating FIFO overflow
+volatile uint16_t writeIndex 		= 0;       // Index for writing into FIFO
+volatile uint16_t readIndex 		= 0;       // Index for reading from FIFO
+volatile bool fifoOverflow 			= false;   // Flag indicating FIFO overflow
 
 /** @} */ // End of UART Management group
 
@@ -232,11 +236,10 @@ uint8_t RECORD_Init(void)
 
 uint8_t RECORD_Start(void)
 {
-	FRESULT error;
-	UINT bytesWritten					= 0;			/*<! Bytes Written Into File 	*/
-	volatile bool failedFlag           	= false;		/*<! Write Failed 				*/
-	UINT bytesRead;
+    FRESULT error;
+    UINT bytesWritten;
 
+    // Open a new file if no file is currently open
     if (g_fileObject.obj.fs == NULL)
     {
         if (RECORD_CreateFile() != SUCCESS)
@@ -245,41 +248,49 @@ uint8_t RECORD_Start(void)
         }
     }
 
-	/* 3. Store The Content From UART Buffer Into On SD Card */
-
-	/* Buffer Ready To Process */
     // Process data from FIFO
     while (readIndex != writeIndex)
     {
-        uint8_t data = swFifo[readIndex]; 			// Read data from FIFO
-        readIndex = (readIndex + 1) % BUFFER_SIZE; 	// Update read index
+        // Read a byte from FIFO
+        uint8_t data = swFifo[readIndex];
+        readIndex = (readIndex + 1) % BUFFER_SIZE;
 
-        if (g_fileObject.obj.fs == NULL)
-		{
-			if (RECORD_CreateFile() != SUCCESS)
-			{
-				PRINTF("ERR: Failed to create new file.\r\n");
-				return E_FAULT;
-			}
-		}
-        // Write data to the file
-        error = f_write(&g_fileObject, &data, 1, &bytesWritten);
-        if (error != FR_OK || bytesWritten != 1)
+        // Add the byte to the block buffer
+        g_bufferWrite[g_blockIndex++] = data;
+
+        // If the block buffer is full, write it to the file
+        if (g_blockIndex == BLOCK_SIZE)
         {
-            PRINTF("ERR: Failed to write data to file. Error=%d\r\n", error);
-            f_close(&g_fileObject);
-            g_fileObject.obj.fs = NULL;
-            return E_FAULT;
-        }
+            // Ensure the file is open
+            if (g_fileObject.obj.fs == NULL)
+            {
+                if (RECORD_CreateFile() != SUCCESS)
+                {
+                    PRINTF("ERR: Failed to create new file.\r\n");
+                    return E_FAULT;
+                }
+            }
 
-        g_currentFileSize++; // Increment file size
+            // Write block buffer to file
+            error = f_write(&g_fileObject, g_bufferWrite, BLOCK_SIZE, &bytesWritten);
+            if (error != FR_OK || bytesWritten != BLOCK_SIZE)
+            {
+                PRINTF("ERR: Failed to write data to file. Error=%d\r\n", error);
+                f_close(&g_fileObject);
+                g_fileObject.obj.fs = NULL;
+                return E_FAULT;
+            }
 
-        // Close the file if it reaches the maximum size
-        if (g_currentFileSize >= MAX_FILE_SIZE)
-        {
-            PRINTF("INFO: File size limit reached. Closing file.\r\n");
-            f_close(&g_fileObject);
-            g_fileObject.obj.fs = NULL; // Mark file as closed
+            g_currentFileSize += BLOCK_SIZE; // Increment file size
+            g_blockIndex = 0;                // Reset block buffer index
+
+            // Close the file if it reaches the maximum size
+            if (g_currentFileSize >= MAX_FILE_SIZE)
+            {
+                PRINTF("INFO: File size limit reached. Closing file.\r\n");
+                f_close(&g_fileObject);
+                g_fileObject.obj.fs = NULL; // Mark file as closed
+            }
         }
     }
 
@@ -363,8 +374,8 @@ uint8_t RECORD_ReadConfig(void)
 					f_closedir(&dir); 	// Close Root Directory
 					return E_FAULT;
 				}
-    			memset(g_bufferRead, 0, sizeof(g_bufferRead));
-    			error = f_read(&configFile, g_bufferRead, sizeof(g_bufferRead) - 1, &bytesRead);
+    			memset(g_bufferWrite, 0, sizeof(g_bufferWrite));
+    			error = f_read(&configFile, g_bufferWrite, sizeof(g_bufferWrite) - 1, &bytesRead);
 				if (FR_OK != error)
 				{
 					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
@@ -373,7 +384,7 @@ uint8_t RECORD_ReadConfig(void)
 					return E_FAULT;
 				}
 
-				if (SUCCESS != RECORD_ProccessConfigFile((const char *)g_bufferRead))
+				if (SUCCESS != RECORD_ProccessConfigFile((const char *)g_bufferWrite))
 				{
 					f_close(&configFile);
 					f_closedir(&dir);
