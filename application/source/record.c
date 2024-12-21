@@ -25,7 +25,10 @@
  ******************************************************************************/
 
 /* buffer size (in byte) for read/write operations */
-#define BUFFER_SIZE (513U)
+#define BUFFER_SIZE 		513U
+
+#define MAX_FILE_SIZE 		8192 // Maximum file size in bytes (8 KB)
+#define FILE_NAME_TEMPLATE 	"/log_%d.txt" // File name template
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -58,12 +61,16 @@ SDK_ALIGN(uint8_t g_bufferRead[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE)
  * @{
  */
 
-volatile uint8_t swFifo[BUFFER_SIZE] = {0U}; 	// FIFO buffer
-volatile uint16_t writeIndex = 0;         		// Index for writing into FIFO
-volatile uint16_t readIndex = 0;          		// Index for reading from FIFO
-volatile bool fifoOverflow = false;       		// Flag indicating FIFO overflow
+SDK_ALIGN(volatile uint8_t swFifo[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);	// FIFO buffer
+
+volatile uint16_t writeIndex 		 = 0;       // Index for writing into FIFO
+volatile uint16_t readIndex 		 = 0;       // Index for reading from FIFO
+volatile bool fifoOverflow 			 = false;   // Flag indicating FIFO overflow
 
 /** @} */ // End of UART Management group
+
+static uint32_t g_currentFileSize 	= 0; 		// Tracks current file size
+static uint16_t g_fileCounter 		= 1; 		// Counter for unique file names
 
 /*******************************************************************************
  * Code
@@ -124,6 +131,27 @@ FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time)
 	return createdFile;
 }
 #endif
+
+uint8_t RECORD_CreateFile(void)
+{
+    FRESULT error;
+    char fileName[32];
+
+    // Generate a new file name
+    snprintf(fileName, sizeof(fileName), FILE_NAME_TEMPLATE, g_fileCounter++);
+
+    // Open new file
+    error = f_open(&g_fileObject, fileName, (FA_WRITE | FA_CREATE_ALWAYS));
+    if (error != FR_OK)
+    {
+        PRINTF("ERR: Failed to create file %s. Error=%d\r\n", fileName, error);
+        return E_FAULT;
+    }
+
+    g_currentFileSize = 0; // Reset file size
+    PRINTF("INFO: Created new file %s.\r\n", fileName);
+    return SUCCESS;
+}
 
 REC_config_t RECORD_GetConfig(void)
 {
@@ -209,31 +237,53 @@ uint8_t RECORD_Start(void)
 	volatile bool failedFlag           	= false;		/*<! Write Failed 				*/
 	UINT bytesRead;
 
-	/* 1. Create File 	*/
-
-
-	/* 2. Open File 	*/
+    if (g_fileObject.obj.fs == NULL)
+    {
+        if (RECORD_CreateFile() != SUCCESS)
+        {
+            return E_FAULT;
+        }
+    }
 
 	/* 3. Store The Content From UART Buffer Into On SD Card */
 
 	/* Buffer Ready To Process */
-	if (fifoOverflow)
-	{
-		PRINTF("ERR: FIFO overflow! Data loss occurred.\r\n");
-		fifoOverflow = false; // Clear the overflow flag
-	}
+    // Process data from FIFO
+    while (readIndex != writeIndex)
+    {
+        uint8_t data = swFifo[readIndex]; 			// Read data from FIFO
+        readIndex = (readIndex + 1) % BUFFER_SIZE; 	// Update read index
 
-	/* Process data from FIFO */
-	while (readIndex != writeIndex)
-	{
-		uint8_t data = swFifo[readIndex];       // Read data from FIFO
-		readIndex = (readIndex + 1) % BUFFER_SIZE; // Update read index
+        if (g_fileObject.obj.fs == NULL)
+		{
+			if (RECORD_CreateFile() != SUCCESS)
+			{
+				PRINTF("ERR: Failed to create new file.\r\n");
+				return E_FAULT;
+			}
+		}
+        // Write data to the file
+        error = f_write(&g_fileObject, &data, 1, &bytesWritten);
+        if (error != FR_OK || bytesWritten != 1)
+        {
+            PRINTF("ERR: Failed to write data to file. Error=%d\r\n", error);
+            f_close(&g_fileObject);
+            g_fileObject.obj.fs = NULL;
+            return E_FAULT;
+        }
 
-		/* Print data */
-		PRINTF("%c", data);
-	}
+        g_currentFileSize++; // Increment file size
 
-	return SUCCESS;
+        // Close the file if it reaches the maximum size
+        if (g_currentFileSize >= MAX_FILE_SIZE)
+        {
+            PRINTF("INFO: File size limit reached. Closing file.\r\n");
+            f_close(&g_fileObject);
+            g_fileObject.obj.fs = NULL; // Mark file as closed
+        }
+    }
+
+    return SUCCESS;
 }
 
 uint8_t RECORD_Deinit(void)

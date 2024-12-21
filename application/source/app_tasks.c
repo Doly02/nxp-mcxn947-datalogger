@@ -102,11 +102,12 @@ void record_task(void *handle)
 	}
 
 	/* Read Configuration File */
+	/*
 	if (0 != RECORD_ReadConfig())
 	{
 		return;
 	}
-	baudrate = RECORD_GetBaudrate();
+	baudrate = RECORD_GetBaudrate(); */
 #endif
 	baudrate = 320400;
 

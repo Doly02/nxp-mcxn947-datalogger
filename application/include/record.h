@@ -25,6 +25,7 @@
 #include "fsl_sd.h"
 #include "ff.h"						/*<! File System */
 #include "ffconf.h"					/*<! File System Configuration */
+#include <stdio.h>
 
 #include "fsl_debug_console.h"
 #include "diskio.h"
@@ -79,6 +80,7 @@ typedef struct
  * Prototypes
  ******************************************************************************/
 
+uint8_t RECORD_CreateFile(void);
 /**
  * @brief 		Creates Files Based On Time And Date.
  *
@@ -87,7 +89,7 @@ typedef struct
  *
  * @return		Return Pointer to Created File Descriptor.
  */
-FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time);
+// FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time);
 
 /**
  * @brief 		Returns Active Configuration.
