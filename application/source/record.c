@@ -257,17 +257,26 @@ uint8_t CONSOLELOG_Recording(void)
             }
         }
 
+        uint32_t stat_reg = g_sd.host->hostController.base->ADMA_ERR_STATUS;
+
+        /**
+         * ADMA Error Status (ADMA_ERR_STATUS)
+         * 3 bit 	-> 	ADMA Descriptor Error
+         * 2 bit 	-> 	ADMA Length Mismatch Error
+         * 1-0 bit 	-> 	ADMA Error State (When ADMA Error Occurred)
+         *				Field Indicates The State of The ADMA When An
+         *				Error Has Occurred During An ADMA Data Transfer.
+         */
+        if ((stat_reg & 0xC) != 0x0)
+		{
+        	PRINTF("ERR: Failed to write data to file. Error=%d\r\n", error);
+			f_close(&g_fileObject);
+			g_fileObject.obj.fs = NULL;
+			return E_FAULT;
+		}
         error = f_write(&g_fileObject, processDmaBuffer, BLOCK_SIZE, &bytesWritten);
-        if (error != FR_OK || bytesWritten != BLOCK_SIZE)
-        {
-            PRINTF("ERR: Failed to write data to file. Error=%d\r\n", error);
-            f_close(&g_fileObject);
-            g_fileObject.obj.fs = NULL;
-            return E_FAULT;
-        }
 
         g_currentFileSize += BLOCK_SIZE;
-
         if (g_currentFileSize >= MAX_FILE_SIZE)	/* MAX Size Detected */
         {
             PRINTF("INFO: File size limit reached. Closing file.\r\n");
@@ -313,14 +322,23 @@ void CONSOLELOG_Flush(void)
 			}
 		}
 
-		error = f_write(&g_fileObject, processDmaBuffer, BLOCK_SIZE, &bytesWritten);
-		if (error != FR_OK || bytesWritten != BLOCK_SIZE)
+        /**
+         * ADMA Error Status (ADMA_ERR_STATUS)
+         * 3 bit 	-> 	ADMA Descriptor Error
+         * 2 bit 	-> 	ADMA Length Mismatch Error
+         * 1-0 bit 	-> 	ADMA Error State (When ADMA Error Occurred)
+         *				Field Indicates The State of The ADMA When An
+         *				Error Has Occurred During An ADMA Data Transfer.
+         */
+		uint32_t stat_reg = g_sd.host->hostController.base->ADMA_ERR_STATUS;
+		if ((stat_reg & 0xC) != 0x0)
 		{
 			PRINTF("ERR: Failed to write data to file during flush. Error=%d\r\n", error);
 			f_close(&g_fileObject);
 			g_fileObject.obj.fs = NULL;
 			return;
 		}
+		error = f_write(&g_fileObject, processDmaBuffer, BLOCK_SIZE, &bytesWritten);
 
 		g_currentFileSize += BLOCK_SIZE;
 

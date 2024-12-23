@@ -85,13 +85,13 @@ void APP_HandleError(void)
  */
 void APP_InitBoard(void)
 {
-    /* attach FRO 12M to FLEXCOMM4 (debug console) */
+    /* Attach FRO 12M to FLEXCOMM4 (debug console) */
     CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
     CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
 
     CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
 
-    /* attach FRO 12M to FLEXCOMM7 Application UART */
+    /* Attach FRO 12M to FLEXCOMM7 Application UART */
 	CLOCK_SetClkDiv(kCLOCK_DivFlexcom7Clk, 2u);
 	CLOCK_AttachClk(kFRO_HF_DIV_to_FLEXCOMM7);
 
@@ -106,7 +106,7 @@ void APP_InitBoard(void)
 	/* Enable DMA Clock */
 	CLOCK_EnableClock(EXAMPLE_LPI2C_DMA_CLOCK);
 
-    /* attach FRO HF to USDHC */
+    /* Attach FRO HF to USDHC */
     CLOCK_SetClkDiv(kCLOCK_DivUSdhcClk, 1u);
     CLOCK_AttachClk(kFRO_HF_to_USDHC);
 
