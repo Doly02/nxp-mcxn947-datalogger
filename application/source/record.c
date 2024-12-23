@@ -30,6 +30,8 @@
 #define BLOCK_SIZE 			512U
 
 #define MAX_FILE_SIZE 		8192 			// Maximum file size in bytes (8 KB)
+
+#define FLUSH_TIMEOUT_TICKS pdMS_TO_TICKS(3000)
 #define FILE_NAME_TEMPLATE 	"/log_%d.txt" 	// File name template
 /*******************************************************************************
  * Prototypes
@@ -67,6 +69,7 @@ static bool dmaBufferReady = false;
 static uint16_t g_blockIndex = 0;
 /*! @brief Data read from the card */
 
+static TickType_t lastDataTick = 0;
 /**
  * @defgroup UART Management
  * @brief Group Contains Variables For Recording From UART.
@@ -84,6 +87,7 @@ volatile bool fifoOverflow 			= false;   // Flag indicating FIFO overflow
 static uint32_t g_currentFileSize 	= 0; 		// Tracks current file size
 static uint16_t g_fileCounter 		= 1; 		// Counter for unique file names
 
+static bool flushCompleted = false;
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -109,10 +113,10 @@ void LP_FLEXCOMM7_IRQHandler(void)
         {
             swFifo[writeIndex] = data;
             writeIndex = nextWriteIndex;
-        }
-        else
-        {
-            fifoOverflow = true; // FIFO overflow occurred
+
+            /* Actualizate Time Of Last Receivement */
+            lastDataTick = xTaskGetTickCount();
+            flushCompleted = false;
         }
     }
 
@@ -276,6 +280,58 @@ uint8_t CONSOLELOG_Recording(void)
     }
 
     return SUCCESS;
+}
+
+void CONSOLELOG_Flush(void)
+{
+	FRESULT error;
+	UINT bytesWritten;
+
+	uint32_t currentTick = xTaskGetTickCount();
+	if ((currentTick - lastDataTick >= FLUSH_TIMEOUT_TICKS) && dmaIndex > 0)
+	{
+		PRINTF("INFO: Flush triggered. Writing remaining data to file.\r\n");
+
+		while (dmaIndex < BLOCK_SIZE)			// Fill Buffer With ' '
+		{
+			activeDmaBuffer[dmaIndex++] = ' ';
+		}
+
+		processDmaBuffer = activeDmaBuffer;
+		dmaBufferReady = true;
+
+		// Switch To Second Buffer
+		activeDmaBuffer = (activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
+		dmaIndex = 0;
+
+		if (g_fileObject.obj.fs == NULL)
+		{
+			if (CONSOLELOG_CreateFile() != SUCCESS)
+			{
+				PRINTF("ERR: Failed to create new file during flush.\r\n");
+				return;
+			}
+		}
+
+		error = f_write(&g_fileObject, processDmaBuffer, BLOCK_SIZE, &bytesWritten);
+		if (error != FR_OK || bytesWritten != BLOCK_SIZE)
+		{
+			PRINTF("ERR: Failed to write data to file during flush. Error=%d\r\n", error);
+			f_close(&g_fileObject);
+			g_fileObject.obj.fs = NULL;
+			return;
+		}
+
+		g_currentFileSize += BLOCK_SIZE;
+
+		PRINTF("INFO: Closing File\r\n");
+		f_close(&g_fileObject);
+		g_fileObject.obj.fs = NULL;
+
+		dmaBufferReady = false;
+		processDmaBuffer = NULL;
+		flushCompleted = true;
+	}
 }
 
 uint8_t CONSOLELOG_Deinit(void)

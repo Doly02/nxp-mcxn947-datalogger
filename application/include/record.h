@@ -151,6 +151,7 @@ uint8_t CONSOLELOG_Init(void);
  */
 uint8_t CONSOLELOG_Recording(void);
 
+void CONSOLELOG_Flush(void);
 /**
  * @brief 		De-Initializes The Recording System and Un-Mounts The File System.
  *

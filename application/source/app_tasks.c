@@ -131,6 +131,8 @@ void record_task(void *handle)
             /* Jedna uloha nesmi zastavit tu druhou */
         }
         CONSOLELOG_Recording();
+
+        CONSOLELOG_Flush();
     }
 }
 
