@@ -31,14 +31,12 @@
 #define UART_FIFO_ENABLED		(true)
 
 #define UART_FIFO_LENGHT		(1u)
+
+#define UART_PRINT_ENABLED		(false)
 /**
  * @brief Enables Timer For 1 Sec. Adjustment.
  */
 #define TIMER_ENABLED			(false)
-/*
- * @brief Enables VBUS Detection on USB-C0.
- */
-#define USB0_DET_PIN_ENABLED 	(false)
 
 /**
  * @brief Configuration File.

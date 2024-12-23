@@ -108,30 +108,6 @@ void LP_FLEXCOMM7_IRQHandler(void)
     SDK_ISR_EXIT_BARRIER;
 }
 
-#if 0
-FIL* CONSOLELOG_CreateFile(RTC_date_t date, RTC_time_t time)
-{
-	FIL  *createdFile = NULL;
-	FRESULT err;
-
-	err = f_open(&createdFile, _T("test.log"), (FA_WRITE | FA_READ | FA_CREATE_ALWAYS));
-	if (err)
-	{
-		if (FR_EXIST == err)
-		{
-			PRINTF("ERR: File Exists\r\n");
-		}
-		else
-		{
-			PRINTF("ERR: File Creation Failed\r\n");
-		}
-		return NULL;
-	}
-
-	return createdFile;
-}
-#endif
-
 uint8_t CONSOLELOG_CreateFile(void)
 {
     FRESULT error;
@@ -238,6 +214,12 @@ uint8_t CONSOLELOG_Recording(void)	// TODO: CONSOLELOG_Recording
     // Process data from FIFO
     while (readIndex != writeIndex)
     {
+#if (true == UART_PRINT_ENABLED)
+        uint8_t data = swFifo[readIndex];       	// Read data from FIFO
+        readIndex = (readIndex + 1) % FIFO_SIZE; 	// Update read index
+        PRINTF("%c", data);
+
+#else
         // Read a byte from FIFO
         uint8_t data = swFifo[readIndex];
         readIndex = (readIndex + 1) % BUFFER_SIZE;
@@ -281,6 +263,7 @@ uint8_t CONSOLELOG_Recording(void)	// TODO: CONSOLELOG_Recording
                 f_close(&g_fileObject);
                 g_fileObject.obj.fs = NULL; // Mark file as closed
             }
+#endif /* (true == UART_PRINT_ENABLED) */
         }
     }
 
