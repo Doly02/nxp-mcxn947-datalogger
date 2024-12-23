@@ -54,10 +54,10 @@ static REC_config_t g_config;
  */
 /*! @brief Data written to the card */
 SDK_ALIGN(uint8_t g_bufferWrite[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+static bool dmaBufferReady = false;
 
 static uint16_t g_blockIndex = 0;
 /*! @brief Data read from the card */
-// TODO: SDK_ALIGN(uint8_t g_bufferRead[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
 /**
  * @defgroup UART Management
@@ -89,21 +89,25 @@ void LP_FLEXCOMM7_IRQHandler(void)
     uint8_t data;
     uint32_t stat;
 
-    /* If New Data Arrived. */
     stat = LPUART_GetStatusFlags(LPUART7);
-    if (kLPUART_RxDataRegFullFlag & stat)	// TODO:
+    if (kLPUART_RxDataRegFullFlag & stat)
     {
         data = LPUART_ReadByte(LPUART7);
 
+        // Add data to FIFO
         uint16_t nextWriteIndex = (writeIndex + 1) % BUFFER_SIZE;
 
-        if (nextWriteIndex != readIndex) // Check if FIFO is not full TODO: Clear IF
+        if (nextWriteIndex != readIndex) // Check if FIFO is not full
         {
-            swFifo[writeIndex] = data;   // Write data to FIFO
-            writeIndex = nextWriteIndex; // Update write index
+            swFifo[writeIndex] = data;
+            writeIndex = nextWriteIndex;
+        }
+        else
+        {
         }
     }
 
+    // Clear interrupt flag
     LPUART_ClearStatusFlags(LPUART7, kLPUART_RxDataRegFullFlag);
     SDK_ISR_EXIT_BARRIER;
 }
@@ -206,65 +210,60 @@ uint8_t CONSOLELOG_Init(void)
     return SUCCESS;
 }
 
-uint8_t CONSOLELOG_Recording(void)	// TODO: CONSOLELOG_Recording
+uint8_t CONSOLELOG_Recording(void)
 {
     FRESULT error;
     UINT bytesWritten;
 
-    // Process data from FIFO
     while (readIndex != writeIndex)
     {
-#if (true == UART_PRINT_ENABLED)
-        uint8_t data = swFifo[readIndex];       	// Read data from FIFO
-        readIndex = (readIndex + 1) % FIFO_SIZE; 	// Update read index
-        PRINTF("%c", data);
-
-#else
-        // Read a byte from FIFO
-        uint8_t data = swFifo[readIndex];
+        /* Transfer From FIFO To Active ADMA Buffer */
+        activeDmaBuffer[dmaIndex++] = swFifo[readIndex];
         readIndex = (readIndex + 1) % BUFFER_SIZE;
 
-        // Add the byte to the block buffer
-        g_bufferWrite[g_blockIndex++] = data;
-
-        // If the block buffer is full, write it to the file
-        if (g_blockIndex == BLOCK_SIZE)
+        if (dmaIndex == BLOCK_SIZE)	/* If Active Buffer Is Full */
         {
-            // Ensure the file is open
-            if (g_fileObject.obj.fs == NULL)
+        	processDmaBuffer = activeDmaBuffer;
+            dmaBufferReady = true;
+
+            /* Switch To Second ADMA Buffer */
+            activeDmaBuffer = (activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
+            dmaIndex = 0; // Reset Index of Active DMA Buffer
+        }
+    }
+
+    /* Process Full ADMA Buffer */
+    if (dmaBufferReady && processDmaBuffer != NULL)
+    {
+        if (g_fileObject.obj.fs == NULL)
+        {
+            if (CONSOLELOG_CreateFile() != SUCCESS)
             {
-                if (CONSOLELOG_CreateFile() != SUCCESS)
-                {
-                    PRINTF("ERR: Failed to create new file.\r\n");
-                    return E_FAULT;
-                }
-            }
-
-            // TODO: Check Register ADMA
-
-            // Write block buffer to file
-            error = f_write(&g_fileObject, g_bufferWrite, BLOCK_SIZE, &bytesWritten);
-            if (error != FR_OK || bytesWritten != BLOCK_SIZE)			// TODO: Blocking -> Un-Blocking
-            {
-
-                PRINTF("ERR: Failed to write data to file. Error=%d\r\n", error);
-                f_close(&g_fileObject);
-                g_fileObject.obj.fs = NULL;
+                PRINTF("ERR: Failed to create new file.\r\n");
                 return E_FAULT;
             }
-
-            g_currentFileSize += BLOCK_SIZE; // Increment file size
-            g_blockIndex = 0;                // Reset block buffer index
-
-            // Close the file if it reaches the maximum size
-            if (g_currentFileSize >= MAX_FILE_SIZE)
-            {
-                PRINTF("INFO: File size limit reached. Closing file.\r\n");
-                f_close(&g_fileObject);
-                g_fileObject.obj.fs = NULL; // Mark file as closed
-            }
-#endif /* (true == UART_PRINT_ENABLED) */
         }
+
+        error = f_write(&g_fileObject, processDmaBuffer, BLOCK_SIZE, &bytesWritten);
+        if (error != FR_OK || bytesWritten != BLOCK_SIZE)
+        {
+            PRINTF("ERR: Failed to write data to file. Error=%d\r\n", error);
+            f_close(&g_fileObject);
+            g_fileObject.obj.fs = NULL;
+            return E_FAULT;
+        }
+
+        g_currentFileSize += BLOCK_SIZE;
+
+        if (g_currentFileSize >= MAX_FILE_SIZE)	/* MAX Size Detected */
+        {
+            PRINTF("INFO: File size limit reached. Closing file.\r\n");
+            f_close(&g_fileObject);
+            g_fileObject.obj.fs = NULL;
+        }
+
+        dmaBufferReady = false;    // Reset Flag of ADMA Buffer
+        processDmaBuffer = NULL;   // Clear processDmaBuffer
     }
 
     return SUCCESS;
@@ -347,8 +346,8 @@ uint8_t CONSOLELOG_ReadConfig(void)
 					f_closedir(&dir); 	// Close Root Directory
 					return E_FAULT;
 				}
-    			memset(g_bufferWrite, 0, sizeof(g_bufferWrite));
-    			error = f_read(&configFile, g_bufferWrite, sizeof(g_bufferWrite) - 1, &bytesRead);
+    			memset(g_dmaBuffer1, 0, sizeof(g_dmaBuffer1));
+    			error = f_read(&configFile, g_dmaBuffer1, sizeof(g_dmaBuffer1) - 1, &bytesRead);
 				if (FR_OK != error)
 				{
 					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
@@ -357,7 +356,7 @@ uint8_t CONSOLELOG_ReadConfig(void)
 					return E_FAULT;
 				}
 
-				if (SUCCESS != CONSOLELOG_ProccessConfigFile((const char *)g_bufferWrite))
+				if (SUCCESS != CONSOLELOG_ProccessConfigFile((const char *)g_dmaBuffer1))
 				{
 					f_close(&configFile);
 					f_closedir(&dir);
