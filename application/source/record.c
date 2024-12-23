@@ -53,7 +53,15 @@ static REC_config_t g_config;
  * At the same time buffer address/size should be aligned to the cache line size if cache is supported.
  */
 /*! @brief Data written to the card */
-SDK_ALIGN(uint8_t g_bufferWrite[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+SDK_ALIGN(uint8_t g_dmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+
+SDK_ALIGN(uint8_t g_dmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+
+/* DMA Buffer State */
+static uint8_t* activeDmaBuffer = g_dmaBuffer1;
+static uint8_t* processDmaBuffer = NULL;
+static uint16_t dmaIndex = 0; 					// Index in the active DMA buffer
+
 static bool dmaBufferReady = false;
 
 static uint16_t g_blockIndex = 0;
@@ -89,6 +97,7 @@ void LP_FLEXCOMM7_IRQHandler(void)
     uint8_t data;
     uint32_t stat;
 
+    // Check for new data
     stat = LPUART_GetStatusFlags(LPUART7);
     if (kLPUART_RxDataRegFullFlag & stat)
     {
@@ -96,7 +105,6 @@ void LP_FLEXCOMM7_IRQHandler(void)
 
         // Add data to FIFO
         uint16_t nextWriteIndex = (writeIndex + 1) % BUFFER_SIZE;
-
         if (nextWriteIndex != readIndex) // Check if FIFO is not full
         {
             swFifo[writeIndex] = data;
@@ -104,6 +112,7 @@ void LP_FLEXCOMM7_IRQHandler(void)
         }
         else
         {
+            fifoOverflow = true; // FIFO overflow occurred
         }
     }
 
