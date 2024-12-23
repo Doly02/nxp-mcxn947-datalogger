@@ -29,8 +29,8 @@
 
 #define BLOCK_SIZE 			512U
 
-#define MAX_FILE_SIZE 		8192 // Maximum file size in bytes (8 KB)
-#define FILE_NAME_TEMPLATE 	"/log_%d.txt" // File name template
+#define MAX_FILE_SIZE 		8192 			// Maximum file size in bytes (8 KB)
+#define FILE_NAME_TEMPLATE 	"/log_%d.txt" 	// File name template
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -91,20 +91,16 @@ void LP_FLEXCOMM7_IRQHandler(void)
 
     /* If New Data Arrived. */
     stat = LPUART_GetStatusFlags(LPUART7);
-    if (kLPUART_RxDataRegFullFlag & stat)
+    if (kLPUART_RxDataRegFullFlag & stat)	// TODO:
     {
         data = LPUART_ReadByte(LPUART7);
 
         uint16_t nextWriteIndex = (writeIndex + 1) % BUFFER_SIZE;
 
-        if (nextWriteIndex != readIndex) // Check if FIFO is not full
+        if (nextWriteIndex != readIndex) // Check if FIFO is not full TODO: Clear IF
         {
             swFifo[writeIndex] = data;   // Write data to FIFO
             writeIndex = nextWriteIndex; // Update write index
-        }
-        else
-        {
-            fifoOverflow = true; // FIFO overflow occurred
         }
     }
 
@@ -113,7 +109,7 @@ void LP_FLEXCOMM7_IRQHandler(void)
 }
 
 #if 0
-FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time)
+FIL* CONSOLELOG_CreateFile(RTC_date_t date, RTC_time_t time)
 {
 	FIL  *createdFile = NULL;
 	FRESULT err;
@@ -136,7 +132,7 @@ FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time)
 }
 #endif
 
-uint8_t RECORD_CreateFile(void)
+uint8_t CONSOLELOG_CreateFile(void)
 {
     FRESULT error;
     char fileName[32];
@@ -157,22 +153,22 @@ uint8_t RECORD_CreateFile(void)
     return SUCCESS;
 }
 
-REC_config_t RECORD_GetConfig(void)
+REC_config_t CONSOLELOG_GetConfig(void)
 {
 	return g_config;
 }
 
-REC_version_t RECORD_GetVersion(void)
+REC_version_t CONSOLELOG_GetVersion(void)
 {
 	return g_config.version;
 }
 
-uint32_t RECORD_GetBaudrate(void)
+uint32_t CONSOLELOG_GetBaudrate(void)
 {
 	return g_config.baudrate;
 }
 
-FRESULT RECORD_CheckFileSystem(void)
+FRESULT CONSOLELOG_CheckFileSystem(void)
 {
     DIR dir;
     /* Try To Open Root Folder */
@@ -184,7 +180,7 @@ FRESULT RECORD_CheckFileSystem(void)
     return res;
 }
 
-uint8_t RECORD_Init(void)
+uint8_t CONSOLELOG_Init(void)
 {
 	FRESULT error;
 	g_config.version 	= WCT_UNKOWN;
@@ -214,7 +210,7 @@ uint8_t RECORD_Init(void)
 
 #if FF_USE_MKFS
 
-    if (FR_OK != RECORD_CheckFileSystem())
+    if (FR_OK != CONSOLELOG_CheckFileSystem())
     {
 
 #if (true == DEBUG_ENABLED)
@@ -234,19 +230,10 @@ uint8_t RECORD_Init(void)
     return SUCCESS;
 }
 
-uint8_t RECORD_Start(void)
+uint8_t CONSOLELOG_Recording(void)	// TODO: CONSOLELOG_Recording
 {
     FRESULT error;
     UINT bytesWritten;
-
-    // Open a new file if no file is currently open
-    if (g_fileObject.obj.fs == NULL)
-    {
-        if (RECORD_CreateFile() != SUCCESS)
-        {
-            return E_FAULT;
-        }
-    }
 
     // Process data from FIFO
     while (readIndex != writeIndex)
@@ -264,17 +251,20 @@ uint8_t RECORD_Start(void)
             // Ensure the file is open
             if (g_fileObject.obj.fs == NULL)
             {
-                if (RECORD_CreateFile() != SUCCESS)
+                if (CONSOLELOG_CreateFile() != SUCCESS)
                 {
                     PRINTF("ERR: Failed to create new file.\r\n");
                     return E_FAULT;
                 }
             }
 
+            // TODO: Check Register ADMA
+
             // Write block buffer to file
             error = f_write(&g_fileObject, g_bufferWrite, BLOCK_SIZE, &bytesWritten);
-            if (error != FR_OK || bytesWritten != BLOCK_SIZE)
+            if (error != FR_OK || bytesWritten != BLOCK_SIZE)			// TODO: Blocking -> Un-Blocking
             {
+
                 PRINTF("ERR: Failed to write data to file. Error=%d\r\n", error);
                 f_close(&g_fileObject);
                 g_fileObject.obj.fs = NULL;
@@ -297,7 +287,7 @@ uint8_t RECORD_Start(void)
     return SUCCESS;
 }
 
-uint8_t RECORD_Deinit(void)
+uint8_t CONSOLELOG_Deinit(void)
 {
 	FRESULT error;
 
@@ -336,7 +326,7 @@ uint8_t RECORD_Deinit(void)
 }
 
 
-uint8_t RECORD_ReadConfig(void)
+uint8_t CONSOLELOG_ReadConfig(void)
 {
     FRESULT error;
     DIR dir;           					//<! Opened Directory
@@ -384,7 +374,7 @@ uint8_t RECORD_ReadConfig(void)
 					return E_FAULT;
 				}
 
-				if (SUCCESS != RECORD_ProccessConfigFile((const char *)g_bufferWrite))
+				if (SUCCESS != CONSOLELOG_ProccessConfigFile((const char *)g_bufferWrite))
 				{
 					f_close(&configFile);
 					f_closedir(&dir);
@@ -404,7 +394,7 @@ uint8_t RECORD_ReadConfig(void)
 	return E_FAULT;
 }
 
-uint8_t RECORD_ProccessConfigFile(const char *content)
+uint8_t CONSOLELOG_ProccessConfigFile(const char *content)
 {
     const char *key = "baudrate=";
     char *found;

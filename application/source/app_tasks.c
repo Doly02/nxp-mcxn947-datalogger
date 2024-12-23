@@ -95,7 +95,7 @@ void record_task(void *handle)
 
 	/* Initialize File System */
 #if 1
-	retVal = RECORD_Init();
+	retVal = CONSOLELOG_Init();
 	if (SUCCESS != retVal)
 	{
 		return;
@@ -103,11 +103,11 @@ void record_task(void *handle)
 
 	/* Read Configuration File */
 	/*
-	if (0 != RECORD_ReadConfig())
+	if (0 != CONSOLELOG_ReadConfig())
 	{
 		return;
 	}
-	baudrate = RECORD_GetBaudrate(); */
+	baudrate = CONSOLELOG_GetBaudrate(); */
 #endif
 	baudrate = 320400;
 
@@ -115,19 +115,22 @@ void record_task(void *handle)
 	UART_Init(baudrate);
 	UART_Enable();
 
-
     while (1)
     {
         usbAttached = 0;
         if (1 == usbAttached)
         {
+        	/* Stop LPUART */
+        	UART_Disable();
+        	PRINTF("INFO: Disabled LPUART7\r\n");
+
             /* Pokud je USB připojeno, pozastavit tuto úlohu a přepnout na msc_task */
             vTaskSuspend(NULL);  			// Pozastavit tuto úlohu
             vTaskResume(mscTaskHandle);  	// Obnovit msc_task
             /* Uloha nema co delat -> Delay */
             /* Jedna uloha nesmi zastavit tu druhou */
         }
-        RECORD_Start();
+        CONSOLELOG_Recording();
     }
 }
 

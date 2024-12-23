@@ -80,7 +80,7 @@ typedef struct
  * Prototypes
  ******************************************************************************/
 
-uint8_t RECORD_CreateFile(void);
+uint8_t CONSOLELOG_CreateFile(void);
 /**
  * @brief 		Creates Files Based On Time And Date.
  *
@@ -89,7 +89,7 @@ uint8_t RECORD_CreateFile(void);
  *
  * @return		Return Pointer to Created File Descriptor.
  */
-// FIL* RECORD_CreateFile(RTC_date_t date, RTC_time_t time);
+// FIL* CONSOLELOG_CreateFile(RTC_date_t date, RTC_time_t time);
 
 /**
  * @brief 		Returns Active Configuration.
@@ -100,7 +100,7 @@ uint8_t RECORD_CreateFile(void);
  *
  * @return		REC_config_t The Current Recording Configuration.
  */
-REC_config_t RECORD_GetConfig(void);
+REC_config_t CONSOLELOG_GetConfig(void);
 
 /**
  * @brief 		Returns the Version of The Device Being Recorded.
@@ -108,7 +108,7 @@ REC_config_t RECORD_GetConfig(void);
  * @return		REC_version_t Current Version of Recorded Device
  * 				(WCT_UNKOWN, WCT_AUTOS1 or WCT_AUTOS2).
  */
-REC_version_t RECORD_GetVersion(void);
+REC_version_t CONSOLELOG_GetVersion(void);
 
 /**
  * @brief 		Returns the Baudrate of The Device Being Recorded.
@@ -116,14 +116,14 @@ REC_version_t RECORD_GetVersion(void);
  * @return		uint32_t Baud Rate of Recorded Device
  *
  */
- uint32_t RECORD_GetBaudrate(void);
+ uint32_t CONSOLELOG_GetBaudrate(void);
 
 /**
  * @brief		Checks If The File System Is Initialized
  *
  * return		F_OK If File System Initialized.
  */
-FRESULT RECORD_CheckFileSystem(void);
+FRESULT CONSOLELOG_CheckFileSystem(void);
 
 /**
  * @brief 		Initializes The Recording System and Mounts The File System.
@@ -138,25 +138,25 @@ FRESULT RECORD_CheckFileSystem(void);
  *
  * @return 		uint8_t Returns 0 on Success, Otherwise E_FAULT.
  */
-uint8_t RECORD_Init(void);
+uint8_t CONSOLELOG_Init(void);
 
 /**
  * @brief 		Starts The Recording Process by Initializing the File
  * 				System, Creating a Directory, and Writing to a File.
  *
- * @details 	Function Uses `RECORD_Init` To Initialize The Recording
+ * @details 	Function Uses `CONSOLELOG_Init` To Initialize The Recording
  * 				System.
  *
  * @return 		uint8_t Returns 0 on Success, Otherwise E_FAULT.
  */
-uint8_t RECORD_Start(void);
+uint8_t CONSOLELOG_Recording(void);
 
 /**
  * @brief 		De-Initializes The Recording System and Un-Mounts The File System.
  *
  * @return 		uint8_t Returns 0 on Success, Otherwise E_FAULT.
  */
-uint8_t RECORD_Deinit(void);
+uint8_t CONSOLELOG_Deinit(void);
 
 /**
  * @brief		Reads and Processes The Configuration File From The Root directory.
@@ -167,7 +167,7 @@ uint8_t RECORD_Deinit(void);
  * @return 		uint8_t Returns 0 If Configuration File Is Correctly Processed,
  * 				Otherwise Returns E_FAULT.
  */
-uint8_t RECORD_ReadConfig(void);
+uint8_t CONSOLELOG_ReadConfig(void);
 
 /**
  * @brief 		Processes The Content of The Configuration File To Extract
@@ -179,7 +179,7 @@ uint8_t RECORD_ReadConfig(void);
  * @return 		uint8_t Returns 0 If Configuration File Is Correctly Processed,
  * 				Otherwise Returns E_FAULT.
  */
-uint8_t RECORD_ProccessConfigFile(const char *content);
+uint8_t CONSOLELOG_ProccessConfigFile(const char *content);
 
 
 #endif /* RECORD_H_ */
