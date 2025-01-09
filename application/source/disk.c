@@ -104,6 +104,10 @@ usb_device_notification_t USB_State(usb_device_struct_t *pDeviceHandle)
 	usb_device_ehci_state_struct_t *ehciState;
 	ehciState = (usb_device_ehci_state_struct_t *)(pDeviceHandle->controllerHandle);
 
+	if (0U != (ehciState->registerBase->OTGSC & USBHS_OTGSC_BSVIS_MASK))
+    {
+		return kUSB_DeviceNotifyDetach;
+    }
 	if (0U != (ehciState->registerBase->OTGSC & USBHS_OTGSC_BSV_MASK))
     {
 		return kUSB_DeviceNotifyAttach;

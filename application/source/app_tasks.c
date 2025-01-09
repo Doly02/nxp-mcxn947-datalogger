@@ -62,7 +62,14 @@ void msc_task(void *handle)
 {
 	while (1)
 	{
-        xSemaphoreTake(g_TaskMutex, portMAX_DELAY);
+
+		if (0 == usbAttached)
+		{
+            taskYIELD(); // Vrať plánovač k jiným úlohám
+            continue;
+		}
+
+        // xSemaphoreTake(g_TaskMutex, portMAX_DELAY);
 
         if (1 == usbAttached)
         {
@@ -73,9 +80,6 @@ void msc_task(void *handle)
                 taskYIELD();
             }
         }
-        /* Switch Back To record_task, USB Not Connected */
-        vTaskSuspend(NULL);
-        vTaskResume(recordTaskHandle);
 	}
 }
 
@@ -84,6 +88,7 @@ void record_task(void *handle)
 {
 	uint8_t retVal 		= 1;
 	uint32_t baudrate 	= 0;
+	bool uartInitialized = false;
 
 	USB_DeviceModeInit();
 
@@ -112,21 +117,29 @@ void record_task(void *handle)
 	baudrate = 320400;
 
 	/* Initialize Application UART */
-	UART_Init(baudrate);
-	UART_Enable();
 
     while (1)
     {
+        if (usbAttached == 1)
+        {
+            taskYIELD(); // Vrať plánovač k jiným úlohám
+            continue;
+        }
+        if (!uartInitialized)
+        {
+            PRINTF("INFO: Reinitializing UART...\r\n");
+            UART_Init(baudrate);
+            UART_Enable();
+            uartInitialized = true;
+        }
         usbAttached = 0;
         if (1 == usbAttached)
         {
         	/* Stop LPUART */
         	UART_Disable();
+        	uartInitialized = false;
         	PRINTF("INFO: Disabled LPUART7\r\n");
 
-            /* Pokud je USB připojeno, pozastavit tuto úlohu a přepnout na msc_task */
-            vTaskSuspend(NULL);  			// Pozastavit tuto úlohu
-            vTaskResume(mscTaskHandle);  	// Obnovit msc_task
             /* Uloha nema co delat -> Delay */
             /* Jedna uloha nesmi zastavit tu druhou */
         }
