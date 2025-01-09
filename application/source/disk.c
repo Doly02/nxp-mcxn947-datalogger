@@ -66,6 +66,9 @@ extern SemaphoreHandle_t g_TaskMutex;
 static bool bMscInitialized = false;
 
 extern volatile uint8_t usbAttached;
+
+extern TaskHandle_t mscTaskHandle;
+extern TaskHandle_t recordTaskHandle;
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -83,10 +86,12 @@ void USB1_HS_IRQHandler(void)
     if (USB_State(g_msc.deviceHandle) == kUSB_DeviceNotifyAttach)
     {
         usbAttached = 1; /* Change to Semaphore */
+        xSemaphoreGiveFromISR(g_TaskMutex, &xHigherPriorityTaskWoken);
     }
     else
     {
         usbAttached = 0;
+        xTaskResumeFromISR(recordTaskHandle);
     }
 #endif
     /* Free The Mutex For Mass Storage Task */

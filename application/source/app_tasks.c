@@ -64,6 +64,7 @@ void msc_task(void *handle)
 	{
         xSemaphoreTake(g_TaskMutex, portMAX_DELAY);
 
+        PRINTF("DEBUG: USB Mass Storage\r\n");
         if (1 == usbAttached)
         {
             PRINTF("MSC Task Running!\r\n");
@@ -74,8 +75,8 @@ void msc_task(void *handle)
             }
         }
         /* Switch Back To record_task, USB Not Connected */
-        vTaskSuspend(NULL);
         vTaskResume(recordTaskHandle);
+        vTaskSuspend(NULL);
 	}
 }
 
@@ -124,14 +125,16 @@ void record_task(void *handle)
         	UART_Disable();
         	PRINTF("INFO: Disabled LPUART7\r\n");
 
-            /* Pokud je USB připojeno, pozastavit tuto úlohu a přepnout na msc_task */
+        	// xSemaphoreGive(g_TaskMutex);
+
+        	/* Pokud je USB připojeno, pozastavit tuto úlohu a přepnout na msc_task */
             vTaskSuspend(NULL);  			// Pozastavit tuto úlohu
             vTaskResume(mscTaskHandle);  	// Obnovit msc_task
             /* Uloha nema co delat -> Delay */
             /* Jedna uloha nesmi zastavit tu druhou */
         }
-        CONSOLELOG_Recording();
 
+        CONSOLELOG_Recording();
         CONSOLELOG_Flush();
     }
 }
