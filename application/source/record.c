@@ -20,6 +20,7 @@
  ******************************************************************************/
 #include <record.h>
 #include <uart.h>
+#include <time.h>
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -88,6 +89,9 @@ static uint32_t g_currentFileSize 	= 0; 		// Tracks current file size
 static uint16_t g_fileCounter 		= 1; 		// Counter for unique file names
 
 static bool flushCompleted = false;
+
+
+irtc_datetime_t datetimeGet;
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -130,6 +134,9 @@ uint8_t CONSOLELOG_CreateFile(void)
     FRESULT error;
     char fileName[32];
 
+    IRTC_GetDatetime(RTC, &datetimeGet);
+	PRINTF("\r\nAlarm Time is %d/%d/%d %d:%d:%2d\r\n", datetimeGet.year, datetimeGet.month, datetimeGet.day,
+		   datetimeGet.hour, datetimeGet.minute, datetimeGet.second);
     // Generate a new file name
     snprintf(fileName, sizeof(fileName), FILE_NAME_TEMPLATE, g_fileCounter++);
 

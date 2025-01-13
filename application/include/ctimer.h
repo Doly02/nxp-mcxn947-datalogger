@@ -22,7 +22,7 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-
+#if 0
 #include "fsl_ctimer.h"
 #include "fsl_lpi2c_cmsis.h"
 #include "rtc_ds3231.h"
@@ -48,5 +48,7 @@ void TIMER_Init(void);
 void TIMER_UpdateSimulatedTime(void);
 
 uint8_t TIMER_GetDaysInMonth(uint8_t month, uint8_t year);
+
+#endif
 
 #endif /* CTIMER_H_ */

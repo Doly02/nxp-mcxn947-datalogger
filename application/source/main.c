@@ -31,9 +31,9 @@
 #include "app_tasks.h"
 
 #include "semphr.h"
-#include "ctimer.h"
 
 #include "uart.h"
+#include "time.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -85,6 +85,8 @@ void APP_HandleError(void)
  */
 void APP_InitBoard(void)
 {
+	irtc_config_t irtcCfg;
+
     /* Attach FRO 12M to FLEXCOMM4 (debug console) */
     CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
     CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
@@ -136,11 +138,12 @@ void APP_InitBoard(void)
     CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
     BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
 
-#if (true == TIMER_ENABLED)
+#if (true == IRTC_ENABLED)
 
-    TIMER_Init();
+    CLOCK_SetupClk16KClocking(kCLOCK_Clk16KToVbat | kCLOCK_Clk16KToMain);
+    TIME_InitIRTC();
 
-#endif /* (true == TIMER_ENABLED) */
+#endif /* (true == IRTC_ENABLED) */
 
     // UART_Init();
 }
