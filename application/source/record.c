@@ -90,8 +90,6 @@ static uint16_t g_fileCounter 		= 1; 		// Counter for unique file names
 
 static bool flushCompleted = false;
 
-
-irtc_datetime_t datetimeGet;
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -134,9 +132,6 @@ uint8_t CONSOLELOG_CreateFile(void)
     FRESULT error;
     char fileName[32];
 
-    IRTC_GetDatetime(RTC, &datetimeGet);
-	PRINTF("\r\nAlarm Time is %d/%d/%d %d:%d:%2d\r\n", datetimeGet.year, datetimeGet.month, datetimeGet.day,
-		   datetimeGet.hour, datetimeGet.minute, datetimeGet.second);
     // Generate a new file name
     snprintf(fileName, sizeof(fileName), FILE_NAME_TEMPLATE, g_fileCounter++);
 
@@ -233,31 +228,73 @@ uint8_t CONSOLELOG_Init(void)
 uint8_t CONSOLELOG_Recording(void)
 {
     FRESULT error;
-    UINT bytesWritten;
+    UINT bytesWritten;               // Bytes Written Into SD Card
+    irtc_datetime_t datetimeGet;     // Actual Time From IRTC
+    static uint8_t lastChar = 0;     // Last Character From Previous DMA Buffer
 
     while (readIndex != writeIndex)
     {
-        /* Transfer From FIFO To Active ADMA Buffer */
-        activeDmaBuffer[dmaIndex++] = swFifo[readIndex];
+        // Loads One Char From FIFO And Stores The Char Into Active DMA Buffer */
+        uint8_t currentChar = swFifo[readIndex];
         readIndex = (readIndex + 1) % BUFFER_SIZE;
 
-        if (dmaIndex == BLOCK_SIZE)	/* If Active Buffer Is Full */
+
+        activeDmaBuffer[dmaIndex++] = currentChar;
+
+        /* Check If The CRLF Is Not Divided Into Two DMA Buffers */
+        if ((lastChar == '\r' && currentChar == '\n') ||
+            (dmaIndex >= 2 &&
+             activeDmaBuffer[dmaIndex - 2] == '\r' &&
+             activeDmaBuffer[dmaIndex - 1] == '\n'))
         {
-        	processDmaBuffer = activeDmaBuffer;
+
+        	IRTC_GetDatetime(RTC, &datetimeGet);
+
+            char timeString[12];
+            uint8_t timeLength = (uint8_t)snprintf(timeString, sizeof(timeString), "(%02d:%02d:%02d) ", datetimeGet.hour, datetimeGet.minute, datetimeGet.second);
+
+            /* Addition of Time Mark To The DMA Buffer */
+            for (uint8_t i = 0; i < timeLength; i++)
+            {
+                if (BLOCK_SIZE > dmaIndex)	// If DMA Buffer is Not Full
+                {
+                    activeDmaBuffer[dmaIndex++] = timeString[i];
+                }
+                else
+                {
+                    /* Switch To New DMA Buffer */
+                	processDmaBuffer = activeDmaBuffer;
+                    dmaBufferReady = true;
+
+                    activeDmaBuffer = (activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
+                    dmaIndex = 0;
+
+                    /* Continue in Addition of Time Mark */
+                    activeDmaBuffer[dmaIndex++] = timeString[i];
+                }
+            }
+        }
+
+        lastChar = currentChar; // Current Last Character For Next Buffer
+
+        /* Check If DMA Buffer Is Full */
+        if (BLOCK_SIZE == dmaIndex)
+        {
+            processDmaBuffer = activeDmaBuffer;
             dmaBufferReady = true;
 
-            /* Switch To Second ADMA Buffer */
+            /* Switch on Next DMA Buffer */
             activeDmaBuffer = (activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
-            dmaIndex = 0; // Reset Index of Active DMA Buffer
+            dmaIndex = 0;
         }
     }
 
-    /* Process Full ADMA Buffer */
-    if (dmaBufferReady && processDmaBuffer != NULL)
+    /* Process Full DMA Buffer */
+    if (dmaBufferReady && NULL != processDmaBuffer)
     {
-        if (g_fileObject.obj.fs == NULL)
+        if (NULL == g_fileObject.obj.fs)
         {
-            if (CONSOLELOG_CreateFile() != SUCCESS)
+            if (SUCCESS != CONSOLELOG_CreateFile())
             {
                 PRINTF("ERR: Failed to create new file.\r\n");
                 return E_FAULT;
@@ -265,34 +302,25 @@ uint8_t CONSOLELOG_Recording(void)
         }
 
         uint32_t stat_reg = g_sd.host->hostController.base->ADMA_ERR_STATUS;
-
-        /**
-         * ADMA Error Status (ADMA_ERR_STATUS)
-         * 3 bit 	-> 	ADMA Descriptor Error
-         * 2 bit 	-> 	ADMA Length Mismatch Error
-         * 1-0 bit 	-> 	ADMA Error State (When ADMA Error Occurred)
-         *				Field Indicates The State of The ADMA When An
-         *				Error Has Occurred During An ADMA Data Transfer.
-         */
-        if ((stat_reg & 0xC) != 0x0)
-		{
-        	PRINTF("ERR: Failed to write data to file. Error=%d\r\n", error);
-			f_close(&g_fileObject);
-			g_fileObject.obj.fs = NULL;
-			return E_FAULT;
-		}
+        if (0x0 != (stat_reg & 0xC))
+        {
+            PRINTF("ERR: Failed to write data to file. Error=%d\r\n", error);
+            f_close(&g_fileObject);
+            g_fileObject.obj.fs = NULL;
+            return E_FAULT;
+        }
         error = f_write(&g_fileObject, processDmaBuffer, BLOCK_SIZE, &bytesWritten);
 
         g_currentFileSize += BLOCK_SIZE;
-        if (g_currentFileSize >= MAX_FILE_SIZE)	/* MAX Size Detected */
+        if (g_currentFileSize >= MAX_FILE_SIZE)
         {
             PRINTF("INFO: File size limit reached. Closing file.\r\n");
             f_close(&g_fileObject);
             g_fileObject.obj.fs = NULL;
         }
 
-        dmaBufferReady = false;    // Reset Flag of ADMA Buffer
-        processDmaBuffer = NULL;   // Clear processDmaBuffer
+        dmaBufferReady = false;     // Reset Flag of ADMA Buffer
+        processDmaBuffer = NULL;    // Clear processDmaBuffer
     }
 
     return SUCCESS;
@@ -320,7 +348,7 @@ void CONSOLELOG_Flush(void)
 		activeDmaBuffer = (activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
 		dmaIndex = 0;
 
-		if (g_fileObject.obj.fs == NULL)
+		if (NULL == g_fileObject.obj.fs)
 		{
 			if (CONSOLELOG_CreateFile() != SUCCESS)
 			{
@@ -338,7 +366,7 @@ void CONSOLELOG_Flush(void)
          *				Error Has Occurred During An ADMA Data Transfer.
          */
 		uint32_t stat_reg = g_sd.host->hostController.base->ADMA_ERR_STATUS;
-		if ((stat_reg & 0xC) != 0x0)
+		if (0x0 != (stat_reg & 0xC))
 		{
 			PRINTF("ERR: Failed to write data to file during flush. Error=%d\r\n", error);
 			f_close(&g_fileObject);
