@@ -145,7 +145,6 @@ void APP_InitBoard(void)
 
 #endif /* (true == IRTC_ENABLED) */
 
-    // UART_Init();
 }
  
 /*!

@@ -93,7 +93,18 @@ static bool flushCompleted = false;
 /*******************************************************************************
  * Code
  ******************************************************************************/
+DWORD get_fattime(void)
+{
+    irtc_datetime_t datetime;
+    IRTC_GetDatetime(RTC, &datetime);
 
+    return ((DWORD)(datetime.year - 1980) << 25) |
+           ((DWORD)datetime.month << 21) |
+           ((DWORD)datetime.day << 16) |
+           ((DWORD)datetime.hour << 11) |
+           ((DWORD)datetime.minute << 5) |
+           ((DWORD)(datetime.second / 2));
+}
 /**
  * @brief LPUART7 IRQ Handler.
  *
@@ -131,6 +142,8 @@ uint8_t CONSOLELOG_CreateFile(void)
 {
     FRESULT error;
     char fileName[32];
+    irtc_datetime_t datetimeGet;		// To Store Time in File Meta-Data
+    FILINFO fno;						// File Meta-Data
 
     // Generate a new file name
     snprintf(fileName, sizeof(fileName), FILE_NAME_TEMPLATE, g_fileCounter++);
@@ -143,8 +156,20 @@ uint8_t CONSOLELOG_CreateFile(void)
         return E_FAULT;
     }
 
+    /* Setup of File Meta-Data */
+    IRTC_GetDatetime(RTC, &datetimeGet);
+    fno.fdate = ((datetimeGet.year - 1980) << 9) | (datetimeGet.month << 5) | (datetimeGet.day);
+    fno.ftime = (datetimeGet.hour << 11) | (datetimeGet.minute << 5) | (datetimeGet.second / 2);
+    error = f_utime(fileName, &fno);
+    if (FR_OK != error)
+    {
+        PRINTF("ERR: Failed to Set Meta-Data for %s. Error=%d\r\n", fileName, error);
+        f_close(&g_fileObject);
+        return E_FAULT;
+    }
+
     g_currentFileSize = 0; // Reset file size
-    PRINTF("INFO: Created new file %s.\r\n", fileName);
+    PRINTF("INFO: Created New File %s.\r\n", fileName);
     return SUCCESS;
 }
 

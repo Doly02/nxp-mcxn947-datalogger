@@ -22,8 +22,12 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+#define INTERNAL_RTC_BASE_YEAR 			2112
 
-
+/**
+ * @brief The Year Range Is Between 0 and 99.
+ */
+#define EXTERNAL_RTC_TIME_OFSET			2000
 /*******************************************************************************
  * Global Variables
  ******************************************************************************/
@@ -77,14 +81,17 @@ uint8_t TIME_InitIRTC(void)
 
 	RTC_GetTime(&rtc_time);
 	RTC_GetDate(&rtc_date);
-#if 0
+#if 1
 	time.day 	= (uint8_t) rtc_date.day;
 	time.month 	= (uint8_t) rtc_date.month;
-	time.year	= (uint16_t)rtc_date.year;
+	time.year	= (uint16_t)(2000 + rtc_date.year);
 
 	time.hour	= (uint8_t) rtc_time.hrs;
 	time.minute	= (uint8_t) rtc_time.min;
 	time.second = (uint8_t) rtc_time.sec;
+
+	PRINTF("\r\nExternal RTC: %d/%d/%d %d:%d:%2d\r\n", rtc_date.year, rtc_date.month, rtc_date.day,
+			rtc_time.hrs, rtc_time.min, rtc_time.sec);
 #else
 	time.day 	= (uint8_t) 2;
 	time.month 	= (uint8_t) 2;
@@ -97,7 +104,7 @@ uint8_t TIME_InitIRTC(void)
     IRTC_SetDatetime(RTC, &time);
 
     IRTC_GetDatetime(RTC, &time);
-	PRINTF("\r\nAlarm Time is %d/%d/%d %d:%d:%2d\r\n", time.year, time.month, time.day,
+	PRINTF("\r\nInternal RTC: is %d/%d/%d %d:%d:%2d\r\n", time.year, time.month, time.day,
 			time.hour, time.minute, time.second);
 
 }
