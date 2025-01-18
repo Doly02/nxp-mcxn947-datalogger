@@ -114,26 +114,25 @@ void LP_FLEXCOMM7_IRQHandler(void)
     uint8_t data;
     uint32_t stat;
 
-    // Check for new data
+    /* Check For New Data */
     stat = LPUART_GetStatusFlags(LPUART7);
     if (kLPUART_RxDataRegFullFlag & stat)
     {
         data = LPUART_ReadByte(LPUART7);
-
-        // Add data to FIFO
+        /* Add Data To FIFO */
         uint16_t nextWriteIndex = (writeIndex + 1) % BUFFER_SIZE;
         if (nextWriteIndex != readIndex) // Check if FIFO is not full
         {
             swFifo[writeIndex] = data;
             writeIndex = nextWriteIndex;
 
-            /* Actualizate Time Of Last Receivement */
+            /* Update Time Of Last Receiving */
             lastDataTick = xTaskGetTickCount();
             flushCompleted = false;
         }
     }
 
-    // Clear interrupt flag
+    /* Clear Interrupt Flag */
     LPUART_ClearStatusFlags(LPUART7, kLPUART_RxDataRegFullFlag);
     SDK_ISR_EXIT_BARRIER;
 }
@@ -142,13 +141,13 @@ uint8_t CONSOLELOG_CreateFile(void)
 {
     FRESULT error;
     char fileName[32];
-    irtc_datetime_t datetimeGet;		// To Store Time in File Meta-Data
-    FILINFO fno;						// File Meta-Data
+    irtc_datetime_t datetimeGet;		//<! To Store Time in File Meta-Data
+    FILINFO fno;						//<! File Meta-Data
 
-    // Generate a new file name
+    /* Generate a New File Name */
     snprintf(fileName, sizeof(fileName), FILE_NAME_TEMPLATE, g_fileCounter++);
 
-    // Open new file
+    /* Open New File */
     error = f_open(&g_fileObject, fileName, (FA_WRITE | FA_CREATE_ALWAYS));
     if (error != FR_OK)
     {
@@ -253,16 +252,18 @@ uint8_t CONSOLELOG_Init(void)
 uint8_t CONSOLELOG_Recording(void)
 {
     FRESULT error;
-    UINT bytesWritten;               // Bytes Written Into SD Card
-    irtc_datetime_t datetimeGet;     // Actual Time From IRTC
-    static uint8_t lastChar = 0;     // Last Character From Previous DMA Buffer
+    UINT bytesWritten;               //<! Bytes Written Into SD Card
+    irtc_datetime_t datetimeGet;     //<! Actual Time From IRTC
+    static uint8_t lastChar = 0;     //<! Last Character From Previous DMA Buffer
+
+    static char timeString[12];
+    static uint8_t timeLength = 0;
 
     while (readIndex != writeIndex)
     {
-        // Loads One Char From FIFO And Stores The Char Into Active DMA Buffer */
+        /* Loads One Char From FIFO And Stores The Char Into Active DMA Buffer */
         uint8_t currentChar = swFifo[readIndex];
         readIndex = (readIndex + 1) % BUFFER_SIZE;
-
 
         activeDmaBuffer[dmaIndex++] = currentChar;
 
@@ -274,9 +275,7 @@ uint8_t CONSOLELOG_Recording(void)
         {
 
         	IRTC_GetDatetime(RTC, &datetimeGet);
-
-            char timeString[12];
-            uint8_t timeLength = (uint8_t)snprintf(timeString, sizeof(timeString), "(%02d:%02d:%02d) ", datetimeGet.hour, datetimeGet.minute, datetimeGet.second);
+            timeLength = (uint8_t)snprintf(timeString, sizeof(timeString), "(%02d:%02d:%02d) ", datetimeGet.hour, datetimeGet.minute, datetimeGet.second);
 
             /* Addition of Time Mark To The DMA Buffer */
             for (uint8_t i = 0; i < timeLength; i++)
@@ -326,6 +325,14 @@ uint8_t CONSOLELOG_Recording(void)
             }
         }
 
+		/**
+		* ADMA Error Status (ADMA_ERR_STATUS)
+		* 3 bit 	-> 	ADMA Descriptor Error
+		* 2 bit 	-> 	ADMA Length Mismatch Error
+		* 1-0 bit 	-> 	ADMA Error State (When ADMA Error Occurred)
+		*				Field Indicates The State of The ADMA When An
+		*				Error Has Occurred During An ADMA Data Transfer.
+		*/
         uint32_t stat_reg = g_sd.host->hostController.base->ADMA_ERR_STATUS;
         if (0x0 != (stat_reg & 0xC))
         {
@@ -359,7 +366,7 @@ void CONSOLELOG_Flush(void)
 	uint32_t currentTick = xTaskGetTickCount();
 	if ((currentTick - lastDataTick >= FLUSH_TIMEOUT_TICKS) && dmaIndex > 0)
 	{
-		PRINTF("INFO: Flush triggered. Writing remaining data to file.\r\n");
+		PRINTF("INFO: Flush Triggered. Writing Remaining Data To File.\r\n");
 
 		while (dmaIndex < BLOCK_SIZE)			// Fill Buffer With ' '
 		{
@@ -375,31 +382,30 @@ void CONSOLELOG_Flush(void)
 
 		if (NULL == g_fileObject.obj.fs)
 		{
-			if (CONSOLELOG_CreateFile() != SUCCESS)
+			if (SUCCESS != CONSOLELOG_CreateFile())
 			{
-				PRINTF("ERR: Failed to create new file during flush.\r\n");
+				PRINTF("ERR: Failed to Create New File During Flush.\r\n");
 				return;
 			}
 		}
 
-        /**
-         * ADMA Error Status (ADMA_ERR_STATUS)
-         * 3 bit 	-> 	ADMA Descriptor Error
-         * 2 bit 	-> 	ADMA Length Mismatch Error
-         * 1-0 bit 	-> 	ADMA Error State (When ADMA Error Occurred)
-         *				Field Indicates The State of The ADMA When An
-         *				Error Has Occurred During An ADMA Data Transfer.
-         */
+		/**
+		* ADMA Error Status (ADMA_ERR_STATUS)
+		* 3 bit 	-> 	ADMA Descriptor Error
+		* 2 bit 	-> 	ADMA Length Mismatch Error
+		* 1-0 bit 	-> 	ADMA Error State (When ADMA Error Occurred)
+		*				Field Indicates The State of The ADMA When An
+		*				Error Has Occurred During An ADMA Data Transfer.
+		*/
 		uint32_t stat_reg = g_sd.host->hostController.base->ADMA_ERR_STATUS;
 		if (0x0 != (stat_reg & 0xC))
 		{
-			PRINTF("ERR: Failed to write data to file during flush. Error=%d\r\n", error);
+			PRINTF("ERR: Failed to Write Data To File During Flush. Error=%d\r\n", error);
 			f_close(&g_fileObject);
 			g_fileObject.obj.fs = NULL;
 			return;
 		}
 		error = f_write(&g_fileObject, processDmaBuffer, BLOCK_SIZE, &bytesWritten);
-
 		g_currentFileSize += BLOCK_SIZE;
 
 		PRINTF("INFO: Closing File\r\n");
@@ -419,13 +425,11 @@ uint8_t CONSOLELOG_Deinit(void)
 	/* Stop Generating UART Interrupt */
 	UART_Disable();
 
-	/* De-Initialize UART */
-
 	/* Close All Opened Files */
-    if (g_fileObject.obj.fs != NULL)
+    if (NULL != g_fileObject.obj.fs)
     {
         error = f_close(&g_fileObject);
-        if (error != FR_OK)
+        if (FR_OK != error)
         {
             PRINTF("ERR: Failed to Close File. ERR=%d\r\n", error);
             return E_FAULT;
@@ -437,13 +441,13 @@ uint8_t CONSOLELOG_Deinit(void)
 	error = f_mount(NULL, "", 0);
 	if (error != FR_OK)
 	{
-		PRINTF("ERR: Failed to unmount filesystem. Error=%d\r\n", error);
+		PRINTF("ERR: Failed To Unmount File System. Error=%d\r\n", error);
 		return E_FAULT;
 	}
 
 #if (true == DEBUG_ENABLED)
 
-	PRINTF("DEBUG: Filesystem Deinicialized.\r\n");
+	PRINTF("DEBUG: File System De-Inicialized.\r\n");
 
 #endif /* (true == DEBUG_ENABLED) */
 
