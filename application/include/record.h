@@ -37,6 +37,7 @@
 #include "fsl_common.h"
 #include "rtc_ds3231.h"
 
+#include "error.h"
 #include "uart.h"
 /*******************************************************************************
  * Definitions
@@ -80,7 +81,7 @@ typedef struct
  * Prototypes
  ******************************************************************************/
 
-uint8_t CONSOLELOG_CreateFile(void);
+error_t CONSOLELOG_CreateFile(void);
 /**
  * @brief 		Creates Files Based On Time And Date.
  *
@@ -89,7 +90,6 @@ uint8_t CONSOLELOG_CreateFile(void);
  *
  * @return		Return Pointer to Created File Descriptor.
  */
-// FIL* CONSOLELOG_CreateFile(RTC_date_t date, RTC_time_t time);
 
 /**
  * @brief 		Returns Active Configuration.
@@ -116,7 +116,7 @@ REC_version_t CONSOLELOG_GetVersion(void);
  * @return		uint32_t Baud Rate of Recorded Device
  *
  */
- uint32_t CONSOLELOG_GetBaudrate(void);
+uint32_t CONSOLELOG_GetBaudrate(void);
 
 /**
  * @brief		Checks If The File System Is Initialized
@@ -136,9 +136,9 @@ FRESULT CONSOLELOG_CheckFileSystem(void);
  * 				- Formatting The File System If It is Not Found (If
  * 				  Formatting is Enabled).
  *
- * @return 		uint8_t Returns 0 on Success, Otherwise E_FAULT.
+ * @return 		error_t Returns ERROR_NONE on Success, Otherwise ERROR_FILESYSTEM.
  */
-uint8_t CONSOLELOG_Init(void);
+error_t CONSOLELOG_Init(void);
 
 /**
  * @brief 		Starts The Recording Process by Initializing the File
@@ -147,17 +147,17 @@ uint8_t CONSOLELOG_Init(void);
  * @details 	Function Uses `CONSOLELOG_Init` To Initialize The Recording
  * 				System.
  *
- * @return 		uint8_t Returns 0 on Success, Otherwise E_FAULT.
+ * @return 		error_t Returns 0 on Success, Otherwise E_FAULT.
  */
-uint8_t CONSOLELOG_Recording(void);
+error_t CONSOLELOG_Recording(void);
 
-void CONSOLELOG_Flush(void);
+error_t CONSOLELOG_Flush(void);
 /**
  * @brief 		De-Initializes The Recording System and Un-Mounts The File System.
  *
- * @return 		uint8_t Returns 0 on Success, Otherwise E_FAULT.
+ * @return 		error_t Returns 0 on Success, Otherwise E_FAULT.
  */
-uint8_t CONSOLELOG_Deinit(void);
+error_t CONSOLELOG_Deinit(void);
 
 /**
  * @brief		Reads and Processes The Configuration File From The Root directory.
@@ -165,10 +165,10 @@ uint8_t CONSOLELOG_Deinit(void);
  * @details		This Function Scans The Root Directory For a Configuration File, If The File is Found
  * 				Reads its Contents Into g_config Buffer.
  *
- * @return 		uint8_t Returns 0 If Configuration File Is Correctly Processed,
+ * @return 		error_t Returns 0 If Configuration File Is Correctly Processed,
  * 				Otherwise Returns E_FAULT.
  */
-uint8_t CONSOLELOG_ReadConfig(void);
+error_t CONSOLELOG_ReadConfig(void);
 
 /**
  * @brief 		Processes The Content of The Configuration File To Extract
@@ -177,10 +177,10 @@ uint8_t CONSOLELOG_ReadConfig(void);
  * @param[in] 	Content The Content of The Configuration File as a Null-Terminated
  * 				String.
  *
- * @return 		uint8_t Returns 0 If Configuration File Is Correctly Processed,
+ * @return 		error_t Returns 0 If Configuration File Is Correctly Processed,
  * 				Otherwise Returns E_FAULT.
  */
-uint8_t CONSOLELOG_ProccessConfigFile(const char *content);
+error_t CONSOLELOG_ProccessConfigFile(const char *content);
 
 
 #endif /* RECORD_H_ */

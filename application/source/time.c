@@ -3,7 +3,7 @@
  *  File Name:      mainc.c
  *  Author:         Tomas Dolak
  *  Date:           07.08.2024
- *  Description:    Implements Datalogger Application.
+ *  Description:    Implements The Logic Of Time-Keeping.
  *
  * ****************************/
 
@@ -12,13 +12,14 @@
  *  @file           main.c
  *  @author         Tomas Dolak
  *  @date           07.08.2024
- *  @brief          Implements Datalogger Application.
+ *  @brief          Implements The Logic Of Time-Keeping.
  * ****************************/
 
 /*******************************************************************************
  * Includes
  ******************************************************************************/
 #include "time.h"
+#include "error.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -52,12 +53,16 @@ uint8_t TIME_InitIRTC(void)
     IRTC_GetDefaultConfig(&irtcCfg);
     if (kStatus_Fail == IRTC_Init(RTC, &irtcCfg))
     {
-        return 1;
+    	/*TODO: Set ERROR */
+    	PRINTF("ERR: Init. Internal-RTC Failed\r\n");
+    	return ERROR_IRTC;
     }
 
 	if (SUCCESS != RTC_Init(&I2C_MASTER))
 	{
-		PRINTF("ERR: Init. RTC Failed\r\n");
+		PRINTF("ERR: Init. External-RTC Failed\r\n");
+		/*TODO: Set ERROR */
+		return ERROR_IRTC;
 	}
 
 	/* Load The State of Real-Time Circuit */
@@ -73,6 +78,7 @@ uint8_t TIME_InitIRTC(void)
 
 		PRINTF("ERR: Oscillator Has Been Stopped!\r\n");
 		RTC_SetOscState(OSC_OK);
+		/* This Error Is Not Critical, So It's Possible To Continue */
 	}
 
 
@@ -81,7 +87,7 @@ uint8_t TIME_InitIRTC(void)
 
 	RTC_GetTime(&rtc_time);
 	RTC_GetDate(&rtc_date);
-#if 1
+
 	time.day 	= (uint8_t) rtc_date.day;
 	time.month 	= (uint8_t) rtc_date.month;
 	time.year	= (uint16_t)(2000 + rtc_date.year);
@@ -90,21 +96,19 @@ uint8_t TIME_InitIRTC(void)
 	time.minute	= (uint8_t) rtc_time.min;
 	time.second = (uint8_t) rtc_time.sec;
 
-	PRINTF("\r\nExternal RTC: %d/%d/%d %d:%d:%2d\r\n", rtc_date.year, rtc_date.month, rtc_date.day,
+#if (true == DEBUG_ENABLED)
+	PRINTF("DEBUG: External RTC=%d/%d/%d %d:%d:%2d\r\n", rtc_date.year, rtc_date.month, rtc_date.day,
 			rtc_time.hrs, rtc_time.min, rtc_time.sec);
-#else
-	time.day 	= (uint8_t) 2;
-	time.month 	= (uint8_t) 2;
-	time.year	= (uint16_t)2;
+#endif /* (true == DEBUG_ENABLED) */
 
-	time.hour	= (uint8_t) 3;
-	time.minute	= (uint8_t) 3;
-	time.second = (uint8_t) 3;
-#endif
     IRTC_SetDatetime(RTC, &time);
 
     IRTC_GetDatetime(RTC, &time);
-	PRINTF("\r\nInternal RTC: is %d/%d/%d %d:%d:%2d\r\n", time.year, time.month, time.day,
-			time.hour, time.minute, time.second);
 
+#if (true == DEBUG_ENABLED)
+	PRINTF("DEBUG: Internal RTC=%d/%d/%d %d:%d:%2d\r\n", time.year, time.month, time.day,
+			time.hour, time.minute, time.second);
+#endif /* (true == DEBUG_ENABLED) */
+
+	return ERROR_NONE;
 }
