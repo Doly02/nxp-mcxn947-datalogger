@@ -36,7 +36,17 @@
 /**
  * @brief Enables Timer For 1 Sec. Adjustment.
  */
-#define TIMER_ENABLED			(false)
+#define CTIMER_ENABLED			(false)
+
+#define IRTC_ENABLED			(true)
+
+#if (CTIMER_ENABLED == IRTC_ENABLED)
+	/*#error "ERR: Bad Selection of Time Adjustement Function!"*/
+#else
+	#if (CTIMER_ENABLED == true)
+		#define TIME_ADJUSTEMENT
+	#endif
+#endif /* (CTIMER_ENABLED == IRTC_ENABLED) */
 
 /**
  * @brief Configuration File.

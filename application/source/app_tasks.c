@@ -62,7 +62,14 @@ void msc_task(void *handle)
 {
 	while (1)
 	{
-        xSemaphoreTake(g_TaskMutex, portMAX_DELAY);
+
+		if (0 == usbAttached)
+		{
+            taskYIELD(); // Vrať plánovač k jiným úlohám
+            continue;
+		}
+
+        // xSemaphoreTake(g_TaskMutex, portMAX_DELAY);
 
         if (1 == usbAttached)
         {
@@ -73,30 +80,28 @@ void msc_task(void *handle)
                 taskYIELD();
             }
         }
-        /* Switch Back To record_task, USB Not Connected */
-        vTaskSuspend(NULL);
-        vTaskResume(recordTaskHandle);
 	}
 }
 
 
 void record_task(void *handle)
 {
-	uint8_t retVal 		= 1;
-	uint32_t baudrate 	= 0;
+	assert(NULL != handle);
 
+	error_t u16RetVal 		= ERROR_UNKNOWN;
+	uint32_t u32Baudrate 	= 0;
+	bool bUartInitialized 	= false;
+
+	/* Initialize's The SDHC Card */
 	USB_DeviceModeInit();
 
 #if (true == DEBUG_ENABLED)
-
 	PRINTF("DEBUG: Initialize File System\r\n");
-
 #endif /* (true == DEBUG_ENABLED) */
 
 	/* Initialize File System */
-#if 1
-	retVal = CONSOLELOG_Init();
-	if (SUCCESS != retVal)
+	u16RetVal = (error_t)CONSOLELOG_Init();
+	if (ERROR_NONE != u16RetVal)
 	{
 		return;
 	}
@@ -107,30 +112,46 @@ void record_task(void *handle)
 	{
 		return;
 	}
-	baudrate = CONSOLELOG_GetBaudrate(); */
-#endif
-	baudrate = 320400;
+	u32Baudrate = CONSOLELOG_GetBaudrate(); */
+	u32Baudrate = 320400;
 
 	/* Initialize Application UART */
-	UART_Init(baudrate);
-	UART_Enable();
 
     while (1)
     {
+        if (1 == usbAttached)
+        {
+            taskYIELD(); // Return Scheduler To Other Tasks
+            continue;
+        }
+        if (false == bUartInitialized)
+        {
+#if (true == DEBUG_ENABLED)
+            PRINTF("INFO: Reinitializing UART...\r\n");
+#endif /* (true == DEBUG_ENABLED) */
+
+            UART_Init(u32Baudrate);
+            UART_Enable();
+            bUartInitialized = true;
+        }
         usbAttached = 0;
         if (1 == usbAttached)
         {
         	/* Stop LPUART */
         	UART_Disable();
-        	PRINTF("INFO: Disabled LPUART7\r\n");
+        	bUartInitialized = false;
 
-            /* Pokud je USB připojeno, pozastavit tuto úlohu a přepnout na msc_task */
-            vTaskSuspend(NULL);  			// Pozastavit tuto úlohu
-            vTaskResume(mscTaskHandle);  	// Obnovit msc_task
+#if (true == DEBUG_ENABLED)
+        	PRINTF("INFO: Disabled LPUART7\r\n");
+#endif /* (true == DEBUG_ENABLED) */
             /* Uloha nema co delat -> Delay */
             /* Jedna uloha nesmi zastavit tu druhou */
         }
-        CONSOLELOG_Recording();
+        if (ERROR_NONE != (error_t)CONSOLELOG_Recording())
+        {
+        	/* Look At The Error */
+        	ERR_HandleError();
+        }
 
         CONSOLELOG_Flush();
     }
