@@ -1,43 +1,74 @@
-/*
- *		Author: 		Tomas Dolak
- * 		File Name:		rtc_ds1307.c
- *      Description:	RTC DS1307 Driver.
- *		Created on: 	Aug 7, 2024
+/******************************
+ *  Project:        NXP MCXN947 Datalogger
+ *  File Name:      defs.h
+ *  Author:         Tomas Dolak
+ *  Date:           22.09.2024
+ *  Description:    Header File Providing Definitions To Set Up The Project.
  *
- *		@author			Tomas Dolak
- * 		@brief			RTC DS1307 Driver.
- * 		@filename		rtc_ds1307.c
- */
+ * ****************************/
+
+/******************************
+ *  @package        NXP MCXN947 Datalogger
+ *  @file           defs.h
+ *  @author         Tomas Dolak
+ *  @date           22.09.2024
+ *  @brief          Header File Providing Definitions To Set Up The Project.
+ * ****************************/
 
 #ifndef DEFS_H_
 #define DEFS_H_
 
-#define SUCCESS					(0U)
-#define E_FAULT					(1U)
 #define NOT_IMPLEMENTED			#error "This Feature Is Not Implemented!"
 
-#define RTC_ENABLED				(true)
+/**
+ * @brief 	Defines The Stack Size For Mass Storage Task.
+ */
+#define MSC_STACK_SIZE			(5000L / sizeof(portSTACK_TYPE))
+
+/**
+ * @brief 	Defines The Stack Size For Recording Task.
+ */
+#define RECORD_STACK_SIZE		(5000L / sizeof(portSTACK_TYPE))
+
 /*
- * @brief Enables Mass Storage Functionality.
+ * @brief Enables/Disables Logic For External Real-Time Circuit DS3231.
+ */
+#define RTC_ENABLED				(true)
+
+/*
+ * @brief Enables/Disables Mass Storage Functionality.
  * */
 #define MSC_ENABLED				(true)
 
-#define MSC_STACK_SIZE			(5000L / sizeof(portSTACK_TYPE))
-
-#define RECORD_STACK_SIZE		(5000L / sizeof(portSTACK_TYPE))
-
+/**
+ * @brief 	Enables/Disables Debug Mode
+ * @details If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console.
+ */
 #define DEBUG_ENABLED			(true)
 
+/**
+ * @brief Enables/Disables HW FIFO Queue on Application LPUART.
+ */
 #define UART_FIFO_ENABLED		(true)
 
+/**
+ * @brief Defines The Size of HW FIFO Queue.
+ */
 #define UART_FIFO_LENGHT		(1u)
 
+/**
+ * @brief Enables/Disables Print of Received Bytes From Application LPUART To Console.
+ */
 #define UART_PRINT_ENABLED		(false)
 /**
+
  * @brief Enables Timer For 1 Sec. Adjustment.
  */
 #define CTIMER_ENABLED			(false)
 
+/**
+ * @brief Enables/Disables Logic For Internal Real-Time Circuit.
+ */
 #define IRTC_ENABLED			(true)
 
 #if (CTIMER_ENABLED == IRTC_ENABLED)
@@ -52,6 +83,5 @@
  * @brief Configuration File.
  */
 #define CONFIG_FILE 			"CONFIG"
-
 
 #endif /* DEFS_H_ */
