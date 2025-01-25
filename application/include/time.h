@@ -21,6 +21,8 @@
 
 #include "fsl_irtc.h"
 #include "rtc_ds3231.h"
+#include "error.h"
+
 #include "fsl_lpi2c_cmsis.h"
 #include "fsl_debug_console.h"
 
@@ -31,6 +33,6 @@
 #define EXAMPLE_LPI2C_DMA_BASEADDR 	(DMA0)
 #define EXAMPLE_LPI2C_DMA_CLOCK    	kCLOCK_Dma0
 
-uint8_t TIME_InitIRTC(void);
+error_t TIME_InitIRTC(void);
 
 #endif /* TIME_H_ */

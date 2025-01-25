@@ -19,7 +19,7 @@
  * Includes
  ******************************************************************************/
 #include "time.h"
-#include "error.h"
+
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -38,7 +38,7 @@ uint32_t LPI2C2_GetFreq(void)
     return CLOCK_GetLPFlexCommClkFreq(2u);
 }
 
-uint8_t TIME_InitIRTC(void)
+error_t TIME_InitIRTC(void)
 {
 	irtc_datetime_t time;
 	irtc_config_t irtcCfg;

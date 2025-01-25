@@ -81,8 +81,7 @@ typedef struct
  * Prototypes
  ******************************************************************************/
 
-error_t CONSOLELOG_CreateFile(void);
-/**
+/** TODO:
  * @brief 		Creates Files Based On Time And Date.
  *
  * @param[in]	Time That Will Be Part of Filename.
@@ -90,6 +89,7 @@ error_t CONSOLELOG_CreateFile(void);
  *
  * @return		Return Pointer to Created File Descriptor.
  */
+error_t CONSOLELOG_CreateFile(void);
 
 /**
  * @brief 		Returns Active Configuration.
@@ -147,11 +147,21 @@ error_t CONSOLELOG_Init(void);
  * @details 	Function Uses `CONSOLELOG_Init` To Initialize The Recording
  * 				System.
  *
- * @return 		error_t Returns 0 on Success, Otherwise E_FAULT.
+ * @return 		error_t Returns 0 on Success, Otherwise Returns a Non-Zero Value.
  */
 error_t CONSOLELOG_Recording(void);
 
+/**
+ * @brief 		Flushes Collected Data To The File If No Other Data Have Been Received
+ * 				By The Time Specified By TIMEOUT Macro.
+ * @details		If The Data Does Not Arrive By The Time Specified By The TIMEOUT Macro,
+ * 				Then This Function Flushes All The Data So Far Stored In The DMA Buffer,
+ * 				Saves It To a File on The Physical Media and Closes The File
+ *
+ * @return		error_t Returns 0 on Success, Otherwise Returns a Non-Zero Value.
+ */
 error_t CONSOLELOG_Flush(void);
+
 /**
  * @brief 		De-Initializes The Recording System and Un-Mounts The File System.
  *

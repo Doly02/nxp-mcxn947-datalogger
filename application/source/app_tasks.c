@@ -65,7 +65,8 @@ void msc_task(void *handle)
 
 		if (0 == usbAttached)
 		{
-            taskYIELD(); // Vrať plánovač k jiným úlohám
+			/* Put Back Scheduler To Record Task */
+            taskYIELD();
             continue;
 		}
 
@@ -73,8 +74,12 @@ void msc_task(void *handle)
 
         if (1 == usbAttached)
         {
-            PRINTF("MSC Task Running!\r\n");
-            while (usbAttached)
+
+#if (true == DEBUG_ENABLED)
+            PRINTF("DEBUG: MSC Task Running!\r\n");
+#endif /* (true == DEBUG_ENABLED) */
+
+            while (true == usbAttached)
             {
                 USB_DeviceMscAppTask();
                 taskYIELD();
@@ -121,7 +126,8 @@ void record_task(void *handle)
     {
         if (1 == usbAttached)
         {
-            taskYIELD(); // Return Scheduler To Other Tasks
+        	/* Return Scheduler To Other Tasks */
+            taskYIELD();
             continue;
         }
         if (false == bUartInitialized)
@@ -144,8 +150,10 @@ void record_task(void *handle)
 #if (true == DEBUG_ENABLED)
         	PRINTF("INFO: Disabled LPUART7\r\n");
 #endif /* (true == DEBUG_ENABLED) */
-            /* Uloha nema co delat -> Delay */
-            /* Jedna uloha nesmi zastavit tu druhou */
+
+        	/*@note If The Task Has No Things To Do -> Delay
+        	 *		One Task Cannot Stop Another Task
+        	 */
         }
         if (ERROR_NONE != (error_t)CONSOLELOG_Recording())
         {
