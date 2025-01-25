@@ -58,7 +58,7 @@ error_t TIME_InitIRTC(void)
     	return ERROR_IRTC;
     }
 
-	if (SUCCESS != RTC_Init(&I2C_MASTER))
+	if (ERROR_NONE != RTC_Init(&I2C_MASTER))
 	{
 		PRINTF("ERR: Init. External-RTC Failed\r\n");
 		/*TODO: Set ERROR */

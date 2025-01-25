@@ -33,6 +33,7 @@
 #define ERROR_READ				0x0006u
 #define ERROR_CLOSE				0x0004u
 #define ERROR_FILESYSTEM		0x0007u
+#define ERROR_CONFIG			0x0008u
 
 #define ERROR_ADMA				0x0003u
 /**

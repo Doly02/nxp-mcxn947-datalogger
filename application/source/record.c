@@ -341,12 +341,16 @@ error_t CONSOLELOG_Recording(void)
         uint32_t stat_reg = g_sd.host->hostController.base->ADMA_ERR_STATUS;
         if (0x0 != (stat_reg & 0xC))
         {
-            PRINTF("ERR: Failed to Write Data To File. Error=%d\r\n", error);
+            PRINTF("ERR: Failed to Write Data To File. Error=%d\r\n", ERROR_ADMA);
             f_close(&g_fileObject);
             g_fileObject.obj.fs = NULL;
             return ERROR_ADMA;
         }
         error = f_write(&g_fileObject, processDmaBuffer, BLOCK_SIZE, &bytesWritten);
+        if (FR_OK != error)
+        {
+        	return (error_t)error;
+        }
 
         g_currentFileSize += BLOCK_SIZE;
         if (g_currentFileSize >= MAX_FILE_SIZE)
@@ -405,12 +409,16 @@ error_t CONSOLELOG_Flush(void)
 		uint32_t stat_reg = g_sd.host->hostController.base->ADMA_ERR_STATUS;
 		if (0x0 != (stat_reg & 0xC))
 		{
-			PRINTF("ERR: Failed to Write Data To File During Flush. Error=%d\r\n", error);
+			PRINTF("ERR: Failed to Write Data To File During Flush. Error=%d\r\n", ERROR_ADMA);
 			f_close(&g_fileObject);
 			g_fileObject.obj.fs = NULL;
 			return ERROR_ADMA;
 		}
 		error = f_write(&g_fileObject, processDmaBuffer, BLOCK_SIZE, &bytesWritten);
+		if (FR_OK != error)
+		{
+			return (error_t)error;
+		}
 		g_currentFileSize += BLOCK_SIZE;
 
 #if (true == DEBUG_ENABLED)
@@ -563,7 +571,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
 			break;
 		default:
 			PRINTF("ERR: Unsupported Baudrate Value: %d\r\n", baudrate);
-			return E_FAULT;
+			return ERROR_CONFIG;
 	}
 
     g_config.baudrate = baudrate;
