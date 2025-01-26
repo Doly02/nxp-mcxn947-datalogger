@@ -9,7 +9,7 @@
 /*******************************************************************************
  * Libraries
  ******************************************************************************/
-#include "disk.h"
+#include <mass_storage.h>
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -104,6 +104,10 @@ usb_device_notification_t USB_State(usb_device_struct_t *pDeviceHandle)
 	usb_device_ehci_state_struct_t *ehciState;
 	ehciState = (usb_device_ehci_state_struct_t *)(pDeviceHandle->controllerHandle);
 
+	if (0U != (ehciState->registerBase->OTGSC & USBHS_OTGSC_BSVIS_MASK))
+    {
+		return kUSB_DeviceNotifyDetach;
+    }
 	if (0U != (ehciState->registerBase->OTGSC & USBHS_OTGSC_BSV_MASK))
     {
 		return kUSB_DeviceNotifyAttach;
@@ -1034,7 +1038,7 @@ void USB_DeviceModeInit(void)
 
     if (kStatus_USB_Success != USB_DeviceDiskStorageInit())
     {
-        usb_echo("Card init failed\r\n");
+        usb_echo("ERR: Card init failed\r\n");
         // TODO: BLINK LED
         return;
     }
@@ -1046,12 +1050,8 @@ void USB_DeviceModeInit(void)
 
     if (kStatus_USB_Success != USB_DeviceInit(CONTROLLER_ID, USB_DeviceCallback, &g_msc.deviceHandle))
     {
-        usb_echo("USB device mass storage init failed\r\n");
+        usb_echo("ERR: USB device mass storage init failed\r\n");
         return;
-    }
-    else
-    {
-        usb_echo("USB device mass storage demo\r\n");
     }
     g_mscHandle->handle                  = g_msc.deviceHandle;
     ufi                                  = &g_mscHandle->mscUfi;

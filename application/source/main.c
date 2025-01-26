@@ -31,9 +31,10 @@
 #include "app_tasks.h"
 
 #include "semphr.h"
-#include "ctimer.h"
 
 #include "uart.h"
+#include "time.h"
+#include "error.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -71,20 +72,13 @@ uint8_t volatile usbAttached;
 /*******************************************************************************
  * Code
  ******************************************************************************/
-
-void APP_HandleError(void)
-{
-	while(1)
-	{
-		; /* Error State */
-	}
-}
-
 /*
  * @brief Functions of DMA That Are Used For Correct Work of RTC.
  */
 void APP_InitBoard(void)
 {
+	irtc_config_t irtcCfg;
+
     /* Attach FRO 12M to FLEXCOMM4 (debug console) */
     CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
     CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
@@ -136,13 +130,13 @@ void APP_InitBoard(void)
     CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
     BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
 
-#if (true == TIMER_ENABLED)
+#if (true == IRTC_ENABLED)
 
-    TIMER_Init();
+    CLOCK_SetupClk16KClocking(kCLOCK_Clk16KToVbat | kCLOCK_Clk16KToMain);
+    TIME_InitIRTC();
 
-#endif /* (true == TIMER_ENABLED) */
+#endif /* (true == IRTC_ENABLED) */
 
-    // UART_Init();
 }
  
 /*!
@@ -150,15 +144,13 @@ void APP_InitBoard(void)
  */
 int main(void)
 {
-
-	uint8_t ui8RetVal = E_FAULT;
 	usbAttached = 0;
 
 	g_TaskMutex = xSemaphoreCreateBinary();
 	if (NULL == g_TaskMutex)
 	{
         PRINTF("ERR: Failed to Create Semaphore!\n");
-        APP_HandleError();
+        ERR_HandleError();
 	}
 
 	/* Release Semaphore For record_task */
@@ -173,12 +165,12 @@ int main(void)
 				  MSC_STACK_SIZE,      		/* Number of Indexes In The xStack Array. 	*/
                   NULL,    					/* Parameter Passed Into The Task. 			*/
 				  TASK_PRIO,				/* Priority at Which The Task Is Created. 	*/
-				  &recordTaskStack[0],         /* Array To Use As The Task's Stack.		*/
+				  &recordTaskStack[0],      /* Array To Use As The Task's Stack.		*/
                   &recordTaskTCB );
     if (NULL == recordTaskHandle)
     {
     	PRINTF("ERR: MSC Task Creation Failed!\r\n");
-    	APP_HandleError();
+    	ERR_HandleError();
     }
 
 
@@ -195,7 +187,7 @@ int main(void)
     if (NULL == mscTaskHandle)
     {
     	PRINTF("ERR: MSC Task Creation Failed!\r\n");
-    	APP_HandleError();
+    	ERR_HandleError();
     }
 
 #endif /* (true == MSC_ENABLED) */
@@ -206,6 +198,6 @@ int main(void)
     	;
     }
 
-    return ui8RetVal;
+    return ERROR_OUT_OF_CYCLE;
 
 }

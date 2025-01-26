@@ -21,16 +21,14 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#include "disk.h"
-
-/* FreeRTOS kernel includes. */
+#include <mass_storage.h>
+#include <mass_storage.h>
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
 #include "timers.h"
 
-#include "disk.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/

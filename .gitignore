@@ -7,6 +7,12 @@
 *.obj
 *.elf
 
+# Personal files
+hardware/
+logs/
+tests/
+
+
 # Linker output
 *.ilk
 *.map

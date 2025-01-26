@@ -37,10 +37,12 @@
 #include "fsl_common.h"
 #include "rtc_ds3231.h"
 
+#include "error.h"
 #include "uart.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+#define FLUSH_TIMEOUT_TICKS pdMS_TO_TICKS(3000)
 
 /*******************************************************************************
  * Structures
@@ -72,7 +74,7 @@ typedef struct
 {
 	REC_version_t 	version;	/**< Board That Will Be Recorded	*/
 	uint32_t 		baudrate;	/**< Desired Baudrate				*/
-								/**< Maximum File Size 				*/
+	uint32_t		size;		/**< Maximum File Size 				*/
 								/**< Maximal Log. Time In Per File	*/
 
 } REC_config_t;
@@ -80,17 +82,15 @@ typedef struct
  * Prototypes
  ******************************************************************************/
 
-uint8_t CONSOLELOG_CreateFile(void);
-/**
- * @brief 		Creates Files Based On Time And Date.
- *
- * @param[in]	Time That Will Be Part of Filename.
- * @param[in]	Date That Will Be Part of Filename.
+/** TODO:
+ * @brief 		Creates Directory Based Actual Date.
  *
  * @return		Return Pointer to Created File Descriptor.
  */
-// FIL* CONSOLELOG_CreateFile(RTC_date_t date, RTC_time_t time);
+error_t CONSOLELOG_CreateFile(void);
 
+
+error_t CONSOLELOG_CreateFile(void)
 /**
  * @brief 		Returns Active Configuration.
  *
@@ -116,7 +116,7 @@ REC_version_t CONSOLELOG_GetVersion(void);
  * @return		uint32_t Baud Rate of Recorded Device
  *
  */
- uint32_t CONSOLELOG_GetBaudrate(void);
+uint32_t CONSOLELOG_GetBaudrate(void);
 
 /**
  * @brief		Checks If The File System Is Initialized
@@ -136,9 +136,9 @@ FRESULT CONSOLELOG_CheckFileSystem(void);
  * 				- Formatting The File System If It is Not Found (If
  * 				  Formatting is Enabled).
  *
- * @return 		uint8_t Returns 0 on Success, Otherwise E_FAULT.
+ * @return 		error_t Returns ERROR_NONE on Success, Otherwise ERROR_FILESYSTEM.
  */
-uint8_t CONSOLELOG_Init(void);
+error_t CONSOLELOG_Init(void);
 
 /**
  * @brief 		Starts The Recording Process by Initializing the File
@@ -147,17 +147,27 @@ uint8_t CONSOLELOG_Init(void);
  * @details 	Function Uses `CONSOLELOG_Init` To Initialize The Recording
  * 				System.
  *
- * @return 		uint8_t Returns 0 on Success, Otherwise E_FAULT.
+ * @return 		error_t Returns 0 on Success, Otherwise Returns a Non-Zero Value.
  */
-uint8_t CONSOLELOG_Recording(void);
+error_t CONSOLELOG_Recording(uint32_t file_size);
 
-void CONSOLELOG_Flush(void);
+/**
+ * @brief 		Flushes Collected Data To The File If No Other Data Have Been Received
+ * 				By The Time Specified By TIMEOUT Macro.
+ * @details		If The Data Does Not Arrive By The Time Specified By The TIMEOUT Macro,
+ * 				Then This Function Flushes All The Data So Far Stored In The DMA Buffer,
+ * 				Saves It To a File on The Physical Media and Closes The File
+ *
+ * @return		error_t Returns 0 on Success, Otherwise Returns a Non-Zero Value.
+ */
+error_t CONSOLELOG_Flush(void);
+
 /**
  * @brief 		De-Initializes The Recording System and Un-Mounts The File System.
  *
- * @return 		uint8_t Returns 0 on Success, Otherwise E_FAULT.
+ * @return 		error_t Returns 0 on Success, Otherwise E_FAULT.
  */
-uint8_t CONSOLELOG_Deinit(void);
+error_t CONSOLELOG_Deinit(void);
 
 /**
  * @brief		Reads and Processes The Configuration File From The Root directory.
@@ -165,10 +175,10 @@ uint8_t CONSOLELOG_Deinit(void);
  * @details		This Function Scans The Root Directory For a Configuration File, If The File is Found
  * 				Reads its Contents Into g_config Buffer.
  *
- * @return 		uint8_t Returns 0 If Configuration File Is Correctly Processed,
+ * @return 		error_t Returns 0 If Configuration File Is Correctly Processed,
  * 				Otherwise Returns E_FAULT.
  */
-uint8_t CONSOLELOG_ReadConfig(void);
+error_t CONSOLELOG_ReadConfig(void);
 
 /**
  * @brief 		Processes The Content of The Configuration File To Extract
@@ -177,10 +187,10 @@ uint8_t CONSOLELOG_ReadConfig(void);
  * @param[in] 	Content The Content of The Configuration File as a Null-Terminated
  * 				String.
  *
- * @return 		uint8_t Returns 0 If Configuration File Is Correctly Processed,
+ * @return 		error_t Returns 0 If Configuration File Is Correctly Processed,
  * 				Otherwise Returns E_FAULT.
  */
-uint8_t CONSOLELOG_ProccessConfigFile(const char *content);
+error_t CONSOLELOG_ProccessConfigFile(const char *content);
 
 
 #endif /* RECORD_H_ */

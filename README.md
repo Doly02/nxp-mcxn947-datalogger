@@ -1,11 +1,9 @@
-## Datalogger With Recording on SD Card And Prevention of Data Loss In Case of Power Failure 
+## Digital Data Logger with Information Loss Prevention in Case of Power Failure
 
 - Author: Tomáš Dolák 
 - Login: [xdolak09](https://www.vut.cz/lide/tomas-dolak-247220)
 - Email: <xdolak09@stud.fit.vutbr.cz>
-<br>
-
-- Supervisor: Martin Moštěk 
+- Supervisor: Ing. Martin Moštěk PhD., Ing. Výclav Šímek
 
 The Goal of This Project Is To Developt Datalogger That Will Record Datalogs From UART Peripheral And Store Them 
 on The SD Card, And With Prevention of Data Loss in Case of Power Failure.   

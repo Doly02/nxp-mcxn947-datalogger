@@ -12,6 +12,7 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
+#include <mass_storage.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -22,8 +23,6 @@
 #include "usb_device_msc.h"
 #include "usb_device_ch9.h"
 #include "usb_device_descriptor.h"
-#include "disk.h"
-
 #include "usb_disk_adapter.h"
 #include "fsl_device_registers.h"
 #include "fsl_debug_console.h"
@@ -47,9 +46,9 @@
 #include "sdmmc_config.h"
 
 #if defined(USB_DEVICE_CONFIG_EHCI) && (USB_DEVICE_CONFIG_EHCI > 0)
-#ifndef CONTROLLER_ID
-#define CONTROLLER_ID kUSB_ControllerEhci0
-#endif
+	#ifndef CONTROLLER_ID
+	#define CONTROLLER_ID kUSB_ControllerEhci0
+	#endif
 #endif
 
 #define USB_DEVICE_INTERRUPT_PRIORITY (7U)

@@ -59,7 +59,7 @@ void UART_Init(uint32_t baudrate)
     lpuart_config_t config;
 
     LPUART_GetDefaultConfig(&config);
-    config.baudRate_Bps 	= 230400;
+    config.baudRate_Bps 	= baudrate;
     config.isMsb        	= false;
 
     config.enableTx     	= false;
