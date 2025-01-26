@@ -165,7 +165,7 @@ int main(void)
 				  MSC_STACK_SIZE,      		/* Number of Indexes In The xStack Array. 	*/
                   NULL,    					/* Parameter Passed Into The Task. 			*/
 				  TASK_PRIO,				/* Priority at Which The Task Is Created. 	*/
-				  &recordTaskStack[0],         /* Array To Use As The Task's Stack.		*/
+				  &recordTaskStack[0],      /* Array To Use As The Task's Stack.		*/
                   &recordTaskTCB );
     if (NULL == recordTaskHandle)
     {

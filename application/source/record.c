@@ -142,14 +142,17 @@ void LP_FLEXCOMM7_IRQHandler(void)
 error_t CONSOLELOG_CreateFile(void)
 {
     FRESULT status;
-    char fileName[64];					//<! TODO: Vypocitat Maximalni pocet souboru za den na zaklade baud rate
+    char fileName[32];					//<! TODO: Vypocitat Maximalni pocet souboru za den na zaklade baud rate
     irtc_datetime_t datetimeGet;		//<! To Store Time in File Meta-Data
     FILINFO fno;						//<! File Meta-Data
 
     IRTC_GetDatetime(RTC, &datetimeGet);
 
     /* Generate a New File Name */
-    snprintf(fileName, sizeof(fileName), FILE_NAME_TEMPLATE, g_fileCounter++);
+    snprintf(fileName, sizeof(fileName), "/%04d%02d%02d_%02d%02d%02d_%u.txt",
+             datetimeGet.year, datetimeGet.month, datetimeGet.day,
+             datetimeGet.hour, datetimeGet.minute, datetimeGet.second,
+             g_fileCounter++);
 
     /* Open New File */
     status = f_open(&g_fileObject, fileName, (FA_WRITE | FA_CREATE_ALWAYS));
@@ -362,7 +365,7 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
         g_currentFileSize += BLOCK_SIZE;
         if (g_currentFileSize >= file_size)
         {
-            PRINTF("INFO: File Size Limit Reached. Closing file.\r\n");
+            PRINTF("INFO: File Size Limit Reached. Closing file. (LIMIT: %d, CURRENT %d)\r\n", file_size, g_currentFileSize);
             f_close(&g_fileObject);
             g_fileObject.obj.fs = NULL;
         }
@@ -527,6 +530,7 @@ error_t CONSOLELOG_ReadConfig(void)
 
 				if (ERROR_NONE != CONSOLELOG_ProccessConfigFile((const char *)g_dmaBuffer1))
 				{
+					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
 					f_close(&configFile);
 					f_closedir(&dir);
 					return ERROR_READ;

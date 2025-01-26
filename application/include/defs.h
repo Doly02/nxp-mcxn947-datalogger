@@ -93,4 +93,17 @@
  */
 #define CONFIG_FILE 			"CONFIG"
 
+/*
+ * @brief 	Default Baud Rate If The Configuration File Could Not Be
+ * 			Read Properly.
+ */
+#define DEFAULT_BAUDRATE		230400
+
+/*
+ * @brief	Default Maximal File Size If The Configuration File Could
+ * 			Not Be Read Properly.
+ */
+#define DEFAULT_MAX_FILESIZE	8192
+
+
 #endif /* DEFS_H_ */

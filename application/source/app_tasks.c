@@ -114,18 +114,20 @@ void record_task(void *handle)
 	/* Read Configuration File */
 	if (ERROR_NONE != CONSOLELOG_ReadConfig())
 	{
-		u32Baudrate = 320400;
+		u32Baudrate = DEFAULT_BAUDRATE;
+		u32FileSize = DEFAULT_MAX_FILESIZE;
 		PRINTF("INFO: Configuration File (config) Not Found\r\n");
-		PRINTF("INFO: Default Configuration: \r\n");
-		PRINTF("Baudrate=%d\r\n", u32Baudrate);
-		PRINTF("File Size=%d\r\n", 8192);
+		PRINTF("INFO: Default Configuration:\r\n");
 	}
 	else
 	{
 		PRINTF("INFO: Configuration File Found\r\n");
+		PRINTF("INFO: Configuration:\r\n");
 		u32Baudrate = CONSOLELOG_GetBaudrate();
 		u32FileSize = CONSOLELOG_GetFileSize();
 	}
+	PRINTF("Baudrate=%d\r\n", u32Baudrate);
+	PRINTF("File Size=%d\r\n", u32FileSize);
 
 	/* Initialize Application UART */
 	uint32_t adj_ticks = FLUSH_TIMEOUT_TICKS;
