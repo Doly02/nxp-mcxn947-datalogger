@@ -387,7 +387,12 @@ error_t CONSOLELOG_Flush(void)
 	UINT bytesWritten;
 
 	uint32_t currentTick = xTaskGetTickCount();
-	uint32_t lastTick = __atomic_load_n(&lastDataTick, __ATOMIC_RELAXED);
+
+	/*
+	 * __ATOMIC_ACQUIRE - 	Ensures That All Read Values Are Consistent
+	 * 						With Pre-Read Operations.
+	 * */
+	uint32_t lastTick = __atomic_load_n(&lastDataTick, __ATOMIC_ACQUIRE);
 
 
 	if ((currentTick - lastTick >= FLUSH_TIMEOUT_TICKS) && dmaIndex > 0)
