@@ -42,6 +42,7 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+#define FLUSH_TIMEOUT_TICKS pdMS_TO_TICKS(3000)
 
 /*******************************************************************************
  * Structures
@@ -73,7 +74,7 @@ typedef struct
 {
 	REC_version_t 	version;	/**< Board That Will Be Recorded	*/
 	uint32_t 		baudrate;	/**< Desired Baudrate				*/
-								/**< Maximum File Size 				*/
+	uint32_t		size;		/**< Maximum File Size 				*/
 								/**< Maximal Log. Time In Per File	*/
 
 } REC_config_t;

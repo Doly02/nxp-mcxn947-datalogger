@@ -91,7 +91,6 @@ void msc_task(void *handle)
 
 void record_task(void *handle)
 {
-	assert(NULL != handle);
 
 	error_t u16RetVal 		= ERROR_UNKNOWN;
 	uint32_t u32Baudrate 	= 0;
@@ -112,15 +111,24 @@ void record_task(void *handle)
 	}
 
 	/* Read Configuration File */
-	/*
-	if (0 != CONSOLELOG_ReadConfig())
+	if (ERROR_NONE != CONSOLELOG_ReadConfig())
 	{
-		return;
+		u32Baudrate = 320400;
+		PRINTF("INFO: Configuration File (config) Not Found\r\n");
+		PRINTF("INFO: Default Configuration: \r\n");
+		PRINTF("Baudrate=%d\r\n", u32Baudrate);
+		PRINTF("File Size=%d\r\n", 8192);
 	}
-	u32Baudrate = CONSOLELOG_GetBaudrate(); */
-	u32Baudrate = 320400;
+	else
+	{
+		PRINTF("INFO: Configuration File Found\r\n");
+		u32Baudrate = CONSOLELOG_GetBaudrate();
+	}
 
 	/* Initialize Application UART */
+	uint32_t adj_ticks = FLUSH_TIMEOUT_TICKS;
+	PRINTF("DEBUG: Ticks=%d\r\n", adj_ticks);
+
 
     while (1)
     {
@@ -160,8 +168,11 @@ void record_task(void *handle)
         	/* Look At The Error */
         	ERR_HandleError();
         }
-
-        CONSOLELOG_Flush();
+        if (ERROR_NONE != (error_t)CONSOLELOG_Flush())
+        {
+        	/* Look At The Error */
+        	ERR_HandleError();
+        }
     }
 }
 

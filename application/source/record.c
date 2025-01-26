@@ -33,8 +33,9 @@
 
 #define MAX_FILE_SIZE 		8192 			// Maximum file size in bytes (8 KB)
 
-#define FLUSH_TIMEOUT_TICKS pdMS_TO_TICKS(3000)
 #define FILE_NAME_TEMPLATE 	"/log_%d.txt" 	// File name template
+
+#define GET_WAIT_INTERVAL(seconds)   ((seconds) * 1000 / configTICK_RATE_HZ)
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -373,6 +374,7 @@ error_t CONSOLELOG_Flush(void)
 	UINT bytesWritten;
 
 	uint32_t currentTick = xTaskGetTickCount();
+
 	if ((currentTick - lastDataTick >= FLUSH_TIMEOUT_TICKS) && dmaIndex > 0)
 	{
 		PRINTF("INFO: Flush Triggered. Writing Remaining Data To File.\r\n");
@@ -540,8 +542,11 @@ error_t CONSOLELOG_ReadConfig(void)
 error_t CONSOLELOG_ProccessConfigFile(const char *content)
 {
     const char *key = "baudrate=";
+    const char *keyFileSize = "file_size=";
+
     char *found;
-    int32_t baudrate;
+    uint32_t baudrate;
+    uint32_t value;
 
     /* Find Key "baudrate=" */
     found = strstr(content, key);
@@ -554,7 +559,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     // Move Pointer Behind "baudrate="
     found += strlen(key);
     // Convert Value To INT
-    baudrate = atoi(found);
+    baudrate = (uint32_t)atoi(found);
     if (0 >= baudrate)
 	{
 		PRINTF("ERR: Invalid Baudrate Value.\r\n");
@@ -575,5 +580,32 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
 	}
 
     g_config.baudrate = baudrate;
+
+    /* Find Key "file_size=" */
+    found = strstr(content, keyFileSize);
+    if (NULL == found)
+    {
+        PRINTF("ERR: Key 'file_size=' Not Found.\r\n");
+        return ERROR_READ;
+    }
+
+    // Move Pointer Behind "file_size="
+    found += strlen(keyFileSize);
+    // Convert Value To INT
+    value = (uint32_t)atoi(found);
+    if (0 >= value)
+    {
+        PRINTF("ERR: Invalid File Size Value.\r\n");
+        return ERROR_READ;
+    }
+    if (value % 512 != 0)
+    {
+        PRINTF("ERR: File Size %d Is Not a Multiple of 512.\r\n", value);
+        return ERROR_CONFIG;
+    }
+
+    g_config.size = value;  // Store File Size in Config
+    PRINTF("DEBUG: File Size Set To %d Bytes.\r\n", g_config.size);
+
     return ERROR_NONE;
 }
