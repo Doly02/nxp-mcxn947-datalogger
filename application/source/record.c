@@ -72,7 +72,11 @@ static bool dmaBufferReady = false;
 static uint16_t g_blockIndex = 0;
 /*! @brief Data read from the card */
 
+/*
+ * @brief Value of Ticks When Last Character Was Received Thru LPUART.
+ */
 static TickType_t lastDataTick = 0;
+
 /**
  * @defgroup UART Management
  * @brief Group Contains Variables For Recording From UART.
@@ -383,9 +387,13 @@ error_t CONSOLELOG_Flush(void)
 	UINT bytesWritten;
 
 	uint32_t currentTick = xTaskGetTickCount();
+	uint32_t lastTick = __atomic_load_n(&lastDataTick, __ATOMIC_RELAXED);
 
-	if ((currentTick - lastDataTick >= FLUSH_TIMEOUT_TICKS) && dmaIndex > 0)
+
+	if ((currentTick - lastTick >= FLUSH_TIMEOUT_TICKS) && dmaIndex > 0)
 	{
+		PRINTF("INFO: Current Ticks = %d.\r\n", currentTick);
+		PRINTF("INFO: Last Ticks = %d.\r\n", lastDataTick);
 		PRINTF("INFO: Flush Triggered. Writing Remaining Data To File.\r\n");
 
 		while (dmaIndex < BLOCK_SIZE)			// Fill Buffer With ' '

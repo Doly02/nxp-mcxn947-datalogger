@@ -130,9 +130,6 @@ void record_task(void *handle)
 	PRINTF("File Size=%d\r\n", u32FileSize);
 
 	/* Initialize Application UART */
-	uint32_t adj_ticks = FLUSH_TIMEOUT_TICKS;
-	PRINTF("DEBUG: Ticks=%d\r\n", adj_ticks);
-
 
     while (1)
     {
