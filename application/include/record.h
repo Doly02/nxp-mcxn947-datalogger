@@ -150,7 +150,7 @@ error_t CONSOLELOG_Init(void);
  *
  * @return 		error_t Returns 0 on Success, Otherwise Returns a Non-Zero Value.
  */
-error_t CONSOLELOG_Recording(void);
+error_t CONSOLELOG_Recording(uint32_t file_size);
 
 /**
  * @brief 		Flushes Collected Data To The File If No Other Data Have Been Received

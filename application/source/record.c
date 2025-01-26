@@ -190,6 +190,12 @@ uint32_t CONSOLELOG_GetBaudrate(void)
 	return g_config.baudrate;
 }
 
+uint32_t CONSOLELOG_GetFileSize(void)
+{
+	return g_config.size;
+}
+
+
 FRESULT CONSOLELOG_CheckFileSystem(void)
 {
     DIR sDir;
@@ -255,7 +261,7 @@ error_t CONSOLELOG_Init(void)
     return ERROR_NONE;
 }
 
-error_t CONSOLELOG_Recording(void)
+error_t CONSOLELOG_Recording(uint32_t file_size)
 {
     FRESULT error;
     UINT bytesWritten;               //<! Bytes Written Into SD Card
@@ -354,7 +360,7 @@ error_t CONSOLELOG_Recording(void)
         }
 
         g_currentFileSize += BLOCK_SIZE;
-        if (g_currentFileSize >= MAX_FILE_SIZE)
+        if (g_currentFileSize >= file_size)
         {
             PRINTF("INFO: File Size Limit Reached. Closing file.\r\n");
             f_close(&g_fileObject);
@@ -568,7 +574,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
 
     switch (baudrate)
 	{
-		case 320400U:
+		case 230400U:
 			g_config.version = WCT_AUTOS2;
 			break;
 		case 115200U:

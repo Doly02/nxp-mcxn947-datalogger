@@ -94,6 +94,7 @@ void record_task(void *handle)
 
 	error_t u16RetVal 		= ERROR_UNKNOWN;
 	uint32_t u32Baudrate 	= 0;
+	uint32_t u32FileSize 	= 0;
 	bool bUartInitialized 	= false;
 
 	/* Initialize's The SDHC Card */
@@ -123,6 +124,7 @@ void record_task(void *handle)
 	{
 		PRINTF("INFO: Configuration File Found\r\n");
 		u32Baudrate = CONSOLELOG_GetBaudrate();
+		u32FileSize = CONSOLELOG_GetFileSize();
 	}
 
 	/* Initialize Application UART */
@@ -163,7 +165,7 @@ void record_task(void *handle)
         	 *		One Task Cannot Stop Another Task
         	 */
         }
-        if (ERROR_NONE != (error_t)CONSOLELOG_Recording())
+        if (ERROR_NONE != (error_t)CONSOLELOG_Recording(u32FileSize))
         {
         	/* Look At The Error */
         	ERR_HandleError();
