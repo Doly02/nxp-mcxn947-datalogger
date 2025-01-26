@@ -87,10 +87,10 @@ typedef struct
  *
  * @return		Return Pointer to Created File Descriptor.
  */
+error_t CONSOLELOG_CreateDirectory(void);
+
+
 error_t CONSOLELOG_CreateFile(void);
-
-
-error_t CONSOLELOG_CreateFile(void)
 /**
  * @brief 		Returns Active Configuration.
  *

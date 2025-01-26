@@ -60,35 +60,54 @@ static FIL g_fileObject;
  */
 static char currentDirectory[32];
 
+/**
+ * @brief 	Configuration of The Data Logger on The Basis of Data
+ * 			Obtained From The Configuration File.
+ */
 static REC_config_t g_config;
 
-/* @brief decription about the read/write buffer
- * The size of the read/write buffer should be a multiple of 512, since SDHC/SDXC card uses 512-byte fixed
- * block length and this driver example is enabled with a SDHC/SDXC card.If you are using a SDSC card, you
- * can define the block length by yourself if the card supports partial access.
- * The address of the read/write buffer should align to the specific DMA data buffer address align value if
- * DMA transfer is used, otherwise the buffer address is not important.
- * At the same time buffer address/size should be aligned to the cache line size if cache is supported.
+/*
+ *  @brief decription about the read/write buffer
+ * 	The size of the read/write buffer should be a multiple of 512, since SDHC/SDXC card uses 512-byte fixed
+ * 	block length and this driver example is enabled with a SDHC/SDXC card.If you are using a SDSC card, you
+ * 	can define the block length by yourself if the card supports partial access.
+ * 	The address of the read/write buffer should align to the specific DMA data buffer address align value if
+ * 	DMA transfer is used, otherwise the buffer address is not important.
+ * 	At the same time buffer address/size should be aligned to the cache line size if cache is supported.
+ **************/
+
+/**
+ * @brief 	Data For Multi-Buffering - In Particular Dual-Buffering,
+ * 			One Is Always Filled, The Other Is Processed.
  */
-/*! @brief Data written to the card */
 SDK_ALIGN(uint8_t g_dmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
 SDK_ALIGN(uint8_t g_dmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
 /* DMA Buffer State */
-static uint8_t* activeDmaBuffer = g_dmaBuffer1;
-static uint8_t* processDmaBuffer = NULL;
-static uint16_t dmaIndex = 0; 					// Index in the active DMA buffer
 
-static bool dmaBufferReady = false;
-
-static uint16_t g_blockIndex = 0;
-/*! @brief Data read from the card */
-
-/*
- * @brief Value of Ticks When Last Character Was Received Thru LPUART.
+/**
+ * @brief 	Active Buffer Which Receives Data From UART Periphery.
  */
-static TickType_t lastDataTick = 0;
+static uint8_t* activeDmaBuffer = g_dmaBuffer1;
+
+/**
+ * @brief 	Pointer on DMA Buffer Into Which The Time Stamps Are Inserted.
+ */
+static uint8_t* processDmaBuffer = NULL;
+/**
+ * @brief 	Index Into Active DMA Buffer.
+ */
+static uint16_t dmaIndex 			= 0;
+
+static bool dmaBufferReady 			= false;
+
+static uint16_t g_blockIndex 		= 0;
+
+/**
+ * @brief 	Value of Ticks When Last Character Was Received Thru LPUART.
+ */
+static TickType_t lastDataTick 		= 0;
 
 /**
  * @defgroup UART Management
@@ -98,16 +117,39 @@ static TickType_t lastDataTick = 0;
 
 SDK_ALIGN(volatile uint8_t g_fifo[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);	// FIFO buffer
 
-volatile uint16_t g_writeIndex 		= 0;       // Index for writing into FIFO
-volatile uint16_t g_readIndex 		= 0;       // Index for reading from FIFO
-volatile bool fifoOverflow 			= false;   // Flag indicating FIFO overflow
+/**
+ * @brief	Index For Writing Into FIFO.
+ */
+volatile uint16_t g_writeIndex 		= 0;
+
+/**
+ * @brief 	Index For Reading From FIFO.
+ */
+volatile uint16_t g_readIndex 		= 0;
+
+/**
+ * @brief 	Flag Indicating FIFO Overflow.
+ */
+volatile bool fifoOverflow 			= false;
 
 /** @} */ // End of UART Management group
 
-static uint32_t g_currentFileSize 	= 0; 		// Tracks current file size
+/**
+ * @brief	Tracks Current File Size.
+ */
+static uint32_t g_currentFileSize 	= 0;
+
+/**
+ * @brief	Counter For Unique File Names.
+ */
 static uint16_t g_fileCounter 		= 1; 		// Counter for unique file names
 
-static bool g_flushCompleted = false;
+/**
+ * @brief 	Flush Completed Flag.
+ * @details If No Data of The LPUART Periphery Are Received Within The `FLUSH_TIMEOUT_TICKS`
+ * 			Interval, The Data Collected So Far In The Buffer Are Flushed To The File.
+ */
+static bool g_flushCompleted 		= false;
 
 /*******************************************************************************
  * Code
