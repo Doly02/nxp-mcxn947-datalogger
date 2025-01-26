@@ -83,15 +83,14 @@ typedef struct
  ******************************************************************************/
 
 /** TODO:
- * @brief 		Creates Files Based On Time And Date.
- *
- * @param[in]	Time That Will Be Part of Filename.
- * @param[in]	Date That Will Be Part of Filename.
+ * @brief 		Creates Directory Based Actual Date.
  *
  * @return		Return Pointer to Created File Descriptor.
  */
 error_t CONSOLELOG_CreateFile(void);
 
+
+error_t CONSOLELOG_CreateFile(void)
 /**
  * @brief 		Returns Active Configuration.
  *

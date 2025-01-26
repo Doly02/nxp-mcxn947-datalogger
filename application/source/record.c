@@ -43,9 +43,22 @@
 /*******************************************************************************
  * Global Variables
  ******************************************************************************/
-static FATFS g_fileSystem; /* File system object */
+/*
+ * @brief 	File System Object,
+ */
+static FATFS g_fileSystem;
 
-static FIL g_fileObject;   /* File object */
+/*
+ * @brief 	File Object.
+ * @details Pointer to Current Opened File.
+ */
+static FIL g_fileObject;
+
+/*
+ * @brief	Name Of The Folder Where The Files (Logs)
+ * 			From The Current Session Are Stored.
+ */
+static char currentDirectory[32];
 
 static REC_config_t g_config;
 
@@ -146,15 +159,15 @@ void LP_FLEXCOMM7_IRQHandler(void)
 error_t CONSOLELOG_CreateFile(void)
 {
     FRESULT status;
-    char fileName[32];					//<! TODO: Vypocitat Maximalni pocet souboru za den na zaklade baud rate
+    char fileName[64];					//<! TODO: Vypocitat Maximalni pocet souboru za den na zaklade baud rate
     irtc_datetime_t datetimeGet;		//<! To Store Time in File Meta-Data
     FILINFO fno;						//<! File Meta-Data
 
     IRTC_GetDatetime(RTC, &datetimeGet);
 
     /* Generate a New File Name */
-    snprintf(fileName, sizeof(fileName), "/%04d%02d%02d_%02d%02d%02d_%u.txt",
-             datetimeGet.year, datetimeGet.month, datetimeGet.day,
+    snprintf(fileName, sizeof(fileName), "%s/%04d%02d%02d_%02d%02d%02d_%u.txt",
+    		currentDirectory, datetimeGet.year, datetimeGet.month, datetimeGet.day,
              datetimeGet.hour, datetimeGet.minute, datetimeGet.second,
              g_fileCounter++);
 
@@ -179,6 +192,34 @@ error_t CONSOLELOG_CreateFile(void)
 
     g_currentFileSize = 0; // Reset file size
     PRINTF("INFO: Created New File %s.\r\n", fileName);
+    return ERROR_NONE;
+}
+
+error_t CONSOLELOG_CreateDirectory(void)
+{
+    FRESULT status;
+    irtc_datetime_t datetimeGet;
+    char directoryName[32];
+    uint32_t counter = 1;
+
+    IRTC_GetDatetime(RTC, &datetimeGet);
+
+    /* Attempt to Create a New Folder With a Unique Name (Date + Cnt) */
+    do
+    {
+        snprintf(directoryName, sizeof(directoryName), "/%04d%02d%02d_%u",
+                 datetimeGet.year, datetimeGet.month, datetimeGet.day, counter++);
+        status = f_mkdir(directoryName);
+    } while (status == FR_EXIST && counter < 1000);
+
+    if (FR_OK != status)
+    {
+        PRINTF("ERR: Failed To Create Session Directory. Error=%d\r\n", status);
+        return ERROR_FILESYSTEM;
+    }
+    snprintf(currentDirectory, sizeof(currentDirectory), "%s", directoryName);
+    PRINTF("INFO: Created Directory %s.\r\n", currentDirectory);
+
     return ERROR_NONE;
 }
 
@@ -264,6 +305,12 @@ error_t CONSOLELOG_Init(void)
 #else
 	#error "ERR: f_mkfs() Function Is Disabled."
 #endif 	/* FF_USE_MKFS */
+
+    if (ERROR_NONE != CONSOLELOG_CreateDirectory())
+    {
+        PRINTF("ERR: Failed to create directory for logs.\r\n");
+        return ERROR_FILESYSTEM;
+    }
 
     return ERROR_NONE;
 }
