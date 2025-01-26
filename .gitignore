@@ -11,7 +11,7 @@
 hardware/
 logs/
 tests/
-
+editor/
 
 # Linker output
 *.ilk
