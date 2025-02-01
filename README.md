@@ -3,7 +3,8 @@
 - Author: Tomáš Dolák 
 - Login: [xdolak09](https://www.vut.cz/lide/tomas-dolak-247220)
 - Email: <xdolak09@stud.fit.vutbr.cz>
-- Supervisor: Ing. Martin Moštěk PhD., Ing. Výclav Šímek
+- Supervisor: Ing. Václav Šímek
+- Consultant: Ing. Martin Moštěk PhD. (NXP Semiconductors)
 
 The Goal of This Project Is To Developt Datalogger That Will Record Datalogs From UART Peripheral And Store Them 
 on The SD Card, And With Prevention of Data Loss in Case of Power Failure.   
