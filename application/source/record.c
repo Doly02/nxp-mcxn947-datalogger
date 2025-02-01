@@ -166,6 +166,12 @@ DWORD get_fattime(void)
            ((DWORD)datetime.minute << 5) |
            ((DWORD)(datetime.second / 2));
 }
+
+int CONSOLELOG_Abs(int x)
+{
+    return (x < 0) ? -x : x;
+}
+
 /**
  * @brief LPUART7 IRQ Handler.
  *
@@ -233,7 +239,7 @@ error_t CONSOLELOG_CreateFile(void)
     }
 
     g_currentFileSize = 0; // Reset file size
-    PRINTF("INFO: Created New File %s.\r\n", fileName);
+    PRINTF("INFO: Created Log %s.\r\n", fileName);
     return ERROR_NONE;
 }
 
@@ -484,7 +490,7 @@ error_t CONSOLELOG_Flush(void)
 	uint32_t lastTick = __atomic_load_n(&lastDataTick, __ATOMIC_ACQUIRE);
 
 
-	if ((currentTick - lastTick >= FLUSH_TIMEOUT_TICKS) && dmaIndex > 0)
+	if ((CONSOLELOG_Abs(currentTick - lastTick) >= FLUSH_TIMEOUT_TICKS) && dmaIndex > 0)
 	{
 		PRINTF("INFO: Current Ticks = %d.\r\n", currentTick);
 		PRINTF("INFO: Last Ticks = %d.\r\n", lastDataTick);
@@ -495,12 +501,12 @@ error_t CONSOLELOG_Flush(void)
 			activeDmaBuffer[dmaIndex++] = ' ';
 		}
 
-		processDmaBuffer = activeDmaBuffer;
-		dmaBufferReady = true;
+		processDmaBuffer 	= activeDmaBuffer;
+		dmaBufferReady 		= true;
 
 		// Switch To Second Buffer
-		activeDmaBuffer = (activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
-		dmaIndex = 0;
+		activeDmaBuffer 	= (activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
+		dmaIndex 			= 0;
 
 		if (NULL == g_fileObject.obj.fs)
 		{
@@ -568,7 +574,7 @@ error_t CONSOLELOG_Deinit(void)
 
 	/* Unmount File System From Logic Drive */
 	error = f_mount(NULL, "", 0);
-	if (error != FR_OK)
+	if (FR_OK != error)
 	{
 		PRINTF("ERR: Failed To Unmount File System. Error=%d\r\n", error);
 		return ERROR_RECORD;
@@ -600,12 +606,12 @@ error_t CONSOLELOG_ReadConfig(void)
     while (1)
 	{
     	error = f_readdir(&dir, &fno);
-    	if (error != FR_OK || fno.fname[0] == 0)
+    	if (FR_OK != error || 0 == fno.fname[0])
 		{
 			break; 	// End of Directory or Error
 		}
 
-    	PRINTF("DEBUG: File Name: %s\r\n", fno.fname);
+    	// PRINTF("DEBUG: File Name: %s\r\n", fno.fname);
 
     	if (!(fno.fattrib & AM_DIR))	// If Not Directory
     	{
@@ -668,10 +674,8 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
         return ERROR_READ;
     }
 
-    // Move Pointer Behind "baudrate="
-    found += strlen(key);
-    // Convert Value To INT
-    baudrate = (uint32_t)atoi(found);
+    found += strlen(key);					// Move Pointer Behind "baudrate="
+    baudrate = (uint32_t)atoi(found);		// Convert Value To INT
     if (0 >= baudrate)
 	{
 		PRINTF("ERR: Invalid Baudrate Value.\r\n");
@@ -701,10 +705,8 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
         return ERROR_READ;
     }
 
-    // Move Pointer Behind "file_size="
-    found += strlen(keyFileSize);
-    // Convert Value To INT
-    value = (uint32_t)atoi(found);
+    found += strlen(keyFileSize);			// Move Pointer Behind "file_size="
+    value = (uint32_t)atoi(found);			// Convert Value To INT
     if (0 >= value)
     {
         PRINTF("ERR: Invalid File Size Value.\r\n");
@@ -712,8 +714,10 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     }
     if (value % 512 != 0)
     {
-        PRINTF("ERR: File Size %d Is Not a Multiple of 512.\r\n", value);
-        return ERROR_CONFIG;
+    	/* Round Up To 512 */
+        uint32_t roundedValue = ((value + 511) / 512) * 512;
+        PRINTF("WARN: File Size %d Is Not a Multiple of 512. Rounding Up to %d.\r\n", value, roundedValue);
+        value = roundedValue;
     }
 
     g_config.size = value;  // Store File Size in Config
