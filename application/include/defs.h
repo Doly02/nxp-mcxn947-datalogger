@@ -91,7 +91,7 @@
 /**
  * @brief Configuration File.
  */
-#define CONFIG_FILE 			"CONFIG"
+#define CONFIG_FILE 			"config"
 
 /*
  * @brief 	Default Baud Rate If The Configuration File Could Not Be
