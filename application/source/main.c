@@ -19,19 +19,20 @@
  * Includes
  ******************************************************************************/
 
-/* Freescale includes. */
+/* Freescale Includes. */
 #include "fsl_device_registers.h"
 #include "fsl_debug_console.h"
+#include "fsl_clock.h"
+
 #include "pin_mux.h"
 #include "clock_config.h"
 #include "board.h"
 
-#include "fsl_clock.h"
-
-#include "app_tasks.h"
-
+/* FreeRTOS Includes. */
 #include "semphr.h"
 
+/* Application Includes */
+#include "app_tasks.h"
 #include "uart.h"
 #include "time.h"
 #include "error.h"
@@ -60,16 +61,13 @@ static StaticTask_t recordTaskTCB;
 
 usb_msc_struct_t g_msc;
 
-TaskHandle_t mscTaskHandle = NULL;
-TaskHandle_t recordTaskHandle = NULL;
-
-#if 1
+TaskHandle_t mscTaskHandle 		= NULL;
+TaskHandle_t recordTaskHandle 	= NULL;
 
 SemaphoreHandle_t g_TaskMutex;
 
 uint8_t volatile usbAttached;
 
-#endif
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -141,6 +139,7 @@ void APP_InitBoard(void)
 #endif /* (true == IRTC_ENABLED) */
 
 #if (true == CONTROL_LED_ENABLED)
+
     GPIO_ConfigureGpioPins();
 
 #endif /* (true == CONTROL_LED_ENABLED) */
