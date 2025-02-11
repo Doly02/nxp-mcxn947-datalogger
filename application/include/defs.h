@@ -80,6 +80,9 @@
  */
 #define IRTC_ENABLED			(true)
 
+
+#define CONTROL_LED_ENABLED		(true)
+
 #if (CTIMER_ENABLED == IRTC_ENABLED)
 	/*#error "ERR: Bad Selection of Time Adjustement Function!"*/
 #else
@@ -88,6 +91,7 @@
 	#endif
 #endif /* (CTIMER_ENABLED == IRTC_ENABLED) */
 
+#define TMP_MEASUREMENT_ENABLED	(true)
 /**
  * @brief Configuration File.
  */

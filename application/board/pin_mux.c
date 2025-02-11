@@ -62,6 +62,33 @@ BOARD_InitPins:
  * END ****************************************************************************************************************/
 void BOARD_InitPins(void)
 {
+#if (true == CONTROL_LED_ENABLED)
+	/* Enables the clock for PORT1: Enables clock */
+	CLOCK_EnableClock(kCLOCK_Port0);
+    const port_pin_config_t pinB12_p0_10 = {/* Internal pull-up/down resistor is disabled */
+                                                      kPORT_PullDisable,
+                                                      /* Low internal pull resistor value is selected. */
+                                                      kPORT_LowPullResistor,
+                                                      /* Fast slew rate is configured */
+                                                      kPORT_FastSlewRate,
+                                                      /* Passive input filter is disabled */
+                                                      kPORT_PassiveFilterDisable,
+                                                      /* Open drain output is disabled */
+                                                      kPORT_OpenDrainDisable,
+                                                      /* Low drive strength is configured */
+                                                      kPORT_LowDriveStrength,
+                                                      /* Pin is configured as PIO0_10 */
+                                                      kPORT_MuxAlt0,
+                                                      /* Digital input enabled */
+                                                      kPORT_InputBufferEnable,
+                                                      /* Digital input is not inverted */
+                                                      kPORT_InputNormal,
+                                                      /* Pin Control Register fields [15:0] are not locked */
+                                                      kPORT_UnlockRegister};
+    /* PORT0_10 (pin B12) is configured as PIO0_10 */
+    PORT_SetPinConfig(PORT0, 10U, &pinB12_p0_10);
+
+#endif /*(true == CONTROL_LED_ENABLED) */
     /* Enables the clock for PORT1: Enables clock */
     CLOCK_EnableClock(kCLOCK_Port1);
 

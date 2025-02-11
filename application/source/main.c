@@ -35,6 +35,7 @@
 #include "uart.h"
 #include "time.h"
 #include "error.h"
+#include "gpio.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -72,6 +73,7 @@ uint8_t volatile usbAttached;
 /*******************************************************************************
  * Code
  ******************************************************************************/
+
 /*
  * @brief Functions of DMA That Are Used For Correct Work of RTC.
  */
@@ -112,7 +114,7 @@ void APP_InitBoard(void)
     /* Enables the clock for GPIO4 */
 	CLOCK_EnableClock(kCLOCK_Gpio4);
 
-    BOARD_InitBootPins();
+	BOARD_InitPins();
     BOARD_PowerMode_OD();
     BOARD_InitBootClocks();
     BOARD_InitDebugConsole();
@@ -135,7 +137,13 @@ void APP_InitBoard(void)
     CLOCK_SetupClk16KClocking(kCLOCK_Clk16KToVbat | kCLOCK_Clk16KToMain);
     TIME_InitIRTC();
 
+
 #endif /* (true == IRTC_ENABLED) */
+
+#if (true == CONTROL_LED_ENABLED)
+    GPIO_ConfigureGpioPins();
+
+#endif /* (true == CONTROL_LED_ENABLED) */
 
 }
  
