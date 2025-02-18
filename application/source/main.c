@@ -37,6 +37,7 @@
 #include "time.h"
 #include "error.h"
 #include "gpio.h"
+#include "temperature.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -112,6 +113,16 @@ void APP_InitBoard(void)
     /* Enables the clock for GPIO4 */
 	CLOCK_EnableClock(kCLOCK_Gpio4);
 
+#if 0
+    /* Attach PLL0 clock to I3C, 150MHz / 12 = 12.5MHz. */
+    CLOCK_SetClkDiv(kCLOCK_DivI3c1FClk, 12U);
+    CLOCK_AttachClk(kPLL0_to_I3C1FCLK);
+#else
+    /* Attach PLL0 clock to I3C, 150MHz / 6 = 25MHz. */
+    CLOCK_SetClkDiv(kCLOCK_DivI3c1FClk, 6U);
+    CLOCK_AttachClk(kPLL0_to_I3C1FCLK);
+#endif
+
 	BOARD_InitPins();
     BOARD_PowerMode_OD();
     BOARD_InitBootClocks();
@@ -144,6 +155,8 @@ void APP_InitBoard(void)
 
 #endif /* (true == CONTROL_LED_ENABLED) */
 
+    TMP_Init();
+    PRINTF("Temperature: %f\r\n", TMP_GetTemperature());
 }
  
 /*!

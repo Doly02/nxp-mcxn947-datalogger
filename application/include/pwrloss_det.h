@@ -1,49 +1,42 @@
 /******************************
  *  Project:        NXP MCXN947 Datalogger
- *  File Name:      mainc.c
+ *  File Name:      pwrloss_det.h
  *  Author:         Tomas Dolak
- *  Date:           07.08.2024
- *  Description:    Implements Datalogger Application.
+ *  Date:           01.02.2024
+ *  Description:    Implements The Logic Of Power Loss Detection.
  *
  * ****************************/
 
 /******************************
  *  @package        NXP MCXN947 Datalogger
- *  @file           main.c
+ *  @file           pwrloss_det.h
  *  @author         Tomas Dolak
- *  @date           07.08.2024
- *  @brief          Implements Datalogger Application.
+ *  @date           01.02.2024
+ *  @brief          Implements The Logic Of Power Loss Detection.
  * ****************************/
 
-
-#ifndef TIME_H_
-#define TIME_H_
+#ifndef PWRLOSS_DET_H_
+#define PWRLOSS_DET_H_
 
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#include "fsl_irtc.h"
-#include "rtc_ds3231.h"
-#include "error.h"
+#if 0
+#include "fsl_lpadc.h"
 
-#include "fsl_lpi2c_cmsis.h"
-#include "fsl_debug_console.h"
+#include "fsl_common.h"
+#include "fsl_vref.h"
+#include "fsl_spc.h"
 
+#endif
 /*******************************************************************************
  * Global Definitions
  ******************************************************************************/
 
-/*
- * @brief I2C Definitions.
- */
-#define I2C_MASTER         			Driver_I2C2
-#define EXAMPLE_LPI2C_DMA_BASEADDR 	(DMA0)
-#define EXAMPLE_LPI2C_DMA_CLOCK    	kCLOCK_Dma0
-
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
+void PWRLOSS_DetectionInit(void);
 
-error_t TIME_InitIRTC(void);
 
-#endif /* TIME_H_ */
+#endif /* PWRLOSS_DET_H_ */

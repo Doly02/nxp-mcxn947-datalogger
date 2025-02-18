@@ -34,7 +34,7 @@
 #include "error.h"
 
 /*******************************************************************************
- * Definitions
+ * Global Definitions
  ******************************************************************************/
 #define I2C_BAUDRATE            		100000
 #define I3C_OD_BAUDRATE         		625000
@@ -52,13 +52,24 @@
  */
 #define IBI_BUFFER_SIZE					8U
 
+#define	RW_BUFFER_SIZE					10
+
+/**
+ * @brief 	Common Command Code For RSTDAA (Reset Dynamic Address Assignment).
+ */
+#define CMD_RSTDAA_BROADCAST	0x06
+
+/*
+ * @brief 	Common Command Code For SETDASA (Set Dynamic Address From Static Address).
+ */
+#define CMD_SETDASA_BROADCAST	0x87
 /*******************************************************************************
- * Structures
+ * Global Structures
  ******************************************************************************/
 typedef void (*func_ptr)(void);
 
 /*******************************************************************************
- * Callback Functions
+ * Callback Prototypes
  ******************************************************************************/
 /**
  * @brief 	I3C Master Callback.
@@ -82,27 +93,38 @@ void I3C_IBICallback(I3C_Type *base,
 					i3c_ibi_state_t state);
 
 /*******************************************************************************
- * Functions
+ * Prototypes
  ******************************************************************************/
-int I3C_Initialize(void);
+error_t I3C_Initialize(void);
 
-int I3C_Deinitialize(void);
+error_t I3C_Deinitialize(void);
 
-int I3C_SetBaudrate(uint32_t i2c_freq);
+error_t I3C_SetBaudrate(uint32_t i2c_freq, uint32_t i3c_pp_freq, uint32_t i3c_od_freq);
 
 void I3C_SetBusType(i3c_bus_type_t type);
 
 void I3C_SetIBICallback( func_ptr callback);
 
-int I3C_Transfer(i3c_bus_type_t bus_type,
+error_t I3C_Transfer(i3c_bus_type_t bus_type,
 					i3c_direction_t direction,
 					uint8_t target_addr,
 					uint8_t *data,
+					uint8_t data_len,
 					bool stop_flag);
 
-error_t I3C_Write(uint8_t target_addr, uint8_t *data, bool stop_flag);
 
-error_t I3C_Read(uint8_t target_addr, uint8_t *data, bool stop_flag);
+// Data Lenght Is Probably Missing!
+error_t I3C_Write(uint8_t target_addr, uint8_t *data, uint8_t data_len, bool stop_flag);
+
+error_t I3C_Read(uint8_t target_addr, uint8_t *data, uint8_t data_len, bool stop_flag);
+
+error_t I3C_SetDynamicAddrFromStatic(uint32_t static_addr, uint32_t dynamic_addr);
+
+error_t I3C_SendBroadcastCmd(uint8_t cmd, uint8_t *data, uint8_t len);
+
+error_t I3C_SendCommonCommandCode(uint8_t addr, uint8_t code, uint8_t data);
+
+error_t I3C_ReceiveCommonCommandCode(uint8_t addr, uint8_t cmd, uint8_t *data, uint8_t len);
 
 
 #endif /* I3C_H_ */

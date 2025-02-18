@@ -1,49 +1,40 @@
 /******************************
  *  Project:        NXP MCXN947 Datalogger
- *  File Name:      mainc.c
+ *  File Name:      temperature.h
  *  Author:         Tomas Dolak
- *  Date:           07.08.2024
- *  Description:    Implements Datalogger Application.
+ *  Date:           11.02.2025
+ *  Description:    Implements The Logic Of Power Loss Detection.
  *
  * ****************************/
 
 /******************************
  *  @package        NXP MCXN947 Datalogger
- *  @file           main.c
+ *  @file           temperature.h
  *  @author         Tomas Dolak
- *  @date           07.08.2024
- *  @brief          Implements Datalogger Application.
+ *  @date           11.02.2025
+ *  @brief          Implements The Logic Of Power Loss Detection.
  * ****************************/
 
-
-#ifndef TIME_H_
-#define TIME_H_
+#ifndef TEMPERATURE_H_
+#define TEMPERATURE_H_
 
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#include "fsl_irtc.h"
-#include "rtc_ds3231.h"
+#include "i3c.h"
 #include "error.h"
-
-#include "fsl_lpi2c_cmsis.h"
-#include "fsl_debug_console.h"
 
 /*******************************************************************************
  * Global Definitions
  ******************************************************************************/
-
-/*
- * @brief I2C Definitions.
- */
-#define I2C_MASTER         			Driver_I2C2
-#define EXAMPLE_LPI2C_DMA_BASEADDR 	(DMA0)
-#define EXAMPLE_LPI2C_DMA_CLOCK    	kCLOCK_Dma0
+#define SENSOR_STATIC_ADDR  0x48U  // Statická adresa senzoru (I2C mód)
+#define SENSOR_DYNAMIC_ADDR 0x08U  // Dynamická adresa (přiřazená)
 
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
+error_t TMP_Init(void);
 
-error_t TIME_InitIRTC(void);
+float TMP_GetTemperature(void);
 
-#endif /* TIME_H_ */
+#endif /* TEMPERATURE_H_ */

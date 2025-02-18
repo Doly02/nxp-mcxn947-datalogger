@@ -164,9 +164,9 @@ void BOARD_InitPins(void)
     PORT_SetPinConfig(PORT1, 11U, &port1_11_pinD3_config);
 
     const port_pin_config_t port1_16_pinF6_config = {/* Internal pull-up resistor is enabled */
-                                                     kPORT_PullUp,
-                                                     /* Low internal pull resistor value is selected. */
-                                                     kPORT_LowPullResistor,
+            										 kPORT_PullUp,
+													 /* Low internal pull resistor value is selected. */
+													 kPORT_LowPullResistor,
                                                      /* Fast slew rate is configured */
                                                      kPORT_FastSlewRate,
                                                      /* Passive input filter is disabled */
@@ -187,9 +187,9 @@ void BOARD_InitPins(void)
     PORT_SetPinConfig(PORT1, 16U, &port1_16_pinF6_config);
 
     const port_pin_config_t port1_17_pinF4_config = {/* Internal pull-up resistor is enabled */
-                                                     kPORT_PullUp,
-                                                     /* Low internal pull resistor value is selected. */
-                                                     kPORT_LowPullResistor,
+            										 kPORT_PullUp,
+													 /* Low internal pull resistor value is selected. */
+													 kPORT_LowPullResistor,
                                                      /* Fast slew rate is configured */
                                                      kPORT_FastSlewRate,
                                                      /* Passive input filter is disabled */
