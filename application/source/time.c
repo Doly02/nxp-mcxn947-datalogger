@@ -38,15 +38,6 @@ uint32_t LPI2C2_GetFreq(void)
     return CLOCK_GetLPFlexCommClkFreq(2u);
 }
 
-uint8_t ConvertTo24HourFormat(uint8_t hours)
-{
-	if (hours == 12) {
-		hours = 0;
-	}
-
-    return hours;
-}
-
 error_t TIME_InitIRTC(void)
 {
 	irtc_datetime_t time;
@@ -119,14 +110,11 @@ error_t TIME_InitIRTC(void)
     	return ERROR_IRTC;
     }
 
-    // SDK_DelayAtLeastUs(3, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
     IRTC_GetDatetime(RTC, &time);
-
-    uint32_t hrs = ConvertTo24HourFormat(time.hour);
 
 #if (true == DEBUG_ENABLED)
 	PRINTF("DEBUG: Internal RTC=%d/%d/%d %d:%d:%2d\r\n", time.year, time.month, time.day,
-			hrs, time.minute, time.second);
+			time.hour, time.minute, time.second);
 #endif /* (true == DEBUG_ENABLED) */
 
 	return ERROR_NONE;
