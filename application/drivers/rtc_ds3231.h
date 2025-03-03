@@ -16,12 +16,41 @@
  * Includes
  ******************************************************************************/
 #include <stdint.h>
+
 #include "defs.h"
+
 #include "fsl_lpi2c.h"
-#include "fsl_lpi2c_cmsis.h"
+#include "fsl_lpi2c_edma.h"
+#include "fsl_edma.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+#define E_FAULT 					1
+/**
+ * @brief 	I2C DMA Channel For Transmission.
+ */
+#define LPI2C_TX_DMA_CHANNEL       	0U
+
+/**
+ * @brief 	I2C DMA Channel For Reception.
+ */
+#define LPI2C_RX_DMA_CHANNEL    	1U
+
+/**
+ * @brief	Connection Between DMA Channel 0 and LP_FLEXCOMM2 Tx.
+ */
+#define LPI2C_TX_CHANNEL 			kDma0RequestMuxLpFlexcomm2Tx
+
+/**
+ * @brief	Connection Between DMA Channel 0 and LP_FLEXCOMM2 Rx.
+ */
+#define LPI2C_RX_EDMA_CHANNEL  		kDma0RequestMuxLpFlexcomm2Rx
+
+/**
+ * @brief Points To I2C Peripheral Unit (Specifically LPI2C2 Instance).
+ */
+#define I2C_MASTER 					((LPI2C_Type *)LPI2C2_BASE)
+
 /*
  * @brief Alarm Interrupt Enable Bits.
  */
@@ -93,13 +122,15 @@
  * @brief Application Configurable Items.
  */
 
-/*
- *@brief Speed for I2C Bus (Up To 400kHz -> Defined By DS3231
+
+/**
+ * @brief 	Desired Baud Rate For I2C Bus.
+ * @details Frequency - 100kHz (Up To 400kHz -> Defined By DS3231).
  */
-#define DS3231_I2C_SPEED		ARM_I2C_BUS_SPEED_STANDARD
+#define I2C_BAUDRATE               	100000U
 
 
-#define SUCCESS					0
+#define APP_SUCCESS					0
 /*******************************************************************************
  * Structures
  ******************************************************************************/
@@ -161,7 +192,7 @@ typedef enum
  * 						(To Keep The Driver As Universal As Possible, e.g To Use I2C With DMA,
  * 						Interrupt/Polling Mode,...).
  */
-uint8_t RTC_Init(ARM_DRIVER_I2C *pI2c);
+uint8_t RTC_Init(void);
 /*
  * @brief 				Converts Numbers From Decimal Base To BCD Base.
  * @param dec			Decimal Number.
@@ -195,7 +226,7 @@ void RTC_SetOscState(RTC_osc_state_t state);
  * @param val			Value That Will Be Writen Into Register.
  * @return				void
  */
-void RTC_Write(uint8_t regAddress, uint8_t val);
+uint8_t RTC_Write(uint8_t regAddress, uint8_t val);
 
 /*
  * @brief				Reads Value From RTC Register.

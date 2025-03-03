@@ -59,7 +59,7 @@ error_t TIME_InitIRTC(void)
     	return ERROR_IRTC;
     }
 
-	if (ERROR_NONE != RTC_Init(&I2C_MASTER))
+	if (ERROR_NONE != RTC_Init())
 	{
 		PRINTF("ERR: Init. External-RTC Failed\r\n");
 		/*TODO: Set ERROR */
@@ -100,8 +100,8 @@ error_t TIME_InitIRTC(void)
 
 #if (true == DEBUG_ENABLED)
 	uint32_t year = 2000 + rtc_date.year;
-	PRINTF("DEBUG: External RTC=%d/%d/%d %d:%d:%2d\r\n", year, rtc_date.month, rtc_date.date,
-			rtc_time.hrs, rtc_time.min, rtc_time.sec);
+	//PRINTF("DEBUG: External RTC=%d/%d/%d %d:%d:%2d\r\n", year, rtc_date.month, rtc_date.date,
+	//		rtc_time.hrs, rtc_time.min, rtc_time.sec);
 #endif /* (true == DEBUG_ENABLED) */
 
     status = IRTC_SetDatetime(RTC, &time);
@@ -112,10 +112,12 @@ error_t TIME_InitIRTC(void)
 
     IRTC_GetDatetime(RTC, &time);
 
+	//PRINTF("DEBUG: Before \r\n");
 #if (true == DEBUG_ENABLED)
 	PRINTF("DEBUG: Internal RTC=%d/%d/%d %d:%d:%2d\r\n", time.year, time.month, time.day,
 			time.hour, time.minute, time.second);
 #endif /* (true == DEBUG_ENABLED) */
+	//PRINTF("DEBUG: After \r\n");
 
 	return ERROR_NONE;
 }

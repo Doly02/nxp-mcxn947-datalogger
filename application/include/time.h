@@ -33,13 +33,6 @@
  * Global Definitions
  ******************************************************************************/
 
-/*
- * @brief I2C Definitions.
- */
-#define I2C_MASTER         			Driver_I2C2
-#define EXAMPLE_LPI2C_DMA_BASEADDR 	(DMA0)
-#define EXAMPLE_LPI2C_DMA_CLOCK    	kCLOCK_Dma0
-
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/

@@ -95,11 +95,9 @@ void APP_InitBoard(void)
 	/* Attach FRO 12M To FLEXCOMM2 (I2C for RTC) */
 	CLOCK_SetClkDiv(kCLOCK_DivFlexcom2Clk, 1U);
 	CLOCK_AttachClk(kFRO12M_to_FLEXCOMM2);
+	CLOCK_EnableClock(kCLOCK_Dma0);
 
 #endif /* (true == RTC_ENABLED) */
-
-	/* Enable DMA Clock */
-	CLOCK_EnableClock(EXAMPLE_LPI2C_DMA_CLOCK);
 
     /* Attach FRO HF to USDHC */
     CLOCK_SetClkDiv(kCLOCK_DivUSdhcClk, 1u);
@@ -113,30 +111,11 @@ void APP_InitBoard(void)
     /* Enables the clock for GPIO4 */
 	CLOCK_EnableClock(kCLOCK_Gpio4);
 
-#if 0
-    /* Attach PLL0 clock to I3C, 150MHz / 12 = 12.5MHz. */
-    CLOCK_SetClkDiv(kCLOCK_DivI3c1FClk, 12U);
-    CLOCK_AttachClk(kPLL0_to_I3C1FCLK);
-#else
-    /* Attach PLL0 clock to I3C, 150MHz / 6 = 25MHz. */
-    CLOCK_SetClkDiv(kCLOCK_DivI3c1FClk, 6U);
-    CLOCK_AttachClk(kPLL0_to_I3C1FCLK);
-#endif
-
 	BOARD_InitPins();
     BOARD_PowerMode_OD();
     BOARD_InitBootClocks();
     BOARD_InitDebugConsole();
 	PRINTF("Initialization!\r\n");
-
-#if (true == RTC_ENABLED)
-
-    /* Initialize DMA */
-	edma_config_t edmaConfig = { 0U };
-	EDMA_GetDefaultConfig(&edmaConfig);
-	EDMA_Init(EXAMPLE_LPI2C_DMA_BASEADDR, &edmaConfig);
-
-#endif /* (true == RTC_ENABLED) */
 
     CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
     BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
@@ -155,8 +134,8 @@ void APP_InitBoard(void)
 
 #endif /* (true == CONTROL_LED_ENABLED) */
 
-    TMP_Init();
-    PRINTF("Temperature: %f\r\n", TMP_GetTemperature());
+    // TMP_Init();
+    // PRINTF("Temperature: %f\r\n", TMP_GetTemperature());
 }
  
 /*!
