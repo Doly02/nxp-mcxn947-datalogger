@@ -161,7 +161,7 @@ error_t I3C_Initialize(void)
 		.transferComplete 	= I3C_Callback};
 
     I3C_MasterGetDefaultConfig(&config);
-    config.baudRate_Hz.i2cBaud          = I2C_BAUDRATE;
+    config.baudRate_Hz.i2cBaud          = I2C_BAUDRATE2;
     config.baudRate_Hz.i3cPushPullBaud  = I3C_PP_BAUDRATE;
     config.baudRate_Hz.i3cOpenDrainBaud = I3C_OD_BAUDRATE;
     config.enableOpenDrainStop          = false;

@@ -36,7 +36,7 @@
 /*******************************************************************************
  * Global Definitions
  ******************************************************************************/
-#define I2C_BAUDRATE            		100000
+#define I2C_BAUDRATE2            		100000
 #define I3C_OD_BAUDRATE         		625000
 #define I3C_PP_BAUDRATE         		1250000
 #define I3C_MASTER_CLOCK_FREQUENCY      CLOCK_GetI3cClkFreq(1U)

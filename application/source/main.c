@@ -95,11 +95,9 @@ void APP_InitBoard(void)
 	/* Attach FRO 12M To FLEXCOMM2 (I2C for RTC) */
 	CLOCK_SetClkDiv(kCLOCK_DivFlexcom2Clk, 1U);
 	CLOCK_AttachClk(kFRO12M_to_FLEXCOMM2);
+	CLOCK_EnableClock(kCLOCK_Dma0);
 
 #endif /* (true == RTC_ENABLED) */
-
-	/* Enable DMA Clock */
-	CLOCK_EnableClock(EXAMPLE_LPI2C_DMA_CLOCK);
 
     /* Attach FRO HF to USDHC */
     CLOCK_SetClkDiv(kCLOCK_DivUSdhcClk, 1u);
