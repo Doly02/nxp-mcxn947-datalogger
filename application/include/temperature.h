@@ -21,9 +21,12 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#include "i3c.h"
+
 #include "error.h"
 
+#include "fsl_lpi2c.h"
+#include "fsl_lpi2c_edma.h"
+#include "fsl_edma.h"
 /*******************************************************************************
  * Global Definitions
  ******************************************************************************/
@@ -33,8 +36,23 @@
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
-error_t TMP_Init(void);
+/**
+ * @brief		I2C Write Function.
+ *
+ * @param[in]	regAddress Address of The Register To Be Written To.
+ * @param[in]	val Array of Values To Be Written To The Register.
+ *
+ * @retval		If The Write Succeeds, Returns 0.
+ */
+uint8_t Write(uint8_t regAddress, uint8_t val[]);
 
-float TMP_GetTemperature(void);
+/**
+ * @brief		I2C Read Function.
+ *
+ * @param[in]	regAddress Address of The Register From Which The Reading Will Take Place.
+ *
+ * @retval		Returns The Read Value From The Registry.
+ */
+uint16_t Read(uint8_t regAddress);
 
 #endif /* TEMPERATURE_H_ */

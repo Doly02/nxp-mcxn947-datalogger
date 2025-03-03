@@ -153,8 +153,8 @@ void APP_InitBoard(void)
 
 #endif /* (true == CONTROL_LED_ENABLED) */
 
-    TMP_Init();
-    PRINTF("Temperature: %f\r\n", TMP_GetTemperature());
+    // TMP_Init();
+    // PRINTF("Temperature: %f\r\n", TMP_GetTemperature());
 }
  
 /*!
