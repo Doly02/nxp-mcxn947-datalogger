@@ -140,74 +140,51 @@ void BOARD_InitPins(void)
 
 #if (true == TMP_MEASUREMENT_ENABLED)
 
-    const port_pin_config_t port1_11_pinD3_config = {/* Internal pull-up/down resistor is disabled */
-                                                     kPORT_PullDisable,
+     const port_pin_config_t port1_16_config = {/* Internal pull-up resistor is enabled */
+                                                     kPORT_PullUp,
                                                      /* Low internal pull resistor value is selected. */
                                                      kPORT_LowPullResistor,
                                                      /* Fast slew rate is configured */
                                                      kPORT_FastSlewRate,
                                                      /* Passive input filter is disabled */
                                                      kPORT_PassiveFilterDisable,
-                                                     /* Open drain output is disabled */
-                                                     kPORT_OpenDrainDisable,
+                                                     /* Open drain output is enabled */
+                                                     kPORT_OpenDrainEnable,
                                                      /* Low drive strength is configured */
                                                      kPORT_LowDriveStrength,
-                                                     /* Pin is configured as I3C1_PUR */
-                                                     kPORT_MuxAlt10,
+                                                     /* Pin is configured as FC2_P0 */
+                                                     kPORT_MuxAlt2,
                                                      /* Digital input enabled */
                                                      kPORT_InputBufferEnable,
                                                      /* Digital input is not inverted */
                                                      kPORT_InputNormal,
                                                      /* Pin Control Register fields [15:0] are not locked */
                                                      kPORT_UnlockRegister};
-    /* PORT1_11 (pin D3) is configured as I3C1_PUR */
-    PORT_SetPinConfig(PORT1, 11U, &port1_11_pinD3_config);
+     /* PORT1_16 (pin F4) is configured as FC5_P0 */
+     PORT_SetPinConfig(PORT1, 16U, &port1_16_config);
 
-    const port_pin_config_t port1_16_pinF6_config = {/* Internal pull-up resistor is enabled */
-            										 kPORT_PullUp,
-													 /* Low internal pull resistor value is selected. */
-													 kPORT_LowPullResistor,
+     const port_pin_config_t port1_17_config = {/* Internal pull-up resistor is enabled */
+                                                     kPORT_PullUp,
+                                                     /* Low internal pull resistor value is selected. */
+                                                     kPORT_LowPullResistor,
                                                      /* Fast slew rate is configured */
                                                      kPORT_FastSlewRate,
                                                      /* Passive input filter is disabled */
                                                      kPORT_PassiveFilterDisable,
-                                                     /* Open drain output is disabled */
-                                                     kPORT_OpenDrainDisable,
+                                                     /* Open drain output is enabled */
+                                                     kPORT_OpenDrainEnable,
                                                      /* Low drive strength is configured */
                                                      kPORT_LowDriveStrength,
-                                                     /* Pin is configured as I3C1_SDA */
-                                                     kPORT_MuxAlt10,
+                                                     /* Pin is configured as FC2_P1 */
+                                                     kPORT_MuxAlt2,
                                                      /* Digital input enabled */
                                                      kPORT_InputBufferEnable,
                                                      /* Digital input is not inverted */
                                                      kPORT_InputNormal,
                                                      /* Pin Control Register fields [15:0] are not locked */
                                                      kPORT_UnlockRegister};
-    /* PORT1_16 (pin F6) is configured as I3C1_SDA */
-    PORT_SetPinConfig(PORT1, 16U, &port1_16_pinF6_config);
-
-    const port_pin_config_t port1_17_pinF4_config = {/* Internal pull-up resistor is enabled */
-            										 kPORT_PullUp,
-													 /* Low internal pull resistor value is selected. */
-													 kPORT_LowPullResistor,
-                                                     /* Fast slew rate is configured */
-                                                     kPORT_FastSlewRate,
-                                                     /* Passive input filter is disabled */
-                                                     kPORT_PassiveFilterDisable,
-                                                     /* Open drain output is disabled */
-                                                     kPORT_OpenDrainDisable,
-                                                     /* Low drive strength is configured */
-                                                     kPORT_LowDriveStrength,
-                                                     /* Pin is configured as I3C1_SCL */
-                                                     kPORT_MuxAlt10,
-                                                     /* Digital input enabled */
-                                                     kPORT_InputBufferEnable,
-                                                     /* Digital input is not inverted */
-                                                     kPORT_InputNormal,
-                                                     /* Pin Control Register fields [15:0] are not locked */
-                                                     kPORT_UnlockRegister};
-    /* PORT1_17 (pin F4) is configured as I3C1_SCL */
-    PORT_SetPinConfig(PORT1, 17U, &port1_17_pinF4_config);
+     /* PORT1_17 (pin G4) is configured as FC5_P1 */
+     PORT_SetPinConfig(PORT1, 17U, &port1_17_config);
 
 #endif /* (true == TMP_MEASUREMENT_ENABLED) */
 

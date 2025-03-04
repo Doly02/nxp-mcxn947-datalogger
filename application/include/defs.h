@@ -81,6 +81,8 @@
 #define IRTC_ENABLED			(true)
 
 
+#define TEMPERATURE_MEAS_ENABLED	(true)
+
 #define CONTROL_LED_ENABLED		(true)
 
 #if (CTIMER_ENABLED == IRTC_ENABLED)

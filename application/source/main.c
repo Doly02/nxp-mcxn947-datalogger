@@ -111,15 +111,16 @@ void APP_InitBoard(void)
     /* Enables the clock for GPIO4 */
 	CLOCK_EnableClock(kCLOCK_Gpio4);
 
-#if 0
-    /* Attach PLL0 clock to I3C, 150MHz / 12 = 12.5MHz. */
-    CLOCK_SetClkDiv(kCLOCK_DivI3c1FClk, 12U);
-    CLOCK_AttachClk(kPLL0_to_I3C1FCLK);
-#else
-    /* Attach PLL0 clock to I3C, 150MHz / 6 = 25MHz. */
-    CLOCK_SetClkDiv(kCLOCK_DivI3c1FClk, 6U);
-    CLOCK_AttachClk(kPLL0_to_I3C1FCLK);
-#endif
+#if (true == TEMPERATURE_MEAS_ENABLED)
+
+	CLOCK_SetClkDiv(kCLOCK_DivFlexcom5Clk, 1u);
+    CLOCK_AttachClk(kFRO12M_to_FLEXCOMM5);
+    CLOCK_EnableClock(kCLOCK_Dma1);
+
+    CLOCK_SetClkDiv(kCLOCK_DivCtimer0Clk, 1u);
+    CLOCK_AttachClk(kFRO_HF_to_CTIMER0);
+
+#endif /* (true == TEMPERATURE_MEAS_ENABLED) */
 
 	BOARD_InitPins();
     BOARD_PowerMode_OD();
@@ -153,8 +154,11 @@ void APP_InitBoard(void)
 
 #endif /* (true == CONTROL_LED_ENABLED) */
 
-    // TMP_Init();
-    // PRINTF("Temperature: %f\r\n", TMP_GetTemperature());
+#if (true == TEMPERATURE_MEAS_ENABLED)
+
+    TMP_Init();
+
+#endif /* (true == TEMPERATURE_MEAS_ENABLED) */
 }
  
 /*!

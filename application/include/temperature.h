@@ -55,4 +55,11 @@ uint8_t Write(uint8_t regAddress, uint8_t val[]);
  */
 uint16_t Read(uint8_t regAddress);
 
+/**
+ * @brief		Gets Temperature From On-Board P3T1755 Temperature Sensor.
+ *
+ * @retval		Returns Temperature As Float Number.
+ */
+float TMP_GetTemperature(void);
+
 #endif /* TEMPERATURE_H_ */
