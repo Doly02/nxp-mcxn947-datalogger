@@ -130,13 +130,16 @@ lpi2c_master_transfer_t xfer_I2C5 	= {0};
  ******************************************************************************/
 static void lpi2c_callback(LPI2C_Type *base, lpi2c_master_edma_handle_t *handle, status_t status, void *userData)
 {
-    /* Signal transfer success when received success status. */
+    /* Signal Transfer Success When Received Success Status */
 	if (kStatus_Success == status)
     {
     	gCompletionFlag_I2C5 = true;
     }
 }
 
+/*******************************************************************************
+ * Interrupt Handler Functions
+ ******************************************************************************/
 void CTIMER0_IRQHandler(void)
 {
 	float temp = TMP_GetTemperature();
@@ -155,23 +158,23 @@ void CTIMER0_IRQHandler(void)
  ******************************************************************************/
 uint8_t Write(uint8_t regAddress, uint8_t val[])
 {
-	uint8_t retVal 					= 1;
+	uint8_t retVal 			 = 1;
 
     xfer_I2C5.slaveAddress   = P3T1755_ADDR_7BIT;			/* Slave Address			*/
-    xfer_I2C5.direction      = kLPI2C_Write;					/* Direction (Read/Write)	*/
+    xfer_I2C5.direction      = kLPI2C_Write;				/* Direction (Read/Write)	*/
     xfer_I2C5.subaddressSize = 0;							/* Sub-Address Size 		*/
     xfer_I2C5.data           = val;							/* Transmitted Data			*/
     xfer_I2C5.dataSize       = 1;							/* Size of Transmitted Data	*/
     xfer_I2C5.flags          = kLPI2C_TransferDefaultFlag;	/* Flags (e.g. Stop Flag) 	*/
 
-    /* Send master non-blocking data to slave */
+    /* Send Data To Slave */
     retVal = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &xfer_I2C5);
     if (kStatus_Success != retVal)
     {
         return (0xFF);
     }
 
-    /*  Wait for transfer completed. */
+    /*  Wait For Transfer Completed */
 	while (false == gCompletionFlag_I2C5)
 	{
 		; /* Wait For Slave Complete */
@@ -253,23 +256,22 @@ uint8_t TMP_Init(void)
 
     /* Initialize Timer For Periodic Interrupts */
 	CTIMER_GetDefaultConfig(&config);
-	config.prescale = 144 - 1; 							// Low Freq From 144 MHz To 1 MHz
+	config.prescale = 144 - 1; 							/* Frequency From 144 MHz To 1 MHz 						*/
 	PRINTF("CTIMER CLK: %d\r\n", CLOCK_GetCTimerClkFreq(0U));
 
 	CTIMER_Init(CTIMER0, &config);
 
-	matchConfig.enableInterrupt = true;         		// Enable Interrupt If Match
-	matchConfig.enableCounterReset = true;      		// Reset Timer If Match
-	matchConfig.enableCounterStop = false;      		// Count After Match
-	matchConfig.matchValue = 10000000 - 1;              // Match Value (1M/cycles -> 1Hz)
-	matchConfig.outControl = kCTIMER_Output_NoAction; 	// Output Pin Off
+	matchConfig.enableInterrupt = true;         		/* Enable Interrupt If Match							*/
+	matchConfig.enableCounterReset = true;      		/* Reset Timer If Match 								*/
+	matchConfig.enableCounterStop = false;      		/* Count After Match									*/
+	matchConfig.matchValue = 60000000 - 1;              /* Match Value (6M cycles -> 10 Minutes Per Interrupt) 	*/
+	matchConfig.outControl = kCTIMER_Output_NoAction; 	/* Output Pin Off 										*/
 
 	/* Setup Match Register */
 	CTIMER_SetupMatch(CTIMER0, kCTIMER_Match_0, &matchConfig);
 
 	/* Enable IRQ */
 	EnableIRQWithPriority(CTIMER0_IRQn, 4);
-	// EnableIRQ(CTIMER0_IRQn);
 
 	/* Start Timer */
 	CTIMER_StartTimer(CTIMER0);
