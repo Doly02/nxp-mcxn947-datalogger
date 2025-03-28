@@ -65,7 +65,163 @@ void BOARD_InitPins(void)
 #if (true == CONTROL_LED_ENABLED)
 	/* Enables the clock for PORT1: Enables clock */
 	CLOCK_EnableClock(kCLOCK_Port0);
-    const port_pin_config_t pinB12_p0_10 = {/* Internal pull-up/down resistor is disabled */
+    CLOCK_EnableClock(kCLOCK_Port2);
+    CLOCK_EnableClock(kCLOCK_Port4);
+
+#if (true == CONTROL_LED_ENABLED)
+
+	/* enable clock for GPIOs*/
+	CLOCK_EnableClock(kCLOCK_Gpio0);
+    CLOCK_EnableClock(kCLOCK_Gpio2);
+    CLOCK_EnableClock(kCLOCK_Gpio4);
+
+    gpio_pin_config_t gpio0_7_pin_config = {
+    		.pinDirection = kGPIO_DigitalOutput,
+    		.outputLogic = 0U
+    	};
+	GPIO_PinInit(GPIO0, 7U, &gpio0_7_pin_config);
+
+	const port_pin_config_t port0_7_pin_config = {/* Internal pull-up/down resistor is disabled */
+													  kPORT_PullDisable,
+													  /* Low internal pull resistor value is selected. */
+													  kPORT_LowPullResistor,
+													  /* Fast slew rate is configured */
+													  kPORT_FastSlewRate,
+													  /* Passive input filter is disabled */
+													  kPORT_PassiveFilterDisable,
+													  /* Open drain output is disabled */
+													  kPORT_OpenDrainDisable,
+													  /* Low drive strength is configured */
+													  kPORT_LowDriveStrength,
+													  /* Pin is configured as PIO0_10 */
+													  kPORT_MuxAlt0,
+													  /* Digital input enabled */
+													  kPORT_InputBufferEnable,
+													  /* Digital input is not inverted */
+													  kPORT_InputNormal,
+													  /* Pin Control Register fields [15:0] are not locked */
+													  kPORT_UnlockRegister};
+	PORT_SetPinConfig(PORT0, 7U, &port0_7_pin_config);
+
+
+    gpio_pin_config_t gpio0_9_pin_config = {
+    		.pinDirection = kGPIO_DigitalOutput,
+    		.outputLogic = 0U
+    	};
+	GPIO_PinInit(GPIO0, 9U, &gpio0_9_pin_config);
+
+	const port_pin_config_t port0_9_pin_config = {/* Internal pull-up/down resistor is disabled */
+													  kPORT_PullDisable,
+													  /* Low internal pull resistor value is selected. */
+													  kPORT_LowPullResistor,
+													  /* Fast slew rate is configured */
+													  kPORT_FastSlewRate,
+													  /* Passive input filter is disabled */
+													  kPORT_PassiveFilterDisable,
+													  /* Open drain output is disabled */
+													  kPORT_OpenDrainDisable,
+													  /* Low drive strength is configured */
+													  kPORT_LowDriveStrength,
+													  /* Pin is configured as PIO0_10 */
+													  kPORT_MuxAlt0,
+													  /* Digital input enabled */
+													  kPORT_InputBufferEnable,
+													  /* Digital input is not inverted */
+													  kPORT_InputNormal,
+													  /* Pin Control Register fields [15:0] are not locked */
+													  kPORT_UnlockRegister};
+	PORT_SetPinConfig(PORT0, 9U, &port0_9_pin_config);
+
+    gpio_pin_config_t gpio0_13_pin_config = {
+    		.pinDirection = kGPIO_DigitalOutput,
+    		.outputLogic = 0U
+    	};
+	GPIO_PinInit(GPIO0, 13U, &gpio0_13_pin_config);
+
+	const port_pin_config_t port0_13_pin_config = {/* Internal pull-up/down resistor is disabled */
+													  kPORT_PullDisable,
+													  /* Low internal pull resistor value is selected. */
+													  kPORT_LowPullResistor,
+													  /* Fast slew rate is configured */
+													  kPORT_FastSlewRate,
+													  /* Passive input filter is disabled */
+													  kPORT_PassiveFilterDisable,
+													  /* Open drain output is disabled */
+													  kPORT_OpenDrainDisable,
+													  /* Low drive strength is configured */
+													  kPORT_LowDriveStrength,
+													  /* Pin is configured as PIO0_10 */
+													  kPORT_MuxAlt0,
+													  /* Digital input enabled */
+													  kPORT_InputBufferEnable,
+													  /* Digital input is not inverted */
+													  kPORT_InputNormal,
+													  /* Pin Control Register fields [15:0] are not locked */
+													  kPORT_UnlockRegister};
+	PORT_SetPinConfig(PORT0, 13U, &port0_13_pin_config);
+
+
+	gpio_pin_config_t gpio2_11_pin_config = {
+		.pinDirection = kGPIO_DigitalOutput,
+		.outputLogic = 0U
+	};
+	GPIO_PinInit(GPIO2, 11U, &gpio2_11_pin_config);
+
+	const port_pin_config_t port2_11_pin_config = {/* Internal pull-up/down resistor is disabled */
+													  kPORT_PullDisable,
+													  /* Low internal pull resistor value is selected. */
+													  kPORT_LowPullResistor,
+													  /* Fast slew rate is configured */
+													  kPORT_FastSlewRate,
+													  /* Passive input filter is disabled */
+													  kPORT_PassiveFilterDisable,
+													  /* Open drain output is disabled */
+													  kPORT_OpenDrainDisable,
+													  /* Low drive strength is configured */
+													  kPORT_LowDriveStrength,
+													  /* Pin is configured as PIO0_10 */
+													  kPORT_MuxAlt0,
+													  /* Digital input enabled */
+													  kPORT_InputBufferEnable,
+													  /* Digital input is not inverted */
+													  kPORT_InputNormal,
+													  /* Pin Control Register fields [15:0] are not locked */
+													  kPORT_UnlockRegister};
+	PORT_SetPinConfig(PORT2, 11U, &port2_11_pin_config);
+
+    gpio_pin_config_t gpio4_17_pin_config = {
+		.pinDirection = kGPIO_DigitalOutput,
+		.outputLogic = 0U
+	};
+	GPIO_PinInit(GPIO4, 17U, &gpio4_17_pin_config);
+
+	const port_pin_config_t port4_17_pin_config = {/* Internal pull-up/down resistor is disabled */
+													  kPORT_PullDisable,
+													  /* Low internal pull resistor value is selected. */
+													  kPORT_LowPullResistor,
+													  /* Fast slew rate is configured */
+													  kPORT_FastSlewRate,
+													  /* Passive input filter is disabled */
+													  kPORT_PassiveFilterDisable,
+													  /* Open drain output is disabled */
+													  kPORT_OpenDrainDisable,
+													  /* Low drive strength is configured */
+													  kPORT_LowDriveStrength,
+													  /* Pin is configured as PIO0_10 */
+													  kPORT_MuxAlt0,
+													  /* Digital input enabled */
+													  kPORT_InputBufferEnable,
+													  /* Digital input is not inverted */
+													  kPORT_InputNormal,
+													  /* Pin Control Register fields [15:0] are not locked */
+													  kPORT_UnlockRegister};
+	/* PORT4_17 is configured as PIO4_17 */
+	PORT_SetPinConfig(PORT4, 17U, &port4_17_pin_config);
+#endif /* (true == CONTROL_LED_ENABLED) */
+
+#if (true == PWRLOSS_DETECTION_ENABLED)
+
+    const port_pin_config_t port0_22_pin_config = {/* Internal pull-up/down resistor is disabled */
                                                       kPORT_PullDisable,
                                                       /* Low internal pull resistor value is selected. */
                                                       kPORT_LowPullResistor,
@@ -77,16 +233,18 @@ void BOARD_InitPins(void)
                                                       kPORT_OpenDrainDisable,
                                                       /* Low drive strength is configured */
                                                       kPORT_LowDriveStrength,
-                                                      /* Pin is configured as PIO0_10 */
+                                                      /* Pin is configured as CMP1_IN2 */
                                                       kPORT_MuxAlt0,
-                                                      /* Digital input enabled */
-                                                      kPORT_InputBufferEnable,
+                                                      /* Digital input disabled; it is required for analog functions */
+                                                      kPORT_InputBufferDisable,
                                                       /* Digital input is not inverted */
                                                       kPORT_InputNormal,
                                                       /* Pin Control Register fields [15:0] are not locked */
                                                       kPORT_UnlockRegister};
-    /* PORT0_10 (pin B12) is configured as PIO0_10 */
-    PORT_SetPinConfig(PORT0, 10U, &pinB12_p0_10);
+	/* PORT0_22 is configured as CMP1_IN2 */
+	PORT_SetPinConfig(PORT0, 22U, &port0_22_pin_config);
+
+#endif /* (true == PWRLOSS_DETECTION_ENABLED) */
 
 #endif /*(true == CONTROL_LED_ENABLED) */
     /* Enables the clock for PORT1: Enables clock */
@@ -138,8 +296,8 @@ void BOARD_InitPins(void)
     /* PORT1_9 (pin B1) is configured as FC4_P1 */
     PORT_SetPinConfig(PORT1, 9U, &port1_9_pinB1_config);
 
-#if (true == TMP_MEASUREMENT_ENABLED)
 
+#if (true == TMP_MEASUREMENT_ENABLED)
      const port_pin_config_t port1_16_config = {/* Internal pull-up resistor is enabled */
                                                      kPORT_PullUp,
                                                      /* Low internal pull resistor value is selected. */

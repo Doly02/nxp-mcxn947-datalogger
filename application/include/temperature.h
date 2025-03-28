@@ -62,4 +62,9 @@ uint16_t Read(uint8_t regAddress);
  */
 float TMP_GetTemperature(void);
 
+/**
+ * @brief		Initialize On-Board P3T1755 Temperature Sensor.
+ */
+uint8_t TMP_Init(void);
+
 #endif /* TEMPERATURE_H_ */

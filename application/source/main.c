@@ -38,6 +38,7 @@
 #include "error.h"
 #include "gpio.h"
 #include "temperature.h"
+#include "pwrloss_det.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -79,6 +80,7 @@ uint8_t volatile usbAttached;
 void APP_InitBoard(void)
 {
 	irtc_config_t irtcCfg;
+	edma_config_t edmaConfig = { 0U };
 
     /* Attach FRO 12M to FLEXCOMM4 (debug console) */
     CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
@@ -91,12 +93,10 @@ void APP_InitBoard(void)
 	CLOCK_AttachClk(kFRO_HF_DIV_to_FLEXCOMM7);
 
 #if (true == RTC_ENABLED)
-
 	/* Attach FRO 12M To FLEXCOMM2 (I2C for RTC) */
 	CLOCK_SetClkDiv(kCLOCK_DivFlexcom2Clk, 1U);
 	CLOCK_AttachClk(kFRO12M_to_FLEXCOMM2);
 	CLOCK_EnableClock(kCLOCK_Dma0);
-
 #endif /* (true == RTC_ENABLED) */
 
     /* Attach FRO HF to USDHC */
@@ -107,20 +107,24 @@ void APP_InitBoard(void)
     CLOCK_EnableClock(kCLOCK_Gpio0);
     /* Enables the clock for GPIO2 */
     CLOCK_EnableClock(kCLOCK_Gpio2);
-
     /* Enables the clock for GPIO4 */
 	CLOCK_EnableClock(kCLOCK_Gpio4);
 
 #if (true == TEMPERATURE_MEAS_ENABLED)
-
 	CLOCK_SetClkDiv(kCLOCK_DivFlexcom5Clk, 1u);
     CLOCK_AttachClk(kFRO12M_to_FLEXCOMM5);
     CLOCK_EnableClock(kCLOCK_Dma1);
 
     CLOCK_SetClkDiv(kCLOCK_DivCtimer0Clk, 1u);
     CLOCK_AttachClk(kFRO_HF_to_CTIMER0);
-
 #endif /* (true == TEMPERATURE_MEAS_ENABLED) */
+
+#if (true == PWRLOSS_DETECTION_ENABLED)
+    /* Attach FRO 12M to CMP1 */
+    CLOCK_SetClkDiv(kCLOCK_DivCmp1FClk, 1U);
+    CLOCK_AttachClk(kFRO12M_to_CMP1F);
+
+#endif /* (true == PWRLOSS_DETECTION_ENABLED) */
 
 	BOARD_InitPins();
     BOARD_PowerMode_OD();
@@ -131,7 +135,6 @@ void APP_InitBoard(void)
 #if (true == RTC_ENABLED)
 
     /* Initialize DMA */
-	edma_config_t edmaConfig = { 0U };
 	EDMA_GetDefaultConfig(&edmaConfig);
 	EDMA_Init(EXAMPLE_LPI2C_DMA_BASEADDR, &edmaConfig);
 
@@ -141,24 +144,27 @@ void APP_InitBoard(void)
     BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
 
 #if (true == IRTC_ENABLED)
-
     CLOCK_SetupClk16KClocking(kCLOCK_Clk16KToVbat | kCLOCK_Clk16KToMain);
     TIME_InitIRTC();
-
-
 #endif /* (true == IRTC_ENABLED) */
 
 #if (true == CONTROL_LED_ENABLED)
-
     GPIO_ConfigureGpioPins();
-
+    GPIO_SetHigh(GPIO0, 7);
+    GPIO_SetHigh(GPIO0, 9);
+    GPIO_SetHigh(GPIO0, 13);
+    GPIO_SetHigh(GPIO2, 11);
+    GPIO_SetHigh(GPIO4, 17);
 #endif /* (true == CONTROL_LED_ENABLED) */
 
 #if (true == TEMPERATURE_MEAS_ENABLED)
-
     TMP_Init();
-
 #endif /* (true == TEMPERATURE_MEAS_ENABLED) */
+
+#if (true == PWRLOSS_DETECTION_ENABLED)
+    PWRLOSS_DetectionInit();
+#endif /* (true == PWRLOSS_DETECTION_ENABLED) */
+
 }
  
 /*!

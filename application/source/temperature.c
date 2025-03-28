@@ -264,7 +264,7 @@ uint8_t TMP_Init(void)
 	matchConfig.enableInterrupt = true;         		/* Enable Interrupt If Match							*/
 	matchConfig.enableCounterReset = true;      		/* Reset Timer If Match 								*/
 	matchConfig.enableCounterStop = false;      		/* Count After Match									*/
-	matchConfig.matchValue = 60000000 - 1;              /* Match Value (6M cycles -> 10 Minutes Per Interrupt) 	*/
+	matchConfig.matchValue = 600000000 - 1;             /* Match Value (6M cycles -> 10 Minutes Per Interrupt) 	*/
 	matchConfig.outControl = kCTIMER_Output_NoAction; 	/* Output Pin Off 										*/
 
 	/* Setup Match Register */
