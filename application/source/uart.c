@@ -74,21 +74,21 @@ void UART_Init(uint32_t baudrate)
 #endif /* (true == UART_FIFO_ENABLED) */
     config.txFifoWatermark = 0;
 
-    uint32_t clk = LPUART7_CLK_FREQ;
-    LPUART_Init(LPUART7, &config, clk);
+    uint32_t clk = LPUART3_CLK_FREQ;
+    LPUART_Init(LPUART3, &config, clk);
 
 }
 
 void UART_Enable(void)
 {
-    DisableIRQ(LP_FLEXCOMM7_IRQn);
+    DisableIRQ(LP_FLEXCOMM3_IRQn);
 
     /* Enable RX interrupt. */
-    LPUART_EnableInterrupts(LPUART7, kLPUART_RxDataRegFullInterruptEnable);
-    EnableIRQWithPriority(LP_FLEXCOMM7_IRQn, LPUART_PRIO);
+    LPUART_EnableInterrupts(LPUART3, kLPUART_RxDataRegFullInterruptEnable);
+    EnableIRQWithPriority(LP_FLEXCOMM3_IRQn, LPUART_PRIO);
 }
 
 void UART_Disable(void)
 {
-	DisableIRQ(LP_FLEXCOMM7_IRQn);
+	DisableIRQ(LP_FLEXCOMM3_IRQn);
 }

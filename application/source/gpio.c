@@ -20,6 +20,11 @@
  ******************************************************************************/
 #include "fsl_gpio.h"
 
+#include "gpio.h"
+
+/*******************************************************************************
+ * Functions
+ ******************************************************************************/
 void GPIO_ConfigureGpioPins(void)
 {
 	/* Debug Pin */
@@ -35,12 +40,22 @@ void GPIO_ConfigureGpioPins(void)
     GPIO_PinInit(GPIO0, 10U, &gpio_debug);
 }
 
-static inline void GPIO_SetHigh(GPIO_Type *port_base, uint32_t pin)
+void GPIO_SetHigh(GPIO_Type *port_base, uint32_t pin)
 {
 	port_base->PSOR = (1U << pin);
 }
 
-static inline void GPIO_SetLow(GPIO_Type *port_base, uint32_t pin)
+void GPIO_SetLow(GPIO_Type *port_base, uint32_t pin)
 {
 	port_base->PCOR = (1U << pin);
+}
+
+void GPIO_SignalRecording(void)
+{
+	GPIO_PortToggle(RECORD_LED_PORT, 1u << RECORD_LED_PIN);
+}
+
+void GPIO_SignalError(void)
+{
+	GPIO_SetHigh(ERROR_LED_PORT, ERROR_LED_PIN1);
 }

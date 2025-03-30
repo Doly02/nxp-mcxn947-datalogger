@@ -88,9 +88,9 @@ void APP_InitBoard(void)
 
     CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
 
-    /* Attach FRO 12M to FLEXCOMM7 Application UART */
-	CLOCK_SetClkDiv(kCLOCK_DivFlexcom7Clk, 2u);
-	CLOCK_AttachClk(kFRO_HF_DIV_to_FLEXCOMM7);
+    /* Attach FRO 12M to FLEXCOMM3 Application UART */
+	CLOCK_SetClkDiv(kCLOCK_DivFlexcom3Clk, 2u);
+	CLOCK_AttachClk(kFRO_HF_DIV_to_FLEXCOMM3);
 
 #if (true == RTC_ENABLED)
 	/* Attach FRO 12M To FLEXCOMM2 (I2C for RTC) */
@@ -124,6 +124,10 @@ void APP_InitBoard(void)
     CLOCK_SetClkDiv(kCLOCK_DivCmp1FClk, 1U);
     CLOCK_AttachClk(kFRO12M_to_CMP1F);
 
+    /* Attach FRO HF clock for CTIMER4 */
+    CLOCK_SetClkDiv(kCLOCK_DivCtimer4Clk, 1u);
+    CLOCK_AttachClk(kFRO_HF_to_CTIMER4);
+
 #endif /* (true == PWRLOSS_DETECTION_ENABLED) */
 
 	BOARD_InitPins();
@@ -149,7 +153,7 @@ void APP_InitBoard(void)
 #endif /* (true == IRTC_ENABLED) */
 
 #if (true == CONTROL_LED_ENABLED)
-    GPIO_ConfigureGpioPins();
+    // GPIO_ConfigureGpioPins();
     GPIO_SetHigh(GPIO0, 7);
     GPIO_SetHigh(GPIO0, 9);
     GPIO_SetHigh(GPIO0, 13);

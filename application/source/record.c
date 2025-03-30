@@ -21,7 +21,7 @@
 #include <record.h>
 #include <uart.h>
 #include <time.h>
-
+#include <gpio.h>
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -36,6 +36,12 @@
 #define FILE_NAME_TEMPLATE 	"/log_%d.txt" 	// File name template
 
 #define GET_WAIT_INTERVAL(seconds)   ((seconds) * 1000 / configTICK_RATE_HZ)
+
+/*
+ * @brief 	Time Interval Between LED Blinking.
+ * @details	In Seconds.
+ */
+#define RECORD_LED_TIME_INTERVAL 2
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -151,6 +157,9 @@ static uint16_t g_fileCounter 		= 1; 		// Counter for unique file names
  */
 static bool g_flushCompleted 		= false;
 
+
+static uint32_t g_bytesTransfered	= 0U;
+
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -173,19 +182,19 @@ int CONSOLELOG_Abs(int x)
 }
 
 /**
- * @brief LPUART7 IRQ Handler.
+ * @brief LPUART3 IRQ Handler.
  *
  */
-void LP_FLEXCOMM7_IRQHandler(void)
+void LP_FLEXCOMM3_IRQHandler(void)
 {
     uint8_t data;
     uint32_t stat;
 
     /* Check For New Data */
-    stat = LPUART_GetStatusFlags(LPUART7);
+    stat = LPUART_GetStatusFlags(LPUART3);
     if (kLPUART_RxDataRegFullFlag & stat)
     {
-        data = LPUART_ReadByte(LPUART7);
+        data = LPUART_ReadByte(LPUART3);
         /* Add Data To FIFO */
         uint16_t nextWriteIndex = (g_writeIndex + 1) % BUFFER_SIZE;
         if (nextWriteIndex != g_readIndex) // Check if FIFO is not full
@@ -197,10 +206,16 @@ void LP_FLEXCOMM7_IRQHandler(void)
             lastDataTick = xTaskGetTickCount();
             g_flushCompleted = false;
         }
+        g_bytesTransfered++;
+        if (g_bytesTransfered == g_config.max_bytes) /*TODO: Maybe Use Function */
+        {
+        	GPIO_SignalRecording();
+        	g_bytesTransfered = 0U;
+        }
     }
 
     /* Clear Interrupt Flag */
-    LPUART_ClearStatusFlags(LPUART7, kLPUART_RxDataRegFullFlag);
+    LPUART_ClearStatusFlags(LPUART3, kLPUART_RxDataRegFullFlag);
     SDK_ISR_EXIT_BARRIER;
 }
 
@@ -359,6 +374,8 @@ error_t CONSOLELOG_Init(void)
         PRINTF("ERR: Failed to create directory for logs.\r\n");
         return ERROR_FILESYSTEM;
     }
+
+    g_config.max_bytes = RECORD_LED_TIME_INTERVAL * g_config.baudrate;
 
     return ERROR_NONE;
 }

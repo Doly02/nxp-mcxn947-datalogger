@@ -82,9 +82,9 @@
 
 #define PWRLOSS_DETECTION_ENABLED	(true)
 
-#define TEMPERATURE_MEAS_ENABLED	(true)
+#define TEMPERATURE_MEAS_ENABLED	(false)
 
-#define CONTROL_LED_ENABLED			(true)
+#define CONTROL_LED_ENABLED			(false)
 
 #if (CTIMER_ENABLED == IRTC_ENABLED)
 	/*#error "ERR: Bad Selection of Time Adjustement Function!"*/
@@ -112,5 +112,7 @@
  */
 #define DEFAULT_MAX_FILESIZE		8192
 
+/*TODO: Add UART Interrupt Prio */
+#define POWERLOSS_DET_PRIO			(7U)
 
 #endif /* DEFS_H_ */

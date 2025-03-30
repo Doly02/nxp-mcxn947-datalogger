@@ -34,7 +34,7 @@
 /**
  * @brief Frequency of LPUART7.
  */
-#define LPUART7_CLK_FREQ   CLOCK_GetLPFlexCommClkFreq(7u)
+#define LPUART3_CLK_FREQ   CLOCK_GetLPFlexCommClkFreq(3u)
 
 
 /*******************************************************************************

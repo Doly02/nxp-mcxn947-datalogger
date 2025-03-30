@@ -72,10 +72,11 @@ typedef enum
  */
 typedef struct
 {
-	REC_version_t 	version;	/**< Board That Will Be Recorded	*/
-	uint32_t 		baudrate;	/**< Desired Baudrate				*/
-	uint32_t		size;		/**< Maximum File Size 				*/
-								/**< Maximal Log. Time In Per File	*/
+	REC_version_t 	version;	/**< Board That Will Be Recorded		*/
+	uint32_t 		baudrate;	/**< Desired Baudrate					*/
+	uint32_t		size;		/**< Maximum File Size 					*/
+								/**< Maximal Log. Time In Per File		*/
+	uint32_t		max_bytes	/**< Number of Bytes Between LED Signal	*/
 
 } REC_config_t;
 /*******************************************************************************
