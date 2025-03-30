@@ -126,10 +126,10 @@ void record_task(void *handle)
 		u32Baudrate = CONSOLELOG_GetBaudrate();
 		u32FileSize = CONSOLELOG_GetFileSize();
 	}
+#if (DEBUG_ENABLED == true)
 	PRINTF("Baudrate=%d\r\n", u32Baudrate);
 	PRINTF("File Size=%d\r\n", u32FileSize);
-
-	/* Initialize Application UART */
+#endif /* (DEBUG_ENABLED == true) */
 
     while (1)
     {
@@ -170,12 +170,16 @@ void record_task(void *handle)
         	ERR_HandleError();
         }
 
+#if 1
+        uint32_t currentBytes = CONSOLELOG_GetTransferedBytes();
+        uint32_t maxBytes = CONSOLELOG_GetMaxBytes();
         if (CONSOLELOG_GetTransferedBytes() >= CONSOLELOG_GetMaxBytes())
         {
         	GPIO_SignalRecording();
-        	CONSOLELOG_GetMaxBytes();
+        	CONSOLELOG_ClearTransferedBytes();
         }
 
+#endif
         if (ERROR_NONE != (error_t)CONSOLELOG_Flush())
         {
         	/* Look At The Error */

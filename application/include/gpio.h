@@ -47,7 +47,7 @@
  * @brief 	Error LED's Pin 3.
  * @details	P0_13
  */
-#define ERROR_LED_PIN_TEMPERATURE	0x0D
+#define RECORD_LED_PIN_FLUSH	0x0D
 
 
 /*
@@ -82,13 +82,14 @@
 /*******************************************************************************
  * Functions Definitions
  ******************************************************************************/
-void GPIO_ConfigureGpioPins(void);
 
 void GPIO_SetHigh(GPIO_Type *port_base, uint32_t pin);
 
 void GPIO_SetLow(GPIO_Type *port_base, uint32_t pin);
 
 void GPIO_SignalRecording(void);
+
+void GPIO_SignalRecordingStop(void);
 
 void GPIO_SignalConfigError(void);
 

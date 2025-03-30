@@ -21,7 +21,6 @@
 #include <record.h>
 #include <uart.h>
 #include <time.h>
-#include <gpio.h>
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -41,7 +40,7 @@
  * @brief 	Time Interval Between LED Blinking.
  * @details	In Seconds.
  */
-#define RECORD_LED_TIME_INTERVAL 0.25
+#define RECORD_LED_TIME_INTERVAL 0.02
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -540,6 +539,9 @@ error_t CONSOLELOG_Flush(void)
 				return ERROR_RECORD;
 			}
 		}
+
+		GPIO_SignalFlush();				// Signal Flush
+		GPIO_SignalRecordingStop();		// Signal That Recording Is Not Active
 
 		/**
 		* ADMA Error Status (ADMA_ERR_STATUS)

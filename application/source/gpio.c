@@ -25,20 +25,6 @@
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-void GPIO_ConfigureGpioPins(void)
-{
-	/* Debug Pin */
-	gpio_pin_config_t gpio_debug =
-	{
-			kGPIO_DigitalOutput,	/* Pin Direction 			*/
-			0,						/* Default Value on Output 	*/
-	};
-
-    /* Enable CLK For GPIO */
-    CLOCK_EnableClock(kCLOCK_Gpio0);
-
-    GPIO_PinInit(GPIO0, 10U, &gpio_debug);
-}
 
 void GPIO_SetHigh(GPIO_Type *port_base, uint32_t pin)
 {
@@ -55,6 +41,11 @@ void GPIO_SignalRecording(void)
 	GPIO_PortToggle(RECORD_LED_PORT, 1u << RECORD_LED_PIN);
 }
 
+void GPIO_SignalRecordingStop(void)
+{
+	GPIO_SetHigh(RECORD_LED_PORT, RECORD_LED_PIN);
+}
+
 void GPIO_SignalConfigError(void)
 {
 	GPIO_SetHigh(ERROR_LED_PORT, ERROR_LED_PIN_CONFIG);
@@ -65,7 +56,7 @@ void GPIO_SignalRecordError(void)
 	GPIO_SetHigh(ERROR_LED_PORT, ERROR_LED_PIN_RECORD);
 }
 
-void GPIO_SignalTemperatureError(void)
+void GPIO_SignalFlush(void)
 {
-	GPIO_SetHigh(ERROR_LED_PORT, ERROR_LED_PIN_TEMPERATURE);
+	GPIO_SetHigh(ERROR_LED_PORT, RECORD_LED_PIN_FLUSH);
 }
