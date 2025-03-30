@@ -77,18 +77,43 @@
  * Functions Definitions
  ******************************************************************************/
 
+/*
+ * @brief 			Sets Logic 1 on GPIO Pin.
+ * @param port_base Pointer to GPIO Instance.
+ * @param pin		Pin.
+ */
 void GPIO_SetHigh(GPIO_Type *port_base, uint32_t pin);
 
+/*
+ * @brief 			Sets Logic 0 on GPIO Pin.
+ * @param port_base Pointer to GPIO Instance.
+ * @param pin		Pin.
+ */
 void GPIO_SetLow(GPIO_Type *port_base, uint32_t pin);
 
+/*
+ * @brief Signals That Device Is Currently Receiving Bytes (Recording).
+ */
 void GPIO_SignalRecording(void);
 
+/*
+ * @brief Signals That Device Is Stopped Receiving Bytes (Recording).
+ */
 void GPIO_SignalRecordingStop(void);
 
+/*
+ * @brief Signals Configuration File Missing or Contains Unexpected Data.
+ */
 void GPIO_SignalConfigError(void);
 
+/*
+ * @brief Signals Error During Recording.
+ */
 void GPIO_SignalRecordError(void);
 
+/*
+ * @brief Signals That Flush Has Been Activated.
+ */
 void GPIO_SignalFlush(void);
 
 #endif /* GPIO_H_ */
