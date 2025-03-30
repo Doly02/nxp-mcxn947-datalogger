@@ -24,6 +24,7 @@ processor_version: 0.14.14
 
 #include "fsl_common.h"
 #include "fsl_port.h"
+#include "fsl_gpio.h"
 #include "pin_mux.h"
 
 #include "defs.h"
@@ -539,7 +540,7 @@ void BOARD_InitPins(void)
                                                     /* Pin Control Register fields [15:0] are not locked */
                                                     kPORT_UnlockRegister};
     /* PORT3_2 is configured as FC7_P0 */
-    PORT_SetPinConfig(PORT3, 2U, &port3_2_pin_config);
+    PORT_SetPinConfig(PORT1, 0U, &port3_2_pin_config);
 
     const port_pin_config_t port3_3_pin_config = {/* Internal pull-up/down resistor is disabled */
                                                     kPORT_PullUp,
@@ -562,7 +563,7 @@ void BOARD_InitPins(void)
                                                     /* Pin Control Register fields [15:0] are not locked */
                                                     kPORT_UnlockRegister};
     /* PORT3_3 is configured as FC7_P1 */
-    PORT_SetPinConfig(PORT3, 3U, &port3_3_pin_config);
+    PORT_SetPinConfig(PORT1, 1U, &port3_3_pin_config);
 
     /* Enables the clock for PORT4: Enables clock */
     CLOCK_EnableClock(kCLOCK_Port4);

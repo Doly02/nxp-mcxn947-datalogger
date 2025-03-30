@@ -154,11 +154,12 @@ void APP_InitBoard(void)
 
 #if (true == CONTROL_LED_ENABLED)
     // GPIO_ConfigureGpioPins();
-    GPIO_SetHigh(GPIO0, 7);
-    GPIO_SetHigh(GPIO0, 9);
-    GPIO_SetHigh(GPIO0, 13);
-    GPIO_SetHigh(GPIO2, 11);
-    GPIO_SetHigh(GPIO4, 17);
+    GPIO_SetLow(GPIO0, 7);
+    GPIO_SetLow(GPIO0, 9);
+    GPIO_SetLow(GPIO0, 13);
+    GPIO_SetLow(GPIO2, 11);
+    GPIO_SetLow(GPIO4, 17);
+    GPIO_SignalRecording();
 #endif /* (true == CONTROL_LED_ENABLED) */
 
 #if (true == TEMPERATURE_MEAS_ENABLED)

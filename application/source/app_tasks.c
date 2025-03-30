@@ -169,11 +169,19 @@ void record_task(void *handle)
         	/* Look At The Error */
         	ERR_HandleError();
         }
+
+        if (CONSOLELOG_GetTransferedBytes() >= CONSOLELOG_GetMaxBytes())
+        {
+        	GPIO_SignalRecording();
+        	CONSOLELOG_GetMaxBytes();
+        }
+
         if (ERROR_NONE != (error_t)CONSOLELOG_Flush())
         {
         	/* Look At The Error */
         	ERR_HandleError();
         }
+
     }
 }
 

@@ -80,11 +80,11 @@
  */
 #define IRTC_ENABLED				(true)
 
-#define PWRLOSS_DETECTION_ENABLED	(true)
+#define PWRLOSS_DETECTION_ENABLED	(false)
 
 #define TEMPERATURE_MEAS_ENABLED	(false)
 
-#define CONTROL_LED_ENABLED			(false)
+#define CONTROL_LED_ENABLED			(true)
 
 #if (CTIMER_ENABLED == IRTC_ENABLED)
 	/*#error "ERR: Bad Selection of Time Adjustement Function!"*/

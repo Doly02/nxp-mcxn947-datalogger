@@ -41,7 +41,7 @@
  * @brief 	Time Interval Between LED Blinking.
  * @details	In Seconds.
  */
-#define RECORD_LED_TIME_INTERVAL 2
+#define RECORD_LED_TIME_INTERVAL 0.25
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -207,11 +207,6 @@ void LP_FLEXCOMM3_IRQHandler(void)
             g_flushCompleted = false;
         }
         g_bytesTransfered++;
-        if (g_bytesTransfered == g_config.max_bytes) /*TODO: Maybe Use Function */
-        {
-        	GPIO_SignalRecording();
-        	g_bytesTransfered = 0U;
-        }
     }
 
     /* Clear Interrupt Flag */
@@ -306,6 +301,20 @@ uint32_t CONSOLELOG_GetFileSize(void)
 	return g_config.size;
 }
 
+uint32_t CONSOLELOG_GetTransferedBytes(void)
+{
+	return g_bytesTransfered;
+}
+
+void CONSOLELOG_ClearTransferedBytes(void)
+{
+	g_bytesTransfered = 0;
+}
+
+uint32_t CONSOLELOG_GetMaxBytes(void)
+{
+	return g_config.max_bytes;
+}
 
 FRESULT CONSOLELOG_CheckFileSystem(void)
 {
@@ -374,8 +383,6 @@ error_t CONSOLELOG_Init(void)
         PRINTF("ERR: Failed to create directory for logs.\r\n");
         return ERROR_FILESYSTEM;
     }
-
-    g_config.max_bytes = RECORD_LED_TIME_INTERVAL * g_config.baudrate;
 
     return ERROR_NONE;
 }
@@ -616,6 +623,7 @@ error_t CONSOLELOG_ReadConfig(void)
     error = f_opendir(&dir, "/");
     if (FR_OK != error)
     {
+    	GPIO_SignalConfigError();
         PRINTF("ERR: Failed to Open Root Dir. ERR=%d\r\n", error);
         return ERROR_OPEN;
     }
@@ -628,8 +636,6 @@ error_t CONSOLELOG_ReadConfig(void)
 			break; 	// End of Directory or Error
 		}
 
-    	// PRINTF("DEBUG: File Name: %s\r\n", fno.fname);
-
     	if (!(fno.fattrib & AM_DIR))	// If Not Directory
     	{
     		if (ERROR_NONE == strcmp(fno.fname, CONFIG_FILE))	// If .config File
@@ -639,6 +645,7 @@ error_t CONSOLELOG_ReadConfig(void)
     			error = f_open(&configFile, CONFIG_FILE, FA_READ);
     			if (FR_OK != error)
 				{
+    				GPIO_SignalConfigError();
     				PRINTF("ERR: Failed to open .config file. ERR=%d\r\n", error);
 					f_closedir(&dir); 	// Close Root Directory
 					return ERROR_OPEN;
@@ -647,6 +654,7 @@ error_t CONSOLELOG_ReadConfig(void)
     			error = f_read(&configFile, g_dmaBuffer1, sizeof(g_dmaBuffer1) - 1, &bytesRead);
 				if (FR_OK != error)
 				{
+					GPIO_SignalConfigError();
 					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
 					f_close(&configFile);
 					f_closedir(&dir);
@@ -655,6 +663,7 @@ error_t CONSOLELOG_ReadConfig(void)
 
 				if (ERROR_NONE != CONSOLELOG_ProccessConfigFile((const char *)g_dmaBuffer1))
 				{
+					GPIO_SignalConfigError();
 					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
 					f_close(&configFile);
 					f_closedir(&dir);
@@ -687,6 +696,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     found = strstr(content, key);
     if (NULL == found)
     {
+    	GPIO_SignalConfigError();
         PRINTF("ERR: Key 'baudrate=' Not Found.\r\n");
         return ERROR_READ;
     }
@@ -695,6 +705,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     baudrate = (uint32_t)atoi(found);		// Convert Value To INT
     if (0 >= baudrate)
 	{
+    	GPIO_SignalConfigError();
 		PRINTF("ERR: Invalid Baudrate Value.\r\n");
 		return ERROR_READ;
 	}
@@ -708,6 +719,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
 			g_config.version = WCT_AUTOS1;
 			break;
 		default:
+			GPIO_SignalConfigError();
 			PRINTF("ERR: Unsupported Baudrate Value: %d\r\n", baudrate);
 			return ERROR_CONFIG;
 	}
@@ -718,6 +730,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     found = strstr(content, keyFileSize);
     if (NULL == found)
     {
+    	GPIO_SignalConfigError();
         PRINTF("ERR: Key 'file_size=' Not Found.\r\n");
         return ERROR_READ;
     }
@@ -726,6 +739,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     value = (uint32_t)atoi(found);			// Convert Value To INT
     if (0 >= value)
     {
+    	GPIO_SignalConfigError();
         PRINTF("ERR: Invalid File Size Value.\r\n");
         return ERROR_READ;
     }
@@ -738,6 +752,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     }
 
     g_config.size = value;  // Store File Size in Config
+    g_config.max_bytes = RECORD_LED_TIME_INTERVAL * g_config.baudrate;
     PRINTF("DEBUG: File Size Set To %d Bytes.\r\n", g_config.size);
 
     return ERROR_NONE;

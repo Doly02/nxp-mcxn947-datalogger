@@ -119,6 +119,12 @@ REC_version_t CONSOLELOG_GetVersion(void);
  */
 uint32_t CONSOLELOG_GetBaudrate(void);
 
+uint32_t CONSOLELOG_GetTransferedBytes(void);
+
+void CONSOLELOG_ClearTransferedBytes(void);
+
+uint32_t CONSOLELOG_GetMaxBytes(void);
+
 /**
  * @brief		Checks If The File System Is Initialized
  *

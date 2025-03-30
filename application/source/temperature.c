@@ -18,9 +18,11 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#include "temperature.h"
 #include "fsl_debug_console.h"
 #include "fsl_ctimer.h"
+
+#include "temperature.h"
+#include "gpio.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -146,7 +148,7 @@ void CTIMER0_IRQHandler(void)
 
 	if (35.0 < temp)
 	{
-		PRINTF("ERR: High Temperature!\r\n");
+		GPIO_SignalTemperatureError();
 	}
 	PRINTF("ERR: Lower Temperature! (%f)\r\n", temp);
 	CTIMER_ClearStatusFlags(CTIMER0, kCTIMER_Match0Flag);

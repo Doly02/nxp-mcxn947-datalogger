@@ -55,7 +55,17 @@ void GPIO_SignalRecording(void)
 	GPIO_PortToggle(RECORD_LED_PORT, 1u << RECORD_LED_PIN);
 }
 
-void GPIO_SignalError(void)
+void GPIO_SignalConfigError(void)
 {
-	GPIO_SetHigh(ERROR_LED_PORT, ERROR_LED_PIN1);
+	GPIO_SetHigh(ERROR_LED_PORT, ERROR_LED_PIN_CONFIG);
+}
+
+void GPIO_SignalRecordError(void)
+{
+	GPIO_SetHigh(ERROR_LED_PORT, ERROR_LED_PIN_RECORD);
+}
+
+void GPIO_SignalTemperatureError(void)
+{
+	GPIO_SetHigh(ERROR_LED_PORT, ERROR_LED_PIN_TEMPERATURE);
 }

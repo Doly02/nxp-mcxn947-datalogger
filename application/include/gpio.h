@@ -29,38 +29,38 @@
 /*
  * @brief Error LED's Port Number.
  */
-#define ERROR_LED_PORT			GPIO0
+#define ERROR_LED_PORT				GPIO0
 
 /*
  * @brief 	Error LED's Pin 1.
  * @details	P0_7
  */
-#define ERROR_LED_PIN1			0x07
+#define ERROR_LED_PIN_CONFIG		0x07
 
 /*
  * @brief 	Error LED's Pin 2.
  * @details	P0_9
  */
-#define ERROR_LED_PIN2			0x09
+#define ERROR_LED_PIN_RECORD		0x09
 
 /*
  * @brief 	Error LED's Pin 3.
  * @details	P0_13
  */
-#define ERROR_LED_PIN3			0x0D
+#define ERROR_LED_PIN_TEMPERATURE	0x0D
 
 
 /*
  * @brief 	Recording LED's Port Number.
  * @details Signals That Device Records.
  */
-#define RECORD_LED_PORT			GPIO2
+#define RECORD_LED_PORT				GPIO2
 
 /*
  * @brief 	Record LED's Pin.
  * @details	P2_11
  */
-#define RECORD_LED_PIN			0x0B
+#define RECORD_LED_PIN				0x0B
 
 /*
  * @brief 	Time Interval Between LED Blinking.
@@ -90,6 +90,10 @@ void GPIO_SetLow(GPIO_Type *port_base, uint32_t pin);
 
 void GPIO_SignalRecording(void);
 
-void GPIO_SignalError(void);
+void GPIO_SignalConfigError(void);
+
+void GPIO_SignalRecordError(void);
+
+void GPIO_SignalTemperatureError(void);
 
 #endif /* GPIO_H_ */
