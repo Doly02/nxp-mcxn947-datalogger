@@ -140,7 +140,7 @@ void APP_InitBoard(void)
 
     /* Initialize DMA */
 	EDMA_GetDefaultConfig(&edmaConfig);
-	EDMA_Init(EXAMPLE_LPI2C_DMA_BASEADDR, &edmaConfig);
+	EDMA_Init(LPI2C_DMA_BASEADDR, &edmaConfig);
 
 #endif /* (true == RTC_ENABLED) */
 

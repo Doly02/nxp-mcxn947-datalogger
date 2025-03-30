@@ -63,12 +63,6 @@
 #define RECORD_LED_PIN				0x0B
 
 /*
- * @brief 	Time Interval Between LED Blinking.
- * @details	In Seconds.
- */
-#define RECORD_LED_TIME_INTERVAL 2
-
-/*
  * @brief 	Recording LED's Port Number.
  * @details Signals That Device Records.
  */
@@ -95,6 +89,6 @@ void GPIO_SignalConfigError(void);
 
 void GPIO_SignalRecordError(void);
 
-void GPIO_SignalTemperatureError(void);
+void GPIO_SignalFlush(void);
 
 #endif /* GPIO_H_ */

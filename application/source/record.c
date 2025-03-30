@@ -63,7 +63,7 @@ static FIL g_fileObject;
  * @brief	Name Of The Folder Where The Files (Logs)
  * 			From The Current Session Are Stored.
  */
-static char currentDirectory[32];
+static char g_currentDirectory[32];
 
 /**
  * @brief 	Configuration of The Data Logger on The Basis of Data
@@ -94,25 +94,25 @@ SDK_ALIGN(uint8_t g_dmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 /**
  * @brief 	Active Buffer Which Receives Data From UART Periphery.
  */
-static uint8_t* activeDmaBuffer = g_dmaBuffer1;
+static uint8_t* g_activeDmaBuffer = g_dmaBuffer1;
 
 /**
  * @brief 	Pointer on DMA Buffer Into Which The Time Stamps Are Inserted.
  */
-static uint8_t* processDmaBuffer = NULL;
+static uint8_t* g_processDmaBuffer = NULL;
 /**
  * @brief 	Index Into Active DMA Buffer.
  */
-static uint16_t dmaIndex 			= 0;
+static uint16_t g_dmaIndex 			= 0;
 
-static bool dmaBufferReady 			= false;
+static bool g_dmaBufferReady 		= false;
 
 static uint16_t g_blockIndex 		= 0;
 
 /**
  * @brief 	Value of Ticks When Last Character Was Received Thru LPUART.
  */
-static TickType_t lastDataTick 		= 0;
+static TickType_t g_lastDataTick 		= 0;
 
 /**
  * @defgroup UART Management
@@ -131,11 +131,6 @@ volatile uint16_t g_writeIndex 		= 0;
  * @brief 	Index For Reading From FIFO.
  */
 volatile uint16_t g_readIndex 		= 0;
-
-/**
- * @brief 	Flag Indicating FIFO Overflow.
- */
-volatile bool fifoOverflow 			= false;
 
 /** @} */ // End of UART Management group
 
@@ -202,7 +197,7 @@ void LP_FLEXCOMM3_IRQHandler(void)
             g_writeIndex = nextWriteIndex;
 
             /* Update Time Of Last Receiving */
-            lastDataTick = xTaskGetTickCount();
+            g_lastDataTick = xTaskGetTickCount();
             g_flushCompleted = false;
         }
         g_bytesTransfered++;
@@ -224,7 +219,7 @@ error_t CONSOLELOG_CreateFile(void)
 
     /* Generate a New File Name */
     snprintf(fileName, sizeof(fileName), "%s/%04d%02d%02d_%02d%02d%02d_%u.txt",
-    		currentDirectory, datetimeGet.year, datetimeGet.month, datetimeGet.day,
+    		g_currentDirectory, datetimeGet.year, datetimeGet.month, datetimeGet.day,
              datetimeGet.hour, datetimeGet.minute, datetimeGet.second,
              g_fileCounter++);
 
@@ -274,8 +269,8 @@ error_t CONSOLELOG_CreateDirectory(void)
         PRINTF("ERR: Failed To Create Session Directory. Error=%d\r\n", status);
         return ERROR_FILESYSTEM;
     }
-    snprintf(currentDirectory, sizeof(currentDirectory), "%s", directoryName);
-    PRINTF("INFO: Created Directory %s.\r\n", currentDirectory);
+    snprintf(g_currentDirectory, sizeof(g_currentDirectory), "%s", directoryName);
+    PRINTF("INFO: Created Directory %s.\r\n", g_currentDirectory);
 
     return ERROR_NONE;
 }
@@ -402,13 +397,13 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
         uint8_t currentChar = g_fifo[g_readIndex];
         g_readIndex = (g_readIndex + 1) % BUFFER_SIZE;
 
-        activeDmaBuffer[dmaIndex++] = currentChar;
+        g_activeDmaBuffer[g_dmaIndex++] = currentChar;
 
         /* Check If The CRLF Is Not Divided Into Two DMA Buffers */
         if ((lastChar == '\r' && currentChar == '\n') ||
-            (dmaIndex >= 2 &&
-             activeDmaBuffer[dmaIndex - 2] == '\r' &&
-             activeDmaBuffer[dmaIndex - 1] == '\n'))
+            (g_dmaIndex >= 2 &&
+             g_activeDmaBuffer[g_dmaIndex - 2] == '\r' &&
+             g_activeDmaBuffer[g_dmaIndex - 1] == '\n'))
         {
 
         	IRTC_GetDatetime(RTC, &datetimeGet);
@@ -417,21 +412,21 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
             /* Addition of Time Mark To The DMA Buffer */
             for (uint8_t i = 0; i < timeLength; i++)
             {
-                if (BLOCK_SIZE > dmaIndex)	// If DMA Buffer is Not Full
+                if (BLOCK_SIZE > g_dmaIndex)	// If DMA Buffer is Not Full
                 {
-                    activeDmaBuffer[dmaIndex++] = timeString[i];
+                    g_activeDmaBuffer[g_dmaIndex++] = timeString[i];
                 }
                 else
                 {
                     /* Switch To New DMA Buffer */
-                	processDmaBuffer = activeDmaBuffer;
-                    dmaBufferReady = true;
+                	g_processDmaBuffer = g_activeDmaBuffer;
+                    g_dmaBufferReady = true;
 
-                    activeDmaBuffer = (activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
-                    dmaIndex = 0;
+                    g_activeDmaBuffer = (g_activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
+                    g_dmaIndex = 0;
 
                     /* Continue in Addition of Time Mark */
-                    activeDmaBuffer[dmaIndex++] = timeString[i];
+                    g_activeDmaBuffer[g_dmaIndex++] = timeString[i];
                 }
             }
         }
@@ -439,19 +434,19 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
         lastChar = currentChar; // Current Last Character For Next Buffer
 
         /* Check If DMA Buffer Is Full */
-        if (BLOCK_SIZE == dmaIndex)
+        if (BLOCK_SIZE == g_dmaIndex)
         {
-            processDmaBuffer = activeDmaBuffer;
-            dmaBufferReady = true;
+            g_processDmaBuffer = g_activeDmaBuffer;
+            g_dmaBufferReady = true;
 
             /* Switch on Next DMA Buffer */
-            activeDmaBuffer = (activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
-            dmaIndex = 0;
+            g_activeDmaBuffer = (g_activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
+            g_dmaIndex = 0;
         }
     }
 
     /* Process Full DMA Buffer */
-    if (dmaBufferReady && NULL != processDmaBuffer)
+    if (g_dmaBufferReady && NULL != g_processDmaBuffer)
     {
         if (NULL == g_fileObject.obj.fs)
         {
@@ -478,7 +473,7 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
             g_fileObject.obj.fs = NULL;
             return ERROR_ADMA;
         }
-        error = f_write(&g_fileObject, processDmaBuffer, BLOCK_SIZE, &bytesWritten);
+        error = f_write(&g_fileObject, g_processDmaBuffer, BLOCK_SIZE, &bytesWritten);
         if (FR_OK != error)
         {
         	return (error_t)error;
@@ -492,8 +487,8 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
             g_fileObject.obj.fs = NULL;
         }
 
-        dmaBufferReady = false;     // Reset Flag of ADMA Buffer
-        processDmaBuffer = NULL;    // Clear processDmaBuffer
+        g_dmaBufferReady = false;     // Reset Flag of ADMA Buffer
+        g_processDmaBuffer = NULL;    // Clear g_processDmaBuffer
     }
 
     return ERROR_NONE;
@@ -510,26 +505,26 @@ error_t CONSOLELOG_Flush(void)
 	 * __ATOMIC_ACQUIRE - 	Ensures That All Read Values Are Consistent
 	 * 						With Pre-Read Operations.
 	 * */
-	uint32_t lastTick = __atomic_load_n(&lastDataTick, __ATOMIC_ACQUIRE);
+	uint32_t lastTick = __atomic_load_n(&g_lastDataTick, __ATOMIC_ACQUIRE);
 
 
-	if ((CONSOLELOG_Abs(currentTick - lastTick) >= FLUSH_TIMEOUT_TICKS) && dmaIndex > 0)
+	if ((CONSOLELOG_Abs(currentTick - lastTick) >= FLUSH_TIMEOUT_TICKS) && g_dmaIndex > 0)
 	{
 		PRINTF("INFO: Current Ticks = %d.\r\n", currentTick);
-		PRINTF("INFO: Last Ticks = %d.\r\n", lastDataTick);
+		PRINTF("INFO: Last Ticks = %d.\r\n", g_lastDataTick);
 		PRINTF("INFO: Flush Triggered. Writing Remaining Data To File.\r\n");
 
-		while (dmaIndex < BLOCK_SIZE)			// Fill Buffer With ' '
+		while (g_dmaIndex < BLOCK_SIZE)			// Fill Buffer With ' '
 		{
-			activeDmaBuffer[dmaIndex++] = ' ';
+			g_activeDmaBuffer[g_dmaIndex++] = ' ';
 		}
 
-		processDmaBuffer 	= activeDmaBuffer;
-		dmaBufferReady 		= true;
+		g_processDmaBuffer 	= g_activeDmaBuffer;
+		g_dmaBufferReady 		= true;
 
 		// Switch To Second Buffer
-		activeDmaBuffer 	= (activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
-		dmaIndex 			= 0;
+		g_activeDmaBuffer 	= (g_activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
+		g_dmaIndex 			= 0;
 
 		if (NULL == g_fileObject.obj.fs)
 		{
@@ -559,7 +554,7 @@ error_t CONSOLELOG_Flush(void)
 			g_fileObject.obj.fs = NULL;
 			return ERROR_ADMA;
 		}
-		error = f_write(&g_fileObject, processDmaBuffer, BLOCK_SIZE, &bytesWritten);
+		error = f_write(&g_fileObject, g_processDmaBuffer, BLOCK_SIZE, &bytesWritten);
 		if (FR_OK != error)
 		{
 			return (error_t)error;
@@ -572,8 +567,8 @@ error_t CONSOLELOG_Flush(void)
 
 		f_close(&g_fileObject);
 		g_fileObject.obj.fs = NULL;
-		dmaBufferReady = false;
-		processDmaBuffer = NULL;
+		g_dmaBufferReady = false;
+		g_processDmaBuffer = NULL;
 		g_flushCompleted = true;
 	}
 	return ERROR_NONE;

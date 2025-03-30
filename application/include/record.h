@@ -37,13 +37,15 @@
 #include "fsl_common.h"
 #include "rtc_ds3231.h"
 
+#include "task.h"
+
 #include "error.h"
 #include "uart.h"
 #include <gpio.h>
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
-#define FLUSH_TIMEOUT_TICKS pdMS_TO_TICKS(3000)
+#define FLUSH_TIMEOUT_TICKS (int)pdMS_TO_TICKS(3000)
 
 /*******************************************************************************
  * Structures
@@ -77,7 +79,7 @@ typedef struct
 	uint32_t 		baudrate;	/**< Desired Baudrate					*/
 	uint32_t		size;		/**< Maximum File Size 					*/
 								/**< Maximal Log. Time In Per File		*/
-	uint32_t		max_bytes	/**< Number of Bytes Between LED Signal	*/
+	uint32_t		max_bytes;	/**< Number of Bytes Between LED Signal	*/
 
 } REC_config_t;
 /*******************************************************************************
@@ -115,15 +117,35 @@ REC_version_t CONSOLELOG_GetVersion(void);
 /**
  * @brief 		Returns the Baudrate of The Device Being Recorded.
  *
- * @return		uint32_t Baud Rate of Recorded Device
+ * @return		uint32_t Baud Rate of Recorded Device.
  *
  */
 uint32_t CONSOLELOG_GetBaudrate(void);
 
+/**
+ * @brief 		Returns the Maximal File Size.
+ *
+ * @return		uint32_t Maximal File Size.
+ *
+ */
+uint32_t CONSOLELOG_GetFileSize(void);
+
+/**
+ * @brief 		Returns Currently Received Bytes Between LED Blinking.
+ *
+ * @return		uint32_t Received Bytes Between LED Blinking.
+ *
+ */
 uint32_t CONSOLELOG_GetTransferedBytes(void);
 
+/**
+ * @brief 		Clears Currently Received Bytes After LED Blinking.
+ */
 void CONSOLELOG_ClearTransferedBytes(void);
 
+/**
+ * @brief 		Maximal Received Bytes Between LED Blinking.
+ */
 uint32_t CONSOLELOG_GetMaxBytes(void);
 
 /**

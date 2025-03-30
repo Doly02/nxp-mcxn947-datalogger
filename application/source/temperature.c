@@ -148,7 +148,7 @@ void CTIMER0_IRQHandler(void)
 
 	if (35.0 < temp)
 	{
-		GPIO_SignalTemperatureError();
+		GPIO_SignalRecordError();
 	}
 	PRINTF("ERR: Lower Temperature! (%f)\r\n", temp);
 	CTIMER_ClearStatusFlags(CTIMER0, kCTIMER_Match0Flag);
