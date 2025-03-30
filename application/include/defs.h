@@ -80,10 +80,22 @@
  */
 #define IRTC_ENABLED				(true)
 
+/**
+ * @brief Enables/Disables Power Loss Detection.
+ */
 #define PWRLOSS_DETECTION_ENABLED	(false)
 
+/*TODO: Add UART Interrupt Prio */
+#define PWRLOSS_DET_PRIO			(7U)
+
+/**
+ * @brief Enables/Disables Temperature Recording.
+ */
 #define TEMPERATURE_MEAS_ENABLED	(false)
 
+/**
+ * @brief Enables/Disables Signaling By LEDs.
+ */
 #define CONTROL_LED_ENABLED			(true)
 
 #if (CTIMER_ENABLED == IRTC_ENABLED)
@@ -94,7 +106,6 @@
 	#endif
 #endif /* (CTIMER_ENABLED == IRTC_ENABLED) */
 
-#define TMP_MEASUREMENT_ENABLED		(true)
 /**
  * @brief Configuration File.
  */
@@ -111,8 +122,5 @@
  * 			Not Be Read Properly.
  */
 #define DEFAULT_MAX_FILESIZE		8192
-
-/*TODO: Add UART Interrupt Prio */
-#define POWERLOSS_DET_PRIO			(7U)
 
 #endif /* DEFS_H_ */

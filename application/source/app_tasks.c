@@ -92,10 +92,12 @@ void msc_task(void *handle)
 void record_task(void *handle)
 {
 
-	error_t u16RetVal 		= ERROR_UNKNOWN;
-	uint32_t u32Baudrate 	= 0;
-	uint32_t u32FileSize 	= 0;
-	bool bUartInitialized 	= false;
+	error_t u16RetVal 			= ERROR_UNKNOWN;
+	uint32_t u32Baudrate 		= 0;
+	uint32_t u32FileSize 		= 0;
+    uint32_t u32CurrentBytes 	= 0;
+    uint32_t u32MaxBytes 		= 0;
+	bool bUartInitialized 		= false;
 
 	/* Initialize's The SDHC Card */
 	USB_DeviceModeInit();
@@ -171,9 +173,9 @@ void record_task(void *handle)
         }
 
 #if 1
-        uint32_t currentBytes = CONSOLELOG_GetTransferedBytes();
-        uint32_t maxBytes = CONSOLELOG_GetMaxBytes();
-        if (CONSOLELOG_GetTransferedBytes() >= CONSOLELOG_GetMaxBytes())
+        u32CurrentBytes = CONSOLELOG_GetTransferedBytes();
+        u32MaxBytes 	= CONSOLELOG_GetMaxBytes();
+        if (u32CurrentBytes >= u32MaxBytes)
         {
         	GPIO_SignalRecording();
         	CONSOLELOG_ClearTransferedBytes();

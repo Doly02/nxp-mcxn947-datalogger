@@ -42,6 +42,10 @@
  * Prototypes
  ******************************************************************************/
 
+/*
+ * @brief 	Initialize Internal And External Real-Time Circuits And Passes Timestamp
+ * 			Information From The External To The Internal.
+ */
 error_t TIME_InitIRTC(void);
 
 #endif /* TIME_H_ */

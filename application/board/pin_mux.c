@@ -298,7 +298,7 @@ void BOARD_InitPins(void)
     PORT_SetPinConfig(PORT1, 9U, &port1_9_pinB1_config);
 
 
-#if (true == TMP_MEASUREMENT_ENABLED)
+#if (true == TEMPERATURE_MEAS_ENABLED)
      const port_pin_config_t port1_16_config = {/* Internal pull-up resistor is enabled */
                                                      kPORT_PullUp,
                                                      /* Low internal pull resistor value is selected. */
@@ -345,7 +345,7 @@ void BOARD_InitPins(void)
      /* PORT1_17 (pin G4) is configured as FC5_P1 */
      PORT_SetPinConfig(PORT1, 17U, &port1_17_config);
 
-#endif /* (true == TMP_MEASUREMENT_ENABLED) */
+#endif /* (true == TEMPERATURE_MEAS_ENABLED) */
 
 #if (true == MSC_ENABLED)
 
