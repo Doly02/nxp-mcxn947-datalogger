@@ -55,6 +55,8 @@
  */
 #define DEBUG_ENABLED				(true)
 
+#define INFO_ENABLED				(false)
+
 /**
  * @brief Enables/Disables HW FIFO Queue on Application LPUART.
  */

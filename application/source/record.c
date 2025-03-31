@@ -243,7 +243,10 @@ error_t CONSOLELOG_CreateFile(void)
     }
 
     g_currentFileSize = 0; // Reset file size
+#if (true == INFO_ENABLED || true == DEBUG_ENABLED)
     PRINTF("INFO: Created Log %s.\r\n", fileName);
+#endif
+
     return ERROR_NONE;
 }
 
@@ -270,8 +273,9 @@ error_t CONSOLELOG_CreateDirectory(void)
         return ERROR_FILESYSTEM;
     }
     snprintf(g_currentDirectory, sizeof(g_currentDirectory), "%s", directoryName);
+#if (true == INFO_ENABLED || true == DEBUG_ENABLED)
     PRINTF("INFO: Created Directory %s.\r\n", g_currentDirectory);
-
+#endif /* (true == INFO_ENABLED) */
     return ERROR_NONE;
 }
 
@@ -298,6 +302,11 @@ uint32_t CONSOLELOG_GetFileSize(void)
 uint32_t CONSOLELOG_GetTransferedBytes(void)
 {
 	return g_bytesTransfered;
+}
+
+bool CONSOLELOG_GetFlushCompleted(void)
+{
+	return g_flushCompleted;
 }
 
 void CONSOLELOG_ClearTransferedBytes(void)
@@ -482,7 +491,9 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
         g_currentFileSize += BLOCK_SIZE;
         if (g_currentFileSize >= file_size)
         {
+#if (true == INFO_ENABLED || true == DEBUG_ENABLED)
             PRINTF("INFO: File Size Limit Reached. Closing file. (LIMIT: %d, CURRENT %d)\r\n", file_size, g_currentFileSize);
+#endif /* (true == INFO_ENABLED || true == DEBUG_ENABLED) */
             f_close(&g_fileObject);
             g_fileObject.obj.fs = NULL;
         }
@@ -510,9 +521,12 @@ error_t CONSOLELOG_Flush(void)
 
 	if ((CONSOLELOG_Abs(currentTick - lastTick) >= FLUSH_TIMEOUT_TICKS) && g_dmaIndex > 0)
 	{
+#if (true == INFO_ENABLED)
 		PRINTF("INFO: Current Ticks = %d.\r\n", currentTick);
 		PRINTF("INFO: Last Ticks = %d.\r\n", g_lastDataTick);
 		PRINTF("INFO: Flush Triggered. Writing Remaining Data To File.\r\n");
+#endif /* (true == INFO_ENABLED) */
+		PRINTF("INFO: Flush Triggered.\r\n");
 
 		while (g_dmaIndex < BLOCK_SIZE)			// Fill Buffer With ' '
 		{
@@ -535,8 +549,10 @@ error_t CONSOLELOG_Flush(void)
 			}
 		}
 
-		GPIO_SignalFlush();				// Signal Flush
-		GPIO_SignalRecordingStop();		// Signal That Recording Is Not Active
+#if (CONTROL_LED_ENABLED == true )
+		LED_SignalFlush();				// Signal Flush
+		LED_SignalRecordingStop();		// Signal That Recording Is Not Active
+#endif /* (CONTROL_LED_ENABLED == true ) */
 
 		/**
 		* ADMA Error Status (ADMA_ERR_STATUS)
@@ -561,9 +577,9 @@ error_t CONSOLELOG_Flush(void)
 		}
 		g_currentFileSize += BLOCK_SIZE;
 
-#if (true == DEBUG_ENABLED)
+#if	(true == INFO_ENABLED || true == DEBUG_ENABLED)
 		PRINTF("INFO: Closing File\r\n");
-#endif /* (true == DEBUG_ENABLED) */
+#endif /* (true == INFO_ENABLED || true == DEBUG_ENABLED) */
 
 		f_close(&g_fileObject);
 		g_fileObject.obj.fs = NULL;
@@ -620,7 +636,9 @@ error_t CONSOLELOG_ReadConfig(void)
     error = f_opendir(&dir, "/");
     if (FR_OK != error)
     {
-    	GPIO_SignalConfigError();
+#if (CONTROL_LED_ENABLED == true)
+    	LED_SignalConfigError();
+#endif /* (CONTROL_LED_ENABLED == true) */
         PRINTF("ERR: Failed to Open Root Dir. ERR=%d\r\n", error);
         return ERROR_OPEN;
     }
@@ -642,7 +660,10 @@ error_t CONSOLELOG_ReadConfig(void)
     			error = f_open(&configFile, CONFIG_FILE, FA_READ);
     			if (FR_OK != error)
 				{
-    				GPIO_SignalConfigError();
+#if (CONTROL_LED_ENABLED == true)
+    				LED_SignalConfigError();
+#endif /* (CONTROL_LED_ENABLED == true) */
+
     				PRINTF("ERR: Failed to open .config file. ERR=%d\r\n", error);
 					f_closedir(&dir); 	// Close Root Directory
 					return ERROR_OPEN;
@@ -651,7 +672,10 @@ error_t CONSOLELOG_ReadConfig(void)
     			error = f_read(&configFile, g_dmaBuffer1, sizeof(g_dmaBuffer1) - 1, &bytesRead);
 				if (FR_OK != error)
 				{
-					GPIO_SignalConfigError();
+#if (CONTROL_LED_ENABLED == true)
+					LED_SignalConfigError();
+#endif /* (CONTROL_LED_ENABLED == true) */
+
 					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
 					f_close(&configFile);
 					f_closedir(&dir);
@@ -660,7 +684,10 @@ error_t CONSOLELOG_ReadConfig(void)
 
 				if (ERROR_NONE != CONSOLELOG_ProccessConfigFile((const char *)g_dmaBuffer1))
 				{
-					GPIO_SignalConfigError();
+#if (CONTROL_LED_ENABLED == true)
+					LED_SignalConfigError();
+#endif /* (CONTROL_LED_ENABLED == true) */
+
 					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
 					f_close(&configFile);
 					f_closedir(&dir);
@@ -693,7 +720,10 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     found = strstr(content, key);
     if (NULL == found)
     {
-    	GPIO_SignalConfigError();
+#if (CONTROL_LED_ENABLED == true)
+    	LED_SignalConfigError();
+#endif /* (CONTROL_LED_ENABLED == true) */
+
         PRINTF("ERR: Key 'baudrate=' Not Found.\r\n");
         return ERROR_READ;
     }
@@ -702,7 +732,10 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     baudrate = (uint32_t)atoi(found);		// Convert Value To INT
     if (0 >= baudrate)
 	{
-    	GPIO_SignalConfigError();
+#if (CONTROL_LED_ENABLED == true)
+    	LED_SignalConfigError();
+#endif /* (CONTROL_LED_ENABLED == true) */
+
 		PRINTF("ERR: Invalid Baudrate Value.\r\n");
 		return ERROR_READ;
 	}
@@ -716,7 +749,10 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
 			g_config.version = WCT_AUTOS1;
 			break;
 		default:
-			GPIO_SignalConfigError();
+#if (CONTROL_LED_ENABLED == true)
+			LED_SignalConfigError();
+#endif /* (CONTROL_LED_ENABLED == true) */
+
 			PRINTF("ERR: Unsupported Baudrate Value: %d\r\n", baudrate);
 			return ERROR_CONFIG;
 	}
@@ -727,7 +763,10 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     found = strstr(content, keyFileSize);
     if (NULL == found)
     {
-    	GPIO_SignalConfigError();
+#if (CONTROL_LED_ENABLED == true)
+    	LED_SignalConfigError();
+#endif /* (CONTROL_LED_ENABLED == true) */
+
         PRINTF("ERR: Key 'file_size=' Not Found.\r\n");
         return ERROR_READ;
     }
@@ -736,7 +775,10 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     value = (uint32_t)atoi(found);			// Convert Value To INT
     if (0 >= value)
     {
-    	GPIO_SignalConfigError();
+#if (CONTROL_LED_ENABLED == true)
+    	LED_SignalConfigError();
+#endif /* (CONTROL_LED_ENABLED == true) */
+
         PRINTF("ERR: Invalid File Size Value.\r\n");
         return ERROR_READ;
     }

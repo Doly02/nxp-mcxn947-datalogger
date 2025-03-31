@@ -20,6 +20,7 @@
  ******************************************************************************/
 
 /* Freescale Includes. */
+#include <led.h>
 #include "fsl_device_registers.h"
 #include "fsl_debug_console.h"
 #include "fsl_clock.h"
@@ -36,7 +37,6 @@
 #include "uart.h"
 #include "time.h"
 #include "error.h"
-#include "gpio.h"
 #include "temperature.h"
 #include "pwrloss_det.h"
 /*******************************************************************************
@@ -153,11 +153,11 @@ void APP_InitBoard(void)
 #endif /* (true == IRTC_ENABLED) */
 
 #if (true == CONTROL_LED_ENABLED)
-    GPIO_SetLow(GPIO0, 7);
-    GPIO_SetLow(GPIO0, 9);
-    GPIO_SetLow(GPIO0, 13);
-    GPIO_SetLow(GPIO2, 11);
-    GPIO_SetLow(GPIO4, 17);
+    LED_SetLow(GPIO0, 7);
+    LED_SetLow(GPIO0, 9);
+    LED_SetLow(GPIO0, 13);
+    LED_SetLow(GPIO2, 11);
+    LED_SetLow(GPIO4, 17);
 #endif /* (true == CONTROL_LED_ENABLED) */
 
 #if (true == TEMPERATURE_MEAS_ENABLED)

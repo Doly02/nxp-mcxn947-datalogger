@@ -1,22 +1,22 @@
 /******************************
  *  Project:        NXP MCXN947 Datalogger
- *  File Name:      gpio.c
+ *  File Name:      leds.c
  *  Author:         Tomas Dolak
  *  Date:           06.02.2025
- *  Description:    Implements The Logic For GPIO Control.
+ *  Description:    Implements The Logic For LEDs Control.
  *
  * ****************************/
 
 /******************************
  *  @package        NXP MCXN947 Datalogger
- *  @file           gpio.c
+ *  @file           leds.c
  *  @author         Tomas Dolak
  *  @date           06.02.2025
- *  @brief          Implements The Logic For GPIO Control.
+ *  @brief          Implements The Logic For LEDs Control.
  * ****************************/
 
-#ifndef GPIO_H_
-#define GPIO_H_
+#ifndef LED_H_
+#define LED_H_
 
 /*******************************************************************************
  * Includes
@@ -82,38 +82,38 @@
  * @param port_base Pointer to GPIO Instance.
  * @param pin		Pin.
  */
-void GPIO_SetHigh(GPIO_Type *port_base, uint32_t pin);
+void LED_SetHigh(GPIO_Type *port_base, uint32_t pin);
 
 /*
  * @brief 			Sets Logic 0 on GPIO Pin.
  * @param port_base Pointer to GPIO Instance.
  * @param pin		Pin.
  */
-void GPIO_SetLow(GPIO_Type *port_base, uint32_t pin);
+void LED_SetLow(GPIO_Type *port_base, uint32_t pin);
 
 /*
  * @brief Signals That Device Is Currently Receiving Bytes (Recording).
  */
-void GPIO_SignalRecording(void);
+void LED_SignalRecording(void);
 
 /*
  * @brief Signals That Device Is Stopped Receiving Bytes (Recording).
  */
-void GPIO_SignalRecordingStop(void);
+void LED_SignalRecordingStop(void);
 
 /*
  * @brief Signals Configuration File Missing or Contains Unexpected Data.
  */
-void GPIO_SignalConfigError(void);
+void LED_SignalConfigError(void);
 
 /*
  * @brief Signals Error During Recording.
  */
-void GPIO_SignalRecordError(void);
+void LED_SignalRecordError(void);
 
 /*
  * @brief Signals That Flush Has Been Activated.
  */
-void GPIO_SignalFlush(void);
+void LED_SignalFlush(void);
 
-#endif /* GPIO_H_ */
+#endif /* LED_H_ */

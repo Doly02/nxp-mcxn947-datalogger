@@ -18,11 +18,12 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
+#include <led.h>
 #include "fsl_debug_console.h"
 #include "fsl_ctimer.h"
 
 #include "temperature.h"
-#include "gpio.h"
+#include "defs.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -148,9 +149,11 @@ void CTIMER0_IRQHandler(void)
 
 	if (35.0 < temp)
 	{
-		GPIO_SignalRecordError();
+#if (CONTROL_LED_ENABLED == true)
+		LED_SignalRecordError();
+#endif /* (CONTROL_LED_ENABLED == true) */
+		PRINTF("ERR: High Temperature (%f)\r\n", temp);
 	}
-	PRINTF("ERR: Lower Temperature! (%f)\r\n", temp);
 	CTIMER_ClearStatusFlags(CTIMER0, kCTIMER_Match0Flag);
 }
 

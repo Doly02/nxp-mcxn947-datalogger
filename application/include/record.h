@@ -21,6 +21,7 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
+#include <led.h>
 #include <string.h>
 #include "fsl_sd.h"
 #include "ff.h"						/*<! File System */
@@ -41,7 +42,6 @@
 
 #include "error.h"
 #include "uart.h"
-#include <gpio.h>
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -134,10 +134,15 @@ uint32_t CONSOLELOG_GetFileSize(void);
  * @brief 		Returns Currently Received Bytes Between LED Blinking.
  *
  * @return		uint32_t Received Bytes Between LED Blinking.
- *
  */
 uint32_t CONSOLELOG_GetTransferedBytes(void);
 
+/**
+ * @brief 		Returns If Flush Was Completed or Not.
+ *
+ * @return		If Recording Is Ongoing That Return False.
+ */
+bool CONSOLELOG_GetFlushCompleted(void);
 /**
  * @brief 		Clears Currently Received Bytes After LED Blinking.
  */

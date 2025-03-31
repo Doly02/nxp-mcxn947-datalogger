@@ -118,20 +118,24 @@ void record_task(void *handle)
 	{
 		u32Baudrate = DEFAULT_BAUDRATE;
 		u32FileSize = DEFAULT_MAX_FILESIZE;
+#if (true == INFO_ENABLED)
 		PRINTF("INFO: Configuration File (config) Not Found\r\n");
 		PRINTF("INFO: Default Configuration:\r\n");
+#endif /* (true == INFO_ENABLED) */
 	}
 	else
 	{
+#if (true == INFO_ENABLED)
 		PRINTF("INFO: Configuration File Found\r\n");
 		PRINTF("INFO: Configuration:\r\n");
+#endif /* (true == INFO_ENABLED) */
 		u32Baudrate = CONSOLELOG_GetBaudrate();
 		u32FileSize = CONSOLELOG_GetFileSize();
 	}
-#if (DEBUG_ENABLED == true)
+#if (true == INFO_ENABLED)
 	PRINTF("Baudrate=%d\r\n", u32Baudrate);
 	PRINTF("File Size=%d\r\n", u32FileSize);
-#endif /* (DEBUG_ENABLED == true) */
+#endif /* (true == INFO_ENABLED) */
 
     while (1)
     {
@@ -143,9 +147,9 @@ void record_task(void *handle)
         }
         if (false == bUartInitialized)
         {
-#if (true == DEBUG_ENABLED)
-            PRINTF("INFO: Reinitializing UART...\r\n");
-#endif /* (true == DEBUG_ENABLED) */
+#if (true == INFO_ENABLED)
+            PRINTF("INFO: Initializing UART...\r\n");
+#endif /* (true == INFO_ENABLED) */
 
             UART_Init(u32Baudrate);
             UART_Enable();
@@ -158,9 +162,9 @@ void record_task(void *handle)
         	UART_Disable();
         	bUartInitialized = false;
 
-#if (true == DEBUG_ENABLED)
+#if (true == INFO_ENABLED)
         	PRINTF("INFO: Disabled LPUART7\r\n");
-#endif /* (true == DEBUG_ENABLED) */
+#endif /* (true == INFO_ENABLED) */
 
         	/*@note If The Task Has No Things To Do -> Delay
         	 *		One Task Cannot Stop Another Task
@@ -172,16 +176,16 @@ void record_task(void *handle)
         	ERR_HandleError();
         }
 
-#if 1
+#if (CONTROL_LED_ENABLED == true)
         u32CurrentBytes = CONSOLELOG_GetTransferedBytes();
         u32MaxBytes 	= CONSOLELOG_GetMaxBytes();
         if (u32CurrentBytes >= u32MaxBytes)
         {
-        	GPIO_SignalRecording();
+        	LED_SignalRecording();
         	CONSOLELOG_ClearTransferedBytes();
         }
+#endif /* (CONTROL_LED_ENABLED == true) */
 
-#endif
         if (ERROR_NONE != (error_t)CONSOLELOG_Flush())
         {
         	/* Look At The Error */
