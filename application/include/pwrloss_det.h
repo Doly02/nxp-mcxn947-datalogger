@@ -21,17 +21,31 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#if 0
-#include "fsl_lpadc.h"
 
-#include "fsl_common.h"
+#include "fsl_lpcmp.h"
 #include "fsl_vref.h"
 #include "fsl_spc.h"
 
-#endif
+#include "gpio.h"		/*TODO: */
+#include "defs.h"
+
+
+#include "fsl_ctimer.h"
 /*******************************************************************************
  * Global Definitions
  ******************************************************************************/
+#define DEMO_LPCMP_BASE             CMP1
+#define DEMO_LPCMP_USER_CHANNEL     2U
+#define DEMO_LPCMP_DAC_CHANNEL      7U
+#define DEMO_LPCMP_IRQ_ID           HSCMP1_IRQn
+#define DEMO_LPCMP_IRQ_HANDLER_FUNC HSCMP1_IRQHandler
+#define DEMO_VREF_BASE              VREF0
+#define DEMO_SPC_BASE               SPC0
+
+#define CTIMER						CTIMER4         /* Timer 4 */
+#define CTIMER_MAT0_OUT				kCTIMER_Match_0 /* Match output 0 */
+#define CTIMER_EMT0_OUT				(1u << kCTIMER_Match_0)
+#define CTIMER_CLK_FREQ				CLOCK_GetCTimerClkFreq(4U)
 
 /*******************************************************************************
  * Prototypes
