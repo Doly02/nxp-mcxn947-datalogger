@@ -92,6 +92,11 @@ void LED_SetHigh(GPIO_Type *port_base, uint32_t pin);
 void LED_SetLow(GPIO_Type *port_base, uint32_t pin);
 
 /*
+ * @brief Indicates Ready State of The Recording Device.
+ */
+void LED_SignalReady(void);
+
+/*
  * @brief Signals That Device Is Currently Receiving Bytes (Recording).
  */
 void LED_SignalRecording(void);
@@ -104,12 +109,12 @@ void LED_SignalRecordingStop(void);
 /*
  * @brief Signals Configuration File Missing or Contains Unexpected Data.
  */
-void LED_SignalConfigError(void);
+void LED_SignalBackUpPowerAvailable(void);
 
 /*
  * @brief Signals Error During Recording.
  */
-void LED_SignalRecordError(void);
+void LED_SignalError(void);
 
 /*
  * @brief Signals That Flush Has Been Activated.

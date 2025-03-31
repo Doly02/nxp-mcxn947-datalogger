@@ -45,18 +45,21 @@ volatile uint32_t cnt = 0U;
 /*******************************************************************************
  * Interrupt Service Routines (ISRs)
  ******************************************************************************/
+
 /*
  * @brief 	Signals based on the tau value of the capacitor charged to 99%, i.e. 5x tau.
  * 			Sets the detection to the defined state at this period of time.
  */
 void CTIMER4_IRQHandler(void)
 {
-	GPIO_SetHigh(GPIO0, 15);
-	GPIO_SetLow(GPIO0, 23);
+	LED_SetHigh(GPIO0, 15);
+	LED_SetLow(GPIO0, 23);
 	cnt = 1;
 
 	CTIMER_ClearStatusFlags(CTIMER4, kCTIMER_Match0Flag);
 
+	/* Signal To The User That Back-Up Power Is Available */
+	LED_SignalBackUpPowerAvailable();
 	CTIMER_StopTimer(CTIMER);
 	DisableIRQ(CTIMER4_IRQn);
 }
@@ -70,7 +73,7 @@ void HSCMP1_IRQHandler(void)
 	LPCMP_ClearStatusFlags(DEMO_LPCMP_BASE, kLPCMP_OutputFallingEventFlag);
 	if (1 == cnt)
 	{
-		GPIO_SetHigh(GPIO0, 23);	/* Signal Power Loss 					*/
+		LED_SetHigh(GPIO0, 23);	/* Signal Power Loss 					*/
 		UART_Disable();				/* Disable Character Reception			*/
     	CONSOLELOG_Flush();			/* Flush Data From Buffer To SDHC Card 	*/
 	}
@@ -104,6 +107,8 @@ void PWRLOSS_DetectionInit(void)
      *   k_LpcmpConfigStruct->functionalSourceClock = kLPCMP_FunctionalClockSource0;
      */
     LPCMP_GetDefaultConfig(&mLpcmpCfg);
+    mLpcmpCfg.hysteresisMode = kLPCMP_HysteresisLevel2;
+
     /* Init the LPCMP module. */
     LPCMP_Init(CMP1, &mLpcmpCfg);
 
@@ -126,7 +131,7 @@ void PWRLOSS_DetectionInit(void)
     CTIMER_Init(CTIMER, &config);
 
     uint32_t timerClkFreq = CLOCK_GetCTimerClkFreq(4U);
-    uint32_t match = timerClkFreq * 20;	/* 15 Seconds*/
+    uint32_t match = timerClkFreq * 25;	/* 25 Seconds*/
 
     /* Configuration 0 */
     matchConfig0.enableCounterReset = true;
@@ -144,12 +149,12 @@ void PWRLOSS_DetectionInit(void)
      */
     CTIMER_SetupMatch(CTIMER, CTIMER_MAT0_OUT, &matchConfig0);
 
-    EnableIRQ(CTIMER4_IRQn);
+    EnableIRQWithPriority(CTIMER4_IRQn, 0x2);
 
     CTIMER_StartTimer(CTIMER);
 
-    GPIO_SetLow(GPIO0, 23);
-    GPIO_SetLow(GPIO0, 15);
+    LED_SetLow(GPIO0, 23);
+    LED_SetLow(GPIO0, 15);
 
 
 	return;

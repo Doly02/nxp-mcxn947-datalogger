@@ -26,7 +26,7 @@
 #include "fsl_vref.h"
 #include "fsl_spc.h"
 
-#include "gpio.h"		/*TODO: */
+#include "led.h"		/*TODO: */
 #include "defs.h"
 
 

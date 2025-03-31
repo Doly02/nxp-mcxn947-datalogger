@@ -36,6 +36,21 @@ void LED_SetLow(GPIO_Type *port_base, uint32_t pin)
 	port_base->PCOR = (1U << pin);
 }
 
+void LED_SignalReady(void)
+{
+	LED_SetHigh(GPIO0, 7);
+    LED_SetHigh(GPIO0, 9);
+    LED_SetHigh(GPIO0, 13);
+    LED_SetHigh(GPIO2, 11);
+    LED_SetHigh(GPIO4, 17);
+	SDK_DelayAtLeastUs(1000, CLOCK_GetCoreSysClkFreq());
+    LED_SetLow(GPIO0, 7);
+    LED_SetLow(GPIO0, 9);
+    LED_SetLow(GPIO0, 13);
+    LED_SetLow(GPIO2, 11);
+    LED_SetLow(GPIO4, 17);
+}
+
 void LED_SignalRecording(void)
 {
 	GPIO_PortToggle(RECORD_LED_PORT, 1u << RECORD_LED_PIN);
@@ -46,12 +61,12 @@ void LED_SignalRecordingStop(void)
 	LED_SetHigh(RECORD_LED_PORT, RECORD_LED_PIN);
 }
 
-void LED_SignalConfigError(void)
+void LED_SignalBackUpPowerAvailable(void)
 {
 	LED_SetHigh(ERROR_LED_PORT, ERROR_LED_PIN_CONFIG);
 }
 
-void LED_SignalRecordError(void)
+void LED_SignalError(void)
 {
 	LED_SetHigh(ERROR_LED_PORT, ERROR_LED_PIN_RECORD);
 }

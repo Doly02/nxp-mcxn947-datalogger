@@ -509,6 +509,7 @@ error_t CONSOLELOG_Flush(void)
 {
 	FRESULT error;
 	UINT bytesWritten;
+	int tickDiff = 0;
 
 	uint32_t currentTick = xTaskGetTickCount();
 
@@ -518,8 +519,8 @@ error_t CONSOLELOG_Flush(void)
 	 * */
 	uint32_t lastTick = __atomic_load_n(&g_lastDataTick, __ATOMIC_ACQUIRE);
 
-
-	if ((CONSOLELOG_Abs(currentTick - lastTick) >= FLUSH_TIMEOUT_TICKS) && g_dmaIndex > 0)
+	tickDiff = (int)(currentTick - lastTick);
+	if ((CONSOLELOG_Abs(tickDiff) > FLUSH_TIMEOUT_TICKS) && g_dmaIndex > 0)
 	{
 #if (true == INFO_ENABLED)
 		PRINTF("INFO: Current Ticks = %d.\r\n", currentTick);
@@ -637,7 +638,7 @@ error_t CONSOLELOG_ReadConfig(void)
     if (FR_OK != error)
     {
 #if (CONTROL_LED_ENABLED == true)
-    	LED_SignalConfigError();
+    	LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
         PRINTF("ERR: Failed to Open Root Dir. ERR=%d\r\n", error);
         return ERROR_OPEN;
@@ -661,7 +662,7 @@ error_t CONSOLELOG_ReadConfig(void)
     			if (FR_OK != error)
 				{
 #if (CONTROL_LED_ENABLED == true)
-    				LED_SignalConfigError();
+    				LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
 
     				PRINTF("ERR: Failed to open .config file. ERR=%d\r\n", error);
@@ -673,7 +674,7 @@ error_t CONSOLELOG_ReadConfig(void)
 				if (FR_OK != error)
 				{
 #if (CONTROL_LED_ENABLED == true)
-					LED_SignalConfigError();
+					LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
 
 					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
@@ -685,7 +686,7 @@ error_t CONSOLELOG_ReadConfig(void)
 				if (ERROR_NONE != CONSOLELOG_ProccessConfigFile((const char *)g_dmaBuffer1))
 				{
 #if (CONTROL_LED_ENABLED == true)
-					LED_SignalConfigError();
+					LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
 
 					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
@@ -721,7 +722,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     if (NULL == found)
     {
 #if (CONTROL_LED_ENABLED == true)
-    	LED_SignalConfigError();
+    	LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
 
         PRINTF("ERR: Key 'baudrate=' Not Found.\r\n");
@@ -733,7 +734,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     if (0 >= baudrate)
 	{
 #if (CONTROL_LED_ENABLED == true)
-    	LED_SignalConfigError();
+    	LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
 
 		PRINTF("ERR: Invalid Baudrate Value.\r\n");
@@ -750,7 +751,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
 			break;
 		default:
 #if (CONTROL_LED_ENABLED == true)
-			LED_SignalConfigError();
+			LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
 
 			PRINTF("ERR: Unsupported Baudrate Value: %d\r\n", baudrate);
@@ -764,7 +765,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     if (NULL == found)
     {
 #if (CONTROL_LED_ENABLED == true)
-    	LED_SignalConfigError();
+    	LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
 
         PRINTF("ERR: Key 'file_size=' Not Found.\r\n");
@@ -776,7 +777,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     if (0 >= value)
     {
 #if (CONTROL_LED_ENABLED == true)
-    	LED_SignalConfigError();
+    	LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
 
         PRINTF("ERR: Invalid File Size Value.\r\n");

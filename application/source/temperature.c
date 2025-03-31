@@ -150,7 +150,7 @@ void CTIMER0_IRQHandler(void)
 	if (35.0 < temp)
 	{
 #if (CONTROL_LED_ENABLED == true)
-		LED_SignalRecordError();
+		LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
 		PRINTF("ERR: High Temperature (%f)\r\n", temp);
 	}
