@@ -114,7 +114,7 @@ void PWRLOSS_DetectionInit(void)
     LPCMP_SetDACConfig(DEMO_LPCMP_BASE, &mLpcmpDacConfigStruct);
 
     /* Configure LPCMP input channels. */
-    LPCMP_SetInputChannels(CMP1, 0x07, 0x02);
+    LPCMP_SetInputChannels(CMP1, 0x02, 0x07);
 
     /* Enable the interrupt. */
     EnableIRQ(HSCMP1_IRQn);
