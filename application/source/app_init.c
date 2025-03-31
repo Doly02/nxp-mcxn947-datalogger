@@ -1,0 +1,125 @@
+/******************************
+ *  Project:        NXP MCXN947 Datalogger
+ *  File Name:      init.c
+ *  Author:         Tomas Dolak
+ *  Date:           31.03.2025
+ *  Description:    Implements Datalogger Application.
+ *
+ * ****************************/
+
+/******************************
+ *  @package        NXP MCXN947 Datalogger
+ *  @file           init.c
+ *  @author         Tomas Dolak
+ *  @date           31.03.2025
+ *  @brief          Implements Datalogger Application.
+ * ****************************/
+
+/*******************************************************************************
+ * Includes
+ ******************************************************************************/
+#include "app_tasks.h"
+#include "app_init.h"
+/*******************************************************************************
+ * Local Definitions
+ ******************************************************************************/
+
+/*******************************************************************************
+ * Local Structures
+ ******************************************************************************/
+
+/*******************************************************************************
+ * Functions
+ ******************************************************************************/
+
+void APP_InitBoard(void)
+{
+	irtc_config_t irtcCfg;
+	edma_config_t edmaConfig = { 0U };
+
+    /* Attach FRO 12M to FLEXCOMM4 (debug console) */
+    CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
+    CLOCK_AttachClk(BOARD_DEBUG_UART_CLK_ATTACH);
+
+    CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
+
+    /* Attach FRO 12M to FLEXCOMM3 Application UART */
+	CLOCK_SetClkDiv(kCLOCK_DivFlexcom3Clk, 2u);
+	CLOCK_AttachClk(kFRO_HF_DIV_to_FLEXCOMM3);
+
+#if (true == RTC_ENABLED)
+	/* Attach FRO 12M To FLEXCOMM2 (I2C for RTC) */
+	CLOCK_SetClkDiv(kCLOCK_DivFlexcom2Clk, 1U);
+	CLOCK_AttachClk(kFRO12M_to_FLEXCOMM2);
+	CLOCK_EnableClock(kCLOCK_Dma0);
+#endif /* (true == RTC_ENABLED) */
+
+    /* Attach FRO HF to USDHC */
+    CLOCK_SetClkDiv(kCLOCK_DivUSdhcClk, 1u);
+    CLOCK_AttachClk(kFRO_HF_to_USDHC);
+
+    /* Enables the clock for GPIO0 */
+    CLOCK_EnableClock(kCLOCK_Gpio0);
+    /* Enables the clock for GPIO2 */
+    CLOCK_EnableClock(kCLOCK_Gpio2);
+    /* Enables the clock for GPIO4 */
+	CLOCK_EnableClock(kCLOCK_Gpio4);
+
+#if (true == TEMPERATURE_MEAS_ENABLED)
+	CLOCK_SetClkDiv(kCLOCK_DivFlexcom5Clk, 1u);
+    CLOCK_AttachClk(kFRO12M_to_FLEXCOMM5);
+    CLOCK_EnableClock(kCLOCK_Dma1);
+
+    CLOCK_SetClkDiv(kCLOCK_DivCtimer0Clk, 1u);
+    CLOCK_AttachClk(kFRO_HF_to_CTIMER0);
+#endif /* (true == TEMPERATURE_MEAS_ENABLED) */
+
+#if (true == PWRLOSS_DETECTION_ENABLED)
+    /* Attach FRO 12M to CMP1 */
+    CLOCK_SetClkDiv(kCLOCK_DivCmp1FClk, 1U);
+    CLOCK_AttachClk(kFRO12M_to_CMP1F);
+
+    /* Attach FRO HF clock for CTIMER4 */
+    CLOCK_SetClkDiv(kCLOCK_DivCtimer4Clk, 1u);
+    CLOCK_AttachClk(kFRO_HF_to_CTIMER4);
+
+#endif /* (true == PWRLOSS_DETECTION_ENABLED) */
+
+	BOARD_InitPins();
+    BOARD_PowerMode_OD();
+    BOARD_InitBootClocks();
+    BOARD_InitDebugConsole();
+	PRINTF("Initialization!\r\n");
+
+#if (true == RTC_ENABLED)
+
+    /* Initialize DMA */
+	EDMA_GetDefaultConfig(&edmaConfig);
+	EDMA_Init(LPI2C_DMA_BASEADDR, &edmaConfig);
+
+#endif /* (true == RTC_ENABLED) */
+
+    CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
+    BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
+
+#if (true == IRTC_ENABLED)
+    CLOCK_SetupClk16KClocking(kCLOCK_Clk16KToVbat | kCLOCK_Clk16KToMain);
+    TIME_InitIRTC();
+#endif /* (true == IRTC_ENABLED) */
+
+#if (true == CONTROL_LED_ENABLED)
+
+    /* Signal's That Recorder Is Initialized And Ready To Do The Job */
+    LED_SignalReady();
+#endif /* (true == CONTROL_LED_ENABLED) */
+
+#if (true == TEMPERATURE_MEAS_ENABLED)
+    TMP_Init();
+#endif /* (true == TEMPERATURE_MEAS_ENABLED) */
+
+#if (true == PWRLOSS_DETECTION_ENABLED)
+
+    PWRLOSS_DetectionInit();
+#endif /* (true == PWRLOSS_DETECTION_ENABLED) */
+
+}
