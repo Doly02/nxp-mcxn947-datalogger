@@ -85,7 +85,7 @@
 /**
  * @brief Enables/Disables Power Loss Detection.
  */
-#define PWRLOSS_DETECTION_ENABLED	(false)
+#define PWRLOSS_DETECTION_ENABLED	(true)
 
 /*TODO: Add UART Interrupt Prio */
 #define PWRLOSS_DET_PRIO			(7U)
