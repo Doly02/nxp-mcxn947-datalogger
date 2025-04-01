@@ -24,23 +24,29 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+/**
+ * @brief 	Software FIFO Size.
+ */
+#define FIFO_SIZE 					1024U
 
-/* buffer size (in byte) for read/write operations */
-#define BUFFER_SIZE 		1024U
+/**
+ * @brief 	Block Size For Write To SDHC Card Operation (In Bytes).
+ */
+#define BLOCK_SIZE 					512U
 
-#define BLOCK_SIZE 			512U
-
-#define MAX_FILE_SIZE 		8192 			// Maximum file size in bytes (8 KB)
-
-#define FILE_NAME_TEMPLATE 	"/log_%d.txt" 	// File name template
-
-#define GET_WAIT_INTERVAL(seconds)   ((seconds) * 1000 / configTICK_RATE_HZ)
+/**
+ * @brief Convert Time In Seconds To Number of Ticks.
+ *
+ * @param 	seconds Number of Seconds To Transfer.
+ * @return 	Number of Ticks Corresponding To The Specified Number of Seconds.
+ */
+#define GET_WAIT_INTERVAL(seconds)  ((seconds) * 1000 / configTICK_RATE_HZ)
 
 /*
  * @brief 	Time Interval Between LED Blinking.
  * @details	In Seconds.
  */
-#define RECORD_LED_TIME_INTERVAL 0.02
+#define RECORD_LED_TIME_INTERVAL 	0.02
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -82,6 +88,13 @@ static REC_config_t g_config;
  **************/
 
 /**
+ * @defgroup 	Recording Buffers and Recording Management
+ * @brief 		Group Contains Variables For Management of Recording.
+ * @details 	Includes DMA Buffers For Recording, Indexes, Pointers, ...
+ * @{
+ */
+
+/**
  * @brief 	Data For Multi-Buffering - In Particular Dual-Buffering,
  * 			One Is Always Filled, The Other Is Processed.
  */
@@ -89,34 +102,59 @@ SDK_ALIGN(uint8_t g_dmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
 SDK_ALIGN(uint8_t g_dmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
-/* DMA Buffer State */
-
 /**
  * @brief 	Active Buffer Which Receives Data From UART Periphery.
  */
-static uint8_t* g_activeDmaBuffer = g_dmaBuffer1;
+static uint8_t* g_activeDmaBuffer 	= g_dmaBuffer1;
 
 /**
  * @brief 	Pointer on DMA Buffer Into Which The Time Stamps Are Inserted.
  */
-static uint8_t* g_processDmaBuffer = NULL;
+static uint8_t* g_processDmaBuffer 	= NULL;
+
 /**
  * @brief 	Index Into Active DMA Buffer.
  */
 static uint16_t g_dmaIndex 			= 0;
 
+/**
+ * @brief 	Indicates That Collection Buffer (Active Buffer) Is Full and Ready To Swap.
+ */
 static bool g_dmaBufferReady 		= false;
-
-static uint16_t g_blockIndex 		= 0;
 
 /**
  * @brief 	Value of Ticks When Last Character Was Received Thru LPUART.
  */
-static TickType_t g_lastDataTick 		= 0;
+static TickType_t g_lastDataTick 	= 0;
 
 /**
- * @defgroup UART Management
- * @brief Group Contains Variables For Recording From UART.
+ * @brief	Tracks Current File Size.
+ */
+static uint32_t g_currentFileSize 	= 0;
+
+/**
+ * @brief	Counter For Unique File Names.
+ */
+static uint16_t g_fileCounter 		= 1;
+
+/**
+ * @brief 	Flush Completed Flag.
+ * @details If No Data of The LPUART Periphery Are Received Within The `FLUSH_TIMEOUT_TICKS`
+ * 			Interval, The Data Collected So Far In The Buffer Are Flushed To The File.
+ */
+static bool g_flushCompleted 		= false;
+
+/**
+ * @brief	Transferred Bytes Between Blinking LEDs.
+ */
+static uint32_t g_bytesTransfered	= 0U;
+
+/** @} */ // End of Recording Buffers and Recording Management
+
+/**
+ * @defgroup 	UART Management
+ * @brief 		Group Contains Variables For Recording From UART.
+ * @details 	Data From UART Are Stored Into FIFO (Circular Buffer).
  * @{
  */
 
@@ -132,27 +170,8 @@ volatile uint16_t g_writeIndex 		= 0;
  */
 volatile uint16_t g_readIndex 		= 0;
 
-/** @} */ // End of UART Management group
+/** @} */ // End of UART Management Group
 
-/**
- * @brief	Tracks Current File Size.
- */
-static uint32_t g_currentFileSize 	= 0;
-
-/**
- * @brief	Counter For Unique File Names.
- */
-static uint16_t g_fileCounter 		= 1; 		// Counter for unique file names
-
-/**
- * @brief 	Flush Completed Flag.
- * @details If No Data of The LPUART Periphery Are Received Within The `FLUSH_TIMEOUT_TICKS`
- * 			Interval, The Data Collected So Far In The Buffer Are Flushed To The File.
- */
-static bool g_flushCompleted 		= false;
-
-
-static uint32_t g_bytesTransfered	= 0U;
 
 /*******************************************************************************
  * Code
@@ -190,7 +209,7 @@ void LP_FLEXCOMM3_IRQHandler(void)
     {
         data = LPUART_ReadByte(LPUART3);
         /* Add Data To FIFO */
-        uint16_t nextWriteIndex = (g_writeIndex + 1) % BUFFER_SIZE;
+        uint16_t nextWriteIndex = (g_writeIndex + 1) % FIFO_SIZE;
         if (nextWriteIndex != g_readIndex) // Check if FIFO is not full
         {
         	g_fifo[g_writeIndex] = data;
@@ -404,7 +423,7 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
     {
         /* Loads One Char From FIFO And Stores The Char Into Active DMA Buffer */
         uint8_t currentChar = g_fifo[g_readIndex];
-        g_readIndex = (g_readIndex + 1) % BUFFER_SIZE;
+        g_readIndex = (g_readIndex + 1) % FIFO_SIZE;
 
         g_activeDmaBuffer[g_dmaIndex++] = currentChar;
 
@@ -526,16 +545,17 @@ error_t CONSOLELOG_Flush(void)
 		PRINTF("INFO: Current Ticks = %d.\r\n", currentTick);
 		PRINTF("INFO: Last Ticks = %d.\r\n", g_lastDataTick);
 		PRINTF("INFO: Flush Triggered. Writing Remaining Data To File.\r\n");
-#endif /* (true == INFO_ENABLED) */
+#else
 		PRINTF("INFO: Flush Triggered.\r\n");
+#endif /* (true == INFO_ENABLED) */
 
-		while (g_dmaIndex < BLOCK_SIZE)			// Fill Buffer With ' '
+		while (g_dmaIndex < BLOCK_SIZE)			/* Fill Buffer With ' ' */
 		{
 			g_activeDmaBuffer[g_dmaIndex++] = ' ';
 		}
 
 		g_processDmaBuffer 	= g_activeDmaBuffer;
-		g_dmaBufferReady 		= true;
+		g_dmaBufferReady 	= true;
 
 		// Switch To Second Buffer
 		g_activeDmaBuffer 	= (g_activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
@@ -551,8 +571,9 @@ error_t CONSOLELOG_Flush(void)
 		}
 
 #if (CONTROL_LED_ENABLED == true )
-		LED_SignalFlush();				// Signal Flush
-		LED_SignalRecordingStop();		// Signal That Recording Is Not Active
+		LED_SignalFlush();				/* Signal Flush							*/
+		LED_SignalRecordingStop();		/* Signal That Recording Is Not Active	*/
+
 #endif /* (CONTROL_LED_ENABLED == true ) */
 
 		/**
@@ -625,7 +646,6 @@ error_t CONSOLELOG_Deinit(void)
 	return ERROR_NONE;
 }
 
-
 error_t CONSOLELOG_ReadConfig(void)
 {
     FRESULT error;
@@ -640,7 +660,8 @@ error_t CONSOLELOG_ReadConfig(void)
 #if (CONTROL_LED_ENABLED == true)
     	LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
-        PRINTF("ERR: Failed to Open Root Dir. ERR=%d\r\n", error);
+
+    	PRINTF("ERR: Failed to Open Root Dir. ERR=%d\r\n", error);
         return ERROR_OPEN;
     }
 
@@ -791,7 +812,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
         value = roundedValue;
     }
 
-    g_config.size = value;  // Store File Size in Config
+    g_config.size = value;  // Store File Size in Configuration Structure
     g_config.max_bytes = RECORD_LED_TIME_INTERVAL * g_config.baudrate;
     PRINTF("DEBUG: File Size Set To %d Bytes.\r\n", g_config.size);
 
