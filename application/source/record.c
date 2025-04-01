@@ -158,7 +158,7 @@ static uint32_t g_bytesTransfered	= 0U;
  * @{
  */
 
-SDK_ALIGN(volatile uint8_t g_fifo[BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);	// FIFO buffer
+SDK_ALIGN(volatile uint8_t g_fifo[FIFO_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);	// FIFO buffer
 
 /**
  * @brief	Index For Writing Into FIFO.
@@ -528,9 +528,8 @@ error_t CONSOLELOG_Flush(void)
 {
 	FRESULT error;
 	UINT bytesWritten;
-	int tickDiff = 0;
-
-	uint32_t currentTick = xTaskGetTickCount();
+	int tickDiff 			= 0;
+	uint32_t currentTick 	= xTaskGetTickCount();
 
 	/*
 	 * __ATOMIC_ACQUIRE - 	Ensures That All Read Values Are Consistent

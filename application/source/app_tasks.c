@@ -70,9 +70,7 @@ void msc_task(void *handle)
             continue;
 		}
 
-        // xSemaphoreTake(g_TaskMutex, portMAX_DELAY);
-
-        if (1 == usbAttached)
+        if (xSemaphoreTake(g_TaskMutex, portMAX_DELAY) == pdTRUE)
         {
 
 #if (true == DEBUG_ENABLED)
@@ -84,11 +82,124 @@ void msc_task(void *handle)
                 USB_DeviceMscAppTask();
                 taskYIELD();
             }
+            xSemaphoreGive(g_TaskMutex); // After Un-Plug of USB, Release of Semaphore For record_task
         }
 	}
 }
 
+void record_task(void *handle)
+{
+	error_t u16RetVal 			= ERROR_UNKNOWN;
+	uint32_t u32Baudrate 		= 0;
+	uint32_t u32FileSize 		= 0;
+	uint32_t u32CurrentBytes 	= 0;
+	uint32_t u32MaxBytes 		= 0;
+	bool bUartInitialized 		= false;
 
+	/* Initialize's The SDHC Card */
+	USB_DeviceModeInit();
+
+#if (true == DEBUG_ENABLED)
+	PRINTF("DEBUG: Initialize File System\r\n");
+#endif /* (true == DEBUG_ENABLED) */
+
+	/* Initialize File System */
+	u16RetVal = (error_t)CONSOLELOG_Init();
+	if (ERROR_NONE != u16RetVal)
+	{
+		return;
+	}
+
+	/* Read Configuration File */
+	if (ERROR_NONE != CONSOLELOG_ReadConfig())
+	{
+		u32Baudrate = DEFAULT_BAUDRATE;
+		u32FileSize = DEFAULT_MAX_FILESIZE;
+#if (true == INFO_ENABLED)
+		PRINTF("INFO: Configuration File (config) Not Found\r\n");
+		PRINTF("INFO: Default Configuration:\r\n");
+#endif
+	}
+	else
+	{
+#if (true == INFO_ENABLED)
+		PRINTF("INFO: Configuration File Found\r\n");
+		PRINTF("INFO: Configuration:\r\n");
+#endif
+		u32Baudrate = CONSOLELOG_GetBaudrate();
+		u32FileSize = CONSOLELOG_GetFileSize();
+	}
+
+#if (true == INFO_ENABLED)
+	PRINTF("Baudrate=%d\r\n", u32Baudrate);
+	PRINTF("File Size=%d\r\n", u32FileSize);
+#endif
+
+	while (1)
+	{
+		if (usbAttached == 1)
+		{
+			// USB connected - wait for it to disconnect
+			taskYIELD();
+			continue;
+		}
+
+		// Wait for the traffic light - only one task can run
+		if (xSemaphoreTake(g_TaskMutex, portMAX_DELAY) == pdTRUE)
+		{
+			if (bUartInitialized == false)
+			{
+				UART_Init(u32Baudrate);
+				UART_Enable();
+				LED_ClearSignalFlush(); // resets the LED signalling
+				bUartInitialized = true;
+			}
+
+			// Loop to record data while USB is not connected
+			while (usbAttached == 0)
+			{
+				if (ERROR_NONE != (error_t)CONSOLELOG_Recording(u32FileSize))
+				{
+					ERR_HandleError();
+				}
+
+#if (CONTROL_LED_ENABLED == true)
+				u32CurrentBytes = CONSOLELOG_GetTransferedBytes();
+				u32MaxBytes = CONSOLELOG_GetMaxBytes();
+				if (u32CurrentBytes >= u32MaxBytes)
+				{
+					LED_SignalRecording();
+					CONSOLELOG_ClearTransferedBytes();
+				}
+#endif
+
+				if (ERROR_NONE != (error_t)CONSOLELOG_Flush())
+				{
+					ERR_HandleError();
+				}
+
+				// Check if the USB was connected during the run, exit record mode
+				if (usbAttached == 1)
+				{
+#if (true == DEBUG_ENABLED)
+					PRINTF("DEBUG: USB připojeno během záznamu – přepínám režim.\r\n");
+#endif
+					break; // break the loop and release the mutex
+				}
+
+				vTaskDelay(pdMS_TO_TICKS(100));
+			}
+
+			UART_Disable();
+			bUartInitialized = false;
+
+			// Release the mutex before switching to MSC mode
+			xSemaphoreGive(g_TaskMutex);
+		}
+	}
+}
+
+#if 0
 void record_task(void *handle)
 {
 
@@ -194,6 +305,7 @@ void record_task(void *handle)
 
     }
 }
+#endif
 
 void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
                                    StackType_t **ppxIdleTaskStackBuffer,

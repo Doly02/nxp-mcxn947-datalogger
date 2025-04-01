@@ -75,3 +75,8 @@ void LED_SignalFlush(void)
 {
 	LED_SetHigh(ERROR_LED_PORT, RECORD_LED_PIN_FLUSH);
 }
+
+void LED_ClearSignalFlush(void)
+{
+	LED_SetLow(ERROR_LED_PORT, RECORD_LED_PIN_FLUSH);
+}

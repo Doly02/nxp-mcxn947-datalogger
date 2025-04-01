@@ -121,4 +121,9 @@ void LED_SignalError(void);
  */
 void LED_SignalFlush(void);
 
+/*
+ * @brief Clears Flush LED After UART Re-Inicialization.
+ */
+void LED_ClearSignalFlush(void);
+
 #endif /* LED_H_ */
