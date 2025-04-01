@@ -19,8 +19,7 @@
  * Includes
  ******************************************************************************/
 
-/* Freescale Includes. */
-#include <led.h>
+/* NXP Board Specific */
 #include "fsl_device_registers.h"
 #include "fsl_debug_console.h"
 #include "fsl_clock.h"
@@ -33,8 +32,8 @@
 #include "semphr.h"
 
 /* Application Includes */
-#include "app_tasks.h"
 #include "app_init.h"
+#include "app_tasks.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -63,9 +62,9 @@ TaskHandle_t mscTaskHandle 		= NULL;
 
 TaskHandle_t recordTaskHandle 	= NULL;
 
-SemaphoreHandle_t g_TaskMutex;
+SemaphoreHandle_t g_xSemRecord;
 
-uint8_t volatile usbAttached;
+SemaphoreHandle_t g_xSemMassStorage;
 
 /*******************************************************************************
  * Code
@@ -76,17 +75,18 @@ uint8_t volatile usbAttached;
  */
 int main(void)
 {
-	usbAttached = 0;
 
-	g_TaskMutex = xSemaphoreCreateBinary();
-	if (NULL == g_TaskMutex)
-	{
-        PRINTF("ERR: Failed to Create Semaphore!\n");
+	g_xSemRecord = xSemaphoreCreateBinary();
+	g_xSemMassStorage = xSemaphoreCreateBinary();
+
+    if ((NULL == g_xSemRecord) || (NULL == g_xSemMassStorage))
+    {
+        PRINTF("ERR: Failed to Create Semaphores!\n");
         ERR_HandleError();
-	}
+    }
 
-	/* Release Semaphore For record_task */
-	xSemaphoreGive(g_TaskMutex);
+    /* Launch Record Task With Dominance */
+    xSemaphoreGive(g_xSemRecord);
 
     /* Initialize board hardware. */
 	APP_InitBoard();
@@ -125,7 +125,7 @@ int main(void)
 #endif /* (true == MSC_ENABLED) */
 
     vTaskStartScheduler();
-    while (1 == 1)
+    while (1)
     {
     	;
     }

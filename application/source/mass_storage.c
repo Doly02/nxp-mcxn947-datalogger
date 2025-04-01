@@ -61,11 +61,14 @@ USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE) uint32_t g_mscWriteRequestBuffer
 
 USB_DMA_NONINIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE) static uint8_t s_SetupOutBuffer[8];
 
-extern SemaphoreHandle_t g_TaskMutex;
+//extern SemaphoreHandle_t g_TaskMutex;
+
+extern SemaphoreHandle_t g_xSemRecord;
+
+extern SemaphoreHandle_t g_xSemMassStorage;
 
 static bool bMscInitialized = false;
 
-extern volatile uint8_t usbAttached;
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -79,18 +82,16 @@ void USB1_HS_IRQHandler(void)
     }
     USB_DeviceEhciIsrFunction(g_msc.deviceHandle);
 
-#if 1
     if (USB_State(g_msc.deviceHandle) == kUSB_DeviceNotifyAttach)
     {
-        usbAttached = 1; /* Change to Semaphore */
+    	/* USB Attached, Activation of Mass Storage Task */
+        xSemaphoreGiveFromISR(g_xSemMassStorage, &xHigherPriorityTaskWoken);
     }
     else
     {
-        usbAttached = 0;
+        /* USB Detached, Activation of Record Task */
+        xSemaphoreGiveFromISR(g_xSemRecord, &xHigherPriorityTaskWoken);
     }
-#endif
-    /* Free The Mutex For Mass Storage Task */
-    xSemaphoreGiveFromISR(g_TaskMutex, &xHigherPriorityTaskWoken);
 
     /**
      * Switch The Context From ISR To a Higher Priority Task,
