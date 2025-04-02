@@ -46,7 +46,7 @@
  * @brief 	Time Interval Between LED Blinking.
  * @details	In Seconds.
  */
-#define RECORD_LED_TIME_INTERVAL 	0.02
+#define RECORD_LED_TIME_INTERVAL 	0.01
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -174,26 +174,8 @@ volatile uint16_t g_readIndex 		= 0;
 
 
 /*******************************************************************************
- * Code
+ * Interrupt Service Routines (ISRs)
  ******************************************************************************/
-DWORD get_fattime(void)
-{
-    irtc_datetime_t datetime;
-    IRTC_GetDatetime(RTC, &datetime);
-
-    return ((DWORD)(datetime.year - 1980) << 25) |
-           ((DWORD)datetime.month << 21) |
-           ((DWORD)datetime.day << 16) |
-           ((DWORD)datetime.hour << 11) |
-           ((DWORD)datetime.minute << 5) |
-           ((DWORD)(datetime.second / 2));
-}
-
-int CONSOLELOG_Abs(int x)
-{
-    return (x < 0) ? -x : x;
-}
-
 /**
  * @brief LPUART3 IRQ Handler.
  *
@@ -226,6 +208,28 @@ void LP_FLEXCOMM3_IRQHandler(void)
     LPUART_ClearStatusFlags(LPUART3, kLPUART_RxDataRegFullFlag);
     SDK_ISR_EXIT_BARRIER;
 }
+
+/*******************************************************************************
+ * Code
+ ******************************************************************************/
+DWORD get_fattime(void)
+{
+    irtc_datetime_t datetime;
+    IRTC_GetDatetime(RTC, &datetime);
+
+    return ((DWORD)(datetime.year - 1980) << 25) |
+           ((DWORD)datetime.month << 21) |
+           ((DWORD)datetime.day << 16) |
+           ((DWORD)datetime.hour << 11) |
+           ((DWORD)datetime.minute << 5) |
+           ((DWORD)(datetime.second / 2));
+}
+
+int CONSOLELOG_Abs(int x)
+{
+    return (x < 0) ? -x : x;
+}
+
 
 error_t CONSOLELOG_CreateFile(void)
 {

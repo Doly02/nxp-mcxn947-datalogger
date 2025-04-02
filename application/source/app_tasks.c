@@ -51,9 +51,9 @@ extern SemaphoreHandle_t g_xSemRecord;
 
 extern SemaphoreHandle_t g_xSemMassStorage;
 
-extern TaskHandle_t mscTaskHandle;
+extern TaskHandle_t g_xMscTaskHandle;
 
-extern TaskHandle_t recordTaskHandle;
+extern TaskHandle_t g_xRecordTaskHandle;
 
 /** @} */ // End of TaskManagement group
 
@@ -141,7 +141,6 @@ void record_task(void *handle)
 
         UART_Init(u32Baudrate);
         UART_Enable();
-        LED_ClearSignalFlush();
         bUartInitialized = true;
 
 #if (true == DEBUG_ENABLED)
@@ -161,8 +160,8 @@ void record_task(void *handle)
             if (u32CurrentBytes >= u32MaxBytes)
             {
                 LED_SignalRecording();
-                LED_ClearSignalFlush();
                 CONSOLELOG_ClearTransferedBytes();
+                LED_ClearSignalFlush();
             }
 #endif
 

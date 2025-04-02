@@ -39,12 +39,12 @@
  */
 #define RECORD_STACK_SIZE			(5000L / sizeof(portSTACK_TYPE))
 
-/*
+/**
  * @brief Enables/Disables Logic For External Real-Time Circuit DS3231.
  */
 #define RTC_ENABLED					(true)
 
-/*
+/**
  * @brief Enables/Disables Mass Storage Functionality.
  * */
 #define MSC_ENABLED					(true)
@@ -53,9 +53,13 @@
  * @brief 	Enables/Disables Debug Mode
  * @details If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console.
  */
-#define DEBUG_ENABLED				(true)
-
 #define INFO_ENABLED				(false)
+
+/**
+ * @brief 	Enables/Disables Debug Mode
+ * @details If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console.
+ */
+#define DEBUG_ENABLED				(true)
 
 /**
  * @brief Enables/Disables HW FIFO Queue on Application LPUART.
@@ -71,8 +75,8 @@
  * @brief Enables/Disables Print of Received Bytes From Application LPUART To Console.
  */
 #define UART_PRINT_ENABLED			(false)
-/**
 
+/**
  * @brief Enables Timer For 1 Sec. Adjustment.
  */
 #define CTIMER_ENABLED				(false)
@@ -87,7 +91,14 @@
  */
 #define PWRLOSS_DETECTION_ENABLED	(true)
 
+/**
+ * @brief Priority of LP_FLEXCOMM Interrupt (UART) For Rx Of Recorded Data.
+ */
+#define UART_RECEIVE_PRIO			(6U)
 /*TODO: Add UART Interrupt Prio */
+/**
+ * @brief Priority of Comparator Interrupt For Power Loss Detection.
+ */
 #define PWRLOSS_DET_PRIO			(7U)
 
 /**
@@ -113,13 +124,13 @@
  */
 #define CONFIG_FILE 				"config"
 
-/*
+/**
  * @brief 	Default Baud Rate If The Configuration File Could Not Be
  * 			Read Properly.
  */
 #define DEFAULT_BAUDRATE			230400
 
-/*
+/**
  * @brief	Default Maximal File Size If The Configuration File Could
  * 			Not Be Read Properly.
  */

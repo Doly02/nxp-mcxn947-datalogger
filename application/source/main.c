@@ -44,23 +44,23 @@
 /*!
  * @brief 	Buffer for Static Stack of Mass Storage Task.
  */
-static StackType_t mscTaskStack[MSC_STACK_SIZE];
+static StackType_t g_xMscTaskStack[MSC_STACK_SIZE];
 /*!
  * @brief 	TCB (Task Control Block) - Metadata of Mass Storage Task.
  * @details Includes All The Information Needed to Manage The Task Such As Job Status,
  * 			Job Stack Pointer, Values of Variables During Context Switching.
  */
-static StaticTask_t mscTaskTCB;
+static StaticTask_t g_xMscTaskTCB;
 
-static StackType_t recordTaskStack[RECORD_STACK_SIZE];
+static StackType_t g_xRecordTaskStack[RECORD_STACK_SIZE];
 
-static StaticTask_t recordTaskTCB;
+static StaticTask_t g_xRecordTaskTCB;
 
 usb_msc_struct_t g_msc;
 
-TaskHandle_t mscTaskHandle 		= NULL;
+TaskHandle_t g_xMscTaskHandle 	 = NULL;
 
-TaskHandle_t recordTaskHandle 	= NULL;
+TaskHandle_t g_xRecordTaskHandle = NULL;
 
 SemaphoreHandle_t g_xSemRecord;
 
@@ -91,15 +91,15 @@ int main(void)
     /* Initialize board hardware. */
 	APP_InitBoard();
 
-    recordTaskHandle = xTaskCreateStatic(
+	g_xRecordTaskHandle = xTaskCreateStatic(
     			  record_task,       		/* Function That Implements The Task. 		*/
                   "record_task",          	/* Text Name For The Task. 					*/
 				  MSC_STACK_SIZE,      		/* Number of Indexes In The xStack Array. 	*/
                   NULL,    					/* Parameter Passed Into The Task. 			*/
 				  TASK_PRIO,				/* Priority at Which The Task Is Created. 	*/
-				  &recordTaskStack[0],      /* Array To Use As The Task's Stack.		*/
-                  &recordTaskTCB );
-    if (NULL == recordTaskHandle)
+				  &g_xRecordTaskStack[0],   /* Array To Use As The Task's Stack.		*/
+                  &g_xRecordTaskTCB );
+    if (NULL == g_xRecordTaskHandle)
     {
     	PRINTF("ERR: MSC Task Creation Failed!\r\n");
     	ERR_HandleError();
@@ -108,15 +108,15 @@ int main(void)
 
 #if (true == MSC_ENABLED)
 
-    mscTaskHandle = xTaskCreateStatic(
+    g_xMscTaskHandle = xTaskCreateStatic(
     			  msc_task,       			/* Function That Implements The Task. 		*/
                   "msc_task",          		/* Text Name For The Task. 					*/
 				  MSC_STACK_SIZE,      		/* Number of Indexes In The xStack Array. 	*/
                   NULL,    					/* Parameter Passed Into The Task. 			*/
 				  TASK_PRIO - 1,			/* Priority at Which The Task Is Created. 	*/
-				  &mscTaskStack[0],         /* Array To Use As The Task's Stack.		*/
-                  &mscTaskTCB );
-    if (NULL == mscTaskHandle)
+				  &g_xMscTaskStack[0],      /* Array To Use As The Task's Stack.		*/
+                  &g_xMscTaskTCB );
+    if (NULL == g_xMscTaskHandle)
     {
     	PRINTF("ERR: MSC Task Creation Failed!\r\n");
     	ERR_HandleError();

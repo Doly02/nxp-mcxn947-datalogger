@@ -29,19 +29,19 @@
 /*
  * @brief Error LED's Port Number.
  */
-#define ERROR_LED_PORT				GPIO0
+#define ERROR_LED_PORT			GPIO0
 
 /*
  * @brief 	Error LED's Pin 1.
  * @details	P0_7
  */
-#define ERROR_LED_PIN_CONFIG		0x07
+#define ERROR_LED_PIN_CONFIG	0x07
 
 /*
  * @brief 	Error LED's Pin 2.
  * @details	P0_9
  */
-#define ERROR_LED_PIN_RECORD		0x09
+#define ERROR_LED_PIN_RECORD	0x09
 
 /*
  * @brief 	Error LED's Pin 3.
@@ -54,25 +54,25 @@
  * @brief 	Recording LED's Port Number.
  * @details Signals That Device Records.
  */
-#define RECORD_LED_PORT				GPIO2
+#define RECORD_LED_PORT			GPIO2
 
 /*
  * @brief 	Record LED's Pin.
  * @details	P2_11
  */
-#define RECORD_LED_PIN				0x0B
+#define RECORD_LED_PIN			0x0B
 
 /*
  * @brief 	Recording LED's Port Number.
  * @details Signals That Device Records.
  */
-#define BACKUP_POWER_LED_PORT		GPIO4
+#define BACKUP_POWER_LED_PORT	GPIO4
 
 /*
  * @brief 	Record LED's Pin.
  * @details	P4_17
  */
-#define BACKUP_POWER_LED_PIN		0x11
+#define BACKUP_POWER_LED_PIN	0x11
 /*******************************************************************************
  * Functions Definitions
  ******************************************************************************/
