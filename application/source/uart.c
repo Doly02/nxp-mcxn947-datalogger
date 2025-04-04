@@ -85,7 +85,7 @@ void UART_Enable(void)
 
     /* Enable RX interrupt. */
     LPUART_EnableInterrupts(LPUART3, kLPUART_RxDataRegFullInterruptEnable);
-    EnableIRQWithPriority(LP_FLEXCOMM3_IRQn, LPUART_PRIO);
+    (void)EnableIRQWithPriority(LP_FLEXCOMM3_IRQn, LPUART_PRIO);
 }
 
 void UART_Disable(void)

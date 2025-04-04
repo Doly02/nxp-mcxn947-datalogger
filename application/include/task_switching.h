@@ -1,32 +1,28 @@
 /******************************
  *  Project:        NXP MCXN947 Datalogger
- *  File Name:      leds.c
+ *  File Name:      task_switching.c
  *  Author:         Tomas Dolak
- *  Date:           06.02.2025
- *  Description:    Implements The Logic For LEDs Control.
+ *  Date:           14.09.2024
+ *  Description:    Includes Implementation of Task For FreeRTOS.
  *
  * ****************************/
 
 /******************************
  *  @package        NXP MCXN947 Datalogger
- *  @file           leds.c
+ *  @file           task_switching.c
  *  @author         Tomas Dolak
- *  @date           06.02.2025
- *  @brief          Implements The Logic For LEDs Control.
+ *  @date           14.09.2024
+ *  @brief          Includes Implementation of Task For FreeRTOS.
  * ****************************/
 
-#ifndef MASS_STORAGE_H_
-#define MASS_STORAGE_H_
+#ifndef TASK_SWITCHING_H_
+#define TASK_SWITCHING_H_
 
+#include "usb_device_dci.h"
 /*******************************************************************************
- * Includes
+ * Prototypes
  ******************************************************************************/
-#include "disk.h"
-
 usb_device_notification_t USB_State(usb_device_struct_t *pDeviceHandle);
 
-void MSC_DeviceMscApp(void);
 
-void MSC_DeviceMscAppTask(void);
-
-#endif /* MASS_STORAGE_H_ */
+#endif /* TASK_SWITCHING_H_ */

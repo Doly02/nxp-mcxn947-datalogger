@@ -24,10 +24,8 @@
  ******************************************************************************/
 #include "fsl_irtc.h"
 #include "rtc_ds3231.h"
-#include "error.h"
-
-#include "fsl_lpi2c_cmsis.h"
 #include "fsl_debug_console.h"
+#include "error.h"
 
 /*******************************************************************************
  * Global Definitions

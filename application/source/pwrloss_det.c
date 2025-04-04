@@ -20,7 +20,6 @@
  ******************************************************************************/
 #include "pwrloss_det.h"
 
-#include "fsl_debug_console.h"
 #include "record.h"
 /*******************************************************************************
  * Local Definitions
@@ -149,7 +148,7 @@ void PWRLOSS_DetectionInit(void)
      */
     CTIMER_SetupMatch(CTIMER, CTIMER_MAT0_OUT, &matchConfig0);
 
-    EnableIRQWithPriority(CTIMER4_IRQn, 0x2);
+    (void)EnableIRQWithPriority(CTIMER4_IRQn, 0x2);
 
     CTIMER_StartTimer(CTIMER);
 

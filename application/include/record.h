@@ -29,14 +29,15 @@
 #include <stdio.h>
 
 #include "fsl_debug_console.h"
-#include "diskio.h"
 #include "fsl_sd_disk.h"
+#include "fsl_common.h"
+#include "diskio.h"
 #include "pin_mux.h"
 #include "clock_config.h"
 #include "board.h"
 #include "sdmmc_config.h"
-#include "fsl_common.h"
 #include "rtc_ds3231.h"
+#include "fsl_common_arm.h"
 
 #include "task.h"
 

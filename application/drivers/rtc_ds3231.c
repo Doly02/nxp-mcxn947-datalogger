@@ -202,7 +202,7 @@ uint8_t RTC_Write(uint8_t regAddress, uint8_t val)
 
     /* Send master non-blocking data to slave */
     retVal = LPI2C_MasterTransferEDMA(I2C_MASTER, &gEdmaHandle, &xfer);
-    if (kStatus_Success != retVal)
+    if ((uint8_t)kStatus_Success != retVal)
     {
         return (0xFF);
     }
@@ -229,7 +229,7 @@ uint8_t RTC_Read(uint8_t regAddress)
     xfer.flags          = kLPI2C_TransferDefaultFlag;	/* Flags (e.g. Stop Flag) 	*/
     /* Receive non-blocking data from slave */
     retVal = LPI2C_MasterTransferEDMA(I2C_MASTER, &gEdmaHandle, &xfer);
-    if (kStatus_Success != retVal)
+    if ((uint8_t)kStatus_Success != retVal)
     {
         return (0xFF);
     }
@@ -251,7 +251,7 @@ uint8_t RTC_Read(uint8_t regAddress)
 
     /* Receive non-blocking data from slave */
     retVal = LPI2C_MasterTransferEDMA(I2C_MASTER, &gEdmaHandle, &xfer);
-    if (kStatus_Success != retVal)
+    if ((uint8_t)kStatus_Success != retVal)
     {
         return (0xFF);
     }

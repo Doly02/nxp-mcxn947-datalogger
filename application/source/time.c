@@ -18,6 +18,11 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
+#include "fsl_irtc.h"
+#include "rtc_ds3231.h"
+#include "fsl_debug_console.h"
+
+
 #include "time.h"
 
 /*******************************************************************************
@@ -54,7 +59,6 @@ error_t TIME_InitIRTC(void)
     IRTC_GetDefaultConfig(&irtcCfg);
     if (kStatus_Fail == IRTC_Init(RTC, &irtcCfg))
     {
-    	/*TODO: Set ERROR */
     	PRINTF("ERR: Init. Internal-RTC Failed\r\n");
     	return ERROR_IRTC;
     }
@@ -62,7 +66,6 @@ error_t TIME_InitIRTC(void)
 	if (ERROR_NONE != RTC_Init())
 	{
 		PRINTF("ERR: Init. External-RTC Failed\r\n");
-		/*TODO: Set ERROR */
 		return ERROR_IRTC;
 	}
 
@@ -83,8 +86,8 @@ error_t TIME_InitIRTC(void)
 	}
 
 
-	memset(&rtc_time, 0U, sizeof(rtc_time));
-	memset(&rtc_date, 0U, sizeof(rtc_date));
+	(void)memset(&rtc_time, 0U, sizeof(rtc_time));
+	(void)memset(&rtc_date, 0U, sizeof(rtc_date));
 
 	RTC_GetTime(&rtc_time);
 	RTC_GetDate(&rtc_date);

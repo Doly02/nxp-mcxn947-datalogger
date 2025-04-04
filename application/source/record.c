@@ -19,8 +19,9 @@
  * Includes
  ******************************************************************************/
 #include <record.h>
-#include <uart.h>
-#include <time.h>
+#include "fsl_irtc.h"
+
+#include <limits.h>
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -98,9 +99,9 @@ static REC_config_t g_config;
  * @brief 	Data For Multi-Buffering - In Particular Dual-Buffering,
  * 			One Is Always Filled, The Other Is Processed.
  */
-SDK_ALIGN(uint8_t g_dmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+SDK_ALIGN(static uint8_t g_dmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
-SDK_ALIGN(uint8_t g_dmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+SDK_ALIGN(static uint8_t g_dmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
 /**
  * @brief 	Active Buffer Which Receives Data From UART Periphery.
@@ -158,17 +159,17 @@ static uint32_t g_bytesTransfered	= 0U;
  * @{
  */
 
-SDK_ALIGN(volatile uint8_t g_fifo[FIFO_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);	// FIFO buffer
+SDK_ALIGN(static volatile uint8_t g_fifo[FIFO_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);	// FIFO buffer
 
 /**
  * @brief	Index For Writing Into FIFO.
  */
-volatile uint16_t g_writeIndex 		= 0;
+static volatile uint32_t g_writeIndex 		= 0;
 
 /**
  * @brief 	Index For Reading From FIFO.
  */
-volatile uint16_t g_readIndex 		= 0;
+static volatile uint32_t g_readIndex 		= 0;
 
 /** @} */ // End of UART Management Group
 
@@ -187,11 +188,11 @@ void LP_FLEXCOMM3_IRQHandler(void)
 
     /* Check For New Data */
     stat = LPUART_GetStatusFlags(LPUART3);
-    if (kLPUART_RxDataRegFullFlag & stat)
+    if ((uint32_t)kLPUART_RxDataRegFullFlag & stat)
     {
         data = LPUART_ReadByte(LPUART3);
         /* Add Data To FIFO */
-        uint16_t nextWriteIndex = (g_writeIndex + 1) % FIFO_SIZE;
+        uint16_t nextWriteIndex = (g_writeIndex + 1U) % FIFO_SIZE;
         if (nextWriteIndex != g_readIndex) // Check if FIFO is not full
         {
         	g_fifo[g_writeIndex] = data;
@@ -205,7 +206,7 @@ void LP_FLEXCOMM3_IRQHandler(void)
     }
 
     /* Clear Interrupt Flag */
-    LPUART_ClearStatusFlags(LPUART3, kLPUART_RxDataRegFullFlag);
+    LPUART_ClearStatusFlags(LPUART3, (uint32_t)kLPUART_RxDataRegFullFlag);
     SDK_ISR_EXIT_BARRIER;
 }
 
@@ -214,19 +215,23 @@ void LP_FLEXCOMM3_IRQHandler(void)
  ******************************************************************************/
 DWORD get_fattime(void)
 {
-    irtc_datetime_t datetime;
+    irtc_datetime_t datetime = { 0U };
+
     IRTC_GetDatetime(RTC, &datetime);
 
-    return ((DWORD)(datetime.year - 1980) << 25) |
+    return ((DWORD)(datetime.year - (uint16_t)1980) << 25) |
            ((DWORD)datetime.month << 21) |
            ((DWORD)datetime.day << 16) |
            ((DWORD)datetime.hour << 11) |
            ((DWORD)datetime.minute << 5) |
-           ((DWORD)(datetime.second / 2));
+           ((DWORD)(datetime.second / (uint8_t)2));
 }
 
 int CONSOLELOG_Abs(int x)
 {
+    if (x == INT_MIN) {
+        return INT_MAX;
+    }
     return (x < 0) ? -x : x;
 }
 
@@ -241,16 +246,19 @@ error_t CONSOLELOG_CreateFile(void)
     IRTC_GetDatetime(RTC, &datetimeGet);
 
     /* Generate a New File Name */
-    snprintf(fileName, sizeof(fileName), "%s/%04d%02d%02d_%02d%02d%02d_%u.txt",
+    /* @note snprintf() Is Depricated But There Is No Better Equivalent */
+    //lint -save -e586
+    (void)snprintf(fileName, sizeof(fileName), "%s/%04d%02d%02d_%02d%02d%02d_%u.txt",
     		g_currentDirectory, datetimeGet.year, datetimeGet.month, datetimeGet.day,
              datetimeGet.hour, datetimeGet.minute, datetimeGet.second,
              g_fileCounter++);
+    //lint -restore
 
     /* Open New File */
     status = f_open(&g_fileObject, fileName, (FA_WRITE | FA_CREATE_ALWAYS));
     if (FR_OK != status)
     {
-        PRINTF("ERR: Failed to create file %s. Error=%d\r\n", fileName, status);
+        PRINTF("ERR: Failed to create file %s. Error=%d\r\n", fileName, (uint32_t)status);
         return ERROR_OPEN;
     }
 
@@ -261,7 +269,11 @@ error_t CONSOLELOG_CreateFile(void)
     if (FR_OK != status)
     {
         PRINTF("ERR: Failed to Set Meta-Data for %s. Error=%d\r\n", fileName, status);
-        f_close(&g_fileObject);
+        status = f_close(&g_fileObject);
+        if (FR_OK != status)
+        {
+            return ERROR_CLOSE;
+        }
         return ERROR_FILESYSTEM;
     }
 
@@ -285,17 +297,25 @@ error_t CONSOLELOG_CreateDirectory(void)
     /* Attempt to Create a New Folder With a Unique Name (Date + Cnt) */
     do
     {
-        snprintf(directoryName, sizeof(directoryName), "/%04d%02d%02d_%u",
+        /* @note snprintf() Is Depricated But There Is No Better Equivalent */
+        //lint -save -e586
+    	(void)snprintf(directoryName, sizeof(directoryName), "/%04d%02d%02d_%u",
                  datetimeGet.year, datetimeGet.month, datetimeGet.day, counter++);
+        //lint -restore
         status = f_mkdir(directoryName);
-    } while (status == FR_EXIST && counter < 1000);
+    } while ((FR_EXIST == status) && (counter < 1000));
 
     if (FR_OK != status)
     {
-        PRINTF("ERR: Failed To Create Session Directory. Error=%d\r\n", status);
+        PRINTF("ERR: Failed To Create Session Directory. Error=%d\r\n", (uint16_t)status);
         return ERROR_FILESYSTEM;
     }
-    snprintf(g_currentDirectory, sizeof(g_currentDirectory), "%s", directoryName);
+
+    /* @note snprintf() Is Depricated But There Is No Better Equivalent */
+    //lint -save -e586
+    (void)snprintf(g_currentDirectory, sizeof(g_currentDirectory), "%s", directoryName);
+    //lint -restore
+
 #if (true == INFO_ENABLED || true == DEBUG_ENABLED)
     PRINTF("INFO: Created Directory %s.\r\n", g_currentDirectory);
 #endif /* (true == INFO_ENABLED) */
@@ -349,7 +369,7 @@ FRESULT CONSOLELOG_CheckFileSystem(void)
     FRESULT sRes = f_opendir(&sDir, "/");
     if (FR_OK == sRes)
     {
-        f_closedir(&sDir);
+        sRes = f_closedir(&sDir);
     }
     return sRes;
 }
@@ -365,7 +385,7 @@ error_t CONSOLELOG_Init(void)
 	BYTE work[FF_MAX_SS];
 
 	/* Mount File System */
-	if (f_mount(&g_fileSystem, sLogicDisk, 0U))
+	if (FR_OK != f_mount(&g_fileSystem, sLogicDisk, 0U))
 	{
 		PRINTF("ERR: Mount Volume Failed.\r\n");
 		return ERROR_FILESYSTEM;
@@ -432,10 +452,10 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
         g_activeDmaBuffer[g_dmaIndex++] = currentChar;
 
         /* Check If The CRLF Is Not Divided Into Two DMA Buffers */
-        if ((lastChar == '\r' && currentChar == '\n') ||
-            (g_dmaIndex >= 2 &&
-             g_activeDmaBuffer[g_dmaIndex - 2] == '\r' &&
-             g_activeDmaBuffer[g_dmaIndex - 1] == '\n'))
+        if (((lastChar == (uint8_t)'\r') && (currentChar == (uint8_t)'\n')) ||
+            ((g_dmaIndex >= 2) &&
+             (g_activeDmaBuffer[g_dmaIndex - 2] == (uint8_t)'\r') &&
+             (g_activeDmaBuffer[g_dmaIndex - 1] == (uint8_t)'\n')))
         {
 
         	IRTC_GetDatetime(RTC, &datetimeGet);
@@ -446,7 +466,7 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
             {
                 if (BLOCK_SIZE > g_dmaIndex)	// If DMA Buffer is Not Full
                 {
-                    g_activeDmaBuffer[g_dmaIndex++] = timeString[i];
+                    g_activeDmaBuffer[g_dmaIndex++] = (uint8_t)timeString[i];
                 }
                 else
                 {
@@ -458,7 +478,7 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
                     g_dmaIndex = 0;
 
                     /* Continue in Addition of Time Mark */
-                    g_activeDmaBuffer[g_dmaIndex++] = timeString[i];
+                    g_activeDmaBuffer[g_dmaIndex++] = (uint8_t)timeString[i];
                 }
             }
         }
@@ -478,7 +498,7 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
     }
 
     /* Process Full DMA Buffer */
-    if (g_dmaBufferReady && NULL != g_processDmaBuffer)
+    if (g_dmaBufferReady && (NULL != g_processDmaBuffer))
     {
         if (NULL == g_fileObject.obj.fs)
         {
@@ -498,10 +518,10 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
 		*				Error Has Occurred During An ADMA Data Transfer.
 		*/
         uint32_t stat_reg = g_sd.host->hostController.base->ADMA_ERR_STATUS;
-        if (0x0 != (stat_reg & 0xC))
+        if (0x0U != (stat_reg & (uint32_t)0xC))
         {
             PRINTF("ERR: Failed to Write Data To File. Error=%d\r\n", ERROR_ADMA);
-            f_close(&g_fileObject);
+            (void)f_close(&g_fileObject);
             g_fileObject.obj.fs = NULL;
             return ERROR_ADMA;
         }
@@ -517,7 +537,7 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
 #if (true == INFO_ENABLED || true == DEBUG_ENABLED)
             PRINTF("INFO: File Size Limit Reached. Closing file. (LIMIT: %d, CURRENT %d)\r\n", file_size, g_currentFileSize);
 #endif /* (true == INFO_ENABLED || true == DEBUG_ENABLED) */
-            f_close(&g_fileObject);
+            (void)f_close(&g_fileObject);
             g_fileObject.obj.fs = NULL;
         }
 
@@ -533,16 +553,17 @@ error_t CONSOLELOG_Flush(void)
 	FRESULT error;
 	UINT bytesWritten;
 	int tickDiff 			= 0;
+	uint32_t lastTick 		= 0U;
 	uint32_t currentTick 	= xTaskGetTickCount();
 
 	/*
 	 * __ATOMIC_ACQUIRE - 	Ensures That All Read Values Are Consistent
 	 * 						With Pre-Read Operations.
 	 * */
-	uint32_t lastTick = __atomic_load_n(&g_lastDataTick, __ATOMIC_ACQUIRE);
+	lastTick = __atomic_load_n(&g_lastDataTick, __ATOMIC_ACQUIRE);
 
 	tickDiff = (int)(currentTick - lastTick);
-	if ((CONSOLELOG_Abs(tickDiff) > FLUSH_TIMEOUT_TICKS) && g_dmaIndex > 0)
+	if ((CONSOLELOG_Abs(tickDiff) > FLUSH_TIMEOUT_TICKS) && (g_dmaIndex > 0))
 	{
 #if (true == INFO_ENABLED)
 		PRINTF("INFO: Current Ticks = %d.\r\n", currentTick);
@@ -588,10 +609,10 @@ error_t CONSOLELOG_Flush(void)
 		*				Error Has Occurred During An ADMA Data Transfer.
 		*/
 		uint32_t stat_reg = g_sd.host->hostController.base->ADMA_ERR_STATUS;
-		if (0x0 != (stat_reg & 0xC))
+		if (0x0U != (stat_reg & (uint32_t)0xC))
 		{
 			PRINTF("ERR: Failed to Write Data To File During Flush. Error=%d\r\n", ERROR_ADMA);
-			f_close(&g_fileObject);
+			(void)f_close(&g_fileObject);
 			g_fileObject.obj.fs = NULL;
 			return ERROR_ADMA;
 		}
@@ -606,7 +627,7 @@ error_t CONSOLELOG_Flush(void)
 		PRINTF("INFO: Closing File\r\n");
 #endif /* (true == INFO_ENABLED || true == DEBUG_ENABLED) */
 
-		f_close(&g_fileObject);
+		(void)f_close(&g_fileObject);
 		g_fileObject.obj.fs = NULL;
 		g_dmaBufferReady = false;
 		g_processDmaBuffer = NULL;
@@ -668,7 +689,7 @@ error_t CONSOLELOG_ReadConfig(void)
         return ERROR_OPEN;
     }
 
-    while (1)
+    while (true)
 	{
     	error = f_readdir(&dir, &fno);
     	if (FR_OK != error || 0 == fno.fname[0])
@@ -690,10 +711,10 @@ error_t CONSOLELOG_ReadConfig(void)
 #endif /* (CONTROL_LED_ENABLED == true) */
 
     				PRINTF("ERR: Failed to open .config file. ERR=%d\r\n", error);
-					f_closedir(&dir); 	// Close Root Directory
+    				(void)f_closedir(&dir); 	// Close Root Directory
 					return ERROR_OPEN;
 				}
-    			memset(g_dmaBuffer1, 0, sizeof(g_dmaBuffer1));
+    			(void)memset(g_dmaBuffer1, 0, sizeof(g_dmaBuffer1));
     			error = f_read(&configFile, g_dmaBuffer1, sizeof(g_dmaBuffer1) - 1, &bytesRead);
 				if (FR_OK != error)
 				{
@@ -702,8 +723,8 @@ error_t CONSOLELOG_ReadConfig(void)
 #endif /* (CONTROL_LED_ENABLED == true) */
 
 					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
-					f_close(&configFile);
-					f_closedir(&dir);
+					(void)f_close(&configFile);
+					(void)f_closedir(&dir);
 					return ERROR_READ;
 				}
 
@@ -714,21 +735,20 @@ error_t CONSOLELOG_ReadConfig(void)
 #endif /* (CONTROL_LED_ENABLED == true) */
 
 					PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
-					f_close(&configFile);
-					f_closedir(&dir);
+					(void)f_close(&configFile);
+					(void)f_closedir(&dir);
 					return ERROR_READ;
 				}
 
 				// Processed Configuration File
-				f_close(&configFile);
-				f_closedir(&dir);
+				(void)f_close(&configFile);
+				(void)f_closedir(&dir);
 				return ERROR_NONE;
 			}
     	}
 	}
     PRINTF("ERR: .config file not found in root directory.\r\n");
-	f_closedir(&dir);
-
+    (void)f_closedir(&dir);
 	return ERROR_OPEN;
 }
 

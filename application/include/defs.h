@@ -32,12 +32,12 @@
 /**
  * @brief 	Defines The Stack Size For Mass Storage Task.
  */
-#define MSC_STACK_SIZE				(5000L / sizeof(portSTACK_TYPE))
+#define MSC_STACK_SIZE				(uint32_t)(5000L / sizeof(portSTACK_TYPE))
 
 /**
  * @brief 	Defines The Stack Size For Recording Task.
  */
-#define RECORD_STACK_SIZE			(5000L / sizeof(portSTACK_TYPE))
+#define RECORD_STACK_SIZE			(uint32_t)(5000L / sizeof(portSTACK_TYPE))
 
 /**
  * @brief Enables/Disables Logic For External Real-Time Circuit DS3231.

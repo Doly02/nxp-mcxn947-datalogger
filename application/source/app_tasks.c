@@ -20,6 +20,7 @@
  ******************************************************************************/
 #include "app_tasks.h"
 #include "rtc_ds3231.h"
+#include "mass_storage.h"
 #include "semphr.h"
 
 #include "record.h"
@@ -63,7 +64,7 @@ extern TaskHandle_t g_xRecordTaskHandle;
 
 void msc_task(void *handle)
 {
-    while (1)
+    while (true)
     {
     	/* Wait For Attachment of USB */
         xSemaphoreTake(g_xSemMassStorage, portMAX_DELAY);
@@ -74,9 +75,9 @@ void msc_task(void *handle)
         PRINTF("INFO: Disabled LPUART7\r\n");
 #endif /* (true == INFO_ENABLED) */
 
-        while (1)
+        while (true)
         {
-            USB_DeviceMscAppTask();
+        	MSC_DeviceMscAppTask();
             vTaskDelay(pdMS_TO_TICKS(10));
         }
 	}
@@ -130,13 +131,12 @@ void record_task(void *handle)
 	PRINTF("File Size=%d\r\n", u32FileSize);
 #endif
 
-    while (1)
+    while (true)
     {
         /* Take Task Priority */
         xSemaphoreTake(g_xSemRecord, portMAX_DELAY);
 
 #if (true == INFO_ENABLED)
-		PRINTF("INFO: Initializing UART...\r\n");
 #endif /* (true == INFO_ENABLED) */
 
         UART_Init(u32Baudrate);
@@ -147,7 +147,7 @@ void record_task(void *handle)
         PRINTF("DEBUG: RECORD Task Running...\r\n");
 #endif
 
-        while (1)
+        while (true)
         {
             if (ERROR_NONE != CONSOLELOG_Recording(u32FileSize))
             {

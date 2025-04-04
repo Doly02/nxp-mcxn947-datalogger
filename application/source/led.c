@@ -19,8 +19,6 @@
  * Includes
  ******************************************************************************/
 #include <led.h>
-#include "fsl_gpio.h"
-
 
 /*******************************************************************************
  * Functions
@@ -28,12 +26,12 @@
 
 void LED_SetHigh(GPIO_Type *port_base, uint32_t pin)
 {
-	port_base->PSOR = (1U << pin);
+	port_base->PSOR = (1UL << pin);
 }
 
 void LED_SetLow(GPIO_Type *port_base, uint32_t pin)
 {
-	port_base->PCOR = (1U << pin);
+	port_base->PCOR = (1UL << pin);
 }
 
 void LED_SignalReady(void)
@@ -53,7 +51,7 @@ void LED_SignalReady(void)
 
 void LED_SignalRecording(void)
 {
-	GPIO_PortToggle(RECORD_LED_PORT, 1u << RECORD_LED_PIN);
+	GPIO_PortToggle(RECORD_LED_PORT, 1UL << RECORD_LED_PIN);
 }
 
 void LED_SignalRecordingStop(void)

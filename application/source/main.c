@@ -125,7 +125,7 @@ int main(void)
 #endif /* (true == MSC_ENABLED) */
 
     vTaskStartScheduler();
-    while (1)
+    while (true)
     {
     	;
     }
