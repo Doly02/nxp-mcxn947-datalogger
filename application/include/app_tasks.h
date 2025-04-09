@@ -37,10 +37,16 @@
 #define TASK_PRIO		(configMAX_PRIORITIES - 1) //<! Task Priorities.
 
 /*******************************************************************************
- * Variables
+ * Global Variables
  ******************************************************************************/
+/* Task Handles */
+extern TaskHandle_t g_xMscTaskHandle;
 
+extern TaskHandle_t g_xRecordTaskHandle;
 
+extern SemaphoreHandle_t g_xSemRecord;
+
+extern SemaphoreHandle_t g_xSemMassStorage;
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/

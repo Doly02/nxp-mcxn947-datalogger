@@ -45,9 +45,9 @@
 
 /*
  * @brief 	Time Interval Between LED Blinking.
- * @details	In Seconds.
+ * @details	In Milliseconds.
  */
-#define RECORD_LED_TIME_INTERVAL 	0.01
+#define RECORD_LED_TIME_INTERVAL 	(uint32_t)(10U)
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -181,6 +181,12 @@ static volatile uint32_t g_readIndex 		= 0;
  * @brief LPUART3 IRQ Handler.
  *
  */
+
+/*lint -e957 */
+/* MISRA 2012 Rule 8.4:
+ * Suppress: function 'LP_FLEXCOMM3_IRQHandler' defined without a prototype in scope.
+ * LP_FLEXCOMM3_IRQHandler is declared WEAK in startup_mcxn947_cm33_core0.c and overridden here.
+ */
 void LP_FLEXCOMM3_IRQHandler(void)
 {
     uint8_t data;
@@ -188,11 +194,11 @@ void LP_FLEXCOMM3_IRQHandler(void)
 
     /* Check For New Data */
     stat = LPUART_GetStatusFlags(LPUART3);
-    if ((uint32_t)kLPUART_RxDataRegFullFlag & stat)
+    if (0U != ((uint32_t)kLPUART_RxDataRegFullFlag & stat))	// TODO:
     {
         data = LPUART_ReadByte(LPUART3);
         /* Add Data To FIFO */
-        uint16_t nextWriteIndex = (g_writeIndex + 1U) % FIFO_SIZE;
+        uint32_t nextWriteIndex = ((g_writeIndex + 1UL) % FIFO_SIZE);
         if (nextWriteIndex != g_readIndex) // Check if FIFO is not full
         {
         	g_fifo[g_writeIndex] = data;
@@ -206,9 +212,10 @@ void LP_FLEXCOMM3_IRQHandler(void)
     }
 
     /* Clear Interrupt Flag */
-    LPUART_ClearStatusFlags(LPUART3, (uint32_t)kLPUART_RxDataRegFullFlag);
+    (void)LPUART_ClearStatusFlags(LPUART3, (uint32_t)kLPUART_RxDataRegFullFlag);
     SDK_ISR_EXIT_BARRIER;
 }
+/*lint -e957 */
 
 /*******************************************************************************
  * Code
@@ -217,22 +224,35 @@ DWORD get_fattime(void)
 {
     irtc_datetime_t datetime = { 0U };
 
+    /*lint -e9033*/
+    /* MISRA 2012 Rule 10.8:
+     * The cast from smaller unsigned integer types (uint8_t, uint16_t) to a wider type (uint32_t)
+     * is intentional and safe in this context. The values are combined using bitwise OR into a
+     * FAT timestamp format that expects 32-bit result. All input ranges are within limits.
+     */
     IRTC_GetDatetime(RTC, &datetime);
 
-    return ((DWORD)(datetime.year - (uint16_t)1980) << 25) |
+    return ((DWORD)(datetime.year - 1980U) << 25) |
            ((DWORD)datetime.month << 21) |
            ((DWORD)datetime.day << 16) |
            ((DWORD)datetime.hour << 11) |
            ((DWORD)datetime.minute << 5) |
            ((DWORD)(datetime.second / (uint8_t)2));
+    /*lint +e9033*/
 }
 
 int CONSOLELOG_Abs(int x)
 {
+    /*lint -e9027*/
+    /* MISRA 2012 Rule 10.1:
+     * Comparison with INT_MIN is intentional to detect the edge case
+     * where -INT_MIN is undefined behavior. This check prevents incorrect abs().
+     */
     if (x == INT_MIN) {
         return INT_MAX;
     }
     return (x < 0) ? -x : x;
+    /*lint +e9027*/
 }
 
 
@@ -242,6 +262,7 @@ error_t CONSOLELOG_CreateFile(void)
     char fileName[64];					//<! TODO: Vypocitat Maximalni pocet souboru za den na zaklade baud rate
     irtc_datetime_t datetimeGet;		//<! To Store Time in File Meta-Data
     FILINFO fno;						//<! File Meta-Data
+
 
     IRTC_GetDatetime(RTC, &datetimeGet);
 
@@ -255,16 +276,32 @@ error_t CONSOLELOG_CreateFile(void)
     //lint -restore
 
     /* Open New File */
+    /**
+     * MISRA Deviation: Rule 10.1
+     * Justification: FA_WRITE and FA_CREATE_ALWAYS are standard bitmask flags defined by the FatFs library.
+     * These constants are specifically designed to be combined using bitwise OR (|), and the use is safe and intentional.
+     */
+    /*lint -e9027 */
     status = f_open(&g_fileObject, fileName, (FA_WRITE | FA_CREATE_ALWAYS));
     if (FR_OK != status)
     {
         PRINTF("ERR: Failed to create file %s. Error=%d\r\n", fileName, (uint32_t)status);
         return ERROR_OPEN;
     }
+    /*lint +e9027 */
 
     /* Setup of File Meta-Data */
+    /* MISRA Deviation Note:
+     * The following expression is intentionally written in a compact and readable form
+     * for setting FAT file timestamps. All shifts and bitwise operations are used correctly,
+     * even though they trigger MISRA Rule 10.1, 10.3, 10.4, 10.7, 12.2 warnings.
+     * These are suppressed here for clarity and maintainability.
+     */
+    /*lint -e9027 -e9029 -e9032 -e9034 -e9033 -e9053 -e701 -e10.1 -e10.3 -e10.4 -e10.7 -e12.2 */
     fno.fdate = ((datetimeGet.year - 1980) << 9) | (datetimeGet.month << 5) | (datetimeGet.day);
     fno.ftime = (datetimeGet.hour << 11) | (datetimeGet.minute << 5) | (datetimeGet.second / 2);
+    /*lint +e9027 +e9029 +e9032 +e9034 +e9033 +e9053 +e701 +e10.1 +e10.3 +e10.4 +e10.7 +e12.2 */
+
     status = f_utime(fileName, &fno);
     if (FR_OK != status)
     {
@@ -303,7 +340,7 @@ error_t CONSOLELOG_CreateDirectory(void)
                  datetimeGet.year, datetimeGet.month, datetimeGet.day, counter++);
         //lint -restore
         status = f_mkdir(directoryName);
-    } while ((FR_EXIST == status) && (counter < 1000));
+    } while ((FR_EXIST == status) && (counter < 1000UL));
 
     if (FR_OK != status)
     {
@@ -395,7 +432,7 @@ error_t CONSOLELOG_Init(void)
 
 	/* Setup of Actual Work Logic Disk */
 	status = f_chdrive((char const *)&sLogicDisk[0U]);
-    if (ERROR_NONE != status)
+    if (FR_OK != status)
     {
         PRINTF("ERR: Change Drive Failed.\r\n");
         return ERROR_FILESYSTEM;
@@ -414,7 +451,7 @@ error_t CONSOLELOG_Init(void)
 #endif /* (true == DEBUG_ENABLED) */
 
         /* Make File System */
-        if (f_mkfs(sLogicDisk, 0, work, sizeof work))
+        if (FR_OK != f_mkfs(sLogicDisk, NULL, work, sizeof work))
         {
             PRINTF("ERR: Init File System Failed.\r\n");
             return ERROR_FILESYSTEM;
@@ -443,23 +480,29 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
     static char timeString[12];
     static uint8_t timeLength = 0;
 
-    while (g_readIndex != g_writeIndex)
+//    uint32_t localReadIndex  = g_readIndex;
+    uint32_t localWriteIndex = g_writeIndex;
+
+    while (g_readIndex != localWriteIndex)
     {
         /* Loads One Char From FIFO And Stores The Char Into Active DMA Buffer */
         uint8_t currentChar = g_fifo[g_readIndex];
-        g_readIndex = (g_readIndex + 1) % FIFO_SIZE;
+        g_readIndex = (g_readIndex + 1UL) % FIFO_SIZE;
 
         g_activeDmaBuffer[g_dmaIndex++] = currentChar;
 
         /* Check If The CRLF Is Not Divided Into Two DMA Buffers */
         if (((lastChar == (uint8_t)'\r') && (currentChar == (uint8_t)'\n')) ||
-            ((g_dmaIndex >= 2) &&
-             (g_activeDmaBuffer[g_dmaIndex - 2] == (uint8_t)'\r') &&
-             (g_activeDmaBuffer[g_dmaIndex - 1] == (uint8_t)'\n')))
+            ((g_dmaIndex >= 2U) &&
+             (g_activeDmaBuffer[g_dmaIndex - 2U] == (uint8_t)'\r') &&
+             (g_activeDmaBuffer[g_dmaIndex - 1U] == (uint8_t)'\n')))
         {
 
         	IRTC_GetDatetime(RTC, &datetimeGet);
+            /* @note snprintf() Is Depricated But There Is No Better Equivalent */
+            //lint -save -e586
             timeLength = (uint8_t)snprintf(timeString, sizeof(timeString), "(%02d:%02d:%02d) ", datetimeGet.hour, datetimeGet.minute, datetimeGet.second);
+            //lint -restore
 
             /* Addition of Time Mark To The DMA Buffer */
             for (uint8_t i = 0; i < timeLength; i++)
@@ -553,17 +596,25 @@ error_t CONSOLELOG_Flush(void)
 	FRESULT error;
 	UINT bytesWritten;
 	int tickDiff 			= 0;
-	uint32_t lastTick 		= 0U;
-	uint32_t currentTick 	= xTaskGetTickCount();
+	int64_t lastTick 		= 0;
+	int64_t currentTick 	= (int64_t)xTaskGetTickCount();
 
 	/*
 	 * __ATOMIC_ACQUIRE - 	Ensures That All Read Values Are Consistent
 	 * 						With Pre-Read Operations.
 	 * */
-	lastTick = __atomic_load_n(&g_lastDataTick, __ATOMIC_ACQUIRE);
+	/*
+	 * MISRA Deviation: Rule 1.3
+	 * Reason: __ATOMIC_ACQUIRE is a compiler-specific macro used for atomic memory ordering
+	 *        in GCC/Clang. It is intentionally used here for ensuring that all read values are consistent
+	 * 		  with pre-read operations.
+	 */
+	/*lint -save -e40 */
+	lastTick = (int64_t)__atomic_load_n(&g_lastDataTick, __ATOMIC_ACQUIRE);
+	/*lint -restore */
 
 	tickDiff = (int)(currentTick - lastTick);
-	if ((CONSOLELOG_Abs(tickDiff) > FLUSH_TIMEOUT_TICKS) && (g_dmaIndex > 0))
+	if ((CONSOLELOG_Abs(tickDiff) > FLUSH_TIMEOUT_TICKS) && (g_dmaIndex > 0U))
 	{
 #if (true == INFO_ENABLED)
 		PRINTF("INFO: Current Ticks = %d.\r\n", currentTick);
@@ -575,7 +626,7 @@ error_t CONSOLELOG_Flush(void)
 
 		while (g_dmaIndex < BLOCK_SIZE)			/* Fill Buffer With ' ' */
 		{
-			g_activeDmaBuffer[g_dmaIndex++] = ' ';
+			g_activeDmaBuffer[g_dmaIndex++] = (uint8_t)' ';
 		}
 
 		g_processDmaBuffer 	= g_activeDmaBuffer;
@@ -692,14 +743,14 @@ error_t CONSOLELOG_ReadConfig(void)
     while (true)
 	{
     	error = f_readdir(&dir, &fno);
-    	if (FR_OK != error || 0 == fno.fname[0])
+    	if (FR_OK != error || 0UL == (uint32_t)fno.fname[0])
 		{
 			break; 	// End of Directory or Error
 		}
 
-    	if (!(fno.fattrib & AM_DIR))	// If Not Directory
+    	if ((fno.fattrib & (BYTE)AM_DIR) == 0U)	// If Not Directory
     	{
-    		if (ERROR_NONE == strcmp(fno.fname, CONFIG_FILE))	// If .config File
+    		if (ERROR_NONE == (uint32_t)strcmp(fno.fname, CONFIG_FILE))	// If .config File
 			{
     			PRINTF("DEBUG: Found .config File: %s\r\n", fno.fname);
 
@@ -715,7 +766,7 @@ error_t CONSOLELOG_ReadConfig(void)
 					return ERROR_OPEN;
 				}
     			(void)memset(g_dmaBuffer1, 0, sizeof(g_dmaBuffer1));
-    			error = f_read(&configFile, g_dmaBuffer1, sizeof(g_dmaBuffer1) - 1, &bytesRead);
+    			error = f_read(&configFile, g_dmaBuffer1, sizeof(g_dmaBuffer1) - 1UL, &bytesRead);
 				if (FR_OK != error)
 				{
 #if (CONTROL_LED_ENABLED == true)
@@ -760,6 +811,7 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     char *found;
     uint32_t baudrate;
     uint32_t value;
+    error_t error = ERROR_NONE;
 
     /* Find Key "baudrate=" */
     found = strstr(content, key);
@@ -774,8 +826,18 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     }
 
     found += strlen(key);					// Move Pointer Behind "baudrate="
-    baudrate = (uint32_t)atoi(found);		// Convert Value To INT
-    if (0 >= baudrate)
+
+    /* MISRA Deviation Note:
+     * Rule: MISRA 2012 Rule 21.7
+     * Justification: Use of 'atoi' is intentional in controlled context.
+     * The input string 'found' should contain only numeric characters - baudrate.
+     * If string is not a number returns zero.
+     */
+    /*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
+    baudrate = (uint32_t)atoi(found);
+    /*lint +e586 */
+
+    if (0UL == baudrate)
 	{
 #if (CONTROL_LED_ENABLED == true)
     	LED_SignalError();
@@ -799,10 +861,17 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
 #endif /* (CONTROL_LED_ENABLED == true) */
 
 			PRINTF("ERR: Unsupported Baudrate Value: %d\r\n", baudrate);
-			return ERROR_CONFIG;
+			error = ERROR_CONFIG;
+			break;
 	}
-
-    g_config.baudrate = baudrate;
+    if (ERROR_NONE == error)
+    {
+    	g_config.baudrate = baudrate;
+    }
+    else
+    {
+    	return error;
+    }
 
     /* Find Key "file_size=" */
     found = strstr(content, keyFileSize);
@@ -817,8 +886,17 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
     }
 
     found += strlen(keyFileSize);			// Move Pointer Behind "file_size="
+
+    /* MISRA Deviation Note:
+     * Rule: MISRA 2012 Rule 21.7
+     * Justification: Use of 'atoi' is intentional in controlled context.
+     * The input string 'found' should contain only numeric characters - size of record file.
+     */
+    /*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
     value = (uint32_t)atoi(found);			// Convert Value To INT
-    if (0 >= value)
+    /*lint +e586 */
+
+    if (0UL >= value)
     {
 #if (CONTROL_LED_ENABLED == true)
     	LED_SignalError();
@@ -827,16 +905,16 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
         PRINTF("ERR: Invalid File Size Value.\r\n");
         return ERROR_READ;
     }
-    if (value % 512 != 0)
+    if (0UL != (value % 512UL))
     {
     	/* Round Up To 512 */
-        uint32_t roundedValue = ((value + 511) / 512) * 512;
+        uint32_t roundedValue = ((value + 511UL) / 512UL) * 512UL;
         PRINTF("WARN: File Size %d Is Not a Multiple of 512. Rounding Up to %d.\r\n", value, roundedValue);
         value = roundedValue;
     }
 
     g_config.size = value;  // Store File Size in Configuration Structure
-    g_config.max_bytes = RECORD_LED_TIME_INTERVAL * g_config.baudrate;
+    g_config.max_bytes = (g_config.baudrate / 1000UL) * RECORD_LED_TIME_INTERVAL;
     PRINTF("DEBUG: File Size Set To %d Bytes.\r\n", g_config.size);
 
     return ERROR_NONE;

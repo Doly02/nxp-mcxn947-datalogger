@@ -20,17 +20,22 @@
  ******************************************************************************/
 #include "mass_storage.h"
 
-extern usb_msc_struct_t g_msc;
+static bool bMscInitialized = false;
 
 extern SemaphoreHandle_t g_xSemRecord;
 
+extern usb_msc_struct_t g_msc;
+
 extern SemaphoreHandle_t g_xSemMassStorage;
-
-static bool bMscInitialized = false;
-
 /*******************************************************************************
  * Interrupt Service Routines (ISRs)
  ******************************************************************************/
+
+/*lint -e957 */
+/* MISRA 2012 Rule 8.4:
+ * Suppress: function 'USB1_HS_IRQHandler' defined without a prototype in scope.
+ * USB1_HS_IRQHandler is declared WEAK in startup_mcxn947_cm33_core0.c and overridden here.
+ */
 void USB1_HS_IRQHandler(void)
 {
 	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
@@ -44,20 +49,27 @@ void USB1_HS_IRQHandler(void)
     if (USB_State(g_msc.deviceHandle) == kUSB_DeviceNotifyAttach)
     {
     	/* USB Attached, Activation of Mass Storage Task */
-        xSemaphoreGiveFromISR(g_xSemMassStorage, &xHigherPriorityTaskWoken);
+    	(void)xSemaphoreGiveFromISR(g_xSemMassStorage, &xHigherPriorityTaskWoken);
     }
     else
     {
         /* USB Detached, Activation of Record Task */
-        xSemaphoreGiveFromISR(g_xSemRecord, &xHigherPriorityTaskWoken);
+    	(void)xSemaphoreGiveFromISR(g_xSemRecord, &xHigherPriorityTaskWoken);
     }
 
     /**
      * Switch The Context From ISR To a Higher Priority Task,
      * Without Waiting For The Next Scheduler Tick.
      **/
+    /* MISRA 2012 deviation: portYIELD_FROM_ISR expects BaseType_t, which is signed, not bool.
+     * Justification: `portYIELD_FROM_ISR()` expects `BaseType_t` as per FreeRTOS convention, but MISRA
+     * on the other hand would like conversion to boolean.
+     * */
+    /*lint -e9036 -e9048 -e9078 */
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+    /*lint +e9036 +e9048 +e9078 */
 }
+/*lint -e957 */
 
 /*******************************************************************************
  * Functions

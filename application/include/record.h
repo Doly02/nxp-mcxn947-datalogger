@@ -87,6 +87,7 @@ typedef struct
  * Prototypes
  ******************************************************************************/
 
+int CONSOLELOG_Abs(int x);
 /** TODO:
  * @brief 		Creates Directory Based Actual Date.
  *

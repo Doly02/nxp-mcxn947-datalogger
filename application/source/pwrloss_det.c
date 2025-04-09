@@ -39,7 +39,7 @@
 /*******************************************************************************
  * Global Variables
  ******************************************************************************/
-volatile uint32_t cnt = 0U;
+static volatile uint32_t cnt = 0UL;
 
 /*******************************************************************************
  * Interrupt Service Routines (ISRs)
@@ -49,38 +49,60 @@ volatile uint32_t cnt = 0U;
  * @brief 	Signals based on the tau value of the capacitor charged to 99%, i.e. 5x tau.
  * 			Sets the detection to the defined state at this period of time.
  */
+
+/*lint -e957 */
+/* MISRA 2012 Rule 8.4:
+ * Suppress: function 'CTIMER4_IRQHandler' defined without a prototype in scope.
+ * CTIMER4_IRQHandler is declared WEAK in startup_mcxn947_cm33_core0.c and overridden here.
+ */
 void CTIMER4_IRQHandler(void)
 {
 	LED_SetHigh(GPIO0, 15);
 	LED_SetLow(GPIO0, 23);
 	cnt = 1;
 
+	/* MISRA Deviation Note:
+	 * Rule: MISRA 2012 Rule 10.3 [Required]
+	 * Justification: The enum value is part of the NXP SDK
+	 * and is intentionally used in this context as a bitmask flag for hardware status registers.
+	 */
+
+	/*lint -e9034 MISRA Deviation: conversion from enum to unsigned32 */
 	CTIMER_ClearStatusFlags(CTIMER4, kCTIMER_Match0Flag);
+	/*lint +e9034 */
 
 	/* Signal To The User That Back-Up Power Is Available */
 	LED_SignalBackUpPowerAvailable();
 	CTIMER_StopTimer(CTIMER);
-	DisableIRQ(CTIMER4_IRQn);
+	(void)DisableIRQ(CTIMER4_IRQn);
 }
+/*lint -e957 */
 
 /*
  * @brief	Response To Loss of Supply Voltage.
  */
+
+/*lint -e957 */
+/* MISRA 2012 Rule 8.4:
+ * Suppress: function 'HSCMP1_IRQHandler' defined without a prototype in scope.
+ * HSCMP1_IRQHandler is declared WEAK in startup_mcxn947_cm33_core0.c and overridden here.
+ */
 void HSCMP1_IRQHandler(void)
 {
 	/*? LPCMP_ClearStatusFlags(DEMO_LPCMP_BASE, kLPCMP_OutputFallingInterruptEnable); kLPCMP_OutputFallingEventFlag */
-	LPCMP_ClearStatusFlags(DEMO_LPCMP_BASE, kLPCMP_OutputFallingEventFlag);
-	if (1 == cnt)
+	LPCMP_ClearStatusFlags(DEMO_LPCMP_BASE, (uint32_t)kLPCMP_OutputFallingEventFlag);
+	if (1UL == cnt)
 	{
 		LED_SetHigh(GPIO0, 23);	/* Signal Power Loss 					*/
 		UART_Disable();				/* Disable Character Reception			*/
-    	CONSOLELOG_Flush();			/* Flush Data From Buffer To SDHC Card 	*/
+    	(void)CONSOLELOG_Flush();			/* Flush Data From Buffer To SDHC Card 	*/
 	}
 	cnt++;
 
 	SDK_ISR_EXIT_BARRIER;
 
 }
+/*lint -e957 */
 
 /*******************************************************************************
  * Functions
@@ -93,8 +115,15 @@ void PWRLOSS_DetectionInit(void)
     ctimer_config_t config;
     ctimer_match_config_t matchConfig0;			/* Match Configuration for Channel 0 */
 
-    /* enable CMP1, CMP1_DAC and VREF. */
-    SPC_EnableActiveModeAnalogModules(DEMO_SPC_BASE, (kSPC_controlCmp1 | kSPC_controlCmp1Dac));
+    /* Enable CMP1, CMP1_DAC and VREF. */
+    /* MISRA Deviation Note:
+     * Rule: MISRA 2012 Rule 10.1 [Required]
+     * Justification: Enum values 'kSPC_controlCmp1' and 'kSPC_controlCmp1Dac' are defined as bitmask flags
+     * in the provided NXP SDK, and are intended to be combined using bitwise OR '|'.
+     */
+    /*lint -e9027 -e655 -e641 MISRA Deviation: bitwise operation on enum values is intentional and safe */
+    SPC_EnableActiveModeAnalogModules(DEMO_SPC_BASE, (uint32_t)(kSPC_controlCmp1 | kSPC_controlCmp1Dac));
+    /*lint +e9027 +e655 +e641 */
 
     /*
      *   k_LpcmpConfigStruct->enableStopMode      	= false;
@@ -121,16 +150,16 @@ void PWRLOSS_DetectionInit(void)
     LPCMP_SetInputChannels(CMP1, 0x02, 0x07);
 
     /* Enable the interrupt. */
-    EnableIRQ(HSCMP1_IRQn);
-    //EnableIRQWithPriority(HSCMP1_IRQn, POWERLOSS_DET_PRIO);
-    LPCMP_EnableInterrupts(CMP1, kLPCMP_OutputFallingInterruptEnable);
+    (void)EnableIRQ(HSCMP1_IRQn);
+    //(void)EnableIRQWithPriority(HSCMP1_IRQn, POWERLOSS_DET_PRIO);
+    LPCMP_EnableInterrupts(CMP1, (uint32_t)kLPCMP_OutputFallingInterruptEnable);
 
     CTIMER_GetDefaultConfig(&config);
 
     CTIMER_Init(CTIMER, &config);
 
     uint32_t timerClkFreq = CLOCK_GetCTimerClkFreq(4U);
-    uint32_t match = timerClkFreq * 25;	/* 25 Seconds*/
+    uint32_t match = timerClkFreq * 25UL;	/* 25 Seconds*/
 
     /* Configuration 0 */
     matchConfig0.enableCounterReset = true;

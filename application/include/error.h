@@ -91,4 +91,9 @@ typedef uint16_t error_t;
  */
 void ERR_HandleError(void);
 
+void ERR_Init();
+
+void ERR_SetState(error_t err);
+
+
 #endif /* ERROR_H_ */

@@ -21,7 +21,6 @@
 #include "app_tasks.h"
 #include "rtc_ds3231.h"
 #include "mass_storage.h"
-#include "semphr.h"
 
 #include "record.h"
 /*******************************************************************************
@@ -44,17 +43,17 @@ static StackType_t uxIdleTaskStack[configMINIMAL_STACK_SIZE];
 
 static StaticTask_t xTimerTaskTCB;
 
-static StackType_t uxTimerTaskStack[configTIMER_TASK_STACK_DEPTH];
+static StackType_t uxTimerTaskStack[(uint32_t)configTIMER_TASK_STACK_DEPTH];
 
 //extern SemaphoreHandle_t g_TaskMutex;
 
-extern SemaphoreHandle_t g_xSemRecord;
+// extern SemaphoreHandle_t g_xSemRecord;
 
-extern SemaphoreHandle_t g_xSemMassStorage;
+// extern SemaphoreHandle_t g_xSemMassStorage;
 
-extern TaskHandle_t g_xMscTaskHandle;
+// extern TaskHandle_t g_xMscTaskHandle;
 
-extern TaskHandle_t g_xRecordTaskHandle;
+// extern TaskHandle_t g_xRecordTaskHandle;
 
 /** @} */ // End of TaskManagement group
 
@@ -67,7 +66,7 @@ void msc_task(void *handle)
     while (true)
     {
     	/* Wait For Attachment of USB */
-        xSemaphoreTake(g_xSemMassStorage, portMAX_DELAY);
+        (void)xSemaphoreTake(g_xSemMassStorage, portMAX_DELAY);
 
         /* De-Inicializace of UART */
         UART_Disable();
@@ -86,10 +85,10 @@ void msc_task(void *handle)
 void record_task(void *handle)
 {
 	error_t u16RetVal 			= ERROR_UNKNOWN;
-	uint32_t u32Baudrate 		= 0U;
-	uint32_t u32FileSize 		= 0U;
-	uint32_t u32CurrentBytes 	= 0U;
-	uint32_t u32MaxBytes 		= 0U;
+	uint32_t u32Baudrate 		= 0UL;
+	uint32_t u32FileSize 		= 0UL;
+	uint32_t u32CurrentBytes 	= 0UL;
+	uint32_t u32MaxBytes 		= 0UL;
 	bool bUartInitialized 		= false;
 
 	/* Initialize's The SDHC Card */
@@ -134,14 +133,11 @@ void record_task(void *handle)
     while (true)
     {
         /* Take Task Priority */
-        xSemaphoreTake(g_xSemRecord, portMAX_DELAY);
-
-#if (true == INFO_ENABLED)
-#endif /* (true == INFO_ENABLED) */
+        (void)xSemaphoreTake(g_xSemRecord, portMAX_DELAY);
 
         UART_Init(u32Baudrate);
         UART_Enable();
-        bUartInitialized = true;
+        bUartInitialized = true;	/*TODO: */
 
 #if (true == DEBUG_ENABLED)
         PRINTF("DEBUG: RECORD Task Running...\r\n");
@@ -181,7 +177,13 @@ void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
 {
     *ppxIdleTaskTCBBuffer = &xIdleTaskTCB;
     *ppxIdleTaskStackBuffer = uxIdleTaskStack;
-    *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
+
+    /* MISRA 2012 deviation: configTIMER_TASK_STACK_DEPTH is defined by FreeRTOS as a signed macro.
+     * Conversion to uint32_t is intentional and safe in this context. Fixing the definition is not possible.
+     */
+    /*lint -e9029 */
+    *pulIdleTaskStackSize = (uint32_t)configMINIMAL_STACK_SIZE;
+    /*lint +e9029 */
 }
 
 void vApplicationGetTimerTaskMemory(StaticTask_t **ppxTimerTaskTCBBuffer,
@@ -190,5 +192,11 @@ void vApplicationGetTimerTaskMemory(StaticTask_t **ppxTimerTaskTCBBuffer,
 {
     *ppxTimerTaskTCBBuffer = &xTimerTaskTCB;
     *ppxTimerTaskStackBuffer = uxTimerTaskStack;
-    *pulTimerTaskStackSize = configTIMER_TASK_STACK_DEPTH;
+
+    /* MISRA 2012 deviation: configTIMER_TASK_STACK_DEPTH is defined by FreeRTOS as a signed macro.
+     * Conversion to uint32_t is intentional and safe in this context. Fixing the definition is not possible.
+     */
+    /*lint -e9029 */
+    *pulTimerTaskStackSize = (uint32_t)configTIMER_TASK_STACK_DEPTH;
+    /*lint +e9029 */
 }

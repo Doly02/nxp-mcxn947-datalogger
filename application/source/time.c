@@ -23,7 +23,15 @@
 #include "fsl_debug_console.h"
 
 
+/* MISRA Deviation: Rule 21.10
+ * Justification: <time.h> is intentionally used for management of timestamps and other
+ * time-related operations in a controlled and limited scope. Usage of "time.h" usage is
+ * intentional and controlled.
+ */
+
+/*lint -e829 */
 #include "time.h"
+/*lint +e829 */
 
 /*******************************************************************************
  * Definitions
@@ -37,11 +45,6 @@
 /*******************************************************************************
  * Global Variables
  ******************************************************************************/
-
-uint32_t LPI2C2_GetFreq(void)
-{
-    return CLOCK_GetLPFlexCommClkFreq(2u);
-}
 
 error_t TIME_InitIRTC(void)
 {

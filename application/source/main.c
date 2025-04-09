@@ -56,7 +56,16 @@ static StackType_t g_xRecordTaskStack[RECORD_STACK_SIZE];
 
 static StaticTask_t g_xRecordTaskTCB;
 
+/*!
+ * @brief Global USB MSC Structure.
+ *
+ * MISRA Deviation: Rule 8.4
+ * Justification: Declaration of 'g_msc' is intentionally placed in 'app_tasks.h', T
+ * , the current file only provides the definition.
+ */
+/*lint -e9075 */
 usb_msc_struct_t g_msc;
+/*lint +e9075  */
 
 TaskHandle_t g_xMscTaskHandle 	 = NULL;
 
@@ -86,7 +95,7 @@ int main(void)
     }
 
     /* Launch Record Task With Dominance */
-    xSemaphoreGive(g_xSemRecord);
+    (void)xSemaphoreGive(g_xSemRecord);
 
     /* Initialize board hardware. */
 	APP_InitBoard();
@@ -129,7 +138,5 @@ int main(void)
     {
     	;
     }
-
-    return ERROR_OUT_OF_CYCLE;
 
 }

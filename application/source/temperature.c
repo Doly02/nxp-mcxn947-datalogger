@@ -30,22 +30,22 @@
 /**
  * @brief 	I2C DMA Channel For Transmission.
  */
-#define LPI2C_TX_DMA_CHANNEL       	0U
+#define LPI2C_TX_DMA_CHANNEL       	0UL
 
 /**
  * @brief 	I2C DMA Channel For Reception.
  */
-#define LPI2C_RX_DMA_CHANNEL    	1U
+#define LPI2C_RX_DMA_CHANNEL    	1UL
 
 /**
  * @brief	Connection Between DMA Channel 1 and LP_FLEXCOMM5 Tx.
  */
-#define LPI2C_TX_CHANNEL 			kDma1RequestMuxLpFlexcomm5Tx
+#define LPI2C_TX_CHANNEL 			(int32_t)kDma1RequestMuxLpFlexcomm5Tx
 
 /**
  * @brief	Connection Between DMA Channel 1 and LP_FLEXCOMM5 Rx.
  */
-#define LPI2C_RX_EDMA_CHANNEL  		kDma1RequestMuxLpFlexcomm5Rx
+#define LPI2C_RX_EDMA_CHANNEL  		(int32_t)kDma1RequestMuxLpFlexcomm5Rx
 
 /**
  * @brief Points To I2C Peripheral Unit (Specifically LPI2C5 Instance).
@@ -143,6 +143,11 @@ static void lpi2c_callback(LPI2C_Type *base, lpi2c_master_edma_handle_t *handle,
 /*******************************************************************************
  * Interrupt Handler Functions
  ******************************************************************************/
+/*lint -e957 */
+/* MISRA 2012 Rule 8.4:
+ * Suppress: function 'CTIMER0_IRQHandler' defined without a prototype in scope.
+ * CTIMER0_IRQHandler is declared WEAK in startup_mcxn947_cm33_core0.c and overridden here.
+ */
 void CTIMER0_IRQHandler(void)
 {
 	float temp = TMP_GetTemperature();
@@ -156,14 +161,14 @@ void CTIMER0_IRQHandler(void)
 	}
 	CTIMER_ClearStatusFlags(CTIMER0, (uint32_t)kCTIMER_Match0Flag);
 }
-
+/*lint +e957 */
 
 /*******************************************************************************
  * Functions
  ******************************************************************************/
 uint8_t Write(uint8_t regAddress, uint8_t val[])
 {
-	uint8_t retVal 			 = 1;
+	status_t status 			 = 1;
 
     xfer_I2C5.slaveAddress   = P3T1755_ADDR_7BIT;						/* Slave Address			*/
     xfer_I2C5.direction      = kLPI2C_Write;							/* Direction (Read/Write)	*/
@@ -173,8 +178,8 @@ uint8_t Write(uint8_t regAddress, uint8_t val[])
     xfer_I2C5.flags          = (uint32_t)kLPI2C_TransferDefaultFlag;	/* Flags (e.g. Stop Flag) 	*/
 
     /* Send Data To Slave */
-    retVal = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &xfer_I2C5);
-    if ((uint8_t)kStatus_Success != retVal)
+    status = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &xfer_I2C5);
+    if (kStatus_Success != status)
     {
         return (0xFF);
     }
@@ -191,7 +196,7 @@ uint8_t Write(uint8_t regAddress, uint8_t val[])
 uint16_t Read(uint8_t regAddress)
 {
 	uint16_t rxVal			 = 0;
-	uint8_t retVal 			 = 1;
+	status_t status 			 = 1;
 
 	xfer_I2C5.slaveAddress   = P3T1755_ADDR_7BIT;						/* Slave Address			*/
 	xfer_I2C5.direction      = kLPI2C_Read;								/* Direction (Read/Write)	*/
@@ -201,8 +206,8 @@ uint16_t Read(uint8_t regAddress)
 	xfer_I2C5.flags          = (uint32_t)kLPI2C_TransferDefaultFlag;	/* Flags (e.g. Stop Flag) 	*/
 
     /* Receive non-blocking data from slave */
-    retVal = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &xfer_I2C5);
-    if ((uint8_t)kStatus_Success != retVal)
+	status = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &xfer_I2C5);
+    if (kStatus_Success != status)
     {
         return (0xFFFF);
     }

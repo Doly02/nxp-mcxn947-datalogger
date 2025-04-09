@@ -99,12 +99,12 @@ void APP_InitBoard(void)
 
 #endif /* (true == RTC_ENABLED) */
 
-    CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
+    (void)CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
     BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
 
 #if (true == IRTC_ENABLED)
-    CLOCK_SetupClk16KClocking(kCLOCK_Clk16KToVbat | kCLOCK_Clk16KToMain);
-    TIME_InitIRTC();
+    (void)CLOCK_SetupClk16KClocking((uint32_t)((uint32_t)kCLOCK_Clk16KToVbat | (uint32_t)kCLOCK_Clk16KToMain));
+    (void)TIME_InitIRTC();
 #endif /* (true == IRTC_ENABLED) */
 
 #if (true == CONTROL_LED_ENABLED)

@@ -22,6 +22,9 @@
 
 extern usb_msc_struct_t g_msc;
 
+extern SemaphoreHandle_t g_xSemRecord;
+
+extern SemaphoreHandle_t g_xSemMassStorage;
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -34,9 +37,15 @@ void MSC_DeviceMscApp(void)
 
 void MSC_DeviceMscAppTask(void)
 {
-    if (0 < g_msc.read_write_error)
+    if (0u < g_msc.read_write_error)
     {
         return;
     }
+    /*!
+     * MISRA Deviation: Rule 2.2
+     * Justification: Function 'MSC_DeviceMscApp' is called periodically and allows to expand Mass Storage.
+     */
+    /*lint -save -e522 */
     MSC_DeviceMscApp();
+    /*lint +e522 */
 }
