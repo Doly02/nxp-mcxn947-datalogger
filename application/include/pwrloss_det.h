@@ -23,7 +23,6 @@
  ******************************************************************************/
 
 #include "fsl_lpcmp.h"
-#include "fsl_vref.h"
 #include "fsl_spc.h"
 
 #include "led.h"		/*TODO: */

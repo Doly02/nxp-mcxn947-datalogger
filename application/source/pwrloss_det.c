@@ -57,7 +57,7 @@ static volatile uint32_t cnt = 0UL;
  */
 void CTIMER4_IRQHandler(void)
 {
-	LED_SetHigh(GPIO0, 15);
+	/// LED_SetHigh(GPIO0, 15);
 	LED_SetLow(GPIO0, 23);
 	cnt = 1;
 
@@ -89,13 +89,12 @@ void CTIMER4_IRQHandler(void)
  */
 void HSCMP1_IRQHandler(void)
 {
-	/*? LPCMP_ClearStatusFlags(DEMO_LPCMP_BASE, kLPCMP_OutputFallingInterruptEnable); kLPCMP_OutputFallingEventFlag */
 	LPCMP_ClearStatusFlags(DEMO_LPCMP_BASE, (uint32_t)kLPCMP_OutputFallingEventFlag);
 	if (1UL == cnt)
 	{
-		LED_SetHigh(GPIO0, 23);	/* Signal Power Loss 					*/
-		UART_Disable();				/* Disable Character Reception			*/
-    	(void)CONSOLELOG_Flush();			/* Flush Data From Buffer To SDHC Card 	*/
+		LED_SetHigh(GPIO0, 23);				/* Signal Power Loss 					*/
+		UART_Disable();						/* Disable Character Reception			*/
+    	(void)CONSOLELOG_PowerLossFlush();	/* Flush Data From Buffer To SDHC Card 	*/
 	}
 	cnt++;
 

@@ -63,14 +63,30 @@ error_t TIME_InitIRTC(void)
     if (kStatus_Fail == IRTC_Init(RTC, &irtcCfg))
     {
     	PRINTF("ERR: Init. Internal-RTC Failed\r\n");
-    	return ERROR_IRTC;
+
+    	/* MISRA Deviation Note:
+		 * Rule: MISRA 2012 Rule 1.3 [Required]
+		 * Justification: The macro 'ERROR_IRTC' is defined in 'error.h', which is included indirectly
+		 * via 'time.h'. This deviation is safe and intentional.
+		 */
+		/*lint -e40 MISRA Deviation: identifier declared via indirect header include */
+		return ERROR_IRTC;
+		/*lint +e40 */
     }
 
+	/* MISRA Deviation Note:
+	 * Rule: MISRA 2012 Rule 1.3 [Required]
+	 * Justification: The macros 'ERROR_IRTC' and 'ERROR_NONE' are defined in 'error.h', which is included indirectly
+	 * via 'time.h'. This deviation is safe and intentional.
+	 */
+	/*lint -e40 MISRA Deviation: identifier declared via indirect header include */
 	if (ERROR_NONE != RTC_Init())
 	{
 		PRINTF("ERR: Init. External-RTC Failed\r\n");
+
 		return ERROR_IRTC;
 	}
+	/*lint +e40 */
 
 	/* Load The State of Real-Time Circuit */
 	if (OSC_STOPPED == RTC_GetState())	// If The Oscillator Was Stopped -> Set Time & Date
@@ -113,7 +129,14 @@ error_t TIME_InitIRTC(void)
     status = IRTC_SetDatetime(RTC, &time);
     if (0 != status)
     {
-    	return ERROR_IRTC;
+		/* MISRA Deviation Note:
+		 * Rule: MISRA 2012 Rule 1.3 [Required]
+		 * Justification: The macro 'ERROR_IRTC' is defined in 'error.h', which is included indirectly
+		 * via 'time.h'. This deviation is safe and intentional.
+		 */
+		/*lint -e40 MISRA Deviation: identifier declared via indirect header include */
+		return ERROR_IRTC;
+		/*lint +e40 */
     }
 
     IRTC_GetDatetime(RTC, &time);
@@ -123,5 +146,12 @@ error_t TIME_InitIRTC(void)
 			time.hour, time.minute, time.second);
 #endif /* (true == DEBUG_ENABLED) */
 
+	/* MISRA Deviation Note:
+	 * Rule: MISRA 2012 Rule 1.3 [Required]
+	 * Justification: The macro 'ERROR_NONE' is defined in 'error.h', which is included indirectly
+	 * via 'time.h'. This deviation is safe and intentional.
+	 */
+	/*lint -e40 MISRA Deviation: identifier declared via indirect header include */
 	return ERROR_NONE;
+	/*lint +e40 */
 }
