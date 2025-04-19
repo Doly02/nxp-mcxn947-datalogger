@@ -32,23 +32,34 @@
 #define ERROR_LED_PORT			GPIO0
 
 /*
- * @brief 	Error LED's Pin 1.
- * @details	P0_7
- */
-#define ERROR_LED_PIN_CONFIG	0x07
-
-/*
  * @brief 	Error LED's Pin 2.
  * @details	P0_9
  */
 #define ERROR_LED_PIN_RECORD	0x09
+
+
+/*
+ * @brief Low Memory LED's Port Number.
+ */
+#define MEMORY_LOW_LED_PORT		GPIO0
+
+/*
+ * @brief 	Error LED's Pin 1.
+ * @details	P0_7
+ */
+#define MEMORY_LOW_LED_PIN		0x07
+
+
+/*
+ * @brief Flush LED's Port Number.
+ */
+#define FLUSH_LED_PORT		GPIO0
 
 /*
  * @brief 	Error LED's Pin 3.
  * @details	P0_13
  */
 #define RECORD_LED_PIN_FLUSH	0x0D
-
 
 /*
  * @brief 	Recording LED's Port Number.

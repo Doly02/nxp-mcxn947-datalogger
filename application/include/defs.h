@@ -53,7 +53,7 @@
  * @brief 	Enables/Disables Debug Mode
  * @details If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console.
  */
-#define INFO_ENABLED				(false)
+#define INFO_ENABLED				(true)
 
 /**
  * @brief 	Enables/Disables Debug Mode
@@ -135,5 +135,12 @@
  * 			Not Be Read Properly.
  */
 #define DEFAULT_MAX_FILESIZE		8192
+
+/**
+ * @brief	Defines The Threshold Level of Free Memory on The SD card,
+ * 			Below Which The Lack of Memory is Indicated.
+ * @details In Megabytes.
+ */
+#define LOW_MEMORY_MB				25UL
 
 #endif /* DEFS_H_ */

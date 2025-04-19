@@ -28,7 +28,7 @@
 /**
  * @brief 	Software FIFO Size.
  */
-#define FIFO_SIZE 					1024U
+#define CIRCULAR_BUFFER_SIZE 		1024U
 
 /**
  * @brief 	Block Size For Write To SDHC Card Operation (In Bytes).
@@ -43,11 +43,6 @@
  */
 #define GET_WAIT_INTERVAL(seconds)  ((seconds) * 1000 / configTICK_RATE_HZ)
 
-/*
- * @brief 	Time Interval Between LED Blinking.
- * @details	In Milliseconds.
- */
-#define RECORD_LED_TIME_INTERVAL 	(uint32_t)(10U)
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -72,11 +67,13 @@ static FIL g_fileObject;
  */
 static char g_currentDirectory[32];
 
+#if 0
 /**
  * @brief 	Configuration of The Data Logger on The Basis of Data
  * 			Obtained From The Configuration File.
  */
 static REC_config_t g_config;
+#endif
 
 /*
  *  @brief decription about the read/write buffer
@@ -104,24 +101,25 @@ SDK_ALIGN(static uint8_t g_dmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN
 SDK_ALIGN(static uint8_t g_dmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
 /**
- * @brief 	Active Buffer Which Receives Data From UART Periphery.
+ * @brief 	Back Buffer Which Serves For Data Collection From Circular Buffer
+ * 			And Is Used For Data-Processing (Timestamps Are Inserted To This Buffer).
  */
-static uint8_t* g_activeDmaBuffer 	= g_dmaBuffer1;
+static uint8_t* g_backDmaBuffer 	= g_dmaBuffer1;
 
 /**
- * @brief 	Pointer on DMA Buffer Into Which The Time Stamps Are Inserted.
+ * @brief 	Front Buffer Which Serves For Storing Data Into SD Card.
  */
-static uint8_t* g_processDmaBuffer 	= NULL;
+static uint8_t* g_frontDmaBuffer 	= NULL;
 
 /**
- * @brief 	Index Into Active DMA Buffer.
+ * @brief 	Pointer on Current Back DMA Buffer Into Which The Time Stamps Are Inserted.
  */
-static uint16_t g_dmaIndex 			= 0;
+static uint16_t g_backDmaBufferIdx	= 0;
 
 /**
- * @brief 	Indicates That Collection Buffer (Active Buffer) Is Full and Ready To Swap.
+ * @brief 	Indicates That Collection Buffer (Back Buffer) Is Full and Ready To Swap.
  */
-static bool g_dmaBufferReady 		= false;
+static bool g_backDmaBufferReady	= false;
 
 /**
  * @brief 	Value of Ticks When Last Character Was Received Thru LPUART.
@@ -159,7 +157,7 @@ static uint32_t g_bytesTransfered	= 0U;
  * @{
  */
 
-SDK_ALIGN(static volatile uint8_t g_fifo[FIFO_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);	// FIFO buffer
+SDK_ALIGN(static volatile uint8_t g_circBuffer[CIRCULAR_BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);	// FIFO buffer
 
 /**
  * @brief	Index For Writing Into FIFO.
@@ -198,10 +196,10 @@ void LP_FLEXCOMM3_IRQHandler(void)
     {
         data = LPUART_ReadByte(LPUART3);
         /* Add Data To FIFO */
-        uint32_t nextWriteIndex = ((g_writeIndex + 1UL) % FIFO_SIZE);
+        uint32_t nextWriteIndex = ((g_writeIndex + 1UL) % CIRCULAR_BUFFER_SIZE);
         if (nextWriteIndex != g_readIndex) // Check if FIFO is not full
         {
-        	g_fifo[g_writeIndex] = data;
+        	g_circBuffer[g_writeIndex] = data;
             g_writeIndex = nextWriteIndex;
 
             /* Update Time Of Last Receiving */
@@ -241,6 +239,27 @@ DWORD get_fattime(void)
     /*lint +e9033*/
 }
 
+uint32_t CONSOLELOG_GetFreeSpaceMB(void)
+{
+    const TCHAR sLogicDisk[3U] = {SDDISK + '0', ':', '/'};
+    DWORD fre_clust;
+    FATFS *fs;
+    FRESULT res;
+    uint64_t fre_sect;
+
+    res = f_getfree(sLogicDisk, &fre_clust, &fs);
+    if (FR_OK != res)
+    {
+        PRINTF("ERR: Failed To Get Free Space ERR=%d\r\n", (int)res);
+        return 0;
+    }
+
+    fre_sect = (uint64_t)fre_clust * fs->csize;
+
+    /* 512B * sector [KB] -> /2 [MB] */
+    return (uint32_t)(fre_sect / 2048UL);
+}
+
 int CONSOLELOG_Abs(int x)
 {
     /*lint -e9027*/
@@ -268,12 +287,12 @@ error_t CONSOLELOG_CreateFile(void)
 
     /* Generate a New File Name */
     /* @note snprintf() Is Depricated But There Is No Better Equivalent */
-    //lint -save -e586
+    /*lint -e586*/
     (void)snprintf(fileName, sizeof(fileName), "%s/%04d%02d%02d_%02d%02d%02d_%u.txt",
     		g_currentDirectory, datetimeGet.year, datetimeGet.month, datetimeGet.day,
              datetimeGet.hour, datetimeGet.minute, datetimeGet.second,
              g_fileCounter++);
-    //lint -restore
+    /*lint +e586 */
 
     /* Open New File */
     /**
@@ -358,7 +377,7 @@ error_t CONSOLELOG_CreateDirectory(void)
 #endif /* (true == INFO_ENABLED) */
     return ERROR_NONE;
 }
-
+#if 0
 REC_config_t CONSOLELOG_GetConfig(void)
 {
 	return g_config;
@@ -379,6 +398,12 @@ uint32_t CONSOLELOG_GetFileSize(void)
 	return g_config.size;
 }
 
+uint32_t CONSOLELOG_GetMaxBytes(void)
+{
+	return g_config.max_bytes;
+}
+#endif
+
 uint32_t CONSOLELOG_GetTransferedBytes(void)
 {
 	return g_bytesTransfered;
@@ -392,11 +417,6 @@ bool CONSOLELOG_GetFlushCompleted(void)
 void CONSOLELOG_ClearTransferedBytes(void)
 {
 	g_bytesTransfered = 0;
-}
-
-uint32_t CONSOLELOG_GetMaxBytes(void)
-{
-	return g_config.max_bytes;
 }
 
 FRESULT CONSOLELOG_CheckFileSystem(void)
@@ -414,8 +434,8 @@ FRESULT CONSOLELOG_CheckFileSystem(void)
 error_t CONSOLELOG_Init(void)
 {
 	FRESULT status;
-	g_config.version 	= WCT_UNKOWN;
-	g_config.baudrate 	= 0;
+
+	PARSER_ClearConfig();
 
 	/* Logic Disk */
 	const TCHAR sLogicDisk[3U] = {SDDISK + '0', ':', '/'};
@@ -486,16 +506,16 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
     while (g_readIndex != localWriteIndex)
     {
         /* Loads One Char From FIFO And Stores The Char Into Active DMA Buffer */
-        uint8_t currentChar = g_fifo[g_readIndex];
-        g_readIndex = (g_readIndex + 1UL) % FIFO_SIZE;
+        uint8_t currentChar = g_circBuffer[g_readIndex];
+        g_readIndex = (g_readIndex + 1UL) % CIRCULAR_BUFFER_SIZE;
 
-        g_activeDmaBuffer[g_dmaIndex++] = currentChar;
+        g_backDmaBuffer[g_backDmaBufferIdx++] = currentChar;
 
         /* Check If The CRLF Is Not Divided Into Two DMA Buffers */
         if (((lastChar == (uint8_t)'\r') && (currentChar == (uint8_t)'\n')) ||
-            ((g_dmaIndex >= 2U) &&
-             (g_activeDmaBuffer[g_dmaIndex - 2U] == (uint8_t)'\r') &&
-             (g_activeDmaBuffer[g_dmaIndex - 1U] == (uint8_t)'\n')))
+            ((g_backDmaBufferIdx >= 2U) &&
+             (g_backDmaBuffer[g_backDmaBufferIdx - 2U] == (uint8_t)'\r') &&
+             (g_backDmaBuffer[g_backDmaBufferIdx - 1U] == (uint8_t)'\n')))
         {
 
         	IRTC_GetDatetime(RTC, &datetimeGet);
@@ -507,21 +527,21 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
             /* Addition of Time Mark To The DMA Buffer */
             for (uint8_t i = 0; i < timeLength; i++)
             {
-                if (BLOCK_SIZE > g_dmaIndex)	// If DMA Buffer is Not Full
+                if (BLOCK_SIZE > g_backDmaBufferIdx)	// If DMA Buffer is Not Full
                 {
-                    g_activeDmaBuffer[g_dmaIndex++] = (uint8_t)timeString[i];
+                	g_backDmaBuffer[g_backDmaBufferIdx++] = (uint8_t)timeString[i];
                 }
                 else
                 {
                     /* Switch To New DMA Buffer */
-                	g_processDmaBuffer = g_activeDmaBuffer;
-                    g_dmaBufferReady = true;
+                	g_frontDmaBuffer = g_backDmaBuffer;
+                	g_backDmaBufferReady = true;
 
-                    g_activeDmaBuffer = (g_activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
-                    g_dmaIndex = 0;
+                    g_backDmaBuffer = (g_backDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
+                    g_backDmaBufferIdx = 0;
 
                     /* Continue in Addition of Time Mark */
-                    g_activeDmaBuffer[g_dmaIndex++] = (uint8_t)timeString[i];
+                    g_backDmaBuffer[g_backDmaBufferIdx++] = (uint8_t)timeString[i];
                 }
             }
         }
@@ -529,19 +549,19 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
         lastChar = currentChar; // Current Last Character For Next Buffer
 
         /* Check If DMA Buffer Is Full */
-        if (BLOCK_SIZE == g_dmaIndex)
+        if (BLOCK_SIZE == g_backDmaBufferIdx)
         {
-            g_processDmaBuffer = g_activeDmaBuffer;
-            g_dmaBufferReady = true;
+        	g_frontDmaBuffer = g_backDmaBuffer;
+        	g_backDmaBufferReady = true;
 
             /* Switch on Next DMA Buffer */
-            g_activeDmaBuffer = (g_activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
-            g_dmaIndex = 0;
+            g_backDmaBuffer = (g_backDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
+            g_backDmaBufferIdx = 0;
         }
     }
 
     /* Process Full DMA Buffer */
-    if (g_dmaBufferReady && (NULL != g_processDmaBuffer))
+    if (g_backDmaBufferReady && (NULL != g_frontDmaBuffer))
     {
         if (NULL == g_fileObject.obj.fs)
         {
@@ -568,12 +588,9 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
             g_fileObject.obj.fs = NULL;
             return ERROR_ADMA;
         }
-        error = f_write(&g_fileObject, g_processDmaBuffer, BLOCK_SIZE, &bytesWritten);
-        if (FR_OK != error)
-        {
-        	return (error_t)error;
-        }
-
+        LED_SetHigh(GPIO0, 15);
+        error = f_write(&g_fileObject, g_frontDmaBuffer, BLOCK_SIZE, &bytesWritten);
+        LED_SetLow(GPIO0, 15);
         g_currentFileSize += BLOCK_SIZE;
         if (g_currentFileSize >= file_size)
         {
@@ -584,8 +601,8 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
             g_fileObject.obj.fs = NULL;
         }
 
-        g_dmaBufferReady = false;     // Reset Flag of ADMA Buffer
-        g_processDmaBuffer = NULL;    // Clear g_processDmaBuffer
+        g_backDmaBufferReady = false;   // Reset Flag of ADMA Buffer
+        g_frontDmaBuffer = NULL;    	// Clear g_frontDmaBuffer
     }
 
     return ERROR_NONE;
@@ -614,7 +631,7 @@ error_t CONSOLELOG_Flush(void)
 	/*lint -restore */
 
 	tickDiff = (int)(currentTick - lastTick);
-	if ((CONSOLELOG_Abs(tickDiff) > FLUSH_TIMEOUT_TICKS) && (g_dmaIndex > 0U))
+	if ((CONSOLELOG_Abs(tickDiff) > FLUSH_TIMEOUT_TICKS) && (g_backDmaBufferIdx > 0U))
 	{
 #if (true == INFO_ENABLED)
 		PRINTF("INFO: Current Ticks = %d.\r\n", currentTick);
@@ -624,17 +641,17 @@ error_t CONSOLELOG_Flush(void)
 		PRINTF("INFO: Flush Triggered.\r\n");
 #endif /* (true == INFO_ENABLED) */
 
-		while (g_dmaIndex < BLOCK_SIZE)			/* Fill Buffer With ' ' */
+		while (g_backDmaBufferIdx < BLOCK_SIZE)			/* Fill Buffer With ' ' */
 		{
-			g_activeDmaBuffer[g_dmaIndex++] = (uint8_t)' ';
+			g_backDmaBuffer[g_backDmaBufferIdx++] = (uint8_t)' ';
 		}
 
-		g_processDmaBuffer 	= g_activeDmaBuffer;
-		g_dmaBufferReady 	= true;
+		g_frontDmaBuffer 		= g_backDmaBuffer;
+		g_backDmaBufferReady 	= true;
 
 		// Switch To Second Buffer
-		g_activeDmaBuffer 	= (g_activeDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
-		g_dmaIndex 			= 0;
+		g_backDmaBuffer 	= (g_backDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
+		g_backDmaBufferIdx	= 0;
 
 		if (NULL == g_fileObject.obj.fs)
 		{
@@ -667,7 +684,7 @@ error_t CONSOLELOG_Flush(void)
 			g_fileObject.obj.fs = NULL;
 			return ERROR_ADMA;
 		}
-		error = f_write(&g_fileObject, g_processDmaBuffer, BLOCK_SIZE, &bytesWritten);
+		error = f_write(&g_fileObject, g_frontDmaBuffer, BLOCK_SIZE, &bytesWritten);
 		if (FR_OK != error)
 		{
 			return (error_t)error;
@@ -679,13 +696,84 @@ error_t CONSOLELOG_Flush(void)
 #endif /* (true == INFO_ENABLED || true == DEBUG_ENABLED) */
 
 		(void)f_close(&g_fileObject);
-		g_fileObject.obj.fs = NULL;
-		g_dmaBufferReady = false;
-		g_processDmaBuffer = NULL;
-		g_flushCompleted = true;
+		g_fileObject.obj.fs 	= NULL;
+		g_backDmaBufferReady 	= false;
+		g_frontDmaBuffer 		= NULL;
+		g_flushCompleted 		= true;
 	}
 	return ERROR_NONE;
 }
+
+error_t CONSOLELOG_PowerLossFlush(void)
+{
+	FRESULT error;
+	UINT bytesWritten;
+
+	if (g_backDmaBufferIdx > 0U)
+	{
+#if (true == INFO_ENABLED)
+		PRINTF("INFO: Pwrloss Flush Triggered.\r\n");
+#endif /* (true == INFO_ENABLED) */
+
+		while (g_backDmaBufferIdx < BLOCK_SIZE)			/* Fill Buffer With ' ' */
+		{
+			g_backDmaBuffer[g_backDmaBufferIdx++] = (uint8_t)' ';
+		}
+
+		g_frontDmaBuffer 		= g_backDmaBuffer;
+		g_backDmaBufferReady 	= true;
+
+		// Switch To Second Buffer
+		g_backDmaBuffer 	= (g_backDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
+		g_backDmaBufferIdx	= 0;
+
+		if (NULL == g_fileObject.obj.fs)
+		{
+			if (ERROR_NONE != CONSOLELOG_CreateFile())
+			{
+				PRINTF("ERR: Failed to Create New File During Flush.\r\n");
+				return ERROR_RECORD;
+			}
+		}
+
+#if (CONTROL_LED_ENABLED == true )
+		LED_SignalFlush();				/* Signal Flush							*/
+		LED_SignalRecordingStop();		/* Signal That Recording Is Not Active	*/
+
+#endif /* (CONTROL_LED_ENABLED == true ) */
+
+		/**
+		* ADMA Error Status (ADMA_ERR_STATUS)
+		* 3 bit 	-> 	ADMA Descriptor Error
+		* 2 bit 	-> 	ADMA Length Mismatch Error
+		* 1-0 bit 	-> 	ADMA Error State (When ADMA Error Occurred)
+		*				Field Indicates The State of The ADMA When An
+		*				Error Has Occurred During An ADMA Data Transfer.
+		*/
+		uint32_t stat_reg = g_sd.host->hostController.base->ADMA_ERR_STATUS;
+		if (0x0U != (stat_reg & (uint32_t)0xC))
+		{
+			PRINTF("ERR: Failed to Write Data To File During Flush. Error=%d\r\n", ERROR_ADMA);
+			(void)f_close(&g_fileObject);
+			g_fileObject.obj.fs = NULL;
+			return ERROR_ADMA;
+		}
+		error = f_write(&g_fileObject, g_frontDmaBuffer, BLOCK_SIZE, &bytesWritten);
+		g_currentFileSize += BLOCK_SIZE;
+
+#if	(true == INFO_ENABLED || true == DEBUG_ENABLED)
+		PRINTF("INFO: Closing File\r\n");
+#endif /* (true == INFO_ENABLED || true == DEBUG_ENABLED) */
+
+		(void)f_close(&g_fileObject);
+		g_fileObject.obj.fs 	= NULL;
+		g_backDmaBufferReady 	= false;
+		g_frontDmaBuffer 		= NULL;
+		g_flushCompleted 		= true;
+	}
+	return ERROR_NONE;
+}
+
 
 error_t CONSOLELOG_Deinit(void)
 {
@@ -805,117 +893,53 @@ error_t CONSOLELOG_ReadConfig(void)
 
 error_t CONSOLELOG_ProccessConfigFile(const char *content)
 {
-    const char *key = "baudrate=";
-    const char *keyFileSize = "file_size=";
+    error_t error;
 
-    char *found;
-    uint32_t baudrate;
-    uint32_t value;
-    error_t error = ERROR_NONE;
-
-    /* Find Key "baudrate=" */
-    found = strstr(content, key);
-    if (NULL == found)
+    error = PARSER_ParseBaudrate(content);
+    if (error != ERROR_NONE)
     {
 #if (CONTROL_LED_ENABLED == true)
-    	LED_SignalError();
-#endif /* (CONTROL_LED_ENABLED == true) */
-
-        PRINTF("ERR: Key 'baudrate=' Not Found.\r\n");
-        return ERROR_READ;
+        LED_SignalError();
+#endif
+        return error;
     }
 
-    found += strlen(key);					// Move Pointer Behind "baudrate="
-
-    /* MISRA Deviation Note:
-     * Rule: MISRA 2012 Rule 21.7
-     * Justification: Use of 'atoi' is intentional in controlled context.
-     * The input string 'found' should contain only numeric characters - baudrate.
-     * If string is not a number returns zero.
-     */
-    /*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
-    baudrate = (uint32_t)atoi(found);
-    /*lint +e586 */
-
-    if (0UL == baudrate)
-	{
-#if (CONTROL_LED_ENABLED == true)
-    	LED_SignalError();
-#endif /* (CONTROL_LED_ENABLED == true) */
-
-		PRINTF("ERR: Invalid Baudrate Value.\r\n");
-		return ERROR_READ;
-	}
-
-    switch (baudrate)
-	{
-		case 230400U:
-			g_config.version = WCT_AUTOS2;
-			break;
-		case 115200U:
-			g_config.version = WCT_AUTOS1;
-			break;
-		default:
-#if (CONTROL_LED_ENABLED == true)
-			LED_SignalError();
-#endif /* (CONTROL_LED_ENABLED == true) */
-
-			PRINTF("ERR: Unsupported Baudrate Value: %d\r\n", baudrate);
-			error = ERROR_CONFIG;
-			break;
-	}
-    if (ERROR_NONE == error)
-    {
-    	g_config.baudrate = baudrate;
-    }
-    else
-    {
-    	return error;
-    }
-
-    /* Find Key "file_size=" */
-    found = strstr(content, keyFileSize);
-    if (NULL == found)
+    error = PARSER_ParseFileSize(content);
+    if (error != ERROR_NONE)
     {
 #if (CONTROL_LED_ENABLED == true)
-    	LED_SignalError();
-#endif /* (CONTROL_LED_ENABLED == true) */
-
-        PRINTF("ERR: Key 'file_size=' Not Found.\r\n");
-        return ERROR_READ;
+        LED_SignalError();
+#endif
+        return error;
     }
 
-    found += strlen(keyFileSize);			// Move Pointer Behind "file_size="
-
-    /* MISRA Deviation Note:
-     * Rule: MISRA 2012 Rule 21.7
-     * Justification: Use of 'atoi' is intentional in controlled context.
-     * The input string 'found' should contain only numeric characters - size of record file.
-     */
-    /*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
-    value = (uint32_t)atoi(found);			// Convert Value To INT
-    /*lint +e586 */
-
-    if (0UL >= value)
+    error = PARSER_ParseStopBits(content);
+    if (error != ERROR_NONE)
     {
 #if (CONTROL_LED_ENABLED == true)
-    	LED_SignalError();
-#endif /* (CONTROL_LED_ENABLED == true) */
-
-        PRINTF("ERR: Invalid File Size Value.\r\n");
-        return ERROR_READ;
+        LED_SignalError();
+#endif
+        return error;
     }
-    if (0UL != (value % 512UL))
+
+    error = PARSER_ParseDataBits(content);
+    if (error != ERROR_NONE)
     {
-    	/* Round Up To 512 */
-        uint32_t roundedValue = ((value + 511UL) / 512UL) * 512UL;
-        PRINTF("WARN: File Size %d Is Not a Multiple of 512. Rounding Up to %d.\r\n", value, roundedValue);
-        value = roundedValue;
+#if (CONTROL_LED_ENABLED == true)
+        LED_SignalError();
+#endif
+        return error;
     }
 
-    g_config.size = value;  // Store File Size in Configuration Structure
-    g_config.max_bytes = (g_config.baudrate / 1000UL) * RECORD_LED_TIME_INTERVAL;
-    PRINTF("DEBUG: File Size Set To %d Bytes.\r\n", g_config.size);
+    error = PARSER_ParseParity(content);
+    if (error != ERROR_NONE)
+    {
+#if (CONTROL_LED_ENABLED == true)
+        LED_SignalError();
+#endif
+        return error;
+    }
 
     return ERROR_NONE;
 }
+

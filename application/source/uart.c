@@ -21,6 +21,7 @@
 #include "uart.h"
 #include "defs.h"
 
+#include "parser.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -59,11 +60,14 @@ void UART_Init(uint32_t baudrate)
     lpuart_config_t config;
 
     LPUART_GetDefaultConfig(&config);
-    config.baudRate_Bps 	= baudrate;
-    config.isMsb        	= false;
+    config.baudRate_Bps  = baudrate;
+    config.isMsb         = false;
+    config.parityMode    = PARSER_GetParity();
+    config.dataBitsCount = PARSER_GetDataBits();
+    config.stopBitCount  = PARSER_GetStopBits();
 
-    config.enableTx     	= false;
-    config.enableRx     	= true;
+    config.enableTx      = false;
+    config.enableRx      = true;
 
 #if (true == UART_FIFO_ENABLED)
     config.rxFifoWatermark = UART_FIFO_LENGHT;

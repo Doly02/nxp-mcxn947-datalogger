@@ -28,7 +28,6 @@
 #include "ffconf.h"					/*<! File System Configuration */
 #include <stdio.h>
 
-#include "fsl_debug_console.h"
 #include "fsl_sd_disk.h"
 #include "fsl_common.h"
 #include "diskio.h"
@@ -43,6 +42,7 @@
 
 #include "error.h"
 #include "uart.h"
+#include "parser.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -51,52 +51,39 @@
 /*******************************************************************************
  * Structures
  ******************************************************************************/
-/**
- * @brief 	Enumeration of recording board versions.
- *
- * @details This enum defines the possible versions of the board for which the recording
- * 			system is configured.
- *
- * @note	Difference Between AUTOS1 and AUTOS2 Is In Baudrate.
- *
- */
-typedef enum
-{
-	WCT_UNKOWN = 0,		/**< Unknown board version. 	*/
-	WCT_AUTOS1,			/**< AUTOS1 Reference Board. 	*/
-	WCT_AUTOS2			/**< AUTOS2 Reference Board. 	*/
 
-} REC_version_t;
-
-/**
- * @brief 	Configuration structure for the recording system.
- *
- * @details	Structure Holds The Configuration Parameters Required For Initializing
- * 			The Recording System, Including The Board Version and Baudrate.
- */
-typedef struct
-{
-	REC_version_t 	version;	/**< Board That Will Be Recorded		*/
-	uint32_t 		baudrate;	/**< Desired Baudrate					*/
-	uint32_t		size;		/**< Maximum File Size 					*/
-								/**< Maximal Log. Time In Per File		*/
-	uint32_t		max_bytes;	/**< Number of Bytes Between LED Signal	*/
-
-} REC_config_t;
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
 
+/**
+ * @brief 		Return Absolute Value.
+ *
+ * @return		Returns Free Space on SD Card.
+ */
 int CONSOLELOG_Abs(int x);
-/** TODO:
+
+/**
+ * @brief 		Gets Free Space on SD Card.
+ *
+ * @return		Returns Free Space on SD Card.
+ */
+uint32_t CONSOLELOG_GetFreeSpaceMB(void);
+
+/**
  * @brief 		Creates Directory Based Actual Date.
  *
- * @return		Return Pointer to Created File Descriptor.
+ * @return		Returns Zero If Directory Creation Succeeded.
  */
 error_t CONSOLELOG_CreateDirectory(void);
 
-
+/**
+ * @brief 		Creates File Based Actual Date and Counter Value.
+ *
+ * @return		Returns Zero If File Creation Succeeded.
+ */
 error_t CONSOLELOG_CreateFile(void);
+
 /**
  * @brief 		Returns Active Configuration.
  *
@@ -193,11 +180,20 @@ error_t CONSOLELOG_Recording(uint32_t file_size);
  * 				By The Time Specified By TIMEOUT Macro.
  * @details		If The Data Does Not Arrive By The Time Specified By The TIMEOUT Macro,
  * 				Then This Function Flushes All The Data So Far Stored In The DMA Buffer,
- * 				Saves It To a File on The Physical Media and Closes The File
+ * 				Saves It To a File on The Physical Media and Closes The File.
  *
  * @return		error_t Returns 0 on Success, Otherwise Returns a Non-Zero Value.
  */
 error_t CONSOLELOG_Flush(void);
+
+/**
+ * @brief 		Flushes Collected Data To The File If Power Loss Was Detected.
+ * @details		If Power Loss Was Detected, Then This Function Flushes All The Data
+ * 				So Far Stored In The DMA Buffer, Saves It To a File on The Physical Media and Closes The File.
+ *
+ * @return		error_t Returns 0 on Success, Otherwise Returns a Non-Zero Value.
+ */
+error_t CONSOLELOG_PowerLossFlush(void);
 
 /**
  * @brief 		De-Initializes The Recording System and Un-Mounts The File System.

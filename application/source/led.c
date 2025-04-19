@@ -61,7 +61,12 @@ void LED_SignalRecordingStop(void)
 
 void LED_SignalBackUpPowerAvailable(void)
 {
-	LED_SetHigh(ERROR_LED_PORT, ERROR_LED_PIN_CONFIG);
+	LED_SetHigh(BACKUP_POWER_LED_PORT, BACKUP_POWER_LED_PIN);
+}
+
+void LED_SignalLowMemory(void)
+{
+	LED_SetHigh(MEMORY_LOW_LED_PORT, MEMORY_LOW_LED_PIN);
 }
 
 void LED_SignalError(void)
@@ -71,10 +76,10 @@ void LED_SignalError(void)
 
 void LED_SignalFlush(void)
 {
-	LED_SetHigh(ERROR_LED_PORT, RECORD_LED_PIN_FLUSH);
+	LED_SetHigh(FLUSH_LED_PORT, RECORD_LED_PIN_FLUSH);
 }
 
 void LED_ClearSignalFlush(void)
 {
-	LED_SetLow(ERROR_LED_PORT, RECORD_LED_PIN_FLUSH);
+	LED_SetLow(FLUSH_LED_PORT, RECORD_LED_PIN_FLUSH);
 }

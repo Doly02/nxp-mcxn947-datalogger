@@ -33,27 +33,30 @@
  */
 
 /*!
- * @brief	TCB (Task Control Block) - Metadata of IDLE Task.
+ * @brief	TCB (Task Control Block) - Meta-Data of IDLE Task.
  */
 static StaticTask_t xIdleTaskTCB;
 /*!
- * @brief 	Buffer for Static Idle Task.
+ * @brief 	Stack for Static Idle Task.
  */
 static StackType_t uxIdleTaskStack[configMINIMAL_STACK_SIZE];
 
+/*!
+ * @brief	TCB (Task Control Block) - Meta-Data of Timer Task.
+ */
 static StaticTask_t xTimerTaskTCB;
 
-static StackType_t uxTimerTaskStack[(uint32_t)configTIMER_TASK_STACK_DEPTH];
-
-//extern SemaphoreHandle_t g_TaskMutex;
-
-// extern SemaphoreHandle_t g_xSemRecord;
-
-// extern SemaphoreHandle_t g_xSemMassStorage;
-
-// extern TaskHandle_t g_xMscTaskHandle;
-
-// extern TaskHandle_t g_xRecordTaskHandle;
+/*!
+ * @brief 	Stack for Static Timer Task.
+ */
+/* MISRA Deviation Note:
+ * Rule: MISRA 2012 Rule 10.4 [Required]
+ * Justification: The macro 'configTIMER_TASK_STACK_DEPTH' is defined by the FreeRTOS kernel
+ * configuration as an integer constant.
+ */
+/*lint -e9029 MISRA Deviation: standard FreeRTOS macro cast to uint32_t */
+static StackType_t uxTimerTaskStack[configTIMER_TASK_STACK_DEPTH];
+/*lint +e9029 */
 
 /** @} */ // End of TaskManagement group
 
@@ -89,6 +92,7 @@ void record_task(void *handle)
 	uint32_t u32FileSize 		= 0UL;
 	uint32_t u32CurrentBytes 	= 0UL;
 	uint32_t u32MaxBytes 		= 0UL;
+	uint32_t u32FreeSpaceSdCard = 0UL;
 	bool bUartInitialized 		= false;
 
 	/* Initialize's The SDHC Card */
@@ -111,18 +115,16 @@ void record_task(void *handle)
 		u32Baudrate = DEFAULT_BAUDRATE;
 		u32FileSize = DEFAULT_MAX_FILESIZE;
 #if (true == INFO_ENABLED)
-		PRINTF("INFO: Configuration File (config) Not Found\r\n");
 		PRINTF("INFO: Default Configuration:\r\n");
 #endif
 	}
 	else
 	{
 #if (true == INFO_ENABLED)
-		PRINTF("INFO: Configuration File Found\r\n");
 		PRINTF("INFO: Configuration:\r\n");
 #endif
-		u32Baudrate = CONSOLELOG_GetBaudrate();
-		u32FileSize = CONSOLELOG_GetFileSize();
+		u32Baudrate = PARSER_GetBaudrate();
+		u32FileSize = PARSER_GetFileSize();
 	}
 
 #if (true == INFO_ENABLED)
@@ -152,7 +154,7 @@ void record_task(void *handle)
 
 #if (CONTROL_LED_ENABLED == true)
             u32CurrentBytes = CONSOLELOG_GetTransferedBytes();
-            u32MaxBytes = CONSOLELOG_GetMaxBytes();
+            u32MaxBytes = PARSER_GetMaxBytes();
             if (u32CurrentBytes >= u32MaxBytes)
             {
                 LED_SignalRecording();
@@ -166,6 +168,14 @@ void record_task(void *handle)
                 ERR_HandleError();
             }
 
+#if (true == INFO_ENABLED)
+            u32FreeSpaceSdCard = CONSOLELOG_GetFreeSpaceMB();
+            if (LOW_MEMORY_MB >= u32FreeSpaceSdCard)
+            {
+            	LED_SignalLowMemory();
+            	PRINTF("DEBUG: Free Space: %d\r\n", u32FreeSpaceSdCard);
+            }
+#endif /* (true == INFO_ENABLED) */
             vTaskDelay(pdMS_TO_TICKS(100));
         }
 	}
