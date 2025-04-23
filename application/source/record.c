@@ -910,6 +910,14 @@ error_t CONSOLELOG_ProccessConfigFile(const char *content)
         return error;
     }
 
+    error = PARSER_ParseFreeSpace(content);
+	if (error != ERROR_NONE)
+	{
+#if (CONTROL_LED_ENABLED == true)
+		LED_SignalError();
+#endif
+		return error;
+	}
     return ERROR_NONE;
 }
 

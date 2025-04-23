@@ -80,6 +80,11 @@ lpuart_stop_bit_count_t PARSER_GetStopBits(void)
 	return g_config.stop_bits;
 }
 
+uint32_t PARSER_GetFreeSpaceLimitMB(void)
+{
+	return g_config.free_space_limit_mb;
+}
+
 uint32_t PARSER_GetMaxBytes(void)
 {
 	return g_config.max_bytes;
@@ -94,6 +99,8 @@ void PARSER_ClearConfig(void)
 	g_config.parity = kLPUART_ParityDisabled;
 	g_config.stop_bits = kLPUART_OneStopBit;
 	g_config.data_bits = kLPUART_EightDataBits;
+
+	g_config.free_space_limit_mb = 0UL;
 }
 
 error_t PARSER_ParseBaudrate(const char *content)
@@ -256,6 +263,7 @@ error_t PARSER_ParseStopBits(const char *content)
     else
     {
     	;	/* To avoid MISRA 2012 Rule 15.7 required rule */
+    		/* Selected 1 Stop Bit By Default */
     }
 
     PRINTF("ERR: Invalid value for 'stop_bits': %u\r\n", stopBits);
@@ -294,9 +302,51 @@ error_t PARSER_ParseDataBits(const char *content)
     }
     else
 	{
-		; /* To avoid MISRA 2012 Rule 15.7 required rule */
+		; 	/* To avoid MISRA 2012 Rule 15.7 required rule */
+			/* Selected 8 Data Bits By Default */
 	}
 
     PRINTF("ERR: Invalid value for 'data_bits': %u\r\n", dataBits);
     return ERROR_READ;
+}
+
+error_t PARSER_ParseFreeSpace(const char *content)
+{
+    const char *key = "free_space=";
+    char *found = strstr(content, key);
+    if (NULL == found)
+    {
+        PRINTF("INFO: Key 'free_space=' not found. Using default (disabled).\r\n");
+        g_config.free_space_limit_mb = 0UL;
+        return ERROR_NONE;
+    }
+
+    found += strlen(key);
+
+    errno = 0;  // Reset errno before parsing
+    char *endptr = NULL;
+
+    /*lint -e586 MISRA Deviation: strtoul is used with trusted input */
+    unsigned long parsedValue = strtoul(found, &endptr, 10);
+    /*lint +e586 */
+
+    // Conversion Errors Check
+    if ((endptr == found) || (errno != 0) || (parsedValue > 0xFFFFFFFFUL))
+    {
+        PRINTF("ERR: Invalid or out-of-range value for 'free_space=': %s\r\n", found);
+        return ERROR_READ;
+    }
+
+    g_config.free_space_limit_mb = (uint32_t)parsedValue;
+
+    if (0UL == g_config.free_space_limit_mb)
+    {
+        PRINTF("INFO: 'free_space=' set to 0 MB, threshold disabled.\r\n");
+    }
+    else
+    {
+        PRINTF("INFO: Free space LED threshold set to %lu MB.\r\n", parsedValue);
+    }
+
+    return ERROR_NONE;
 }

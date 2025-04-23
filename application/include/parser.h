@@ -13,6 +13,8 @@
  ******************************************************************************/
 #include <stdint.h>
 #include <string.h>
+#include <errno.h>
+#include <stdlib.h>
 
 #include "fsl_lpuart.h"
 #include "fsl_debug_console.h"
@@ -59,9 +61,10 @@ typedef struct
     lpuart_parity_mode_t	parity;
 
 
-	uint32_t		size;		/**< Maximum File Size 					*/
-								/**< Maximal Log. Time In Per File		*/
-	uint32_t		max_bytes;	/**< Number of Bytes Between LED Signal	*/
+	uint32_t		size;				/**< Maximum File Size 					*/
+										/**< Maximal Log. Time In Per File		*/
+	uint32_t		max_bytes;			/**< Number of Bytes Between LED Signal	*/
+	uint32_t 		free_space_limit_mb;
 
 } REC_config_t;
 /*******************************************************************************
@@ -127,6 +130,14 @@ lpuart_parity_mode_t PARSER_GetParity(void);
 lpuart_stop_bit_count_t PARSER_GetStopBits(void);
 
 /**
+ * @brief 		Returns The Free Space Limit on SD Card For LED Signaling.
+ *
+ * @return		uint32_t Free Space Limit.
+ *
+ */
+uint32_t PARSER_GetFreeSpaceLimitMB(void);
+
+/**
  * @brief 		Returns The Number of Maximal Bytes Between LED Blinking.
  *
  * @return		uint32_t Number of Maximal Bytes Between LED Blinking.
@@ -168,5 +179,8 @@ error_t PARSER_ParseStopBits(const char *content);
  * @param[in]	content Pointer To Content of Configuration File.
  */
 error_t PARSER_ParseDataBits(const char *content);
+
+
+error_t PARSER_ParseFreeSpace(const char *content);
 
 #endif /* PARSER_H_ */

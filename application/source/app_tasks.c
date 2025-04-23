@@ -189,7 +189,8 @@ void record_task(void *handle)
 
 #if (true == INFO_ENABLED)
             u32FreeSpaceSdCard = CONSOLELOG_GetFreeSpaceMB();
-            if (LOW_MEMORY_MB >= u32FreeSpaceSdCard)
+            if ((u32FreeSpaceSdCard <= PARSER_GetFreeSpaceLimitMB())
+                && (0UL != PARSER_GetFreeSpaceLimitMB()))
             {
             	LED_SignalLowMemory();
             	PRINTF("DEBUG: Free Space: %d\r\n", u32FreeSpaceSdCard);
