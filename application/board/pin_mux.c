@@ -370,7 +370,7 @@ void BOARD_InitPins(void)
                                                      kPORT_OpenDrainEnable,
                                                      /* Low drive strength is configured */
                                                      kPORT_LowDriveStrength,
-                                                     /* Pin is configured as FC2_P0 */
+                                                     /* Pin is configured as FC5_P0 */
                                                      kPORT_MuxAlt2,
                                                      /* Digital input enabled */
                                                      kPORT_InputBufferEnable,
@@ -393,7 +393,7 @@ void BOARD_InitPins(void)
                                                      kPORT_OpenDrainEnable,
                                                      /* Low drive strength is configured */
                                                      kPORT_LowDriveStrength,
-                                                     /* Pin is configured as FC2_P1 */
+                                                     /* Pin is configured as FC5_P1 */
                                                      kPORT_MuxAlt2,
                                                      /* Digital input enabled */
                                                      kPORT_InputBufferEnable,
@@ -623,9 +623,6 @@ void BOARD_InitPins(void)
                                                     kPORT_UnlockRegister};
     /* PORT3_3 is configured as FC7_P1 */
     PORT_SetPinConfig(PORT1, 1U, &port3_3_pin_config);
-
-    /* Enables the clock for PORT4: Enables clock */
-    CLOCK_EnableClock(kCLOCK_Port4);
 
     const port_pin_config_t port4_0_pinP1_config = {/* Internal pull-up resistor is enabled */
                                                     kPORT_PullUp,

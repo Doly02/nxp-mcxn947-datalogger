@@ -46,6 +46,9 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+/**
+ * @brief Timeout Interval Before Flush If No New Data Were Received [In Mili-Seconds].
+ */
 #define FLUSH_TIMEOUT_TICKS (int)pdMS_TO_TICKS(3000)
 
 /*******************************************************************************
@@ -83,41 +86,6 @@ error_t CONSOLELOG_CreateDirectory(void);
  * @return		Returns Zero If File Creation Succeeded.
  */
 error_t CONSOLELOG_CreateFile(void);
-
-/**
- * @brief 		Returns Active Configuration.
- *
- * @details 	This Function Returns The Global Configuration Structure That Contains
- * 				The Settings For The Recording, Such as Baudrate, Version,
- * 				And Other Relevant Parameters.
- *
- * @return		REC_config_t The Current Recording Configuration.
- */
-REC_config_t CONSOLELOG_GetConfig(void);
-
-/**
- * @brief 		Returns the Version of The Device Being Recorded.
- *
- * @return		REC_version_t Current Version of Recorded Device
- * 				(WCT_UNKOWN, WCT_AUTOS1 or WCT_AUTOS2).
- */
-REC_version_t CONSOLELOG_GetVersion(void);
-
-/**
- * @brief 		Returns the Baudrate of The Device Being Recorded.
- *
- * @return		uint32_t Baud Rate of Recorded Device.
- *
- */
-uint32_t CONSOLELOG_GetBaudrate(void);
-
-/**
- * @brief 		Returns the Maximal File Size.
- *
- * @return		uint32_t Maximal File Size.
- *
- */
-uint32_t CONSOLELOG_GetFileSize(void);
 
 /**
  * @brief 		Returns Currently Received Bytes Between LED Blinking.

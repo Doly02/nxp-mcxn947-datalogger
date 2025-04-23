@@ -67,33 +67,106 @@ typedef struct
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
+/**
+ * @brief 		Returns Active Configuration.
+ *
+ * @details 	This Function Returns The Global Configuration Structure That Contains
+ * 				The Settings For The Recording, Such as Baudrate, Version,
+ * 				And Other Relevant Parameters.
+ *
+ * @return		REC_config_t The Current Recording Configuration.
+ */
 REC_config_t PARSER_GetConfig(void);
 
+/**
+ * @brief 		Returns the Version of The Device Being Recorded.
+ *
+ * @return		REC_version_t Current Version of Recorded Device
+ * 				(WCT_UNKOWN, WCT_AUTOS1 or WCT_AUTOS2).
+ */
 REC_version_t PARSER_GetVersion(void);
 
+/**
+ * @brief 		Returns the Baudrate of The Device Being Recorded.
+ *
+ * @return		uint32_t Baud Rate of Recorded Device.
+ *
+ */
 uint32_t PARSER_GetBaudrate(void);
 
+/**
+ * @brief 		Returns the Maximal File Size.
+ *
+ * @return		uint32_t Maximal File Size.
+ *
+ */
 uint32_t PARSER_GetFileSize(void);
 
+/**
+ * @brief 		Returns The Number of Data Bits.
+ *
+ * @return		lpuart_data_bits_t Number of Data Bits.
+ *
+ */
 lpuart_data_bits_t PARSER_GetDataBits(void);
 
+/**
+ * @brief 		Returns The Parity.
+ *
+ * @return		lpuart_parity_mode_t kLPUART_ParityDisabled, kLPUART_ParityEven or kLPUART_ParityOdd.
+ *
+ */
 lpuart_parity_mode_t PARSER_GetParity(void);
 
+/**
+ * @brief 		Returns The Number of Stop Bits.
+ *
+ * @return		lpuart_stop_bit_count_t Number of Stop Bits.
+ *
+ */
 lpuart_stop_bit_count_t PARSER_GetStopBits(void);
 
+/**
+ * @brief 		Returns The Number of Maximal Bytes Between LED Blinking.
+ *
+ * @return		uint32_t Number of Maximal Bytes Between LED Blinking.
+ *
+ */
 uint32_t PARSER_GetMaxBytes(void);
 
+/**
+ * @brief 		Clears The Configuration To Default.
+ */
 void PARSER_ClearConfig(void);
 
+/**
+ * @brief 		Parse Baudrate From Configuration File.
+ * @param[in]	content Pointer To Content of Configuration File.
+ */
 error_t PARSER_ParseBaudrate(const char *content);
 
+/**
+ * @brief 		Parse Record File Size From Configuration File.
+ * @param[in]	content Pointer To Content of Configuration File.
+ */
 error_t PARSER_ParseFileSize(const char *content);
 
+/**
+ * @brief 		Parse Parity From Configuration File.
+ * @param[in]	content Pointer To Content of Configuration File.
+ */
 error_t PARSER_ParseParity(const char *content);
 
+/**
+ * @brief 		Parse The Number of Stop Bits From Configuration File.
+ * @param[in]	content Pointer To Content of Configuration File.
+ */
 error_t PARSER_ParseStopBits(const char *content);
 
+/**
+ * @brief 		Parse The Number of Data Bits From Configuration File.
+ * @param[in]	content Pointer To Content of Configuration File.
+ */
 error_t PARSER_ParseDataBits(const char *content);
-
 
 #endif /* PARSER_H_ */
