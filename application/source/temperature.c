@@ -124,7 +124,7 @@ static edma_handle_t gEdmaRxHandle_I2C5;
 /**
  * @brief	Flag Indicating Whether The Transfer Has Finished.
  */
-static volatile bool gCompletionFlag_I2C5 	= false;
+static volatile bool g_bCompletionFlag_I2C5 	= false;
 
 static lpi2c_master_transfer_t xfer_I2C5 	= {0};
 
@@ -136,7 +136,7 @@ static void lpi2c_callback(LPI2C_Type *base, lpi2c_master_edma_handle_t *handle,
     /* Signal Transfer Success When Received Success Status */
 	if (kStatus_Success == status)
     {
-    	gCompletionFlag_I2C5 = true;
+    	g_bCompletionFlag_I2C5 = true;
     }
 }
 
@@ -150,14 +150,14 @@ static void lpi2c_callback(LPI2C_Type *base, lpi2c_master_edma_handle_t *handle,
  */
 void CTIMER0_IRQHandler(void)
 {
-	float temp = TMP_GetTemperature();
+	float fTemp = TMP_GetTemperature();
 
-	if (35.0 < temp)
+	if (35.0 < fTemp)
 	{
 #if (CONTROL_LED_ENABLED == true)
 		LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
-		PRINTF("ERR: High Temperature (%f)\r\n", temp);
+		PRINTF("ERR: High Temperature (%f)\r\n", fTemp);
 	}
 	CTIMER_ClearStatusFlags(CTIMER0, (uint32_t)kCTIMER_Match0Flag);
 }
@@ -185,18 +185,18 @@ uint8_t Write(uint8_t regAddress, uint8_t val[])
     }
 
     /*  Wait For Transfer Completed */
-	while (false == gCompletionFlag_I2C5)
+	while (false == g_bCompletionFlag_I2C5)
 	{
 		; /* Wait For Slave Complete */
 	}
-    gCompletionFlag_I2C5 = false;							// Reset
+    g_bCompletionFlag_I2C5 = false;							// Reset
     return 0;
 }
 
 uint16_t Read(uint8_t regAddress)
 {
-	uint16_t rxVal			 = 0;
-	status_t status 			 = 1;
+	uint16_t u16rxVal		 = 0;
+	status_t status 		 = 1;
 
 	xfer_I2C5.slaveAddress   = P3T1755_ADDR_7BIT;						/* Slave Address			*/
 	xfer_I2C5.direction      = kLPI2C_Read;								/* Direction (Read/Write)	*/
@@ -212,27 +212,27 @@ uint16_t Read(uint8_t regAddress)
         return (0xFFFF);
     }
 
-	while (false == gCompletionFlag_I2C5)
+	while (false == g_bCompletionFlag_I2C5)
 	{
 		; /* Wait For Slave Complete */
 	}
 
-    gCompletionFlag_I2C5 = false;							// Reset
+    g_bCompletionFlag_I2C5 = false;							// Reset
 
-	rxVal = (((uint16_t)gRxBuff_I2C5[0]) << 8 | gRxBuff_I2C5[1]);
-    return rxVal;
+    u16rxVal = (((uint16_t)gRxBuff_I2C5[0]) << 8 | gRxBuff_I2C5[1]);
+    return u16rxVal;
 }
 
 float TMP_GetTemperature(void)
 {
-	uint16_t val;
+	uint16_t u16Val;
 
-	val = Read(REGISTER_TEMPERATURE);
-	if (0xFFFFU == val)
+	u16Val = Read(REGISTER_TEMPERATURE);
+	if (0xFFFFU == u16Val)
 	{
 		PRINTF("ERR: Tx Transfer Failed\r\n");
 	}
-	return ((float)val / 256.0f);
+	return ((float)u16Val / 256.0f);
 }
 
 

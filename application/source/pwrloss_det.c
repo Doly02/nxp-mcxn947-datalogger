@@ -39,7 +39,7 @@
 /*******************************************************************************
  * Global Variables
  ******************************************************************************/
-static volatile uint32_t cnt = 0UL;
+static volatile uint32_t g_u32Cnt = 0UL;
 
 /*******************************************************************************
  * Interrupt Service Routines (ISRs)
@@ -59,7 +59,7 @@ void CTIMER4_IRQHandler(void)
 {
 	/// LED_SetHigh(GPIO0, 15);
 	LED_SetLow(GPIO0, 23);
-	cnt = 1;
+	g_u32Cnt = 1;
 
 	/* MISRA Deviation Note:
 	 * Rule: MISRA 2012 Rule 10.3 [Required]
@@ -90,13 +90,13 @@ void CTIMER4_IRQHandler(void)
 void HSCMP1_IRQHandler(void)
 {
 	LPCMP_ClearStatusFlags(DEMO_LPCMP_BASE, (uint32_t)kLPCMP_OutputFallingEventFlag);
-	if (1UL == cnt)
+	if (1UL == g_u32Cnt)
 	{
 		LED_SetHigh(GPIO0, 23);				/* Signal Power Loss 					*/
 		UART_Disable();						/* Disable Character Reception			*/
     	(void)CONSOLELOG_PowerLossFlush();	/* Flush Data From Buffer To SDHC Card 	*/
 	}
-	cnt++;
+	g_u32Cnt++;
 
 	SDK_ISR_EXIT_BARRIER;
 
@@ -113,6 +113,10 @@ void PWRLOSS_DetectionInit(void)
     lpcmp_dac_config_t mLpcmpDacConfigStruct;
     ctimer_config_t config;
     ctimer_match_config_t matchConfig0;			/* Match Configuration for Channel 0 */
+
+    uint32_t u32TimerClkFreq; 					/* Timer Frequency 	*/
+    uint32_t u32Match;							/* Match Value 		*/
+
 
     /* Enable CMP1, CMP1_DAC and VREF. */
     /* MISRA Deviation Note:
@@ -157,13 +161,13 @@ void PWRLOSS_DetectionInit(void)
 
     CTIMER_Init(CTIMER, &config);
 
-    uint32_t timerClkFreq = CLOCK_GetCTimerClkFreq(4U);
-    uint32_t match = timerClkFreq * 25UL;	/* 25 Seconds*/
+    u32TimerClkFreq = CLOCK_GetCTimerClkFreq(4U);
+    u32Match = u32TimerClkFreq * 25UL;	/* 25 Seconds*/
 
     /* Configuration 0 */
     matchConfig0.enableCounterReset = true;
     matchConfig0.enableCounterStop  = false;
-    matchConfig0.matchValue         = match;
+    matchConfig0.matchValue         = u32Match;
     matchConfig0.outControl         = kCTIMER_Output_NoAction;
     matchConfig0.outPinInitState    = false;
     matchConfig0.enableInterrupt    = true;

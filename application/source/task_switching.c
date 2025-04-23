@@ -20,8 +20,6 @@
  ******************************************************************************/
 #include "mass_storage.h"
 
-static bool bMscInitialized = false;
-
 extern SemaphoreHandle_t g_xSemRecord;
 
 extern usb_msc_struct_t g_msc;
@@ -40,10 +38,6 @@ void USB1_HS_IRQHandler(void)
 {
 	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
-    if (false == bMscInitialized)
-    {
-        bMscInitialized = true;
-    }
     USB_DeviceEhciIsrFunction(g_msc.deviceHandle);
 
     if (USB_State(g_msc.deviceHandle) == kUSB_DeviceNotifyAttach)

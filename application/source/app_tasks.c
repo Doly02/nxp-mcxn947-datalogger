@@ -87,7 +87,7 @@ void msc_task(void *handle)
 
 void record_task(void *handle)
 {
-	error_t u16RetVal 			= ERROR_UNKNOWN;
+	error_t  retVal 			= ERROR_UNKNOWN;
 	uint32_t u32Baudrate 		= 0UL;
 	uint32_t u32FileSize 		= 0UL;
 	uint32_t u32CurrentBytes 	= 0UL;
@@ -103,8 +103,8 @@ void record_task(void *handle)
 #endif /* (true == DEBUG_ENABLED) */
 
 	/* Initialize File System */
-	u16RetVal = (error_t)CONSOLELOG_Init();
-	if (ERROR_NONE != u16RetVal)
+	retVal = (error_t)CONSOLELOG_Init();
+	if (ERROR_NONE != retVal)
 	{
 		return;
 	}

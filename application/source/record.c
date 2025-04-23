@@ -65,15 +65,7 @@ static FIL g_fileObject;
  * @brief	Name Of The Folder Where The Files (Logs)
  * 			From The Current Session Are Stored.
  */
-static char g_currentDirectory[32];
-
-#if 0
-/**
- * @brief 	Configuration of The Data Logger on The Basis of Data
- * 			Obtained From The Configuration File.
- */
-static REC_config_t g_config;
-#endif
+static char g_u8CurrentDirectory[32];
 
 /*
  *  @brief decription about the read/write buffer
@@ -96,57 +88,57 @@ static REC_config_t g_config;
  * @brief 	Data For Multi-Buffering - In Particular Dual-Buffering,
  * 			One Is Always Filled, The Other Is Processed.
  */
-SDK_ALIGN(static uint8_t g_dmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+SDK_ALIGN(static uint8_t g_pu8DmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
-SDK_ALIGN(static uint8_t g_dmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+SDK_ALIGN(static uint8_t g_pu8DmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
 /**
  * @brief 	Back Buffer Which Serves For Data Collection From Circular Buffer
  * 			And Is Used For Data-Processing (Timestamps Are Inserted To This Buffer).
  */
-static uint8_t* g_backDmaBuffer 	= g_dmaBuffer1;
+static uint8_t* g_pu8BackDmaBuffer 		= g_pu8DmaBuffer1;
 
 /**
  * @brief 	Front Buffer Which Serves For Storing Data Into SD Card.
  */
-static uint8_t* g_frontDmaBuffer 	= NULL;
+static uint8_t* g_pu8FrontDmaBuffer 	= NULL;
 
 /**
  * @brief 	Pointer on Current Back DMA Buffer Into Which The Time Stamps Are Inserted.
  */
-static uint16_t g_backDmaBufferIdx	= 0;
+static uint16_t g_u16BackDmaBufferIdx	= 0;
 
 /**
  * @brief 	Indicates That Collection Buffer (Back Buffer) Is Full and Ready To Swap.
  */
-static bool g_backDmaBufferReady	= false;
+static bool g_bBackDmaBufferReady		= false;
 
 /**
  * @brief 	Value of Ticks When Last Character Was Received Thru LPUART.
  */
-static TickType_t g_lastDataTick 	= 0;
+static TickType_t g_lastDataTick 		= 0;
 
 /**
  * @brief	Tracks Current File Size.
  */
-static uint32_t g_currentFileSize 	= 0;
+static uint32_t g_u32CurrentFileSize 	= 0;
 
 /**
  * @brief	Counter For Unique File Names.
  */
-static uint16_t g_fileCounter 		= 1;
+static uint16_t g_u32FileCounter 		= 1;
 
 /**
  * @brief 	Flush Completed Flag.
  * @details If No Data of The LPUART Periphery Are Received Within The `FLUSH_TIMEOUT_TICKS`
  * 			Interval, The Data Collected So Far In The Buffer Are Flushed To The File.
  */
-static bool g_flushCompleted 		= false;
+static bool g_bFlushCompleted 			= false;
 
 /**
  * @brief	Transferred Bytes Between Blinking LEDs.
  */
-static uint32_t g_bytesTransfered	= 0U;
+static uint32_t g_u32BytesTransfered	= 0U;
 
 /** @} */ // End of Recording Buffers and Recording Management
 
@@ -157,17 +149,17 @@ static uint32_t g_bytesTransfered	= 0U;
  * @{
  */
 
-SDK_ALIGN(static volatile uint8_t g_circBuffer[CIRCULAR_BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);	// FIFO buffer
+SDK_ALIGN(static volatile uint8_t g_au8CircBuffer[CIRCULAR_BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);	// FIFO buffer
 
 /**
  * @brief	Index For Writing Into FIFO.
  */
-static volatile uint32_t g_writeIndex 		= 0;
+static volatile uint32_t g_u32WriteIndex = 0;
 
 /**
  * @brief 	Index For Reading From FIFO.
  */
-static volatile uint32_t g_readIndex 		= 0;
+static volatile uint32_t g_u32ReadIndex = 0;
 
 /** @} */ // End of UART Management Group
 
@@ -187,26 +179,27 @@ static volatile uint32_t g_readIndex 		= 0;
  */
 void LP_FLEXCOMM3_IRQHandler(void)
 {
-    uint8_t data;
-    uint32_t stat;
+    uint8_t u8Data;
+    uint32_t u32Stat;
+    uint32_t u32NextWriteIndex;
 
     /* Check For New Data */
-    stat = LPUART_GetStatusFlags(LPUART3);
-    if (0U != ((uint32_t)kLPUART_RxDataRegFullFlag & stat))	// TODO:
+    u32Stat = LPUART_GetStatusFlags(LPUART3);
+    if (0U != ((uint32_t)kLPUART_RxDataRegFullFlag & u32Stat))	// TODO:
     {
-        data = LPUART_ReadByte(LPUART3);
+    	u8Data = LPUART_ReadByte(LPUART3);
         /* Add Data To FIFO */
-        uint32_t nextWriteIndex = ((g_writeIndex + 1UL) % CIRCULAR_BUFFER_SIZE);
-        if (nextWriteIndex != g_readIndex) // Check if FIFO is not full
+    	u32NextWriteIndex = ((g_u32WriteIndex + 1UL) % CIRCULAR_BUFFER_SIZE);
+        if (u32NextWriteIndex != g_u32ReadIndex) // Check if FIFO is not full
         {
-        	g_circBuffer[g_writeIndex] = data;
-            g_writeIndex = nextWriteIndex;
+        	g_au8CircBuffer[g_u32WriteIndex] = u8Data;
+            g_u32WriteIndex = u32NextWriteIndex;
 
             /* Update Time Of Last Receiving */
             g_lastDataTick = xTaskGetTickCount();
-            g_flushCompleted = false;
+            g_bFlushCompleted = false;
         }
-        g_bytesTransfered++;
+        g_u32BytesTransfered++;
     }
 
     /* Clear Interrupt Flag */
@@ -242,22 +235,22 @@ DWORD get_fattime(void)
 uint32_t CONSOLELOG_GetFreeSpaceMB(void)
 {
     const TCHAR sLogicDisk[3U] = {SDDISK + '0', ':', '/'};
-    DWORD fre_clust;
+    DWORD freClusters;
     FATFS *fs;
     FRESULT res;
-    uint64_t fre_sect;
+    uint64_t u64FreeSectors;
 
-    res = f_getfree(sLogicDisk, &fre_clust, &fs);
+    res = f_getfree(sLogicDisk, &freClusters, &fs);
     if (FR_OK != res)
     {
         PRINTF("ERR: Failed To Get Free Space ERR=%d\r\n", (int)res);
         return 0;
     }
 
-    fre_sect = (uint64_t)fre_clust * fs->csize;
+    u64FreeSectors = (uint64_t)freClusters * fs->csize;
 
     /* 512B * sector [KB] -> /2 [MB] */
-    return (uint32_t)(fre_sect / 2048UL);
+    return (uint32_t)(u64FreeSectors / 2048UL);
 }
 
 int CONSOLELOG_Abs(int x)
@@ -278,7 +271,7 @@ int CONSOLELOG_Abs(int x)
 error_t CONSOLELOG_CreateFile(void)
 {
     FRESULT status;
-    char fileName[64];					//<! TODO: Vypocitat Maximalni pocet souboru za den na zaklade baud rate
+    char u8FileName[64];				//<! File Name
     irtc_datetime_t datetimeGet;		//<! To Store Time in File Meta-Data
     FILINFO fno;						//<! File Meta-Data
 
@@ -288,10 +281,10 @@ error_t CONSOLELOG_CreateFile(void)
     /* Generate a New File Name */
     /* @note snprintf() Is Depricated But There Is No Better Equivalent */
     /*lint -e586*/
-    (void)snprintf(fileName, sizeof(fileName), "%s/%04d%02d%02d_%02d%02d%02d_%u.txt",
-    		g_currentDirectory, datetimeGet.year, datetimeGet.month, datetimeGet.day,
+    (void)snprintf(u8FileName, sizeof(u8FileName), "%s/%04d%02d%02d_%02d%02d%02d_%u.txt",
+    		g_u8CurrentDirectory, datetimeGet.year, datetimeGet.month, datetimeGet.day,
              datetimeGet.hour, datetimeGet.minute, datetimeGet.second,
-             g_fileCounter++);
+             g_u32FileCounter++);
     /*lint +e586 */
 
     /* Open New File */
@@ -301,10 +294,10 @@ error_t CONSOLELOG_CreateFile(void)
      * These constants are specifically designed to be combined using bitwise OR (|), and the use is safe and intentional.
      */
     /*lint -e9027 */
-    status = f_open(&g_fileObject, fileName, (FA_WRITE | FA_CREATE_ALWAYS));
+    status = f_open(&g_fileObject, u8FileName, (FA_WRITE | FA_CREATE_ALWAYS));
     if (FR_OK != status)
     {
-        PRINTF("ERR: Failed to create file %s. Error=%d\r\n", fileName, (uint32_t)status);
+        PRINTF("ERR: Failed to create file %s. Error=%d\r\n", u8FileName, (uint32_t)status);
         return ERROR_OPEN;
     }
     /*lint +e9027 */
@@ -321,10 +314,10 @@ error_t CONSOLELOG_CreateFile(void)
     fno.ftime = (datetimeGet.hour << 11) | (datetimeGet.minute << 5) | (datetimeGet.second / 2);
     /*lint +e9027 +e9029 +e9032 +e9034 +e9033 +e9053 +e701 +e10.1 +e10.3 +e10.4 +e10.7 +e12.2 */
 
-    status = f_utime(fileName, &fno);
+    status = f_utime(u8FileName, &fno);
     if (FR_OK != status)
     {
-        PRINTF("ERR: Failed to Set Meta-Data for %s. Error=%d\r\n", fileName, status);
+        PRINTF("ERR: Failed to Set Meta-Data for %s. Error=%d\r\n", u8FileName, status);
         status = f_close(&g_fileObject);
         if (FR_OK != status)
         {
@@ -333,9 +326,9 @@ error_t CONSOLELOG_CreateFile(void)
         return ERROR_FILESYSTEM;
     }
 
-    g_currentFileSize = 0; // Reset file size
+    g_u32CurrentFileSize = 0; // Reset file size
 #if (true == INFO_ENABLED || true == DEBUG_ENABLED)
-    PRINTF("INFO: Created Log %s.\r\n", fileName);
+    PRINTF("INFO: Created Log %s.\r\n", u8FileName);
 #endif
 
     return ERROR_NONE;
@@ -345,7 +338,7 @@ error_t CONSOLELOG_CreateDirectory(void)
 {
     FRESULT status;
     irtc_datetime_t datetimeGet;
-    char directoryName[32];
+    char u8DirectoryName[32];
     uint32_t counter = 1;
 
     IRTC_GetDatetime(RTC, &datetimeGet);
@@ -355,10 +348,10 @@ error_t CONSOLELOG_CreateDirectory(void)
     {
         /* @note snprintf() Is Depricated But There Is No Better Equivalent */
         //lint -save -e586
-    	(void)snprintf(directoryName, sizeof(directoryName), "/%04d%02d%02d_%u",
+    	(void)snprintf(u8DirectoryName, sizeof(u8DirectoryName), "/%04d%02d%02d_%u",
                  datetimeGet.year, datetimeGet.month, datetimeGet.day, counter++);
         //lint -restore
-        status = f_mkdir(directoryName);
+        status = f_mkdir(u8DirectoryName);
     } while ((FR_EXIST == status) && (counter < 1000UL));
 
     if (FR_OK != status)
@@ -369,54 +362,28 @@ error_t CONSOLELOG_CreateDirectory(void)
 
     /* @note snprintf() Is Depricated But There Is No Better Equivalent */
     //lint -save -e586
-    (void)snprintf(g_currentDirectory, sizeof(g_currentDirectory), "%s", directoryName);
+    (void)snprintf(g_u8CurrentDirectory, sizeof(g_u8CurrentDirectory), "%s", u8DirectoryName);
     //lint -restore
 
 #if (true == INFO_ENABLED || true == DEBUG_ENABLED)
-    PRINTF("INFO: Created Directory %s.\r\n", g_currentDirectory);
+    PRINTF("INFO: Created Directory %s.\r\n", g_u8CurrentDirectory);
 #endif /* (true == INFO_ENABLED) */
     return ERROR_NONE;
 }
-#if 0
-REC_config_t CONSOLELOG_GetConfig(void)
-{
-	return g_config;
-}
-
-REC_version_t CONSOLELOG_GetVersion(void)
-{
-	return g_config.version;
-}
-
-uint32_t CONSOLELOG_GetBaudrate(void)
-{
-	return g_config.baudrate;
-}
-
-uint32_t CONSOLELOG_GetFileSize(void)
-{
-	return g_config.size;
-}
-
-uint32_t CONSOLELOG_GetMaxBytes(void)
-{
-	return g_config.max_bytes;
-}
-#endif
 
 uint32_t CONSOLELOG_GetTransferedBytes(void)
 {
-	return g_bytesTransfered;
+	return g_u32BytesTransfered;
 }
 
 bool CONSOLELOG_GetFlushCompleted(void)
 {
-	return g_flushCompleted;
+	return g_bFlushCompleted;
 }
 
 void CONSOLELOG_ClearTransferedBytes(void)
 {
-	g_bytesTransfered = 0;
+	g_u32BytesTransfered = 0;
 }
 
 FRESULT CONSOLELOG_CheckFileSystem(void)
@@ -495,73 +462,73 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
     FRESULT error;
     UINT bytesWritten;               //<! Bytes Written Into SD Card
     irtc_datetime_t datetimeGet;     //<! Actual Time From IRTC
-    static uint8_t lastChar = 0;     //<! Last Character From Previous DMA Buffer
+    static uint8_t u8LastChar = 0;     //<! Last Character From Previous DMA Buffer
 
     static char timeString[12];
-    static uint8_t timeLength = 0;
+    static uint8_t u8TimeLength = 0;
 
-//    uint32_t localReadIndex  = g_readIndex;
-    uint32_t localWriteIndex = g_writeIndex;
+//    uint32_t localReadIndex  = g_u32ReadIndex;
+    uint32_t localWriteIndex = g_u32WriteIndex;
 
-    while (g_readIndex != localWriteIndex)
+    while (g_u32ReadIndex != localWriteIndex)
     {
         /* Loads One Char From FIFO And Stores The Char Into Active DMA Buffer */
-        uint8_t currentChar = g_circBuffer[g_readIndex];
-        g_readIndex = (g_readIndex + 1UL) % CIRCULAR_BUFFER_SIZE;
+        uint8_t currentChar = g_au8CircBuffer[g_u32ReadIndex];
+        g_u32ReadIndex = (g_u32ReadIndex + 1UL) % CIRCULAR_BUFFER_SIZE;
 
-        g_backDmaBuffer[g_backDmaBufferIdx++] = currentChar;
+        g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx++] = currentChar;
 
         /* Check If The CRLF Is Not Divided Into Two DMA Buffers */
-        if (((lastChar == (uint8_t)'\r') && (currentChar == (uint8_t)'\n')) ||
-            ((g_backDmaBufferIdx >= 2U) &&
-             (g_backDmaBuffer[g_backDmaBufferIdx - 2U] == (uint8_t)'\r') &&
-             (g_backDmaBuffer[g_backDmaBufferIdx - 1U] == (uint8_t)'\n')))
+        if (((u8LastChar == (uint8_t)'\r') && (currentChar == (uint8_t)'\n')) ||
+            ((g_u16BackDmaBufferIdx >= 2U) &&
+             (g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx - 2U] == (uint8_t)'\r') &&
+             (g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx - 1U] == (uint8_t)'\n')))
         {
 
         	IRTC_GetDatetime(RTC, &datetimeGet);
             /* @note snprintf() Is Depricated But There Is No Better Equivalent */
             //lint -save -e586
-            timeLength = (uint8_t)snprintf(timeString, sizeof(timeString), "(%02d:%02d:%02d) ", datetimeGet.hour, datetimeGet.minute, datetimeGet.second);
+        	u8TimeLength = (uint8_t)snprintf(timeString, sizeof(timeString), "(%02d:%02d:%02d) ", datetimeGet.hour, datetimeGet.minute, datetimeGet.second);
             //lint -restore
 
             /* Addition of Time Mark To The DMA Buffer */
-            for (uint8_t i = 0; i < timeLength; i++)
+            for (uint8_t i = 0; i < u8TimeLength; i++)
             {
-                if (BLOCK_SIZE > g_backDmaBufferIdx)	// If DMA Buffer is Not Full
+                if (BLOCK_SIZE > g_u16BackDmaBufferIdx)	// If DMA Buffer is Not Full
                 {
-                	g_backDmaBuffer[g_backDmaBufferIdx++] = (uint8_t)timeString[i];
+                	g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx++] = (uint8_t)timeString[i];
                 }
                 else
                 {
                     /* Switch To New DMA Buffer */
-                	g_frontDmaBuffer = g_backDmaBuffer;
-                	g_backDmaBufferReady = true;
+                	g_pu8FrontDmaBuffer = g_pu8BackDmaBuffer;
+                	g_bBackDmaBufferReady = true;
 
-                    g_backDmaBuffer = (g_backDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
-                    g_backDmaBufferIdx = 0;
+                	g_pu8BackDmaBuffer = (g_pu8BackDmaBuffer == g_pu8DmaBuffer1) ? g_pu8DmaBuffer2 : g_pu8DmaBuffer1;
+                    g_u16BackDmaBufferIdx = 0;
 
                     /* Continue in Addition of Time Mark */
-                    g_backDmaBuffer[g_backDmaBufferIdx++] = (uint8_t)timeString[i];
+                    g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx++] = (uint8_t)timeString[i];
                 }
             }
         }
 
-        lastChar = currentChar; // Current Last Character For Next Buffer
+        u8LastChar = currentChar; // Current Last Character For Next Buffer
 
         /* Check If DMA Buffer Is Full */
-        if (BLOCK_SIZE == g_backDmaBufferIdx)
+        if (BLOCK_SIZE == g_u16BackDmaBufferIdx)
         {
-        	g_frontDmaBuffer = g_backDmaBuffer;
-        	g_backDmaBufferReady = true;
+        	g_pu8FrontDmaBuffer = g_pu8BackDmaBuffer;
+        	g_bBackDmaBufferReady = true;
 
             /* Switch on Next DMA Buffer */
-            g_backDmaBuffer = (g_backDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
-            g_backDmaBufferIdx = 0;
+        	g_pu8BackDmaBuffer = (g_pu8BackDmaBuffer == g_pu8DmaBuffer1) ? g_pu8DmaBuffer2 : g_pu8DmaBuffer1;
+            g_u16BackDmaBufferIdx = 0;
         }
     }
 
     /* Process Full DMA Buffer */
-    if (g_backDmaBufferReady && (NULL != g_frontDmaBuffer))
+    if (g_bBackDmaBufferReady && (NULL != g_pu8FrontDmaBuffer))
     {
         if (NULL == g_fileObject.obj.fs)
         {
@@ -589,20 +556,20 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
             return ERROR_ADMA;
         }
         LED_SetHigh(GPIO0, 15);
-        error = f_write(&g_fileObject, g_frontDmaBuffer, BLOCK_SIZE, &bytesWritten);
+        error = f_write(&g_fileObject, g_pu8FrontDmaBuffer, BLOCK_SIZE, &bytesWritten);
         LED_SetLow(GPIO0, 15);
-        g_currentFileSize += BLOCK_SIZE;
-        if (g_currentFileSize >= file_size)
+        g_u32CurrentFileSize += BLOCK_SIZE;
+        if (g_u32CurrentFileSize >= file_size)
         {
 #if (true == INFO_ENABLED || true == DEBUG_ENABLED)
-            PRINTF("INFO: File Size Limit Reached. Closing file. (LIMIT: %d, CURRENT %d)\r\n", file_size, g_currentFileSize);
+            PRINTF("INFO: File Size Limit Reached. Closing file. (LIMIT: %d, CURRENT %d)\r\n", file_size, g_u32CurrentFileSize);
 #endif /* (true == INFO_ENABLED || true == DEBUG_ENABLED) */
             (void)f_close(&g_fileObject);
             g_fileObject.obj.fs = NULL;
         }
 
-        g_backDmaBufferReady = false;   // Reset Flag of ADMA Buffer
-        g_frontDmaBuffer = NULL;    	// Clear g_frontDmaBuffer
+        g_bBackDmaBufferReady = false;   // Reset Flag of ADMA Buffer
+        g_pu8FrontDmaBuffer = NULL;    	// Clear g_pu8FrontDmaBuffer
     }
 
     return ERROR_NONE;
@@ -613,8 +580,8 @@ error_t CONSOLELOG_Flush(void)
 	FRESULT error;
 	UINT bytesWritten;
 	int tickDiff 			= 0;
-	int64_t lastTick 		= 0;
-	int64_t currentTick 	= (int64_t)xTaskGetTickCount();
+	int64_t s64LastTick 	= 0;
+	int64_t s64CurrentTick 	= (int64_t)xTaskGetTickCount();
 
 	/*
 	 * __ATOMIC_ACQUIRE - 	Ensures That All Read Values Are Consistent
@@ -627,31 +594,31 @@ error_t CONSOLELOG_Flush(void)
 	 * 		  with pre-read operations.
 	 */
 	/*lint -save -e40 */
-	lastTick = (int64_t)__atomic_load_n(&g_lastDataTick, __ATOMIC_ACQUIRE);
+	s64LastTick = (int64_t)__atomic_load_n(&g_lastDataTick, __ATOMIC_ACQUIRE);
 	/*lint -restore */
 
-	tickDiff = (int)(currentTick - lastTick);
-	if ((CONSOLELOG_Abs(tickDiff) > FLUSH_TIMEOUT_TICKS) && (g_backDmaBufferIdx > 0U))
+	tickDiff = (int)(s64CurrentTick - s64LastTick);
+	if ((CONSOLELOG_Abs(tickDiff) > FLUSH_TIMEOUT_TICKS) && (g_u16BackDmaBufferIdx > 0U))
 	{
 #if (true == INFO_ENABLED)
-		PRINTF("INFO: Current Ticks = %d.\r\n", currentTick);
-		PRINTF("INFO: Last Ticks = %d.\r\n", g_lastDataTick);
+		PRINTF("INFO: Current Ticks = %d.\r\n", s64CurrentTick);
+		PRINTF("INFO: Last Ticks = %d.\r\n", s64LastTick);
 		PRINTF("INFO: Flush Triggered. Writing Remaining Data To File.\r\n");
 #else
 		PRINTF("INFO: Flush Triggered.\r\n");
 #endif /* (true == INFO_ENABLED) */
 
-		while (g_backDmaBufferIdx < BLOCK_SIZE)			/* Fill Buffer With ' ' */
+		while (g_u16BackDmaBufferIdx < BLOCK_SIZE)			/* Fill Buffer With ' ' */
 		{
-			g_backDmaBuffer[g_backDmaBufferIdx++] = (uint8_t)' ';
+			g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx++] = (uint8_t)' ';
 		}
 
-		g_frontDmaBuffer 		= g_backDmaBuffer;
-		g_backDmaBufferReady 	= true;
+		g_pu8FrontDmaBuffer 		= g_pu8BackDmaBuffer;
+		g_bBackDmaBufferReady 	= true;
 
 		// Switch To Second Buffer
-		g_backDmaBuffer 	= (g_backDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
-		g_backDmaBufferIdx	= 0;
+		g_pu8BackDmaBuffer 	= (g_pu8BackDmaBuffer == g_pu8DmaBuffer1) ? g_pu8DmaBuffer2 : g_pu8DmaBuffer1;
+		g_u16BackDmaBufferIdx	= 0;
 
 		if (NULL == g_fileObject.obj.fs)
 		{
@@ -684,12 +651,12 @@ error_t CONSOLELOG_Flush(void)
 			g_fileObject.obj.fs = NULL;
 			return ERROR_ADMA;
 		}
-		error = f_write(&g_fileObject, g_frontDmaBuffer, BLOCK_SIZE, &bytesWritten);
+		error = f_write(&g_fileObject, g_pu8FrontDmaBuffer, BLOCK_SIZE, &bytesWritten);
 		if (FR_OK != error)
 		{
 			return (error_t)error;
 		}
-		g_currentFileSize += BLOCK_SIZE;
+		g_u32CurrentFileSize += BLOCK_SIZE;
 
 #if	(true == INFO_ENABLED || true == DEBUG_ENABLED)
 		PRINTF("INFO: Closing File\r\n");
@@ -697,9 +664,9 @@ error_t CONSOLELOG_Flush(void)
 
 		(void)f_close(&g_fileObject);
 		g_fileObject.obj.fs 	= NULL;
-		g_backDmaBufferReady 	= false;
-		g_frontDmaBuffer 		= NULL;
-		g_flushCompleted 		= true;
+		g_bBackDmaBufferReady 	= false;
+		g_pu8FrontDmaBuffer 		= NULL;
+		g_bFlushCompleted 		= true;
 	}
 	return ERROR_NONE;
 }
@@ -709,23 +676,26 @@ error_t CONSOLELOG_PowerLossFlush(void)
 	FRESULT error;
 	UINT bytesWritten;
 
-	if (g_backDmaBufferIdx > 0U)
+	/* Finish The Receiving of New Data */
+	UART_Disable();
+
+	if (g_u16BackDmaBufferIdx > 0U)
 	{
 #if (true == INFO_ENABLED)
 		PRINTF("INFO: Pwrloss Flush Triggered.\r\n");
 #endif /* (true == INFO_ENABLED) */
 
-		while (g_backDmaBufferIdx < BLOCK_SIZE)			/* Fill Buffer With ' ' */
+		while (g_u16BackDmaBufferIdx < BLOCK_SIZE)			/* Fill Buffer With ' ' */
 		{
-			g_backDmaBuffer[g_backDmaBufferIdx++] = (uint8_t)' ';
+			g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx++] = (uint8_t)' ';
 		}
 
-		g_frontDmaBuffer 		= g_backDmaBuffer;
-		g_backDmaBufferReady 	= true;
+		g_pu8FrontDmaBuffer 		= g_pu8BackDmaBuffer;
+		g_bBackDmaBufferReady 	= true;
 
 		// Switch To Second Buffer
-		g_backDmaBuffer 	= (g_backDmaBuffer == g_dmaBuffer1) ? g_dmaBuffer2 : g_dmaBuffer1;
-		g_backDmaBufferIdx	= 0;
+		g_pu8BackDmaBuffer 	= (g_pu8BackDmaBuffer == g_pu8DmaBuffer1) ? g_pu8DmaBuffer2 : g_pu8DmaBuffer1;
+		g_u16BackDmaBufferIdx	= 0;
 
 		if (NULL == g_fileObject.obj.fs)
 		{
@@ -758,8 +728,8 @@ error_t CONSOLELOG_PowerLossFlush(void)
 			g_fileObject.obj.fs = NULL;
 			return ERROR_ADMA;
 		}
-		error = f_write(&g_fileObject, g_frontDmaBuffer, BLOCK_SIZE, &bytesWritten);
-		g_currentFileSize += BLOCK_SIZE;
+		error = f_write(&g_fileObject, g_pu8FrontDmaBuffer, BLOCK_SIZE, &bytesWritten);
+		g_u32CurrentFileSize += BLOCK_SIZE;
 
 #if	(true == INFO_ENABLED || true == DEBUG_ENABLED)
 		PRINTF("INFO: Closing File\r\n");
@@ -767,9 +737,9 @@ error_t CONSOLELOG_PowerLossFlush(void)
 
 		(void)f_close(&g_fileObject);
 		g_fileObject.obj.fs 	= NULL;
-		g_backDmaBufferReady 	= false;
-		g_frontDmaBuffer 		= NULL;
-		g_flushCompleted 		= true;
+		g_bBackDmaBufferReady 	= false;
+		g_pu8FrontDmaBuffer 	= NULL;
+		g_bFlushCompleted 		= true;
 	}
 	return ERROR_NONE;
 }
@@ -853,8 +823,8 @@ error_t CONSOLELOG_ReadConfig(void)
     				(void)f_closedir(&dir); 	// Close Root Directory
 					return ERROR_OPEN;
 				}
-    			(void)memset(g_dmaBuffer1, 0, sizeof(g_dmaBuffer1));
-    			error = f_read(&configFile, g_dmaBuffer1, sizeof(g_dmaBuffer1) - 1UL, &bytesRead);
+    			(void)memset(g_pu8DmaBuffer1, 0, sizeof(g_pu8DmaBuffer1));
+    			error = f_read(&configFile, g_pu8DmaBuffer1, sizeof(g_pu8DmaBuffer1) - 1UL, &bytesRead);
 				if (FR_OK != error)
 				{
 #if (CONTROL_LED_ENABLED == true)
@@ -867,7 +837,7 @@ error_t CONSOLELOG_ReadConfig(void)
 					return ERROR_READ;
 				}
 
-				if (ERROR_NONE != CONSOLELOG_ProccessConfigFile((const char *)g_dmaBuffer1))
+				if (ERROR_NONE != CONSOLELOG_ProccessConfigFile((const char *)g_pu8DmaBuffer1))
 				{
 #if (CONTROL_LED_ENABLED == true)
 					LED_SignalError();
