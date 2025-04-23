@@ -66,22 +66,29 @@ static StackType_t uxTimerTaskStack[configTIMER_TASK_STACK_DEPTH];
 
 void msc_task(void *handle)
 {
-    while (true)
-    {
-    	/* Wait For Attachment of USB */
-        (void)xSemaphoreTake(g_xSemMassStorage, portMAX_DELAY);
+	while (1)
+	{
+		// Čeká na připojení USB
+		if (xSemaphoreTake(g_xSemRecord, portMAX_DELAY) == pdTRUE)
+		{
+#if (true == DEBUG_ENABLED)
+			PRINTF("DEBUG: MSC Task Running!\r\n");
+#endif
 
-        /* De-Inicializace of UART */
-        UART_Disable();
-#if (true == INFO_ENABLED)
-        PRINTF("INFO: Disabled LPUART7\r\n");
-#endif /* (true == INFO_ENABLED) */
+			while (1)
+			{
+				MSC_DeviceMscAppTask();
 
-        while (true)
-        {
-        	MSC_DeviceMscAppTask();
-            vTaskDelay(pdMS_TO_TICKS(10));
-        }
+				// Pravidelně kontroluje odpojení
+				if (uxSemaphoreGetCount(g_xSemMassStorage) > 0)
+				{
+					xSemaphoreTake(g_xSemMassStorage, 0);
+					break;
+				}
+
+				taskYIELD();
+			}
+		}
 	}
 }
 
@@ -134,23 +141,37 @@ void record_task(void *handle)
 
     while (true)
     {
-        /* Take Task Priority */
-        (void)xSemaphoreTake(g_xSemRecord, portMAX_DELAY);
+		if (uxSemaphoreGetCount(g_xSemRecord) > 0)
+		{
+			xSemaphoreTake(g_xSemRecord, 0); // spotřebujeme signál
 
-        UART_Init(u32Baudrate);
-        UART_Enable();
-        bUartInitialized = true;	/*TODO: */
+			if (bUartInitialized)
+			{
+				UART_Disable();
+				bUartInitialized = false;
+				PRINTF("INFO: Disabled LPUART7\r\n");
+			}
 
-#if (true == DEBUG_ENABLED)
-        PRINTF("DEBUG: RECORD Task Running...\r\n");
-#endif
+			// Čekáme blokovaně, dokud nedojde k odpojení USB
+			while (xSemaphoreTake(g_xSemMassStorage, portMAX_DELAY) != pdTRUE)
+			{
+				taskYIELD(); // umožní scheduleru přepnout jinou úlohu
+			}
 
-        while (true)
-        {
-            if (ERROR_NONE != CONSOLELOG_Recording(u32FileSize))
-            {
-                ERR_HandleError();
-            }
+			// Po návratu z MSC režimu pokračujeme dál
+		}
+
+
+		// Inicializace UARTu pouze pokud je vypnutý
+		if (!bUartInitialized)
+		{
+			PRINTF("INFO: Reinitializing UART...\r\n");
+			UART_Init(u32Baudrate);
+			UART_Enable();
+			bUartInitialized = true;
+		}
+		if (ERROR_NONE != CONSOLELOG_Recording(u32FileSize))
+			ERR_HandleError();
 
 #if (CONTROL_LED_ENABLED == true)
             u32CurrentBytes = CONSOLELOG_GetTransferedBytes();
@@ -163,10 +184,8 @@ void record_task(void *handle)
             }
 #endif
 
-            if (ERROR_NONE != CONSOLELOG_Flush())
-            {
-                ERR_HandleError();
-            }
+		if (ERROR_NONE != CONSOLELOG_Flush())
+			ERR_HandleError();
 
 #if (true == INFO_ENABLED)
             u32FreeSpaceSdCard = CONSOLELOG_GetFreeSpaceMB();
@@ -176,8 +195,7 @@ void record_task(void *handle)
             	PRINTF("DEBUG: Free Space: %d\r\n", u32FreeSpaceSdCard);
             }
 #endif /* (true == INFO_ENABLED) */
-            vTaskDelay(pdMS_TO_TICKS(100));
-        }
+
 	}
 }
 

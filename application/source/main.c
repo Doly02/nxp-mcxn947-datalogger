@@ -95,7 +95,7 @@ int main(void)
     }
 
     /* Launch Record Task With Dominance */
-    (void)xSemaphoreGive(g_xSemRecord);
+    //(void)xSemaphoreGive(g_xSemRecord);
 
     /* Initialize board hardware. */
 	APP_InitBoard();

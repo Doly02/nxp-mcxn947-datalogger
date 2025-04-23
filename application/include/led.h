@@ -123,6 +123,11 @@ void LED_SignalRecordingStop(void);
 void LED_SignalBackUpPowerAvailable(void);
 
 /*
+ * @brief Signals That There Will Be Empty Space on SD Card.
+ */
+void LED_SignalLowMemory(void);
+
+/*
  * @brief Signals Error During Recording.
  */
 void LED_SignalError(void);

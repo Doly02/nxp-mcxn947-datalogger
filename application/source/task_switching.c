@@ -41,15 +41,13 @@ void USB1_HS_IRQHandler(void)
     USB_DeviceEhciIsrFunction(g_msc.deviceHandle);
 
     if (USB_State(g_msc.deviceHandle) == kUSB_DeviceNotifyAttach)
-    {
-    	/* USB Attached, Activation of Mass Storage Task */
-    	(void)xSemaphoreGiveFromISR(g_xSemMassStorage, &xHigherPriorityTaskWoken);
-    }
-    else
-    {
-        /* USB Detached, Activation of Record Task */
+	{
     	(void)xSemaphoreGiveFromISR(g_xSemRecord, &xHigherPriorityTaskWoken);
-    }
+	}
+	else
+	{
+		(void)xSemaphoreGiveFromISR(g_xSemMassStorage, &xHigherPriorityTaskWoken);
+	}
 
     /**
      * Switch The Context From ISR To a Higher Priority Task,
