@@ -1,10 +1,19 @@
-/*
- * parser.h
+/******************************
+ *  Project:        NXP MCXN947 Datalogger
+ *  File Name:      parser.h
+ *  Author:         Tomas Dolak
+ *  Date:           16.04.2025
+ *  Description:    Header File Providing Definitions For Configuration File Parser.
  *
- *  Created on: Apr 16, 2025
- *      Author: tomas
- */
+ * ****************************/
 
+/******************************
+ *  @package        NXP MCXN947 Datalogger
+ *  @file           parser.h
+ *  @author         Tomas Dolak
+ *  @date           16.04.2025
+ *  @brief          Header File Providing Definitions For Configuration File Parser.
+ * ****************************/
 #ifndef PARSER_H_
 #define PARSER_H_
 

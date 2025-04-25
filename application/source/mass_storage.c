@@ -3,7 +3,7 @@
  *  File Name:      mass_storage.c
  *  Author:         Tomas Dolak
  *  Date:           06.02.2025
- *  Description:    Implements The Logic For LEDs Control.
+ *  Description:    Implements USB Mass Storage Application.
  *
  * ****************************/
 
@@ -12,7 +12,7 @@
  *  @file           mass_storage.c
  *  @author         Tomas Dolak
  *  @date           06.02.2025
- *  @brief          Implements The Logic For LEDs Control.
+ *  @brief          Implements USB Mass Storage Application.
  * ****************************/
 
 /*******************************************************************************
@@ -22,16 +22,12 @@
 
 extern usb_msc_struct_t g_msc;
 
-extern SemaphoreHandle_t g_xSemRecord;
-
-extern SemaphoreHandle_t g_xSemMassStorage;
 /*******************************************************************************
  * Code
  ******************************************************************************/
 void MSC_DeviceMscApp(void)
 {
-    /*TO DO*/
-    /*add user code*/
+    /* USB Mass Storage Expansion Can Be Located Here */
     return;
 }
 

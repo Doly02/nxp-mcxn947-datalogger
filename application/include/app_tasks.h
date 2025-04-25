@@ -1,6 +1,6 @@
 /******************************
  *  Project:        NXP MCXN947 Datalogger
- *  File Name:      tasks.c
+ *  File Name:      app_tasks.c
  *  Author:         Tomas Dolak
  *  Date:           14.09.2024
  *  Description:    Includes Implementation of Task For FreeRTOS.
@@ -9,7 +9,7 @@
 
 /******************************
  *  @package        NXP MCXN947 Datalogger
- *  @file           tasks.c
+ *  @file           app_tasks.c
  *  @author         Tomas Dolak
  *  @date           14.09.2024
  *  @brief          Includes Implementation of Task For FreeRTOS.

@@ -1,6 +1,6 @@
 /******************************
  *  Project:        NXP MCXN947 Datalogger
- *  File Name:      fatfs.h
+ *  File Name:      record.c
  *  Author:         Tomas Dolak
  *  Date:           18.11.2024
  *  Description:    File Includes Operation For Recoding Mode.
@@ -9,7 +9,7 @@
 
 /******************************
  *  @package        NXP MCXN947 Datalogger
- *  @file           fatfs.h
+ *  @file           record.c
  *  @author         Tomas Dolak
  *  @date           18.11.2024
  *  @brief          File Includes Operation For Recoding Mode.

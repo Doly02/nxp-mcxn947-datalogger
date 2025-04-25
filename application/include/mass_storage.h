@@ -1,18 +1,18 @@
 /******************************
  *  Project:        NXP MCXN947 Datalogger
- *  File Name:      leds.c
+ *  File Name:      mass_storage.h
  *  Author:         Tomas Dolak
  *  Date:           06.02.2025
- *  Description:    Implements The Logic For LEDs Control.
+ *  Description:    Header File For USB Mass Storage.
  *
  * ****************************/
 
 /******************************
  *  @package        NXP MCXN947 Datalogger
- *  @file           leds.c
+ *  @file           mass_storage.h
  *  @author         Tomas Dolak
  *  @date           06.02.2025
- *  @brief          Implements The Logic For LEDs Control.
+ *  @brief          Header File For USB Mass Storage.
  * ****************************/
 
 #ifndef MASS_STORAGE_H_

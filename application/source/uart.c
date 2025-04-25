@@ -3,7 +3,7 @@
  *  File Name:      uart.c
  *  Author:         Tomas Dolak
  *  Date:           25.11.2024
- *  Description:    Implements the UART peripheral support.
+ *  Description:    Implements The UART Peripheral Support.
  *
  * ****************************/
 
@@ -12,7 +12,7 @@
  *  @file           uart.c
  *  @author         Tomas Dolak
  *  @date           25.11.2024
- *  @brief          Implements the UART peripheral support.
+ *  @brief          Implements The UART Peripheral Support.
  * ****************************/
 
 /*******************************************************************************

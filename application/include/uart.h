@@ -3,7 +3,7 @@
  *  File Name:      uart.h
  *  Author:         Tomas Dolak
  *  Date:           25.11.2024
- *  Description:    Implements the UART peripheral support.
+ *  Description:    Header File For The UART Peripheral Support.
  *
  * ****************************/
 
@@ -12,7 +12,7 @@
  *  @file           uart.h
  *  @author         Tomas Dolak
  *  @date           25.11.2024
- *  @brief          Implements the UART peripheral support.
+ *  @brief          Header File For The UART Peripheral Support.
  * ****************************/
 
 #ifndef UART_H_

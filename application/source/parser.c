@@ -3,7 +3,7 @@
  *  File Name:      parser.c
  *  Author:         Tomas Dolak
  *  Date:           16.04.2025
- *  Description:    Includes Implementation of Task For FreeRTOS.
+ *  Description:    Includes Implementation of Configuration File Parser.
  *
  * ****************************/
 
@@ -12,7 +12,7 @@
  *  @file           parser.c
  *  @author         Tomas Dolak
  *  @date           16.04.2025
- *  @brief          Includes Implementation of Task For FreeRTOS.
+ *  @brief          Includes Implementation of Configuration File Parser.
  * ****************************/
 
 /*******************************************************************************
