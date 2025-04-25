@@ -91,11 +91,13 @@ int main(void)
     if ((NULL == g_xSemRecord) || (NULL == g_xSemMassStorage))
     {
         PRINTF("ERR: Failed to Create Semaphores!\n");
-        ERR_HandleError();
+#if (CONTROL_LED_ENABLED == true)
+		LED_SignalError();
+#endif /* (CONTROL_LED_ENABLED == true) */
     }
 
     /* Launch Record Task With Dominance */
-    //(void)xSemaphoreGive(g_xSemRecord);
+    (void)xSemaphoreGive(g_xSemRecord);
 
     /* Initialize board hardware. */
 	APP_InitBoard();
@@ -111,6 +113,9 @@ int main(void)
     if (NULL == g_xRecordTaskHandle)
     {
     	PRINTF("ERR: MSC Task Creation Failed!\r\n");
+#if (CONTROL_LED_ENABLED == true)
+		LED_SignalError();
+#endif /* (CONTROL_LED_ENABLED == true) */
     	ERR_HandleError();
     }
 
@@ -128,6 +133,9 @@ int main(void)
     if (NULL == g_xMscTaskHandle)
     {
     	PRINTF("ERR: MSC Task Creation Failed!\r\n");
+#if (CONTROL_LED_ENABLED == true)
+		LED_SignalError();
+#endif /* (CONTROL_LED_ENABLED == true) */
     	ERR_HandleError();
     }
 

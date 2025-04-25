@@ -19,6 +19,7 @@
 #include "fsl_lpuart.h"
 #include "fsl_debug_console.h"
 #include "error.h"
+#include "defs.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -152,35 +153,35 @@ void PARSER_ClearConfig(void);
 
 /**
  * @brief 		Parse Baudrate From Configuration File.
- * @param[in]	content Pointer To Content of Configuration File.
+ * @param[in]	chContent Pointer To Content of Configuration File.
  */
-error_t PARSER_ParseBaudrate(const char *content);
+error_t PARSER_ParseBaudrate(const char *chContent);
 
 /**
  * @brief 		Parse Record File Size From Configuration File.
- * @param[in]	content Pointer To Content of Configuration File.
+ * @param[in]	chContent Pointer To Content of Configuration File.
  */
-error_t PARSER_ParseFileSize(const char *content);
+error_t PARSER_ParseFileSize(const char *chContent);
 
 /**
  * @brief 		Parse Parity From Configuration File.
- * @param[in]	content Pointer To Content of Configuration File.
+ * @param[in]	chContent Pointer To Content of Configuration File.
  */
-error_t PARSER_ParseParity(const char *content);
+error_t PARSER_ParseParity(const char *chContent);
 
 /**
  * @brief 		Parse The Number of Stop Bits From Configuration File.
- * @param[in]	content Pointer To Content of Configuration File.
+ * @param[in]	chContent Pointer To Content of Configuration File.
  */
-error_t PARSER_ParseStopBits(const char *content);
+error_t PARSER_ParseStopBits(const char *chContent);
 
 /**
  * @brief 		Parse The Number of Data Bits From Configuration File.
- * @param[in]	content Pointer To Content of Configuration File.
+ * @param[in]	chContent Pointer To Content of Configuration File.
  */
-error_t PARSER_ParseDataBits(const char *content);
+error_t PARSER_ParseDataBits(const char *chContent);
 
 
-error_t PARSER_ParseFreeSpace(const char *content);
+error_t PARSER_ParseFreeSpace(const char *chContent);
 
 #endif /* PARSER_H_ */

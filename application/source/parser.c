@@ -92,44 +92,44 @@ uint32_t PARSER_GetMaxBytes(void)
 
 void PARSER_ClearConfig(void)
 {
-	g_config.baudrate  	= 0UL;
+	g_config.baudrate  	= DEFAULT_BAUDRATE;
 	g_config.max_bytes 	= 0UL;
 	g_config.version 	= WCT_UNKOWN;
 
-	g_config.parity = kLPUART_ParityDisabled;
-	g_config.stop_bits = kLPUART_OneStopBit;
-	g_config.data_bits = kLPUART_EightDataBits;
+	g_config.parity 	= DEFAULT_PARITY;
+	g_config.stop_bits 	= DEFAULT_STOP_BITS;
+	g_config.data_bits 	= DEFAULT_DATA_BITS;
 
-	g_config.free_space_limit_mb = 0UL;
+	g_config.free_space_limit_mb = DEFAULT_FREE_SPACE;
 }
 
-error_t PARSER_ParseBaudrate(const char *content)
+error_t PARSER_ParseBaudrate(const char *chContent)
 {
-    const char *key = "baudrate=";
-    char *found = strstr(content, key);
-    if (NULL == found)
+    const char *chKey = "baudrate=";
+    char *chFound = strstr(chContent, chKey);
+    if (NULL == chFound)
     {
         PRINTF("ERR: Key 'baudrate=' not found.\r\n");
         return ERROR_READ;
     }
 
-    found += strlen(key);
+    chFound += strlen(chKey);
     /* MISRA Deviation Note:
      * Rule: MISRA 2012 Rule 21.7
      * Justification: Use of 'atoi' is intentional in controlled context.
-     * The input string 'found' should contain only numeric characters - baudrate.
+     * The input string 'chFound' should contain only numeric characters - baudrate.
      */
     /*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
-    uint32_t baudrate = (uint32_t)atoi(found);			// Convert Value To INT
+    uint32_t u32Baudrate = (uint32_t)atoi(chFound);			// Convert Value To INT
     /*lint +e586 */
 
-    if (0UL == baudrate)
+    if (0UL == u32Baudrate)
     {
         PRINTF("ERR: Invalid baudrate value.\r\n");
         return ERROR_READ;
     }
 
-    switch (baudrate)
+    switch (u32Baudrate)
     {
         case 230400UL:
             g_config.version = WCT_AUTOS2;
@@ -147,50 +147,55 @@ error_t PARSER_ParseBaudrate(const char *content)
 		/*lint -e9077 -e9090 -e9042 MISRA Deviation: switch default case ends with unconditional return */
         default:
         {
-            PRINTF("ERR: Unsupported baudrate value: %d\r\n", baudrate);
+            PRINTF("ERR: Unsupported baudrate value: %d\r\n", u32Baudrate);
             return ERROR_CONFIG;
         }
         /*lint +e9077 +e9090 +e9042 */
     }
 
-    g_config.baudrate = baudrate;
+    g_config.baudrate = u32Baudrate;
     return ERROR_NONE;
 }
 
-error_t PARSER_ParseFileSize(const char *content)
+error_t PARSER_ParseFileSize(const char *chContent)
 {
-    const char *key = "file_size=";
-    char *found = strstr(content, key);
-    if (NULL == found)
+    const char *chKey = "file_size=";
+    uint32_t u32Value = DEFAULT_MAX_FILESIZE;
+
+    char *chFound = strstr(chContent, chKey);
+
+    if (NULL == chFound)
     {
         PRINTF("ERR: Key 'file_size=' not found.\r\n");
-        return ERROR_READ;
+        /* Continue With Default */
     }
-
-    found += strlen(key);
-    /* MISRA Deviation Note:
-     * Rule: MISRA 2012 Rule 21.7
-     * Justification: Use of 'atoi' is intentional in controlled context.
-     * The input string 'found' should contain only numeric characters - file size.
-     */
-    /*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
-    uint32_t value = (uint32_t)atoi(found);			// Convert Value To INT
-    /*lint +e586 */
-
-    if (0UL == value)
+    else
     {
-        PRINTF("ERR: Invalid file size value.\r\n");
-        return ERROR_READ;
+		chFound += strlen(chKey);
+		/* MISRA Deviation Note:
+		 * Rule: MISRA 2012 Rule 21.7
+		 * Justification: Use of 'atoi' is intentional in controlled context.
+		 * The input string 'chFound' should contain only numeric characters - file size.
+		 */
+		/*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
+		u32Value = (uint32_t)atoi(chFound);			// Convert Value To INT
+		/*lint +e586 */
+
+		if (0UL == u32Value)
+		{
+			PRINTF("ERR: Invalid file size value.\r\n");
+			return ERROR_READ;
+		}
     }
 
-    if (0UL != (value % 512UL))
+    if (0UL != (u32Value % 512UL))
     {
-        uint32_t rounded = ((value + 511UL) / 512UL) * 512UL;
-        PRINTF("INFO: File size %u is not multiple of 512. Rounding up to %u.\r\n", value, rounded);
-        value = rounded;
+        uint32_t u32Rounded = ((u32Value + 511UL) / 512UL) * 512UL;
+        PRINTF("INFO: File size %u is not multiple of 512. Rounding up to %u.\r\n", u32Value, u32Rounded);
+        u32Value = u32Rounded;
     }
 
-    g_config.size = value;
+    g_config.size = u32Value;
     g_config.max_bytes = (g_config.baudrate / 1000UL) * RECORD_LED_TIME_INTERVAL;
 
     PRINTF("DEBUG: File size set to %u bytes.\r\n", g_config.size);
@@ -198,64 +203,64 @@ error_t PARSER_ParseFileSize(const char *content)
 }
 
 
-error_t PARSER_ParseParity(const char *content)
+error_t PARSER_ParseParity(const char *chContent)
 {
-    const char *keyParity = "parity=";
-    char *found = strstr(content, keyParity);
-    if (NULL == found)
+    const char *chKeyParity = "parity=";
+    char *chFound = strstr(chContent, chKeyParity);
+    if (NULL == chFound)
     {
         PRINTF("INFO: Key 'parity=' not found. Using default.\r\n");
         return ERROR_NONE;
     }
 
-    found += strlen(keyParity);
+    chFound += strlen(chKeyParity);
 
-    if (0 == strncmp(found, "none", 4))
+    if (0 == strncmp(chFound, "none", 4))
     {
         g_config.parity = kLPUART_ParityDisabled;
     }
-    else if (0 == strncmp(found, "even", 4))
+    else if (0 == strncmp(chFound, "even", 4))
     {
         g_config.parity = kLPUART_ParityEven;
     }
-    else if (0 == strncmp(found, "odd", 3))
+    else if (0 == strncmp(chFound, "odd", 3))
     {
         g_config.parity = kLPUART_ParityOdd;
     }
     else
     {
-        PRINTF("ERR: Invalid value for 'parity': %s\r\n", found);
+        PRINTF("ERR: Invalid value for 'parity': %s\r\n", chFound);
         return ERROR_READ;
     }
 
     return ERROR_NONE;
 }
 
-error_t PARSER_ParseStopBits(const char *content)
+error_t PARSER_ParseStopBits(const char *chContent)
 {
-    const char *keyStopBits = "stop_bits=";
-    char *found = strstr(content, keyStopBits);
-    if (NULL == found)
+    const char *chKeyStopBits = "stop_bits=";
+    char *chFound = strstr(chContent, chKeyStopBits);
+    if (NULL == chFound)
     {
         PRINTF("INFO: Key 'stop_bits=' not found. Using default.\r\n");
         return ERROR_NONE;
     }
 
-    found += strlen(keyStopBits);
+    chFound += strlen(chKeyStopBits);
     /* MISRA Deviation Note:
      * Rule: MISRA 2012 Rule 21.7
      * Justification: Use of 'atoi' is intentional in controlled context.
-     * The input string 'found' should contain only numeric characters - stop bits.
+     * The input string 'chFound' should contain only numeric characters - stop bits.
      */
     /*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
-    uint32_t stopBits = (uint32_t)atoi(found);			// Convert Value To INT
+    uint32_t u32StopBits = (uint32_t)atoi(chFound);			// Convert Value To INT
     /*lint +e586 */
-    if (1UL == stopBits)
+    if (1UL == u32StopBits)
     {
         g_config.stop_bits = kLPUART_OneStopBit;
         return ERROR_NONE;
     }
-    else if (2UL == stopBits)
+    else if (2UL == u32StopBits)
 	{
 		g_config.stop_bits = kLPUART_TwoStopBit;
 		return ERROR_NONE;
@@ -266,36 +271,36 @@ error_t PARSER_ParseStopBits(const char *content)
     		/* Selected 1 Stop Bit By Default */
     }
 
-    PRINTF("ERR: Invalid value for 'stop_bits': %u\r\n", stopBits);
+    PRINTF("ERR: Invalid value for 'stop_bits': %u\r\n", u32StopBits);
     return ERROR_READ;
 }
 
 
-error_t PARSER_ParseDataBits(const char *content)
+error_t PARSER_ParseDataBits(const char *chContent)
 {
-    const char *keyDataBits = "data_bits=";
-    char *found = strstr(content, keyDataBits);
-    if (NULL == found)
+    const char *chKeyDataBits = "data_bits=";
+    char *chFound = strstr(chContent, chKeyDataBits);
+    if (NULL == chFound)
     {
         PRINTF("INFO: Key 'data_bits=' not found. Using default.\r\n");
         return ERROR_NONE;
     }
 
-    found += strlen(keyDataBits);
+    chFound += strlen(chKeyDataBits);
     /* MISRA Deviation Note:
      * Rule: MISRA 2012 Rule 21.7
      * Justification: Use of 'atoi' is intentional in controlled context.
-     * The input string 'found' should contain only numeric characters - data bits.
+     * The input string 'chFound' should contain only numeric characters - data bits.
      */
     /*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
-    uint32_t dataBits = (uint32_t)atoi(found);			// Convert Value To INT
+    uint32_t u32DataBits = (uint32_t)atoi(chFound);			// Convert Value To INT
     /*lint +e586 */
-    if (7UL == dataBits)
+    if (7UL == u32DataBits)
     {
         g_config.data_bits = kLPUART_SevenDataBits;
         return ERROR_NONE;
     }
-    else if (8UL == dataBits)
+    else if (8UL == u32DataBits)
     {
         g_config.data_bits = kLPUART_EightDataBits;
         return ERROR_NONE;
@@ -306,38 +311,38 @@ error_t PARSER_ParseDataBits(const char *content)
 			/* Selected 8 Data Bits By Default */
 	}
 
-    PRINTF("ERR: Invalid value for 'data_bits': %u\r\n", dataBits);
+    PRINTF("ERR: Invalid value for 'data_bits': %u\r\n", u32DataBits);
     return ERROR_READ;
 }
 
-error_t PARSER_ParseFreeSpace(const char *content)
+error_t PARSER_ParseFreeSpace(const char *chContent)
 {
-    const char *key = "free_space=";
-    char *found = strstr(content, key);
-    if (NULL == found)
+    const char *chKey = "free_space=";
+    char *chFound = strstr(chContent, chKey);
+    if (NULL == chFound)
     {
-        PRINTF("INFO: Key 'free_space=' not found. Using default (disabled).\r\n");
-        g_config.free_space_limit_mb = 0UL;
+        PRINTF("INFO: Key 'free_space=' not found. Using default.\r\n");
+        g_config.free_space_limit_mb = DEFAULT_FREE_SPACE;
         return ERROR_NONE;
     }
 
-    found += strlen(key);
+    chFound += strlen(chKey);
 
     errno = 0;  // Reset errno before parsing
     char *endptr = NULL;
 
     /*lint -e586 MISRA Deviation: strtoul is used with trusted input */
-    unsigned long parsedValue = strtoul(found, &endptr, 10);
+    unsigned long ulParsedValue = strtoul(chFound, &endptr, 10);
     /*lint +e586 */
 
-    // Conversion Errors Check
-    if ((endptr == found) || (errno != 0) || (parsedValue > 0xFFFFFFFFUL))
+    // Conversion Errors Check (Only 32bit Number)
+    if ((chFound == endptr) || (0 != errno) || (0xFFFFFFFFUL < ulParsedValue))
     {
-        PRINTF("ERR: Invalid or out-of-range value for 'free_space=': %s\r\n", found);
+        PRINTF("ERR: Invalid or out-of-range value for 'free_space=': %s\r\n", chFound);
         return ERROR_READ;
     }
 
-    g_config.free_space_limit_mb = (uint32_t)parsedValue;
+    g_config.free_space_limit_mb = (uint32_t)ulParsedValue;
 
     if (0UL == g_config.free_space_limit_mb)
     {
@@ -345,7 +350,7 @@ error_t PARSER_ParseFreeSpace(const char *content)
     }
     else
     {
-        PRINTF("INFO: Free space LED threshold set to %lu MB.\r\n", parsedValue);
+        PRINTF("INFO: Free space LED threshold set to %lu MB.\r\n", ulParsedValue);
     }
 
     return ERROR_NONE;

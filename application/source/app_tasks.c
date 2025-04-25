@@ -60,145 +60,136 @@ static StackType_t uxTimerTaskStack[configTIMER_TASK_STACK_DEPTH];
 
 /** @} */ // End of TaskManagement group
 
+/*!
+ * @brief	Mass Storage Descriptor.
+ */
+extern usb_msc_struct_t g_msc;
+
+
+/*******************************************************************************
+ * Implementation of Functions
+ ******************************************************************************/
+
+
 /*******************************************************************************
  * Implementation of Functions
  ******************************************************************************/
 
 void msc_task(void *handle)
 {
-	while (1)
-	{
-		// Čeká na připojení USB
-		if (xSemaphoreTake(g_xSemRecord, portMAX_DELAY) == pdTRUE)
-		{
-#if (true == DEBUG_ENABLED)
-			PRINTF("DEBUG: MSC Task Running!\r\n");
+    while (true)
+    {
+
+    	/* Wait Here Till USB Is Attached */
+    	(void)xSemaphoreTake(g_xSemMassStorage, portMAX_DELAY);
+
+        /* Disable Recording & Close Current Record If It's Opened */
+        UART_Disable();
+#if (true == INFO_ENABLED)
+        PRINTF("INFO: Disabled LPUART7\r\n");
+#endif /* (true == INFO_ENABLED) */
+        CONSOLELOG_PowerLossFlush();
+
+        while (true)
+        {
+            MSC_DeviceMscAppTask();
+
+            /* If USB Is Detached Then Switch To Record Task */
+            if (USB_State(g_msc.deviceHandle) == kUSB_DeviceNotifyDetach)
+            {
+#if (true == INFO_ENABLED)
+                PRINTF("INFO: MSC Task Ending - USB Detached\r\n");
 #endif
+                xSemaphoreGive(g_xSemRecord);
+                break;
+            }
 
-			while (1)
-			{
-				MSC_DeviceMscAppTask();
-
-				// Pravidelně kontroluje odpojení
-				if (uxSemaphoreGetCount(g_xSemMassStorage) > 0)
-				{
-					xSemaphoreTake(g_xSemMassStorage, 0);
-					break;
-				}
-
-				taskYIELD();
-			}
-		}
-	}
+            vTaskDelay(pdMS_TO_TICKS(100));
+        }
+    }
 }
+
+
 
 void record_task(void *handle)
 {
-	error_t  retVal 			= ERROR_UNKNOWN;
-	uint32_t u32Baudrate 		= 0UL;
-	uint32_t u32FileSize 		= 0UL;
-	uint32_t u32CurrentBytes 	= 0UL;
-	uint32_t u32MaxBytes 		= 0UL;
-	uint32_t u32FreeSpaceSdCard = 0UL;
-	bool bUartInitialized 		= false;
+    error_t  retVal             = ERROR_UNKNOWN;
+    uint32_t u32Baudrate        = 0UL;
+    uint32_t u32FileSize        = 0UL;
+    uint32_t u32CurrentBytes    = 0UL;
+    uint32_t u32MaxBytes        = 0UL;
+    uint32_t u32FreeSpaceSdCard = 0UL;
 
-	/* Initialize's The SDHC Card */
-	USB_DeviceModeInit();
+    /* Initialize SD Card and File System */
+    USB_DeviceModeInit();
+    retVal = CONSOLELOG_Init();
+    if (retVal != ERROR_NONE) return;
 
-#if (true == DEBUG_ENABLED)
-	PRINTF("DEBUG: Initialize File System\r\n");
-#endif /* (true == DEBUG_ENABLED) */
-
-	/* Initialize File System */
-	retVal = (error_t)CONSOLELOG_Init();
-	if (ERROR_NONE != retVal)
-	{
-		return;
-	}
-
-	/* Read Configuration File */
-	if (ERROR_NONE != CONSOLELOG_ReadConfig())
-	{
-		u32Baudrate = DEFAULT_BAUDRATE;
-		u32FileSize = DEFAULT_MAX_FILESIZE;
-#if (true == INFO_ENABLED)
-		PRINTF("INFO: Default Configuration:\r\n");
-#endif
-	}
-	else
-	{
-#if (true == INFO_ENABLED)
-		PRINTF("INFO: Configuration:\r\n");
-#endif
-		u32Baudrate = PARSER_GetBaudrate();
-		u32FileSize = PARSER_GetFileSize();
-	}
-
-#if (true == INFO_ENABLED)
-	PRINTF("Baudrate=%d\r\n", u32Baudrate);
-	PRINTF("File Size=%d\r\n", u32FileSize);
-#endif
+    if (CONSOLELOG_ReadConfig() != ERROR_NONE)
+    {
+        u32Baudrate = DEFAULT_BAUDRATE;
+        u32FileSize = DEFAULT_MAX_FILESIZE;
+    }
+    else
+    {
+        u32Baudrate = PARSER_GetBaudrate();
+        u32FileSize = PARSER_GetFileSize();
+    }
 
     while (true)
     {
-		if (uxSemaphoreGetCount(g_xSemRecord) > 0)
-		{
-			xSemaphoreTake(g_xSemRecord, 0); // spotřebujeme signál
 
-			if (bUartInitialized)
+    	xSemaphoreTake(g_xSemRecord, portMAX_DELAY);
+
+		UART_Init(u32Baudrate);
+		UART_Enable();
+		PRINTF("INFO: UART Initialized for Record Mode\r\n");
+
+        while (kUSB_DeviceNotifyAttach != USB_State(g_msc.deviceHandle))
+        {
+			if (ERROR_NONE != CONSOLELOG_Recording(u32FileSize))
 			{
-				UART_Disable();
-				bUartInitialized = false;
-				PRINTF("INFO: Disabled LPUART7\r\n");
+#if (CONTROL_LED_ENABLED == true)
+				LED_SignalError();
+#endif /* (CONTROL_LED_ENABLED == true) */
+				ERR_HandleError();
 			}
 
-			// Čekáme blokovaně, dokud nedojde k odpojení USB
-			while (xSemaphoreTake(g_xSemMassStorage, portMAX_DELAY) != pdTRUE)
+			if (ERROR_NONE != CONSOLELOG_Flush())
 			{
-				taskYIELD(); // umožní scheduleru přepnout jinou úlohu
+#if (CONTROL_LED_ENABLED == true)
+				LED_SignalError();
+#endif /* (CONTROL_LED_ENABLED == true) */
+				ERR_HandleError();
 			}
-
-			// Po návratu z MSC režimu pokračujeme dál
-		}
-
-
-		// Inicializace UARTu pouze pokud je vypnutý
-		if (!bUartInitialized)
-		{
-			PRINTF("INFO: Reinitializing UART...\r\n");
-			UART_Init(u32Baudrate);
-			UART_Enable();
-			bUartInitialized = true;
-		}
-		if (ERROR_NONE != CONSOLELOG_Recording(u32FileSize))
-			ERR_HandleError();
 
 #if (CONTROL_LED_ENABLED == true)
-            u32CurrentBytes = CONSOLELOG_GetTransferedBytes();
-            u32MaxBytes = PARSER_GetMaxBytes();
-            if (u32CurrentBytes >= u32MaxBytes)
-            {
-                LED_SignalRecording();
-                CONSOLELOG_ClearTransferedBytes();
-                LED_ClearSignalFlush();
-            }
+			u32CurrentBytes = CONSOLELOG_GetTransferedBytes();
+			u32MaxBytes = PARSER_GetMaxBytes();
+			if (u32CurrentBytes >= u32MaxBytes)
+			{
+				LED_SignalRecording();
+				CONSOLELOG_ClearTransferedBytes();
+				LED_ClearSignalFlush();
+			}
 #endif
 
-		if (ERROR_NONE != CONSOLELOG_Flush())
-			ERR_HandleError();
-
 #if (true == INFO_ENABLED)
-            u32FreeSpaceSdCard = CONSOLELOG_GetFreeSpaceMB();
-            if ((u32FreeSpaceSdCard <= PARSER_GetFreeSpaceLimitMB())
-                && (0UL != PARSER_GetFreeSpaceLimitMB()))
-            {
-            	LED_SignalLowMemory();
-            	PRINTF("DEBUG: Free Space: %d\r\n", u32FreeSpaceSdCard);
-            }
-#endif /* (true == INFO_ENABLED) */
+			u32FreeSpaceSdCard = CONSOLELOG_GetFreeSpaceMB();
+			if ((u32FreeSpaceSdCard <= PARSER_GetFreeSpaceLimitMB()) &&
+				(0UL != PARSER_GetFreeSpaceLimitMB()))
+			{
+				LED_SignalLowMemory();
+				PRINTF("DEBUG: Free Space: %d MB\r\n", u32FreeSpaceSdCard);
+			}
+#endif
 
-	}
+        }
+
+		xSemaphoreGive(g_xSemMassStorage);
+    }
 }
+
 
 void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
                                    StackType_t **ppxIdleTaskStackBuffer,

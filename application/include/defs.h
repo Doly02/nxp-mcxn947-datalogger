@@ -77,11 +77,6 @@
 #define UART_PRINT_ENABLED			(false)
 
 /**
- * @brief Enables Timer For 1 Sec. Adjustment.
- */
-#define CTIMER_ENABLED				(false)
-
-/**
  * @brief Enables/Disables Logic For Internal Real-Time Circuit.
  */
 #define IRTC_ENABLED				(true)
@@ -111,13 +106,11 @@
  */
 #define CONTROL_LED_ENABLED			(true)
 
-#if (CTIMER_ENABLED == IRTC_ENABLED)
-	/*#error "ERR: Bad Selection of Time Adjustement Function!"*/
-#else
-	#if (CTIMER_ENABLED == true)
-		#define TIME_ADJUSTEMENT
-	#endif
-#endif /* (CTIMER_ENABLED == IRTC_ENABLED) */
+/**
+ * @brief	Default Maximal File Size If The Configuration File Could
+ * 			Not Be Read Properly.
+ */
+#define DEFAULT_MAX_FILESIZE		8192
 
 /**
  * @brief Configuration File.
@@ -128,19 +121,31 @@
  * @brief 	Default Baud Rate If The Configuration File Could Not Be
  * 			Read Properly.
  */
-#define DEFAULT_BAUDRATE			230400
+#define DEFAULT_BAUDRATE			230400UL
 
 /**
- * @brief	Default Maximal File Size If The Configuration File Could
+ * @brief	Default Number of Data Bits If The Configuration File Could
  * 			Not Be Read Properly.
  */
-#define DEFAULT_MAX_FILESIZE		8192
+#define DEFAULT_DATA_BITS			kLPUART_EightDataBits
+
+/**
+ * @brief	Default Number of Stop Bits If The Configuration File Could
+ * 			Not Be Read Properly.
+ */
+#define DEFAULT_STOP_BITS			kLPUART_OneStopBit
+
+/**
+ * @brief	Default UART Parity If The Configuration File Could
+ * 			Not Be Read Properly.
+ */
+#define DEFAULT_PARITY				kLPUART_ParityDisabled
 
 /**
  * @brief	Defines The Threshold Level of Free Memory on The SD card,
  * 			Below Which The Lack of Memory is Indicated.
  * @details In Megabytes.
  */
-#define LOW_MEMORY_MB				25UL
+#define DEFAULT_FREE_SPACE			50UL
 
 #endif /* DEFS_H_ */
