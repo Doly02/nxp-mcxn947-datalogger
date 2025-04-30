@@ -82,7 +82,7 @@ free_space=50
 ```
 
 If Some of The Parameters in The Configuration File Are Missing or The Configuration File is Missing Completely, 
-The Default Values Defined In The defs.h File Are Used
+The Default Values Defined In The `defs.h` File Are Used
 
 | Parameter      | Default Value                 | Data Type                      |
 |----------------|-------------------------------|--------------------------------|
@@ -98,7 +98,7 @@ The Default Values Defined In The defs.h File Are Used
 
 3. Power On The Data Logger Via USB or Another Power Source. The Data Logger Will Automatically:
 
--  Load The Configuration From Config.txt (If Present)
+-  Load The Configuration From `config.txt` (If Present)
 -  After Startup, The Data Logger Enters The Recording Mode By Default. At The Beginning of Record Task, It Initializes The SD Card and If a New or Unformatted Card Is Detected, 
    The Firmware Will Automatically Formatted and The FAT File System With 32-bit LBA is Initialized.
 
