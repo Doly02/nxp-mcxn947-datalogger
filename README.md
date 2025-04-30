@@ -6,8 +6,8 @@
 - Supervisor: Ing. Výclav Šímek
 - Consultant: Ing. Martin Moštěk PhD.
 
-The Goal of This Project Is To Developt Data Logger That Will Record Datalogs From UART Peripheral And Store Them 
-on The SD Card, And With Prevention of Data Loss in Case of Power Failure.   
+The Goal of This Project Is To Developt Digital Data Logger That Captures Serial Data From a UART Peripheral, Timestamps It, and Stores The Logged Data on an SD card. 
+A Key Requirement of The Implementation is To Ensure Data Integrity by Preventing Loss In The Event of a Power Failure.
 
 ### Table of Contents
 - [Requirements](#requirements)
@@ -18,6 +18,8 @@ on The SD Card, And With Prevention of Data Loss in Case of Power Failure.
     - [Data Recording](#data-recording)
     - [Reading Data from the Datalogger](#reading-data-from-the-datalogger)
     - [Structure of Logged Data](#structure-of-logged-data)
+- [Developer Notes](#developer-notes)
+- [Testing](#testing)
 - [Known Issues](#known-issues)
 
 ### Requirements 
@@ -29,7 +31,6 @@ To build and run `datalogger`, you will need the following:
 
 #### Software Requirements
 1. MCUXpresso IDE v11.10.0 With GCC-based ARM Embedded Toolchain (Arm-none-eabi-gcc Compiler)
-
 
 ### Repository Organization
 ```
@@ -96,12 +97,12 @@ The Default Values Defined In The defs.h File Are Used
 
 3. Power On The Data Logger Via USB or Another Power Source. The Data Logger Will Automatically:
 
--   Load The Configuration From Config.txt (If Present)
--   After Startup, The Data Logger Enters The Recording Mode By Default. At The Beginning of Record Task, It Initializes The SD Card and If a New or Unformatted Card Is Detected, 
-    The Firmware Will Automatically Formatted and The FAT File System With 32-bit LBA is Initialized.
+-  Load The Configuration From Config.txt (If Present)
+-  After Startup, The Data Logger Enters The Recording Mode By Default. At The Beginning of Record Task, It Initializes The SD Card and If a New or Unformatted Card Is Detected, 
+   The Firmware Will Automatically Formatted and The FAT File System With 32-bit LBA is Initialized.
 
-4.  Wait Until The LED Indicator (Shown in The Following Image) Turns On.  
-    This LED Indicates That The Digital Data Logger Can Be Safely Disconnected Without The Risk of Data Loss Or File System Corruption.
+4. Wait Until The LED Indicator (Shown in The Following Image) Turns On.  
+   This LED Indicates That The Digital Data Logger Can Be Safely Disconnected Without The Risk of Data Loss Or File System Corruption.
 
 5. Connect The Digital Data Logger to The Monitored Device That Transmits Serial Data via UART.  
    Once The Data Transmission Starts, The Data Logger Will Indicate Active Reception by Blinking a Dedicated LED,  
@@ -158,6 +159,98 @@ YYYYMMDD_HHMMSS_X.txt
 - `YYYYMMDD_HHMMSS` is The Timestamp When The Log File Was Created
 - `X` is an Index Used To Differentiate Multiple Files Created at The Same Second
 
+
+### Developer Notes
+All Application-Level Source and Header Files are Located In The `source/` and `include/` Directories.
+
+The Firmware is Structured Into Several Functional Modules, Such as Recording Logic, Mass Storage Access, Power Loss Detection, And System Status Signaling.
+Many of These Modules Can Be Individually Enabled or Disabled as Needed. This Behavior is Achieved Through Conditional Compilation in ISO C and Logic Blocks are Active Only 
+If Enabled via Preprocessor Macros. These Settings are Centrally Managed in The Application Configuration Header File `defs.h`.
+
+The defs.h Configuration File Also Includes The Option To Control The Verbosity of Firmware Output Messages. The Firmware Supports Three Message Output Levels:
+
+- **Error Messages** (Prefixed With `ERR:`) Reports Critical Conditions. This Level Is Always Active and Can't Be Disabled.
+
+```
+PRINTF("ERR: Failed to create file %s. Error=%d\r\n", u8FileName, (uint32_t)status);
+```
+
+- **Informational Messages** (Prefixed With `INFO:`) Provide Context Such as Initialization Progress, Configuration File loading, Creation of Log, etc.
+
+```
+PRINTF("INFO: Created Log %s.\r\n", u8FileName);
+```
+
+- **Debug messages** (Prefixed With `DEBUG:`) Offers The Most Detailed Output and Include Additional Technical Details Useful During Development.
+
+```
+PRINTF("DEBUG: File System Not Found. Creating FAT File System...\r\n");
+```
+
+All of These Outputs Are Provided Through The UART Serial Interface. The firmware Uses The `LP_FLEXCOMM4` UART Peripheral Instance, 
+Configured With The Following Parameters:
+
+| Parameter      | Value    | 
+|----------------|----------|
+| Baudrate       | 115200   |
+| Data Bits      | 8        |
+| Stop Bit       | 1        |
+| Parity         | None     |
+
+The Firmware Runs on The FreeRTOS Real-Time Operating System. To Ensure Maximum Reliability and Predictability, Only Static Memory 
+Allocation is Used Throughout The Firmware. All Tasks and Synchronization Primitives are Created With Predefined Memory Sizes, 
+and Dynamic Memory Allocation is Fully Disabled in The FreeRTOS Configuration. Additionally, Specific Memory Allocation Functions 
+For System Tasks Such as The Idle Task and Timer Task Have Been Implemented to Support Fully Static Operation.
+
+The overall hardware and software initialization procedures are handled by `APP_InitBoard()` Function Declared in Header File _app_initialization.h_ and Defined 
+in Source File The _app_initialization.c_.
+
+The Application Consists of two FreeRTOS Tasks - `record_task` That is Responsible For Recording UART Data and `msc_task` Responsible For Exposing The Recorded Data 
+via USB. These Tasks Are Implemented In _app_tasks.c_ and _app_tasks.h_, and Are Created and Started From Within The _main.c_ File.
+
+### Modules
+The Application Files (`main.c`, `app_tasks.c`, and `app_initialization.c`) Utilize The Following Separate Modules, 
+Each Module Has Its Own Source and Header File:
+
+- `error`  Handles Errors and Defines Error Codes.
+- `led`  Manages LED Indicators For System Status.
+- `mass_storage` – Provides Access To Log Files Over USB MSC.
+- `parser` – Parses the Configuration File (config.txt) From The SD card.
+- `pwrloss_det` – Detects and Reacts on Power Loss.
+- `record` – Implements Logic For Recording Incoming Serial Data From UART.
+- `task_switching` – Includes The Method For Detection of Attach or Detached Application USB.
+- `time` – Provides Date/Time Handling For File Naming and Timestamping (External and Internal RTCs).
+- `uart` – Includes Intialization (+ Configuration), Enablement and Disablement of UART Periphery.
+- `temperature` – Extension For Temperature Measurement of The P3T1755 On-Board Temperature Sensor on FRDM-MCXN947.
+
+### Testing
+
+#### Functional Testing
+The Digital Data Logger Was Tested Using a Python Script Located in The tests/ Directory Under Name serial_test.py.
+
+The Script serial_test.py Simulates The Monitored Device By Reading The Test Text Files and Sending Their Contents as Serial Data Through The COM Port To The Digital Data Logger. 
+There is a Time Delay Between Each File Being Sent, Which Deliberately Causes The CONSOLELOG_Flush() Function To Be Called, So That Each Test Input is Recorded in a Separate File That Can Be Compared Against The Original Test File.
+
+Scripted Testing Was Performed At Various Baud Rates, With Testing Primarily Focused on Baud Rates Corresponding To Actual Deployment Scenarios. 
+After The Test Was Completed, The Recorded Outputs Were Compared To The Original Test Files. The Results of The Comparison Confirmed That In All Cases Tested, 
+The Transfer Was Correct And There Was No Data Loss or Corruption.
+
+Functional Testing Also Covered The Behavior Of The Digital Recorder In Non-Standard Scenarios That May Occur During Real-World Deployment. 
+The Results Are Summarized In Table Below.
+
+| Test Description                                                      | Expected Result                                                                                   | Passed |
+|-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|--------|
+| Missing Configuration File                                            | Error Indication Using LED D2, Recording Interrupted                                              | Yes    |
+| Missing `baudrate` Value In Configuration                             | Start Recording With Default `baudrate` Value                                                     | Yes    |
+| Recording On A New Unformatted SD Card                                | SD Card Is Formatted, File System Initialized, And Device Then Records Incoming Data              | Yes    |
+| Recording With File Size Of 512 B                                     | File Created And Properly Closed Upon Reaching Limit                                              | Yes    |
+| Recording With File Size Of 1 MB                                      | File Created And Properly Closed Upon Reaching Limit                                              | Yes    |
+| Low Free SD Card Capacity (i.e., Below Value of Parameter`free_space`)| Indication Via LED                                                                                | Yes    |
+| Transfer Of Recorded Data From The Digital Recorder                   | Records Transferred To Host Device From The Digital Recorder                                      | Yes    |
+
+
+#### Static Code Analysis
+In Addition To Functional Testing, Static Analysis of The Source Code Was Performed Using Rules From The MISRA (Motor Industry Software Reliability Association) Specification, Specifically MISRA C:2012. The Focus Was Primarily On Rules Classified as Required And Mandatory. All Detected Violations In These Categories Were Either Corrected Or Justified Through Comments In The Source Code, Including A Reference To The Relevant Rule and a Rationale For The Exception.
 
 ### Known Issues
 No Issues Were Observed During Development, Testing, or Practical Usage of The Digital Data Logger.
