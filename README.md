@@ -19,6 +19,7 @@ A Key Requirement of The Implementation is To Ensure Data Integrity by Preventin
     - [Reading Data from the Datalogger](#reading-data-from-the-datalogger)
     - [Structure of Logged Data](#structure-of-logged-data)
 - [Developer Notes](#developer-notes)
+    - [Modules](#modules)
 - [Testing](#testing)
 - [Known Issues](#known-issues)
 
@@ -205,8 +206,8 @@ For System Tasks Such as The Idle Task and Timer Task Have Been Implemented to S
 The overall hardware and software initialization procedures are handled by `APP_InitBoard()` Function Declared in Header File _app_initialization.h_ and Defined 
 in Source File The _app_initialization.c_.
 
-The Application Consists of two FreeRTOS Tasks - `record_task` That is Responsible For Recording UART Data and `msc_task` Responsible For Exposing The Recorded Data 
-via USB. These Tasks Are Implemented In _app_tasks.c_ and _app_tasks.h_, and Are Created and Started From Within The _main.c_ File.
+The Application Consists of two FreeRTOS Tasks - _record_task_ That is Responsible For Recording UART Data and _msc_task_ Responsible For Exposing The Recorded Data 
+via USB. These Tasks Are Implemented In `app_tasks.c` and `pp_tasks.h`, and Are Created and Started From Within The `main.c` File.
 
 ### Modules
 The Application Files (`main.c`, `app_tasks.c`, and `app_initialization.c`) Utilize The Following Separate Modules, 
@@ -215,7 +216,7 @@ Each Module Has Its Own Source and Header File:
 - `error`  Handles Errors and Defines Error Codes.
 - `led`  Manages LED Indicators For System Status.
 - `mass_storage` – Provides Access To Log Files Over USB MSC.
-- `parser` – Parses the Configuration File (config.txt) From The SD card.
+- `parser` – Parses the Configuration File (`config.txt`) From The SD card.
 - `pwrloss_det` – Detects and Reacts on Power Loss.
 - `record` – Implements Logic For Recording Incoming Serial Data From UART.
 - `task_switching` – Includes The Method For Detection of Attach or Detached Application USB.
@@ -229,7 +230,7 @@ Each Module Has Its Own Source and Header File:
 The Digital Data Logger Was Tested Using a Python Script Located in The tests/ Directory Under Name serial_test.py.
 
 The Script serial_test.py Simulates The Monitored Device By Reading The Test Text Files and Sending Their Contents as Serial Data Through The COM Port To The Digital Data Logger. 
-There is a Time Delay Between Each File Being Sent, Which Deliberately Causes The CONSOLELOG_Flush() Function To Be Called, So That Each Test Input is Recorded in a Separate File That Can Be Compared Against The Original Test File.
+There is a Time Delay Between Each File Being Sent, Which Deliberately Causes The `CONSOLELOG_Flush()` Function To Be Called, So That Each Test Input is Recorded in a Separate File That Can Be Compared Against The Original Test File.
 
 Scripted Testing Was Performed At Various Baud Rates, With Testing Primarily Focused on Baud Rates Corresponding To Actual Deployment Scenarios. 
 After The Test Was Completed, The Recorded Outputs Were Compared To The Original Test Files. The Results of The Comparison Confirmed That In All Cases Tested, 
