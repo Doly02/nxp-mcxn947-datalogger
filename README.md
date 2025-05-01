@@ -72,7 +72,6 @@ To build and run `datalogger`, you will need the following:
 This File Allows You To Customize The Data Logger's Behavior Instead of Using The Default Configuration.
 
 <p align="center">
-  <img src="misc/config-file.png" alt="Location of The config.txt File on The SD Card" width="480"/><br>
   <em>Location of The config.txt File on The SD Card</em><br>
 </p>
 
@@ -146,7 +145,6 @@ The Data Logger Will Automatically Switch Into Data Acess Mode (MSC mode), and T
 Allowing The User To Copy The Recorded Data Files.
 
 <p align="center">
-  <img src="misc/session-directories.png" alt="Organization of Session Directories With Logs on SD Cards" width="480"/><br>
   <em>Organization of Session Directories With Logs on SD Cards</em><br>
 </p>
 
