@@ -3,7 +3,7 @@
 - Author: Tomáš Dolák 
 - Login: [xdolak09](https://www.vut.cz/lide/tomas-dolak-247220)
 - Email: <xdolak09@stud.fit.vutbr.cz>
-- Supervisor: Ing. Výclav Šímek
+- Supervisor: Ing. Václav Šímek
 - Consultant: Ing. Martin Moštěk PhD.
 
 The Goal of This Project Is To Developt Digital Data Logger That Captures Serial Data From a UART Peripheral, Timestamps It, and Stores The Logged Data on an SD card. 
@@ -72,7 +72,7 @@ To build and run `datalogger`, you will need the following:
 This File Allows You To Customize The Data Logger's Behavior Instead of Using The Default Configuration.
 
 <p align="center">
-  <img src="misc/config-file-clean.png" alt="Location of The config.txt File on The SD Card" width="480"/><br>
+  <img src="misc/config.png" alt="Location of The config.txt File on The SD Card" width="480"/><br>
   <em>Location of The config.txt File on The SD Card</em><br>
 </p>
 
@@ -146,7 +146,7 @@ The Data Logger Will Automatically Switch Into Data Acess Mode (MSC mode), and T
 Allowing The User To Copy The Recorded Data Files.
 
 <p align="center">
-  <img src="misc/session-directories-clean.png" alt="Organization of Session Directories With Logs on SD Cards" width="480"/><br>
+  <img src="misc/session.png" alt="Organization of Session Directories With Logs on SD Cards" width="480"/><br>
   <em>Organization of Session Directories With Logs on SD Cards</em><br>
 </p>
 
