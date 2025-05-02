@@ -12,7 +12,8 @@ hardware/
 logs/
 tests/
 editor/
-application/.settings/
+application/.settings/language.settings.xml
+/application/.settings
 
 # Linker output
 *.ilk
