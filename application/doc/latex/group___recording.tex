@@ -1,0 +1,180 @@
+\doxysection{Buffers and Recording Management}
+\hypertarget{group___recording}{}\label{group___recording}\index{Buffers and Recording Management@{Buffers and Recording Management}}
+
+
+Group Contains Variables For Management of Recording.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___recording_ga0139cb2c722dcb49d9d8aba34549b334}{SDK\+\_\+\+ALIGN}} (static uint8\+\_\+t g\+\_\+pu8\+Dma\+Buffer1\mbox{[}\mbox{\hyperlink{record_8c_ad51ded0bbd705f02f73fc60c0b721ced}{BLOCK\+\_\+\+SIZE}}\mbox{]}, BOARD\+\_\+\+SDMMC\+\_\+\+DATA\+\_\+\+BUFFER\+\_\+\+ALIGN\+\_\+\+SIZE)
+\begin{DoxyCompactList}\small\item\em Buffer For Multi-\/\+Buffering -\/ In Particular Dual-\/\+Buffering, One Is Always Filled, The Other Is Processed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static FATFS \mbox{\hyperlink{group___recording_ga813e21877b77fc983a281279de3d13d8}{g\+\_\+file\+System}}
+\begin{DoxyCompactList}\small\item\em File System Object. \end{DoxyCompactList}\item 
+static FIL \mbox{\hyperlink{group___recording_ga6849136fb10da44df5884df6fc59588a}{g\+\_\+file\+Object}}
+\begin{DoxyCompactList}\small\item\em File Object. \end{DoxyCompactList}\item 
+static char \mbox{\hyperlink{group___recording_gac9f309262ccd3839f7daf0ba73be5005}{g\+\_\+u8\+Current\+Directory}} \mbox{[}32\mbox{]}
+\begin{DoxyCompactList}\small\item\em Name Of The Folder Where The Files (Logs) From The Current Session Are Stored. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group___recording_gaac8be9babbe2654b3629e766c0b5e0b2}{g\+\_\+pu8\+Back\+Dma\+Buffer}} = g\+\_\+pu8\+Dma\+Buffer1
+\begin{DoxyCompactList}\small\item\em Back Buffer Which Serves For Data Collection From Circular Buffer And Is Used For Data-\/\+Processing (Time Stamps Are Inserted To This Buffer). \end{DoxyCompactList}\item 
+static uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group___recording_ga6942269ddc23abb31caea237f570fc3e}{g\+\_\+pu8\+Front\+Dma\+Buffer}} = NULL
+\begin{DoxyCompactList}\small\item\em Front Buffer Which Serves For Storing Data Into SD Card. \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{group___recording_ga7beba7dc88a1ae7ae1935202b9c001ae}{g\+\_\+u16\+Back\+Dma\+Buffer\+Idx}} = 0
+\begin{DoxyCompactList}\small\item\em Pointer on Current Back DMA Buffer Into Which The Time Stamps Are Inserted. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{group___recording_gae04fc0a92699c2a249e59d827e037af9}{g\+\_\+b\+Back\+Dma\+Buffer\+Ready}} = false
+\begin{DoxyCompactList}\small\item\em Indicates That Collection Buffer (Back Buffer) Is Full and Ready To Swap. \end{DoxyCompactList}\item 
+static Tick\+Type\+\_\+t \mbox{\hyperlink{group___recording_gab2133044474cb4d2b64febf2ef430513}{g\+\_\+last\+Data\+Tick}} = 0
+\begin{DoxyCompactList}\small\item\em Value of Ticks When Last Character Was Received Thru LPUART. \end{DoxyCompactList}\item 
+static uint32\+\_\+t \mbox{\hyperlink{group___recording_ga917ee1380772be61cefe6eb15f9b51dd}{g\+\_\+u32\+Current\+File\+Size}} = 0
+\begin{DoxyCompactList}\small\item\em Tracks Current File Size. \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{group___recording_ga94090c10cebe28b90ec006581b06c0e5}{g\+\_\+u32\+File\+Counter}} = 1
+\begin{DoxyCompactList}\small\item\em Counter For Unique File Names. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{group___recording_gafff17b721dd91f02d491dd4823fa38bb}{g\+\_\+b\+Flush\+Completed}} = false
+\begin{DoxyCompactList}\small\item\em Flush Completed Flag. \end{DoxyCompactList}\item 
+static uint32\+\_\+t \mbox{\hyperlink{group___recording_ga56b2e93f80714c04880fd4c55b4395de}{g\+\_\+u32\+Bytes\+Transfered}} = 0U
+\begin{DoxyCompactList}\small\item\em Transferred Bytes Between Blinking LEDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Group Contains Variables For Management of Recording. 
+
+Includes DMA Buffers For Recording, Indexes, Pointers, ... 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group___recording_ga0139cb2c722dcb49d9d8aba34549b334}\index{Buffers and Recording Management@{Buffers and Recording Management}!SDK\_ALIGN@{SDK\_ALIGN}}
+\index{SDK\_ALIGN@{SDK\_ALIGN}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{SDK\_ALIGN()}{SDK\_ALIGN()}}
+{\footnotesize\ttfamily \label{group___recording_ga0139cb2c722dcb49d9d8aba34549b334} 
+SDK\+\_\+\+ALIGN (\begin{DoxyParamCaption}\item[{static uint8\+\_\+t}]{g\+\_\+pu8\+Dma\+Buffer1}{\mbox{[}\+BLOCK\+\_\+\+SIZE\mbox{]}, }\item[{BOARD\+\_\+\+SDMMC\+\_\+\+DATA\+\_\+\+BUFFER\+\_\+\+ALIGN\+\_\+\+SIZE}]{}{}\end{DoxyParamCaption})}
+
+
+
+Buffer For Multi-\/\+Buffering -\/ In Particular Dual-\/\+Buffering, One Is Always Filled, The Other Is Processed. 
+
+Must Be Aligned on Multiple of 512B, Since SDHC/\+SDXC Card Uses 512-\/Byte Fixed Block Length. The Address of The R/W Buffer Should Be Also Align To The Specific DMA Data Buffer Address Align Value. At The Same Time Buffer Address/\+Size Should Be Aligned To The Cache Line Size. 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{group___recording_gae04fc0a92699c2a249e59d827e037af9}\index{Buffers and Recording Management@{Buffers and Recording Management}!g\_bBackDmaBufferReady@{g\_bBackDmaBufferReady}}
+\index{g\_bBackDmaBufferReady@{g\_bBackDmaBufferReady}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{g\_bBackDmaBufferReady}{g\_bBackDmaBufferReady}}
+{\footnotesize\ttfamily \label{group___recording_gae04fc0a92699c2a249e59d827e037af9} 
+bool g\+\_\+b\+Back\+Dma\+Buffer\+Ready = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Indicates That Collection Buffer (Back Buffer) Is Full and Ready To Swap. 
+
+\Hypertarget{group___recording_gafff17b721dd91f02d491dd4823fa38bb}\index{Buffers and Recording Management@{Buffers and Recording Management}!g\_bFlushCompleted@{g\_bFlushCompleted}}
+\index{g\_bFlushCompleted@{g\_bFlushCompleted}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{g\_bFlushCompleted}{g\_bFlushCompleted}}
+{\footnotesize\ttfamily \label{group___recording_gafff17b721dd91f02d491dd4823fa38bb} 
+bool g\+\_\+b\+Flush\+Completed = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Flush Completed Flag. 
+
+If No Data of The LPUART Periphery Are Received Within The {\ttfamily FLUSH\+\_\+\+TIMEOUT\+\_\+\+TICKS} Interval, The Data Collected So Far In The Buffer Are Flushed To The File. \Hypertarget{group___recording_ga6849136fb10da44df5884df6fc59588a}\index{Buffers and Recording Management@{Buffers and Recording Management}!g\_fileObject@{g\_fileObject}}
+\index{g\_fileObject@{g\_fileObject}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{g\_fileObject}{g\_fileObject}}
+{\footnotesize\ttfamily \label{group___recording_ga6849136fb10da44df5884df6fc59588a} 
+FIL g\+\_\+file\+Object\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+File Object. 
+
+Pointer to Current Opened File. \Hypertarget{group___recording_ga813e21877b77fc983a281279de3d13d8}\index{Buffers and Recording Management@{Buffers and Recording Management}!g\_fileSystem@{g\_fileSystem}}
+\index{g\_fileSystem@{g\_fileSystem}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{g\_fileSystem}{g\_fileSystem}}
+{\footnotesize\ttfamily \label{group___recording_ga813e21877b77fc983a281279de3d13d8} 
+FATFS g\+\_\+file\+System\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+File System Object. 
+
+\Hypertarget{group___recording_gab2133044474cb4d2b64febf2ef430513}\index{Buffers and Recording Management@{Buffers and Recording Management}!g\_lastDataTick@{g\_lastDataTick}}
+\index{g\_lastDataTick@{g\_lastDataTick}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{g\_lastDataTick}{g\_lastDataTick}}
+{\footnotesize\ttfamily \label{group___recording_gab2133044474cb4d2b64febf2ef430513} 
+Tick\+Type\+\_\+t g\+\_\+last\+Data\+Tick = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Value of Ticks When Last Character Was Received Thru LPUART. 
+
+\Hypertarget{group___recording_gaac8be9babbe2654b3629e766c0b5e0b2}\index{Buffers and Recording Management@{Buffers and Recording Management}!g\_pu8BackDmaBuffer@{g\_pu8BackDmaBuffer}}
+\index{g\_pu8BackDmaBuffer@{g\_pu8BackDmaBuffer}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{g\_pu8BackDmaBuffer}{g\_pu8BackDmaBuffer}}
+{\footnotesize\ttfamily \label{group___recording_gaac8be9babbe2654b3629e766c0b5e0b2} 
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} g\+\_\+pu8\+Back\+Dma\+Buffer = g\+\_\+pu8\+Dma\+Buffer1\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Back Buffer Which Serves For Data Collection From Circular Buffer And Is Used For Data-\/\+Processing (Time Stamps Are Inserted To This Buffer). 
+
+\Hypertarget{group___recording_ga6942269ddc23abb31caea237f570fc3e}\index{Buffers and Recording Management@{Buffers and Recording Management}!g\_pu8FrontDmaBuffer@{g\_pu8FrontDmaBuffer}}
+\index{g\_pu8FrontDmaBuffer@{g\_pu8FrontDmaBuffer}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{g\_pu8FrontDmaBuffer}{g\_pu8FrontDmaBuffer}}
+{\footnotesize\ttfamily \label{group___recording_ga6942269ddc23abb31caea237f570fc3e} 
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} g\+\_\+pu8\+Front\+Dma\+Buffer = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Front Buffer Which Serves For Storing Data Into SD Card. 
+
+\Hypertarget{group___recording_ga7beba7dc88a1ae7ae1935202b9c001ae}\index{Buffers and Recording Management@{Buffers and Recording Management}!g\_u16BackDmaBufferIdx@{g\_u16BackDmaBufferIdx}}
+\index{g\_u16BackDmaBufferIdx@{g\_u16BackDmaBufferIdx}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{g\_u16BackDmaBufferIdx}{g\_u16BackDmaBufferIdx}}
+{\footnotesize\ttfamily \label{group___recording_ga7beba7dc88a1ae7ae1935202b9c001ae} 
+uint16\+\_\+t g\+\_\+u16\+Back\+Dma\+Buffer\+Idx = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointer on Current Back DMA Buffer Into Which The Time Stamps Are Inserted. 
+
+\Hypertarget{group___recording_ga56b2e93f80714c04880fd4c55b4395de}\index{Buffers and Recording Management@{Buffers and Recording Management}!g\_u32BytesTransfered@{g\_u32BytesTransfered}}
+\index{g\_u32BytesTransfered@{g\_u32BytesTransfered}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{g\_u32BytesTransfered}{g\_u32BytesTransfered}}
+{\footnotesize\ttfamily \label{group___recording_ga56b2e93f80714c04880fd4c55b4395de} 
+uint32\+\_\+t g\+\_\+u32\+Bytes\+Transfered = 0U\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Transferred Bytes Between Blinking LEDs. 
+
+\Hypertarget{group___recording_ga917ee1380772be61cefe6eb15f9b51dd}\index{Buffers and Recording Management@{Buffers and Recording Management}!g\_u32CurrentFileSize@{g\_u32CurrentFileSize}}
+\index{g\_u32CurrentFileSize@{g\_u32CurrentFileSize}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{g\_u32CurrentFileSize}{g\_u32CurrentFileSize}}
+{\footnotesize\ttfamily \label{group___recording_ga917ee1380772be61cefe6eb15f9b51dd} 
+uint32\+\_\+t g\+\_\+u32\+Current\+File\+Size = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Tracks Current File Size. 
+
+\Hypertarget{group___recording_ga94090c10cebe28b90ec006581b06c0e5}\index{Buffers and Recording Management@{Buffers and Recording Management}!g\_u32FileCounter@{g\_u32FileCounter}}
+\index{g\_u32FileCounter@{g\_u32FileCounter}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{g\_u32FileCounter}{g\_u32FileCounter}}
+{\footnotesize\ttfamily \label{group___recording_ga94090c10cebe28b90ec006581b06c0e5} 
+uint16\+\_\+t g\+\_\+u32\+File\+Counter = 1\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Counter For Unique File Names. 
+
+\Hypertarget{group___recording_gac9f309262ccd3839f7daf0ba73be5005}\index{Buffers and Recording Management@{Buffers and Recording Management}!g\_u8CurrentDirectory@{g\_u8CurrentDirectory}}
+\index{g\_u8CurrentDirectory@{g\_u8CurrentDirectory}!Buffers and Recording Management@{Buffers and Recording Management}}
+\doxysubsubsection{\texorpdfstring{g\_u8CurrentDirectory}{g\_u8CurrentDirectory}}
+{\footnotesize\ttfamily \label{group___recording_gac9f309262ccd3839f7daf0ba73be5005} 
+char g\+\_\+u8\+Current\+Directory\mbox{[}32\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Name Of The Folder Where The Files (Logs) From The Current Session Are Stored. 
+

@@ -1,0 +1,52 @@
+\doxysection{source/time.c File Reference}
+\hypertarget{time_8c}{}\label{time_8c}\index{source/time.c@{source/time.c}}
+{\ttfamily \#include "{}fsl\+\_\+irtc.\+h"{}}\newline
+{\ttfamily \#include "{}rtc\+\_\+ds3231.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+debug\+\_\+console.\+h"{}}\newline
+{\ttfamily \#include "{}pin\+\_\+mux.\+h"{}}\newline
+{\ttfamily \#include "{}time.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{time_8c_a6ecf250fd49fb5d762e524581b551cbb}{INTERNAL\+\_\+\+RTC\+\_\+\+BASE\+\_\+\+YEAR}}~2112
+\begin{DoxyCompactList}\small\item\em Base Year of IRTC. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{time_8c_a8dacc3203a8fa5c4fc74d9fbe0c7597d}{EXTERNAL\+\_\+\+RTC\+\_\+\+TIME\+\_\+\+OFSET}}~2000
+\begin{DoxyCompactList}\small\item\em The Year Range Is Between 0 and 99. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{time_8c_ab740cec32d4bf2c00b217b99b5385fb8}{TIME\+\_\+\+Init\+IRTC}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{time_8c_a8dacc3203a8fa5c4fc74d9fbe0c7597d}\index{time.c@{time.c}!EXTERNAL\_RTC\_TIME\_OFSET@{EXTERNAL\_RTC\_TIME\_OFSET}}
+\index{EXTERNAL\_RTC\_TIME\_OFSET@{EXTERNAL\_RTC\_TIME\_OFSET}!time.c@{time.c}}
+\doxysubsubsection{\texorpdfstring{EXTERNAL\_RTC\_TIME\_OFSET}{EXTERNAL\_RTC\_TIME\_OFSET}}
+{\footnotesize\ttfamily \label{time_8c_a8dacc3203a8fa5c4fc74d9fbe0c7597d} 
+\#define EXTERNAL\+\_\+\+RTC\+\_\+\+TIME\+\_\+\+OFSET~2000}
+
+
+
+The Year Range Is Between 0 and 99. 
+
+\Hypertarget{time_8c_a6ecf250fd49fb5d762e524581b551cbb}\index{time.c@{time.c}!INTERNAL\_RTC\_BASE\_YEAR@{INTERNAL\_RTC\_BASE\_YEAR}}
+\index{INTERNAL\_RTC\_BASE\_YEAR@{INTERNAL\_RTC\_BASE\_YEAR}!time.c@{time.c}}
+\doxysubsubsection{\texorpdfstring{INTERNAL\_RTC\_BASE\_YEAR}{INTERNAL\_RTC\_BASE\_YEAR}}
+{\footnotesize\ttfamily \label{time_8c_a6ecf250fd49fb5d762e524581b551cbb} 
+\#define INTERNAL\+\_\+\+RTC\+\_\+\+BASE\+\_\+\+YEAR~2112}
+
+
+
+Base Year of IRTC. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{time_8c_ab740cec32d4bf2c00b217b99b5385fb8}\index{time.c@{time.c}!TIME\_InitIRTC@{TIME\_InitIRTC}}
+\index{TIME\_InitIRTC@{TIME\_InitIRTC}!time.c@{time.c}}
+\doxysubsubsection{\texorpdfstring{TIME\_InitIRTC()}{TIME\_InitIRTC()}}
+{\footnotesize\ttfamily \label{time_8c_ab740cec32d4bf2c00b217b99b5385fb8} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} TIME\+\_\+\+Init\+IRTC (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+irtc\+Cfg.\+wakeup\+Select = true; irtc\+Cfg.\+timer\+Std\+Mask = false; irtc\+Cfg.\+alrm\+Match = k\+RTC\+\_\+\+Match\+Sec\+Min\+Hr;

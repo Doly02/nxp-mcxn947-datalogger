@@ -1,0 +1,176 @@
+\doxysection{include/led.h File Reference}
+\hypertarget{led_8h}{}\label{led_8h}\index{include/led.h@{include/led.h}}
+{\ttfamily \#include "{}fsl\+\_\+gpio.\+h"{}}\newline
+{\ttfamily \#include "{}board.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{led_8h_a84357dafca10c0bedd27ddf562ec038f}{ERROR\+\_\+\+LED\+\_\+\+PORT}}~GPIO0
+\item 
+\#define \mbox{\hyperlink{led_8h_a24b5595c4f500e96c463709e93f372df}{ERROR\+\_\+\+LED\+\_\+\+PIN\+\_\+\+RECORD}}~0x09
+\item 
+\#define \mbox{\hyperlink{led_8h_afd1ca686ff8235c560a32a3a164d1332}{MEMORY\+\_\+\+LOW\+\_\+\+LED\+\_\+\+PORT}}~GPIO0
+\item 
+\#define \mbox{\hyperlink{led_8h_ad0d6a0ebc0e8b8e08da47c03675be9f4}{MEMORY\+\_\+\+LOW\+\_\+\+LED\+\_\+\+PIN}}~0x07
+\item 
+\#define \mbox{\hyperlink{led_8h_a58fc08140f1f3f414c40ca7a59258ab8}{FLUSH\+\_\+\+LED\+\_\+\+PORT}}~GPIO0
+\item 
+\#define \mbox{\hyperlink{led_8h_a104335d8ce14e6db09a76faf2ad04f78}{RECORD\+\_\+\+LED\+\_\+\+PIN\+\_\+\+FLUSH}}~0x0D
+\item 
+\#define \mbox{\hyperlink{led_8h_a72816a8b71df387833d9cb24aafcfaaa}{RECORD\+\_\+\+LED\+\_\+\+PORT}}~GPIO2
+\item 
+\#define \mbox{\hyperlink{led_8h_a63ef077ec9bea5b9b4bf1ea75170ab51}{RECORD\+\_\+\+LED\+\_\+\+PIN}}~0x0B
+\item 
+\#define \mbox{\hyperlink{led_8h_a8d1a4771539dc53163d8061f4b69e25c}{BACKUP\+\_\+\+POWER\+\_\+\+LED\+\_\+\+PORT}}~GPIO4
+\item 
+\#define \mbox{\hyperlink{led_8h_a3b699b928ec222ebe45b1fbd4924608b}{BACKUP\+\_\+\+POWER\+\_\+\+LED\+\_\+\+PIN}}~0x11
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{led_8h_a7455e287128129db10bb2ae70909ff7a}{LED\+\_\+\+Set\+High}} (GPIO\+\_\+\+Type \texorpdfstring{$\ast$}{*}port\+\_\+base, uint32\+\_\+t pin)
+\item 
+void \mbox{\hyperlink{led_8h_ab02c6a3a312ce2e008f471310fef8f5b}{LED\+\_\+\+Set\+Low}} (GPIO\+\_\+\+Type \texorpdfstring{$\ast$}{*}port\+\_\+base, uint32\+\_\+t pin)
+\item 
+void \mbox{\hyperlink{led_8h_a90d3262aad7d8e74c655aecba5bdb8b1}{LED\+\_\+\+Signal\+Ready}} (void)
+\item 
+void \mbox{\hyperlink{led_8h_ae4d93582ce6f8960bbbe8771670864f2}{LED\+\_\+\+Signal\+Recording}} (void)
+\item 
+void \mbox{\hyperlink{led_8h_a357ebead2af4aa7710b82477c78c3ae5}{LED\+\_\+\+Signal\+Recording\+Stop}} (void)
+\item 
+void \mbox{\hyperlink{led_8h_a051c422ce8dcca2df8022a718fa9e85c}{LED\+\_\+\+Signal\+Back\+Up\+Power\+Available}} (void)
+\item 
+void \mbox{\hyperlink{led_8h_aeab72eb69dcad626cad6ab8d18f5b7f7}{LED\+\_\+\+Signal\+Low\+Memory}} (void)
+\item 
+void \mbox{\hyperlink{led_8h_a13c3d29b05f96fd3490c9b7680f7df08}{LED\+\_\+\+Signal\+Error}} (void)
+\item 
+void \mbox{\hyperlink{led_8h_ac6978cdce3f5c99d7cd85a6991a5394a}{LED\+\_\+\+Signal\+Flush}} (void)
+\item 
+void \mbox{\hyperlink{led_8h_a790afc5a8ed07437a4788698ca9afe45}{LED\+\_\+\+Clear\+Signal\+Flush}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{led_8h_a3b699b928ec222ebe45b1fbd4924608b}\index{led.h@{led.h}!BACKUP\_POWER\_LED\_PIN@{BACKUP\_POWER\_LED\_PIN}}
+\index{BACKUP\_POWER\_LED\_PIN@{BACKUP\_POWER\_LED\_PIN}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{BACKUP\_POWER\_LED\_PIN}{BACKUP\_POWER\_LED\_PIN}}
+{\footnotesize\ttfamily \label{led_8h_a3b699b928ec222ebe45b1fbd4924608b} 
+\#define BACKUP\+\_\+\+POWER\+\_\+\+LED\+\_\+\+PIN~0x11}
+
+\Hypertarget{led_8h_a8d1a4771539dc53163d8061f4b69e25c}\index{led.h@{led.h}!BACKUP\_POWER\_LED\_PORT@{BACKUP\_POWER\_LED\_PORT}}
+\index{BACKUP\_POWER\_LED\_PORT@{BACKUP\_POWER\_LED\_PORT}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{BACKUP\_POWER\_LED\_PORT}{BACKUP\_POWER\_LED\_PORT}}
+{\footnotesize\ttfamily \label{led_8h_a8d1a4771539dc53163d8061f4b69e25c} 
+\#define BACKUP\+\_\+\+POWER\+\_\+\+LED\+\_\+\+PORT~GPIO4}
+
+\Hypertarget{led_8h_a24b5595c4f500e96c463709e93f372df}\index{led.h@{led.h}!ERROR\_LED\_PIN\_RECORD@{ERROR\_LED\_PIN\_RECORD}}
+\index{ERROR\_LED\_PIN\_RECORD@{ERROR\_LED\_PIN\_RECORD}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_LED\_PIN\_RECORD}{ERROR\_LED\_PIN\_RECORD}}
+{\footnotesize\ttfamily \label{led_8h_a24b5595c4f500e96c463709e93f372df} 
+\#define ERROR\+\_\+\+LED\+\_\+\+PIN\+\_\+\+RECORD~0x09}
+
+\Hypertarget{led_8h_a84357dafca10c0bedd27ddf562ec038f}\index{led.h@{led.h}!ERROR\_LED\_PORT@{ERROR\_LED\_PORT}}
+\index{ERROR\_LED\_PORT@{ERROR\_LED\_PORT}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_LED\_PORT}{ERROR\_LED\_PORT}}
+{\footnotesize\ttfamily \label{led_8h_a84357dafca10c0bedd27ddf562ec038f} 
+\#define ERROR\+\_\+\+LED\+\_\+\+PORT~GPIO0}
+
+\Hypertarget{led_8h_a58fc08140f1f3f414c40ca7a59258ab8}\index{led.h@{led.h}!FLUSH\_LED\_PORT@{FLUSH\_LED\_PORT}}
+\index{FLUSH\_LED\_PORT@{FLUSH\_LED\_PORT}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{FLUSH\_LED\_PORT}{FLUSH\_LED\_PORT}}
+{\footnotesize\ttfamily \label{led_8h_a58fc08140f1f3f414c40ca7a59258ab8} 
+\#define FLUSH\+\_\+\+LED\+\_\+\+PORT~GPIO0}
+
+\Hypertarget{led_8h_ad0d6a0ebc0e8b8e08da47c03675be9f4}\index{led.h@{led.h}!MEMORY\_LOW\_LED\_PIN@{MEMORY\_LOW\_LED\_PIN}}
+\index{MEMORY\_LOW\_LED\_PIN@{MEMORY\_LOW\_LED\_PIN}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{MEMORY\_LOW\_LED\_PIN}{MEMORY\_LOW\_LED\_PIN}}
+{\footnotesize\ttfamily \label{led_8h_ad0d6a0ebc0e8b8e08da47c03675be9f4} 
+\#define MEMORY\+\_\+\+LOW\+\_\+\+LED\+\_\+\+PIN~0x07}
+
+\Hypertarget{led_8h_afd1ca686ff8235c560a32a3a164d1332}\index{led.h@{led.h}!MEMORY\_LOW\_LED\_PORT@{MEMORY\_LOW\_LED\_PORT}}
+\index{MEMORY\_LOW\_LED\_PORT@{MEMORY\_LOW\_LED\_PORT}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{MEMORY\_LOW\_LED\_PORT}{MEMORY\_LOW\_LED\_PORT}}
+{\footnotesize\ttfamily \label{led_8h_afd1ca686ff8235c560a32a3a164d1332} 
+\#define MEMORY\+\_\+\+LOW\+\_\+\+LED\+\_\+\+PORT~GPIO0}
+
+\Hypertarget{led_8h_a63ef077ec9bea5b9b4bf1ea75170ab51}\index{led.h@{led.h}!RECORD\_LED\_PIN@{RECORD\_LED\_PIN}}
+\index{RECORD\_LED\_PIN@{RECORD\_LED\_PIN}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{RECORD\_LED\_PIN}{RECORD\_LED\_PIN}}
+{\footnotesize\ttfamily \label{led_8h_a63ef077ec9bea5b9b4bf1ea75170ab51} 
+\#define RECORD\+\_\+\+LED\+\_\+\+PIN~0x0B}
+
+\Hypertarget{led_8h_a104335d8ce14e6db09a76faf2ad04f78}\index{led.h@{led.h}!RECORD\_LED\_PIN\_FLUSH@{RECORD\_LED\_PIN\_FLUSH}}
+\index{RECORD\_LED\_PIN\_FLUSH@{RECORD\_LED\_PIN\_FLUSH}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{RECORD\_LED\_PIN\_FLUSH}{RECORD\_LED\_PIN\_FLUSH}}
+{\footnotesize\ttfamily \label{led_8h_a104335d8ce14e6db09a76faf2ad04f78} 
+\#define RECORD\+\_\+\+LED\+\_\+\+PIN\+\_\+\+FLUSH~0x0D}
+
+\Hypertarget{led_8h_a72816a8b71df387833d9cb24aafcfaaa}\index{led.h@{led.h}!RECORD\_LED\_PORT@{RECORD\_LED\_PORT}}
+\index{RECORD\_LED\_PORT@{RECORD\_LED\_PORT}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{RECORD\_LED\_PORT}{RECORD\_LED\_PORT}}
+{\footnotesize\ttfamily \label{led_8h_a72816a8b71df387833d9cb24aafcfaaa} 
+\#define RECORD\+\_\+\+LED\+\_\+\+PORT~GPIO2}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{led_8h_a790afc5a8ed07437a4788698ca9afe45}\index{led.h@{led.h}!LED\_ClearSignalFlush@{LED\_ClearSignalFlush}}
+\index{LED\_ClearSignalFlush@{LED\_ClearSignalFlush}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{LED\_ClearSignalFlush()}{LED\_ClearSignalFlush()}}
+{\footnotesize\ttfamily \label{led_8h_a790afc5a8ed07437a4788698ca9afe45} 
+void LED\+\_\+\+Clear\+Signal\+Flush (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{led_8h_a7455e287128129db10bb2ae70909ff7a}\index{led.h@{led.h}!LED\_SetHigh@{LED\_SetHigh}}
+\index{LED\_SetHigh@{LED\_SetHigh}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{LED\_SetHigh()}{LED\_SetHigh()}}
+{\footnotesize\ttfamily \label{led_8h_a7455e287128129db10bb2ae70909ff7a} 
+void LED\+\_\+\+Set\+High (\begin{DoxyParamCaption}\item[{GPIO\+\_\+\+Type \texorpdfstring{$\ast$}{*}}]{port\+\_\+base}{, }\item[{uint32\+\_\+t}]{pin}{}\end{DoxyParamCaption})}
+
+\Hypertarget{led_8h_ab02c6a3a312ce2e008f471310fef8f5b}\index{led.h@{led.h}!LED\_SetLow@{LED\_SetLow}}
+\index{LED\_SetLow@{LED\_SetLow}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{LED\_SetLow()}{LED\_SetLow()}}
+{\footnotesize\ttfamily \label{led_8h_ab02c6a3a312ce2e008f471310fef8f5b} 
+void LED\+\_\+\+Set\+Low (\begin{DoxyParamCaption}\item[{GPIO\+\_\+\+Type \texorpdfstring{$\ast$}{*}}]{port\+\_\+base}{, }\item[{uint32\+\_\+t}]{pin}{}\end{DoxyParamCaption})}
+
+\Hypertarget{led_8h_a051c422ce8dcca2df8022a718fa9e85c}\index{led.h@{led.h}!LED\_SignalBackUpPowerAvailable@{LED\_SignalBackUpPowerAvailable}}
+\index{LED\_SignalBackUpPowerAvailable@{LED\_SignalBackUpPowerAvailable}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalBackUpPowerAvailable()}{LED\_SignalBackUpPowerAvailable()}}
+{\footnotesize\ttfamily \label{led_8h_a051c422ce8dcca2df8022a718fa9e85c} 
+void LED\+\_\+\+Signal\+Back\+Up\+Power\+Available (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{led_8h_a13c3d29b05f96fd3490c9b7680f7df08}\index{led.h@{led.h}!LED\_SignalError@{LED\_SignalError}}
+\index{LED\_SignalError@{LED\_SignalError}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalError()}{LED\_SignalError()}}
+{\footnotesize\ttfamily \label{led_8h_a13c3d29b05f96fd3490c9b7680f7df08} 
+void LED\+\_\+\+Signal\+Error (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{led_8h_ac6978cdce3f5c99d7cd85a6991a5394a}\index{led.h@{led.h}!LED\_SignalFlush@{LED\_SignalFlush}}
+\index{LED\_SignalFlush@{LED\_SignalFlush}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalFlush()}{LED\_SignalFlush()}}
+{\footnotesize\ttfamily \label{led_8h_ac6978cdce3f5c99d7cd85a6991a5394a} 
+void LED\+\_\+\+Signal\+Flush (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{led_8h_aeab72eb69dcad626cad6ab8d18f5b7f7}\index{led.h@{led.h}!LED\_SignalLowMemory@{LED\_SignalLowMemory}}
+\index{LED\_SignalLowMemory@{LED\_SignalLowMemory}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalLowMemory()}{LED\_SignalLowMemory()}}
+{\footnotesize\ttfamily \label{led_8h_aeab72eb69dcad626cad6ab8d18f5b7f7} 
+void LED\+\_\+\+Signal\+Low\+Memory (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{led_8h_a90d3262aad7d8e74c655aecba5bdb8b1}\index{led.h@{led.h}!LED\_SignalReady@{LED\_SignalReady}}
+\index{LED\_SignalReady@{LED\_SignalReady}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalReady()}{LED\_SignalReady()}}
+{\footnotesize\ttfamily \label{led_8h_a90d3262aad7d8e74c655aecba5bdb8b1} 
+void LED\+\_\+\+Signal\+Ready (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{led_8h_ae4d93582ce6f8960bbbe8771670864f2}\index{led.h@{led.h}!LED\_SignalRecording@{LED\_SignalRecording}}
+\index{LED\_SignalRecording@{LED\_SignalRecording}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalRecording()}{LED\_SignalRecording()}}
+{\footnotesize\ttfamily \label{led_8h_ae4d93582ce6f8960bbbe8771670864f2} 
+void LED\+\_\+\+Signal\+Recording (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{led_8h_a357ebead2af4aa7710b82477c78c3ae5}\index{led.h@{led.h}!LED\_SignalRecordingStop@{LED\_SignalRecordingStop}}
+\index{LED\_SignalRecordingStop@{LED\_SignalRecordingStop}!led.h@{led.h}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalRecordingStop()}{LED\_SignalRecordingStop()}}
+{\footnotesize\ttfamily \label{led_8h_a357ebead2af4aa7710b82477c78c3ae5} 
+void LED\+\_\+\+Signal\+Recording\+Stop (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+

@@ -1,0 +1,115 @@
+\doxysection{include/pwrloss\+\_\+det.h File Reference}
+\hypertarget{pwrloss__det_8h}{}\label{pwrloss__det_8h}\index{include/pwrloss\_det.h@{include/pwrloss\_det.h}}
+{\ttfamily \#include "{}fsl\+\_\+lpcmp.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+spc.\+h"{}}\newline
+{\ttfamily \#include "{}led.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+ctimer.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_ab3fb874c2004c1dd7730ef132044d8c6}{DEMO\+\_\+\+LPCMP\+\_\+\+BASE}}~CMP1
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_ab4c4d72397c5c088af619cae261520f7}{DEMO\+\_\+\+LPCMP\+\_\+\+USER\+\_\+\+CHANNEL}}~2U
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a462ebe3c870f3991b5d35b1b16d8e5e3}{DEMO\+\_\+\+LPCMP\+\_\+\+DAC\+\_\+\+CHANNEL}}~7U
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a35a8aa12d8448bc5079fbcacf3749707}{DEMO\+\_\+\+LPCMP\+\_\+\+IRQ\+\_\+\+ID}}~HSCMP1\+\_\+\+IRQn
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a73e04fa33fc79c5ae9fde6b84b8b1f14}{DEMO\+\_\+\+LPCMP\+\_\+\+IRQ\+\_\+\+HANDLER\+\_\+\+FUNC}}~\mbox{\hyperlink{pwrloss__det_8c_a91fcfb8aaaf84fcc82fcbc7ca6837ca9}{HSCMP1\+\_\+\+IRQHandler}}
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_acee23debe833b6e080969d3b0dc0ea8b}{DEMO\+\_\+\+VREF\+\_\+\+BASE}}~VREF0
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a13a636a7d6b71b03e2cd42bc388afcc8}{DEMO\+\_\+\+SPC\+\_\+\+BASE}}~SPC0
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_ab7786fe5adcd1d885491257b0ebc27b8}{CTIMER}}~CTIMER4         /\texorpdfstring{$\ast$}{*} Timer 4 \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a31628cf818c8dea7d3311a53c65cb924}{CTIMER\+\_\+\+MAT0\+\_\+\+OUT}}~k\+CTIMER\+\_\+\+Match\+\_\+0 /\texorpdfstring{$\ast$}{*} Match output 0 \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a54ee2e0d23f2366ac80ccbdda3808b70}{CTIMER\+\_\+\+EMT0\+\_\+\+OUT}}~(1u $<$$<$ k\+CTIMER\+\_\+\+Match\+\_\+0)
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a282d828757fa193e5c9a4e671867cf34}{CTIMER\+\_\+\+CLK\+\_\+\+FREQ}}~CLOCK\+\_\+\+Get\+CTimer\+Clk\+Freq(4U)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pwrloss__det_8h_a640dcd500f29a2a077dbc83532cde9e5}{PWRLOSS\+\_\+\+Detection\+Init}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{pwrloss__det_8h_ab7786fe5adcd1d885491257b0ebc27b8}\index{pwrloss\_det.h@{pwrloss\_det.h}!CTIMER@{CTIMER}}
+\index{CTIMER@{CTIMER}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{CTIMER}{CTIMER}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_ab7786fe5adcd1d885491257b0ebc27b8} 
+\#define CTIMER~CTIMER4         /\texorpdfstring{$\ast$}{*} Timer 4 \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{pwrloss__det_8h_a282d828757fa193e5c9a4e671867cf34}\index{pwrloss\_det.h@{pwrloss\_det.h}!CTIMER\_CLK\_FREQ@{CTIMER\_CLK\_FREQ}}
+\index{CTIMER\_CLK\_FREQ@{CTIMER\_CLK\_FREQ}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{CTIMER\_CLK\_FREQ}{CTIMER\_CLK\_FREQ}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a282d828757fa193e5c9a4e671867cf34} 
+\#define CTIMER\+\_\+\+CLK\+\_\+\+FREQ~CLOCK\+\_\+\+Get\+CTimer\+Clk\+Freq(4U)}
+
+\Hypertarget{pwrloss__det_8h_a54ee2e0d23f2366ac80ccbdda3808b70}\index{pwrloss\_det.h@{pwrloss\_det.h}!CTIMER\_EMT0\_OUT@{CTIMER\_EMT0\_OUT}}
+\index{CTIMER\_EMT0\_OUT@{CTIMER\_EMT0\_OUT}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{CTIMER\_EMT0\_OUT}{CTIMER\_EMT0\_OUT}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a54ee2e0d23f2366ac80ccbdda3808b70} 
+\#define CTIMER\+\_\+\+EMT0\+\_\+\+OUT~(1u $<$$<$ k\+CTIMER\+\_\+\+Match\+\_\+0)}
+
+\Hypertarget{pwrloss__det_8h_a31628cf818c8dea7d3311a53c65cb924}\index{pwrloss\_det.h@{pwrloss\_det.h}!CTIMER\_MAT0\_OUT@{CTIMER\_MAT0\_OUT}}
+\index{CTIMER\_MAT0\_OUT@{CTIMER\_MAT0\_OUT}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{CTIMER\_MAT0\_OUT}{CTIMER\_MAT0\_OUT}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a31628cf818c8dea7d3311a53c65cb924} 
+\#define CTIMER\+\_\+\+MAT0\+\_\+\+OUT~k\+CTIMER\+\_\+\+Match\+\_\+0 /\texorpdfstring{$\ast$}{*} Match output 0 \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{pwrloss__det_8h_ab3fb874c2004c1dd7730ef132044d8c6}\index{pwrloss\_det.h@{pwrloss\_det.h}!DEMO\_LPCMP\_BASE@{DEMO\_LPCMP\_BASE}}
+\index{DEMO\_LPCMP\_BASE@{DEMO\_LPCMP\_BASE}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{DEMO\_LPCMP\_BASE}{DEMO\_LPCMP\_BASE}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_ab3fb874c2004c1dd7730ef132044d8c6} 
+\#define DEMO\+\_\+\+LPCMP\+\_\+\+BASE~CMP1}
+
+\Hypertarget{pwrloss__det_8h_a462ebe3c870f3991b5d35b1b16d8e5e3}\index{pwrloss\_det.h@{pwrloss\_det.h}!DEMO\_LPCMP\_DAC\_CHANNEL@{DEMO\_LPCMP\_DAC\_CHANNEL}}
+\index{DEMO\_LPCMP\_DAC\_CHANNEL@{DEMO\_LPCMP\_DAC\_CHANNEL}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{DEMO\_LPCMP\_DAC\_CHANNEL}{DEMO\_LPCMP\_DAC\_CHANNEL}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a462ebe3c870f3991b5d35b1b16d8e5e3} 
+\#define DEMO\+\_\+\+LPCMP\+\_\+\+DAC\+\_\+\+CHANNEL~7U}
+
+\Hypertarget{pwrloss__det_8h_a73e04fa33fc79c5ae9fde6b84b8b1f14}\index{pwrloss\_det.h@{pwrloss\_det.h}!DEMO\_LPCMP\_IRQ\_HANDLER\_FUNC@{DEMO\_LPCMP\_IRQ\_HANDLER\_FUNC}}
+\index{DEMO\_LPCMP\_IRQ\_HANDLER\_FUNC@{DEMO\_LPCMP\_IRQ\_HANDLER\_FUNC}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{DEMO\_LPCMP\_IRQ\_HANDLER\_FUNC}{DEMO\_LPCMP\_IRQ\_HANDLER\_FUNC}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a73e04fa33fc79c5ae9fde6b84b8b1f14} 
+\#define DEMO\+\_\+\+LPCMP\+\_\+\+IRQ\+\_\+\+HANDLER\+\_\+\+FUNC~\mbox{\hyperlink{pwrloss__det_8c_a91fcfb8aaaf84fcc82fcbc7ca6837ca9}{HSCMP1\+\_\+\+IRQHandler}}}
+
+\Hypertarget{pwrloss__det_8h_a35a8aa12d8448bc5079fbcacf3749707}\index{pwrloss\_det.h@{pwrloss\_det.h}!DEMO\_LPCMP\_IRQ\_ID@{DEMO\_LPCMP\_IRQ\_ID}}
+\index{DEMO\_LPCMP\_IRQ\_ID@{DEMO\_LPCMP\_IRQ\_ID}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{DEMO\_LPCMP\_IRQ\_ID}{DEMO\_LPCMP\_IRQ\_ID}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a35a8aa12d8448bc5079fbcacf3749707} 
+\#define DEMO\+\_\+\+LPCMP\+\_\+\+IRQ\+\_\+\+ID~HSCMP1\+\_\+\+IRQn}
+
+\Hypertarget{pwrloss__det_8h_ab4c4d72397c5c088af619cae261520f7}\index{pwrloss\_det.h@{pwrloss\_det.h}!DEMO\_LPCMP\_USER\_CHANNEL@{DEMO\_LPCMP\_USER\_CHANNEL}}
+\index{DEMO\_LPCMP\_USER\_CHANNEL@{DEMO\_LPCMP\_USER\_CHANNEL}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{DEMO\_LPCMP\_USER\_CHANNEL}{DEMO\_LPCMP\_USER\_CHANNEL}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_ab4c4d72397c5c088af619cae261520f7} 
+\#define DEMO\+\_\+\+LPCMP\+\_\+\+USER\+\_\+\+CHANNEL~2U}
+
+\Hypertarget{pwrloss__det_8h_a13a636a7d6b71b03e2cd42bc388afcc8}\index{pwrloss\_det.h@{pwrloss\_det.h}!DEMO\_SPC\_BASE@{DEMO\_SPC\_BASE}}
+\index{DEMO\_SPC\_BASE@{DEMO\_SPC\_BASE}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{DEMO\_SPC\_BASE}{DEMO\_SPC\_BASE}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a13a636a7d6b71b03e2cd42bc388afcc8} 
+\#define DEMO\+\_\+\+SPC\+\_\+\+BASE~SPC0}
+
+\Hypertarget{pwrloss__det_8h_acee23debe833b6e080969d3b0dc0ea8b}\index{pwrloss\_det.h@{pwrloss\_det.h}!DEMO\_VREF\_BASE@{DEMO\_VREF\_BASE}}
+\index{DEMO\_VREF\_BASE@{DEMO\_VREF\_BASE}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{DEMO\_VREF\_BASE}{DEMO\_VREF\_BASE}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_acee23debe833b6e080969d3b0dc0ea8b} 
+\#define DEMO\+\_\+\+VREF\+\_\+\+BASE~VREF0}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pwrloss__det_8h_a640dcd500f29a2a077dbc83532cde9e5}\index{pwrloss\_det.h@{pwrloss\_det.h}!PWRLOSS\_DetectionInit@{PWRLOSS\_DetectionInit}}
+\index{PWRLOSS\_DetectionInit@{PWRLOSS\_DetectionInit}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{PWRLOSS\_DetectionInit()}{PWRLOSS\_DetectionInit()}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a640dcd500f29a2a077dbc83532cde9e5} 
+void PWRLOSS\+\_\+\+Detection\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+

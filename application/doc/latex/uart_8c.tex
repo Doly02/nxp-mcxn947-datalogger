@@ -1,0 +1,94 @@
+\doxysection{source/uart.c File Reference}
+\hypertarget{uart_8c}{}\label{uart_8c}\index{source/uart.c@{source/uart.c}}
+{\ttfamily \#include "{}uart.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}parser.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{uart_8c_aea1e7693e3ef048da32a864511315eb9}{LPUART\+\_\+\+PRIO}}~(6U)
+\item 
+\#define \mbox{\hyperlink{uart_8c_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~(200)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{uart_8c_a6ee3953aba06a9d3e1695bb3ba147c18}{UART\+\_\+\+Print}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Prints Character on The Terminal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{uart_8c_ad6f6f2234554d7faf55db52b66f45bc5}{UART\+\_\+\+Init}} (uint32\+\_\+t baudrate)
+\begin{DoxyCompactList}\small\item\em Initializes LPUART7 For Recording. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{uart_8c_ae2d34afb9a8bd33f0229eb6b34c57df2}{UART\+\_\+\+Enable}} (void)
+\begin{DoxyCompactList}\small\item\em Enables Interrupt For Application LPUART7. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{uart_8c_a76482cf7e9eb69dba68afd26b53b7f37}{UART\+\_\+\+Disable}} (void)
+\begin{DoxyCompactList}\small\item\em Disables Interrupt For Application LPUART7. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{uart_8c_a28f24a41744d2b956de47ae6318d9c05}{UART\+\_\+\+Deinit}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{uart_8c_a6b20d41d6252e9871430c242cb1a56e7}\index{uart.c@{uart.c}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \label{uart_8c_a6b20d41d6252e9871430c242cb1a56e7} 
+\#define BUFFER\+\_\+\+SIZE~(200)}
+
+\Hypertarget{uart_8c_aea1e7693e3ef048da32a864511315eb9}\index{uart.c@{uart.c}!LPUART\_PRIO@{LPUART\_PRIO}}
+\index{LPUART\_PRIO@{LPUART\_PRIO}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{LPUART\_PRIO}{LPUART\_PRIO}}
+{\footnotesize\ttfamily \label{uart_8c_aea1e7693e3ef048da32a864511315eb9} 
+\#define LPUART\+\_\+\+PRIO~(6U)}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{uart_8c_a28f24a41744d2b956de47ae6318d9c05}\index{uart.c@{uart.c}!UART\_Deinit@{UART\_Deinit}}
+\index{UART\_Deinit@{UART\_Deinit}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{UART\_Deinit()}{UART\_Deinit()}}
+{\footnotesize\ttfamily \label{uart_8c_a28f24a41744d2b956de47ae6318d9c05} 
+void UART\+\_\+\+Deinit (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{uart_8c_a76482cf7e9eb69dba68afd26b53b7f37}\index{uart.c@{uart.c}!UART\_Disable@{UART\_Disable}}
+\index{UART\_Disable@{UART\_Disable}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{UART\_Disable()}{UART\_Disable()}}
+{\footnotesize\ttfamily \label{uart_8c_a76482cf7e9eb69dba68afd26b53b7f37} 
+void UART\+\_\+\+Disable (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Disables Interrupt For Application LPUART7. 
+
+\Hypertarget{uart_8c_ae2d34afb9a8bd33f0229eb6b34c57df2}\index{uart.c@{uart.c}!UART\_Enable@{UART\_Enable}}
+\index{UART\_Enable@{UART\_Enable}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{UART\_Enable()}{UART\_Enable()}}
+{\footnotesize\ttfamily \label{uart_8c_ae2d34afb9a8bd33f0229eb6b34c57df2} 
+void UART\+\_\+\+Enable (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Enables Interrupt For Application LPUART7. 
+
+\Hypertarget{uart_8c_ad6f6f2234554d7faf55db52b66f45bc5}\index{uart.c@{uart.c}!UART\_Init@{UART\_Init}}
+\index{UART\_Init@{UART\_Init}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{UART\_Init()}{UART\_Init()}}
+{\footnotesize\ttfamily \label{uart_8c_ad6f6f2234554d7faf55db52b66f45bc5} 
+void UART\+\_\+\+Init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{baudrate}{}\end{DoxyParamCaption})}
+
+
+
+Initializes LPUART7 For Recording. 
+
+\Hypertarget{uart_8c_a6ee3953aba06a9d3e1695bb3ba147c18}\index{uart.c@{uart.c}!UART\_Print@{UART\_Print}}
+\index{UART\_Print@{UART\_Print}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{UART\_Print()}{UART\_Print()}}
+{\footnotesize\ttfamily \label{uart_8c_a6ee3953aba06a9d3e1695bb3ba147c18} 
+void UART\+\_\+\+Print (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})}
+
+
+
+Prints Character on The Terminal. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ch} & Character in uint8\+\_\+t. \\
+\hline
+\end{DoxyParams}

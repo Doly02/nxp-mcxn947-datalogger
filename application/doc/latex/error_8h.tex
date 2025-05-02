@@ -1,0 +1,189 @@
+\doxysection{include/error.h File Reference}
+\hypertarget{error_8h}{}\label{error_8h}\index{include/error.h@{include/error.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{error_8h_abe670cc5ceed3fad3be682fc0c1bb62e}{ERROR\+\_\+\+NONE}}~0x0000u
+\begin{DoxyCompactList}\small\item\em Return Code When a Successful Operation is Performed. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{error_8h_abe377e971802c0d6457fab75817a0f50}{ERROR\+\_\+\+IRTC}}~0x0001u
+\begin{DoxyCompactList}\small\item\em Error Related To Internal RTC Integrated In MCXN947 MCU. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{error_8h_a15dd31d9e60a08b1222465d70bdc16ae}{ERROR\+\_\+\+RECORD}}~0x0002u
+\begin{DoxyCompactList}\small\item\em Error Related To Data Logging. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{error_8h_a3bfc56f55ae00909881ff0c69ea508c3}{ERROR\+\_\+\+OPEN}}~0x0005u
+\begin{DoxyCompactList}\small\item\em Error Related To Opening File. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{error_8h_ab1d43b8f2795d4e0be3b8a1baa48d732}{ERROR\+\_\+\+READ}}~0x0006u
+\begin{DoxyCompactList}\small\item\em Error Related To Reading File. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{error_8h_a0252789fc5878797a9e8e4add9b8cb79}{ERROR\+\_\+\+CLOSE}}~0x0004u
+\begin{DoxyCompactList}\small\item\em Error Related To Closing File. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{error_8h_a7a823d18530c4366603a5d1f4e73eb51}{ERROR\+\_\+\+FILESYSTEM}}~0x0007u
+\begin{DoxyCompactList}\small\item\em Error Related To File System (e.\+g. Mount of File System, Setting Up File Meta-\/\+Data,...). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{error_8h_a18c5dd2fafa8a862632c9d61fd796d9b}{ERROR\+\_\+\+CONFIG}}~0x0008u
+\begin{DoxyCompactList}\small\item\em Error Related To Reading and Parsing Configuration File Stored On SDHC Card (config.\+txt). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{error_8h_a2443aa0469107ec4e5e1d2517e4f6d6b}{ERROR\+\_\+\+ADMA}}~0x0003u
+\begin{DoxyCompactList}\small\item\em Error Related To Storing Data on SDHC Card Using ADMA (Advance DMA). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{error_8h_a92760c86f0bbe85190302f39bf9e3682}{ERROR\+\_\+\+OUT\+\_\+\+OF\+\_\+\+CYCLE}}~0x\+FFFEu
+\begin{DoxyCompactList}\small\item\em Out Of The Main Cycle Error. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{error_8h_ade5d86f955604ec489f0c144f47226fc}{ERROR\+\_\+\+UNKNOWN}}~0x\+FFFFu
+\begin{DoxyCompactList}\small\item\em Occurrence Of an Unclassified Error. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{error_8h_af4eef9ea59c45d3b142fd0d24ff5302b}{ERR\+\_\+\+Handle\+Error}} (void)
+\begin{DoxyCompactList}\small\item\em Base Function For Error Handling. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{error_8h_af4611406000b04903048e22f2ac41654}{ERR\+\_\+\+Init}} ()
+\item 
+void \mbox{\hyperlink{error_8h_a7c9d4519c77f7f681492bf229ec8e43a}{ERR\+\_\+\+Set\+State}} (\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} err)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{error_8h_a2443aa0469107ec4e5e1d2517e4f6d6b}\index{error.h@{error.h}!ERROR\_ADMA@{ERROR\_ADMA}}
+\index{ERROR\_ADMA@{ERROR\_ADMA}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_ADMA}{ERROR\_ADMA}}
+{\footnotesize\ttfamily \label{error_8h_a2443aa0469107ec4e5e1d2517e4f6d6b} 
+\#define ERROR\+\_\+\+ADMA~0x0003u}
+
+
+
+Error Related To Storing Data on SDHC Card Using ADMA (Advance DMA). 
+
+\Hypertarget{error_8h_a0252789fc5878797a9e8e4add9b8cb79}\index{error.h@{error.h}!ERROR\_CLOSE@{ERROR\_CLOSE}}
+\index{ERROR\_CLOSE@{ERROR\_CLOSE}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_CLOSE}{ERROR\_CLOSE}}
+{\footnotesize\ttfamily \label{error_8h_a0252789fc5878797a9e8e4add9b8cb79} 
+\#define ERROR\+\_\+\+CLOSE~0x0004u}
+
+
+
+Error Related To Closing File. 
+
+\Hypertarget{error_8h_a18c5dd2fafa8a862632c9d61fd796d9b}\index{error.h@{error.h}!ERROR\_CONFIG@{ERROR\_CONFIG}}
+\index{ERROR\_CONFIG@{ERROR\_CONFIG}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_CONFIG}{ERROR\_CONFIG}}
+{\footnotesize\ttfamily \label{error_8h_a18c5dd2fafa8a862632c9d61fd796d9b} 
+\#define ERROR\+\_\+\+CONFIG~0x0008u}
+
+
+
+Error Related To Reading and Parsing Configuration File Stored On SDHC Card (config.\+txt). 
+
+\Hypertarget{error_8h_a7a823d18530c4366603a5d1f4e73eb51}\index{error.h@{error.h}!ERROR\_FILESYSTEM@{ERROR\_FILESYSTEM}}
+\index{ERROR\_FILESYSTEM@{ERROR\_FILESYSTEM}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_FILESYSTEM}{ERROR\_FILESYSTEM}}
+{\footnotesize\ttfamily \label{error_8h_a7a823d18530c4366603a5d1f4e73eb51} 
+\#define ERROR\+\_\+\+FILESYSTEM~0x0007u}
+
+
+
+Error Related To File System (e.\+g. Mount of File System, Setting Up File Meta-\/\+Data,...). 
+
+\Hypertarget{error_8h_abe377e971802c0d6457fab75817a0f50}\index{error.h@{error.h}!ERROR\_IRTC@{ERROR\_IRTC}}
+\index{ERROR\_IRTC@{ERROR\_IRTC}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_IRTC}{ERROR\_IRTC}}
+{\footnotesize\ttfamily \label{error_8h_abe377e971802c0d6457fab75817a0f50} 
+\#define ERROR\+\_\+\+IRTC~0x0001u}
+
+
+
+Error Related To Internal RTC Integrated In MCXN947 MCU. 
+
+\Hypertarget{error_8h_abe670cc5ceed3fad3be682fc0c1bb62e}\index{error.h@{error.h}!ERROR\_NONE@{ERROR\_NONE}}
+\index{ERROR\_NONE@{ERROR\_NONE}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_NONE}{ERROR\_NONE}}
+{\footnotesize\ttfamily \label{error_8h_abe670cc5ceed3fad3be682fc0c1bb62e} 
+\#define ERROR\+\_\+\+NONE~0x0000u}
+
+
+
+Return Code When a Successful Operation is Performed. 
+
+\Hypertarget{error_8h_a3bfc56f55ae00909881ff0c69ea508c3}\index{error.h@{error.h}!ERROR\_OPEN@{ERROR\_OPEN}}
+\index{ERROR\_OPEN@{ERROR\_OPEN}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_OPEN}{ERROR\_OPEN}}
+{\footnotesize\ttfamily \label{error_8h_a3bfc56f55ae00909881ff0c69ea508c3} 
+\#define ERROR\+\_\+\+OPEN~0x0005u}
+
+
+
+Error Related To Opening File. 
+
+\Hypertarget{error_8h_a92760c86f0bbe85190302f39bf9e3682}\index{error.h@{error.h}!ERROR\_OUT\_OF\_CYCLE@{ERROR\_OUT\_OF\_CYCLE}}
+\index{ERROR\_OUT\_OF\_CYCLE@{ERROR\_OUT\_OF\_CYCLE}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_OUT\_OF\_CYCLE}{ERROR\_OUT\_OF\_CYCLE}}
+{\footnotesize\ttfamily \label{error_8h_a92760c86f0bbe85190302f39bf9e3682} 
+\#define ERROR\+\_\+\+OUT\+\_\+\+OF\+\_\+\+CYCLE~0x\+FFFEu}
+
+
+
+Out Of The Main Cycle Error. 
+
+\Hypertarget{error_8h_ab1d43b8f2795d4e0be3b8a1baa48d732}\index{error.h@{error.h}!ERROR\_READ@{ERROR\_READ}}
+\index{ERROR\_READ@{ERROR\_READ}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_READ}{ERROR\_READ}}
+{\footnotesize\ttfamily \label{error_8h_ab1d43b8f2795d4e0be3b8a1baa48d732} 
+\#define ERROR\+\_\+\+READ~0x0006u}
+
+
+
+Error Related To Reading File. 
+
+\Hypertarget{error_8h_a15dd31d9e60a08b1222465d70bdc16ae}\index{error.h@{error.h}!ERROR\_RECORD@{ERROR\_RECORD}}
+\index{ERROR\_RECORD@{ERROR\_RECORD}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_RECORD}{ERROR\_RECORD}}
+{\footnotesize\ttfamily \label{error_8h_a15dd31d9e60a08b1222465d70bdc16ae} 
+\#define ERROR\+\_\+\+RECORD~0x0002u}
+
+
+
+Error Related To Data Logging. 
+
+\Hypertarget{error_8h_ade5d86f955604ec489f0c144f47226fc}\index{error.h@{error.h}!ERROR\_UNKNOWN@{ERROR\_UNKNOWN}}
+\index{ERROR\_UNKNOWN@{ERROR\_UNKNOWN}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERROR\_UNKNOWN}{ERROR\_UNKNOWN}}
+{\footnotesize\ttfamily \label{error_8h_ade5d86f955604ec489f0c144f47226fc} 
+\#define ERROR\+\_\+\+UNKNOWN~0x\+FFFFu}
+
+
+
+Occurrence Of an Unclassified Error. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{error_8h_aeaf3178f631e362a9238a50fcdcaa039}\index{error.h@{error.h}!error\_t@{error\_t}}
+\index{error\_t@{error\_t}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{error\_t}{error\_t}}
+{\footnotesize\ttfamily \label{error_8h_aeaf3178f631e362a9238a50fcdcaa039} 
+typedef uint16\+\_\+t \mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{error_8h_af4eef9ea59c45d3b142fd0d24ff5302b}\index{error.h@{error.h}!ERR\_HandleError@{ERR\_HandleError}}
+\index{ERR\_HandleError@{ERR\_HandleError}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERR\_HandleError()}{ERR\_HandleError()}}
+{\footnotesize\ttfamily \label{error_8h_af4eef9ea59c45d3b142fd0d24ff5302b} 
+void ERR\+\_\+\+Handle\+Error (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Base Function For Error Handling. 
+
+\Hypertarget{error_8h_af4611406000b04903048e22f2ac41654}\index{error.h@{error.h}!ERR\_Init@{ERR\_Init}}
+\index{ERR\_Init@{ERR\_Init}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERR\_Init()}{ERR\_Init()}}
+{\footnotesize\ttfamily \label{error_8h_af4611406000b04903048e22f2ac41654} 
+void ERR\+\_\+\+Init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{error_8h_a7c9d4519c77f7f681492bf229ec8e43a}\index{error.h@{error.h}!ERR\_SetState@{ERR\_SetState}}
+\index{ERR\_SetState@{ERR\_SetState}!error.h@{error.h}}
+\doxysubsubsection{\texorpdfstring{ERR\_SetState()}{ERR\_SetState()}}
+{\footnotesize\ttfamily \label{error_8h_a7c9d4519c77f7f681492bf229ec8e43a} 
+void ERR\+\_\+\+Set\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}}}]{err}{}\end{DoxyParamCaption})}
+

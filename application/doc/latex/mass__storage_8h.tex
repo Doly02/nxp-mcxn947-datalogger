@@ -1,0 +1,34 @@
+\doxysection{include/mass\+\_\+storage.h File Reference}
+\hypertarget{mass__storage_8h}{}\label{mass__storage_8h}\index{include/mass\_storage.h@{include/mass\_storage.h}}
+{\ttfamily \#include "{}disk.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{mass__storage_8h_a7230a66107a162007ea190ec8e6206e8}{MSC\+\_\+\+Device\+Msc\+App}} (void)
+\begin{DoxyCompactList}\small\item\em Process Extension to Mass Storage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mass__storage_8h_a4dfd65334aae991eac3b8d58e92f6c2f}{MSC\+\_\+\+Device\+Msc\+App\+Task}} (void)
+\begin{DoxyCompactList}\small\item\em Handles Mass Storage Application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{mass__storage_8h_a7230a66107a162007ea190ec8e6206e8}\index{mass\_storage.h@{mass\_storage.h}!MSC\_DeviceMscApp@{MSC\_DeviceMscApp}}
+\index{MSC\_DeviceMscApp@{MSC\_DeviceMscApp}!mass\_storage.h@{mass\_storage.h}}
+\doxysubsubsection{\texorpdfstring{MSC\_DeviceMscApp()}{MSC\_DeviceMscApp()}}
+{\footnotesize\ttfamily \label{mass__storage_8h_a7230a66107a162007ea190ec8e6206e8} 
+void MSC\+\_\+\+Device\+Msc\+App (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Process Extension to Mass Storage. 
+
+\Hypertarget{mass__storage_8h_a4dfd65334aae991eac3b8d58e92f6c2f}\index{mass\_storage.h@{mass\_storage.h}!MSC\_DeviceMscAppTask@{MSC\_DeviceMscAppTask}}
+\index{MSC\_DeviceMscAppTask@{MSC\_DeviceMscAppTask}!mass\_storage.h@{mass\_storage.h}}
+\doxysubsubsection{\texorpdfstring{MSC\_DeviceMscAppTask()}{MSC\_DeviceMscAppTask()}}
+{\footnotesize\ttfamily \label{mass__storage_8h_a4dfd65334aae991eac3b8d58e92f6c2f} 
+void MSC\+\_\+\+Device\+Msc\+App\+Task (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Handles Mass Storage Application. 
+
+Communication and Data Transport Is Handled By USB1\+\_\+\+HS ISR. MISRA Deviation\+: Rule 2.\+2 Justification\+: Function \textquotesingle{}MSC\+\_\+\+Device\+Msc\+App\textquotesingle{} is called periodically and allows to expand Mass Storage.

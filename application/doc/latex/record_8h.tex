@@ -1,0 +1,306 @@
+\doxysection{include/record.h File Reference}
+\hypertarget{record_8h}{}\label{record_8h}\index{include/record.h@{include/record.h}}
+{\ttfamily \#include $<$led.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}fsl\+\_\+sd.\+h"{}}\newline
+{\ttfamily \#include "{}ff.\+h"{}}\newline
+{\ttfamily \#include "{}ffconf.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}fsl\+\_\+sd\+\_\+disk.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+common.\+h"{}}\newline
+{\ttfamily \#include "{}diskio.\+h"{}}\newline
+{\ttfamily \#include "{}pin\+\_\+mux.\+h"{}}\newline
+{\ttfamily \#include "{}clock\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}board.\+h"{}}\newline
+{\ttfamily \#include "{}sdmmc\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}rtc\+\_\+ds3231.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+common\+\_\+arm.\+h"{}}\newline
+{\ttfamily \#include "{}task.\+h"{}}\newline
+{\ttfamily \#include "{}error.\+h"{}}\newline
+{\ttfamily \#include "{}uart.\+h"{}}\newline
+{\ttfamily \#include "{}parser.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{record_8h_a0d397cd5b778e16fe6d884e5af5ee942}{FLUSH\+\_\+\+TIMEOUT\+\_\+\+TICKS}}~(int)pd\+MS\+\_\+\+TO\+\_\+\+TICKS(3000)
+\begin{DoxyCompactList}\small\item\em Timeout Interval Before Flush If No New Data Were Received \mbox{[}In Mili-\/\+Seconds\mbox{]}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{record_8h_a279b3ee10db28b16faa6d35128c0962b}{REINIT\+\_\+\+TIMEOUT\+\_\+\+TICKS}}~(int)pd\+MS\+\_\+\+TO\+\_\+\+TICKS(1000)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{record_8h_a26b2ee1b66476267482816b5c3050fb4}{CONSOLELOG\+\_\+\+Abs}} (int x)
+\begin{DoxyCompactList}\small\item\em Return Absolute Value. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{record_8h_a68675110803994cd2f323d7b5ec22204}{CONSOLELOG\+\_\+\+Get\+Free\+Space\+MB}} (void)
+\begin{DoxyCompactList}\small\item\em Gets Free Space on SD Card. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{record_8h_ac1fa0a8fc8347a2972c4eb356d002b43}{CONSOLELOG\+\_\+\+Create\+Directory}} (void)
+\begin{DoxyCompactList}\small\item\em Creates Directory Based Actual Date. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{record_8h_a023ab61eb71b7b74e227c7347196791e}{CONSOLELOG\+\_\+\+Create\+File}} (void)
+\begin{DoxyCompactList}\small\item\em Creates File Based Actual Date and Counter Value. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{record_8h_a956fc952a186ae09ce21409b7354cde7}{CONSOLELOG\+\_\+\+Get\+Transfered\+Bytes}} (void)
+\begin{DoxyCompactList}\small\item\em Returns Currently Received Bytes Between LED Blinking. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{record_8h_af54d270ec7ba86c38b2903c41eca3676}{CONSOLELOG\+\_\+\+Get\+Flush\+Completed}} (void)
+\begin{DoxyCompactList}\small\item\em Returns If Flush Was Completed or Not. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{record_8h_a52b8002dd4c2a6b13860c0a0cf52a0a8}{CONSOLELOG\+\_\+\+Clear\+Transfered\+Bytes}} (void)
+\begin{DoxyCompactList}\small\item\em Clears Currently Received Bytes After LED Blinking. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{record_8h_a6e4fa4434e7651d5dac0285ba7cecac3}{CONSOLELOG\+\_\+\+Get\+Max\+Bytes}} (void)
+\begin{DoxyCompactList}\small\item\em Maximal Received Bytes Between LED Blinking. \end{DoxyCompactList}\item 
+FRESULT \mbox{\hyperlink{record_8h_a7569eaf79c91368fad87f25507fb8614}{CONSOLELOG\+\_\+\+Check\+File\+System}} (void)
+\begin{DoxyCompactList}\small\item\em Checks If The File System Is Initialized. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{record_8h_a7c874f2c9b56aa801cf2bee5565975f1}{CONSOLELOG\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initializes The Recording System and Mounts The File System. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{record_8h_a79da7903033034cac5a75923611657f6}{CONSOLELOG\+\_\+\+Recording}} (uint32\+\_\+t file\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Starts The Recording Process by Initializing the File System, Creating a Directory, and Writing to a File. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{record_8h_ae36046c53443afa593218c41f4b834fa}{CONSOLELOG\+\_\+\+Flush}} (void)
+\begin{DoxyCompactList}\small\item\em Flushes Collected Data To The File If No Other Data Have Been Received By The Time Specified By TIMEOUT Macro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{record_8h_a91b1773f5158d67d12e9c6d40394b841}{CONSOLELOG\+\_\+\+Power\+Loss\+Flush}} (void)
+\begin{DoxyCompactList}\small\item\em Flushes Collected Data To The File If Power Loss Was Detected. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{record_8h_a310ec37130ed3dad88f57c14e72a3ed7}{CONSOLELOG\+\_\+\+Deinit}} (void)
+\begin{DoxyCompactList}\small\item\em De-\/\+Initializes The Recording System and Un-\/\+Mounts The File System. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{record_8h_af2718c8ac24b83f237cbd1dc970af06d}{CONSOLELOG\+\_\+\+Read\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em Reads and Processes The Configuration File From The Root directory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{record_8h_aeb7fb616b1f69f6cf4903a6058da06df}{CONSOLELOG\+\_\+\+Proccess\+Config\+File}} (const char \texorpdfstring{$\ast$}{*}content)
+\begin{DoxyCompactList}\small\item\em Processes The Content of The Configuration File To Extract and Validate The Baudrate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{record_8h_a0d397cd5b778e16fe6d884e5af5ee942}\index{record.h@{record.h}!FLUSH\_TIMEOUT\_TICKS@{FLUSH\_TIMEOUT\_TICKS}}
+\index{FLUSH\_TIMEOUT\_TICKS@{FLUSH\_TIMEOUT\_TICKS}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{FLUSH\_TIMEOUT\_TICKS}{FLUSH\_TIMEOUT\_TICKS}}
+{\footnotesize\ttfamily \label{record_8h_a0d397cd5b778e16fe6d884e5af5ee942} 
+\#define FLUSH\+\_\+\+TIMEOUT\+\_\+\+TICKS~(int)pd\+MS\+\_\+\+TO\+\_\+\+TICKS(3000)}
+
+
+
+Timeout Interval Before Flush If No New Data Were Received \mbox{[}In Mili-\/\+Seconds\mbox{]}. 
+
+\Hypertarget{record_8h_a279b3ee10db28b16faa6d35128c0962b}\index{record.h@{record.h}!REINIT\_TIMEOUT\_TICKS@{REINIT\_TIMEOUT\_TICKS}}
+\index{REINIT\_TIMEOUT\_TICKS@{REINIT\_TIMEOUT\_TICKS}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{REINIT\_TIMEOUT\_TICKS}{REINIT\_TIMEOUT\_TICKS}}
+{\footnotesize\ttfamily \label{record_8h_a279b3ee10db28b16faa6d35128c0962b} 
+\#define REINIT\+\_\+\+TIMEOUT\+\_\+\+TICKS~(int)pd\+MS\+\_\+\+TO\+\_\+\+TICKS(1000)}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{record_8h_a26b2ee1b66476267482816b5c3050fb4}\index{record.h@{record.h}!CONSOLELOG\_Abs@{CONSOLELOG\_Abs}}
+\index{CONSOLELOG\_Abs@{CONSOLELOG\_Abs}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_Abs()}{CONSOLELOG\_Abs()}}
+{\footnotesize\ttfamily \label{record_8h_a26b2ee1b66476267482816b5c3050fb4} 
+int CONSOLELOG\+\_\+\+Abs (\begin{DoxyParamCaption}\item[{int}]{x}{}\end{DoxyParamCaption})}
+
+
+
+Return Absolute Value. 
+
+\begin{DoxyReturn}{Returns}
+Returns Free Space on SD Card. 
+\end{DoxyReturn}
+\Hypertarget{record_8h_a7569eaf79c91368fad87f25507fb8614}\index{record.h@{record.h}!CONSOLELOG\_CheckFileSystem@{CONSOLELOG\_CheckFileSystem}}
+\index{CONSOLELOG\_CheckFileSystem@{CONSOLELOG\_CheckFileSystem}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_CheckFileSystem()}{CONSOLELOG\_CheckFileSystem()}}
+{\footnotesize\ttfamily \label{record_8h_a7569eaf79c91368fad87f25507fb8614} 
+FRESULT CONSOLELOG\+\_\+\+Check\+File\+System (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Checks If The File System Is Initialized. 
+
+return F\+\_\+\+OK If File System Initialized. \Hypertarget{record_8h_a52b8002dd4c2a6b13860c0a0cf52a0a8}\index{record.h@{record.h}!CONSOLELOG\_ClearTransferedBytes@{CONSOLELOG\_ClearTransferedBytes}}
+\index{CONSOLELOG\_ClearTransferedBytes@{CONSOLELOG\_ClearTransferedBytes}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_ClearTransferedBytes()}{CONSOLELOG\_ClearTransferedBytes()}}
+{\footnotesize\ttfamily \label{record_8h_a52b8002dd4c2a6b13860c0a0cf52a0a8} 
+void CONSOLELOG\+\_\+\+Clear\+Transfered\+Bytes (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Clears Currently Received Bytes After LED Blinking. 
+
+\Hypertarget{record_8h_ac1fa0a8fc8347a2972c4eb356d002b43}\index{record.h@{record.h}!CONSOLELOG\_CreateDirectory@{CONSOLELOG\_CreateDirectory}}
+\index{CONSOLELOG\_CreateDirectory@{CONSOLELOG\_CreateDirectory}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_CreateDirectory()}{CONSOLELOG\_CreateDirectory()}}
+{\footnotesize\ttfamily \label{record_8h_ac1fa0a8fc8347a2972c4eb356d002b43} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} CONSOLELOG\+\_\+\+Create\+Directory (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Creates Directory Based Actual Date. 
+
+\begin{DoxyReturn}{Returns}
+Returns Zero If Directory Creation Succeeded. 
+\end{DoxyReturn}
+\Hypertarget{record_8h_a023ab61eb71b7b74e227c7347196791e}\index{record.h@{record.h}!CONSOLELOG\_CreateFile@{CONSOLELOG\_CreateFile}}
+\index{CONSOLELOG\_CreateFile@{CONSOLELOG\_CreateFile}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_CreateFile()}{CONSOLELOG\_CreateFile()}}
+{\footnotesize\ttfamily \label{record_8h_a023ab61eb71b7b74e227c7347196791e} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} CONSOLELOG\+\_\+\+Create\+File (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Creates File Based Actual Date and Counter Value. 
+
+\begin{DoxyReturn}{Returns}
+Returns Zero If File Creation Succeeded. 
+\end{DoxyReturn}
+MISRA Deviation\+: Rule 10.\+1 Justification\+: FA\+\_\+\+WRITE and FA\+\_\+\+CREATE\+\_\+\+ALWAYS are standard bitmask flags defined by the Fat\+Fs library. These constants are specifically designed to be combined using bitwise OR (\texorpdfstring{$\vert$}{|}), and the use is safe and intentional.\Hypertarget{record_8h_a310ec37130ed3dad88f57c14e72a3ed7}\index{record.h@{record.h}!CONSOLELOG\_Deinit@{CONSOLELOG\_Deinit}}
+\index{CONSOLELOG\_Deinit@{CONSOLELOG\_Deinit}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_Deinit()}{CONSOLELOG\_Deinit()}}
+{\footnotesize\ttfamily \label{record_8h_a310ec37130ed3dad88f57c14e72a3ed7} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} CONSOLELOG\+\_\+\+Deinit (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+De-\/\+Initializes The Recording System and Un-\/\+Mounts The File System. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t} Returns 0 on Success, Otherwise E\+\_\+\+FAULT. 
+\end{DoxyReturn}
+\Hypertarget{record_8h_ae36046c53443afa593218c41f4b834fa}\index{record.h@{record.h}!CONSOLELOG\_Flush@{CONSOLELOG\_Flush}}
+\index{CONSOLELOG\_Flush@{CONSOLELOG\_Flush}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_Flush()}{CONSOLELOG\_Flush()}}
+{\footnotesize\ttfamily \label{record_8h_ae36046c53443afa593218c41f4b834fa} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} CONSOLELOG\+\_\+\+Flush (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Flushes Collected Data To The File If No Other Data Have Been Received By The Time Specified By TIMEOUT Macro. 
+
+If The Data Does Not Arrive By The Time Specified By The TIMEOUT Macro, Then This Function Flushes All The Data So Far Stored In The DMA Buffer, Saves It To a File on The Physical Media and Closes The File.
+
+\begin{DoxyReturn}{Returns}
+\doxylink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t} Returns 0 on Success, Otherwise Returns a Non-\/\+Zero Value. 
+\end{DoxyReturn}
+ADMA Error Status (ADMA\+\_\+\+ERR\+\_\+\+STATUS) 3 bit -\/\texorpdfstring{$>$}{>} ADMA Descriptor Error 2 bit -\/\texorpdfstring{$>$}{>} ADMA Length Mismatch Error 1-\/0 bit -\/\texorpdfstring{$>$}{>} ADMA Error State (When ADMA Error Occurred) Field Indicates The State of The ADMA When An Error Has Occurred During An ADMA Data Transfer.\Hypertarget{record_8h_af54d270ec7ba86c38b2903c41eca3676}\index{record.h@{record.h}!CONSOLELOG\_GetFlushCompleted@{CONSOLELOG\_GetFlushCompleted}}
+\index{CONSOLELOG\_GetFlushCompleted@{CONSOLELOG\_GetFlushCompleted}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_GetFlushCompleted()}{CONSOLELOG\_GetFlushCompleted()}}
+{\footnotesize\ttfamily \label{record_8h_af54d270ec7ba86c38b2903c41eca3676} 
+bool CONSOLELOG\+\_\+\+Get\+Flush\+Completed (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns If Flush Was Completed or Not. 
+
+\begin{DoxyReturn}{Returns}
+If Recording Is Ongoing That Return False. 
+\end{DoxyReturn}
+\Hypertarget{record_8h_a68675110803994cd2f323d7b5ec22204}\index{record.h@{record.h}!CONSOLELOG\_GetFreeSpaceMB@{CONSOLELOG\_GetFreeSpaceMB}}
+\index{CONSOLELOG\_GetFreeSpaceMB@{CONSOLELOG\_GetFreeSpaceMB}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_GetFreeSpaceMB()}{CONSOLELOG\_GetFreeSpaceMB()}}
+{\footnotesize\ttfamily \label{record_8h_a68675110803994cd2f323d7b5ec22204} 
+uint32\+\_\+t CONSOLELOG\+\_\+\+Get\+Free\+Space\+MB (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Gets Free Space on SD Card. 
+
+\begin{DoxyReturn}{Returns}
+Returns Free Space on SD Card. 
+\end{DoxyReturn}
+\Hypertarget{record_8h_a6e4fa4434e7651d5dac0285ba7cecac3}\index{record.h@{record.h}!CONSOLELOG\_GetMaxBytes@{CONSOLELOG\_GetMaxBytes}}
+\index{CONSOLELOG\_GetMaxBytes@{CONSOLELOG\_GetMaxBytes}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_GetMaxBytes()}{CONSOLELOG\_GetMaxBytes()}}
+{\footnotesize\ttfamily \label{record_8h_a6e4fa4434e7651d5dac0285ba7cecac3} 
+uint32\+\_\+t CONSOLELOG\+\_\+\+Get\+Max\+Bytes (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Maximal Received Bytes Between LED Blinking. 
+
+\Hypertarget{record_8h_a956fc952a186ae09ce21409b7354cde7}\index{record.h@{record.h}!CONSOLELOG\_GetTransferedBytes@{CONSOLELOG\_GetTransferedBytes}}
+\index{CONSOLELOG\_GetTransferedBytes@{CONSOLELOG\_GetTransferedBytes}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_GetTransferedBytes()}{CONSOLELOG\_GetTransferedBytes()}}
+{\footnotesize\ttfamily \label{record_8h_a956fc952a186ae09ce21409b7354cde7} 
+uint32\+\_\+t CONSOLELOG\+\_\+\+Get\+Transfered\+Bytes (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns Currently Received Bytes Between LED Blinking. 
+
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t Received Bytes Between LED Blinking. 
+\end{DoxyReturn}
+\Hypertarget{record_8h_a7c874f2c9b56aa801cf2bee5565975f1}\index{record.h@{record.h}!CONSOLELOG\_Init@{CONSOLELOG\_Init}}
+\index{CONSOLELOG\_Init@{CONSOLELOG\_Init}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_Init()}{CONSOLELOG\_Init()}}
+{\footnotesize\ttfamily \label{record_8h_a7c874f2c9b56aa801cf2bee5565975f1} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} CONSOLELOG\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes The Recording System and Mounts The File System. 
+
+This Function Performs the Initialization of The Recording System, Which includes\+:
+\begin{DoxyItemize}
+\item Setting Default Configuration Parameters.
+\item Mounting the File System on The Logical Disk.
+\item Optionally Setting Up The Current Working Drive.
+\item Formatting The File System If It is Not Found (If Formatting is Enabled).
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+\doxylink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t} Returns ERROR\+\_\+\+NONE on Success, Otherwise ERROR\+\_\+\+FILESYSTEM. 
+\end{DoxyReturn}
+\Hypertarget{record_8h_a91b1773f5158d67d12e9c6d40394b841}\index{record.h@{record.h}!CONSOLELOG\_PowerLossFlush@{CONSOLELOG\_PowerLossFlush}}
+\index{CONSOLELOG\_PowerLossFlush@{CONSOLELOG\_PowerLossFlush}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_PowerLossFlush()}{CONSOLELOG\_PowerLossFlush()}}
+{\footnotesize\ttfamily \label{record_8h_a91b1773f5158d67d12e9c6d40394b841} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} CONSOLELOG\+\_\+\+Power\+Loss\+Flush (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Flushes Collected Data To The File If Power Loss Was Detected. 
+
+If Power Loss Was Detected, Then This Function Flushes All The Data So Far Stored In The DMA Buffer, Saves It To a File on The Physical Media and Closes The File.
+
+\begin{DoxyReturn}{Returns}
+\doxylink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t} Returns 0 on Success, Otherwise Returns a Non-\/\+Zero Value. 
+\end{DoxyReturn}
+ADMA Error Status (ADMA\+\_\+\+ERR\+\_\+\+STATUS) 3 bit -\/\texorpdfstring{$>$}{>} ADMA Descriptor Error 2 bit -\/\texorpdfstring{$>$}{>} ADMA Length Mismatch Error 1-\/0 bit -\/\texorpdfstring{$>$}{>} ADMA Error State (When ADMA Error Occurred) Field Indicates The State of The ADMA When An Error Has Occurred During An ADMA Data Transfer.\Hypertarget{record_8h_aeb7fb616b1f69f6cf4903a6058da06df}\index{record.h@{record.h}!CONSOLELOG\_ProccessConfigFile@{CONSOLELOG\_ProccessConfigFile}}
+\index{CONSOLELOG\_ProccessConfigFile@{CONSOLELOG\_ProccessConfigFile}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_ProccessConfigFile()}{CONSOLELOG\_ProccessConfigFile()}}
+{\footnotesize\ttfamily \label{record_8h_aeb7fb616b1f69f6cf4903a6058da06df} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} CONSOLELOG\+\_\+\+Proccess\+Config\+File (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{content}{}\end{DoxyParamCaption})}
+
+
+
+Processes The Content of The Configuration File To Extract and Validate The Baudrate. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em content} & Content The Content of The Configuration File as a Null-\/\+Terminated String.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t} Returns 0 If Configuration File Is Correctly Processed, Otherwise Returns E\+\_\+\+FAULT. 
+\end{DoxyReturn}
+\Hypertarget{record_8h_af2718c8ac24b83f237cbd1dc970af06d}\index{record.h@{record.h}!CONSOLELOG\_ReadConfig@{CONSOLELOG\_ReadConfig}}
+\index{CONSOLELOG\_ReadConfig@{CONSOLELOG\_ReadConfig}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_ReadConfig()}{CONSOLELOG\_ReadConfig()}}
+{\footnotesize\ttfamily \label{record_8h_af2718c8ac24b83f237cbd1dc970af06d} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} CONSOLELOG\+\_\+\+Read\+Config (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Reads and Processes The Configuration File From The Root directory. 
+
+This Function Scans The Root Directory For a Configuration File, If The File is Found Reads its Contents Into g\+\_\+config Buffer.
+
+\begin{DoxyReturn}{Returns}
+\doxylink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t} Returns 0 If Configuration File Is Correctly Processed, Otherwise Returns E\+\_\+\+FAULT. 
+\end{DoxyReturn}
+\Hypertarget{record_8h_a79da7903033034cac5a75923611657f6}\index{record.h@{record.h}!CONSOLELOG\_Recording@{CONSOLELOG\_Recording}}
+\index{CONSOLELOG\_Recording@{CONSOLELOG\_Recording}!record.h@{record.h}}
+\doxysubsubsection{\texorpdfstring{CONSOLELOG\_Recording()}{CONSOLELOG\_Recording()}}
+{\footnotesize\ttfamily \label{record_8h_a79da7903033034cac5a75923611657f6} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} CONSOLELOG\+\_\+\+Recording (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{file\+\_\+size}{}\end{DoxyParamCaption})}
+
+
+
+Starts The Recording Process by Initializing the File System, Creating a Directory, and Writing to a File. 
+
+Function Uses {\ttfamily CONSOLELOG\+\_\+\+Init} To Initialize The Recording System.
+
+\begin{DoxyReturn}{Returns}
+\doxylink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t} Returns 0 on Success, Otherwise Returns a Non-\/\+Zero Value. 
+\end{DoxyReturn}
+ADMA Error Status (ADMA\+\_\+\+ERR\+\_\+\+STATUS) 3 bit -\/\texorpdfstring{$>$}{>} ADMA Descriptor Error 2 bit -\/\texorpdfstring{$>$}{>} ADMA Length Mismatch Error 1-\/0 bit -\/\texorpdfstring{$>$}{>} ADMA Error State (When ADMA Error Occurred) Field Indicates The State of The ADMA When An Error Has Occurred During An ADMA Data Transfer.

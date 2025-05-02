@@ -1,0 +1,330 @@
+\doxysection{include/parser.h File Reference}
+\hypertarget{parser_8h}{}\label{parser_8h}\index{include/parser.h@{include/parser.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}fsl\+\_\+lpuart.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+debug\+\_\+console.\+h"{}}\newline
+{\ttfamily \#include "{}error.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_r_e_c__config__t}{REC\+\_\+config\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Configuration structure for the recording system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130d}{REC\+\_\+version\+\_\+t}} \{ \mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130dadc698250f37be67cb8fd3fcf56d97d8a}{WCT\+\_\+\+UNKOWN}} = 0
+, \mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130dabb32ca414d33a1282268fbe607a16f82}{WCT\+\_\+\+AUTOS1}}
+, \mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130da37f7bf667f77cb838f0c148b7de4459d}{WCT\+\_\+\+AUTOS2}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of recording board versions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_r_e_c__config__t}{REC\+\_\+config\+\_\+t}} \mbox{\hyperlink{parser_8h_a3efdb0f9dbcb070589d0ece681ca737e}{PARSER\+\_\+\+Get\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em Returns Active Configuration. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130d}{REC\+\_\+version\+\_\+t}} \mbox{\hyperlink{parser_8h_a5a5d72738ce00182a87dab80d1cd583b}{PARSER\+\_\+\+Get\+Version}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the Version of The Device Being Recorded. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{parser_8h_a8980d81ea8c4130fdd2ba8d3fe086591}{PARSER\+\_\+\+Get\+Baudrate}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the Baudrate of The Device Being Recorded. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{parser_8h_ac16b349e0dc4c2cc65b81177f41c5be4}{PARSER\+\_\+\+Get\+File\+Size}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the Maximal File Size. \end{DoxyCompactList}\item 
+lpuart\+\_\+data\+\_\+bits\+\_\+t \mbox{\hyperlink{parser_8h_a2610f74dab8b66e1b4e9596bc001cb37}{PARSER\+\_\+\+Get\+Data\+Bits}} (void)
+\begin{DoxyCompactList}\small\item\em Returns The Number of Data Bits. \end{DoxyCompactList}\item 
+lpuart\+\_\+parity\+\_\+mode\+\_\+t \mbox{\hyperlink{parser_8h_aaad8ef014bfef5791bab928d69539652}{PARSER\+\_\+\+Get\+Parity}} (void)
+\begin{DoxyCompactList}\small\item\em Returns The Parity. \end{DoxyCompactList}\item 
+lpuart\+\_\+stop\+\_\+bit\+\_\+count\+\_\+t \mbox{\hyperlink{parser_8h_a65a95f8dd67609657bb8738ae7445fff}{PARSER\+\_\+\+Get\+Stop\+Bits}} (void)
+\begin{DoxyCompactList}\small\item\em Returns The Number of Stop Bits. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{parser_8h_ad28e2d5639ead57db0ffea30248fde09}{PARSER\+\_\+\+Get\+Free\+Space\+Limit\+MB}} (void)
+\begin{DoxyCompactList}\small\item\em Returns The Free Space Limit on SD Card For LED Signaling. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{parser_8h_ab78012dc34f9d71e0f8fa445363bbcb1}{PARSER\+\_\+\+Get\+Max\+Bytes}} (void)
+\begin{DoxyCompactList}\small\item\em Returns The Number of Maximal Bytes Between LED Blinking. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{parser_8h_a1b1eaa787f85fc863caca80169767413}{PARSER\+\_\+\+Clear\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em Clears The Configuration To Default. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{parser_8h_a87e93b1d41e63941d8cf04fffef7c36a}{PARSER\+\_\+\+Parse\+Baudrate}} (const char \texorpdfstring{$\ast$}{*}ch\+Content)
+\begin{DoxyCompactList}\small\item\em Parse Baud Rate From Configuration File. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{parser_8h_a581751b2aaa966409e2f9aa95ca1bdc4}{PARSER\+\_\+\+Parse\+File\+Size}} (const char \texorpdfstring{$\ast$}{*}ch\+Content)
+\begin{DoxyCompactList}\small\item\em Parse Record File Size From Configuration File. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{parser_8h_a22f70a70f519b6d78c8d35399a65acc8}{PARSER\+\_\+\+Parse\+Parity}} (const char \texorpdfstring{$\ast$}{*}ch\+Content)
+\begin{DoxyCompactList}\small\item\em Parse Parity From Configuration File. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{parser_8h_af742067409bdd8c51edf9c354296aa51}{PARSER\+\_\+\+Parse\+Stop\+Bits}} (const char \texorpdfstring{$\ast$}{*}ch\+Content)
+\begin{DoxyCompactList}\small\item\em Parse The Number of Stop Bits From Configuration File. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{parser_8h_a92744e46fdca3ab7db53c21e0f70125c}{PARSER\+\_\+\+Parse\+Data\+Bits}} (const char \texorpdfstring{$\ast$}{*}ch\+Content)
+\begin{DoxyCompactList}\small\item\em Parse The Number of Data Bits From Configuration File. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{parser_8h_ac6e3d100fb869eef47d75d766a5f1bb4}{PARSER\+\_\+\+Parse\+Free\+Space}} (const char \texorpdfstring{$\ast$}{*}ch\+Content)
+\begin{DoxyCompactList}\small\item\em Parse The Size of Free Space When Data Logger Will Signal To The User That Data Logger Is Running Out of Space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{parser_8h_ad61424a2558a5157fc217223acfd130d}\index{parser.h@{parser.h}!REC\_version\_t@{REC\_version\_t}}
+\index{REC\_version\_t@{REC\_version\_t}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{REC\_version\_t}{REC\_version\_t}}
+{\footnotesize\ttfamily \label{parser_8h_ad61424a2558a5157fc217223acfd130d} 
+enum \mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130d}{REC\+\_\+version\+\_\+t}}}
+
+
+
+Enumeration of recording board versions. 
+
+This enum defines the possible versions of the board for which the recording system is configured.
+
+\begin{DoxyNote}{Note}
+Difference Between AUTOS1 and AUTOS2 Is In Baudrate. 
+\end{DoxyNote}
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WCT\_UNKOWN@{WCT\_UNKOWN}!parser.h@{parser.h}}\index{parser.h@{parser.h}!WCT\_UNKOWN@{WCT\_UNKOWN}}}\Hypertarget{parser_8h_ad61424a2558a5157fc217223acfd130dadc698250f37be67cb8fd3fcf56d97d8a}\label{parser_8h_ad61424a2558a5157fc217223acfd130dadc698250f37be67cb8fd3fcf56d97d8a} 
+WCT\+\_\+\+UNKOWN&Unknown board version. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WCT\_AUTOS1@{WCT\_AUTOS1}!parser.h@{parser.h}}\index{parser.h@{parser.h}!WCT\_AUTOS1@{WCT\_AUTOS1}}}\Hypertarget{parser_8h_ad61424a2558a5157fc217223acfd130dabb32ca414d33a1282268fbe607a16f82}\label{parser_8h_ad61424a2558a5157fc217223acfd130dabb32ca414d33a1282268fbe607a16f82} 
+WCT\+\_\+\+AUTOS1&AUTOS1 Reference Board. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WCT\_AUTOS2@{WCT\_AUTOS2}!parser.h@{parser.h}}\index{parser.h@{parser.h}!WCT\_AUTOS2@{WCT\_AUTOS2}}}\Hypertarget{parser_8h_ad61424a2558a5157fc217223acfd130da37f7bf667f77cb838f0c148b7de4459d}\label{parser_8h_ad61424a2558a5157fc217223acfd130da37f7bf667f77cb838f0c148b7de4459d} 
+WCT\+\_\+\+AUTOS2&AUTOS2 Reference Board. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{parser_8h_a1b1eaa787f85fc863caca80169767413}\index{parser.h@{parser.h}!PARSER\_ClearConfig@{PARSER\_ClearConfig}}
+\index{PARSER\_ClearConfig@{PARSER\_ClearConfig}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_ClearConfig()}{PARSER\_ClearConfig()}}
+{\footnotesize\ttfamily \label{parser_8h_a1b1eaa787f85fc863caca80169767413} 
+void PARSER\+\_\+\+Clear\+Config (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Clears The Configuration To Default. 
+
+\Hypertarget{parser_8h_a8980d81ea8c4130fdd2ba8d3fe086591}\index{parser.h@{parser.h}!PARSER\_GetBaudrate@{PARSER\_GetBaudrate}}
+\index{PARSER\_GetBaudrate@{PARSER\_GetBaudrate}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_GetBaudrate()}{PARSER\_GetBaudrate()}}
+{\footnotesize\ttfamily \label{parser_8h_a8980d81ea8c4130fdd2ba8d3fe086591} 
+uint32\+\_\+t PARSER\+\_\+\+Get\+Baudrate (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the Baudrate of The Device Being Recorded. 
+
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t Baud Rate of Recorded Device. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_a3efdb0f9dbcb070589d0ece681ca737e}\index{parser.h@{parser.h}!PARSER\_GetConfig@{PARSER\_GetConfig}}
+\index{PARSER\_GetConfig@{PARSER\_GetConfig}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_GetConfig()}{PARSER\_GetConfig()}}
+{\footnotesize\ttfamily \label{parser_8h_a3efdb0f9dbcb070589d0ece681ca737e} 
+\mbox{\hyperlink{struct_r_e_c__config__t}{REC\+\_\+config\+\_\+t}} PARSER\+\_\+\+Get\+Config (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns Active Configuration. 
+
+This Function Returns The Global Configuration Structure That Contains The Settings For The Recording, Such as Baudrate, Version, And Other Relevant Parameters.
+
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_r_e_c__config__t}{REC\+\_\+config\+\_\+t} The Current Recording Configuration. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_a2610f74dab8b66e1b4e9596bc001cb37}\index{parser.h@{parser.h}!PARSER\_GetDataBits@{PARSER\_GetDataBits}}
+\index{PARSER\_GetDataBits@{PARSER\_GetDataBits}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_GetDataBits()}{PARSER\_GetDataBits()}}
+{\footnotesize\ttfamily \label{parser_8h_a2610f74dab8b66e1b4e9596bc001cb37} 
+lpuart\+\_\+data\+\_\+bits\+\_\+t PARSER\+\_\+\+Get\+Data\+Bits (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns The Number of Data Bits. 
+
+\begin{DoxyReturn}{Returns}
+lpuart\+\_\+data\+\_\+bits\+\_\+t Number of Data Bits. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_ac16b349e0dc4c2cc65b81177f41c5be4}\index{parser.h@{parser.h}!PARSER\_GetFileSize@{PARSER\_GetFileSize}}
+\index{PARSER\_GetFileSize@{PARSER\_GetFileSize}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_GetFileSize()}{PARSER\_GetFileSize()}}
+{\footnotesize\ttfamily \label{parser_8h_ac16b349e0dc4c2cc65b81177f41c5be4} 
+uint32\+\_\+t PARSER\+\_\+\+Get\+File\+Size (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the Maximal File Size. 
+
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t Maximal File Size. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_ad28e2d5639ead57db0ffea30248fde09}\index{parser.h@{parser.h}!PARSER\_GetFreeSpaceLimitMB@{PARSER\_GetFreeSpaceLimitMB}}
+\index{PARSER\_GetFreeSpaceLimitMB@{PARSER\_GetFreeSpaceLimitMB}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_GetFreeSpaceLimitMB()}{PARSER\_GetFreeSpaceLimitMB()}}
+{\footnotesize\ttfamily \label{parser_8h_ad28e2d5639ead57db0ffea30248fde09} 
+uint32\+\_\+t PARSER\+\_\+\+Get\+Free\+Space\+Limit\+MB (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns The Free Space Limit on SD Card For LED Signaling. 
+
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t Free Space Limit. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_ab78012dc34f9d71e0f8fa445363bbcb1}\index{parser.h@{parser.h}!PARSER\_GetMaxBytes@{PARSER\_GetMaxBytes}}
+\index{PARSER\_GetMaxBytes@{PARSER\_GetMaxBytes}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_GetMaxBytes()}{PARSER\_GetMaxBytes()}}
+{\footnotesize\ttfamily \label{parser_8h_ab78012dc34f9d71e0f8fa445363bbcb1} 
+uint32\+\_\+t PARSER\+\_\+\+Get\+Max\+Bytes (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns The Number of Maximal Bytes Between LED Blinking. 
+
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t Number of Maximal Bytes Between LED Blinking. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_aaad8ef014bfef5791bab928d69539652}\index{parser.h@{parser.h}!PARSER\_GetParity@{PARSER\_GetParity}}
+\index{PARSER\_GetParity@{PARSER\_GetParity}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_GetParity()}{PARSER\_GetParity()}}
+{\footnotesize\ttfamily \label{parser_8h_aaad8ef014bfef5791bab928d69539652} 
+lpuart\+\_\+parity\+\_\+mode\+\_\+t PARSER\+\_\+\+Get\+Parity (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns The Parity. 
+
+\begin{DoxyReturn}{Returns}
+lpuart\+\_\+parity\+\_\+mode\+\_\+t k\+LPUART\+\_\+\+Parity\+Disabled, k\+LPUART\+\_\+\+Parity\+Even or k\+LPUART\+\_\+\+Parity\+Odd. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_a65a95f8dd67609657bb8738ae7445fff}\index{parser.h@{parser.h}!PARSER\_GetStopBits@{PARSER\_GetStopBits}}
+\index{PARSER\_GetStopBits@{PARSER\_GetStopBits}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_GetStopBits()}{PARSER\_GetStopBits()}}
+{\footnotesize\ttfamily \label{parser_8h_a65a95f8dd67609657bb8738ae7445fff} 
+lpuart\+\_\+stop\+\_\+bit\+\_\+count\+\_\+t PARSER\+\_\+\+Get\+Stop\+Bits (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns The Number of Stop Bits. 
+
+\begin{DoxyReturn}{Returns}
+lpuart\+\_\+stop\+\_\+bit\+\_\+count\+\_\+t Number of Stop Bits. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_a5a5d72738ce00182a87dab80d1cd583b}\index{parser.h@{parser.h}!PARSER\_GetVersion@{PARSER\_GetVersion}}
+\index{PARSER\_GetVersion@{PARSER\_GetVersion}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_GetVersion()}{PARSER\_GetVersion()}}
+{\footnotesize\ttfamily \label{parser_8h_a5a5d72738ce00182a87dab80d1cd583b} 
+\mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130d}{REC\+\_\+version\+\_\+t}} PARSER\+\_\+\+Get\+Version (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the Version of The Device Being Recorded. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{parser_8h_ad61424a2558a5157fc217223acfd130d}{REC\+\_\+version\+\_\+t} Current Version of Recorded Device (WCT\+\_\+\+UNKOWN, WCT\+\_\+\+AUTOS1 or WCT\+\_\+\+AUTOS2). 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_a87e93b1d41e63941d8cf04fffef7c36a}\index{parser.h@{parser.h}!PARSER\_ParseBaudrate@{PARSER\_ParseBaudrate}}
+\index{PARSER\_ParseBaudrate@{PARSER\_ParseBaudrate}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_ParseBaudrate()}{PARSER\_ParseBaudrate()}}
+{\footnotesize\ttfamily \label{parser_8h_a87e93b1d41e63941d8cf04fffef7c36a} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} PARSER\+\_\+\+Parse\+Baudrate (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ch\+Content}{}\end{DoxyParamCaption})}
+
+
+
+Parse Baud Rate From Configuration File. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ch\+Content} & Pointer To Content of Configuration File.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ERROR\+\_\+\+NONE If The Parsing Succeed. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_a92744e46fdca3ab7db53c21e0f70125c}\index{parser.h@{parser.h}!PARSER\_ParseDataBits@{PARSER\_ParseDataBits}}
+\index{PARSER\_ParseDataBits@{PARSER\_ParseDataBits}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_ParseDataBits()}{PARSER\_ParseDataBits()}}
+{\footnotesize\ttfamily \label{parser_8h_a92744e46fdca3ab7db53c21e0f70125c} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} PARSER\+\_\+\+Parse\+Data\+Bits (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ch\+Content}{}\end{DoxyParamCaption})}
+
+
+
+Parse The Number of Data Bits From Configuration File. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ch\+Content} & Pointer To Content of Configuration File.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ERROR\+\_\+\+NONE If The Parsing Succeed. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_a581751b2aaa966409e2f9aa95ca1bdc4}\index{parser.h@{parser.h}!PARSER\_ParseFileSize@{PARSER\_ParseFileSize}}
+\index{PARSER\_ParseFileSize@{PARSER\_ParseFileSize}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_ParseFileSize()}{PARSER\_ParseFileSize()}}
+{\footnotesize\ttfamily \label{parser_8h_a581751b2aaa966409e2f9aa95ca1bdc4} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} PARSER\+\_\+\+Parse\+File\+Size (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ch\+Content}{}\end{DoxyParamCaption})}
+
+
+
+Parse Record File Size From Configuration File. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ch\+Content} & Pointer To Content of Configuration File.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ERROR\+\_\+\+NONE If The Parsing Succeed. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_ac6e3d100fb869eef47d75d766a5f1bb4}\index{parser.h@{parser.h}!PARSER\_ParseFreeSpace@{PARSER\_ParseFreeSpace}}
+\index{PARSER\_ParseFreeSpace@{PARSER\_ParseFreeSpace}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_ParseFreeSpace()}{PARSER\_ParseFreeSpace()}}
+{\footnotesize\ttfamily \label{parser_8h_ac6e3d100fb869eef47d75d766a5f1bb4} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} PARSER\+\_\+\+Parse\+Free\+Space (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ch\+Content}{}\end{DoxyParamCaption})}
+
+
+
+Parse The Size of Free Space When Data Logger Will Signal To The User That Data Logger Is Running Out of Space. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ch\+Content} & Pointer To Content of Configuration File.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ERROR\+\_\+\+NONE If The Parsing Succeed. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_a22f70a70f519b6d78c8d35399a65acc8}\index{parser.h@{parser.h}!PARSER\_ParseParity@{PARSER\_ParseParity}}
+\index{PARSER\_ParseParity@{PARSER\_ParseParity}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_ParseParity()}{PARSER\_ParseParity()}}
+{\footnotesize\ttfamily \label{parser_8h_a22f70a70f519b6d78c8d35399a65acc8} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} PARSER\+\_\+\+Parse\+Parity (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ch\+Content}{}\end{DoxyParamCaption})}
+
+
+
+Parse Parity From Configuration File. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ch\+Content} & Pointer To Content of Configuration File.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ERROR\+\_\+\+NONE If The Parsing Succeed. 
+\end{DoxyReturn}
+\Hypertarget{parser_8h_af742067409bdd8c51edf9c354296aa51}\index{parser.h@{parser.h}!PARSER\_ParseStopBits@{PARSER\_ParseStopBits}}
+\index{PARSER\_ParseStopBits@{PARSER\_ParseStopBits}!parser.h@{parser.h}}
+\doxysubsubsection{\texorpdfstring{PARSER\_ParseStopBits()}{PARSER\_ParseStopBits()}}
+{\footnotesize\ttfamily \label{parser_8h_af742067409bdd8c51edf9c354296aa51} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} PARSER\+\_\+\+Parse\+Stop\+Bits (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ch\+Content}{}\end{DoxyParamCaption})}
+
+
+
+Parse The Number of Stop Bits From Configuration File. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ch\+Content} & Pointer To Content of Configuration File.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ERROR\+\_\+\+NONE If The Parsing Succeed. 
+\end{DoxyReturn}

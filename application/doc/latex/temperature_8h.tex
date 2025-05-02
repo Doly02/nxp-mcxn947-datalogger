@@ -1,0 +1,109 @@
+\doxysection{include/temperature.h File Reference}
+\hypertarget{temperature_8h}{}\label{temperature_8h}\index{include/temperature.h@{include/temperature.h}}
+{\ttfamily \#include "{}error.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+lpi2c.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+lpi2c\+\_\+edma.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+edma.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{temperature_8h_a7625c491f8b6ac367760f491ec543a6b}{SENSOR\+\_\+\+STATIC\+\_\+\+ADDR}}~0x48U
+\item 
+\#define \mbox{\hyperlink{temperature_8h_a40b4f22788a6584b24e4c85de488af5d}{SENSOR\+\_\+\+DYNAMIC\+\_\+\+ADDR}}~0x08U
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{temperature_8h_ad79223f453fb5cb3b14b0504b78c3b65}{Write}} (uint8\+\_\+t reg\+Address, uint8\+\_\+t val\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em I2C Write Function. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{temperature_8h_af7ebaac8aebcb5a7b3147b378d4d1e82}{Read}} (uint8\+\_\+t reg\+Address)
+\begin{DoxyCompactList}\small\item\em I2C Read Function. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{temperature_8h_a0b017c2ac439a408d7b0d2bb07c2c3af}{TMP\+\_\+\+Get\+Temperature}} (void)
+\begin{DoxyCompactList}\small\item\em Gets Temperature From On-\/\+Board P3\+T1755 Temperature Sensor. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{temperature_8h_a147cb7fa3ec99aa1038a20fd3d5ed0c3}{TMP\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize On-\/\+Board P3\+T1755 Temperature Sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{temperature_8h_a40b4f22788a6584b24e4c85de488af5d}\index{temperature.h@{temperature.h}!SENSOR\_DYNAMIC\_ADDR@{SENSOR\_DYNAMIC\_ADDR}}
+\index{SENSOR\_DYNAMIC\_ADDR@{SENSOR\_DYNAMIC\_ADDR}!temperature.h@{temperature.h}}
+\doxysubsubsection{\texorpdfstring{SENSOR\_DYNAMIC\_ADDR}{SENSOR\_DYNAMIC\_ADDR}}
+{\footnotesize\ttfamily \label{temperature_8h_a40b4f22788a6584b24e4c85de488af5d} 
+\#define SENSOR\+\_\+\+DYNAMIC\+\_\+\+ADDR~0x08U}
+
+\Hypertarget{temperature_8h_a7625c491f8b6ac367760f491ec543a6b}\index{temperature.h@{temperature.h}!SENSOR\_STATIC\_ADDR@{SENSOR\_STATIC\_ADDR}}
+\index{SENSOR\_STATIC\_ADDR@{SENSOR\_STATIC\_ADDR}!temperature.h@{temperature.h}}
+\doxysubsubsection{\texorpdfstring{SENSOR\_STATIC\_ADDR}{SENSOR\_STATIC\_ADDR}}
+{\footnotesize\ttfamily \label{temperature_8h_a7625c491f8b6ac367760f491ec543a6b} 
+\#define SENSOR\+\_\+\+STATIC\+\_\+\+ADDR~0x48U}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{temperature_8h_af7ebaac8aebcb5a7b3147b378d4d1e82}\index{temperature.h@{temperature.h}!Read@{Read}}
+\index{Read@{Read}!temperature.h@{temperature.h}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}}
+{\footnotesize\ttfamily \label{temperature_8h_af7ebaac8aebcb5a7b3147b378d4d1e82} 
+uint16\+\_\+t Read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+Address}{}\end{DoxyParamCaption})}
+
+
+
+I2C Read Function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em reg\+Address} & Address of The Register From Which The Reading Will Take Place.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Returns} & The Read Value From The Registry. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{temperature_8h_a0b017c2ac439a408d7b0d2bb07c2c3af}\index{temperature.h@{temperature.h}!TMP\_GetTemperature@{TMP\_GetTemperature}}
+\index{TMP\_GetTemperature@{TMP\_GetTemperature}!temperature.h@{temperature.h}}
+\doxysubsubsection{\texorpdfstring{TMP\_GetTemperature()}{TMP\_GetTemperature()}}
+{\footnotesize\ttfamily \label{temperature_8h_a0b017c2ac439a408d7b0d2bb07c2c3af} 
+float TMP\+\_\+\+Get\+Temperature (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Gets Temperature From On-\/\+Board P3\+T1755 Temperature Sensor. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em Returns} & Temperature As Float Number. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{temperature_8h_a147cb7fa3ec99aa1038a20fd3d5ed0c3}\index{temperature.h@{temperature.h}!TMP\_Init@{TMP\_Init}}
+\index{TMP\_Init@{TMP\_Init}!temperature.h@{temperature.h}}
+\doxysubsubsection{\texorpdfstring{TMP\_Init()}{TMP\_Init()}}
+{\footnotesize\ttfamily \label{temperature_8h_a147cb7fa3ec99aa1038a20fd3d5ed0c3} 
+uint8\+\_\+t TMP\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize On-\/\+Board P3\+T1755 Temperature Sensor. 
+
+\Hypertarget{temperature_8h_ad79223f453fb5cb3b14b0504b78c3b65}\index{temperature.h@{temperature.h}!Write@{Write}}
+\index{Write@{Write}!temperature.h@{temperature.h}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily \label{temperature_8h_ad79223f453fb5cb3b14b0504b78c3b65} 
+uint8\+\_\+t Write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+Address}{, }\item[{uint8\+\_\+t}]{val}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+I2C Write Function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em reg\+Address} & Address of The Register To Be Written To. \\
+\hline
+\mbox{\texttt{ in}}  & {\em val} & Array of Values To Be Written To The Register.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em If} & The Write Succeeds, Returns 0. \\
+\hline
+\end{DoxyRetVals}

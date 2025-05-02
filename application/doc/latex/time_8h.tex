@@ -1,0 +1,35 @@
+\doxysection{include/time.h File Reference}
+\hypertarget{time_8h}{}\label{time_8h}\index{include/time.h@{include/time.h}}
+{\ttfamily \#include "{}fsl\+\_\+irtc.\+h"{}}\newline
+{\ttfamily \#include "{}rtc\+\_\+ds3231.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+debug\+\_\+console.\+h"{}}\newline
+{\ttfamily \#include "{}error.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{time_8h_a58062985d9778449f989ddad35f49ab4}{LPI2\+C\+\_\+\+DMA\+\_\+\+BASEADDR}}~(DMA0)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{time_8h_ab740cec32d4bf2c00b217b99b5385fb8}{TIME\+\_\+\+Init\+IRTC}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{time_8h_a58062985d9778449f989ddad35f49ab4}\index{time.h@{time.h}!LPI2C\_DMA\_BASEADDR@{LPI2C\_DMA\_BASEADDR}}
+\index{LPI2C\_DMA\_BASEADDR@{LPI2C\_DMA\_BASEADDR}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{LPI2C\_DMA\_BASEADDR}{LPI2C\_DMA\_BASEADDR}}
+{\footnotesize\ttfamily \label{time_8h_a58062985d9778449f989ddad35f49ab4} 
+\#define LPI2\+C\+\_\+\+DMA\+\_\+\+BASEADDR~(DMA0)}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{time_8h_ab740cec32d4bf2c00b217b99b5385fb8}\index{time.h@{time.h}!TIME\_InitIRTC@{TIME\_InitIRTC}}
+\index{TIME\_InitIRTC@{TIME\_InitIRTC}!time.h@{time.h}}
+\doxysubsubsection{\texorpdfstring{TIME\_InitIRTC()}{TIME\_InitIRTC()}}
+{\footnotesize\ttfamily \label{time_8h_ab740cec32d4bf2c00b217b99b5385fb8} 
+\mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} TIME\+\_\+\+Init\+IRTC (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+irtc\+Cfg.\+wakeup\+Select = true; irtc\+Cfg.\+timer\+Std\+Mask = false; irtc\+Cfg.\+alrm\+Match = k\+RTC\+\_\+\+Match\+Sec\+Min\+Hr;

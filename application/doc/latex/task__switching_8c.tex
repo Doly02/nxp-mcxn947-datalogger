@@ -1,0 +1,29 @@
+\doxysection{source/task\+\_\+switching.c File Reference}
+\hypertarget{task__switching_8c}{}\label{task__switching_8c}\index{source/task\_switching.c@{source/task\_switching.c}}
+{\ttfamily \#include "{}mass\+\_\+storage.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+usb\+\_\+device\+\_\+notification\+\_\+t \mbox{\hyperlink{task__switching_8c_ab4bb1b4063898f52aa390037fc37db81}{USB\+\_\+\+State}} (usb\+\_\+device\+\_\+struct\+\_\+t \texorpdfstring{$\ast$}{*}p\+Device\+Handle)
+\begin{DoxyCompactList}\small\item\em Checks If Application USB Is Attached To Digital Data Logger. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{task__switching_8c_ab4bb1b4063898f52aa390037fc37db81}\index{task\_switching.c@{task\_switching.c}!USB\_State@{USB\_State}}
+\index{USB\_State@{USB\_State}!task\_switching.c@{task\_switching.c}}
+\doxysubsubsection{\texorpdfstring{USB\_State()}{USB\_State()}}
+{\footnotesize\ttfamily \label{task__switching_8c_ab4bb1b4063898f52aa390037fc37db81} 
+usb\+\_\+device\+\_\+notification\+\_\+t USB\+\_\+\+State (\begin{DoxyParamCaption}\item[{usb\+\_\+device\+\_\+struct\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Device\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Checks If Application USB Is Attached To Digital Data Logger. 
+
+Checks Thru USB OTG (USB On-\/\+To-\/\+Go) SC Register. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Device\+Handle} & Pointer to USB Device Handle (e.\+g. Mass Storage Handle).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+k\+USB\+\_\+\+Device\+Notify\+Attach if USB Is Attached Otherwise Returns k\+USB\+\_\+\+Device\+Notify\+Detach. 
+\end{DoxyReturn}

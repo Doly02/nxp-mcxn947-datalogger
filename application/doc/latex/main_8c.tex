@@ -1,0 +1,121 @@
+\doxysection{source/main.c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{source/main.c@{source/main.c}}
+{\ttfamily \#include "{}fsl\+\_\+device\+\_\+registers.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+debug\+\_\+console.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+clock.\+h"{}}\newline
+{\ttfamily \#include "{}pin\+\_\+mux.\+h"{}}\newline
+{\ttfamily \#include "{}clock\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}board.\+h"{}}\newline
+{\ttfamily \#include "{}semphr.\+h"{}}\newline
+{\ttfamily \#include "{}app\+\_\+init.\+h"{}}\newline
+{\ttfamily \#include "{}app\+\_\+tasks.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em Application Entry Point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static Stack\+Type\+\_\+t \mbox{\hyperlink{main_8c_a9c4c2cca5aa22e3a4a9574185bb6005f}{g\+\_\+x\+Msc\+Task\+Stack}} \mbox{[}\mbox{\hyperlink{defs_8h_a8e3b191086204c5a914ecb42010d79b7}{MSC\+\_\+\+STACK\+\_\+\+SIZE}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Buffer for Static Stack of Mass Storage Task. \end{DoxyCompactList}\item 
+static Static\+Task\+\_\+t \mbox{\hyperlink{main_8c_ae3acceb1cf3d1433ee365ab1e78da0f1}{g\+\_\+x\+Msc\+Task\+TCB}}
+\begin{DoxyCompactList}\small\item\em TCB (Task Control Block) -\/ Metadata of Mass Storage Task. \end{DoxyCompactList}\item 
+static Stack\+Type\+\_\+t \mbox{\hyperlink{main_8c_a4cc7a84cccfb1560af66137418551ed7}{g\+\_\+x\+Record\+Task\+Stack}} \mbox{[}\mbox{\hyperlink{defs_8h_a596e2563f1ece6b4d9a86d20455183a1}{RECORD\+\_\+\+STACK\+\_\+\+SIZE}}\mbox{]}
+\item 
+static Static\+Task\+\_\+t \mbox{\hyperlink{main_8c_aec4543de0423b15339bbdf0b4c601a2c}{g\+\_\+x\+Record\+Task\+TCB}}
+\item 
+usb\+\_\+msc\+\_\+struct\+\_\+t \mbox{\hyperlink{main_8c_ae3a33b5a19fe04eeba3ebf4259f74625}{g\+\_\+msc}}
+\begin{DoxyCompactList}\small\item\em Global USB MSC Structure. \end{DoxyCompactList}\item 
+Task\+Handle\+\_\+t \mbox{\hyperlink{main_8c_a728d33fa6714c81e0ddb020328ac36ee}{g\+\_\+x\+Msc\+Task\+Handle}} = NULL
+\item 
+Task\+Handle\+\_\+t \mbox{\hyperlink{main_8c_a95134cbd8723a2c8b0cdd33f75d979fb}{g\+\_\+x\+Record\+Task\+Handle}} = NULL
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{main_8c_af59d7418386068624f2b915e32fe23ff}{g\+\_\+x\+Sem\+Record}}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{main_8c_a286a007f0c94c51fa505aa600c488122}{g\+\_\+x\+Sem\+Mass\+Storage}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8c_a840291bc02cba5474a4cb46a9b9566fe} 
+int main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Application Entry Point. 
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{main_8c_ae3a33b5a19fe04eeba3ebf4259f74625}\index{main.c@{main.c}!g\_msc@{g\_msc}}
+\index{g\_msc@{g\_msc}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{g\_msc}{g\_msc}}
+{\footnotesize\ttfamily \label{main_8c_ae3a33b5a19fe04eeba3ebf4259f74625} 
+usb\+\_\+msc\+\_\+struct\+\_\+t g\+\_\+msc}
+
+
+
+Global USB MSC Structure. 
+
+Mass Storage Descriptor.
+
+MISRA Deviation\+: Rule 8.\+4 Justification\+: Declaration of \textquotesingle{}g\+\_\+msc\textquotesingle{} is intentionally placed in \textquotesingle{}\doxylink{app__tasks_8h}{app\+\_\+tasks.\+h}\textquotesingle{}, T , the current file only provides the definition. \Hypertarget{main_8c_a728d33fa6714c81e0ddb020328ac36ee}\index{main.c@{main.c}!g\_xMscTaskHandle@{g\_xMscTaskHandle}}
+\index{g\_xMscTaskHandle@{g\_xMscTaskHandle}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{g\_xMscTaskHandle}{g\_xMscTaskHandle}}
+{\footnotesize\ttfamily \label{main_8c_a728d33fa6714c81e0ddb020328ac36ee} 
+Task\+Handle\+\_\+t g\+\_\+x\+Msc\+Task\+Handle = NULL}
+
+\Hypertarget{main_8c_a9c4c2cca5aa22e3a4a9574185bb6005f}\index{main.c@{main.c}!g\_xMscTaskStack@{g\_xMscTaskStack}}
+\index{g\_xMscTaskStack@{g\_xMscTaskStack}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{g\_xMscTaskStack}{g\_xMscTaskStack}}
+{\footnotesize\ttfamily \label{main_8c_a9c4c2cca5aa22e3a4a9574185bb6005f} 
+Stack\+Type\+\_\+t g\+\_\+x\+Msc\+Task\+Stack\mbox{[}\mbox{\hyperlink{defs_8h_a8e3b191086204c5a914ecb42010d79b7}{MSC\+\_\+\+STACK\+\_\+\+SIZE}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Buffer for Static Stack of Mass Storage Task. 
+
+\Hypertarget{main_8c_ae3acceb1cf3d1433ee365ab1e78da0f1}\index{main.c@{main.c}!g\_xMscTaskTCB@{g\_xMscTaskTCB}}
+\index{g\_xMscTaskTCB@{g\_xMscTaskTCB}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{g\_xMscTaskTCB}{g\_xMscTaskTCB}}
+{\footnotesize\ttfamily \label{main_8c_ae3acceb1cf3d1433ee365ab1e78da0f1} 
+Static\+Task\+\_\+t g\+\_\+x\+Msc\+Task\+TCB\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+TCB (Task Control Block) -\/ Metadata of Mass Storage Task. 
+
+Includes All The Information Needed to Manage The Task Such As Job Status, Job Stack Pointer, Values of Variables During Context Switching. \Hypertarget{main_8c_a95134cbd8723a2c8b0cdd33f75d979fb}\index{main.c@{main.c}!g\_xRecordTaskHandle@{g\_xRecordTaskHandle}}
+\index{g\_xRecordTaskHandle@{g\_xRecordTaskHandle}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{g\_xRecordTaskHandle}{g\_xRecordTaskHandle}}
+{\footnotesize\ttfamily \label{main_8c_a95134cbd8723a2c8b0cdd33f75d979fb} 
+Task\+Handle\+\_\+t g\+\_\+x\+Record\+Task\+Handle = NULL}
+
+\Hypertarget{main_8c_a4cc7a84cccfb1560af66137418551ed7}\index{main.c@{main.c}!g\_xRecordTaskStack@{g\_xRecordTaskStack}}
+\index{g\_xRecordTaskStack@{g\_xRecordTaskStack}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{g\_xRecordTaskStack}{g\_xRecordTaskStack}}
+{\footnotesize\ttfamily \label{main_8c_a4cc7a84cccfb1560af66137418551ed7} 
+Stack\+Type\+\_\+t g\+\_\+x\+Record\+Task\+Stack\mbox{[}\mbox{\hyperlink{defs_8h_a596e2563f1ece6b4d9a86d20455183a1}{RECORD\+\_\+\+STACK\+\_\+\+SIZE}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{main_8c_aec4543de0423b15339bbdf0b4c601a2c}\index{main.c@{main.c}!g\_xRecordTaskTCB@{g\_xRecordTaskTCB}}
+\index{g\_xRecordTaskTCB@{g\_xRecordTaskTCB}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{g\_xRecordTaskTCB}{g\_xRecordTaskTCB}}
+{\footnotesize\ttfamily \label{main_8c_aec4543de0423b15339bbdf0b4c601a2c} 
+Static\+Task\+\_\+t g\+\_\+x\+Record\+Task\+TCB\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{main_8c_a286a007f0c94c51fa505aa600c488122}\index{main.c@{main.c}!g\_xSemMassStorage@{g\_xSemMassStorage}}
+\index{g\_xSemMassStorage@{g\_xSemMassStorage}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{g\_xSemMassStorage}{g\_xSemMassStorage}}
+{\footnotesize\ttfamily \label{main_8c_a286a007f0c94c51fa505aa600c488122} 
+Semaphore\+Handle\+\_\+t g\+\_\+x\+Sem\+Mass\+Storage}
+
+\Hypertarget{main_8c_af59d7418386068624f2b915e32fe23ff}\index{main.c@{main.c}!g\_xSemRecord@{g\_xSemRecord}}
+\index{g\_xSemRecord@{g\_xSemRecord}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{g\_xSemRecord}{g\_xSemRecord}}
+{\footnotesize\ttfamily \label{main_8c_af59d7418386068624f2b915e32fe23ff} 
+Semaphore\+Handle\+\_\+t g\+\_\+x\+Sem\+Record}
+

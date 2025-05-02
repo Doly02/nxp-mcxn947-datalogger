@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['vapplicationgetidletaskmemory_0',['vApplicationGetIdleTaskMemory',['../app__tasks_8h.html#a1988aa923b19fa6f31c93afa7773f793',1,'vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize):&#160;app_tasks.c'],['../app__tasks_8c.html#a1988aa923b19fa6f31c93afa7773f793',1,'vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize):&#160;app_tasks.c']]],
+  ['vapplicationgettimertaskmemory_1',['vApplicationGetTimerTaskMemory',['../app__tasks_8h.html#a1e80ecbd3fc2d04f18d6409ffa893a86',1,'vApplicationGetTimerTaskMemory(StaticTask_t **ppxTimerTaskTCBBuffer, StackType_t **ppxTimerTaskStackBuffer, uint32_t *pulTimerTaskStackSize):&#160;app_tasks.c'],['../app__tasks_8c.html#a1e80ecbd3fc2d04f18d6409ffa893a86',1,'vApplicationGetTimerTaskMemory(StaticTask_t **ppxTimerTaskTCBBuffer, StackType_t **ppxTimerTaskStackBuffer, uint32_t *pulTimerTaskStackSize):&#160;app_tasks.c']]]
+];

@@ -1,0 +1,294 @@
+\doxysection{drivers/rtc\+\_\+ds3231.c File Reference}
+\hypertarget{rtc__ds3231_8c}{}\label{rtc__ds3231_8c}\index{drivers/rtc\_ds3231.c@{drivers/rtc\_ds3231.c}}
+{\ttfamily \#include "{}rtc\+\_\+ds3231.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtc__ds3231_8c_a1d7cd4b7016538b77f3235ee3fcf06b3}{I2\+C\+\_\+\+DATA\+\_\+\+LENGTH}}~(2) /\texorpdfstring{$\ast$}{*} MAX is 256 \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{rtc__ds3231_8c_ab9a0d70cb746f776adf784200005e0a1}{BYTE\+\_\+1}}~(0U)
+\item 
+\#define \mbox{\hyperlink{rtc__ds3231_8c_a8478fde7b3478e18f57a71255db28c8a}{BYTE\+\_\+2}}~(1U)
+\item 
+\#define \mbox{\hyperlink{rtc__ds3231_8c_aeb449618453be08beb854cf0122c16a1}{CLK\+\_\+\+STATE}}(x)
+\item 
+\#define \mbox{\hyperlink{rtc__ds3231_8c_a33acbef8375c804a194e39ce12262c88}{OSF\+\_\+\+STATE}}(x)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{rtc__ds3231_8c_a680f42be41e67e5e4cea9f6bc69d69f1}{AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION}} (uint8\+\_\+t g\+Rx\+Buff\mbox{[}\mbox{\hyperlink{rtc__ds3231_8c_a1d7cd4b7016538b77f3235ee3fcf06b3}{I2\+C\+\_\+\+DATA\+\_\+\+LENGTH}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Reception Buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{rtc__ds3231_8c_ac8b71b782f019fcc2256073a817c48c7}{AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION}} (lpi2c\+\_\+master\+\_\+edma\+\_\+handle\+\_\+t g\+Edma\+Handle)
+\begin{DoxyCompactList}\small\item\em e\+DMA Driver Handle Used For Non-\/\+Blocking DMA Transfer. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{rtc__ds3231_8c_a038e5a1da8a787ae48b1e279cab6df55}{lpi2c\+\_\+callback}} (LPI2\+C\+\_\+\+Type \texorpdfstring{$\ast$}{*}base, lpi2c\+\_\+master\+\_\+edma\+\_\+handle\+\_\+t \texorpdfstring{$\ast$}{*}handle, status\+\_\+t status, void \texorpdfstring{$\ast$}{*}user\+Data)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{rtc__ds3231_8c_a416879c4510669c23007e9b0e8bcd219}{RTC\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_a487d25d797a1fed2626ac9709ddac456}{RTC\+\_\+\+Deinit}} (void)
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{rtc__ds3231_8c_ab12090e402b342c7f8773f2094773394}{RTC\+\_\+\+Convert\+To\+BCD}} (uint8\+\_\+t dec)
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{rtc__ds3231_8c_a87c0d6971d07785ee1a2abf9e24eeb3f}{RTC\+\_\+\+Convert\+To\+DEC}} (uint8\+\_\+t bcd)
+\item 
+\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\+\_\+osc\+\_\+state\+\_\+t}} \mbox{\hyperlink{rtc__ds3231_8c_aeeb5e4125e1fc64d30a35453b87d0c56}{RTC\+\_\+\+Get\+State}} (void)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_ada78757b2decedc79e0382b42e45a513}{RTC\+\_\+\+Set\+Osc\+State}} (\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\+\_\+osc\+\_\+state\+\_\+t}} state)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{rtc__ds3231_8c_ac15d2cfbe2c4c9482e784f6a5aeed32a}{RTC\+\_\+\+Write}} (uint8\+\_\+t reg\+Address, uint8\+\_\+t val)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{rtc__ds3231_8c_a340e36eb16d87e6c82d26b051844060c}{RTC\+\_\+\+Read}} (uint8\+\_\+t reg\+Address)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_a37c611694906a21743c2ad7123a55f9f}{RTC\+\_\+\+Set\+Time}} (\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Time)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_a022d5dbffbbdba01d41f47d35dd2f411}{RTC\+\_\+\+Get\+Time}} (\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Time)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_aa91602eaabcb3a6e36c0da47980e76f8}{RTC\+\_\+\+Set\+Date}} (\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Date)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_aff981efc71adf20253068942e278b421}{RTC\+\_\+\+Get\+Date}} (\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Date)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_a1c9f11eaae27873a2bc415d53541594d}{RTC\+\_\+\+Set\+Interrupt\+Mode}} (\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\+\_\+interrupt\+\_\+mode\+\_\+t}} mode)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_a06995b923b484104afe590533698e8a1}{RTC\+\_\+\+Ctrl\+Alarm1}} (uint8\+\_\+t enable)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_aacb3e98a52f0d90ecd8affb36960cfc6}{RTC\+\_\+\+Clear\+Flag\+Alarm1}} (void)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_a86e1ffe598df20f7d90abe6ea4fb0135}{RTC\+\_\+\+Ctrl\+Alarm2}} (uint8\+\_\+t enable)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_a2b8c5234e3d21ad10eb86b7a5b912dd3}{RTC\+\_\+\+Clear\+Flag\+Alarm2}} (void)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_a61d57ebc0932c5610c8a7e8dd7d860f8}{RTC\+\_\+\+Set\+Time\+Default}} (\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Time)
+\item 
+void \mbox{\hyperlink{rtc__ds3231_8c_a6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\+\_\+\+Set\+Date\+Default}} (\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Date)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+edma\+\_\+handle\+\_\+t \mbox{\hyperlink{rtc__ds3231_8c_afb84870262e12212b969d872bff3bead}{g\+Edma\+Tx\+Handle}}
+\begin{DoxyCompactList}\small\item\em Tx e\+DMA Handle. \end{DoxyCompactList}\item 
+edma\+\_\+handle\+\_\+t \mbox{\hyperlink{rtc__ds3231_8c_af154a23f818a55047504f0c3f2d3aa67}{g\+Edma\+Rx\+Handle}}
+\begin{DoxyCompactList}\small\item\em Rx e\+DMA Handle. \end{DoxyCompactList}\item 
+volatile bool \mbox{\hyperlink{rtc__ds3231_8c_ab6d7adecec71e697f12bf437aa7bb168}{g\+Completion\+Flag}} = false
+\begin{DoxyCompactList}\small\item\em Flag Indicating Whether The Transfer Has Finished. \end{DoxyCompactList}\item 
+lpi2c\+\_\+master\+\_\+transfer\+\_\+t \mbox{\hyperlink{rtc__ds3231_8c_af210093caf29792f8f940201ddd0cfec}{xfer}} = \{0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{rtc__ds3231_8c_ab9a0d70cb746f776adf784200005e0a1}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!BYTE\_1@{BYTE\_1}}
+\index{BYTE\_1@{BYTE\_1}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{BYTE\_1}{BYTE\_1}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_ab9a0d70cb746f776adf784200005e0a1} 
+\#define BYTE\+\_\+1~(0U)}
+
+\Hypertarget{rtc__ds3231_8c_a8478fde7b3478e18f57a71255db28c8a}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!BYTE\_2@{BYTE\_2}}
+\index{BYTE\_2@{BYTE\_2}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{BYTE\_2}{BYTE\_2}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a8478fde7b3478e18f57a71255db28c8a} 
+\#define BYTE\+\_\+2~(1U)}
+
+\Hypertarget{rtc__ds3231_8c_aeb449618453be08beb854cf0122c16a1}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!CLK\_STATE@{CLK\_STATE}}
+\index{CLK\_STATE@{CLK\_STATE}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{CLK\_STATE}{CLK\_STATE}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_aeb449618453be08beb854cf0122c16a1} 
+\#define CLK\+\_\+\+STATE(\begin{DoxyParamCaption}\item[{}]{x}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(uint8\_t)((x\ >>\ 7)\ \&\ 0x1)}
+
+\end{DoxyCode}
+\Hypertarget{rtc__ds3231_8c_a1d7cd4b7016538b77f3235ee3fcf06b3}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!I2C\_DATA\_LENGTH@{I2C\_DATA\_LENGTH}}
+\index{I2C\_DATA\_LENGTH@{I2C\_DATA\_LENGTH}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{I2C\_DATA\_LENGTH}{I2C\_DATA\_LENGTH}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a1d7cd4b7016538b77f3235ee3fcf06b3} 
+\#define I2\+C\+\_\+\+DATA\+\_\+\+LENGTH~(2) /\texorpdfstring{$\ast$}{*} MAX is 256 \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{rtc__ds3231_8c_a33acbef8375c804a194e39ce12262c88}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!OSF\_STATE@{OSF\_STATE}}
+\index{OSF\_STATE@{OSF\_STATE}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{OSF\_STATE}{OSF\_STATE}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a33acbef8375c804a194e39ce12262c88} 
+\#define OSF\+\_\+\+STATE(\begin{DoxyParamCaption}\item[{}]{x}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{rtc__ds3231_8c_ac8b71b782f019fcc2256073a817c48c7}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}}
+\index{AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{AT\_NONCACHEABLE\_SECTION()}{AT\_NONCACHEABLE\_SECTION()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_ac8b71b782f019fcc2256073a817c48c7} 
+AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION (\begin{DoxyParamCaption}\item[{lpi2c\+\_\+master\+\_\+edma\+\_\+handle\+\_\+t}]{g\+Edma\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+e\+DMA Driver Handle Used For Non-\/\+Blocking DMA Transfer. 
+
+\Hypertarget{rtc__ds3231_8c_a680f42be41e67e5e4cea9f6bc69d69f1}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}}
+\index{AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{AT\_NONCACHEABLE\_SECTION()}{AT\_NONCACHEABLE\_SECTION()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a680f42be41e67e5e4cea9f6bc69d69f1} 
+AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{g\+Rx\+Buff}{\mbox{[}\+I2\+C\+\_\+\+DATA\+\_\+\+LENGTH\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Reception Buffer. 
+
+Must Be In Non-\/\+Cacheable Memory Due To Usage of DMA. \Hypertarget{rtc__ds3231_8c_a038e5a1da8a787ae48b1e279cab6df55}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!lpi2c\_callback@{lpi2c\_callback}}
+\index{lpi2c\_callback@{lpi2c\_callback}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{lpi2c\_callback()}{lpi2c\_callback()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a038e5a1da8a787ae48b1e279cab6df55} 
+static void lpi2c\+\_\+callback (\begin{DoxyParamCaption}\item[{LPI2\+C\+\_\+\+Type \texorpdfstring{$\ast$}{*}}]{base}{, }\item[{lpi2c\+\_\+master\+\_\+edma\+\_\+handle\+\_\+t \texorpdfstring{$\ast$}{*}}]{handle}{, }\item[{status\+\_\+t}]{status}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{user\+Data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{rtc__ds3231_8c_aacb3e98a52f0d90ecd8affb36960cfc6}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_ClearFlagAlarm1@{RTC\_ClearFlagAlarm1}}
+\index{RTC\_ClearFlagAlarm1@{RTC\_ClearFlagAlarm1}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_ClearFlagAlarm1()}{RTC\_ClearFlagAlarm1()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_aacb3e98a52f0d90ecd8affb36960cfc6} 
+void RTC\+\_\+\+Clear\+Flag\+Alarm1 (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_a2b8c5234e3d21ad10eb86b7a5b912dd3}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_ClearFlagAlarm2@{RTC\_ClearFlagAlarm2}}
+\index{RTC\_ClearFlagAlarm2@{RTC\_ClearFlagAlarm2}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_ClearFlagAlarm2()}{RTC\_ClearFlagAlarm2()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a2b8c5234e3d21ad10eb86b7a5b912dd3} 
+void RTC\+\_\+\+Clear\+Flag\+Alarm2 (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_ab12090e402b342c7f8773f2094773394}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_ConvertToBCD@{RTC\_ConvertToBCD}}
+\index{RTC\_ConvertToBCD@{RTC\_ConvertToBCD}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_ConvertToBCD()}{RTC\_ConvertToBCD()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_ab12090e402b342c7f8773f2094773394} 
+static uint8\+\_\+t RTC\+\_\+\+Convert\+To\+BCD (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dec}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{rtc__ds3231_8c_a87c0d6971d07785ee1a2abf9e24eeb3f}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_ConvertToDEC@{RTC\_ConvertToDEC}}
+\index{RTC\_ConvertToDEC@{RTC\_ConvertToDEC}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_ConvertToDEC()}{RTC\_ConvertToDEC()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a87c0d6971d07785ee1a2abf9e24eeb3f} 
+static uint8\+\_\+t RTC\+\_\+\+Convert\+To\+DEC (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{bcd}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{rtc__ds3231_8c_a06995b923b484104afe590533698e8a1}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_CtrlAlarm1@{RTC\_CtrlAlarm1}}
+\index{RTC\_CtrlAlarm1@{RTC\_CtrlAlarm1}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_CtrlAlarm1()}{RTC\_CtrlAlarm1()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a06995b923b484104afe590533698e8a1} 
+void RTC\+\_\+\+Ctrl\+Alarm1 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{enable}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_a86e1ffe598df20f7d90abe6ea4fb0135}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_CtrlAlarm2@{RTC\_CtrlAlarm2}}
+\index{RTC\_CtrlAlarm2@{RTC\_CtrlAlarm2}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_CtrlAlarm2()}{RTC\_CtrlAlarm2()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a86e1ffe598df20f7d90abe6ea4fb0135} 
+void RTC\+\_\+\+Ctrl\+Alarm2 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{enable}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_a487d25d797a1fed2626ac9709ddac456}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_Deinit@{RTC\_Deinit}}
+\index{RTC\_Deinit@{RTC\_Deinit}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_Deinit()}{RTC\_Deinit()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a487d25d797a1fed2626ac9709ddac456} 
+void RTC\+\_\+\+Deinit (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_aff981efc71adf20253068942e278b421}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_GetDate@{RTC\_GetDate}}
+\index{RTC\_GetDate@{RTC\_GetDate}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_GetDate()}{RTC\_GetDate()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_aff981efc71adf20253068942e278b421} 
+void RTC\+\_\+\+Get\+Date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Date}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_aeeb5e4125e1fc64d30a35453b87d0c56}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_GetState@{RTC\_GetState}}
+\index{RTC\_GetState@{RTC\_GetState}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_GetState()}{RTC\_GetState()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_aeeb5e4125e1fc64d30a35453b87d0c56} 
+\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\+\_\+osc\+\_\+state\+\_\+t}} RTC\+\_\+\+Get\+State (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_a022d5dbffbbdba01d41f47d35dd2f411}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_GetTime@{RTC\_GetTime}}
+\index{RTC\_GetTime@{RTC\_GetTime}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_GetTime()}{RTC\_GetTime()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a022d5dbffbbdba01d41f47d35dd2f411} 
+void RTC\+\_\+\+Get\+Time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Time}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_a416879c4510669c23007e9b0e8bcd219}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_Init@{RTC\_Init}}
+\index{RTC\_Init@{RTC\_Init}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_Init()}{RTC\_Init()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a416879c4510669c23007e9b0e8bcd219} 
+uint8\+\_\+t RTC\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+enable\+Round\+Robin\+Arbitration = false; enable\+Halt\+On\+Error = true; enable\+Continuous\+Link\+Mode = false; enable\+Debug\+Mode = false;\Hypertarget{rtc__ds3231_8c_a340e36eb16d87e6c82d26b051844060c}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_Read@{RTC\_Read}}
+\index{RTC\_Read@{RTC\_Read}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_Read()}{RTC\_Read()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a340e36eb16d87e6c82d26b051844060c} 
+uint8\+\_\+t RTC\+\_\+\+Read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+Address}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_aa91602eaabcb3a6e36c0da47980e76f8}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_SetDate@{RTC\_SetDate}}
+\index{RTC\_SetDate@{RTC\_SetDate}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_SetDate()}{RTC\_SetDate()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_aa91602eaabcb3a6e36c0da47980e76f8} 
+void RTC\+\_\+\+Set\+Date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Date}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_a6a3b9bda0f1f1fdff2c4ae91f180021e}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_SetDateDefault@{RTC\_SetDateDefault}}
+\index{RTC\_SetDateDefault@{RTC\_SetDateDefault}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_SetDateDefault()}{RTC\_SetDateDefault()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a6a3b9bda0f1f1fdff2c4ae91f180021e} 
+void RTC\+\_\+\+Set\+Date\+Default (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Date}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_a1c9f11eaae27873a2bc415d53541594d}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_SetInterruptMode@{RTC\_SetInterruptMode}}
+\index{RTC\_SetInterruptMode@{RTC\_SetInterruptMode}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_SetInterruptMode()}{RTC\_SetInterruptMode()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a1c9f11eaae27873a2bc415d53541594d} 
+void RTC\+\_\+\+Set\+Interrupt\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\+\_\+interrupt\+\_\+mode\+\_\+t}}}]{mode}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_ada78757b2decedc79e0382b42e45a513}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_SetOscState@{RTC\_SetOscState}}
+\index{RTC\_SetOscState@{RTC\_SetOscState}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_SetOscState()}{RTC\_SetOscState()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_ada78757b2decedc79e0382b42e45a513} 
+void RTC\+\_\+\+Set\+Osc\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\+\_\+osc\+\_\+state\+\_\+t}}}]{state}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_a37c611694906a21743c2ad7123a55f9f}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_SetTime@{RTC\_SetTime}}
+\index{RTC\_SetTime@{RTC\_SetTime}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_SetTime()}{RTC\_SetTime()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a37c611694906a21743c2ad7123a55f9f} 
+void RTC\+\_\+\+Set\+Time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Time}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_a61d57ebc0932c5610c8a7e8dd7d860f8}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_SetTimeDefault@{RTC\_SetTimeDefault}}
+\index{RTC\_SetTimeDefault@{RTC\_SetTimeDefault}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_SetTimeDefault()}{RTC\_SetTimeDefault()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_a61d57ebc0932c5610c8a7e8dd7d860f8} 
+void RTC\+\_\+\+Set\+Time\+Default (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Time}{}\end{DoxyParamCaption})}
+
+\Hypertarget{rtc__ds3231_8c_ac15d2cfbe2c4c9482e784f6a5aeed32a}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_Write@{RTC\_Write}}
+\index{RTC\_Write@{RTC\_Write}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{RTC\_Write()}{RTC\_Write()}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_ac15d2cfbe2c4c9482e784f6a5aeed32a} 
+uint8\+\_\+t RTC\+\_\+\+Write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+Address}{, }\item[{uint8\+\_\+t}]{val}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{rtc__ds3231_8c_ab6d7adecec71e697f12bf437aa7bb168}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!gCompletionFlag@{gCompletionFlag}}
+\index{gCompletionFlag@{gCompletionFlag}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{gCompletionFlag}{gCompletionFlag}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_ab6d7adecec71e697f12bf437aa7bb168} 
+volatile bool g\+Completion\+Flag = false}
+
+
+
+Flag Indicating Whether The Transfer Has Finished. 
+
+\Hypertarget{rtc__ds3231_8c_af154a23f818a55047504f0c3f2d3aa67}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!gEdmaRxHandle@{gEdmaRxHandle}}
+\index{gEdmaRxHandle@{gEdmaRxHandle}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{gEdmaRxHandle}{gEdmaRxHandle}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_af154a23f818a55047504f0c3f2d3aa67} 
+edma\+\_\+handle\+\_\+t g\+Edma\+Rx\+Handle}
+
+
+
+Rx e\+DMA Handle. 
+
+\Hypertarget{rtc__ds3231_8c_afb84870262e12212b969d872bff3bead}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!gEdmaTxHandle@{gEdmaTxHandle}}
+\index{gEdmaTxHandle@{gEdmaTxHandle}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{gEdmaTxHandle}{gEdmaTxHandle}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_afb84870262e12212b969d872bff3bead} 
+edma\+\_\+handle\+\_\+t g\+Edma\+Tx\+Handle}
+
+
+
+Tx e\+DMA Handle. 
+
+\Hypertarget{rtc__ds3231_8c_af210093caf29792f8f940201ddd0cfec}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!xfer@{xfer}}
+\index{xfer@{xfer}!rtc\_ds3231.c@{rtc\_ds3231.c}}
+\doxysubsubsection{\texorpdfstring{xfer}{xfer}}
+{\footnotesize\ttfamily \label{rtc__ds3231_8c_af210093caf29792f8f940201ddd0cfec} 
+lpi2c\+\_\+master\+\_\+transfer\+\_\+t xfer = \{0\}}
+

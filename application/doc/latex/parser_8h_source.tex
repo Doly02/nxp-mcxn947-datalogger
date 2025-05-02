@@ -1,0 +1,105 @@
+\doxysection{parser.\+h}
+\hypertarget{parser_8h_source}{}\label{parser_8h_source}\index{include/parser.h@{include/parser.h}}
+\mbox{\hyperlink{parser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/******************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ Project:\ \ \ \ \ \ \ \ NXP\ MCXN947\ Datalogger}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ File\ Name:\ \ \ \ \ \ parser.h}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Author:\ \ \ \ \ \ \ \ \ Tomas\ Dolak}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Date:\ \ \ \ \ \ \ \ \ \ \ 16.04.2025}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ Description:\ \ \ \ Header\ File\ Providing\ Definitions\ For\ Configuration\ File\ Parser.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ ****************************/}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{/******************************}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ @package\ \ \ \ \ \ \ \ NXP\ MCXN947\ Datalogger}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ @file\ \ \ \ \ \ \ \ \ \ \ parser.h}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ @author\ \ \ \ \ \ \ \ \ Tomas\ Dolak}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ @date\ \ \ \ \ \ \ \ \ \ \ 16.04.2025}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ @brief\ \ \ \ \ \ \ \ \ \ Header\ File\ Providing\ Definitions\ For\ Configuration\ File\ Parser.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ ****************************/}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#ifndef\ PARSER\_H\_}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ PARSER\_H\_}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ Includes}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <errno.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}fsl\_lpuart.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}fsl\_debug\_console.h"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{error_8h}{error.h}}"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8h}{defs.h}}"{}}}
+\DoxyCodeLine{00032\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ Definitions}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ Structures}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130dadc698250f37be67cb8fd3fcf56d97d8a}{WCT\_UNKOWN}}\ =\ 0,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130dabb32ca414d33a1282268fbe607a16f82}{WCT\_AUTOS1}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130da37f7bf667f77cb838f0c148b7de4459d}{WCT\_AUTOS2}}\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \}\ \mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130d}{REC\_version\_t}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{/*\ Recorded\ NXP\ Device\ \ */}}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130d}{REC\_version\_t}}\ \ \mbox{\hyperlink{struct_r_e_c__config__t_a619a311e1af3ae0b753b905110b4af33}{version}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{/*\ UART\ Setup\ */}}
+\DoxyCodeLine{00068\ \ \ \ \ uint32\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_r_e_c__config__t_a00680a4f434815ac2af0ac1886007791}{baudrate}};\ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ lpuart\_stop\_bit\_count\_t\ \mbox{\hyperlink{struct_r_e_c__config__t_ae90899b16678c6cf48b6b86861c2fcfa}{stop\_bits}};\ }
+\DoxyCodeLine{00070\ \ \ \ \ lpuart\_data\_bits\_t\ \ \ \ \ \ \mbox{\hyperlink{struct_r_e_c__config__t_a48aab1fc2a9b37ed33b3d5903d64d709}{data\_bits}};\ }
+\DoxyCodeLine{00071\ \ \ \ \ lpuart\_parity\_mode\_t\ \ \ \ \mbox{\hyperlink{struct_r_e_c__config__t_ae589e569d19f0b2a4087e62fd7597c05}{parity}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ uint32\_t\ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_r_e_c__config__t_a692ed5a2e735639979177aa44adca6ea}{size}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ uint32\_t\ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_r_e_c__config__t_a48bc68033f7c1569fe9dc476e8b925d5}{max\_bytes}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00077\ \ \ \ \ uint32\_t\ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_r_e_c__config__t_a0ccf4d5bb2568ac1a483b39bf6246bf0}{free\_space\_limit\_mb}};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \}\ \mbox{\hyperlink{struct_r_e_c__config__t}{REC\_config\_t}};}
+\DoxyCodeLine{00081\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ *\ Prototypes}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00093\ \mbox{\hyperlink{struct_r_e_c__config__t}{REC\_config\_t}}\ \mbox{\hyperlink{parser_8h_a3efdb0f9dbcb070589d0ece681ca737e}{PARSER\_GetConfig}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00101\ \mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130d}{REC\_version\_t}}\ \mbox{\hyperlink{parser_8h_a5a5d72738ce00182a87dab80d1cd583b}{PARSER\_GetVersion}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00109\ uint32\_t\ \mbox{\hyperlink{parser_8h_a8980d81ea8c4130fdd2ba8d3fe086591}{PARSER\_GetBaudrate}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00117\ uint32\_t\ \mbox{\hyperlink{parser_8h_ac16b349e0dc4c2cc65b81177f41c5be4}{PARSER\_GetFileSize}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00125\ lpuart\_data\_bits\_t\ \mbox{\hyperlink{parser_8h_a2610f74dab8b66e1b4e9596bc001cb37}{PARSER\_GetDataBits}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00133\ lpuart\_parity\_mode\_t\ \mbox{\hyperlink{parser_8h_aaad8ef014bfef5791bab928d69539652}{PARSER\_GetParity}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00141\ lpuart\_stop\_bit\_count\_t\ \mbox{\hyperlink{parser_8h_a65a95f8dd67609657bb8738ae7445fff}{PARSER\_GetStopBits}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00149\ uint32\_t\ \mbox{\hyperlink{parser_8h_ad28e2d5639ead57db0ffea30248fde09}{PARSER\_GetFreeSpaceLimitMB}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00157\ uint32\_t\ \mbox{\hyperlink{parser_8h_ab78012dc34f9d71e0f8fa445363bbcb1}{PARSER\_GetMaxBytes}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00162\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{parser_8h_a1b1eaa787f85fc863caca80169767413}{PARSER\_ClearConfig}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00170\ \mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\_t}}\ \mbox{\hyperlink{parser_8h_a87e93b1d41e63941d8cf04fffef7c36a}{PARSER\_ParseBaudrate}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *chContent);}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00178\ \mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\_t}}\ \mbox{\hyperlink{parser_8h_a581751b2aaa966409e2f9aa95ca1bdc4}{PARSER\_ParseFileSize}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *chContent);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00186\ \mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\_t}}\ \mbox{\hyperlink{parser_8h_a22f70a70f519b6d78c8d35399a65acc8}{PARSER\_ParseParity}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *chContent);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00194\ \mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\_t}}\ \mbox{\hyperlink{parser_8h_af742067409bdd8c51edf9c354296aa51}{PARSER\_ParseStopBits}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *chContent);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00202\ \mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\_t}}\ \mbox{\hyperlink{parser_8h_a92744e46fdca3ab7db53c21e0f70125c}{PARSER\_ParseDataBits}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *chContent);}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00211\ \mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\_t}}\ \mbox{\hyperlink{parser_8h_ac6e3d100fb869eef47d75d766a5f1bb4}{PARSER\_ParseFreeSpace}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *chContent);}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ PARSER\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}
