@@ -187,12 +187,20 @@ typedef enum
 
 /*
  * @brief 				Initialize The RTC DS3231.
- * @param pI2c			Pointer To I2C Structure.
+ * @param 				void
  * @details				Before Calling of RTC_Init Function Is Important To Prepare I2C
  * 						(To Keep The Driver As Universal As Possible, e.g To Use I2C With DMA,
  * 						Interrupt/Polling Mode,...).
  */
 uint8_t RTC_Init(void);
+
+/*
+ * @brief 				De-Initialize The RTC DS3231.
+ * @details				Pins Should Also Be De-Initialised Lately.
+ * @param 				void
+ */
+void RTC_Deinit(void);
+
 /*
  * @brief 				Converts Numbers From Decimal Base To BCD Base.
  * @param dec			Decimal Number.

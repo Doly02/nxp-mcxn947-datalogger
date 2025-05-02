@@ -46,4 +46,9 @@
  */
 error_t TIME_InitIRTC(void);
 
+/*
+ * @brief 	Convert Time From External RTC Into Internal RTC.
+ */
+error_t TIME_SetTime(void);
+
 #endif /* TIME_H_ */

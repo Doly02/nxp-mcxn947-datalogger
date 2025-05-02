@@ -119,6 +119,23 @@ uint8_t RTC_Init(void)
 
 }
 
+void RTC_Deinit(void)
+{
+	/* Abort Tx & Rx */
+    EDMA_AbortTransfer(&gEdmaTxHandle);
+    EDMA_AbortTransfer(&gEdmaRxHandle);
+
+    /* De-Initialization of I2C */
+    LPI2C_MasterDeinit(I2C_MASTER);
+
+    /* De-Initialization of DMA */
+    EDMA_Deinit(DMA0);
+
+    CLOCK_EnableClock(kCLOCK_Port4);
+
+    /*De-Inicialization of Pins Are Not Handled By The Driver, It's Board Specific */
+}
+
 /*
  * @brief General Functions.
  */

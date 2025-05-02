@@ -22,7 +22,9 @@
 #include "rtc_ds3231.h"
 #include "mass_storage.h"
 
+#include "task_switching.h"
 #include "record.h"
+#include "time.h"
 /*******************************************************************************
  * Global Variables.
  ******************************************************************************/
@@ -122,6 +124,15 @@ void record_task(void *handle)
 
     /* Initialize SD Card and File System */
     USB_DeviceModeInit();
+
+#if (true == IRTC_ENABLED)
+    TIME_SetTime();
+
+    /* De-Inicialization of External RTC (After Initialization This RTC Is Not Needed */
+	RTC_Deinit();
+	LPI2C2_DeinitPins();
+#endif /* (true == IRTC_ENABLED) */
+
     retVal = CONSOLELOG_Init();
     if (retVal != ERROR_NONE) return;
 

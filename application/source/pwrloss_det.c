@@ -39,7 +39,6 @@
 /*******************************************************************************
  * Global Variables
  ******************************************************************************/
-static volatile uint32_t g_u32Cnt = 0UL;
 
 /*******************************************************************************
  * Interrupt Service Routines (ISRs)
@@ -57,9 +56,10 @@ static volatile uint32_t g_u32Cnt = 0UL;
  */
 void CTIMER4_IRQHandler(void)
 {
-	/// LED_SetHigh(GPIO0, 15);
+#if (true == PWRLOSS_TEST_GPIOS)
+	LED_SetHigh(GPIO0, 15);
 	LED_SetLow(GPIO0, 23);
-	g_u32Cnt = 1;
+#endif /* (true == PWRLOSS_TEST_GPIOS) */
 
 	/* MISRA Deviation Note:
 	 * Rule: MISRA 2012 Rule 10.3 [Required]
@@ -168,7 +168,7 @@ void PWRLOSS_DetectionInit(void)
     CTIMER_Init(CTIMER, &config);
 
     u32TimerClkFreq = CLOCK_GetCTimerClkFreq(4U);
-    u32Match = u32TimerClkFreq * 25UL;	/* 25 Seconds*/
+    u32Match = (u32TimerClkFreq * PWRLOSS_DET_ACTIVE_IN_TIME);	/* 25 Seconds*/
 
     /* Configuration 0 */
     matchConfig0.enableCounterReset = true;
@@ -190,9 +190,10 @@ void PWRLOSS_DetectionInit(void)
 
     CTIMER_StartTimer(CTIMER);
 
+#if (true == PWRLOSS_TEST_GPIOS)
     LED_SetLow(GPIO0, 23);
     LED_SetLow(GPIO0, 15);
-
+#endif /* (true == PWRLOSS_TEST_GPIOS) */
 
 	return;
 }

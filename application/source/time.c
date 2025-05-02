@@ -21,7 +21,7 @@
 #include "fsl_irtc.h"
 #include "rtc_ds3231.h"
 #include "fsl_debug_console.h"
-
+#include "pin_mux.h"
 
 /* MISRA Deviation: Rule 21.10
  * Justification: <time.h> is intentionally used for management of timestamps and other
@@ -51,18 +51,13 @@
 
 error_t TIME_InitIRTC(void)
 {
-	irtc_datetime_t time;
 	irtc_config_t irtcCfg;
-	RTC_time_t rtc_time;
-	RTC_date_t rtc_date;
 	status_t status = 2;
 
-    /**
-     * irtcCfg.wakeupSelect = true;
-     * irtcCfg.timerStdMask = false;
-     * irtcCfg.alrmMatch 	= kRTC_MatchSecMinHr;
-     */
-    IRTC_GetDefaultConfig(&irtcCfg);
+
+	irtcCfg.alrmMatch 			= kRTC_MatchSecMinHr;
+	irtcCfg.clockSelect 		= kIRTC_Clk16K;
+	irtcCfg.disableClockOutput = true;
     if (kStatus_Fail == IRTC_Init(RTC, &irtcCfg))
     {
     	PRINTF("ERR: Init. Internal-RTC Failed\r\n");
@@ -90,6 +85,26 @@ error_t TIME_InitIRTC(void)
 		return ERROR_IRTC;
 	}
 	/*lint +e40 */
+
+	/* MISRA Deviation Note:
+	 * Rule: MISRA 2012 Rule 1.3 [Required]
+	 * Justification: The macro 'ERROR_NONE' is defined in 'error.h', which is included indirectly
+	 * via 'time.h'. This deviation is safe and intentional.
+	 */
+	/*lint -e40 MISRA Deviation: identifier declared via indirect header include */
+	return ERROR_NONE;
+	/*lint +e40 */
+
+}
+
+
+error_t TIME_SetTime(void)
+{
+
+	irtc_datetime_t time;
+	RTC_time_t rtc_time;
+	RTC_date_t rtc_date;
+	status_t status = 2;
 
 	/* Load The State of Real-Time Circuit */
 	if (OSC_STOPPED == RTC_GetState())	// If The Oscillator Was Stopped -> Set Time & Date
@@ -142,9 +157,9 @@ error_t TIME_InitIRTC(void)
 		/*lint +e40 */
     }
 
-    IRTC_GetDatetime(RTC, &time);
 
 #if (true == DEBUG_ENABLED)
+    IRTC_GetDatetime(RTC, &time);
 	PRINTF("DEBUG: Internal RTC=%d/%d/%d %d:%d:%2d\r\n", time.year, time.month, time.day,
 			time.hour, time.minute, time.second);
 #endif /* (true == DEBUG_ENABLED) */

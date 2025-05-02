@@ -68,17 +68,17 @@ To build and run `datalogger`, you will need the following:
 ### How to Use the Digital Data Logger
 
 #### Data Recording
-1. **(Optional But Recommended)** Prepare The Configuration File `config.txt`, Which Should Be Placed in The Root Directory of The SD Card. 
+1. **(Optional But Recommended)** Prepare The Configuration File `config`, Which Should Be Placed in The Root Directory of The SD Card. 
 This File Allows You To Customize The Data Logger's Behavior Instead of Using The Default Configuration.
 
 <p align="center">
-  <img src="misc/config-file.jpg" alt="Location of The config.txt File on The SD Card" width="480"/><br>
-  <em>Location of The config.txt File on The SD Card</em><br>
+  <img src="misc/config-file.jpg" alt="Location of The config File on The SD Card" width="480"/><br>
+  <em>Location of The config File on The SD Card</em><br>
 </p>
 
 
 
-Example content of `config.txt`:
+Example content of `config`:
 ```
 baudrate=115200
 file_size=2048
@@ -106,7 +106,7 @@ The Default Values Defined In The `defs.h` File Are Used
 
 3. Power On The Data Logger Via USB or Another Power Source. The Data Logger Will Automatically:
 
--  Load The Configuration From `config.txt` (If Present)
+-  Load The Configuration From `config` (If Present)
 -  After Startup, The Data Logger Enters The Recording Mode By Default. At The Beginning of Record Task, It Initializes The SD Card and If a New or Unformatted Card Is Detected, 
    The Firmware Will Automatically Formatted and The FAT File System With 32-bit LBA is Initialized.
 
@@ -120,7 +120,7 @@ The Default Values Defined In The `defs.h` File Are Used
 6. At This Point, The Digital Data Logger Is Actively Recording Incoming UART Data.  
    During Recording, The Same LED Continuously Blinks To Indicate That Data Logging Is in Progress.
 
-7. If an Error Occurs During UART Data Reception (e.g., Framing Error),  
+7. If an Error Occurs During UART Data Reception (e.g. Framing Error),  
    The Digital Data Logger Will Illuminate a Separate Error LED (Shown in the Following Image)  
    to Indicate That Logging Has Been Interrupted Due to a Fault.
 
@@ -141,7 +141,7 @@ The Default Values Defined In The `defs.h` File Are Used
     The Recording Is Then Gracefully Finalized To Prevent Data Loss or File System Corruption.
 
 #### Reading Data from the Datalogger
-To Read The Recorded Data From The Digital Data Logger, Simply Connect The Device To a Computer Using The USB_HS Connector. 
+To Read The Recorded Data From The Digital Data Logger, Simply Connect The Device To a Computer Using The USB1_HS Connector. 
 The Data Logger Will Automatically Switch Into Data Acess Mode (MSC mode), and The SD Card Will Be Exposed as a Standard Mass Storage Device, 
 Allowing The User To Copy The Recorded Data Files.
 
@@ -229,7 +229,7 @@ Each Module Has Its Own Source and Header File:
 - `error`  Handles Errors and Defines Error Codes.
 - `led`  Manages LED Indicators For System Status.
 - `mass_storage` – Provides Access To Log Files Over USB MSC.
-- `parser` – Parses the Configuration File (`config.txt`) From The SD card.
+- `parser` – Parses the Configuration File (`config`) From The SD card.
 - `pwrloss_det` – Detects and Reacts on Power Loss.
 - `record` – Implements Logic For Recording Incoming Serial Data From UART.
 - `task_switching` – Includes The Method For Detection of Attach or Detached Application USB.
