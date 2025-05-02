@@ -87,6 +87,23 @@
 #define PWRLOSS_DETECTION_ENABLED	(true)
 
 /**
+ * @brief Enables/Disables GPIO For Testing Power Loss Detection.
+ */
+#define PWRLOSS_TEST_GPIOS			(true)
+
+/**
+ * @brief 	Constant Tau, When Back-Up Power Capacitor is Charged To 99%.
+ * @details In Seconds (It's Actualy 16s).
+ */
+#define TAU							16UL
+
+/**
+ * @brief 	Time Interval When Power Loss Detection Became Active.
+ * @details	In Seconds.
+ */
+#define PWRLOSS_DET_ACTIVE_IN_TIME	TAU
+
+/**
  * @brief Priority of LP_FLEXCOMM Interrupt (UART) For Rx Of Recorded Data.
  */
 #define UART_RECEIVE_PRIO			(6U)
@@ -105,6 +122,7 @@
  * @brief Enables/Disables Signaling By LEDs.
  */
 #define CONTROL_LED_ENABLED			(true)
+
 
 /**
  * @brief	Default Maximal File Size If The Configuration File Could

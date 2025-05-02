@@ -31,10 +31,16 @@
 /*******************************************************************************
  * Function Declarations
  ******************************************************************************/
-usb_device_notification_t USB_State(usb_device_struct_t *pDeviceHandle);
 
+/**
+ * @brief Process Extension to Mass Storage.
+ */
 void MSC_DeviceMscApp(void);
 
+/**
+ * @brief 	Handles Mass Storage Application.
+ * @details Communication and Data Transport Is Handled By USB1_HS ISR.
+ */
 void MSC_DeviceMscAppTask(void);
 
 #endif /* MASS_STORAGE_H_ */

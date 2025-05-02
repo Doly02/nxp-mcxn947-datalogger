@@ -114,3 +114,13 @@ void UART_Disable(void)
 {
 	(void)DisableIRQ(LP_FLEXCOMM3_IRQn);
 }
+
+void UART_Deinit(void)
+{
+	(void)DisableIRQ(LP_FLEXCOMM3_IRQn);
+	LPUART_DisableInterrupts(LPUART3, (uint32_t)kLPUART_RxDataRegFullInterruptEnable);
+
+	LPUART_Deinit(LPUART3);
+
+	/* Pins Are De-Initialized Together in pin_mux.c */
+}

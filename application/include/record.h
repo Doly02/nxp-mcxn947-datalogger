@@ -51,6 +51,7 @@
  */
 #define FLUSH_TIMEOUT_TICKS (int)pdMS_TO_TICKS(3000)
 
+#define REINIT_TIMEOUT_TICKS (int)pdMS_TO_TICKS(1000)
 /*******************************************************************************
  * Structures
  ******************************************************************************/
@@ -185,7 +186,7 @@ error_t CONSOLELOG_ReadConfig(void);
  * @brief 		Processes The Content of The Configuration File To Extract
  * 				and Validate The Baudrate.
  *
- * @param[in] 	Content The Content of The Configuration File as a Null-Terminated
+ * @param[in] 	content Content The Content of The Configuration File as a Null-Terminated
  * 				String.
  *
  * @return 		error_t Returns 0 If Configuration File Is Correctly Processed,

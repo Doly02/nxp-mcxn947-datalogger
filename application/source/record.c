@@ -43,6 +43,7 @@
  */
 #define GET_WAIT_INTERVAL(seconds)  ((seconds) * 1000 / configTICK_RATE_HZ)
 
+#define GET_CURRENT_TIME_MS()  (xTaskGetTickCount() * portTICK_PERIOD_MS)
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -50,33 +51,6 @@
 /*******************************************************************************
  * Global Variables
  ******************************************************************************/
-/*
- * @brief 	File System Object,
- */
-static FATFS g_fileSystem;
-
-/*
- * @brief 	File Object.
- * @details Pointer to Current Opened File.
- */
-static FIL g_fileObject;
-
-/*
- * @brief	Name Of The Folder Where The Files (Logs)
- * 			From The Current Session Are Stored.
- */
-static char g_u8CurrentDirectory[32];
-
-/*
- *  @brief decription about the read/write buffer
- * 	The size of the read/write buffer should be a multiple of 512, since SDHC/SDXC card uses 512-byte fixed
- * 	block length and this driver example is enabled with a SDHC/SDXC card.If you are using a SDSC card, you
- * 	can define the block length by yourself if the card supports partial access.
- * 	The address of the read/write buffer should align to the specific DMA data buffer address align value if
- * 	DMA transfer is used, otherwise the buffer address is not important.
- * 	At the same time buffer address/size should be aligned to the cache line size if cache is supported.
- **************/
-
 /**
  * @defgroup 	Recording Buffers and Recording Management
  * @brief 		Group Contains Variables For Management of Recording.
@@ -85,16 +59,46 @@ static char g_u8CurrentDirectory[32];
  */
 
 /**
- * @brief 	Data For Multi-Buffering - In Particular Dual-Buffering,
+ * @brief 	File System Object.
+ */
+static FATFS g_fileSystem;
+
+/**
+ * @brief 	File Object.
+ * @details Pointer to Current Opened File.
+ */
+static FIL g_fileObject;
+
+/**
+ * @brief	Name Of The Folder Where The Files (Logs)
+ * 			From The Current Session Are Stored.
+ */
+static char g_u8CurrentDirectory[32];
+
+
+/**
+ * @brief 	Buffer For Multi-Buffering - In Particular Dual-Buffering,
  * 			One Is Always Filled, The Other Is Processed.
+ * @details Must Be Aligned on Multiple of 512B, Since SDHC/SDXC Card Uses 512-Byte Fixed
+ * 			Block Length. The Address of The R/W Buffer Should Be Also Align To The Specific DMA
+ * 			Data Buffer Address Align Value. At The Same Time Buffer Address/Size Should Be Aligned To The Cache
+ * 			Line Size.
  */
 SDK_ALIGN(static uint8_t g_pu8DmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
+/**
+ * @brief 	Buffer For Multi-Buffering - In Particular Dual-Buffering,
+ * 			One Is Always Filled, The Other Is Processed.
+ * @details Must Be Aligned on Multiple of 512B, Since SDHC/SDXC Card Uses 512-Byte Fixed
+ * 			Block Length. The Address of The R/W Buffer Should Be Also Align To The Specific DMA
+ * 			Data Buffer Address Align Value. At The Same Time Buffer Address/Size Should Be Aligned To The Cache
+ * 			Line Size.
+ */
 SDK_ALIGN(static uint8_t g_pu8DmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
 /**
  * @brief 	Back Buffer Which Serves For Data Collection From Circular Buffer
- * 			And Is Used For Data-Processing (Timestamps Are Inserted To This Buffer).
+ * 			And Is Used For Data-Processing (Time Stamps Are Inserted To This Buffer).
  */
 static uint8_t* g_pu8BackDmaBuffer 		= g_pu8DmaBuffer1;
 
@@ -149,7 +153,11 @@ static uint32_t g_u32BytesTransfered	= 0U;
  * @{
  */
 
-SDK_ALIGN(static volatile uint8_t g_au8CircBuffer[CIRCULAR_BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);	// FIFO buffer
+/**
+ * @brief 	Circular Buffer For Reception of Data From UART Interrupt Service Routine.
+ * @details Filled in LP_FLEXCOMM3_IRQHandler Interrupt Service Routine.
+ */
+SDK_ALIGN(static volatile uint8_t g_au8CircBuffer[CIRCULAR_BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
 /**
  * @brief	Index For Writing Into FIFO.
@@ -434,7 +442,7 @@ error_t CONSOLELOG_Init(void)
     {
 
 #if (true == DEBUG_ENABLED)
-        PRINTF("DEBUG: File System Not Found. Formatting...\r\n");
+        PRINTF("DEBUG: File System Not Found. Creating FAT File System...\r\n");
 #endif /* (true == DEBUG_ENABLED) */
 
         /* Make File System */
@@ -555,9 +563,7 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
             g_fileObject.obj.fs = NULL;
             return ERROR_ADMA;
         }
-        LED_SetHigh(GPIO0, 15);
         error = f_write(&g_fileObject, g_pu8FrontDmaBuffer, BLOCK_SIZE, &bytesWritten);
-        LED_SetLow(GPIO0, 15);
         g_u32CurrentFileSize += BLOCK_SIZE;
         if (g_u32CurrentFileSize >= file_size)
         {
@@ -580,8 +586,8 @@ error_t CONSOLELOG_Flush(void)
 	FRESULT error;
 	UINT bytesWritten;
 	int tickDiff 			= 0;
-	int64_t s64LastTick 	= 0;
-	int64_t s64CurrentTick 	= (int64_t)xTaskGetTickCount();
+	TickType_t LastTick 	= 0;
+	TickType_t CurrentTick 	= xTaskGetTickCount();
 
 	/*
 	 * __ATOMIC_ACQUIRE - 	Ensures That All Read Values Are Consistent
@@ -594,15 +600,27 @@ error_t CONSOLELOG_Flush(void)
 	 * 		  with pre-read operations.
 	 */
 	/*lint -save -e40 */
-	s64LastTick = (int64_t)__atomic_load_n(&g_lastDataTick, __ATOMIC_ACQUIRE);
+	LastTick = (TickType_t)__atomic_load_n(&g_lastDataTick, __ATOMIC_ACQUIRE);
 	/*lint -restore */
 
-	tickDiff = (int)(s64CurrentTick - s64LastTick);
-	if ((CONSOLELOG_Abs(tickDiff) > FLUSH_TIMEOUT_TICKS) && (g_u16BackDmaBufferIdx > 0U))
+	// tickDiff = (int)(s64CurrentTick - s64LastTick);
+
+	/*
+	if ((CONSOLELOG_Abs(tickDiff) > REINIT_TIMEOUT_TICKS) && (g_u16BackDmaBufferIdx == 0U))
+	{
+		UART_Disable();
+		PRINTF("INFO: Re-Initialized UART\r\n");
+		UART_Enable();
+	}
+	 */
+
+	if ((CurrentTick > LastTick) &&
+	    ((CurrentTick - LastTick) > FLUSH_TIMEOUT_TICKS) &&
+	    (g_u16BackDmaBufferIdx > 0U))
 	{
 #if (true == INFO_ENABLED)
-		PRINTF("INFO: Current Ticks = %d.\r\n", s64CurrentTick);
-		PRINTF("INFO: Last Ticks = %d.\r\n", s64LastTick);
+		PRINTF("INFO: Current Ticks = %d.\r\n", CurrentTick);
+		PRINTF("INFO: Last Ticks = %d.\r\n", LastTick);
 		PRINTF("INFO: Flush Triggered. Writing Remaining Data To File.\r\n");
 #else
 		PRINTF("INFO: Flush Triggered.\r\n");
@@ -613,7 +631,7 @@ error_t CONSOLELOG_Flush(void)
 			g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx++] = (uint8_t)' ';
 		}
 
-		g_pu8FrontDmaBuffer 		= g_pu8BackDmaBuffer;
+		g_pu8FrontDmaBuffer 	= g_pu8BackDmaBuffer;
 		g_bBackDmaBufferReady 	= true;
 
 		// Switch To Second Buffer
@@ -665,8 +683,11 @@ error_t CONSOLELOG_Flush(void)
 		(void)f_close(&g_fileObject);
 		g_fileObject.obj.fs 	= NULL;
 		g_bBackDmaBufferReady 	= false;
-		g_pu8FrontDmaBuffer 		= NULL;
+		g_pu8FrontDmaBuffer 	= NULL;
 		g_bFlushCompleted 		= true;
+
+		UART_Disable();
+		UART_Enable();
 	}
 	return ERROR_NONE;
 }
@@ -808,7 +829,7 @@ error_t CONSOLELOG_ReadConfig(void)
 
     	if ((fno.fattrib & (BYTE)AM_DIR) == 0U)	// If Not Directory
     	{
-    		if (ERROR_NONE == (uint32_t)strcmp(fno.fname, CONFIG_FILE))	// If .config File
+    		if (ERROR_NONE == (uint32_t)strcmp(fno.fname, CONFIG_FILE))	// If config File
 			{
     			PRINTF("DEBUG: Found .config File: %s\r\n", fno.fname);
 

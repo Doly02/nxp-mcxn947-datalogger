@@ -57,24 +57,25 @@ typedef enum
  * @brief 	Configuration structure for the recording system.
  *
  * @details	Structure Holds The Configuration Parameters Required For Initializing
- * 			The Recording System, Including The Board Version and Baudrate.
+ * 			The Recording System, Including The Board Version and Baud Rate...
  */
 typedef struct
 {
 	/* Recorded NXP Device  */
-	REC_version_t 	version;	/**< Board That Will Be Recorded		*/
+	REC_version_t 	version;			/**< NXP Board That Will Be Recorded		*/
 
 	/* UART Setup */
 	uint32_t 				baudrate;	/**< Desired Baudrate			*/
-	lpuart_stop_bit_count_t	stop_bits;
-    lpuart_data_bits_t		data_bits;
-    lpuart_parity_mode_t	parity;
+	lpuart_stop_bit_count_t	stop_bits;	/**< Number of Stop Bit 		*/
+    lpuart_data_bits_t		data_bits;	/**< Number of Data Bit 		*/
+    lpuart_parity_mode_t	parity;		/**< Parity Bit 				*/
 
 
 	uint32_t		size;				/**< Maximum File Size 					*/
 										/**< Maximal Log. Time In Per File		*/
 	uint32_t		max_bytes;			/**< Number of Bytes Between LED Signal	*/
-	uint32_t 		free_space_limit_mb;
+	uint32_t 		free_space_limit_mb;/**< Defines The Threshold Level of Free Memory on The SD card,
+	 	 	 	 	 	 	 	 	 	  	Below Which The Lack of Memory is Indicated. */
 
 } REC_config_t;
 /*******************************************************************************
@@ -161,36 +162,52 @@ uint32_t PARSER_GetMaxBytes(void);
 void PARSER_ClearConfig(void);
 
 /**
- * @brief 		Parse Baudrate From Configuration File.
+ * @brief 		Parse Baud Rate From Configuration File.
  * @param[in]	chContent Pointer To Content of Configuration File.
+ *
+ * @returns		ERROR_NONE If The Parsing Succeed.
  */
 error_t PARSER_ParseBaudrate(const char *chContent);
 
 /**
  * @brief 		Parse Record File Size From Configuration File.
  * @param[in]	chContent Pointer To Content of Configuration File.
+ *
+ * @returns		ERROR_NONE If The Parsing Succeed.
  */
 error_t PARSER_ParseFileSize(const char *chContent);
 
 /**
  * @brief 		Parse Parity From Configuration File.
  * @param[in]	chContent Pointer To Content of Configuration File.
+ *
+ * @returns		ERROR_NONE If The Parsing Succeed.
  */
 error_t PARSER_ParseParity(const char *chContent);
 
 /**
  * @brief 		Parse The Number of Stop Bits From Configuration File.
  * @param[in]	chContent Pointer To Content of Configuration File.
+ *
+ * @returns		ERROR_NONE If The Parsing Succeed.
  */
 error_t PARSER_ParseStopBits(const char *chContent);
 
 /**
  * @brief 		Parse The Number of Data Bits From Configuration File.
  * @param[in]	chContent Pointer To Content of Configuration File.
+ *
+ * @returns		ERROR_NONE If The Parsing Succeed.
  */
 error_t PARSER_ParseDataBits(const char *chContent);
 
-
+/**
+ * @brief 		Parse The Size of Free Space When Data Logger Will Signal To The User That
+ * 				Data Logger Is Running Out of Space.
+ * @param[in]	chContent Pointer To Content of Configuration File.
+ *
+ * @returns		ERROR_NONE If The Parsing Succeed.
+ */
 error_t PARSER_ParseFreeSpace(const char *chContent);
 
 #endif /* PARSER_H_ */

@@ -107,12 +107,6 @@ void APP_InitBoard(void)
     (void)TIME_InitIRTC();
 #endif /* (true == IRTC_ENABLED) */
 
-#if (true == CONTROL_LED_ENABLED)
-
-    /* Signal's That Recorder Is Initialized And Ready To Do The Job */
-    LED_SignalReady();
-#endif /* (true == CONTROL_LED_ENABLED) */
-
 #if (true == TEMPERATURE_MEAS_ENABLED)
     TMP_Init();
 #endif /* (true == TEMPERATURE_MEAS_ENABLED) */

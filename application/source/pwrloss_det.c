@@ -75,6 +75,10 @@ void CTIMER4_IRQHandler(void)
 	LED_SignalBackUpPowerAvailable();
 	CTIMER_StopTimer(CTIMER);
 	(void)DisableIRQ(CTIMER4_IRQn);
+
+    /* Enable the interrupt. */
+	IRQ_ClearPendingIRQ(HSCMP1_IRQn);
+    (void)EnableIRQ(HSCMP1_IRQn);
 }
 /*lint -e957 */
 
@@ -90,13 +94,15 @@ void CTIMER4_IRQHandler(void)
 void HSCMP1_IRQHandler(void)
 {
 	LPCMP_ClearStatusFlags(DEMO_LPCMP_BASE, (uint32_t)kLPCMP_OutputFallingEventFlag);
-	if (1UL == g_u32Cnt)
-	{
-		LED_SetHigh(GPIO0, 23);				/* Signal Power Loss 					*/
-		UART_Disable();						/* Disable Character Reception			*/
-    	(void)CONSOLELOG_PowerLossFlush();	/* Flush Data From Buffer To SDHC Card 	*/
-	}
-	g_u32Cnt++;
+
+
+	UART_Disable();						/* Disable Character Reception			*/
+	(void)CONSOLELOG_PowerLossFlush();	/* Flush Data From Buffer To SDHC Card 	*/
+
+#if (true == PWRLOSS_TEST_GPIOS)
+	LED_SetHigh(GPIO0, 23);				/* Signal Power Loss 					*/
+	LED_SetLow(GPIO0, 15);
+#endif /* (true == PWRLOSS_TEST_GPIOS) */
 
 	SDK_ISR_EXIT_BARRIER;
 
