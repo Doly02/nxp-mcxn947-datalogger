@@ -127,7 +127,7 @@ The Default Values Defined In The `defs.h` File Are Used
    Which Is Shown in The Following Image.
 
 <p align="center">
-  <img src="misc/leds_recording-edited.png" alt="LEDs State During Recording" width="480"/><br>
+  <img src="misc/leds_recording-1.jpg" alt="LEDs State During Recording" width="480"/><br>
   <em>LEDs State During Recording</em><br>
 </p>
 
