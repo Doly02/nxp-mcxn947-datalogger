@@ -73,19 +73,21 @@ To build and run `datalogger`, you will need the following:
 
 #### Signal Diodes
 
-The digital data logger uses five status LEDs (D1–D5) to indicate various operational states:
+The digital data logger uses five status LEDs (1–5) to indicate various operational states:
 
-| LED | Default Value      |
+| LED | Description        |
 |-----|--------------------|
-| 1   | Lights up when the available free space on the SD card falls below the limit defined by the free_space parameter in the configuration file.|
-| 2   | Indicates an error condition. This LED turns on if the configuration file is invalid or if a critical error occurs during data recording (e.g., file creation failure or UART framing error).                        |
-| 3   | 	Signals that the data logger is no longer actively recording. This state occurs, for example, when the monitored device stops transmitting data or is disconnected.          |
-| 4   | 	Blinks during active data recording to indicate that data is being received and saved to the SD card.       |
-| 5   | Lights up approximately 3 seconds after powering the logger to indicate that the backup capacitor is sufficiently charged. Once lit, it is safe to disconnect the device from power without risking data loss.      |
+| 1   | Lights Up When The Available Free Space On The SD Card Falls Below The Limit Defined By The `free_space` Parameter In The Configuration File.|
+| 2   | Indicates An Error Condition. This LED Turns On If The Configuration File Is Invalid Or If A Critical Error Occurs During Data Recording (E.g., File Creation Failure Or UART Framing Error).   |
+| 3   | Signals That The Data Logger Is No Longer Actively Recording. This State Occurs, For Example, When The Monitored Device Stops Transmitting Data Or Is Disconnected.          |
+| 4   | Blinks During Active Data Recording To Indicate That Data Is Being Received And Saved To The SD Card.       |
+| 5   | Lights Up Approximately 16 Seconds After Powering The Logger To Indicate That The Backup Capacitor Is Sufficiently Charged. Once Lit, It Is Safe To Disconnect The Device From Power Without Risking Data Loss.     |
+
+The Status LEDs of Data Logger are Shown In The Following Picture
 
 <p align="center">
   <img src="misc/signal-diodes-datalogger.jpg" alt="LEDs State During Recording" width="480"/><br>
-  <em>LEDs State During Recording</em><br>
+  <em>Data Logger Status LEDs </em><br>
 </p>
 
 #### Data Recording
@@ -131,21 +133,21 @@ The Default Values Defined In The `defs.h` File Are Used
 -  After Startup, The Data Logger Enters The Recording Mode By Default. At The Beginning of Record Task, It Initializes The SD Card and If a New or Unformatted Card Is Detected, 
    The Firmware Will Automatically Formatted and The FAT File System With 32-bit LBA is Initialized.
 
-4. Wait Until The LED Indicator (Shown in The Following Image) Turns On.  
+4. Wait Until The 5 LED Indicator Turns On.  
    This LED Indicates That The Digital Data Logger Can Be Safely Disconnected Without The Risk of Data Loss Or File System Corruption.
 
 5. Connect The Digital Data Logger to The Monitored Device That Transmits Serial Data via UART.  
-   Once The Data Transmission Starts, The Data Logger Will Indicate Active Reception by Blinking a Dedicated LED,  
+   Once The Data Transmission Starts, The Data Logger Will Indicate Active Reception by Blinking a Dedicated LED 4,  
    Which Is Shown in The Following Image.
 
 6. At This Point, The Digital Data Logger Is Actively Recording Incoming UART Data.  
    During Recording, The Same LED Continuously Blinks To Indicate That Data Logging Is in Progress.
 
 7. If an Error Occurs During UART Data Reception (e.g. Framing Error),  
-   The Digital Data Logger Will Illuminate a Separate Error LED (Shown in the Following Image)  
+   The Digital Data Logger Will Illuminate a Separate Error LED 2  
    to Indicate That Logging Has Been Interrupted Due to a Fault.
 
-   If the Error Prevents Further Data Reception, an Additional LED (D3) Will Also Light Up  
+   If the Error Prevents Further Data Reception, an Additional LED 3 Will Also Light Up  
    to Signal That The Device Can No Longer Continue Logging Until It Is Restarted or the Error is Resolved.
 
 8. To Safely Stop Data Logging, Disconnect The Digital Data Logger From The Monitored Device.  
