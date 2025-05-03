@@ -71,6 +71,23 @@ To build and run `datalogger`, you will need the following:
 
 ### How to Use the Digital Data Logger
 
+#### Signal Diodes
+
+The digital data logger uses five status LEDs (D1–D5) to indicate various operational states:
+
+| LED | Default Value      |
+|-----|--------------------|
+| 1   | Lights up when the available free space on the SD card falls below the limit defined by the free_space parameter in the configuration file.|
+| 2   | Indicates an error condition. This LED turns on if the configuration file is invalid or if a critical error occurs during data recording (e.g., file creation failure or UART framing error).                        |
+| 3   | 	Signals that the data logger is no longer actively recording. This state occurs, for example, when the monitored device stops transmitting data or is disconnected.          |
+| 4   | 	Blinks during active data recording to indicate that data is being received and saved to the SD card.       |
+| 5   | Lights up approximately 3 seconds after powering the logger to indicate that the backup capacitor is sufficiently charged. Once lit, it is safe to disconnect the device from power without risking data loss.      |
+
+<p align="center">
+  <img src="misc/signal-diodes-datalogger.jpg" alt="LEDs State During Recording" width="480"/><br>
+  <em>LEDs State During Recording</em><br>
+</p>
+
 #### Data Recording
 1. **(Optional But Recommended)** Prepare The Configuration File `config`, Which Should Be Placed in The Root Directory of The SD Card. 
 This File Allows You To Customize The Data Logger's Behavior Instead of Using The Default Configuration.
@@ -108,11 +125,6 @@ The Default Values Defined In The `defs.h` File Are Used
 
 2. Insert The SD Card (Type SDHC) Into The Data Logger 
 
-<p align="center">
-  <img src="misc/signal-diodes-datalogger.jpg" alt="LEDs State During Recording" width="480"/><br>
-  <em>LEDs State During Recording</em><br>
-</p>
-
 3. Power On The Data Logger Via USB or Another Power Source. The Data Logger Will Automatically:
 
 -  Load The Configuration From `config` (If Present)
@@ -122,19 +134,9 @@ The Default Values Defined In The `defs.h` File Are Used
 4. Wait Until The LED Indicator (Shown in The Following Image) Turns On.  
    This LED Indicates That The Digital Data Logger Can Be Safely Disconnected Without The Risk of Data Loss Or File System Corruption.
 
-<p align="center">
-  <img src="misc/leds_backup_power.jpg" alt="LEDs State After Back Up Power Is Avalaible" width="480"/><br>
-  <em>LEDs State After Back Up Power Is Avalaible</em><br>
-</p>
-
 5. Connect The Digital Data Logger to The Monitored Device That Transmits Serial Data via UART.  
    Once The Data Transmission Starts, The Data Logger Will Indicate Active Reception by Blinking a Dedicated LED,  
    Which Is Shown in The Following Image.
-
-<p align="center">
-  <img src="misc/leds_recording-1.jpg" alt="LEDs State During Recording" width="480"/><br>
-  <em>LEDs State During Recording</em><br>
-</p>
 
 6. At This Point, The Digital Data Logger Is Actively Recording Incoming UART Data.  
    During Recording, The Same LED Continuously Blinks To Indicate That Data Logging Is in Progress.
@@ -150,11 +152,6 @@ The Default Values Defined In The `defs.h` File Are Used
    At This Point, All Buffered Data Will Be Properly Finalized and Stored on The SD Card.  
    The Status LED D3 Will Then Light Up To Indicate That Data Reception Has Been Halted  
    And The Device Is in Standby Mode.
-
-<p align="center">
-  <img src="misc/leds_after_flush.jpg" alt="LEDs State After Data Logger Disconnection From Monitored Device" width="480"/><br>
-  <em>LEDs State After Data Logger Disconnection From Monitored Device</em><br>
-</p>
 
 9. To Resume Data Logging After It Has Been Halted, Simply Reconnect The Digital Data Logger  
    to The Monitored UART Device. The Logger Will Automatically Return to Recording Mode  
