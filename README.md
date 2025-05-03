@@ -9,6 +9,10 @@
 The Goal of This Project Is To Developt Digital Data Logger That Captures Serial Data From a UART Peripheral, Timestamps It, and Stores The Logged Data on an SD card. 
 A Key Requirement of The Implementation is To Ensure Data Integrity by Preventing Loss In The Event of a Power Failure.
 
+This Digital Data Logger Was Developed Based on The Requirements Provided by The Wireless Charging Team at NXP Semiconductors. 
+The Device Will Be Used For Testing Customer Wireless Charging Devices in Qi Certification Laboratories Located in Various Parts of The World. 
+The Digital Logger Will Assist In Verifying and Analyzing The Behavior of The Tested Wireless Charging Transmitter.
+
 ### Table of Contents
 - [Requirements](#requirements)
     - [Hardware Components](#hardware-components)
@@ -113,9 +117,19 @@ The Default Values Defined In The `defs.h` File Are Used
 4. Wait Until The LED Indicator (Shown in The Following Image) Turns On.  
    This LED Indicates That The Digital Data Logger Can Be Safely Disconnected Without The Risk of Data Loss Or File System Corruption.
 
+<p align="center">
+  <img src="misc/leds_backup_power.jpg" alt="LEDs State After Back Up Power Is Avalaible" width="480"/><br>
+  <em>LEDs State After Back Up Power Is Avalaible</em><br>
+</p>
+
 5. Connect The Digital Data Logger to The Monitored Device That Transmits Serial Data via UART.  
    Once The Data Transmission Starts, The Data Logger Will Indicate Active Reception by Blinking a Dedicated LED,  
    Which Is Shown in The Following Image.
+
+<p align="center">
+  <img src="misc/leds_recording-edited.png" alt="LEDs State During Recording" width="480"/><br>
+  <em>LEDs State During Recording</em><br>
+</p>
 
 6. At This Point, The Digital Data Logger Is Actively Recording Incoming UART Data.  
    During Recording, The Same LED Continuously Blinks To Indicate That Data Logging Is in Progress.
@@ -131,6 +145,11 @@ The Default Values Defined In The `defs.h` File Are Used
    At This Point, All Buffered Data Will Be Properly Finalized and Stored on The SD Card.  
    The Status LED D3 Will Then Light Up To Indicate That Data Reception Has Been Halted  
    And The Device Is in Standby Mode.
+
+<p align="center">
+  <img src="misc/leds_after_flush.jpg" alt="LEDs State After Data Logger Disconnection From Monitored Device" width="480"/><br>
+  <em>LEDs State After Data Logger Disconnection From Monitored Device</em><br>
+</p>
 
 9. To Resume Data Logging After It Has Been Halted, Simply Reconnect The Digital Data Logger  
    to The Monitored UART Device. The Logger Will Automatically Return to Recording Mode  
