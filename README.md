@@ -108,6 +108,11 @@ The Default Values Defined In The `defs.h` File Are Used
 
 2. Insert The SD Card (Type SDHC) Into The Data Logger 
 
+<p align="center">
+  <img src="misc/signal-diodes-datalogger.jpg" alt="LEDs State During Recording" width="480"/><br>
+  <em>LEDs State During Recording</em><br>
+</p>
+
 3. Power On The Data Logger Via USB or Another Power Source. The Data Logger Will Automatically:
 
 -  Load The Configuration From `config` (If Present)
