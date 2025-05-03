@@ -73,7 +73,16 @@ To build and run `datalogger`, you will need the following:
 
 #### Signal Diodes
 
-The digital data logger uses five status LEDs (1–5) to indicate various operational states:
+The Digital Data Logger Is Equipped With Five Status LEDs (Labeled 1–5) Located On The Front Side Of The Enclosure. These LEDs Visually Indicate The Current Operational State Of The Logger.
+
+The Image Below Shows The Placement And Labeling Of Each LED On The Front Panel Of The Enclosure:
+
+<p align="center">
+  <img src="misc/signal-diodes-datalogger.jpg" alt="LEDs State During Recording" width="580"/><br>
+  <em>Data Logger Status LEDs </em><br>
+</p>
+
+The Table Below Describes The Function Of Each LED:
 
 | LED | Description        |
 |-----|--------------------|
@@ -82,13 +91,6 @@ The digital data logger uses five status LEDs (1–5) to indicate various operat
 | 3   | Signals That The Data Logger Is No Longer Actively Recording. This State Occurs, For Example, When The Monitored Device Stops Transmitting Data Or Is Disconnected.          |
 | 4   | Blinks During Active Data Recording To Indicate That Data Is Being Received And Saved To The SD Card.       |
 | 5   | Lights Up Approximately 16 Seconds After Powering The Logger To Indicate That The Backup Capacitor Is Sufficiently Charged. Once Lit, It Is Safe To Disconnect The Device From Power Without Risking Data Loss.     |
-
-The Status LEDs of Data Logger are Shown In The Following Picture
-
-<p align="center">
-  <img src="misc/signal-diodes-datalogger.jpg" alt="LEDs State During Recording" width="480"/><br>
-  <em>Data Logger Status LEDs </em><br>
-</p>
 
 #### Data Recording
 1. **(Optional But Recommended)** Prepare The Configuration File `config`, Which Should Be Placed in The Root Directory of The SD Card. 
