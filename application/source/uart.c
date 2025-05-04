@@ -25,7 +25,6 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
-#define LPUART_PRIO 			(6U)
 
 #if (true == UART_FIFO_ENABLED)
 
@@ -107,7 +106,7 @@ void UART_Enable(void)
 	/*lint -e9034 -e9078 */
     LPUART_EnableInterrupts(LPUART3, (uint32_t)kLPUART_RxDataRegFullInterruptEnable);
     /*lint +e9034 +e9078 */
-    (void)EnableIRQWithPriority(LP_FLEXCOMM3_IRQn, LPUART_PRIO);
+    (void)EnableIRQWithPriority(LP_FLEXCOMM3_IRQn, UART_RECEIVE_PRIO);
 }
 
 void UART_Disable(void)

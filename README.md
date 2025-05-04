@@ -211,7 +211,7 @@ The defs.h Configuration File Also Includes The Option To Control The Verbosity 
 - **Error Messages** (Prefixed With `ERR:`) Reports Critical Conditions. This Level Is Always Active and Can't Be Disabled.
 
 ```
-PRINTF("ERR: Failed to create file %s. Error=%d\r\n", u8FileName, (uint32_t)status);
+PRINTF("ERR: Failed to Create File %s. Error=%d\r\n", u8FileName, (uint32_t)status);
 ```
 
 - **Informational Messages** (Prefixed With `INFO:`) Provide Context Such as Initialization Progress, Configuration File loading, Creation of Log, etc.

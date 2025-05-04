@@ -69,7 +69,7 @@
 /**
  * @brief Defines The Size of HW FIFO Queue.
  */
-#define UART_FIFO_LENGHT			(1u)
+#define UART_FIFO_LENGHT			(4u)
 
 /**
  * @brief Enables/Disables Print of Received Bytes From Application LPUART To Console.

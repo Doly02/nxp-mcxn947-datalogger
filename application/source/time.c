@@ -57,7 +57,7 @@ error_t TIME_InitIRTC(void)
 
 	irtcCfg.alrmMatch 			= kRTC_MatchSecMinHr;
 	irtcCfg.clockSelect 		= kIRTC_Clk16K;
-	irtcCfg.disableClockOutput = true;
+	irtcCfg.disableClockOutput  = true;
     if (kStatus_Fail == IRTC_Init(RTC, &irtcCfg))
     {
     	PRINTF("ERR: Init. Internal-RTC Failed\r\n");
@@ -106,6 +106,9 @@ error_t TIME_SetTime(void)
 	RTC_date_t rtc_date;
 	status_t status = 2;
 
+	uint16_t year;
+	uint8_t month, day, date, weekDay, hour, minute, second;
+
 	/* Load The State of Real-Time Circuit */
 	if (OSC_STOPPED == RTC_GetState())	// If The Oscillator Was Stopped -> Set Time & Date
 	{
@@ -129,18 +132,31 @@ error_t TIME_SetTime(void)
 	RTC_GetTime(&rtc_time);
 	RTC_GetDate(&rtc_date);
 
+	day 	= (uint8_t) rtc_date.date;
+	weekDay = (uint8_t) rtc_date.day;
+	month 	= (uint8_t) rtc_date.month;
+	year	= (uint16_t)(2000 + rtc_date.year);
+
+	hour	= (uint8_t) rtc_time.hrs;
+	minute	= (uint8_t) rtc_time.min;
+	second = (uint8_t) rtc_time.sec;
+
 	time.day 	= (uint8_t) rtc_date.date;
 	time.month 	= (uint8_t) rtc_date.month;
 	time.year	= (uint16_t)(2000 + rtc_date.year);
+
+	/* DS3231 Used 0x1 (Sunday) To 0x7 (Saturday)
+	 * IRTC Uses 0x0 (Sunday) To 0x6 (Saturday)
+	 * */
+	time.weekDay = (uint8_t) (rtc_date.day - 1);
 
 	time.hour	= (uint8_t) rtc_time.hrs;
 	time.minute	= (uint8_t) rtc_time.min;
 	time.second = (uint8_t) rtc_time.sec;
 
-
 #if (true == DEBUG_ENABLED)
-	uint32_t year = 2000 + rtc_date.year;
-	PRINTF("DEBUG: External RTC=%d/%d/%d %d:%d:%2d\r\n", year, rtc_date.month, rtc_date.date,
+	uint32_t u32year = 2000 + rtc_date.year;
+	PRINTF("DEBUG: External RTC=%d/%d/%d %d:%d:%2d\r\n", u32year, rtc_date.month, rtc_date.date,
 			rtc_time.hrs, rtc_time.min, rtc_time.sec);
 #endif /* (true == DEBUG_ENABLED) */
 
