@@ -11,7 +11,9 @@
 \#define \mbox{\hyperlink{record_8c_ad51ded0bbd705f02f73fc60c0b721ced}{BLOCK\+\_\+\+SIZE}}~512U
 \begin{DoxyCompactList}\small\item\em Block Size For Write To SDHC Card Operation (In Bytes). \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{record_8c_ad7a1f4fbbe0adc28faeb0c657fa33cc4}{GET\+\_\+\+WAIT\+\_\+\+INTERVAL}}(seconds)
-\begin{DoxyCompactList}\small\item\em Convert Time In Seconds To Number of Ticks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Convert Time In Seconds To Number of Ticks. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{record_8c_af91d15f16fa008fb2ea0436199bb2ab2}{GET\+\_\+\+CURRENT\+\_\+\+TIME\+\_\+\+MS}}()
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -107,6 +109,17 @@ Block Size For Write To SDHC Card Operation (In Bytes).
 
 Software FIFO Size. 
 
+\Hypertarget{record_8c_af91d15f16fa008fb2ea0436199bb2ab2}\index{record.c@{record.c}!GET\_CURRENT\_TIME\_MS@{GET\_CURRENT\_TIME\_MS}}
+\index{GET\_CURRENT\_TIME\_MS@{GET\_CURRENT\_TIME\_MS}!record.c@{record.c}}
+\doxysubsubsection{\texorpdfstring{GET\_CURRENT\_TIME\_MS}{GET\_CURRENT\_TIME\_MS}}
+{\footnotesize\ttfamily \label{record_8c_af91d15f16fa008fb2ea0436199bb2ab2} 
+\#define GET\+\_\+\+CURRENT\+\_\+\+TIME\+\_\+\+MS(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(xTaskGetTickCount()\ *\ portTICK\_PERIOD\_MS)}
+
+\end{DoxyCode}
 \Hypertarget{record_8c_ad7a1f4fbbe0adc28faeb0c657fa33cc4}\index{record.c@{record.c}!GET\_WAIT\_INTERVAL@{GET\_WAIT\_INTERVAL}}
 \index{GET\_WAIT\_INTERVAL@{GET\_WAIT\_INTERVAL}!record.c@{record.c}}
 \doxysubsubsection{\texorpdfstring{GET\_WAIT\_INTERVAL}{GET\_WAIT\_INTERVAL}}

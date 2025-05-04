@@ -181,116 +181,117 @@
 \DoxyCodeLine{00196\ }
 \DoxyCodeLine{00197\ \textcolor{comment}{/*}}
 \DoxyCodeLine{00198\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ De-\/Initialize\ The\ RTC\ DS3231.}}
-\DoxyCodeLine{00199\ \textcolor{comment}{\ *\ @param\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ void}}
-\DoxyCodeLine{00200\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00201\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a487d25d797a1fed2626ac9709ddac456}{RTC\_Deinit}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00202\ }
-\DoxyCodeLine{00203\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00204\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Converts\ Numbers\ From\ Decimal\ Base\ To\ BCD\ Base.}}
-\DoxyCodeLine{00205\ \textcolor{comment}{\ *\ @param\ dec\ \ \ \ \ \ \ \ \ \ \ Decimal\ Number.}}
-\DoxyCodeLine{00206\ \textcolor{comment}{\ *\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ Number\ in\ Binary\ Coded\ Decimal.}}
-\DoxyCodeLine{00207\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00208\ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{rtc__ds3231_8h_ab12090e402b342c7f8773f2094773394}{RTC\_ConvertToBCD}}(uint8\_t\ dec);}
-\DoxyCodeLine{00209\ }
-\DoxyCodeLine{00210\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00211\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Converts\ Numbers\ From\ BCD\ Base\ To\ Decimal\ Base.}}
-\DoxyCodeLine{00212\ \textcolor{comment}{\ *\ @param\ bcd\ \ \ \ \ \ \ \ \ \ \ Binary-\/Coded\ Decimal\ Number.}}
-\DoxyCodeLine{00213\ \textcolor{comment}{\ *\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ Number\ in\ Decimal\ Base.}}
-\DoxyCodeLine{00214\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00215\ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{rtc__ds3231_8h_a87c0d6971d07785ee1a2abf9e24eeb3f}{RTC\_ConvertToDEC}}(uint8\_t\ bcd);}
-\DoxyCodeLine{00216\ }
-\DoxyCodeLine{00217\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00218\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ This\ Function\ Checks\ If\ The\ Oscillator\ Is\ Still\ Running.}}
-\DoxyCodeLine{00219\ \textcolor{comment}{\ *\ @returns\ \ \ \ \ \ \ \ \ \ \ \ \ Function\ Returns\ 1\ If\ The\ Oscillator\ Is\ Running.\ If\ The\ Oscillator\ Has\ Stopped}}
-\DoxyCodeLine{00220\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Returns\ 0.}}
-\DoxyCodeLine{00221\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00222\ uint8\_t\ \mbox{\hyperlink{rtc__ds3231_8h_a18ceefab30bd070d2eafd74b0a7c9073}{RTC\_GetState}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00223\ }
-\DoxyCodeLine{00224\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00225\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sets\ The\ Oscillator\ Stop\ Flag\ (OSF).}}
-\DoxyCodeLine{00226\ \textcolor{comment}{\ *\ @param\ state\ \ \ \ \ \ \ \ \ State\ of\ The\ Flag.}}
-\DoxyCodeLine{00227\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00228\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_ada78757b2decedc79e0382b42e45a513}{RTC\_SetOscState}}(\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\_osc\_state\_t}}\ state);}
-\DoxyCodeLine{00229\ }
-\DoxyCodeLine{00230\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00231\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Writes\ Value\ Into\ RTC\ Registers.}}
-\DoxyCodeLine{00232\ \textcolor{comment}{\ *\ @param\ regAddress\ \ \ \ Address\ of\ Register\ To\ Which\ Will\ Be\ Value\ Written.}}
-\DoxyCodeLine{00233\ \textcolor{comment}{\ *\ @param\ val\ \ \ \ \ \ \ \ \ \ \ Value\ That\ Will\ Be\ Writen\ Into\ Register.}}
-\DoxyCodeLine{00234\ \textcolor{comment}{\ *\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ void}}
-\DoxyCodeLine{00235\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00236\ uint8\_t\ \mbox{\hyperlink{rtc__ds3231_8h_ac15d2cfbe2c4c9482e784f6a5aeed32a}{RTC\_Write}}(uint8\_t\ regAddress,\ uint8\_t\ val);}
-\DoxyCodeLine{00237\ }
-\DoxyCodeLine{00238\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00239\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Reads\ Value\ From\ RTC\ Register.}}
-\DoxyCodeLine{00240\ \textcolor{comment}{\ *\ @param\ regAddress\ \ \ \ Address\ of\ Register\ From\ Which\ Will\ Be\ Read.}}
-\DoxyCodeLine{00241\ \textcolor{comment}{\ *\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ Read\ Value.}}
-\DoxyCodeLine{00242\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00243\ uint8\_t\ \mbox{\hyperlink{rtc__ds3231_8h_a340e36eb16d87e6c82d26b051844060c}{RTC\_Read}}(uint8\_t\ regAddress);}
-\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00199\ \textcolor{comment}{\ *\ @details\ \ \ \ \ \ \ \ \ \ \ \ \ Pins\ Should\ Also\ Be\ De-\/Initialised\ Lately.}}
+\DoxyCodeLine{00200\ \textcolor{comment}{\ *\ @param\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ void}}
+\DoxyCodeLine{00201\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00202\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a487d25d797a1fed2626ac9709ddac456}{RTC\_Deinit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00205\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Converts\ Numbers\ From\ Decimal\ Base\ To\ BCD\ Base.}}
+\DoxyCodeLine{00206\ \textcolor{comment}{\ *\ @param\ dec\ \ \ \ \ \ \ \ \ \ \ Decimal\ Number.}}
+\DoxyCodeLine{00207\ \textcolor{comment}{\ *\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ Number\ in\ Binary\ Coded\ Decimal.}}
+\DoxyCodeLine{00208\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00209\ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{rtc__ds3231_8h_ab12090e402b342c7f8773f2094773394}{RTC\_ConvertToBCD}}(uint8\_t\ dec);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00212\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Converts\ Numbers\ From\ BCD\ Base\ To\ Decimal\ Base.}}
+\DoxyCodeLine{00213\ \textcolor{comment}{\ *\ @param\ bcd\ \ \ \ \ \ \ \ \ \ \ Binary-\/Coded\ Decimal\ Number.}}
+\DoxyCodeLine{00214\ \textcolor{comment}{\ *\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ Number\ in\ Decimal\ Base.}}
+\DoxyCodeLine{00215\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00216\ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{rtc__ds3231_8h_a87c0d6971d07785ee1a2abf9e24eeb3f}{RTC\_ConvertToDEC}}(uint8\_t\ bcd);}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00219\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ This\ Function\ Checks\ If\ The\ Oscillator\ Is\ Still\ Running.}}
+\DoxyCodeLine{00220\ \textcolor{comment}{\ *\ @returns\ \ \ \ \ \ \ \ \ \ \ \ \ Function\ Returns\ 1\ If\ The\ Oscillator\ Is\ Running.\ If\ The\ Oscillator\ Has\ Stopped}}
+\DoxyCodeLine{00221\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Returns\ 0.}}
+\DoxyCodeLine{00222\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00223\ uint8\_t\ \mbox{\hyperlink{rtc__ds3231_8h_a18ceefab30bd070d2eafd74b0a7c9073}{RTC\_GetState}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00226\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sets\ The\ Oscillator\ Stop\ Flag\ (OSF).}}
+\DoxyCodeLine{00227\ \textcolor{comment}{\ *\ @param\ state\ \ \ \ \ \ \ \ \ State\ of\ The\ Flag.}}
+\DoxyCodeLine{00228\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00229\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_ada78757b2decedc79e0382b42e45a513}{RTC\_SetOscState}}(\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\_osc\_state\_t}}\ state);}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00232\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Writes\ Value\ Into\ RTC\ Registers.}}
+\DoxyCodeLine{00233\ \textcolor{comment}{\ *\ @param\ regAddress\ \ \ \ Address\ of\ Register\ To\ Which\ Will\ Be\ Value\ Written.}}
+\DoxyCodeLine{00234\ \textcolor{comment}{\ *\ @param\ val\ \ \ \ \ \ \ \ \ \ \ Value\ That\ Will\ Be\ Writen\ Into\ Register.}}
+\DoxyCodeLine{00235\ \textcolor{comment}{\ *\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ void}}
+\DoxyCodeLine{00236\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00237\ uint8\_t\ \mbox{\hyperlink{rtc__ds3231_8h_ac15d2cfbe2c4c9482e784f6a5aeed32a}{RTC\_Write}}(uint8\_t\ regAddress,\ uint8\_t\ val);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00240\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Reads\ Value\ From\ RTC\ Register.}}
+\DoxyCodeLine{00241\ \textcolor{comment}{\ *\ @param\ regAddress\ \ \ \ Address\ of\ Register\ From\ Which\ Will\ Be\ Read.}}
+\DoxyCodeLine{00242\ \textcolor{comment}{\ *\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ Read\ Value.}}
+\DoxyCodeLine{00243\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00244\ uint8\_t\ \mbox{\hyperlink{rtc__ds3231_8h_a340e36eb16d87e6c82d26b051844060c}{RTC\_Read}}(uint8\_t\ regAddress);}
 \DoxyCodeLine{00245\ }
-\DoxyCodeLine{00246\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00247\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sets\ Time.}}
-\DoxyCodeLine{00248\ \textcolor{comment}{\ *\ @param\ pTime\ \ \ \ \ \ \ \ \ Pointer\ To\ Time\ Structure.}}
-\DoxyCodeLine{00249\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00250\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a37c611694906a21743c2ad7123a55f9f}{RTC\_SetTime}}(\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}}\ *pTime);}
-\DoxyCodeLine{00251\ }
-\DoxyCodeLine{00252\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00253\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Gets\ Time.}}
-\DoxyCodeLine{00254\ \textcolor{comment}{\ *\ @param\ pTime\ \ \ \ \ \ \ \ \ Pointer\ To\ Time\ Structure.}}
-\DoxyCodeLine{00255\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00256\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a022d5dbffbbdba01d41f47d35dd2f411}{RTC\_GetTime}}(\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}}\ *pTime);}
-\DoxyCodeLine{00257\ }
-\DoxyCodeLine{00258\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00259\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sets\ Date.}}
-\DoxyCodeLine{00260\ \textcolor{comment}{\ *\ @param\ pDate\ \ \ \ \ \ \ \ \ Pointer\ To\ Date\ Structure.}}
-\DoxyCodeLine{00261\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00262\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_aa91602eaabcb3a6e36c0da47980e76f8}{RTC\_SetDate}}(\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}}\ *pDate);}
-\DoxyCodeLine{00263\ }
-\DoxyCodeLine{00264\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00265\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Gets\ Date.}}
-\DoxyCodeLine{00266\ \textcolor{comment}{\ *\ @param\ pDate\ \ \ \ \ \ \ \ \ Pointer\ To\ Date\ Structure.}}
-\DoxyCodeLine{00267\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00268\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_aff981efc71adf20253068942e278b421}{RTC\_GetDate}}(\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}}\ *pDate);}
-\DoxyCodeLine{00269\ }
-\DoxyCodeLine{00270\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00271\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sets\ The\ INTCN\ Bit\ in\ Control\ Register.}}
-\DoxyCodeLine{00272\ \textcolor{comment}{\ *\ @param\ mode\ \ \ \ \ \ \ \ \ \ Interrupt\ Mode.}}
-\DoxyCodeLine{00273\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00274\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a1c9f11eaae27873a2bc415d53541594d}{RTC\_SetInterruptMode}}(\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\_interrupt\_mode\_t}}\ mode);}
-\DoxyCodeLine{00275\ }
-\DoxyCodeLine{00276\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00277\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Enables/Disables\ The\ Alarm\ 1.}}
-\DoxyCodeLine{00278\ \textcolor{comment}{\ *\ @param\ enable\ \ \ \ \ \ \ \ Specifies\ If\ The\ Alarm\ Will\ Be\ Enabled\ or\ Not.}}
-\DoxyCodeLine{00279\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00280\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a06995b923b484104afe590533698e8a1}{RTC\_CtrlAlarm1}}(uint8\_t\ enable);}
-\DoxyCodeLine{00281\ }
-\DoxyCodeLine{00282\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00283\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Clears\ The\ A1F\ Flag\ in\ Control\ Register.}}
-\DoxyCodeLine{00284\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00285\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_aacb3e98a52f0d90ecd8affb36960cfc6}{RTC\_ClearFlagAlarm1}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00286\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00287\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Enables/Disables\ The\ Alarm\ 2.}}
-\DoxyCodeLine{00288\ \textcolor{comment}{\ *\ @param\ enable\ \ \ \ \ \ \ \ Specifies\ If\ The\ Alarm\ Will\ Be\ Enabled\ or\ Not.}}
-\DoxyCodeLine{00289\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00290\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a86e1ffe598df20f7d90abe6ea4fb0135}{RTC\_CtrlAlarm2}}(uint8\_t\ enable);}
-\DoxyCodeLine{00291\ }
-\DoxyCodeLine{00292\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00293\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Clears\ The\ A1F\ Flag\ in\ Control\ Register.}}
-\DoxyCodeLine{00294\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00295\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a2b8c5234e3d21ad10eb86b7a5b912dd3}{RTC\_ClearFlagAlarm2}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00296\ }
-\DoxyCodeLine{00297\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00298\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sets\ Time\ To\ Default.}}
-\DoxyCodeLine{00299\ \textcolor{comment}{\ *\ @param\ pTime\ \ \ \ \ \ \ \ \ Pointer\ to\ Time\ Structure\ That\ Will\ Be\ Configured\ To\ Default.}}
-\DoxyCodeLine{00300\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00301\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a61d57ebc0932c5610c8a7e8dd7d860f8}{RTC\_SetTimeDefault}}(\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}}\ *pTime);}
-\DoxyCodeLine{00302\ }
-\DoxyCodeLine{00303\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00304\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sets\ Date\ To\ Default.}}
-\DoxyCodeLine{00305\ \textcolor{comment}{\ *\ @param\ pDate\ \ \ \ \ \ \ \ \ Pointer\ to\ Date\ Structure\ That\ Will\ Be\ Configured\ To\ Default.}}
-\DoxyCodeLine{00306\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00307\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\_SetDateDefault}}(\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}}\ *pDate);}
-\DoxyCodeLine{00308\ }
-\DoxyCodeLine{00309\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ RTC\_DS3231\_H\_*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00248\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sets\ Time.}}
+\DoxyCodeLine{00249\ \textcolor{comment}{\ *\ @param\ pTime\ \ \ \ \ \ \ \ \ Pointer\ To\ Time\ Structure.}}
+\DoxyCodeLine{00250\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00251\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a37c611694906a21743c2ad7123a55f9f}{RTC\_SetTime}}(\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}}\ *pTime);}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00254\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Gets\ Time.}}
+\DoxyCodeLine{00255\ \textcolor{comment}{\ *\ @param\ pTime\ \ \ \ \ \ \ \ \ Pointer\ To\ Time\ Structure.}}
+\DoxyCodeLine{00256\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00257\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a022d5dbffbbdba01d41f47d35dd2f411}{RTC\_GetTime}}(\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}}\ *pTime);}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00260\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sets\ Date.}}
+\DoxyCodeLine{00261\ \textcolor{comment}{\ *\ @param\ pDate\ \ \ \ \ \ \ \ \ Pointer\ To\ Date\ Structure.}}
+\DoxyCodeLine{00262\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00263\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_aa91602eaabcb3a6e36c0da47980e76f8}{RTC\_SetDate}}(\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}}\ *pDate);}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00266\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Gets\ Date.}}
+\DoxyCodeLine{00267\ \textcolor{comment}{\ *\ @param\ pDate\ \ \ \ \ \ \ \ \ Pointer\ To\ Date\ Structure.}}
+\DoxyCodeLine{00268\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00269\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_aff981efc71adf20253068942e278b421}{RTC\_GetDate}}(\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}}\ *pDate);}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00272\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sets\ The\ INTCN\ Bit\ in\ Control\ Register.}}
+\DoxyCodeLine{00273\ \textcolor{comment}{\ *\ @param\ mode\ \ \ \ \ \ \ \ \ \ Interrupt\ Mode.}}
+\DoxyCodeLine{00274\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00275\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a1c9f11eaae27873a2bc415d53541594d}{RTC\_SetInterruptMode}}(\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\_interrupt\_mode\_t}}\ mode);}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00278\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Enables/Disables\ The\ Alarm\ 1.}}
+\DoxyCodeLine{00279\ \textcolor{comment}{\ *\ @param\ enable\ \ \ \ \ \ \ \ Specifies\ If\ The\ Alarm\ Will\ Be\ Enabled\ or\ Not.}}
+\DoxyCodeLine{00280\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00281\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a06995b923b484104afe590533698e8a1}{RTC\_CtrlAlarm1}}(uint8\_t\ enable);}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00284\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Clears\ The\ A1F\ Flag\ in\ Control\ Register.}}
+\DoxyCodeLine{00285\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00286\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_aacb3e98a52f0d90ecd8affb36960cfc6}{RTC\_ClearFlagAlarm1}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00287\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00288\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Enables/Disables\ The\ Alarm\ 2.}}
+\DoxyCodeLine{00289\ \textcolor{comment}{\ *\ @param\ enable\ \ \ \ \ \ \ \ Specifies\ If\ The\ Alarm\ Will\ Be\ Enabled\ or\ Not.}}
+\DoxyCodeLine{00290\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00291\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a86e1ffe598df20f7d90abe6ea4fb0135}{RTC\_CtrlAlarm2}}(uint8\_t\ enable);}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00294\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Clears\ The\ A1F\ Flag\ in\ Control\ Register.}}
+\DoxyCodeLine{00295\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00296\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a2b8c5234e3d21ad10eb86b7a5b912dd3}{RTC\_ClearFlagAlarm2}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00299\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sets\ Time\ To\ Default.}}
+\DoxyCodeLine{00300\ \textcolor{comment}{\ *\ @param\ pTime\ \ \ \ \ \ \ \ \ Pointer\ to\ Time\ Structure\ That\ Will\ Be\ Configured\ To\ Default.}}
+\DoxyCodeLine{00301\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00302\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a61d57ebc0932c5610c8a7e8dd7d860f8}{RTC\_SetTimeDefault}}(\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}}\ *pTime);}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00305\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sets\ Date\ To\ Default.}}
+\DoxyCodeLine{00306\ \textcolor{comment}{\ *\ @param\ pDate\ \ \ \ \ \ \ \ \ Pointer\ to\ Date\ Structure\ That\ Will\ Be\ Configured\ To\ Default.}}
+\DoxyCodeLine{00307\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00308\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtc__ds3231_8h_a6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\_SetDateDefault}}(\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}}\ *pDate);}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ RTC\_DS3231\_H\_*/}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

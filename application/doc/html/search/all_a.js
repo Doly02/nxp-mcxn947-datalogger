@@ -19,6 +19,5 @@ var searchData=
   ['lpi2c_5frx_5fedma_5fchannel_16',['LPI2C_RX_EDMA_CHANNEL',['../temperature_8c.html#aef436e53172ccba5c0370cc9e48d1989',1,'LPI2C_RX_EDMA_CHANNEL:&#160;temperature.c'],['../rtc__ds3231_8h.html#aef436e53172ccba5c0370cc9e48d1989',1,'LPI2C_RX_EDMA_CHANNEL:&#160;rtc_ds3231.h']]],
   ['lpi2c_5ftx_5fchannel_17',['LPI2C_TX_CHANNEL',['../temperature_8c.html#ae02f1575c21c401c357de6456cb0b472',1,'LPI2C_TX_CHANNEL:&#160;temperature.c'],['../rtc__ds3231_8h.html#ae02f1575c21c401c357de6456cb0b472',1,'LPI2C_TX_CHANNEL:&#160;rtc_ds3231.h']]],
   ['lpi2c_5ftx_5fdma_5fchannel_18',['LPI2C_TX_DMA_CHANNEL',['../temperature_8c.html#afcaf37eb8fb30d41d86b119127cb9368',1,'LPI2C_TX_DMA_CHANNEL:&#160;temperature.c'],['../rtc__ds3231_8h.html#afcaf37eb8fb30d41d86b119127cb9368',1,'LPI2C_TX_DMA_CHANNEL:&#160;rtc_ds3231.h']]],
-  ['lpuart3_5fclk_5ffreq_19',['LPUART3_CLK_FREQ',['../uart_8h.html#af3c50a22bec945f271789dc87c4304ea',1,'uart.h']]],
-  ['lpuart_5fprio_20',['LPUART_PRIO',['../uart_8c.html#aea1e7693e3ef048da32a864511315eb9',1,'uart.c']]]
+  ['lpuart3_5fclk_5ffreq_19',['LPUART3_CLK_FREQ',['../uart_8h.html#af3c50a22bec945f271789dc87c4304ea',1,'uart.h']]]
 ];

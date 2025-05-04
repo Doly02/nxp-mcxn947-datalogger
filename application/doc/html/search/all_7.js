@@ -30,6 +30,7 @@ var searchData=
   ['gedmarxhandle_5fi2c5_27',['gEdmaRxHandle_I2C5',['../temperature_8c.html#aa8af0e0f6c65deb08c1339ec66dadcc1',1,'temperature.c']]],
   ['gedmatxhandle_28',['gEdmaTxHandle',['../rtc__ds3231_8c.html#afb84870262e12212b969d872bff3bead',1,'rtc_ds3231.c']]],
   ['gedmatxhandle_5fi2c5_29',['gEdmaTxHandle_I2C5',['../temperature_8c.html#a761568c3a46ef7368e1da37f51e67fc6',1,'temperature.c']]],
-  ['get_5ffattime_30',['get_fattime',['../record_8c.html#af58b536abfd30f77213f4ecaf2ac52f5',1,'record.c']]],
-  ['get_5fwait_5finterval_31',['GET_WAIT_INTERVAL',['../record_8c.html#ad7a1f4fbbe0adc28faeb0c657fa33cc4',1,'record.c']]]
+  ['get_5fcurrent_5ftime_5fms_30',['GET_CURRENT_TIME_MS',['../record_8c.html#af91d15f16fa008fb2ea0436199bb2ab2',1,'record.c']]],
+  ['get_5ffattime_31',['get_fattime',['../record_8c.html#af58b536abfd30f77213f4ecaf2ac52f5',1,'record.c']]],
+  ['get_5fwait_5finterval_32',['GET_WAIT_INTERVAL',['../record_8c.html#ad7a1f4fbbe0adc28faeb0c657fa33cc4',1,'record.c']]]
 ];
