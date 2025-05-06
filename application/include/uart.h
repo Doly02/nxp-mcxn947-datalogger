@@ -54,14 +54,20 @@ void UART_Init(uint32_t baudrate);
 void UART_Print(uint8_t ch);
 
 /**
- * @brief 		Enables Interrupt For Application LPUART7.
+ * @brief 		Enables Interrupt For Application LPUART.
  */
 void UART_Enable(void);
 
 /**
- * @brief 		Disables Interrupt For Application LPUART7.
+ * @brief 		Disables Interrupt For Application LPUART.
  */
 void UART_Disable(void);
+
+/**
+ * @brief 		De-Initialize LPUART.
+ * @details		The Pins Should Be De-Initialized After This Function.
+ */
+void UART_Deinit(void);
 
 #endif /* UART_H_ */
 

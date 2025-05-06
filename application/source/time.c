@@ -24,9 +24,10 @@
 #include "pin_mux.h"
 
 /* MISRA Deviation: Rule 21.10
- * Justification: <time.h> is intentionally used for management of timestamps and other
- * time-related operations in a controlled and limited scope. Usage of "time.h" usage is
- * intentional and controlled.
+ * Suppress: Use Of Banned Standard Header 'Time.h'.
+ * Justification: "time.h" is Intentionally Used For Management of Time Stamps and Other
+ * Time-Related Operations in a Controlled and Limited Scope. Usage of "time.h" Usage is
+ * Intentional and Controlled.
  */
 
 /*lint -e829 */
@@ -64,20 +65,22 @@ error_t TIME_InitIRTC(void)
 
     	/* MISRA Deviation Note:
 		 * Rule: MISRA 2012 Rule 1.3 [Required]
-		 * Justification: The macro 'ERROR_IRTC' is defined in 'error.h', which is included indirectly
-		 * via 'time.h'. This deviation is safe and intentional.
+		 * Suppress: Identifier Declared via Indirect Header Include.
+		 * Justification: The Macro 'ERROR_IRTC' is Defined in "error.h", Which is Included Indirectly
+		 * via "time.h". This Deviation is Safe and Intentional.
 		 */
-		/*lint -e40 MISRA Deviation: identifier declared via indirect header include */
+		/*lint -e40 */
 		return ERROR_IRTC;
 		/*lint +e40 */
     }
 
 	/* MISRA Deviation Note:
 	 * Rule: MISRA 2012 Rule 1.3 [Required]
-	 * Justification: The macros 'ERROR_IRTC' and 'ERROR_NONE' are defined in 'error.h', which is included indirectly
-	 * via 'time.h'. This deviation is safe and intentional.
+	 * Suppress: Identifier Declared via Indirect Header Include.
+	 * Justification: The Macro 'ERROR_IRTC' is Defined in "error.h", Which is Included Indirectly
+	 * via "time.h". This Deviation is Safe and Intentional.
 	 */
-	/*lint -e40 MISRA Deviation: identifier declared via indirect header include */
+	/*lint -e40 */
 	if (ERROR_NONE != RTC_Init())
 	{
 		PRINTF("ERR: Init. External-RTC Failed\r\n");
@@ -88,10 +91,11 @@ error_t TIME_InitIRTC(void)
 
 	/* MISRA Deviation Note:
 	 * Rule: MISRA 2012 Rule 1.3 [Required]
-	 * Justification: The macro 'ERROR_NONE' is defined in 'error.h', which is included indirectly
-	 * via 'time.h'. This deviation is safe and intentional.
+	 * Suppress: Identifier Declared via Indirect Header Include.
+	 * Justification: The Macro 'ERROR_NONE' is Defined in "error.h", Which is Included Indirectly
+	 * via "time.h". This Deviation is Safe and Intentional.
 	 */
-	/*lint -e40 MISRA Deviation: identifier declared via indirect header include */
+	/*lint -e40 */
 	return ERROR_NONE;
 	/*lint +e40 */
 
@@ -105,9 +109,6 @@ error_t TIME_SetTime(void)
 	RTC_time_t rtc_time;
 	RTC_date_t rtc_date;
 	status_t status = 2;
-
-	uint16_t year;
-	uint8_t month, day, date, weekDay, hour, minute, second;
 
 	/* Load The State of Real-Time Circuit */
 	if (OSC_STOPPED == RTC_GetState())	// If The Oscillator Was Stopped -> Set Time & Date
@@ -132,15 +133,6 @@ error_t TIME_SetTime(void)
 	RTC_GetTime(&rtc_time);
 	RTC_GetDate(&rtc_date);
 
-	day 	= (uint8_t) rtc_date.date;
-	weekDay = (uint8_t) rtc_date.day;
-	month 	= (uint8_t) rtc_date.month;
-	year	= (uint16_t)(2000 + rtc_date.year);
-
-	hour	= (uint8_t) rtc_time.hrs;
-	minute	= (uint8_t) rtc_time.min;
-	second = (uint8_t) rtc_time.sec;
-
 	time.day 	= (uint8_t) rtc_date.date;
 	time.month 	= (uint8_t) rtc_date.month;
 	time.year	= (uint16_t)(2000 + rtc_date.year);
@@ -163,12 +155,14 @@ error_t TIME_SetTime(void)
     status = IRTC_SetDatetime(RTC, &time);
     if (0 != status)
     {
-		/* MISRA Deviation Note:
-		 * Rule: MISRA 2012 Rule 1.3 [Required]
-		 * Justification: The macro 'ERROR_IRTC' is defined in 'error.h', which is included indirectly
-		 * via 'time.h'. This deviation is safe and intentional.
-		 */
-		/*lint -e40 MISRA Deviation: identifier declared via indirect header include */
+
+    	/* MISRA Deviation Note:
+    	 * Rule: MISRA 2012 Rule 1.3 [Required]
+    	 * Suppress: Identifier Declared via Indirect Header Include.
+    	 * Justification: The Macro 'ERROR_IRTC' is Defined in "error.h", Which is Included Indirectly
+    	 * via "time.h". This Deviation is Safe and Intentional.
+    	 */
+		/*lint -e40 */
 		return ERROR_IRTC;
 		/*lint +e40 */
     }
@@ -182,10 +176,11 @@ error_t TIME_SetTime(void)
 
 	/* MISRA Deviation Note:
 	 * Rule: MISRA 2012 Rule 1.3 [Required]
-	 * Justification: The macro 'ERROR_NONE' is defined in 'error.h', which is included indirectly
-	 * via 'time.h'. This deviation is safe and intentional.
+	 * Suppress: Identifier Declared via Indirect Header Include.
+	 * Justification: The Macro 'ERROR_NONE' is Defined in "error.h", Which is Included Indirectly
+	 * via "time.h". This Deviation is Safe and Intentional.
 	 */
-	/*lint -e40 MISRA Deviation: identifier declared via indirect header include */
+	/*lint -e40 */
 	return ERROR_NONE;
 	/*lint +e40 */
 }

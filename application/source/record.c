@@ -180,11 +180,11 @@ static volatile uint32_t g_u32ReadIndex = 0;
  *
  */
 
-/*lint -e957 */
-/* MISRA 2012 Rule 8.4:
- * Suppress: function 'LP_FLEXCOMM3_IRQHandler' defined without a prototype in scope.
- * LP_FLEXCOMM3_IRQHandler is declared WEAK in startup_mcxn947_cm33_core0.c and overridden here.
+/* MISRA Deviation: Rule 8.4 [Required]
+ * Suppress: Function 'LP_FLEXCOMM3_IRQHandler' Defined Without a Prototype in Scope.
+ * Justification: LP_FLEXCOMM3_IRQHandler is Declared WEAK in startup_mcxn947_cm33_core0.c and Overridden Here.
  */
+/*lint -e957 */
 void LP_FLEXCOMM3_IRQHandler(void)
 {
     uint8_t u8Data;
@@ -214,7 +214,7 @@ void LP_FLEXCOMM3_IRQHandler(void)
     (void)LPUART_ClearStatusFlags(LPUART3, (uint32_t)kLPUART_RxDataRegFullFlag);
     SDK_ISR_EXIT_BARRIER;
 }
-/*lint -e957 */
+/*lint +e957 */
 
 /*******************************************************************************
  * Code
@@ -223,12 +223,14 @@ DWORD get_fattime(void)
 {
     irtc_datetime_t datetime = { 0U };
 
-    /*lint -e9033*/
-    /* MISRA 2012 Rule 10.8:
-     * The cast from smaller unsigned integer types (uint8_t, uint16_t) to a wider type (uint32_t)
-     * is intentional and safe in this context. The values are combined using bitwise OR into a
-     * FAT timestamp format that expects 32-bit result. All input ranges are within limits.
+    /**
+     * MISRA Deviation: Rule 10.8
+     * Suppress: Conversion From Smaller Unsigned Integer Types to a Wider Unsigned Type.
+     * Justification: The Cast From 'Uint8_t' and 'Uint16_t' to 'Uint32_t' is Intentional and Safe in This Context.
+     * The Values are Combined Using Bitwise OR Into a FAT Time Stamp Format That Expects 32-Bit Result.
+     * All Input Ranges are Within Limits.
      */
+    /*lint -e9033*/
     IRTC_GetDatetime(RTC, &datetime);
 
     return ((DWORD)(datetime.year - 1980U) << 25) |
@@ -261,21 +263,6 @@ uint32_t CONSOLELOG_GetFreeSpaceMB(void)
     return (uint32_t)(u64FreeSectors / 2048UL);
 }
 
-int CONSOLELOG_Abs(int x)
-{
-    /*lint -e9027*/
-    /* MISRA 2012 Rule 10.1:
-     * Comparison with INT_MIN is intentional to detect the edge case
-     * where -INT_MIN is undefined behavior. This check prevents incorrect abs().
-     */
-    if (x == INT_MIN) {
-        return INT_MAX;
-    }
-    return (x < 0) ? -x : x;
-    /*lint +e9027*/
-}
-
-
 error_t CONSOLELOG_CreateFile(void)
 {
     FRESULT status;
@@ -287,7 +274,11 @@ error_t CONSOLELOG_CreateFile(void)
     IRTC_GetDatetime(RTC, &datetimeGet);
 
     /* Generate a New File Name */
-    /* @note snprintf() Is Depricated But There Is No Better Equivalent */
+    /**
+     * MISRA Deviation: Rule 21.6
+     * Suppress: Use Of Standard Library Function 'Snprintf'.
+     * Justification: 'Snprintf' Is Deprecated But There Is No Better Equivalent For Safe String Formatting.
+     */
     /*lint -e586*/
     (void)snprintf(u8FileName, sizeof(u8FileName), "%s/%04d%02d%02d_%02d%02d%02d_%u.txt",
     		g_u8CurrentDirectory, datetimeGet.year, datetimeGet.month, datetimeGet.day,
@@ -297,9 +288,10 @@ error_t CONSOLELOG_CreateFile(void)
 
     /* Open New File */
     /**
-     * MISRA Deviation: Rule 10.1
-     * Justification: FA_WRITE and FA_CREATE_ALWAYS are standard bitmask flags defined by the FatFs library.
-     * These constants are specifically designed to be combined using bitwise OR (|), and the use is safe and intentional.
+     * MISRA Deviation: Rule 10.1 [Required]
+     * Suppress: Bitwise Operation on Composite Constant Expression.
+     * Justification: FA_WRITE and FA_CREATE_ALWAYS are Standard Bitmask Flags Defined By The FatFs Library.
+     * These Constants Are Designed To Be Combined Using Bitwise OR, and The Use is Safe and Intentional.
      */
     /*lint -e9027 */
     status = f_open(&g_fileObject, u8FileName, (FA_WRITE | FA_CREATE_ALWAYS));
@@ -312,10 +304,10 @@ error_t CONSOLELOG_CreateFile(void)
 
     /* Setup of File Meta-Data */
     /* MISRA Deviation Note:
-     * The following expression is intentionally written in a compact and readable form
-     * for setting FAT file timestamps. All shifts and bitwise operations are used correctly,
-     * even though they trigger MISRA Rule 10.1, 10.3, 10.4, 10.7, 12.2 warnings.
-     * These are suppressed here for clarity and maintainability.
+     * The Following Expression is Intentionally Written in a Compact and Readable Form
+     * For Setting FAT File Time Stamps. All Shifts and Bitwise Operations Are Used Correctly,
+     * Even Though They Trigger MISRA Rule 10.1, 10.3, 10.4, 10.7, 12.2 Warnings.
+     * These are Suppressed Here For Clarity and Maintainability.
      */
     /*lint -e9027 -e9029 -e9032 -e9034 -e9033 -e9053 -e701 -e10.1 -e10.3 -e10.4 -e10.7 -e12.2 */
     fno.fdate = ((datetimeGet.year - 1980) << 9) | (datetimeGet.month << 5) | (datetimeGet.day);
@@ -467,7 +459,6 @@ error_t CONSOLELOG_Init(void)
 
 error_t CONSOLELOG_Recording(uint32_t file_size)
 {
-    FRESULT error;
     UINT bytesWritten;               //<! Bytes Written Into SD Card
     irtc_datetime_t datetimeGet;     //<! Actual Time From IRTC
     static uint8_t u8LastChar = 0;     //<! Last Character From Previous DMA Buffer
@@ -475,10 +466,9 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
     static char timeString[12];
     static uint8_t u8TimeLength = 0;
 
-//    uint32_t localReadIndex  = g_u32ReadIndex;
-    uint32_t localWriteIndex = g_u32WriteIndex;
+    uint32_t u32LocalWriteIndex = g_u32WriteIndex;
 
-    while (g_u32ReadIndex != localWriteIndex)
+    while (g_u32ReadIndex != u32LocalWriteIndex)
     {
         /* Loads One Char From FIFO And Stores The Char Into Active DMA Buffer */
         uint8_t currentChar = g_au8CircBuffer[g_u32ReadIndex];
@@ -563,7 +553,7 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
             g_fileObject.obj.fs = NULL;
             return ERROR_ADMA;
         }
-        error = f_write(&g_fileObject, g_pu8FrontDmaBuffer, BLOCK_SIZE, &bytesWritten);
+        (void)f_write(&g_fileObject, g_pu8FrontDmaBuffer, BLOCK_SIZE, &bytesWritten);
         g_u32CurrentFileSize += BLOCK_SIZE;
         if (g_u32CurrentFileSize >= file_size)
         {
@@ -585,7 +575,6 @@ error_t CONSOLELOG_Flush(void)
 {
 	FRESULT error;
 	UINT bytesWritten;
-	int tickDiff 			= 0;
 	TickType_t LastTick 	= 0;
 	TickType_t CurrentTick 	= xTaskGetTickCount();
 
@@ -595,24 +584,14 @@ error_t CONSOLELOG_Flush(void)
 	 * */
 	/*
 	 * MISRA Deviation: Rule 1.3
-	 * Reason: __ATOMIC_ACQUIRE is a compiler-specific macro used for atomic memory ordering
-	 *        in GCC/Clang. It is intentionally used here for ensuring that all read values are consistent
-	 * 		  with pre-read operations.
+	 * Suppress: Use of Compiler-Specific Intrinsic With Side Effects.
+	 * Reason: __ATOMIC_ACQUIRE Is A Compiler-Specific Macro Used For Atomic Memory Ordering
+	 *         In GCC/Clang. It Is Intentionally Used Here For Ensuring That All Read Values Are Consistent
+	 *         With Pre-Read Operations.
 	 */
-	/*lint -save -e40 */
+	/*lint -e40 */
 	LastTick = (TickType_t)__atomic_load_n(&g_lastDataTick, __ATOMIC_ACQUIRE);
-	/*lint -restore */
-
-	// tickDiff = (int)(s64CurrentTick - s64LastTick);
-
-	/*
-	if ((CONSOLELOG_Abs(tickDiff) > REINIT_TIMEOUT_TICKS) && (g_u16BackDmaBufferIdx == 0U))
-	{
-		UART_Disable();
-		PRINTF("INFO: Re-Initialized UART\r\n");
-		UART_Enable();
-	}
-	 */
+	/*lint +e40 */
 
 	if ((CurrentTick > LastTick) &&
 	    ((CurrentTick - LastTick) > FLUSH_TIMEOUT_TICKS) &&
@@ -689,12 +668,21 @@ error_t CONSOLELOG_Flush(void)
 		UART_Disable();
 		UART_Enable();
 	}
+	else if ((CurrentTick > LastTick) &&
+	    ((CurrentTick - LastTick) > FLUSH_TIMEOUT_TICKS))
+	{
+		UART_Disable();
+		UART_Enable();
+	}
+	else
+	{
+		; /* To Avoid MISRA 2012 Rule 15.7 */
+	}
 	return ERROR_NONE;
 }
 
 error_t CONSOLELOG_PowerLossFlush(void)
 {
-	FRESULT error;
 	UINT bytesWritten;
 
 	/* Finish The Receiving of New Data */
@@ -749,7 +737,7 @@ error_t CONSOLELOG_PowerLossFlush(void)
 			g_fileObject.obj.fs = NULL;
 			return ERROR_ADMA;
 		}
-		error = f_write(&g_fileObject, g_pu8FrontDmaBuffer, BLOCK_SIZE, &bytesWritten);
+		(void)f_write(&g_fileObject, g_pu8FrontDmaBuffer, BLOCK_SIZE, &bytesWritten);
 		g_u32CurrentFileSize += BLOCK_SIZE;
 
 #if	(true == INFO_ENABLED || true == DEBUG_ENABLED)

@@ -3,7 +3,7 @@
  *  File Name:      mainc.c
  *  Author:         Tomas Dolak
  *  Date:           07.08.2024
- *  Description:    Implements Datalogger Application.
+ *  Description:    Implements Data Logger Application.
  *
  * ****************************/
 
@@ -12,7 +12,7 @@
  *  @file           main.c
  *  @author         Tomas Dolak
  *  @date           07.08.2024
- *  @brief          Implements Datalogger Application.
+ *  @brief          Implements Data Logger Application.
  * ****************************/
 
 /*******************************************************************************
@@ -41,39 +41,63 @@
 /*******************************************************************************
  * Global Variables
  ******************************************************************************/
-/*!
+/**
  * @brief 	Buffer for Static Stack of Mass Storage Task.
  */
 static StackType_t g_xMscTaskStack[MSC_STACK_SIZE];
-/*!
- * @brief 	TCB (Task Control Block) - Metadata of Mass Storage Task.
+
+/**
+ * @brief 	TCB (Task Control Block) - Meta Data of Mass Storage Task.
  * @details Includes All The Information Needed to Manage The Task Such As Job Status,
  * 			Job Stack Pointer, Values of Variables During Context Switching.
  */
 static StaticTask_t g_xMscTaskTCB;
 
+/**
+ * @brief  Buffer For Static Stack Of Record Task.
+ */
 static StackType_t g_xRecordTaskStack[RECORD_STACK_SIZE];
 
+/**
+ * @brief  TCB (Task Control Block) - Meta Data of Record Task.
+ * @details Includes All The Information Needed to Manage The Task Such As Job Status,
+ *          Job Stack Pointer, Values of Variables During Context Switching.
+ */
 static StaticTask_t g_xRecordTaskTCB;
 
-/*!
- * @brief Global USB MSC Structure.
- *
- * MISRA Deviation: Rule 8.4
- * Justification: Declaration of 'g_msc' is intentionally placed in 'app_tasks.h', T
- * , the current file only provides the definition.
+
+ /**
+ * MISRA Deviation: Rule 8.4 [Required]
+ * Suppress: External Object Has Definition Without Prior Declaration in This File.
+ * Justification: Declaration of 'g_msc' is intentionally placed in 'app_tasks.h',
+ * The Current File Only Provides The Definition.
  */
 /*lint -e9075 */
+/**
+ * @brief Global USB MSC Structure.
+ */
 usb_msc_struct_t g_msc;
 /*lint +e9075  */
 
+/**
+ * @brief USB Mass Storage Task Handle.
+ */
 TaskHandle_t g_xMscTaskHandle 	 = NULL;
 
+/**
+ * @brief Semaphore For USB Mass Storage Task Management.
+ */
+SemaphoreHandle_t g_xSemMassStorage;
+
+/**
+ * @brief Record Task Handle.
+ */
 TaskHandle_t g_xRecordTaskHandle = NULL;
 
+/**
+ * @brief Semaphore For Record Task Management.
+ */
 SemaphoreHandle_t g_xSemRecord;
-
-SemaphoreHandle_t g_xSemMassStorage;
 
 /*******************************************************************************
  * Code

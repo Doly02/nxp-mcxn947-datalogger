@@ -24,15 +24,14 @@
  * Global Variables
  ******************************************************************************/
 
-/* MISRA Deviation Note:
+/**
+ * MISRA Deviation Note:
  * Rule: MISRA 2012 Rule 8.4 [Required]
- * Justification: Variable 'error' is declared in 'error.h',
- * usage here is compliant with the intended structure of the project.
+ * Justification: Variable 'error' is Declared in 'error.h',
+ * Usage Here is Compliant With The Intended Structure of The Project.
  */
-
 /*lint -e9075 */
 error_t error;
-
 /*lint +e9075 */
 /*******************************************************************************
  * Code
@@ -44,9 +43,10 @@ void ERR_HandleError()
 		; /* Error State */
 	}
 }
-/* MISRA Deviation Note:
+/**
+ * MISRA Deviation Note:
  * Rule: MISRA 2012 Rule 8.4 [Required]
- * Justification: The function 'ERR_Init', usage here is compliant with the intended structure of the project.
+ * Justification: The Function 'ERR_Init', Usage Here is Compliant With The Intended Structure of The Project.
  */
 
 /*lint -e957 -e9075 */

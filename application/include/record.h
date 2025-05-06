@@ -49,9 +49,8 @@
 /**
  * @brief Timeout Interval Before Flush If No New Data Were Received [In Mili-Seconds].
  */
-#define FLUSH_TIMEOUT_TICKS (int)pdMS_TO_TICKS(3000)
+#define FLUSH_TIMEOUT_TICKS pdMS_TO_TICKS(3000)
 
-#define REINIT_TIMEOUT_TICKS (int)pdMS_TO_TICKS(1000)
 /*******************************************************************************
  * Structures
  ******************************************************************************/
@@ -59,13 +58,6 @@
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
-
-/**
- * @brief 		Return Absolute Value.
- *
- * @return		Returns Free Space on SD Card.
- */
-int CONSOLELOG_Abs(int x);
 
 /**
  * @brief 		Gets Free Space on SD Card.

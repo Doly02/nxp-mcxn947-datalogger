@@ -51,8 +51,8 @@
 
 /*lint -e957 */
 /* MISRA 2012 Rule 8.4:
- * Suppress: function 'CTIMER4_IRQHandler' defined without a prototype in scope.
- * CTIMER4_IRQHandler is declared WEAK in startup_mcxn947_cm33_core0.c and overridden here.
+ * Suppress: Function 'CTIMER4_IRQHandler' Defined Without a Prototype in Scope.
+ * Justification: CTIMER4_IRQHandler is Declared WEAK in startup_mcxn947_cm33_core0.c and Overridden Here.
  */
 void CTIMER4_IRQHandler(void)
 {
@@ -61,13 +61,14 @@ void CTIMER4_IRQHandler(void)
 	LED_SetLow(GPIO0, 23);
 #endif /* (true == PWRLOSS_TEST_GPIOS) */
 
-	/* MISRA Deviation Note:
-	 * Rule: MISRA 2012 Rule 10.3 [Required]
-	 * Justification: The enum value is part of the NXP SDK
-	 * and is intentionally used in this context as a bitmask flag for hardware status registers.
+	/**
+	 * MISRA Deviation: Rule 10.3 [Required]
+	 * Suppress: Conversion From enum To unsigned32.
+	 * Justification: The Enum Value is Part of The NXP SDK
+	 * and is Intentionally Used in Context as a Bitmask Flag For Hardware Status Registers.
 	 */
 
-	/*lint -e9034 MISRA Deviation: conversion from enum to unsigned32 */
+	/*lint -e9034 */
 	CTIMER_ClearStatusFlags(CTIMER4, kCTIMER_Match0Flag);
 	/*lint +e9034 */
 
@@ -77,10 +78,10 @@ void CTIMER4_IRQHandler(void)
 	(void)DisableIRQ(CTIMER4_IRQn);
 
     /* Enable the interrupt. */
-	IRQ_ClearPendingIRQ(HSCMP1_IRQn);
+	(void)IRQ_ClearPendingIRQ(HSCMP1_IRQn);
     (void)EnableIRQ(HSCMP1_IRQn);
 }
-/*lint -e957 */
+/*lint +e957 */
 
 /*
  * @brief	Response To Loss of Supply Voltage.
@@ -88,8 +89,8 @@ void CTIMER4_IRQHandler(void)
 
 /*lint -e957 */
 /* MISRA 2012 Rule 8.4:
- * Suppress: function 'HSCMP1_IRQHandler' defined without a prototype in scope.
- * HSCMP1_IRQHandler is declared WEAK in startup_mcxn947_cm33_core0.c and overridden here.
+ * Suppress: Function 'HSCMP1_IRQHandler' Defined Without a Prototype in Scope.
+ * Justification: HSCMP1_IRQHandler is Declared WEAK in startup_mcxn947_cm33_core0.c and Overridden Here.
  */
 void HSCMP1_IRQHandler(void)
 {
@@ -107,7 +108,7 @@ void HSCMP1_IRQHandler(void)
 	SDK_ISR_EXIT_BARRIER;
 
 }
-/*lint -e957 */
+/*lint +e957 */
 
 /*******************************************************************************
  * Functions
@@ -127,10 +128,11 @@ void PWRLOSS_DetectionInit(void)
     /* Enable CMP1, CMP1_DAC and VREF. */
     /* MISRA Deviation Note:
      * Rule: MISRA 2012 Rule 10.1 [Required]
-     * Justification: Enum values 'kSPC_controlCmp1' and 'kSPC_controlCmp1Dac' are defined as bitmask flags
-     * in the provided NXP SDK, and are intended to be combined using bitwise OR '|'.
+     * Suppress: Bitwise Operation on Composite Enum Values And Conversion To Unsigned Integer.
+     * Justification: Enum values 'kSPC_controlCmp1' and 'kSPC_controlCmp1Dac' are defined as Bitmask Flags
+     * in The Provided NXP SDK, and are Intended to Be Combined Using Bitwise OR.
      */
-    /*lint -e9027 -e655 -e641 MISRA Deviation: bitwise operation on enum values is intentional and safe */
+    /*lint -e9027 -e655 -e641 */
     SPC_EnableActiveModeAnalogModules(DEMO_SPC_BASE, (uint32_t)(kSPC_controlCmp1 | kSPC_controlCmp1Dac));
     /*lint +e9027 +e655 +e641 */
 

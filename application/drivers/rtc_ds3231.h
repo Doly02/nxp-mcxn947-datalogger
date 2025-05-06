@@ -25,6 +25,10 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+
+/**
+ * @brief 	General Error Return Code.
+ */
 #define E_FAULT 					1
 /**
  * @brief 	I2C DMA Channel For Transmission.
@@ -134,37 +138,37 @@
 /*******************************************************************************
  * Structures
  ******************************************************************************/
-/*
+/**
  * @brief Structure for Keeping Time.
  */
 typedef struct
 {
-	uint8_t format;			//<! Time Format (e.g. AM/PM or 24H Cycle)
-	uint8_t sec;
-	uint8_t min;
-	uint8_t hrs;
+	uint8_t format;		/**< Time Format (e.g. AM/PM or 24H Cycle)				*/
+	uint8_t sec;		/**< Seconds 0..60										*/
+	uint8_t min;		/**< Minutes 0..60										*/
+	uint8_t hrs;		/**< Hours 0..12/0..24 Based on Parameter Time Format 	*/
 
 } RTC_time_t;
 
-/*
+/**
  * @brief Structure for Keeping Date.
  */
 typedef struct
 {
-	uint8_t date;
-	uint8_t day;
-	uint8_t month;
-	uint8_t year;
+	uint8_t date;		/**< Day 1..31					*/
+	uint8_t day;		/**< Day 1..7					*/
+	uint8_t month;		/**< Month 1..12				*/
+	uint8_t year;		/**< Year From Base Year 2000 	*/
 
 } RTC_date_t;
 
-/*
+/**
  * @brief An Enum to Capture The State of The Oscillator,
  */
 typedef enum
 {
-	OSC_OK = 0,
-	OSC_INTERRUPTED		//<! RTC Oscillator Was Interrupted -> Need to Update the Time
+	OSC_OK = 0,			/**< RTC Oscillator Is OK		*/
+	OSC_INTERRUPTED		/**< RTC Oscillator Was Interrupted -> Need to Update the Time */
 
 } RTC_osc_state_t;
 
@@ -181,11 +185,13 @@ typedef enum
  * Prototypes
  ******************************************************************************/
 
-/*
+/**
+ * @defgroup RTC DS3231 Real-Time Clock Driver
  * @brief Real-Time Circuit Related Functions.
+ * @{
  */
 
-/*
+/**
  * @brief 				Initialize The RTC DS3231.
  * @param 				void
  * @details				Before Calling of RTC_Init Function Is Important To Prepare I2C
@@ -194,41 +200,41 @@ typedef enum
  */
 uint8_t RTC_Init(void);
 
-/*
+/**
  * @brief 				De-Initialize The RTC DS3231.
  * @details				Pins Should Also Be De-Initialised Lately.
  * @param 				void
  */
 void RTC_Deinit(void);
 
-/*
+/**
  * @brief 				Converts Numbers From Decimal Base To BCD Base.
  * @param dec			Decimal Number.
  * @return				Number in Binary Coded Decimal.
  */
 static uint8_t RTC_ConvertToBCD(uint8_t dec);
 
-/*
+/**
  * @brief 				Converts Numbers From BCD Base To Decimal Base.
  * @param bcd			Binary-Coded Decimal Number.
  * @return				Number in Decimal Base.
  */
 static uint8_t RTC_ConvertToDEC(uint8_t bcd);
 
-/*
+/**
  * @brief 				This Function Checks If The Oscillator Is Still Running.
  * @returns				Function Returns 1 If The Oscillator Is Running. If The Oscillator Has Stopped
  * 						Returns 0.
  */
 uint8_t RTC_GetState(void);
 
-/*
+/**
  * @brief 				Sets The Oscillator Stop Flag (OSF).
  * @param state 		State of The Flag.
  */
 void RTC_SetOscState(RTC_osc_state_t state);
 
-/*
+/**
  * @brief 				Writes Value Into RTC Registers.
  * @param regAddress 	Address of Register To Which Will Be Value Written.
  * @param val			Value That Will Be Writen Into Register.
@@ -236,7 +242,7 @@ void RTC_SetOscState(RTC_osc_state_t state);
  */
 uint8_t RTC_Write(uint8_t regAddress, uint8_t val);
 
-/*
+/**
  * @brief				Reads Value From RTC Register.
  * @param regAddress 	Address of Register From Which Will Be Read.
  * @return 				Read Value.
@@ -244,67 +250,70 @@ uint8_t RTC_Write(uint8_t regAddress, uint8_t val);
 uint8_t RTC_Read(uint8_t regAddress);
 
 
-/*
+/**
  * @brief 				Sets Time.
  * @param pTime			Pointer To Time Structure.
  */
 void RTC_SetTime(RTC_time_t *pTime);
 
-/*
+/**
  * @brief 				Gets Time.
  * @param pTime			Pointer To Time Structure.
  */
 void RTC_GetTime(RTC_time_t *pTime);
 
-/*
+/**
  * @brief 				Sets Date.
  * @param pDate			Pointer To Date Structure.
  */
 void RTC_SetDate(RTC_date_t *pDate);
 
-/*
+/**
  * @brief 				Gets Date.
  * @param pDate			Pointer To Date Structure.
  */
 void RTC_GetDate(RTC_date_t *pDate);
 
-/*
+/**
  * @brief				Sets The INTCN Bit in Control Register.
  * @param mode			Interrupt Mode.
  */
 void RTC_SetInterruptMode(RTC_interrupt_mode_t mode);
 
-/*
+/**
  * @brief 				Enables/Disables The Alarm 1.
  * @param enable		Specifies If The Alarm Will Be Enabled or Not.
  */
 void RTC_CtrlAlarm1(uint8_t enable);
 
-/*
+/**
  * @brief				Clears The A1F Flag in Control Register.
  */
 void RTC_ClearFlagAlarm1(void);
-/*
+
+/**
  * @brief 				Enables/Disables The Alarm 2.
  * @param enable		Specifies If The Alarm Will Be Enabled or Not.
  */
 void RTC_CtrlAlarm2(uint8_t enable);
 
-/*
+/**
  * @brief				Clears The A1F Flag in Control Register.
  */
 void RTC_ClearFlagAlarm2(void);
 
-/*
+/**
  * @brief				Sets Time To Default.
  * @param pTime			Pointer to Time Structure That Will Be Configured To Default.
  */
 void RTC_SetTimeDefault(RTC_time_t *pTime);
 
-/*
+/**
  * @brief				Sets Date To Default.
  * @param pDate			Pointer to Date Structure That Will Be Configured To Default.
  */
 void RTC_SetDateDefault(RTC_date_t *pDate);
+
+/** @} */ // end of RTC group
 
 #endif /* RTC_DS3231_H_*/

@@ -115,11 +115,12 @@ error_t PARSER_ParseBaudrate(const char *chContent)
 
     chFound += strlen(chKey);
     /* MISRA Deviation Note:
-     * Rule: MISRA 2012 Rule 21.7
-     * Justification: Use of 'atoi' is intentional in controlled context.
-     * The input string 'chFound' should contain only numeric characters - baudrate.
+     * Rule: MISRA 2012 Rule 21.7 [Required]
+     * Suppress: Use Of Standard Library Function 'atoi'.
+     * Justification: Use of 'atoi' is Intentional in Controlled Context.
+     * The Input String 'chFound' Should Contain Only Numeric Characters - Baud Rate.
      */
-    /*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
+    /*lint -e586 */
     uint32_t u32Baudrate = (uint32_t)atoi(chFound);			// Convert Value To INT
     /*lint +e586 */
 
@@ -129,31 +130,22 @@ error_t PARSER_ParseBaudrate(const char *chContent)
         return ERROR_READ;
     }
 
-    switch (u32Baudrate)
-    {
-        case 230400UL:
-            g_config.version = WCT_AUTOS2;
-            break;
-        case 115200UL:
-            g_config.version = WCT_AUTOS1;
-            break;
 
-		/* MISRA Deviation Note:
-		 * Rule: MISRA 2012 Rule 16.1 and Rule 16.3 [Required]
-		 * Justification: The `default` case ends unconditionally with a `return` statement
-		 * and is enclosed in a compound block to clearly separate control flow.
-		 * No fall-through is possible, and this structure is used intentionally for clarity.
-		 */
-		/*lint -e9077 -e9090 -e9042 MISRA Deviation: switch default case ends with unconditional return */
-        default:
-        {
-            PRINTF("ERR: Unsupported baudrate value: %d\r\n", u32Baudrate);
-            return ERROR_CONFIG;
-        }
-        /*lint +e9077 +e9090 +e9042 */
+    if (230400UL == u32Baudrate)
+    {
+    	g_config.version = WCT_AUTOS2;
+    }
+    else if (115200UL == u32Baudrate)
+    {
+    	g_config.version = WCT_AUTOS1;
+    }
+    else
+    {
+    	g_config.version = WCT_UNKOWN;
     }
 
     g_config.baudrate = u32Baudrate;
+
     return ERROR_NONE;
 }
 
@@ -173,11 +165,12 @@ error_t PARSER_ParseFileSize(const char *chContent)
     {
 		chFound += strlen(chKey);
 		/* MISRA Deviation Note:
-		 * Rule: MISRA 2012 Rule 21.7
-		 * Justification: Use of 'atoi' is intentional in controlled context.
-		 * The input string 'chFound' should contain only numeric characters - file size.
+		 * Rule: MISRA 2012 Rule 21.7 [Required]
+		 * Suppress: Use Of Standard Library Function 'atoi'.
+		 * Justification: Use of 'atoi' is Intentional in Controlled Context.
+		 * The Input String 'chFound' Should Contain Only Numeric Characters - File Size.
 		 */
-		/*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
+		/*lint -e586 */
 		u32Value = (uint32_t)atoi(chFound);			// Convert Value To INT
 		/*lint +e586 */
 
@@ -248,11 +241,12 @@ error_t PARSER_ParseStopBits(const char *chContent)
 
     chFound += strlen(chKeyStopBits);
     /* MISRA Deviation Note:
-     * Rule: MISRA 2012 Rule 21.7
-     * Justification: Use of 'atoi' is intentional in controlled context.
-     * The input string 'chFound' should contain only numeric characters - stop bits.
+     * Rule: MISRA 2012 Rule 21.7 [Required]
+     * Suppress: Use Of Standard Library Function 'atoi'.
+     * Justification: Use of 'atoi' is Intentional in Controlled Context.
+     * The Input String 'chFound' Should Contain Only Numeric Characters - Stop Bits.
      */
-    /*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
+    /*lint -e586 */
     uint32_t u32StopBits = (uint32_t)atoi(chFound);			// Convert Value To INT
     /*lint +e586 */
     if (1UL == u32StopBits)
@@ -288,11 +282,12 @@ error_t PARSER_ParseDataBits(const char *chContent)
 
     chFound += strlen(chKeyDataBits);
     /* MISRA Deviation Note:
-     * Rule: MISRA 2012 Rule 21.7
-     * Justification: Use of 'atoi' is intentional in controlled context.
-     * The input string 'chFound' should contain only numeric characters - data bits.
+     * Rule: MISRA 2012 Rule 21.7 [Required]
+     * Suppress: Use Of Standard Library Function 'atoi'.
+     * Justification: Use of 'atoi' is Intentional in Controlled Context.
+     * The Input String 'chFound' Should Contain Only Numeric Characters - Data Bits.
      */
-    /*lint -e586 MISRA Deviation: Use of 'atoi' is intentional and input is trusted. */
+    /*lint -e586 */
     uint32_t u32DataBits = (uint32_t)atoi(chFound);			// Convert Value To INT
     /*lint +e586 */
     if (7UL == u32DataBits)
@@ -328,15 +323,22 @@ error_t PARSER_ParseFreeSpace(const char *chContent)
 
     chFound += strlen(chKey);
 
-    errno = 0;  // Reset errno before parsing
+    errno = 0;  // Reset errno Before Parsing
     char *endptr = NULL;
 
-    /*lint -e586 MISRA Deviation: strtoul is used with trusted input */
+    /**
+     * MISRA Deviation: Rule 21.6 [Required]
+     * Suppress: Use of Standard Library Function 'strtoul'.
+     * Justification: 'strtoul' is Used With Trusted Input For Converting a String to an Unsigned Long Value.
+     * The Usage is Controlled and Verified, Ensuring That The Input Cannot Cause Unexpected Behavior.
+     */
+    /*lint -e586 */
     unsigned long ulParsedValue = strtoul(chFound, &endptr, 10);
     /*lint +e586 */
+    int s32LocalErrno = errno;
 
-    // Conversion Errors Check (Only 32bit Number)
-    if ((chFound == endptr) || (0 != errno) || (0xFFFFFFFFUL < ulParsedValue))
+    /* Conversion Errors Check (Only 32bit Number) */
+    if ((endptr == chFound) || (0 != s32LocalErrno))
     {
         PRINTF("ERR: Invalid or out-of-range value for 'free_space=': %s\r\n", chFound);
         return ERROR_READ;

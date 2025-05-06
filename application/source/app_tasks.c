@@ -24,7 +24,15 @@
 
 #include "task_switching.h"
 #include "record.h"
-#include "time.h"
+
+/**
+ * MISRA Deviation: Rule 21.10
+ * Suppress: Use Of Banned Standard Header 'Time.h'.
+ * Justification: 'time.h' Is Used For Generating Timestamps.
+ */
+/*lint -e829 */
+#include <time.h>
+/*lint +e829  */
 /*******************************************************************************
  * Global Variables.
  ******************************************************************************/
@@ -51,22 +59,18 @@ static StaticTask_t xTimerTaskTCB;
 /*!
  * @brief 	Stack for Static Timer Task.
  */
-/* MISRA Deviation Note:
+/**
+ * MISRA Deviation Note:
  * Rule: MISRA 2012 Rule 10.4 [Required]
+ * Suppress: Standard FreeRTOS Macro Cast To uint32_t
  * Justification: The macro 'configTIMER_TASK_STACK_DEPTH' is defined by the FreeRTOS kernel
  * configuration as an integer constant.
  */
-/*lint -e9029 MISRA Deviation: standard FreeRTOS macro cast to uint32_t */
+/*lint -e9029 */
 static StackType_t uxTimerTaskStack[configTIMER_TASK_STACK_DEPTH];
 /*lint +e9029 */
 
 /** @} */ // End of TaskManagement group
-
-/*!
- * @brief	Mass Storage Descriptor.
- */
-extern usb_msc_struct_t g_msc;
-
 
 /*******************************************************************************
  * Implementation of Functions
@@ -90,7 +94,10 @@ void msc_task(void *handle)
 #if (true == INFO_ENABLED)
         PRINTF("INFO: Disabled LPUART7\r\n");
 #endif /* (true == INFO_ENABLED) */
-        CONSOLELOG_PowerLossFlush();
+        if (ERROR_NONE != CONSOLELOG_PowerLossFlush())
+		{
+        	LED_SignalError();
+		}
 
         while (true)
         {
@@ -102,7 +109,7 @@ void msc_task(void *handle)
 #if (true == INFO_ENABLED)
                 PRINTF("INFO: MSC Task Ending - USB Detached\r\n");
 #endif
-                xSemaphoreGive(g_xSemRecord);
+                (void)xSemaphoreGive(g_xSemRecord);
                 break;
             }
 
@@ -121,7 +128,7 @@ void record_task(void *handle)
     uint32_t u32CurrentBytes    = 0UL;
     uint32_t u32MaxBytes        = 0UL;
     uint32_t u32FreeSpaceSdCard = 0UL;
-
+    uint32_t u32FreeSpaceLimit = 0UL;
     /* Initialize SD Card and File System */
     USB_DeviceModeInit();
 
@@ -134,7 +141,11 @@ void record_task(void *handle)
 #endif /* (true == IRTC_ENABLED) */
 
     retVal = CONSOLELOG_Init();
-    if (retVal != ERROR_NONE) return;
+    if(ERROR_NONE != retVal)
+	{
+    	LED_SignalError();
+		return;
+	}
 
     if (CONSOLELOG_ReadConfig() != ERROR_NONE)
     {
@@ -150,7 +161,7 @@ void record_task(void *handle)
     while (true)
     {
 
-    	xSemaphoreTake(g_xSemRecord, portMAX_DELAY);
+    	(void)xSemaphoreTake(g_xSemRecord, portMAX_DELAY);
 
 		UART_Init(u32Baudrate);
 		UART_Enable();
@@ -187,8 +198,10 @@ void record_task(void *handle)
 
 #if (true == INFO_ENABLED)
 			u32FreeSpaceSdCard = CONSOLELOG_GetFreeSpaceMB();
-			if ((u32FreeSpaceSdCard <= PARSER_GetFreeSpaceLimitMB()) &&
-				(0UL != PARSER_GetFreeSpaceLimitMB()))
+			u32FreeSpaceLimit = PARSER_GetFreeSpaceLimitMB();
+
+			if ((u32FreeSpaceSdCard <= u32FreeSpaceLimit) &&
+				(0UL != u32FreeSpaceLimit))
 			{
 				LED_SignalLowMemory();
 				PRINTF("DEBUG: Free Space: %d MB\r\n", u32FreeSpaceSdCard);
@@ -197,7 +210,7 @@ void record_task(void *handle)
 
         }
 
-		xSemaphoreGive(g_xSemMassStorage);
+		(void)xSemaphoreGive(g_xSemMassStorage);
     }
 }
 
@@ -209,8 +222,12 @@ void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
     *ppxIdleTaskTCBBuffer = &xIdleTaskTCB;
     *ppxIdleTaskStackBuffer = uxIdleTaskStack;
 
-    /* MISRA 2012 deviation: configTIMER_TASK_STACK_DEPTH is defined by FreeRTOS as a signed macro.
-     * Conversion to uint32_t is intentional and safe in this context. Fixing the definition is not possible.
+    /**
+     * MISRA Deviation: Rule 10.8 [Required]
+     * Suppress: Conversion From Signed Macro To Unsigned Type.
+     * Justification: 'ConfigMINIMAL_STACK_SIZE' Is Defined By FreeRTOS As A Signed Macro.
+     * The Conversion To 'Uint32_t' Is Intentional And Safe In This Context.
+     * Fixing The Definition is Not Possible.
      */
     /*lint -e9029 */
     *pulIdleTaskStackSize = (uint32_t)configMINIMAL_STACK_SIZE;
@@ -224,8 +241,12 @@ void vApplicationGetTimerTaskMemory(StaticTask_t **ppxTimerTaskTCBBuffer,
     *ppxTimerTaskTCBBuffer = &xTimerTaskTCB;
     *ppxTimerTaskStackBuffer = uxTimerTaskStack;
 
-    /* MISRA 2012 deviation: configTIMER_TASK_STACK_DEPTH is defined by FreeRTOS as a signed macro.
-     * Conversion to uint32_t is intentional and safe in this context. Fixing the definition is not possible.
+    /**
+     * MISRA Deviation: Rule 10.8 [Required]
+     * Suppress: Conversion From Signed Macro To Unsigned Type.
+     * Justification: 'configTIMER_TASK_STACK_DEPTH' Is Defined By FreeRTOS As A Signed Macro.
+     * The Conversion To 'Uint32_t' Is Intentional And Safe In This Context.
+     * Fixing The Definition is Not Possible.
      */
     /*lint -e9029 */
     *pulTimerTaskStackSize = (uint32_t)configTIMER_TASK_STACK_DEPTH;

@@ -24,6 +24,12 @@
 /*******************************************************************************
  * Functions
  ******************************************************************************/
+/*
+ * MISRA Deviation: Rule 8.4
+ * Suppress: Function 'USB_State' Defined Without A Prototype In Scope.
+ * Justification: The Prototype Is Declared In 'Task_Switching.h' And This Definition Is Consistent With It.
+ */
+/*lint -e957 */
 usb_device_notification_t USB_State(usb_device_struct_t *pDeviceHandle)
 {
 	usb_device_ehci_state_struct_t *ehciState;
@@ -38,3 +44,4 @@ usb_device_notification_t USB_State(usb_device_struct_t *pDeviceHandle)
 		return kUSB_DeviceNotifyAttach;
     }
 }
+/*lint +e957 */

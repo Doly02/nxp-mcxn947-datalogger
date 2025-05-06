@@ -79,11 +79,11 @@ void UART_Init(uint32_t baudrate)
 
     uint32_t clk = LPUART3_CLK_FREQ;
 
-    /*
-     * MISRA Deviation: Rule 11.4
-     * Suppress: conversion between object pointer type 'LPUART_Type *' and integer type 'unsigned int'.
-     * Justification: LPUART3 is a hardware peripheral base address defined in the NXP SDK.
-     * This code follows the usage pattern provided by the NXP SDK.
+    /**
+     * MISRA Deviation: Rule 11.4 [Required]
+     * Suppress: Conversion Between Object Pointer Type 'LPUART_Type *' and Integer Type 'Unsigned Int'.
+     * Justification: LPUART3 Is a Hardware Peripheral Base Address Defined In The NXP SDK.
+     * This Code Follows The Usage Pattern Provided By The NXP SDK.
      */
     /*lint -e9078 */
     (void)LPUART_Init(LPUART3, &config, clk);
@@ -95,13 +95,11 @@ void UART_Enable(void)
 	(void)DisableIRQ(LP_FLEXCOMM3_IRQn);
 
     /* Enable RX interrupt. */
-    /*
-     * MISRA Deviation: Rules 10.3 and 11.4
-     * Rule 10.3: Cannot assign 'enum' to a different essential type such as 'unsigned32'.
-     * Rule 11.4: Conversion between object pointer type and integer type.
-     *
-     * Justification: This code follows the usage pattern provided by the NXP SDK.
-     * This code follows the usage pattern provided by the NXP SDK.
+    /**
+     * MISRA Deviation Note:
+     * Rule 10.3: Cannot Assign 'enum' to a Different Essential Type Such As 'unsigned32'. [Required]
+     * Rule 11.4: Conversion Between Object Pointer Type and Integer Type. [Required]
+     * Justification: This Code Follows The Usage Pattern Provided By The NXP SDK.
      */
 	/*lint -e9034 -e9078 */
     LPUART_EnableInterrupts(LPUART3, (uint32_t)kLPUART_RxDataRegFullInterruptEnable);

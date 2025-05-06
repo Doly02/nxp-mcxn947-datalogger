@@ -145,8 +145,8 @@ static void lpi2c_callback(LPI2C_Type *base, lpi2c_master_edma_handle_t *handle,
  ******************************************************************************/
 /*lint -e957 */
 /* MISRA 2012 Rule 8.4:
- * Suppress: function 'CTIMER0_IRQHandler' defined without a prototype in scope.
- * CTIMER0_IRQHandler is declared WEAK in startup_mcxn947_cm33_core0.c and overridden here.
+ * Suppress: Function 'CTIMER0_IRQHandler' Defined Without a Prototype in Scope.
+ * Justification: CTIMER0_IRQHandler is Declared WEAK in startup_mcxn947_cm33_core0.c and Overridden Here.
  */
 void CTIMER0_IRQHandler(void)
 {

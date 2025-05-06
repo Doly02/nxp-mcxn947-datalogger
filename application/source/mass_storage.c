@@ -25,8 +25,6 @@
  * Global Variables
  ******************************************************************************/
 
-extern usb_msc_struct_t g_msc;
-
 extern SemaphoreHandle_t g_xSemRecord;
 
 extern SemaphoreHandle_t g_xSemMassStorage;
@@ -36,9 +34,9 @@ extern SemaphoreHandle_t g_xSemMassStorage;
  ******************************************************************************/
 
 /*lint -e957 */
-/* MISRA 2012 Rule 8.4:
- * Suppress: function 'USB1_HS_IRQHandler' defined without a prototype in scope.
- * USB1_HS_IRQHandler is declared WEAK in startup_mcxn947_cm33_core0.c and overridden here.
+/* Rule: MISRA 2012 Rule 8.4 [Required]
+ * Suppress: Function 'USB1_HS_IRQHandler' Defined Without a Prototype in Scope.
+ * Justification: USB1_HS_IRQHandler is Declared WEAK in startup_mcxn947_cm33_core0.c and Overridden Here.
  */
 void USB1_HS_IRQHandler(void)
 {
@@ -59,10 +57,12 @@ void USB1_HS_IRQHandler(void)
      * Switch The Context From ISR To a Higher Priority Task,
      * Without Waiting For The Next Scheduler Tick.
      **/
-    /* MISRA 2012 deviation: portYIELD_FROM_ISR expects BaseType_t, which is signed, not bool.
-     * Justification: `portYIELD_FROM_ISR()` expects `BaseType_t` as per FreeRTOS convention, but MISRA
-     * on the other hand would like conversion to boolean.
-     * */
+    /*
+     * MISRA Deviation: Rule 10.3, Rule 14.4, Rule 11.4
+     * Suppress: Conversion From Boolean To Signed Type, Use Of Non-Boolean In Conditional Context, And Pointer-To-Integer Conversion.
+     * Justification: `portYIELD_FROM_ISR()` Expects `BaseType_t` as Per FreeRTOS Convention, But MISRA
+     * on The Other Hand Would Like Conversion To Boolean.
+     */
     /*lint -e9036 -e9048 -e9078 */
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     /*lint +e9036 +e9048 +e9078 */
@@ -84,9 +84,9 @@ void MSC_DeviceMscAppTask(void)
     {
         return;
     }
-    /*!
+    /**
      * MISRA Deviation: Rule 2.2
-     * Justification: Function 'MSC_DeviceMscApp' is called periodically and allows to expand Mass Storage.
+     * Justification: Function 'MSC_DeviceMscApp' is Called Periodically and Allows To Expand USB Mass Storage.
      */
     /*lint -save -e522 */
     MSC_DeviceMscApp();
