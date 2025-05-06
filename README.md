@@ -7,11 +7,8 @@
 - Consultant: Ing. Martin Moštěk PhD.
 
 The Goal of This Project is To Developt Digital Data Logger That Captures Serial Data From a UART Peripheral, Timestamps It, and Stores The Logged Data on an SD card. 
-A Key Requirement of The Implementation is To Ensure Data Integrity by Preventing Loss in The Event of a Power Failure.
+A Key Requirement of The Implementation is To Ensure Data Integrity by Preventing Loss in The Event of a Power Failure. This Digital Data Logger Was Developed Based on The Requirements Provided by The Wireless Charging Team at NXP Semiconductors. 
 
-This Digital Data Logger Was Developed Based on The Requirements Provided by The Wireless Charging Team at NXP Semiconductors. 
-The Device Will Be Used For Testing Customer Wireless Charging Devices in Qi Certification Laboratories Located in Various Parts of The World. 
-The Digital Logger Will Assist in Verifying and Analyzing The Behavior of The Tested Wireless Charging Transmitter.
 
 ### Table of Contents
 - [Requirements](#requirements)
