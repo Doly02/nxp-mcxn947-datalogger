@@ -2,8 +2,8 @@ var searchData=
 [
   ['circular_5fbuffer_5fsize_0',['CIRCULAR_BUFFER_SIZE',['../record_8c.html#a501f5c21d6fe4e60dc984cdaba5e892f',1,'record.c']]],
   ['clk_5fstate_1',['CLK_STATE',['../rtc__ds3231_8c.html#aeb449618453be08beb854cf0122c16a1',1,'rtc_ds3231.c']]],
-  ['config_5ffile_2',['CONFIG_FILE',['../defs_8h.html#a42bf63540ee0039a3a23db1b5ec3202b',1,'defs.h']]],
-  ['consolelog_5fabs_3',['CONSOLELOG_Abs',['../record_8h.html#a26b2ee1b66476267482816b5c3050fb4',1,'CONSOLELOG_Abs(int x):&#160;record.c'],['../record_8c.html#a26b2ee1b66476267482816b5c3050fb4',1,'CONSOLELOG_Abs(int x):&#160;record.c']]],
+  ['clock_20driver_2',['DS3231 Real-Time Clock Driver',['../group___r_t_c.html',1,'']]],
+  ['config_5ffile_3',['CONFIG_FILE',['../defs_8h.html#a42bf63540ee0039a3a23db1b5ec3202b',1,'defs.h']]],
   ['consolelog_5fcheckfilesystem_4',['CONSOLELOG_CheckFileSystem',['../record_8h.html#a7569eaf79c91368fad87f25507fb8614',1,'CONSOLELOG_CheckFileSystem(void):&#160;record.c'],['../record_8c.html#a7569eaf79c91368fad87f25507fb8614',1,'CONSOLELOG_CheckFileSystem(void):&#160;record.c']]],
   ['consolelog_5fcleartransferedbytes_5',['CONSOLELOG_ClearTransferedBytes',['../record_8h.html#a52b8002dd4c2a6b13860c0a0cf52a0a8',1,'CONSOLELOG_ClearTransferedBytes(void):&#160;record.c'],['../record_8c.html#a52b8002dd4c2a6b13860c0a0cf52a0a8',1,'CONSOLELOG_ClearTransferedBytes(void):&#160;record.c']]],
   ['consolelog_5fcreatedirectory_6',['CONSOLELOG_CreateDirectory',['../record_8h.html#ac1fa0a8fc8347a2972c4eb356d002b43',1,'CONSOLELOG_CreateDirectory(void):&#160;record.c'],['../record_8c.html#ac1fa0a8fc8347a2972c4eb356d002b43',1,'CONSOLELOG_CreateDirectory(void):&#160;record.c']]],

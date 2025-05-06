@@ -7,7 +7,7 @@ var searchData=
   ['g_5ffileobject_4',['g_fileObject',['../group___recording.html#ga6849136fb10da44df5884df6fc59588a',1,'record.c']]],
   ['g_5ffilesystem_5',['g_fileSystem',['../group___recording.html#ga813e21877b77fc983a281279de3d13d8',1,'record.c']]],
   ['g_5flastdatatick_6',['g_lastDataTick',['../group___recording.html#gab2133044474cb4d2b64febf2ef430513',1,'record.c']]],
-  ['g_5fmsc_7',['g_msc',['../task__switching_8h.html#ae3a33b5a19fe04eeba3ebf4259f74625',1,'g_msc:&#160;main.c'],['../app__tasks_8c.html#ae3a33b5a19fe04eeba3ebf4259f74625',1,'g_msc:&#160;main.c'],['../main_8c.html#ae3a33b5a19fe04eeba3ebf4259f74625',1,'g_msc:&#160;main.c'],['../mass__storage_8c.html#ae3a33b5a19fe04eeba3ebf4259f74625',1,'g_msc:&#160;main.c']]],
+  ['g_5fmsc_7',['g_msc',['../task__switching_8h.html#ae3a33b5a19fe04eeba3ebf4259f74625',1,'g_msc:&#160;main.c'],['../main_8c.html#ae3a33b5a19fe04eeba3ebf4259f74625',1,'g_msc:&#160;main.c']]],
   ['g_5fpu8backdmabuffer_8',['g_pu8BackDmaBuffer',['../group___recording.html#gaac8be9babbe2654b3629e766c0b5e0b2',1,'record.c']]],
   ['g_5fpu8frontdmabuffer_9',['g_pu8FrontDmaBuffer',['../group___recording.html#ga6942269ddc23abb31caea237f570fc3e',1,'record.c']]],
   ['g_5fu16backdmabufferidx_10',['g_u16BackDmaBufferIdx',['../group___recording.html#ga7beba7dc88a1ae7ae1935202b9c001ae',1,'record.c']]],

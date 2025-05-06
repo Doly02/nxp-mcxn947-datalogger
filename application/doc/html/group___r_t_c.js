@@ -1,17 +1,9 @@
-var rtc__ds3231_8c =
+var group___r_t_c =
 [
-    [ "BYTE_1", "rtc__ds3231_8c.html#ab9a0d70cb746f776adf784200005e0a1", null ],
-    [ "BYTE_2", "rtc__ds3231_8c.html#a8478fde7b3478e18f57a71255db28c8a", null ],
-    [ "CLK_STATE", "rtc__ds3231_8c.html#aeb449618453be08beb854cf0122c16a1", null ],
-    [ "I2C_DATA_LENGTH", "rtc__ds3231_8c.html#a1d7cd4b7016538b77f3235ee3fcf06b3", null ],
-    [ "OSF_STATE", "rtc__ds3231_8c.html#a33acbef8375c804a194e39ce12262c88", null ],
-    [ "AT_NONCACHEABLE_SECTION", "rtc__ds3231_8c.html#ac8b71b782f019fcc2256073a817c48c7", null ],
-    [ "AT_NONCACHEABLE_SECTION", "rtc__ds3231_8c.html#a680f42be41e67e5e4cea9f6bc69d69f1", null ],
-    [ "lpi2c_callback", "rtc__ds3231_8c.html#a038e5a1da8a787ae48b1e279cab6df55", null ],
     [ "RTC_ClearFlagAlarm1", "group___r_t_c.html#gaacb3e98a52f0d90ecd8affb36960cfc6", null ],
     [ "RTC_ClearFlagAlarm2", "group___r_t_c.html#ga2b8c5234e3d21ad10eb86b7a5b912dd3", null ],
-    [ "RTC_ConvertToBCD", "rtc__ds3231_8c.html#ab12090e402b342c7f8773f2094773394", null ],
-    [ "RTC_ConvertToDEC", "rtc__ds3231_8c.html#a87c0d6971d07785ee1a2abf9e24eeb3f", null ],
+    [ "RTC_ConvertToBCD", "group___r_t_c.html#gab12090e402b342c7f8773f2094773394", null ],
+    [ "RTC_ConvertToDEC", "group___r_t_c.html#ga87c0d6971d07785ee1a2abf9e24eeb3f", null ],
     [ "RTC_CtrlAlarm1", "group___r_t_c.html#ga06995b923b484104afe590533698e8a1", null ],
     [ "RTC_CtrlAlarm2", "group___r_t_c.html#ga86e1ffe598df20f7d90abe6ea4fb0135", null ],
     [ "RTC_Deinit", "group___r_t_c.html#ga487d25d797a1fed2626ac9709ddac456", null ],
@@ -26,9 +18,5 @@ var rtc__ds3231_8c =
     [ "RTC_SetOscState", "group___r_t_c.html#gada78757b2decedc79e0382b42e45a513", null ],
     [ "RTC_SetTime", "group___r_t_c.html#ga37c611694906a21743c2ad7123a55f9f", null ],
     [ "RTC_SetTimeDefault", "group___r_t_c.html#ga61d57ebc0932c5610c8a7e8dd7d860f8", null ],
-    [ "RTC_Write", "group___r_t_c.html#gac15d2cfbe2c4c9482e784f6a5aeed32a", null ],
-    [ "gCompletionFlag", "rtc__ds3231_8c.html#ab6d7adecec71e697f12bf437aa7bb168", null ],
-    [ "gEdmaRxHandle", "rtc__ds3231_8c.html#af154a23f818a55047504f0c3f2d3aa67", null ],
-    [ "gEdmaTxHandle", "rtc__ds3231_8c.html#afb84870262e12212b969d872bff3bead", null ],
-    [ "xfer", "rtc__ds3231_8c.html#af210093caf29792f8f940201ddd0cfec", null ]
+    [ "RTC_Write", "group___r_t_c.html#gac15d2cfbe2c4c9482e784f6a5aeed32a", null ]
 ];

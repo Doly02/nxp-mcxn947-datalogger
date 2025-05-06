@@ -22,15 +22,11 @@
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{record_8h_a0d397cd5b778e16fe6d884e5af5ee942}{FLUSH\+\_\+\+TIMEOUT\+\_\+\+TICKS}}~(int)pd\+MS\+\_\+\+TO\+\_\+\+TICKS(3000)
-\begin{DoxyCompactList}\small\item\em Timeout Interval Before Flush If No New Data Were Received \mbox{[}In Mili-\/\+Seconds\mbox{]}. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{record_8h_a279b3ee10db28b16faa6d35128c0962b}{REINIT\+\_\+\+TIMEOUT\+\_\+\+TICKS}}~(int)pd\+MS\+\_\+\+TO\+\_\+\+TICKS(1000)
-\end{DoxyCompactItemize}
+\#define \mbox{\hyperlink{record_8h_a0d397cd5b778e16fe6d884e5af5ee942}{FLUSH\+\_\+\+TIMEOUT\+\_\+\+TICKS}}~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(3000)
+\begin{DoxyCompactList}\small\item\em Timeout Interval Before Flush If No New Data Were Received \mbox{[}In Mili-\/\+Seconds\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{record_8h_a26b2ee1b66476267482816b5c3050fb4}{CONSOLELOG\+\_\+\+Abs}} (int x)
-\begin{DoxyCompactList}\small\item\em Return Absolute Value. \end{DoxyCompactList}\item 
 uint32\+\_\+t \mbox{\hyperlink{record_8h_a68675110803994cd2f323d7b5ec22204}{CONSOLELOG\+\_\+\+Get\+Free\+Space\+MB}} (void)
 \begin{DoxyCompactList}\small\item\em Gets Free Space on SD Card. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{error_8h_aeaf3178f631e362a9238a50fcdcaa039}{error\+\_\+t}} \mbox{\hyperlink{record_8h_ac1fa0a8fc8347a2972c4eb356d002b43}{CONSOLELOG\+\_\+\+Create\+Directory}} (void)
@@ -68,34 +64,15 @@ FRESULT \mbox{\hyperlink{record_8h_a7569eaf79c91368fad87f25507fb8614}{CONSOLELOG
 \index{FLUSH\_TIMEOUT\_TICKS@{FLUSH\_TIMEOUT\_TICKS}!record.h@{record.h}}
 \doxysubsubsection{\texorpdfstring{FLUSH\_TIMEOUT\_TICKS}{FLUSH\_TIMEOUT\_TICKS}}
 {\footnotesize\ttfamily \label{record_8h_a0d397cd5b778e16fe6d884e5af5ee942} 
-\#define FLUSH\+\_\+\+TIMEOUT\+\_\+\+TICKS~(int)pd\+MS\+\_\+\+TO\+\_\+\+TICKS(3000)}
+\#define FLUSH\+\_\+\+TIMEOUT\+\_\+\+TICKS~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(3000)}
 
 
 
 Timeout Interval Before Flush If No New Data Were Received \mbox{[}In Mili-\/\+Seconds\mbox{]}. 
 
-\Hypertarget{record_8h_a279b3ee10db28b16faa6d35128c0962b}\index{record.h@{record.h}!REINIT\_TIMEOUT\_TICKS@{REINIT\_TIMEOUT\_TICKS}}
-\index{REINIT\_TIMEOUT\_TICKS@{REINIT\_TIMEOUT\_TICKS}!record.h@{record.h}}
-\doxysubsubsection{\texorpdfstring{REINIT\_TIMEOUT\_TICKS}{REINIT\_TIMEOUT\_TICKS}}
-{\footnotesize\ttfamily \label{record_8h_a279b3ee10db28b16faa6d35128c0962b} 
-\#define REINIT\+\_\+\+TIMEOUT\+\_\+\+TICKS~(int)pd\+MS\+\_\+\+TO\+\_\+\+TICKS(1000)}
-
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{record_8h_a26b2ee1b66476267482816b5c3050fb4}\index{record.h@{record.h}!CONSOLELOG\_Abs@{CONSOLELOG\_Abs}}
-\index{CONSOLELOG\_Abs@{CONSOLELOG\_Abs}!record.h@{record.h}}
-\doxysubsubsection{\texorpdfstring{CONSOLELOG\_Abs()}{CONSOLELOG\_Abs()}}
-{\footnotesize\ttfamily \label{record_8h_a26b2ee1b66476267482816b5c3050fb4} 
-int CONSOLELOG\+\_\+\+Abs (\begin{DoxyParamCaption}\item[{int}]{x}{}\end{DoxyParamCaption})}
-
-
-
-Return Absolute Value. 
-
-\begin{DoxyReturn}{Returns}
-Returns Free Space on SD Card. 
-\end{DoxyReturn}
 \Hypertarget{record_8h_a7569eaf79c91368fad87f25507fb8614}\index{record.h@{record.h}!CONSOLELOG\_CheckFileSystem@{CONSOLELOG\_CheckFileSystem}}
 \index{CONSOLELOG\_CheckFileSystem@{CONSOLELOG\_CheckFileSystem}!record.h@{record.h}}
 \doxysubsubsection{\texorpdfstring{CONSOLELOG\_CheckFileSystem()}{CONSOLELOG\_CheckFileSystem()}}
@@ -142,7 +119,9 @@ Creates File Based Actual Date and Counter Value.
 \begin{DoxyReturn}{Returns}
 Returns Zero If File Creation Succeeded. 
 \end{DoxyReturn}
-MISRA Deviation\+: Rule 10.\+1 Justification\+: FA\+\_\+\+WRITE and FA\+\_\+\+CREATE\+\_\+\+ALWAYS are standard bitmask flags defined by the Fat\+Fs library. These constants are specifically designed to be combined using bitwise OR (\texorpdfstring{$\vert$}{|}), and the use is safe and intentional.\Hypertarget{record_8h_a310ec37130ed3dad88f57c14e72a3ed7}\index{record.h@{record.h}!CONSOLELOG\_Deinit@{CONSOLELOG\_Deinit}}
+MISRA Deviation\+: Rule 21.\+6 Suppress\+: Use Of Standard Library Function \textquotesingle{}Snprintf\textquotesingle{}. Justification\+: \textquotesingle{}Snprintf\textquotesingle{} Is Deprecated But There Is No Better Equivalent For Safe String Formatting.
+
+MISRA Deviation\+: Rule 10.\+1 \mbox{[}Required\mbox{]} Suppress\+: Bitwise Operation on Composite Constant Expression. Justification\+: FA\+\_\+\+WRITE and FA\+\_\+\+CREATE\+\_\+\+ALWAYS are Standard Bitmask Flags Defined By The Fat\+Fs Library. These Constants Are Designed To Be Combined Using Bitwise OR, and The Use is Safe and Intentional.\Hypertarget{record_8h_a310ec37130ed3dad88f57c14e72a3ed7}\index{record.h@{record.h}!CONSOLELOG\_Deinit@{CONSOLELOG\_Deinit}}
 \index{CONSOLELOG\_Deinit@{CONSOLELOG\_Deinit}!record.h@{record.h}}
 \doxysubsubsection{\texorpdfstring{CONSOLELOG\_Deinit()}{CONSOLELOG\_Deinit()}}
 {\footnotesize\ttfamily \label{record_8h_a310ec37130ed3dad88f57c14e72a3ed7} 

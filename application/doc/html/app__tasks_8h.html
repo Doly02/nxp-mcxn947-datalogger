@@ -140,12 +140,16 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a728d33fa6714c81e0ddb020328ac36ee" id="r_a728d33fa6714c81e0ddb020328ac36ee"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a728d33fa6714c81e0ddb020328ac36ee">g_xMscTaskHandle</a></td></tr>
+<tr class="memdesc:a728d33fa6714c81e0ddb020328ac36ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">USB Mass Storage Task Handle.  <br /></td></tr>
 <tr class="separator:a728d33fa6714c81e0ddb020328ac36ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95134cbd8723a2c8b0cdd33f75d979fb" id="r_a95134cbd8723a2c8b0cdd33f75d979fb"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95134cbd8723a2c8b0cdd33f75d979fb">g_xRecordTaskHandle</a></td></tr>
+<tr class="memdesc:a95134cbd8723a2c8b0cdd33f75d979fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Record Task Handle.  <br /></td></tr>
 <tr class="separator:a95134cbd8723a2c8b0cdd33f75d979fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af59d7418386068624f2b915e32fe23ff" id="r_af59d7418386068624f2b915e32fe23ff"><td class="memItemLeft" align="right" valign="top">SemaphoreHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af59d7418386068624f2b915e32fe23ff">g_xSemRecord</a></td></tr>
+<tr class="memdesc:af59d7418386068624f2b915e32fe23ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore For Record Task Management.  <br /></td></tr>
 <tr class="separator:af59d7418386068624f2b915e32fe23ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a286a007f0c94c51fa505aa600c488122" id="r_a286a007f0c94c51fa505aa600c488122"><td class="memItemLeft" align="right" valign="top">SemaphoreHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a286a007f0c94c51fa505aa600c488122">g_xSemMassStorage</a></td></tr>
+<tr class="memdesc:a286a007f0c94c51fa505aa600c488122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore For USB Mass Storage Task Management.  <br /></td></tr>
 <tr class="separator:a286a007f0c94c51fa505aa600c488122"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -241,6 +245,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+<p>MISRA Deviation: Rule 10.8 [Required] Suppress: Conversion From Signed Macro To Unsigned Type. Justification: 'ConfigMINIMAL_STACK_SIZE' Is Defined By FreeRTOS As A Signed Macro. The Conversion To 'Uint32_t' Is Intentional And Safe In This Context. Fixing The Definition is Not Possible.</p>
 
 </div>
 </div>
@@ -278,6 +283,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+<p>MISRA Deviation: Rule 10.8 [Required] Suppress: Conversion From Signed Macro To Unsigned Type. Justification: 'configTIMER_TASK_STACK_DEPTH' Is Defined By FreeRTOS As A Signed Macro. The Conversion To 'Uint32_t' Is Intentional And Safe In This Context. Fixing The Definition is Not Possible.</p>
 
 </div>
 </div>
@@ -302,6 +308,8 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>USB Mass Storage Task Handle. </p>
+
 </div>
 </div>
 <a id="a95134cbd8723a2c8b0cdd33f75d979fb" name="a95134cbd8723a2c8b0cdd33f75d979fb"></a>
@@ -323,6 +331,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Record Task Handle. </p>
 
 </div>
 </div>
@@ -346,6 +356,8 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Semaphore For USB Mass Storage Task Management. </p>
+
 </div>
 </div>
 <a id="af59d7418386068624f2b915e32fe23ff" name="af59d7418386068624f2b915e32fe23ff"></a>
@@ -367,6 +379,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Semaphore For Record Task Management. </p>
 
 </div>
 </div>

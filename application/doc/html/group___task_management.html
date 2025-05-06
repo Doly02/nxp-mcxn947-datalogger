@@ -128,6 +128,7 @@ Variables</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Group Contains Task Management Variables and Metadata. </p>
+<p>MISRA Deviation: Rule 21.10 Suppress: Use Of Banned Standard Header '<a class="el" href="time_8h.html">Time.h</a>'. Justification: '<a class="el" href="time_8h.html">time.h</a>' Is Used For Generating Timestamps. </p>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="ga14cdc368a30f8ae63554506a3b52ac93" name="ga14cdc368a30f8ae63554506a3b52ac93"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga14cdc368a30f8ae63554506a3b52ac93">&#9670;&#160;</a></span>uxIdleTaskStack</h2>
@@ -174,6 +175,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Stack for Static Timer Task. </p>
+<p>MISRA Deviation Note: Rule: MISRA 2012 Rule 10.4 [Required] Suppress: Standard FreeRTOS Macro Cast To uint32_t Justification: The macro 'configTIMER_TASK_STACK_DEPTH' is defined by the FreeRTOS kernel configuration as an integer constant. </p>
 
 </div>
 </div>

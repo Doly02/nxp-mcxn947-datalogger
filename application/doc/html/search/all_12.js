@@ -2,7 +2,7 @@ var searchData=
 [
   ['uart_2ec_0',['uart.c',['../uart_8c.html',1,'']]],
   ['uart_2eh_1',['uart.h',['../uart_8h.html',1,'']]],
-  ['uart_5fdeinit_2',['UART_Deinit',['../uart_8c.html#a28f24a41744d2b956de47ae6318d9c05',1,'uart.c']]],
+  ['uart_5fdeinit_2',['UART_Deinit',['../uart_8h.html#a28f24a41744d2b956de47ae6318d9c05',1,'UART_Deinit(void):&#160;uart.c'],['../uart_8c.html#a28f24a41744d2b956de47ae6318d9c05',1,'UART_Deinit(void):&#160;uart.c']]],
   ['uart_5fdisable_3',['UART_Disable',['../uart_8h.html#a76482cf7e9eb69dba68afd26b53b7f37',1,'UART_Disable(void):&#160;uart.c'],['../uart_8c.html#a76482cf7e9eb69dba68afd26b53b7f37',1,'UART_Disable(void):&#160;uart.c']]],
   ['uart_5fenable_4',['UART_Enable',['../uart_8h.html#ae2d34afb9a8bd33f0229eb6b34c57df2',1,'UART_Enable(void):&#160;uart.c'],['../uart_8c.html#ae2d34afb9a8bd33f0229eb6b34c57df2',1,'UART_Enable(void):&#160;uart.c']]],
   ['uart_5ffifo_5fenabled_5',['UART_FIFO_ENABLED',['../defs_8h.html#afce4b642de5f6181c410f35cffb92cfe',1,'defs.h']]],

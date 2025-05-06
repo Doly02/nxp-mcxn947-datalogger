@@ -5,7 +5,7 @@
 {\ttfamily \#include "{}mass\+\_\+storage.\+h"{}}\newline
 {\ttfamily \#include "{}task\+\_\+switching.\+h"{}}\newline
 {\ttfamily \#include "{}record.\+h"{}}\newline
-{\ttfamily \#include "{}time.\+h"{}}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -27,9 +27,7 @@ static Stack\+Type\+\_\+t \mbox{\hyperlink{group___task_management_ga14cdc368a30
 static Static\+Task\+\_\+t \mbox{\hyperlink{group___task_management_gacc894c54ff9d2500bb480c6c87146d98}{x\+Timer\+Task\+TCB}}
 \begin{DoxyCompactList}\small\item\em TCB (Task Control Block) -\/ Meta-\/\+Data of Timer Task. \end{DoxyCompactList}\item 
 static Stack\+Type\+\_\+t \mbox{\hyperlink{group___task_management_gaf9fe642f3d18526be6f8488df25ac3ce}{ux\+Timer\+Task\+Stack}} \mbox{[}config\+TIMER\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+DEPTH\mbox{]}
-\begin{DoxyCompactList}\small\item\em Stack for Static Timer Task. \end{DoxyCompactList}\item 
-usb\+\_\+msc\+\_\+struct\+\_\+t \mbox{\hyperlink{app__tasks_8c_ae3a33b5a19fe04eeba3ebf4259f74625}{g\+\_\+msc}}
-\begin{DoxyCompactList}\small\item\em Mass Storage Descriptor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Stack for Static Timer Task. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -77,7 +75,7 @@ This Hook Function Provides The Memory Needed For The Idle Task, Which Is Static
 \mbox{\texttt{ out}}  & {\em pul\+Idle\+Task\+Stack\+Size} & Pointer to a Variable Holding The Stack Size. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{app__tasks_8c_a1e80ecbd3fc2d04f18d6409ffa893a86}\index{app\_tasks.c@{app\_tasks.c}!vApplicationGetTimerTaskMemory@{vApplicationGetTimerTaskMemory}}
+MISRA Deviation\+: Rule 10.\+8 \mbox{[}Required\mbox{]} Suppress\+: Conversion From Signed Macro To Unsigned Type. Justification\+: \textquotesingle{}Config\+MINIMAL\+\_\+\+STACK\+\_\+\+SIZE\textquotesingle{} Is Defined By Free\+RTOS As A Signed Macro. The Conversion To \textquotesingle{}Uint32\+\_\+t\textquotesingle{} Is Intentional And Safe In This Context. Fixing The Definition is Not Possible.\Hypertarget{app__tasks_8c_a1e80ecbd3fc2d04f18d6409ffa893a86}\index{app\_tasks.c@{app\_tasks.c}!vApplicationGetTimerTaskMemory@{vApplicationGetTimerTaskMemory}}
 \index{vApplicationGetTimerTaskMemory@{vApplicationGetTimerTaskMemory}!app\_tasks.c@{app\_tasks.c}}
 \doxysubsubsection{\texorpdfstring{vApplicationGetTimerTaskMemory()}{vApplicationGetTimerTaskMemory()}}
 {\footnotesize\ttfamily \label{app__tasks_8c_a1e80ecbd3fc2d04f18d6409ffa893a86} 
@@ -98,19 +96,4 @@ This Hook Function Provides The Memory Needed For The Timer Task, Which Is Stati
 \mbox{\texttt{ out}}  & {\em pul\+Timer\+Task\+Stack\+Size} & Pointer to a Variable Holding The Stack Size. \\
 \hline
 \end{DoxyParams}
-
-
-\doxysubsection{Variable Documentation}
-\Hypertarget{app__tasks_8c_ae3a33b5a19fe04eeba3ebf4259f74625}\index{app\_tasks.c@{app\_tasks.c}!g\_msc@{g\_msc}}
-\index{g\_msc@{g\_msc}!app\_tasks.c@{app\_tasks.c}}
-\doxysubsubsection{\texorpdfstring{g\_msc}{g\_msc}}
-{\footnotesize\ttfamily \label{app__tasks_8c_ae3a33b5a19fe04eeba3ebf4259f74625} 
-usb\+\_\+msc\+\_\+struct\+\_\+t g\+\_\+msc\hspace{0.3cm}{\ttfamily [extern]}}
-
-
-
-Mass Storage Descriptor. 
-
-Mass Storage Descriptor.
-
-MISRA Deviation\+: Rule 8.\+4 Justification\+: Declaration of \textquotesingle{}g\+\_\+msc\textquotesingle{} is intentionally placed in \textquotesingle{}\doxylink{app__tasks_8h}{app\+\_\+tasks.\+h}\textquotesingle{}, T , the current file only provides the definition. 
+MISRA Deviation\+: Rule 10.\+8 \mbox{[}Required\mbox{]} Suppress\+: Conversion From Signed Macro To Unsigned Type. Justification\+: \textquotesingle{}config\+TIMER\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+DEPTH\textquotesingle{} Is Defined By Free\+RTOS As A Signed Macro. The Conversion To \textquotesingle{}Uint32\+\_\+t\textquotesingle{} Is Intentional And Safe In This Context. Fixing The Definition is Not Possible.

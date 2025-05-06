@@ -21,7 +21,7 @@ static Stack\+Type\+\_\+t \mbox{\hyperlink{group___task_management_gaf9fe642f3d1
 \doxysubsection{Detailed Description}
 Group Contains Task Management Variables and Metadata. 
 
-
+MISRA Deviation\+: Rule 21.\+10 Suppress\+: Use Of Banned Standard Header \textquotesingle{}\doxylink{time_8h}{Time.\+h}\textquotesingle{}. Justification\+: \textquotesingle{}\doxylink{time_8h}{time.\+h}\textquotesingle{} Is Used For Generating Timestamps. 
 
 \doxysubsection{Variable Documentation}
 \Hypertarget{group___task_management_ga14cdc368a30f8ae63554506a3b52ac93}\index{Task Management@{Task Management}!uxIdleTaskStack@{uxIdleTaskStack}}
@@ -44,7 +44,7 @@ Stack\+Type\+\_\+t ux\+Timer\+Task\+Stack\mbox{[}config\+TIMER\+\_\+\+TASK\+\_\+
 
 Stack for Static Timer Task. 
 
-\Hypertarget{group___task_management_gae4cad385712053d9a712350bfaa6a609}\index{Task Management@{Task Management}!xIdleTaskTCB@{xIdleTaskTCB}}
+MISRA Deviation Note\+: Rule\+: MISRA 2012 Rule 10.\+4 \mbox{[}Required\mbox{]} Suppress\+: Standard Free\+RTOS Macro Cast To uint32\+\_\+t Justification\+: The macro \textquotesingle{}config\+TIMER\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+DEPTH\textquotesingle{} is defined by the Free\+RTOS kernel configuration as an integer constant. \Hypertarget{group___task_management_gae4cad385712053d9a712350bfaa6a609}\index{Task Management@{Task Management}!xIdleTaskTCB@{xIdleTaskTCB}}
 \index{xIdleTaskTCB@{xIdleTaskTCB}!Task Management@{Task Management}}
 \doxysubsubsection{\texorpdfstring{xIdleTaskTCB}{xIdleTaskTCB}}
 {\footnotesize\ttfamily \label{group___task_management_gae4cad385712053d9a712350bfaa6a609} 

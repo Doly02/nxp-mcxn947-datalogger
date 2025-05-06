@@ -124,12 +124,11 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ae3a33b5a19fe04eeba3ebf4259f74625" id="r_ae3a33b5a19fe04eeba3ebf4259f74625"><td class="memItemLeft" align="right" valign="top">usb_msc_struct_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3a33b5a19fe04eeba3ebf4259f74625">g_msc</a></td></tr>
-<tr class="memdesc:ae3a33b5a19fe04eeba3ebf4259f74625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global USB MSC Structure.  <br /></td></tr>
-<tr class="separator:ae3a33b5a19fe04eeba3ebf4259f74625"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af59d7418386068624f2b915e32fe23ff" id="r_af59d7418386068624f2b915e32fe23ff"><td class="memItemLeft" align="right" valign="top">SemaphoreHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af59d7418386068624f2b915e32fe23ff">g_xSemRecord</a></td></tr>
+<tr class="memdesc:af59d7418386068624f2b915e32fe23ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore For Record Task Management.  <br /></td></tr>
 <tr class="separator:af59d7418386068624f2b915e32fe23ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a286a007f0c94c51fa505aa600c488122" id="r_a286a007f0c94c51fa505aa600c488122"><td class="memItemLeft" align="right" valign="top">SemaphoreHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a286a007f0c94c51fa505aa600c488122">g_xSemMassStorage</a></td></tr>
+<tr class="memdesc:a286a007f0c94c51fa505aa600c488122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore For USB Mass Storage Task Management.  <br /></td></tr>
 <tr class="separator:a286a007f0c94c51fa505aa600c488122"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -169,7 +168,7 @@ Variables</h2></td></tr>
 
 <p>Handles Mass Storage Application. </p>
 <p>Communication and Data Transport Is Handled By USB1_HS ISR. </p>
-<p>MISRA Deviation: Rule 2.2 Justification: Function 'MSC_DeviceMscApp' is called periodically and allows to expand Mass Storage.</p>
+<p>MISRA Deviation: Rule 2.2 Justification: Function 'MSC_DeviceMscApp' is Called Periodically and Allows To Expand USB Mass Storage.</p>
 
 </div>
 </div>
@@ -192,32 +191,6 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="ae3a33b5a19fe04eeba3ebf4259f74625" name="ae3a33b5a19fe04eeba3ebf4259f74625"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3a33b5a19fe04eeba3ebf4259f74625">&#9670;&#160;</a></span>g_msc</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">usb_msc_struct_t g_msc</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Global USB MSC Structure. </p>
-<p>Mass Storage Descriptor.</p>
-<p>MISRA Deviation: Rule 8.4 Justification: Declaration of 'g_msc' is intentionally placed in '<a class="el" href="app__tasks_8h.html">app_tasks.h</a>', T , the current file only provides the definition. </p>
-
-</div>
-</div>
 <a id="a286a007f0c94c51fa505aa600c488122" name="a286a007f0c94c51fa505aa600c488122"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a286a007f0c94c51fa505aa600c488122">&#9670;&#160;</a></span>g_xSemMassStorage</h2>
 
@@ -237,6 +210,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Semaphore For USB Mass Storage Task Management. </p>
 
 </div>
 </div>
@@ -259,6 +234,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Semaphore For Record Task Management. </p>
 
 </div>
 </div>

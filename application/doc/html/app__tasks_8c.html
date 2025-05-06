@@ -113,7 +113,7 @@ $(function(){initNavTree('app__tasks_8c.html',''); initResizable(true); });
 <code>#include &quot;<a class="el" href="mass__storage_8h_source.html">mass_storage.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="task__switching_8h_source.html">task_switching.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="record_8h_source.html">record.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="time_8h_source.html">time.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="time_8h_source.html">time.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -143,9 +143,6 @@ Variables</h2></td></tr>
 <tr class="memitem:gaf9fe642f3d18526be6f8488df25ac3ce" id="r_gaf9fe642f3d18526be6f8488df25ac3ce"><td class="memItemLeft" align="right" valign="top">static StackType_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___task_management.html#gaf9fe642f3d18526be6f8488df25ac3ce">uxTimerTaskStack</a> [configTIMER_TASK_STACK_DEPTH]</td></tr>
 <tr class="memdesc:gaf9fe642f3d18526be6f8488df25ac3ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stack for Static Timer Task.  <br /></td></tr>
 <tr class="separator:gaf9fe642f3d18526be6f8488df25ac3ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3a33b5a19fe04eeba3ebf4259f74625" id="r_ae3a33b5a19fe04eeba3ebf4259f74625"><td class="memItemLeft" align="right" valign="top">usb_msc_struct_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3a33b5a19fe04eeba3ebf4259f74625">g_msc</a></td></tr>
-<tr class="memdesc:ae3a33b5a19fe04eeba3ebf4259f74625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mass Storage Descriptor.  <br /></td></tr>
-<tr class="separator:ae3a33b5a19fe04eeba3ebf4259f74625"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="afc4213d2d4926914e58ecd69e8a2ad08" name="afc4213d2d4926914e58ecd69e8a2ad08"></a>
@@ -225,6 +222,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+<p>MISRA Deviation: Rule 10.8 [Required] Suppress: Conversion From Signed Macro To Unsigned Type. Justification: 'ConfigMINIMAL_STACK_SIZE' Is Defined By FreeRTOS As A Signed Macro. The Conversion To 'Uint32_t' Is Intentional And Safe In This Context. Fixing The Definition is Not Possible.</p>
 
 </div>
 </div>
@@ -262,33 +260,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="ae3a33b5a19fe04eeba3ebf4259f74625" name="ae3a33b5a19fe04eeba3ebf4259f74625"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3a33b5a19fe04eeba3ebf4259f74625">&#9670;&#160;</a></span>g_msc</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">usb_msc_struct_t g_msc</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Mass Storage Descriptor. </p>
-<p>Mass Storage Descriptor.</p>
-<p>MISRA Deviation: Rule 8.4 Justification: Declaration of 'g_msc' is intentionally placed in '<a class="el" href="app__tasks_8h.html">app_tasks.h</a>', T , the current file only provides the definition. </p>
+<p>MISRA Deviation: Rule 10.8 [Required] Suppress: Conversion From Signed Macro To Unsigned Type. Justification: 'configTIMER_TASK_STACK_DEPTH' Is Defined By FreeRTOS As A Signed Macro. The Conversion To 'Uint32_t' Is Intentional And Safe In This Context. Fixing The Definition is Not Possible.</p>
 
 </div>
 </div>

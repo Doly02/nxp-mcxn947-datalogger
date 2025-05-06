@@ -1,8 +1,6 @@
 var record_8h =
 [
     [ "FLUSH_TIMEOUT_TICKS", "record_8h.html#a0d397cd5b778e16fe6d884e5af5ee942", null ],
-    [ "REINIT_TIMEOUT_TICKS", "record_8h.html#a279b3ee10db28b16faa6d35128c0962b", null ],
-    [ "CONSOLELOG_Abs", "record_8h.html#a26b2ee1b66476267482816b5c3050fb4", null ],
     [ "CONSOLELOG_CheckFileSystem", "record_8h.html#a7569eaf79c91368fad87f25507fb8614", null ],
     [ "CONSOLELOG_ClearTransferedBytes", "record_8h.html#a52b8002dd4c2a6b13860c0a0cf52a0a8", null ],
     [ "CONSOLELOG_CreateDirectory", "record_8h.html#ac1fa0a8fc8347a2972c4eb356d002b43", null ],

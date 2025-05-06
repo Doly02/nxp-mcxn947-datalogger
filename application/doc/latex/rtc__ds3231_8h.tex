@@ -9,14 +9,14 @@
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}}
-\item 
+\begin{DoxyCompactList}\small\item\em Structure for Keeping Time. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Structure for Keeping Date. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a91cecb961b28a69e041b8178f8f36da7}{E\+\_\+\+FAULT}}~1
-\item 
+\begin{DoxyCompactList}\small\item\em General Error Return Code. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_afcaf37eb8fb30d41d86b119127cb9368}{LPI2\+C\+\_\+\+TX\+\_\+\+DMA\+\_\+\+CHANNEL}}~0U
 \begin{DoxyCompactList}\small\item\em I2C DMA Channel For Transmission. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a1b99f71e2df43e2f7b57250dba60bc9a}{LPI2\+C\+\_\+\+RX\+\_\+\+DMA\+\_\+\+CHANNEL}}~1U
@@ -95,7 +95,7 @@ struct \mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}}
 enum \mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\+\_\+osc\+\_\+state\+\_\+t}} \{ \mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85eafad1cb5d550a3fbe542c4d07c83f4f26}{OSC\+\_\+\+OK}} = 0
 , \mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85eafa69d445b0dd9dd85ffca4b4e4589166}{OSC\+\_\+\+INTERRUPTED}}
  \}
-\item 
+\begin{DoxyCompactList}\small\item\em An Enum to Capture The State of The Oscillator,. \end{DoxyCompactList}\item 
 enum \mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\+\_\+interrupt\+\_\+mode\+\_\+t}} \{ \mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33a5557ce249a5d819c79a2e7b3813c7f65}{SQUARE\+\_\+\+WAVE\+\_\+\+INTERRUPT}} = 0
 , \mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33a5ad4f38dac2143e3c9c24b219abc8f5d}{ALARM\+\_\+\+INTERRUPT}}
  \}
@@ -103,44 +103,44 @@ enum \mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\+\_\
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-uint8\+\_\+t \mbox{\hyperlink{rtc__ds3231_8h_a416879c4510669c23007e9b0e8bcd219}{RTC\+\_\+\+Init}} (void)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_a487d25d797a1fed2626ac9709ddac456}{RTC\+\_\+\+Deinit}} (void)
-\item 
-static uint8\+\_\+t \mbox{\hyperlink{rtc__ds3231_8h_ab12090e402b342c7f8773f2094773394}{RTC\+\_\+\+Convert\+To\+BCD}} (uint8\+\_\+t dec)
-\item 
-static uint8\+\_\+t \mbox{\hyperlink{rtc__ds3231_8h_a87c0d6971d07785ee1a2abf9e24eeb3f}{RTC\+\_\+\+Convert\+To\+DEC}} (uint8\+\_\+t bcd)
-\item 
-uint8\+\_\+t \mbox{\hyperlink{rtc__ds3231_8h_a18ceefab30bd070d2eafd74b0a7c9073}{RTC\+\_\+\+Get\+State}} (void)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_ada78757b2decedc79e0382b42e45a513}{RTC\+\_\+\+Set\+Osc\+State}} (\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\+\_\+osc\+\_\+state\+\_\+t}} state)
-\item 
-uint8\+\_\+t \mbox{\hyperlink{rtc__ds3231_8h_ac15d2cfbe2c4c9482e784f6a5aeed32a}{RTC\+\_\+\+Write}} (uint8\+\_\+t reg\+Address, uint8\+\_\+t val)
-\item 
-uint8\+\_\+t \mbox{\hyperlink{rtc__ds3231_8h_a340e36eb16d87e6c82d26b051844060c}{RTC\+\_\+\+Read}} (uint8\+\_\+t reg\+Address)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_a37c611694906a21743c2ad7123a55f9f}{RTC\+\_\+\+Set\+Time}} (\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Time)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_a022d5dbffbbdba01d41f47d35dd2f411}{RTC\+\_\+\+Get\+Time}} (\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Time)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_aa91602eaabcb3a6e36c0da47980e76f8}{RTC\+\_\+\+Set\+Date}} (\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Date)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_aff981efc71adf20253068942e278b421}{RTC\+\_\+\+Get\+Date}} (\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Date)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_a1c9f11eaae27873a2bc415d53541594d}{RTC\+\_\+\+Set\+Interrupt\+Mode}} (\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\+\_\+interrupt\+\_\+mode\+\_\+t}} mode)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_a06995b923b484104afe590533698e8a1}{RTC\+\_\+\+Ctrl\+Alarm1}} (uint8\+\_\+t enable)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_aacb3e98a52f0d90ecd8affb36960cfc6}{RTC\+\_\+\+Clear\+Flag\+Alarm1}} (void)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_a86e1ffe598df20f7d90abe6ea4fb0135}{RTC\+\_\+\+Ctrl\+Alarm2}} (uint8\+\_\+t enable)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_a2b8c5234e3d21ad10eb86b7a5b912dd3}{RTC\+\_\+\+Clear\+Flag\+Alarm2}} (void)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_a61d57ebc0932c5610c8a7e8dd7d860f8}{RTC\+\_\+\+Set\+Time\+Default}} (\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Time)
-\item 
-void \mbox{\hyperlink{rtc__ds3231_8h_a6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\+\_\+\+Set\+Date\+Default}} (\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Date)
-\end{DoxyCompactItemize}
+uint8\+\_\+t \mbox{\hyperlink{group___r_t_c_ga416879c4510669c23007e9b0e8bcd219}{RTC\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize The RTC DS3231. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga487d25d797a1fed2626ac9709ddac456}{RTC\+\_\+\+Deinit}} (void)
+\begin{DoxyCompactList}\small\item\em De-\/\+Initialize The RTC DS3231. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___r_t_c_gab12090e402b342c7f8773f2094773394}{RTC\+\_\+\+Convert\+To\+BCD}} (uint8\+\_\+t dec)
+\begin{DoxyCompactList}\small\item\em Converts Numbers From Decimal Base To BCD Base. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___r_t_c_ga87c0d6971d07785ee1a2abf9e24eeb3f}{RTC\+\_\+\+Convert\+To\+DEC}} (uint8\+\_\+t bcd)
+\begin{DoxyCompactList}\small\item\em Converts Numbers From BCD Base To Decimal Base. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group___r_t_c_ga18ceefab30bd070d2eafd74b0a7c9073}{RTC\+\_\+\+Get\+State}} (void)
+\begin{DoxyCompactList}\small\item\em This Function Checks If The Oscillator Is Still Running. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_gada78757b2decedc79e0382b42e45a513}{RTC\+\_\+\+Set\+Osc\+State}} (\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\+\_\+osc\+\_\+state\+\_\+t}} state)
+\begin{DoxyCompactList}\small\item\em Sets The Oscillator Stop Flag (OSF). \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group___r_t_c_gac15d2cfbe2c4c9482e784f6a5aeed32a}{RTC\+\_\+\+Write}} (uint8\+\_\+t reg\+Address, uint8\+\_\+t val)
+\begin{DoxyCompactList}\small\item\em Writes Value Into RTC Registers. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group___r_t_c_ga340e36eb16d87e6c82d26b051844060c}{RTC\+\_\+\+Read}} (uint8\+\_\+t reg\+Address)
+\begin{DoxyCompactList}\small\item\em Reads Value From RTC Register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga37c611694906a21743c2ad7123a55f9f}{RTC\+\_\+\+Set\+Time}} (\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Time)
+\begin{DoxyCompactList}\small\item\em Sets Time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga022d5dbffbbdba01d41f47d35dd2f411}{RTC\+\_\+\+Get\+Time}} (\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Time)
+\begin{DoxyCompactList}\small\item\em Gets Time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_gaa91602eaabcb3a6e36c0da47980e76f8}{RTC\+\_\+\+Set\+Date}} (\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Date)
+\begin{DoxyCompactList}\small\item\em Sets Date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_gaff981efc71adf20253068942e278b421}{RTC\+\_\+\+Get\+Date}} (\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Date)
+\begin{DoxyCompactList}\small\item\em Gets Date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga1c9f11eaae27873a2bc415d53541594d}{RTC\+\_\+\+Set\+Interrupt\+Mode}} (\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\+\_\+interrupt\+\_\+mode\+\_\+t}} mode)
+\begin{DoxyCompactList}\small\item\em Sets The INTCN Bit in Control Register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga06995b923b484104afe590533698e8a1}{RTC\+\_\+\+Ctrl\+Alarm1}} (uint8\+\_\+t enable)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables The Alarm 1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_gaacb3e98a52f0d90ecd8affb36960cfc6}{RTC\+\_\+\+Clear\+Flag\+Alarm1}} (void)
+\begin{DoxyCompactList}\small\item\em Clears The A1F Flag in Control Register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga86e1ffe598df20f7d90abe6ea4fb0135}{RTC\+\_\+\+Ctrl\+Alarm2}} (uint8\+\_\+t enable)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables The Alarm 2. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga2b8c5234e3d21ad10eb86b7a5b912dd3}{RTC\+\_\+\+Clear\+Flag\+Alarm2}} (void)
+\begin{DoxyCompactList}\small\item\em Clears The A1F Flag in Control Register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga61d57ebc0932c5610c8a7e8dd7d860f8}{RTC\+\_\+\+Set\+Time\+Default}} (\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Time)
+\begin{DoxyCompactList}\small\item\em Sets Time To Default. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\+\_\+\+Set\+Date\+Default}} (\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Date)
+\begin{DoxyCompactList}\small\item\em Sets Date To Default. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -257,6 +257,10 @@ void \mbox{\hyperlink{rtc__ds3231_8h_a6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\+\_\
 \doxysubsubsection{\texorpdfstring{E\_FAULT}{E\_FAULT}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a91cecb961b28a69e041b8178f8f36da7} 
 \#define E\+\_\+\+FAULT~1}
+
+
+
+General Error Return Code. 
 
 \Hypertarget{rtc__ds3231_8h_abe9db6f3a1fb60fa435c899c00dd0987}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!FRIDAY@{FRIDAY}}
 \index{FRIDAY@{FRIDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}}
@@ -415,130 +419,17 @@ ALARM\+\_\+\+INTERRUPT&\\
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e} 
 enum \mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\+\_\+osc\+\_\+state\+\_\+t}}}
 
+
+
+An Enum to Capture The State of The Oscillator,. 
+
 \begin{DoxyEnumFields}[2]{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{OSC\_OK@{OSC\_OK}!rtc\_ds3231.h@{rtc\_ds3231.h}}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!OSC\_OK@{OSC\_OK}}}\Hypertarget{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85eafad1cb5d550a3fbe542c4d07c83f4f26}\label{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85eafad1cb5d550a3fbe542c4d07c83f4f26} 
-OSC\+\_\+\+OK&\\
+OSC\+\_\+\+OK&RTC Oscillator Is OK \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{OSC\_INTERRUPTED@{OSC\_INTERRUPTED}!rtc\_ds3231.h@{rtc\_ds3231.h}}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!OSC\_INTERRUPTED@{OSC\_INTERRUPTED}}}\Hypertarget{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85eafa69d445b0dd9dd85ffca4b4e4589166}\label{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85eafa69d445b0dd9dd85ffca4b4e4589166} 
-OSC\+\_\+\+INTERRUPTED&\\
+OSC\+\_\+\+INTERRUPTED&RTC Oscillator Was Interrupted -\/\texorpdfstring{$>$}{>} Need to Update the Time \\
 \hline
 
 \end{DoxyEnumFields}
-
-
-\doxysubsection{Function Documentation}
-\Hypertarget{rtc__ds3231_8h_aacb3e98a52f0d90ecd8affb36960cfc6}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_ClearFlagAlarm1@{RTC\_ClearFlagAlarm1}}
-\index{RTC\_ClearFlagAlarm1@{RTC\_ClearFlagAlarm1}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_ClearFlagAlarm1()}{RTC\_ClearFlagAlarm1()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_aacb3e98a52f0d90ecd8affb36960cfc6} 
-void RTC\+\_\+\+Clear\+Flag\+Alarm1 (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_a2b8c5234e3d21ad10eb86b7a5b912dd3}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_ClearFlagAlarm2@{RTC\_ClearFlagAlarm2}}
-\index{RTC\_ClearFlagAlarm2@{RTC\_ClearFlagAlarm2}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_ClearFlagAlarm2()}{RTC\_ClearFlagAlarm2()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a2b8c5234e3d21ad10eb86b7a5b912dd3} 
-void RTC\+\_\+\+Clear\+Flag\+Alarm2 (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_ab12090e402b342c7f8773f2094773394}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_ConvertToBCD@{RTC\_ConvertToBCD}}
-\index{RTC\_ConvertToBCD@{RTC\_ConvertToBCD}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_ConvertToBCD()}{RTC\_ConvertToBCD()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_ab12090e402b342c7f8773f2094773394} 
-static uint8\+\_\+t RTC\+\_\+\+Convert\+To\+BCD (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dec}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
-
-\Hypertarget{rtc__ds3231_8h_a87c0d6971d07785ee1a2abf9e24eeb3f}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_ConvertToDEC@{RTC\_ConvertToDEC}}
-\index{RTC\_ConvertToDEC@{RTC\_ConvertToDEC}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_ConvertToDEC()}{RTC\_ConvertToDEC()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a87c0d6971d07785ee1a2abf9e24eeb3f} 
-static uint8\+\_\+t RTC\+\_\+\+Convert\+To\+DEC (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{bcd}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
-
-\Hypertarget{rtc__ds3231_8h_a06995b923b484104afe590533698e8a1}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_CtrlAlarm1@{RTC\_CtrlAlarm1}}
-\index{RTC\_CtrlAlarm1@{RTC\_CtrlAlarm1}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_CtrlAlarm1()}{RTC\_CtrlAlarm1()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a06995b923b484104afe590533698e8a1} 
-void RTC\+\_\+\+Ctrl\+Alarm1 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{enable}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_a86e1ffe598df20f7d90abe6ea4fb0135}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_CtrlAlarm2@{RTC\_CtrlAlarm2}}
-\index{RTC\_CtrlAlarm2@{RTC\_CtrlAlarm2}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_CtrlAlarm2()}{RTC\_CtrlAlarm2()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a86e1ffe598df20f7d90abe6ea4fb0135} 
-void RTC\+\_\+\+Ctrl\+Alarm2 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{enable}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_a487d25d797a1fed2626ac9709ddac456}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_Deinit@{RTC\_Deinit}}
-\index{RTC\_Deinit@{RTC\_Deinit}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_Deinit()}{RTC\_Deinit()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a487d25d797a1fed2626ac9709ddac456} 
-void RTC\+\_\+\+Deinit (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_aff981efc71adf20253068942e278b421}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_GetDate@{RTC\_GetDate}}
-\index{RTC\_GetDate@{RTC\_GetDate}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_GetDate()}{RTC\_GetDate()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_aff981efc71adf20253068942e278b421} 
-void RTC\+\_\+\+Get\+Date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Date}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_a18ceefab30bd070d2eafd74b0a7c9073}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_GetState@{RTC\_GetState}}
-\index{RTC\_GetState@{RTC\_GetState}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_GetState()}{RTC\_GetState()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a18ceefab30bd070d2eafd74b0a7c9073} 
-uint8\+\_\+t RTC\+\_\+\+Get\+State (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_a022d5dbffbbdba01d41f47d35dd2f411}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_GetTime@{RTC\_GetTime}}
-\index{RTC\_GetTime@{RTC\_GetTime}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_GetTime()}{RTC\_GetTime()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a022d5dbffbbdba01d41f47d35dd2f411} 
-void RTC\+\_\+\+Get\+Time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Time}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_a416879c4510669c23007e9b0e8bcd219}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_Init@{RTC\_Init}}
-\index{RTC\_Init@{RTC\_Init}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_Init()}{RTC\_Init()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a416879c4510669c23007e9b0e8bcd219} 
-uint8\+\_\+t RTC\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
-
-enable\+Round\+Robin\+Arbitration = false; enable\+Halt\+On\+Error = true; enable\+Continuous\+Link\+Mode = false; enable\+Debug\+Mode = false;\Hypertarget{rtc__ds3231_8h_a340e36eb16d87e6c82d26b051844060c}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_Read@{RTC\_Read}}
-\index{RTC\_Read@{RTC\_Read}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_Read()}{RTC\_Read()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a340e36eb16d87e6c82d26b051844060c} 
-uint8\+\_\+t RTC\+\_\+\+Read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+Address}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_aa91602eaabcb3a6e36c0da47980e76f8}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_SetDate@{RTC\_SetDate}}
-\index{RTC\_SetDate@{RTC\_SetDate}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_SetDate()}{RTC\_SetDate()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_aa91602eaabcb3a6e36c0da47980e76f8} 
-void RTC\+\_\+\+Set\+Date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Date}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_a6a3b9bda0f1f1fdff2c4ae91f180021e}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_SetDateDefault@{RTC\_SetDateDefault}}
-\index{RTC\_SetDateDefault@{RTC\_SetDateDefault}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_SetDateDefault()}{RTC\_SetDateDefault()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a6a3b9bda0f1f1fdff2c4ae91f180021e} 
-void RTC\+\_\+\+Set\+Date\+Default (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Date}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_a1c9f11eaae27873a2bc415d53541594d}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_SetInterruptMode@{RTC\_SetInterruptMode}}
-\index{RTC\_SetInterruptMode@{RTC\_SetInterruptMode}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_SetInterruptMode()}{RTC\_SetInterruptMode()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a1c9f11eaae27873a2bc415d53541594d} 
-void RTC\+\_\+\+Set\+Interrupt\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\+\_\+interrupt\+\_\+mode\+\_\+t}}}]{mode}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_ada78757b2decedc79e0382b42e45a513}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_SetOscState@{RTC\_SetOscState}}
-\index{RTC\_SetOscState@{RTC\_SetOscState}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_SetOscState()}{RTC\_SetOscState()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_ada78757b2decedc79e0382b42e45a513} 
-void RTC\+\_\+\+Set\+Osc\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\+\_\+osc\+\_\+state\+\_\+t}}}]{state}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_a37c611694906a21743c2ad7123a55f9f}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_SetTime@{RTC\_SetTime}}
-\index{RTC\_SetTime@{RTC\_SetTime}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_SetTime()}{RTC\_SetTime()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a37c611694906a21743c2ad7123a55f9f} 
-void RTC\+\_\+\+Set\+Time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Time}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_a61d57ebc0932c5610c8a7e8dd7d860f8}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_SetTimeDefault@{RTC\_SetTimeDefault}}
-\index{RTC\_SetTimeDefault@{RTC\_SetTimeDefault}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_SetTimeDefault()}{RTC\_SetTimeDefault()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_a61d57ebc0932c5610c8a7e8dd7d860f8} 
-void RTC\+\_\+\+Set\+Time\+Default (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Time}{}\end{DoxyParamCaption})}
-
-\Hypertarget{rtc__ds3231_8h_ac15d2cfbe2c4c9482e784f6a5aeed32a}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_Write@{RTC\_Write}}
-\index{RTC\_Write@{RTC\_Write}!rtc\_ds3231.h@{rtc\_ds3231.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_Write()}{RTC\_Write()}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8h_ac15d2cfbe2c4c9482e784f6a5aeed32a} 
-uint8\+\_\+t RTC\+\_\+\+Write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+Address}{, }\item[{uint8\+\_\+t}]{val}{}\end{DoxyParamCaption})}
-

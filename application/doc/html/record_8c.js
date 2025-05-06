@@ -4,7 +4,6 @@ var record_8c =
     [ "CIRCULAR_BUFFER_SIZE", "record_8c.html#a501f5c21d6fe4e60dc984cdaba5e892f", null ],
     [ "GET_CURRENT_TIME_MS", "record_8c.html#af91d15f16fa008fb2ea0436199bb2ab2", null ],
     [ "GET_WAIT_INTERVAL", "record_8c.html#ad7a1f4fbbe0adc28faeb0c657fa33cc4", null ],
-    [ "CONSOLELOG_Abs", "record_8c.html#a26b2ee1b66476267482816b5c3050fb4", null ],
     [ "CONSOLELOG_CheckFileSystem", "record_8c.html#a7569eaf79c91368fad87f25507fb8614", null ],
     [ "CONSOLELOG_ClearTransferedBytes", "record_8c.html#a52b8002dd4c2a6b13860c0a0cf52a0a8", null ],
     [ "CONSOLELOG_CreateDirectory", "record_8c.html#ac1fa0a8fc8347a2972c4eb356d002b43", null ],
