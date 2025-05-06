@@ -338,4 +338,5 @@ No Issues Were Observed During Development, Testing, or Practical Usage of The D
 
 #### References
 [1] "Nordic Semiconductors Power Profiler Kit II" [online]. [cited 2025-5-6]. Available at [https://www.nordicsemi.com/Products/Development-hardware/Power-Profiler-Kit-2](https://www.nordicsemi.com/Products/Development-hardware/Power-Profiler-Kit-2)
+
 [2] "PC-lint Plus 2.2 Static Code Analysis Tool for C and C++ Source Code" [online]. [cited 2025-5-6]. Available at [https://pclintplus.com/](https://pclintplus.com/)
