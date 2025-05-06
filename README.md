@@ -36,6 +36,7 @@ To build and run `datalogger`, you will need the following:
 
 #### Software Requirements
 1. MCUXpresso IDE v11.10.0 With GCC-based ARM Embedded Toolchain (Arm-none-eabi-gcc Compiler)
+1. NXP SDK FRDM-MCXN947 version 2.16.000
 
 ### Repository Organization
 ```
@@ -265,14 +266,16 @@ Each Module Has Its Own Source and Header File:
 ### Testing
 
 #### Functional Testing
-The Digital Data Logger Was Tested Using a Python Script Located in The tests/ Directory Under Name serial_test.py.
+The Digital Data Logger Was Tested Using a Python Script Located in The tests/ Directory Under Name `serial_test.py`.
 
-The Script serial_test.py Simulates The Monitored Device By Reading The Test Text Files and Sending Their Contents as Serial Data Through The COM Port To The Digital Data Logger. 
+The Script `serial_test.py` Simulates The Monitored Device By Reading The Test Text Files and Sending Their Contents as Serial Data Through The COM Port To The Digital Data Logger. 
 There is a Time Delay Between Each File Being Sent, Which Deliberately Causes The `CONSOLELOG_Flush()` Function To Be Called, So That Each Test Input is Recorded in a Separate File That Can Be Compared Against The Original Test File.
 
 Scripted Testing Was Performed At Various Baud Rates, With Testing Primarily Focused on Baud Rates Corresponding To Actual Deployment Scenarios. 
 After The Test Was Completed, The Recorded Outputs Were Compared To The Original Test Files. The Results of The Comparison Confirmed That In All Cases Tested, 
 The Transfer Was Correct And There Was No Data Loss or Corruption.
+
+The Digital Data Logger Was Also Successfully Verified Using `stress_test.py` Script That Contains a Stress Test. In This Test, Data Was Sent at 921600 baud. The Data Was First Collected Into a Circular Buffer of 4 KiB, From Which it Was Then Stored on The SD Card in Blocks of 4 KiB. The Resulting Recording Files Were 1 MiB in Size.
 
 Functional Testing Also Covered The Behavior Of The Digital Recorder In Non-Standard Scenarios That May Occur During Real-World Deployment. 
 The Results Are Summarized In Table Below.
@@ -289,7 +292,12 @@ The Results Are Summarized In Table Below.
 
 
 #### Static Code Analysis
-In Addition To Functional Testing, Static Analysis of The Source Code Was Performed Using Rules From The MISRA (Motor Industry Software Reliability Association) Specification, Specifically MISRA C:2012. The Focus Was Primarily On Rules Classified as Required And Mandatory. All Detected Violations In These Categories Were Either Corrected Or Justified Through Comments In The Source Code, Including A Reference To The Relevant Rule and a Rationale For The Exception.
+In Addition To Functional Testing, Static Analysis of The Source Code Was Performed Using Rules From The MISRA (_Motor Industry Software Reliability Association_) Specification, Specifically MISRA C:2012. The Focus Was Primarily On Rules Classified as Required And Mandatory. All Detected Violations In These Categories Were Either Corrected Or Justified Through Comments In The Source Code, Including A Reference To The Relevant Rule and a Rationale For The Exception.
+
+The Code Analysis Was Performed With Tool PC-lint Plus v2.2 Developed By Vector. [1]
 
 ### Known Issues
 No Issues Were Observed During Development, Testing, or Practical Usage of The Digital Data Logger.
+
+#### Refenrences
+[1] "PC-lint Plus 2.2 Static Code Analysis Tool for C and C++ Source Code" [online]. [cited 2024-5-6]. Available at [https://pclintplus.com/](https://pclintplus.com/)
