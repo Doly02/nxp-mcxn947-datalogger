@@ -130,11 +130,11 @@ The Default Values Defined in The `defs.h` File are Used
 | Parameter      | Default Value                 | Data Type                      |
 |----------------|-------------------------------|--------------------------------|
 | `baudrate`     | `230400`                      | uint32_t                       |
-| `file_size`    | `8192`                        | uint32_t (in KB)               |
+| `file_size`    | `8192`                        | uint32_t (in KiB)              |
 | `stop_bits`    | `kLPUART_OneStopBit`          | enum (lpuart_stop_bit_count_t) |
 | `data_bits`    | `kLPUART_EightDataBits`       | enum (lpuart_data_bits_t)      |
 | `parity`       | `kLPUART_ParityDisabled`      | enum (lpuart_parity_mode_t)    |
-| `free_space`   | `50`                          | uint32_t (in MB)               |
+| `free_space`   | `50`                          | uint32_t (in MiB)              |
 
 
 2. Insert The SD Card (Type SDHC) Into The Data Logger 
