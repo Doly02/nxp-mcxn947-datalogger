@@ -58,5 +58,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-tests/
 logs/
+
+# 700MB File!
+/tests/static_analysis/outputs/lint.log
