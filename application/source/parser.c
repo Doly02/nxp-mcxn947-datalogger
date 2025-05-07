@@ -184,14 +184,19 @@ error_t PARSER_ParseFileSize(const char *chContent)
     if (0UL != (u32Value % 512UL))
     {
         uint32_t u32Rounded = ((u32Value + 511UL) / 512UL) * 512UL;
+#if (true == INFO_ENABLED)
         PRINTF("INFO: File size %u is not multiple of 512. Rounding up to %u.\r\n", u32Value, u32Rounded);
+#endif /* (true == INFO_ENABLED) */
         u32Value = u32Rounded;
     }
 
     g_config.size = u32Value;
     g_config.max_bytes = (g_config.baudrate / 1000UL) * RECORD_LED_TIME_INTERVAL;
 
+#if (true == DEBUG_ENABLED)
     PRINTF("DEBUG: File size set to %u bytes.\r\n", g_config.size);
+#endif /* (true == DEBUG_ENABLED) */
+
     return ERROR_NONE;
 }
 
@@ -202,7 +207,9 @@ error_t PARSER_ParseParity(const char *chContent)
     char *chFound = strstr(chContent, chKeyParity);
     if (NULL == chFound)
     {
+#if (true == INFO_ENABLED)
         PRINTF("INFO: Key 'parity=' not found. Using default.\r\n");
+#endif /* (true == INFO_ENABLED) */
         return ERROR_NONE;
     }
 
@@ -235,7 +242,9 @@ error_t PARSER_ParseStopBits(const char *chContent)
     char *chFound = strstr(chContent, chKeyStopBits);
     if (NULL == chFound)
     {
+#if (true == INFO_ENABLED)
         PRINTF("INFO: Key 'stop_bits=' not found. Using default.\r\n");
+#endif /* (true == DEBUG_ENABLED) */
         return ERROR_NONE;
     }
 
@@ -276,7 +285,9 @@ error_t PARSER_ParseDataBits(const char *chContent)
     char *chFound = strstr(chContent, chKeyDataBits);
     if (NULL == chFound)
     {
+#if (true == INFO_ENABLED)
         PRINTF("INFO: Key 'data_bits=' not found. Using default.\r\n");
+#endif /* (true == INFO_ENABLED) */
         return ERROR_NONE;
     }
 
@@ -316,7 +327,9 @@ error_t PARSER_ParseFreeSpace(const char *chContent)
     char *chFound = strstr(chContent, chKey);
     if (NULL == chFound)
     {
+#if (true == INFO_ENABLED)
         PRINTF("INFO: Key 'free_space=' not found. Using default.\r\n");
+#endif /* (true == INFO_ENABLED) */
         g_config.free_space_limit_mb = DEFAULT_FREE_SPACE;
         return ERROR_NONE;
     }
@@ -346,6 +359,7 @@ error_t PARSER_ParseFreeSpace(const char *chContent)
 
     g_config.free_space_limit_mb = (uint32_t)ulParsedValue;
 
+#if (true == INFO_ENABLED)
     if (0UL == g_config.free_space_limit_mb)
     {
         PRINTF("INFO: 'free_space=' set to 0 MB, threshold disabled.\r\n");
@@ -354,6 +368,7 @@ error_t PARSER_ParseFreeSpace(const char *chContent)
     {
         PRINTF("INFO: Free space LED threshold set to %lu MB.\r\n", ulParsedValue);
     }
+#endif /* (true == INFO_ENABLED) */
 
     return ERROR_NONE;
 }

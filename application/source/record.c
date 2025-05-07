@@ -327,9 +327,9 @@ error_t CONSOLELOG_CreateFile(void)
     }
 
     g_u32CurrentFileSize = 0; // Reset file size
-#if (true == INFO_ENABLED || true == DEBUG_ENABLED)
+#if (true == INFO_ENABLED)
     PRINTF("INFO: Created Log %s.\r\n", u8FileName);
-#endif
+#endif /* (true == INFO_ENABLED) */
 
     return ERROR_NONE;
 }
@@ -365,7 +365,7 @@ error_t CONSOLELOG_CreateDirectory(void)
     (void)snprintf(g_u8CurrentDirectory, sizeof(g_u8CurrentDirectory), "%s", u8DirectoryName);
     //lint -restore
 
-#if (true == INFO_ENABLED || true == DEBUG_ENABLED)
+#if (true == INFO_ENABLED)
     PRINTF("INFO: Created Directory %s.\r\n", g_u8CurrentDirectory);
 #endif /* (true == INFO_ENABLED) */
     return ERROR_NONE;
@@ -557,9 +557,9 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
         g_u32CurrentFileSize += BLOCK_SIZE;
         if (g_u32CurrentFileSize >= file_size)
         {
-#if (true == INFO_ENABLED || true == DEBUG_ENABLED)
+#if (true == INFO_ENABLED)
             PRINTF("INFO: File Size Limit Reached. Closing file. (LIMIT: %d, CURRENT %d)\r\n", file_size, g_u32CurrentFileSize);
-#endif /* (true == INFO_ENABLED || true == DEBUG_ENABLED) */
+#endif /* (true == INFO_ENABLED */
             (void)f_close(&g_fileObject);
             g_fileObject.obj.fs = NULL;
         }
@@ -601,8 +601,8 @@ error_t CONSOLELOG_Flush(void)
 		PRINTF("INFO: Current Ticks = %d.\r\n", CurrentTick);
 		PRINTF("INFO: Last Ticks = %d.\r\n", LastTick);
 		PRINTF("INFO: Flush Triggered. Writing Remaining Data To File.\r\n");
-#else
-		PRINTF("INFO: Flush Triggered.\r\n");
+#elif (true == DEBUG_ENABLED)
+		PRINTF("DEBUG: Flush Triggered.\r\n");
 #endif /* (true == INFO_ENABLED) */
 
 		while (g_u16BackDmaBufferIdx < BLOCK_SIZE)			/* Fill Buffer With ' ' */
@@ -655,9 +655,9 @@ error_t CONSOLELOG_Flush(void)
 		}
 		g_u32CurrentFileSize += BLOCK_SIZE;
 
-#if	(true == INFO_ENABLED || true == DEBUG_ENABLED)
+#if	(true == INFO_ENABLED)
 		PRINTF("INFO: Closing File\r\n");
-#endif /* (true == INFO_ENABLED || true == DEBUG_ENABLED) */
+#endif /* (true == INFO_ENABLED) */
 
 		(void)f_close(&g_fileObject);
 		g_fileObject.obj.fs 	= NULL;
@@ -740,9 +740,9 @@ error_t CONSOLELOG_PowerLossFlush(void)
 		(void)f_write(&g_fileObject, g_pu8FrontDmaBuffer, BLOCK_SIZE, &bytesWritten);
 		g_u32CurrentFileSize += BLOCK_SIZE;
 
-#if	(true == INFO_ENABLED || true == DEBUG_ENABLED)
+#if	(true == INFO_ENABLED)
 		PRINTF("INFO: Closing File\r\n");
-#endif /* (true == INFO_ENABLED || true == DEBUG_ENABLED) */
+#endif /* (true == INFO_ENABLED) */
 
 		(void)f_close(&g_fileObject);
 		g_fileObject.obj.fs 	= NULL;
@@ -819,8 +819,9 @@ error_t CONSOLELOG_ReadConfig(void)
     	{
     		if (ERROR_NONE == (uint32_t)strcmp(fno.fname, CONFIG_FILE))	// If config File
 			{
+#if (true == DEBUG_ENABLED)
     			PRINTF("DEBUG: Found .config File: %s\r\n", fno.fname);
-
+#endif /* (true == DEBUG_ENABLED) */
     			error = f_open(&configFile, CONFIG_FILE, FA_READ);
     			if (FR_OK != error)
 				{
@@ -828,7 +829,7 @@ error_t CONSOLELOG_ReadConfig(void)
     				LED_SignalError();
 #endif /* (CONTROL_LED_ENABLED == true) */
 
-    				PRINTF("ERR: Failed to open .config file. ERR=%d\r\n", error);
+    				PRINTF("ERR: Failed To Open .config File. ERR=%d\r\n", error);
     				(void)f_closedir(&dir); 	// Close Root Directory
 					return ERROR_OPEN;
 				}

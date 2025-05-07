@@ -40,11 +40,6 @@
 #define RECORD_STACK_SIZE     ((uint32_t)(5000UL / (uint32_t)sizeof(portSTACK_TYPE)))
 
 /**
- * @brief Enables/Disables Logic For External Real-Time Circuit DS3231.
- */
-#define RTC_ENABLED					(true)
-
-/**
  * @brief Enables/Disables Mass Storage Functionality.
  * */
 #define MSC_ENABLED					(true)
@@ -53,13 +48,13 @@
  * @brief 	Enables/Disables Debug Mode
  * @details If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console.
  */
-#define INFO_ENABLED				(true)
+#define INFO_ENABLED				(false)
 
 /**
  * @brief 	Enables/Disables Debug Mode
  * @details If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console.
  */
-#define DEBUG_ENABLED				(true)
+#define DEBUG_ENABLED				(false)
 
 /**
  * @brief Enables/Disables HW FIFO Queue on Application LPUART.
@@ -77,11 +72,6 @@
 #define UART_PRINT_ENABLED			(false)
 
 /**
- * @brief Enables/Disables Logic For Internal Real-Time Circuit.
- */
-#define IRTC_ENABLED				(true)
-
-/**
  * @brief Enables/Disables Power Loss Detection.
  */
 #define PWRLOSS_DETECTION_ENABLED	(true)
@@ -89,7 +79,7 @@
 /**
  * @brief Enables/Disables GPIO For Testing Power Loss Detection.
  */
-#define PWRLOSS_TEST_GPIOS			(true)
+#define PWRLOSS_TEST_GPIOS			(false)
 
 /**
  * @brief 	Constant Tau, When Back-Up Power Capacitor is Charged To 99%.

@@ -47,12 +47,10 @@ void APP_InitBoard(void)
 	CLOCK_SetClkDiv(kCLOCK_DivFlexcom3Clk, 2u);
 	CLOCK_AttachClk(kFRO_HF_DIV_to_FLEXCOMM3);
 
-#if (true == RTC_ENABLED)
 	/* Attach FRO 12M To FLEXCOMM2 (I2C for RTC) */
 	CLOCK_SetClkDiv(kCLOCK_DivFlexcom2Clk, 1U);
 	CLOCK_AttachClk(kFRO12M_to_FLEXCOMM2);
 	CLOCK_EnableClock(kCLOCK_Dma0);
-#endif /* (true == RTC_ENABLED) */
 
     /* Attach FRO HF to USDHC */
     CLOCK_SetClkDiv(kCLOCK_DivUSdhcClk, 1u);
@@ -89,23 +87,21 @@ void APP_InitBoard(void)
     BOARD_PowerMode_OD();
     BOARD_InitBootClocks();
     BOARD_InitDebugConsole();
-	PRINTF("Initialization!\r\n");
 
-#if (true == RTC_ENABLED)
+#if (true == INFO_ENABLED)
+	PRINTF("INFO: Data Logger Initialization\r\n");
+#endif /* (true == INFO_ENABLED) */
+
 
     /* Initialize DMA */
 	EDMA_GetDefaultConfig(&edmaConfig);
 	EDMA_Init(LPI2C_DMA_BASEADDR, &edmaConfig);
 
-#endif /* (true == RTC_ENABLED) */
-
     (void)CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
     BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
 
-#if (true == IRTC_ENABLED)
     (void)CLOCK_SetupClk16KClocking((uint32_t)((uint32_t)kCLOCK_Clk16KToVbat | (uint32_t)kCLOCK_Clk16KToMain));
     (void)TIME_InitIRTC();
-#endif /* (true == IRTC_ENABLED) */
 
 #if (true == TEMPERATURE_MEAS_ENABLED)
     TMP_Init();

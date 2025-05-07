@@ -267,7 +267,6 @@ uint8_t TMP_Init(void)
     /* Initialize Timer For Periodic Interrupts */
 	CTIMER_GetDefaultConfig(&config);
 	config.prescale = 144 - 1; 							/* Frequency From 144 MHz To 1 MHz 						*/
-	PRINTF("CTIMER CLK: %d\r\n", CLOCK_GetCTimerClkFreq(0U));
 
 	CTIMER_Init(CTIMER0, &config);
 

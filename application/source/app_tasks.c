@@ -132,12 +132,13 @@ void record_task(void *handle)
     /* Initialize SD Card and File System */
     USB_DeviceModeInit();
 
-#if (true == IRTC_ENABLED)
     /*
      * MISRA Deviation: Rule 17.3 [Mandatory], Rule 10.4 [Required]
+     *
      * Rule 17.3 Suppress: Function 'TIME_SetTime' Used Without Prior Declaration.
      * Rule 17.3 Justification: The Function 'TIME_SetTime' is Properly Declared in 'Time.h',
      * Which is Included in This Compilation Unit. The MISRA Warning is a False Positive.
+     *
      * Rule 10.4 Suppress: Comparison Between Signed and Unsigned Types Using '!=' Operator.
      * Rule 10.4 Justification: Both 'ERROR_NONE' And The Return Value Of 'TIME_SetTime()' are of
      * The Same Underlying Type 'error_t'.
@@ -153,7 +154,6 @@ void record_task(void *handle)
     /* De-Inicialization of External RTC (After Initialization This RTC Is Not Needed */
 	RTC_Deinit();
 	LPI2C2_DeinitPins();
-#endif /* (true == IRTC_ENABLED) */
 
     retVal = CONSOLELOG_Init();
     if(ERROR_NONE != retVal)
@@ -180,7 +180,10 @@ void record_task(void *handle)
 
 		UART_Init(u32Baudrate);
 		UART_Enable();
+
+#if (true == INFO_ENABLED)
 		PRINTF("INFO: UART Initialized for Record Mode\r\n");
+#endif /* (true == INFO_ENABLED) */
 
         while (kUSB_DeviceNotifyAttach != USB_State(g_msc.deviceHandle))
         {
@@ -211,7 +214,7 @@ void record_task(void *handle)
 			}
 #endif
 
-#if (true == INFO_ENABLED)
+#if (true == CONTROL_LED_ENABLED)
 			u32FreeSpaceSdCard = CONSOLELOG_GetFreeSpaceMB();
 			u32FreeSpaceLimit = PARSER_GetFreeSpaceLimitMB();
 
@@ -219,9 +222,11 @@ void record_task(void *handle)
 				(0UL != u32FreeSpaceLimit))
 			{
 				LED_SignalLowMemory();
+#if (true == DEBUG_ENABLED)
 				PRINTF("DEBUG: Free Space: %d MB\r\n", u32FreeSpaceSdCard);
+#endif /* (true == DEBUG_ENABLED) */
 			}
-#endif
+#endif /* (true == CONTROL_LED_ENABLED) */
 
         }
 
