@@ -8,7 +8,6 @@
 *.elf
 
 # Personal files
-hardware/
 logs/
 editor/
 application/.settings/language.settings.xml
