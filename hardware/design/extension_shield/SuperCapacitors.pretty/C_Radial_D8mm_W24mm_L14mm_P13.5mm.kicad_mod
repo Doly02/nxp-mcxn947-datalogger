@@ -1,0 +1,234 @@
+(footprint "C_Radial_D8mm_W24mm_L14mm_P13.5mm"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "C, Radial series, Radial, pin pitch=18mm, diameter=12.5mm, height(W)=25mm, Polar Electrolytic Super Capacitor")
+	(tags "C Radial series Radial pin pitch 18mm diameter 12.5mm height 25mm Polar Electrolytic Super Capacitor")
+	(property "Reference" "C1"
+		(at -10.95 0 90)
+		(layer "F.SilkS")
+		(uuid "da271f3b-6187-47ff-a1c5-994bc0ec032f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "0.33F"
+		(at 3.75 10.25 0)
+		(layer "F.Fab")
+		(uuid "3ee19ce3-ddb8-48fe-bf19-c8e3f1748c36")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "SuperCaps:C_Radial_D12.5mm_W25mm_L32mm_P18mm"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4d60c992-156c-47d2-a102-489367afe6d0")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://cz.mouser.com/datasheet/2/40/AVX_SCM-3075352.pdf"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "07063170-b545-44d1-843b-0104c133eada")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Polarized SuperCapacitor SCMT32H755SRBB0"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f287f179-27ae-45a4-b153-85c85b886e92")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -4.5 4.15)
+		(end 11.5 4.15)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "5ca0a09d-f292-4bc8-b54d-dc1f1249f8f6")
+	)
+	(fp_line
+		(start 11.5 -4.15)
+		(end -4.5 -4.15)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "1962e48b-ac5f-46f8-9a31-83a57388fd8a")
+	)
+	(fp_arc
+		(start -4.5 4.15)
+		(mid -8.65 0)
+		(end -4.5 -4.15)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "6b367c07-2899-4288-a40d-761ad5650106")
+	)
+	(fp_arc
+		(start 11.5 -4.15)
+		(mid 15.65 0)
+		(end 11.5 4.15)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "1491ab2f-44d9-402e-99eb-d29391f72bab")
+	)
+	(fp_line
+		(start -4.5 -4.3)
+		(end 11.5 -4.3)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "e239ed0a-b0e7-4786-9d38-466d829f5840")
+	)
+	(fp_line
+		(start -4.5 4.3)
+		(end 11.5 4.3)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "05ce7817-d6ce-45aa-a141-fa52f3ca39ae")
+	)
+	(fp_arc
+		(start -4.5 4.3)
+		(mid -8.8 0)
+		(end -4.5 -4.3)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "1dfa49ea-4ae9-4d3c-83ff-18d235b3c672")
+	)
+	(fp_arc
+		(start 11.5 -4.3)
+		(mid 15.8 0)
+		(end 11.5 4.3)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "bd175e6b-abe6-40ff-93bc-da04634a38a3")
+	)
+	(fp_line
+		(start -4.5 4)
+		(end 11.5 4)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "75c9883d-10db-4fb4-b8f7-d31b406b7896")
+	)
+	(fp_line
+		(start 11.5 -4)
+		(end -4.5 -4)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "7ab9e325-671f-418a-93e5-e4d4b4a36fde")
+	)
+	(fp_arc
+		(start -4.5 4)
+		(mid -8.5 0)
+		(end -4.5 -4)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "21b7d6ed-4f8c-4dd4-a659-16bb58948635")
+	)
+	(fp_arc
+		(start 11.5 -4)
+		(mid 15.5 0)
+		(end 11.5 4)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "40aba1d6-f491-4a6d-a1a7-ee459fe818a6")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 3.75 0 0)
+		(layer "F.Fab")
+		(uuid "21d0154c-d03e-4bc8-9d2d-da7d1da48922")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole circle
+		(at -3.25 0)
+		(size 2 2)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "6a1fba8e-404c-4d81-8d48-79fe026f74ca")
+	)
+	(pad "2" thru_hole circle
+		(at 10.25 0)
+		(size 2 2)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "e11e72b6-80a3-4f52-945b-a2a38ce696de")
+	)
+	(model "${KIPRJMOD}/Libs/SuperCap_SCMT32H755SRBB0_3d/SCMT32H755SRBB0.stp"
+		(offset
+			(xyz 3.75 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

@@ -4,6 +4,11 @@
 	(generator_version "8.0")
 	(uuid "bc631eb5-db5b-4aac-affa-f47f822b4ff6")
 	(paper "A4")
+	(title_block
+		(title "Datalogger Expansion Shield")
+		(date "2025-02-26")
+		(rev "1.2")
+	)
 	(lib_symbols
 		(symbol "Device:Battery_Cell"
 			(pin_numbers hide)
@@ -425,108 +430,6 @@
 						)
 					)
 					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "FRDM-MCXN947__Shield_Template-altium-import:+3v3"
-			(power)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "+3v3"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name '+3v3'"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "power-flag"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "+3v3_0_0"
-				(polyline
-					(pts
-						(xy -1.27 -2.54) (xy 1.27 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 0)
-					(length 0) hide
-					(name "+3v3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1088,6 +991,246 @@
 				)
 			)
 		)
+		(symbol "power:+3V3"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+3V3"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+3V3\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+3V3_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+3V3_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "power:+BATT"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+BATT"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+BATT\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power battery"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+BATT_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+BATT_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "power:GND"
 			(power)
 			(pin_numbers hide)
@@ -1288,16 +1431,16 @@
 		(uuid "7809ac43-41c2-46a3-bb5f-db3c41112273")
 	)
 	(junction
-		(at 88.9 41.91)
+		(at 90.17 41.91)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9a94fc74-6762-4fb3-9670-ecfb24cfcf35")
 	)
 	(junction
-		(at 60.96 44.45)
+		(at 60.96 31.75)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "c44b7af4-3435-4ca9-9d68-9acd8238d819")
+		(uuid "9d7e89a3-2585-4a2e-bfaa-c5541279c7b6")
 	)
 	(junction
 		(at 41.91 41.91)
@@ -1323,7 +1466,7 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 52.07) (xy 97.79 50.8)
+			(xy 99.06 52.07) (xy 99.06 50.8)
 		)
 		(stroke
 			(width 0)
@@ -1383,17 +1526,7 @@
 	)
 	(wire
 		(pts
-			(xy 24.13 22.86) (xy 24.13 25.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3cf556b0-d8e5-4c79-adbd-596d1bbab477")
-	)
-	(wire
-		(pts
-			(xy 88.9 41.91) (xy 78.74 41.91)
+			(xy 90.17 41.91) (xy 80.01 41.91)
 		)
 		(stroke
 			(width 0)
@@ -1413,7 +1546,7 @@
 	)
 	(wire
 		(pts
-			(xy 78.74 60.96) (xy 73.66 60.96)
+			(xy 80.01 60.96) (xy 73.66 60.96)
 		)
 		(stroke
 			(width 0)
@@ -1430,6 +1563,26 @@
 			(type default)
 		)
 		(uuid "44fe6b1c-4ecd-4858-bc61-6649b212ee91")
+	)
+	(wire
+		(pts
+			(xy 60.96 31.75) (xy 60.96 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a8d0cc6-8218-4b54-8e4b-a0c724c25928")
+	)
+	(wire
+		(pts
+			(xy 125.73 27.94) (xy 125.73 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5310f6ac-814b-4b90-a70d-d2f2d44520b2")
 	)
 	(wire
 		(pts
@@ -1453,13 +1606,23 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 44.45) (xy 69.85 34.29)
+			(xy 67.31 41.91) (xy 67.31 40.64)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "69e76973-fb99-4601-a242-dc4ad2c8c0ad")
+		(uuid "704e63c1-a39a-448c-882c-2a42e981edf9")
+	)
+	(wire
+		(pts
+			(xy 60.96 31.75) (xy 67.31 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7125b6b1-07bd-47d2-b931-ff7e30f981e1")
 	)
 	(wire
 		(pts
@@ -1473,13 +1636,23 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 24.13) (xy 60.96 44.45)
+			(xy 67.31 31.75) (xy 67.31 33.02)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "742bed92-3c9b-42e4-8753-7bdd289cd029")
+		(uuid "7818786f-685b-4b7e-9c9b-abe3c88c590d")
+	)
+	(wire
+		(pts
+			(xy 60.96 31.75) (xy 60.96 27.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7b608344-0f9a-4553-8c68-0930665e4e7c")
 	)
 	(wire
 		(pts
@@ -1503,7 +1676,7 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 43.18) (xy 97.79 41.91)
+			(xy 99.06 43.18) (xy 99.06 41.91)
 		)
 		(stroke
 			(width 0)
@@ -1523,7 +1696,7 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 41.91) (xy 88.9 41.91)
+			(xy 99.06 41.91) (xy 90.17 41.91)
 		)
 		(stroke
 			(width 0)
@@ -1533,7 +1706,7 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 25.4) (xy 88.9 41.91)
+			(xy 90.17 27.94) (xy 90.17 41.91)
 		)
 		(stroke
 			(width 0)
@@ -1543,7 +1716,7 @@
 	)
 	(wire
 		(pts
-			(xy 78.74 41.91) (xy 78.74 43.18)
+			(xy 80.01 41.91) (xy 80.01 43.18)
 		)
 		(stroke
 			(width 0)
@@ -1553,17 +1726,7 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 44.45) (xy 60.96 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a813185d-2144-4f96-8d86-8ca36d1bf4c3")
-	)
-	(wire
-		(pts
-			(xy 88.9 53.34) (xy 88.9 50.8)
+			(xy 90.17 53.34) (xy 90.17 50.8)
 		)
 		(stroke
 			(width 0)
@@ -1573,27 +1736,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 44.45) (xy 60.96 44.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ae344a3c-4cc0-49af-bbab-233c85614d91")
-	)
-	(wire
-		(pts
-			(xy 69.85 24.13) (xy 69.85 26.67)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b65818e6-b58e-467b-aead-deb51bcdb2fd")
-	)
-	(wire
-		(pts
-			(xy 78.74 50.8) (xy 78.74 60.96)
+			(xy 80.01 50.8) (xy 80.01 60.96)
 		)
 		(stroke
 			(width 0)
@@ -1603,7 +1746,7 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 41.91) (xy 88.9 43.18)
+			(xy 90.17 41.91) (xy 90.17 43.18)
 		)
 		(stroke
 			(width 0)
@@ -1623,7 +1766,7 @@
 	)
 	(wire
 		(pts
-			(xy 73.66 53.34) (xy 88.9 53.34)
+			(xy 73.66 53.34) (xy 90.17 53.34)
 		)
 		(stroke
 			(width 0)
@@ -1726,6 +1869,138 @@
 		)
 	)
 	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 125.73 27.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1f4e6f0d-55df-4938-a007-6641c038e36a")
+		(property "Reference" "#FLG03"
+			(at 125.73 26.035 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 125.73 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 125.73 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 125.73 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "18b6da10-5b91-47f9-8742-949bad4a6b66")
+		)
+		(instances
+			(project "extension_shield"
+				(path "/eb423e93-ba35-4986-b1f5-42479ae2bfa7/123eed23-19cf-43ae-99f7-095bb0a18f12"
+					(reference "#FLG03")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 67.31 41.91 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "296c3a64-5220-4437-a860-d2f44bfc1e21")
+		(property "Reference" "#PWR042"
+			(at 67.31 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 67.31 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 67.31 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 67.31 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 67.31 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7cf9f3e1-e16e-4c75-a7d1-cdde44e7a25a")
+		)
+		(instances
+			(project "extension_shield"
+				(path "/eb423e93-ba35-4986-b1f5-42479ae2bfa7/123eed23-19cf-43ae-99f7-095bb0a18f12"
+					(reference "#PWR042")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Jumper:SolderJumper_2_Open")
 		(at 38.1 63.5 0)
 		(unit 1)
@@ -1794,16 +2069,17 @@
 		)
 	)
 	(symbol
-		(lib_id "FRDM-MCXN947__Shield_Template-altium-import:+3v3")
-		(at 24.13 25.4 0)
+		(lib_id "power:+BATT")
+		(at 125.73 33.02 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "310fe720-9d14-4e2c-a6db-a1492c8d50b0")
-		(property "Reference" "#PWR034"
-			(at 24.13 25.4 0)
+		(fields_autoplaced yes)
+		(uuid "3015983f-9139-4410-a34b-96a112bb0d01")
+		(property "Reference" "#PWR019"
+			(at 125.73 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1811,17 +2087,16 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3v3"
-			(at 24.13 29.21 90)
+		(property "Value" "+BATT"
+			(at 125.73 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 24.13 25.4 0)
+			(at 125.73 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1830,7 +2105,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 24.13 25.4 0)
+			(at 125.73 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1838,8 +2113,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 24.13 25.4 0)
+		(property "Description" "Power symbol creates a global label with name \"+BATT\""
+			(at 125.73 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1847,13 +2122,13 @@
 				(hide yes)
 			)
 		)
-		(pin ""
-			(uuid "e2f667c2-c528-4dac-8a6e-a95d7bbe1c09")
+		(pin "1"
+			(uuid "07260a0d-f434-46d0-8062-0b40ccdae67c")
 		)
 		(instances
 			(project "extension_shield"
 				(path "/eb423e93-ba35-4986-b1f5-42479ae2bfa7/123eed23-19cf-43ae-99f7-095bb0a18f12"
-					(reference "#PWR034")
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -1861,7 +2136,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 97.79 52.07 0)
+		(at 99.06 52.07 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1870,7 +2145,7 @@
 		(fields_autoplaced yes)
 		(uuid "38a5959c-2d38-4f07-ae30-9f9ee95a6b88")
 		(property "Reference" "#PWR014"
-			(at 97.79 58.42 0)
+			(at 99.06 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1879,7 +2154,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 97.79 57.15 0)
+			(at 99.06 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1887,7 +2162,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 97.79 52.07 0)
+			(at 99.06 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1896,7 +2171,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 97.79 52.07 0)
+			(at 99.06 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1905,7 +2180,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 97.79 52.07 0)
+			(at 99.06 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1926,140 +2201,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 24.13 22.86 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3f84a184-0dc7-4a74-b4d1-cbe2d5155e20")
-		(property "Reference" "#FLG03"
-			(at 24.13 20.955 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 24.13 17.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 24.13 22.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 24.13 22.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 24.13 22.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b19a3f58-7f1d-4444-8dbd-6e767c258526")
-		)
-		(instances
-			(project "extension_shield"
-				(path "/eb423e93-ba35-4986-b1f5-42479ae2bfa7/123eed23-19cf-43ae-99f7-095bb0a18f12"
-					(reference "#FLG03")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 69.85 24.13 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "452578f3-6e17-4887-a0b5-216432e984d1")
-		(property "Reference" "#PWR019"
-			(at 69.85 17.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 69.85 19.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 69.85 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 69.85 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 69.85 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6331ee87-9d8a-424d-9ee5-36ca396b3cd8")
-		)
-		(instances
-			(project "usb_c_extension_shield_1"
-				(path "/eb423e93-ba35-4986-b1f5-42479ae2bfa7/123eed23-19cf-43ae-99f7-095bb0a18f12"
-					(reference "#PWR019")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
-		(at 78.74 46.99 0)
+		(at 80.01 46.99 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2068,7 +2211,7 @@
 		(fields_autoplaced yes)
 		(uuid "5fa9a6cb-8de3-4774-b790-0d799d38659e")
 		(property "Reference" "R4"
-			(at 81.28 45.7199 0)
+			(at 82.55 45.7199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2077,7 +2220,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 81.28 48.2599 0)
+			(at 82.55 48.2599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2086,7 +2229,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
-			(at 76.962 46.99 90)
+			(at 78.232 46.99 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2095,7 +2238,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 78.74 46.99 0)
+			(at 80.01 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2104,7 +2247,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 78.74 46.99 0)
+			(at 80.01 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2129,7 +2272,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 88.9 46.99 0)
+		(at 90.17 46.99 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2138,7 +2281,7 @@
 		(fields_autoplaced yes)
 		(uuid "62573f21-2225-4cb7-b7a6-36cbdbb8ad2d")
 		(property "Reference" "R5"
-			(at 91.44 45.7199 0)
+			(at 92.71 45.7199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2147,7 +2290,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 91.44 48.2599 0)
+			(at 92.71 48.2599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2156,7 +2299,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
-			(at 87.122 46.99 90)
+			(at 88.392 46.99 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2165,7 +2308,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 88.9 46.99 0)
+			(at 90.17 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2174,7 +2317,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 88.9 46.99 0)
+			(at 90.17 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2198,8 +2341,74 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 41.91 27.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "68cb6667-42f5-468d-be7a-fbda0ed968ac")
+		(property "Reference" "#PWR015"
+			(at 41.91 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 41.91 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 41.91 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 41.91 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 41.91 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0f54ecc8-20d4-4a7b-bf4c-84f89cb8c640")
+		)
+		(instances
+			(project "extension_shield"
+				(path "/eb423e93-ba35-4986-b1f5-42479ae2bfa7/123eed23-19cf-43ae-99f7-095bb0a18f12"
+					(reference "#PWR015")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:Battery_Cell")
-		(at 69.85 29.21 180)
+		(at 67.31 38.1 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2208,25 +2417,25 @@
 		(fields_autoplaced yes)
 		(uuid "6f5bcdc3-74fd-4c69-841a-38712be990a1")
 		(property "Reference" "BT1"
-			(at 73.66 29.7814 0)
+			(at 71.12 34.9884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
-		(property "Value" "Battery_Cell"
-			(at 73.66 32.3214 0)
+		(property "Value" "RTC_Battery"
+			(at 71.12 37.5284 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 		(property "Footprint" "Battery:Battery_Panasonic_CR2032-HFN_Horizontal_CircularHoles"
-			(at 69.85 30.734 90)
+			(at 67.31 36.576 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2235,7 +2444,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 69.85 30.734 90)
+			(at 67.31 36.576 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2244,7 +2453,7 @@
 			)
 		)
 		(property "Description" "Single-cell battery"
-			(at 69.85 29.21 0)
+			(at 67.31 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2262,6 +2471,72 @@
 			(project "usb_c_extension_shield_1"
 				(path "/eb423e93-ba35-4986-b1f5-42479ae2bfa7/123eed23-19cf-43ae-99f7-095bb0a18f12"
 					(reference "BT1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 90.17 27.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7ee6f5c9-72c1-4303-bf09-981f14257d84")
+		(property "Reference" "#PWR018"
+			(at 90.17 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 90.17 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 90.17 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 90.17 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 90.17 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b484f792-4afe-424c-86b2-39d22a03c51f")
+		)
+		(instances
+			(project "extension_shield"
+				(path "/eb423e93-ba35-4986-b1f5-42479ae2bfa7/123eed23-19cf-43ae-99f7-095bb0a18f12"
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
@@ -2446,17 +2721,17 @@
 		)
 	)
 	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 60.96 24.13 0)
+		(lib_id "power:+BATT")
+		(at 60.96 27.94 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "c55f8a4a-52a9-4a51-9691-9cc883cd43a5")
-		(property "Reference" "#FLG04"
-			(at 60.96 22.225 0)
+		(uuid "c4fbbfd2-a4ee-46ae-b1c5-92c2675b9fff")
+		(property "Reference" "#PWR034"
+			(at 60.96 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2464,8 +2739,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "PWR_FLAG"
-			(at 60.96 19.05 0)
+		(property "Value" "+BATT"
+			(at 60.96 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2473,7 +2748,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 60.96 24.13 0)
+			(at 60.96 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2481,8 +2756,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 60.96 24.13 0)
+		(property "Datasheet" ""
+			(at 60.96 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2490,8 +2765,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 60.96 24.13 0)
+		(property "Description" "Power symbol creates a global label with name \"+BATT\""
+			(at 60.96 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2500,12 +2775,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "b5c326a3-9990-42e4-a2a6-a0d130f981dd")
+			(uuid "26792358-6665-4985-bfec-15af6411e18a")
 		)
 		(instances
-			(project "extension_shield"
+			(project ""
 				(path "/eb423e93-ba35-4986-b1f5-42479ae2bfa7/123eed23-19cf-43ae-99f7-095bb0a18f12"
-					(reference "#FLG04")
+					(reference "#PWR034")
 					(unit 1)
 				)
 			)
@@ -2513,7 +2788,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 97.79 46.99 0)
+		(at 99.06 46.99 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2522,7 +2797,7 @@
 		(fields_autoplaced yes)
 		(uuid "c60e5973-8267-4191-98ed-7c3014581015")
 		(property "Reference" "C4"
-			(at 101.6 45.7199 0)
+			(at 102.87 45.7199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2530,8 +2805,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
-			(at 101.6 48.2599 0)
+		(property "Value" "100n"
+			(at 102.87 48.2599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2540,7 +2815,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
-			(at 98.7552 50.8 0)
+			(at 100.0252 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2549,7 +2824,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 97.79 46.99 0)
+			(at 99.06 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2558,7 +2833,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 97.79 46.99 0)
+			(at 99.06 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2712,138 +2987,6 @@
 			(project "usb_c_extension_shield_1"
 				(path "/eb423e93-ba35-4986-b1f5-42479ae2bfa7/123eed23-19cf-43ae-99f7-095bb0a18f12"
 					(reference "R7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "FRDM-MCXN947__Shield_Template-altium-import:+3v3")
-		(at 88.9 25.4 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "edeae1bc-5d03-469d-a8ed-447003860eb5")
-		(property "Reference" "#PWR018"
-			(at 88.9 25.4 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3v3"
-			(at 88.9 21.59 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 88.9 25.4 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 88.9 25.4 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 88.9 25.4 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "2272e134-dc86-4ed2-ae3b-2749b234346e")
-		)
-		(instances
-			(project "usb_c_extension_shield_1"
-				(path "/eb423e93-ba35-4986-b1f5-42479ae2bfa7/123eed23-19cf-43ae-99f7-095bb0a18f12"
-					(reference "#PWR018")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "FRDM-MCXN947__Shield_Template-altium-import:+3v3")
-		(at 41.91 27.94 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "eee31aa6-b95d-453b-92e9-2a558876617f")
-		(property "Reference" "#PWR015"
-			(at 41.91 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3v3"
-			(at 41.91 24.13 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 41.91 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 41.91 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 41.91 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "ebeb038b-9a03-4528-8e22-64d0ed5286ff")
-		)
-		(instances
-			(project "usb_c_extension_shield_1"
-				(path "/eb423e93-ba35-4986-b1f5-42479ae2bfa7/123eed23-19cf-43ae-99f7-095bb0a18f12"
-					(reference "#PWR015")
 					(unit 1)
 				)
 			)
