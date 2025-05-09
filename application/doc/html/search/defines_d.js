@@ -9,6 +9,5 @@ var searchData=
   ['register_5fconfig_6',['REGISTER_CONFIG',['../temperature_8c.html#a46f3492d1abbdaa8919cb57b94343daf',1,'temperature.c']]],
   ['register_5ftemperature_7',['REGISTER_TEMPERATURE',['../temperature_8c.html#a131b307523cbb7ad0b17a724115a5099',1,'temperature.c']]],
   ['register_5fthvst_8',['REGISTER_THVST',['../temperature_8c.html#a31ab751e7975e20c85db034069d4353f',1,'temperature.c']]],
-  ['register_5ftos_9',['REGISTER_TOS',['../temperature_8c.html#a9f4bd4fcf6e33727b5a85c258b8cbe1a',1,'temperature.c']]],
-  ['rtc_5fenabled_10',['RTC_ENABLED',['../defs_8h.html#a220dfc77c02327250b51aae1dc284b6b',1,'defs.h']]]
+  ['register_5ftos_9',['REGISTER_TOS',['../temperature_8c.html#a9f4bd4fcf6e33727b5a85c258b8cbe1a',1,'temperature.c']]]
 ];

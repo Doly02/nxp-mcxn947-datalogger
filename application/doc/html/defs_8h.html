@@ -121,16 +121,13 @@ Macros</h2></td></tr>
 <tr class="memitem:a596e2563f1ece6b4d9a86d20455183a1" id="r_a596e2563f1ece6b4d9a86d20455183a1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a596e2563f1ece6b4d9a86d20455183a1">RECORD_STACK_SIZE</a>&#160;&#160;&#160;((uint32_t)(5000UL / (uint32_t)sizeof(portSTACK_TYPE)))</td></tr>
 <tr class="memdesc:a596e2563f1ece6b4d9a86d20455183a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines The Stack Size For Recording Task.  <br /></td></tr>
 <tr class="separator:a596e2563f1ece6b4d9a86d20455183a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a220dfc77c02327250b51aae1dc284b6b" id="r_a220dfc77c02327250b51aae1dc284b6b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a220dfc77c02327250b51aae1dc284b6b">RTC_ENABLED</a>&#160;&#160;&#160;(true)</td></tr>
-<tr class="memdesc:a220dfc77c02327250b51aae1dc284b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables/Disables Logic For External Real-Time Circuit DS3231.  <br /></td></tr>
-<tr class="separator:a220dfc77c02327250b51aae1dc284b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a9cca2657f8a210b60490573042babc" id="r_a8a9cca2657f8a210b60490573042babc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a9cca2657f8a210b60490573042babc">MSC_ENABLED</a>&#160;&#160;&#160;(true)</td></tr>
 <tr class="memdesc:a8a9cca2657f8a210b60490573042babc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables/Disables Mass Storage Functionality.  <br /></td></tr>
 <tr class="separator:a8a9cca2657f8a210b60490573042babc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a580f977f97ee7f7ceb91b1c42306f537" id="r_a580f977f97ee7f7ceb91b1c42306f537"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a580f977f97ee7f7ceb91b1c42306f537">INFO_ENABLED</a>&#160;&#160;&#160;(true)</td></tr>
+<tr class="memitem:a580f977f97ee7f7ceb91b1c42306f537" id="r_a580f977f97ee7f7ceb91b1c42306f537"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a580f977f97ee7f7ceb91b1c42306f537">INFO_ENABLED</a>&#160;&#160;&#160;(false)</td></tr>
 <tr class="memdesc:a580f977f97ee7f7ceb91b1c42306f537"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables/Disables Debug Mode.  <br /></td></tr>
 <tr class="separator:a580f977f97ee7f7ceb91b1c42306f537"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d2ae674cad5299a52b0e7dceac10087" id="r_a7d2ae674cad5299a52b0e7dceac10087"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d2ae674cad5299a52b0e7dceac10087">DEBUG_ENABLED</a>&#160;&#160;&#160;(true)</td></tr>
+<tr class="memitem:a7d2ae674cad5299a52b0e7dceac10087" id="r_a7d2ae674cad5299a52b0e7dceac10087"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d2ae674cad5299a52b0e7dceac10087">DEBUG_ENABLED</a>&#160;&#160;&#160;(false)</td></tr>
 <tr class="memdesc:a7d2ae674cad5299a52b0e7dceac10087"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables/Disables Debug Mode.  <br /></td></tr>
 <tr class="separator:a7d2ae674cad5299a52b0e7dceac10087"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afce4b642de5f6181c410f35cffb92cfe" id="r_afce4b642de5f6181c410f35cffb92cfe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afce4b642de5f6181c410f35cffb92cfe">UART_FIFO_ENABLED</a>&#160;&#160;&#160;(true)</td></tr>
@@ -142,13 +139,10 @@ Macros</h2></td></tr>
 <tr class="memitem:a2c770b4d1c45e582fe15305dd53bc832" id="r_a2c770b4d1c45e582fe15305dd53bc832"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c770b4d1c45e582fe15305dd53bc832">UART_PRINT_ENABLED</a>&#160;&#160;&#160;(false)</td></tr>
 <tr class="memdesc:a2c770b4d1c45e582fe15305dd53bc832"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables/Disables Print of Received Bytes From Application LPUART To Console.  <br /></td></tr>
 <tr class="separator:a2c770b4d1c45e582fe15305dd53bc832"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad982f8152cc42a086c3b6a64b09b2eeb" id="r_ad982f8152cc42a086c3b6a64b09b2eeb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad982f8152cc42a086c3b6a64b09b2eeb">IRTC_ENABLED</a>&#160;&#160;&#160;(true)</td></tr>
-<tr class="memdesc:ad982f8152cc42a086c3b6a64b09b2eeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables/Disables Logic For Internal Real-Time Circuit.  <br /></td></tr>
-<tr class="separator:ad982f8152cc42a086c3b6a64b09b2eeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70ae7656d68a5c5e6ce6f867d0652007" id="r_a70ae7656d68a5c5e6ce6f867d0652007"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70ae7656d68a5c5e6ce6f867d0652007">PWRLOSS_DETECTION_ENABLED</a>&#160;&#160;&#160;(true)</td></tr>
 <tr class="memdesc:a70ae7656d68a5c5e6ce6f867d0652007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables/Disables Power Loss Detection.  <br /></td></tr>
 <tr class="separator:a70ae7656d68a5c5e6ce6f867d0652007"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3252ba28db7a402d73243c25da84a06" id="r_aa3252ba28db7a402d73243c25da84a06"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3252ba28db7a402d73243c25da84a06">PWRLOSS_TEST_GPIOS</a>&#160;&#160;&#160;(true)</td></tr>
+<tr class="memitem:aa3252ba28db7a402d73243c25da84a06" id="r_aa3252ba28db7a402d73243c25da84a06"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3252ba28db7a402d73243c25da84a06">PWRLOSS_TEST_GPIOS</a>&#160;&#160;&#160;(false)</td></tr>
 <tr class="memdesc:aa3252ba28db7a402d73243c25da84a06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables/Disables GPIO For Testing Power Loss Detection.  <br /></td></tr>
 <tr class="separator:aa3252ba28db7a402d73243c25da84a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d8c9c145887af5174ba4cc6789862ad" id="r_a3d8c9c145887af5174ba4cc6789862ad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d8c9c145887af5174ba4cc6789862ad">TAU</a>&#160;&#160;&#160;16UL</td></tr>
@@ -231,7 +225,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DEBUG_ENABLED&#160;&#160;&#160;(true)</td>
+          <td class="memname">#define DEBUG_ENABLED&#160;&#160;&#160;(false)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -345,29 +339,13 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define INFO_ENABLED&#160;&#160;&#160;(true)</td>
+          <td class="memname">#define INFO_ENABLED&#160;&#160;&#160;(false)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Enables/Disables Debug Mode. </p>
 <p>If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console. </p>
-
-</div>
-</div>
-<a id="ad982f8152cc42a086c3b6a64b09b2eeb" name="ad982f8152cc42a086c3b6a64b09b2eeb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad982f8152cc42a086c3b6a64b09b2eeb">&#9670;&#160;</a></span>IRTC_ENABLED</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define IRTC_ENABLED&#160;&#160;&#160;(true)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enables/Disables Logic For Internal Real-Time Circuit. </p>
 
 </div>
 </div>
@@ -473,7 +451,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PWRLOSS_TEST_GPIOS&#160;&#160;&#160;(true)</td>
+          <td class="memname">#define PWRLOSS_TEST_GPIOS&#160;&#160;&#160;(false)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -495,22 +473,6 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Defines The Stack Size For Recording Task. </p>
-
-</div>
-</div>
-<a id="a220dfc77c02327250b51aae1dc284b6b" name="a220dfc77c02327250b51aae1dc284b6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a220dfc77c02327250b51aae1dc284b6b">&#9670;&#160;</a></span>RTC_ENABLED</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define RTC_ENABLED&#160;&#160;&#160;(true)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enables/Disables Logic For External Real-Time Circuit DS3231. </p>
 
 </div>
 </div>

@@ -128,7 +128,7 @@ void record_task(void *handle)
     uint32_t u32CurrentBytes    = 0UL;
     uint32_t u32MaxBytes        = 0UL;
     uint32_t u32FreeSpaceSdCard = 0UL;
-    uint32_t u32FreeSpaceLimit = 0UL;
+    uint32_t u32FreeSpaceLimit  = 0UL;
     /* Initialize SD Card and File System */
     USB_DeviceModeInit();
 

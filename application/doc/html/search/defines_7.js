@@ -5,6 +5,5 @@ var searchData=
   ['i2c_5fmaster_2',['I2C_MASTER',['../rtc__ds3231_8h.html#aa226465ed17b185a4da45c4792d309a8',1,'rtc_ds3231.h']]],
   ['i2c_5fmaster_5fi2c5_3',['I2C_MASTER_I2C5',['../temperature_8c.html#a886f2dadbf959e761f53d4c0572158e7',1,'temperature.c']]],
   ['info_5fenabled_4',['INFO_ENABLED',['../defs_8h.html#a580f977f97ee7f7ceb91b1c42306f537',1,'defs.h']]],
-  ['internal_5frtc_5fbase_5fyear_5',['INTERNAL_RTC_BASE_YEAR',['../time_8c.html#a6ecf250fd49fb5d762e524581b551cbb',1,'time.c']]],
-  ['irtc_5fenabled_6',['IRTC_ENABLED',['../defs_8h.html#ad982f8152cc42a086c3b6a64b09b2eeb',1,'defs.h']]]
+  ['internal_5frtc_5fbase_5fyear_5',['INTERNAL_RTC_BASE_YEAR',['../time_8c.html#a6ecf250fd49fb5d762e524581b551cbb',1,'time.c']]]
 ];

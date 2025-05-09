@@ -10,13 +10,11 @@
 \begin{DoxyCompactList}\small\item\em Defines The Stack Size For Mass Storage Task. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{defs_8h_a596e2563f1ece6b4d9a86d20455183a1}{RECORD\+\_\+\+STACK\+\_\+\+SIZE}}~((uint32\+\_\+t)(5000\+UL / (uint32\+\_\+t)sizeof(port\+STACK\+\_\+\+TYPE)))
 \begin{DoxyCompactList}\small\item\em Defines The Stack Size For Recording Task. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{defs_8h_a220dfc77c02327250b51aae1dc284b6b}{RTC\+\_\+\+ENABLED}}~(true)
-\begin{DoxyCompactList}\small\item\em Enables/\+Disables Logic For External Real-\/\+Time Circuit DS3231. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{defs_8h_a8a9cca2657f8a210b60490573042babc}{MSC\+\_\+\+ENABLED}}~(true)
 \begin{DoxyCompactList}\small\item\em Enables/\+Disables Mass Storage Functionality. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{defs_8h_a580f977f97ee7f7ceb91b1c42306f537}{INFO\+\_\+\+ENABLED}}~(true)
+\#define \mbox{\hyperlink{defs_8h_a580f977f97ee7f7ceb91b1c42306f537}{INFO\+\_\+\+ENABLED}}~(false)
 \begin{DoxyCompactList}\small\item\em Enables/\+Disables Debug Mode. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{defs_8h_a7d2ae674cad5299a52b0e7dceac10087}{DEBUG\+\_\+\+ENABLED}}~(true)
+\#define \mbox{\hyperlink{defs_8h_a7d2ae674cad5299a52b0e7dceac10087}{DEBUG\+\_\+\+ENABLED}}~(false)
 \begin{DoxyCompactList}\small\item\em Enables/\+Disables Debug Mode. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{defs_8h_afce4b642de5f6181c410f35cffb92cfe}{UART\+\_\+\+FIFO\+\_\+\+ENABLED}}~(true)
 \begin{DoxyCompactList}\small\item\em Enables/\+Disables HW FIFO Queue on Application LPUART. \end{DoxyCompactList}\item 
@@ -24,11 +22,9 @@
 \begin{DoxyCompactList}\small\item\em Defines The Size of HW FIFO Queue. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{defs_8h_a2c770b4d1c45e582fe15305dd53bc832}{UART\+\_\+\+PRINT\+\_\+\+ENABLED}}~(false)
 \begin{DoxyCompactList}\small\item\em Enables/\+Disables Print of Received Bytes From Application LPUART To Console. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{defs_8h_ad982f8152cc42a086c3b6a64b09b2eeb}{IRTC\+\_\+\+ENABLED}}~(true)
-\begin{DoxyCompactList}\small\item\em Enables/\+Disables Logic For Internal Real-\/\+Time Circuit. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{defs_8h_a70ae7656d68a5c5e6ce6f867d0652007}{PWRLOSS\+\_\+\+DETECTION\+\_\+\+ENABLED}}~(true)
 \begin{DoxyCompactList}\small\item\em Enables/\+Disables Power Loss Detection. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{defs_8h_aa3252ba28db7a402d73243c25da84a06}{PWRLOSS\+\_\+\+TEST\+\_\+\+GPIOS}}~(true)
+\#define \mbox{\hyperlink{defs_8h_aa3252ba28db7a402d73243c25da84a06}{PWRLOSS\+\_\+\+TEST\+\_\+\+GPIOS}}~(false)
 \begin{DoxyCompactList}\small\item\em Enables/\+Disables GPIO For Testing Power Loss Detection. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{defs_8h_a3d8c9c145887af5174ba4cc6789862ad}{TAU}}~16UL
 \begin{DoxyCompactList}\small\item\em Constant Tau, When Back-\/\+Up Power Capacitor is Charged To 99\%. \end{DoxyCompactList}\item 
@@ -83,7 +79,7 @@ Enables/\+Disables Signaling By LEDs.
 \index{DEBUG\_ENABLED@{DEBUG\_ENABLED}!defs.h@{defs.h}}
 \doxysubsubsection{\texorpdfstring{DEBUG\_ENABLED}{DEBUG\_ENABLED}}
 {\footnotesize\ttfamily \label{defs_8h_a7d2ae674cad5299a52b0e7dceac10087} 
-\#define DEBUG\+\_\+\+ENABLED~(true)}
+\#define DEBUG\+\_\+\+ENABLED~(false)}
 
 
 
@@ -153,23 +149,13 @@ Default Number of Stop Bits If The Configuration File Could Not Be Read Properly
 \index{INFO\_ENABLED@{INFO\_ENABLED}!defs.h@{defs.h}}
 \doxysubsubsection{\texorpdfstring{INFO\_ENABLED}{INFO\_ENABLED}}
 {\footnotesize\ttfamily \label{defs_8h_a580f977f97ee7f7ceb91b1c42306f537} 
-\#define INFO\+\_\+\+ENABLED~(true)}
+\#define INFO\+\_\+\+ENABLED~(false)}
 
 
 
 Enables/\+Disables Debug Mode. 
 
-If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console. \Hypertarget{defs_8h_ad982f8152cc42a086c3b6a64b09b2eeb}\index{defs.h@{defs.h}!IRTC\_ENABLED@{IRTC\_ENABLED}}
-\index{IRTC\_ENABLED@{IRTC\_ENABLED}!defs.h@{defs.h}}
-\doxysubsubsection{\texorpdfstring{IRTC\_ENABLED}{IRTC\_ENABLED}}
-{\footnotesize\ttfamily \label{defs_8h_ad982f8152cc42a086c3b6a64b09b2eeb} 
-\#define IRTC\+\_\+\+ENABLED~(true)}
-
-
-
-Enables/\+Disables Logic For Internal Real-\/\+Time Circuit. 
-
-\Hypertarget{defs_8h_a8a9cca2657f8a210b60490573042babc}\index{defs.h@{defs.h}!MSC\_ENABLED@{MSC\_ENABLED}}
+If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console. \Hypertarget{defs_8h_a8a9cca2657f8a210b60490573042babc}\index{defs.h@{defs.h}!MSC\_ENABLED@{MSC\_ENABLED}}
 \index{MSC\_ENABLED@{MSC\_ENABLED}!defs.h@{defs.h}}
 \doxysubsubsection{\texorpdfstring{MSC\_ENABLED}{MSC\_ENABLED}}
 {\footnotesize\ttfamily \label{defs_8h_a8a9cca2657f8a210b60490573042babc} 
@@ -229,7 +215,7 @@ Enables/\+Disables Power Loss Detection.
 \index{PWRLOSS\_TEST\_GPIOS@{PWRLOSS\_TEST\_GPIOS}!defs.h@{defs.h}}
 \doxysubsubsection{\texorpdfstring{PWRLOSS\_TEST\_GPIOS}{PWRLOSS\_TEST\_GPIOS}}
 {\footnotesize\ttfamily \label{defs_8h_aa3252ba28db7a402d73243c25da84a06} 
-\#define PWRLOSS\+\_\+\+TEST\+\_\+\+GPIOS~(true)}
+\#define PWRLOSS\+\_\+\+TEST\+\_\+\+GPIOS~(false)}
 
 
 
@@ -244,16 +230,6 @@ Enables/\+Disables GPIO For Testing Power Loss Detection.
 
 
 Defines The Stack Size For Recording Task. 
-
-\Hypertarget{defs_8h_a220dfc77c02327250b51aae1dc284b6b}\index{defs.h@{defs.h}!RTC\_ENABLED@{RTC\_ENABLED}}
-\index{RTC\_ENABLED@{RTC\_ENABLED}!defs.h@{defs.h}}
-\doxysubsubsection{\texorpdfstring{RTC\_ENABLED}{RTC\_ENABLED}}
-{\footnotesize\ttfamily \label{defs_8h_a220dfc77c02327250b51aae1dc284b6b} 
-\#define RTC\+\_\+\+ENABLED~(true)}
-
-
-
-Enables/\+Disables Logic For External Real-\/\+Time Circuit DS3231. 
 
 \Hypertarget{defs_8h_a3d8c9c145887af5174ba4cc6789862ad}\index{defs.h@{defs.h}!TAU@{TAU}}
 \index{TAU@{TAU}!defs.h@{defs.h}}
