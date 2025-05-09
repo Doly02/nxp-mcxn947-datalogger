@@ -132,25 +132,6 @@ void record_task(void *handle)
     /* Initialize SD Card and File System */
     USB_DeviceModeInit();
 
-    /*
-     * MISRA Deviation: Rule 17.3 [Mandatory], Rule 10.4 [Required]
-     *
-     * Rule 17.3 Suppress: Function 'TIME_SetTime' Used Without Prior Declaration.
-     * Rule 17.3 Justification: The Function 'TIME_SetTime' is Properly Declared in 'Time.h',
-     * Which is Included in This Compilation Unit. The MISRA Warning is a False Positive.
-     *
-     * Rule 10.4 Suppress: Comparison Between Signed and Unsigned Types Using '!=' Operator.
-     * Rule 10.4 Justification: Both 'ERROR_NONE' And The Return Value Of 'TIME_SetTime()' are of
-     * The Same Underlying Type 'error_t'.
-     */
-    /*lint -e718 -e9029 */
-    if(ERROR_NONE != TIME_SetTime())
-	{
-    	LED_SignalError();
-		return;
-	}
-    /*lint +e718 +e9029 */
-
     /* De-Inicialization of External RTC (After Initialization This RTC Is Not Needed */
 	RTC_Deinit();
 	LPI2C2_DeinitPins();

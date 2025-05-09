@@ -54,7 +54,9 @@ error_t TIME_InitIRTC(void)
 {
 	irtc_config_t irtcCfg;
 	status_t status = 2;
-
+	irtc_datetime_t time;
+	RTC_time_t rtc_time;
+	RTC_date_t rtc_date;
 
 	irtcCfg.alrmMatch 			= kRTC_MatchSecMinHr;
 	irtcCfg.clockSelect 		= kIRTC_Clk16K;
@@ -88,27 +90,6 @@ error_t TIME_InitIRTC(void)
 		return ERROR_IRTC;
 	}
 	/*lint +e40 */
-
-	/* MISRA Deviation Note:
-	 * Rule: MISRA 2012 Rule 1.3 [Required]
-	 * Suppress: Identifier Declared via Indirect Header Include.
-	 * Justification: The Macro 'ERROR_NONE' is Defined in "error.h", Which is Included Indirectly
-	 * via "time.h". This Deviation is Safe and Intentional.
-	 */
-	/*lint -e40 */
-	return ERROR_NONE;
-	/*lint +e40 */
-
-}
-
-
-error_t TIME_SetTime(void)
-{
-
-	irtc_datetime_t time;
-	RTC_time_t rtc_time;
-	RTC_date_t rtc_date;
-	status_t status = 2;
 
 	/* Load The State of Real-Time Circuit */
 	if (OSC_STOPPED == RTC_GetState())	// If The Oscillator Was Stopped -> Set Time & Date
@@ -146,12 +127,6 @@ error_t TIME_SetTime(void)
 	time.minute	= (uint8_t) rtc_time.min;
 	time.second = (uint8_t) rtc_time.sec;
 
-#if (true == DEBUG_ENABLED)
-	uint32_t u32year = 2000 + rtc_date.year;
-	PRINTF("DEBUG: External RTC=%d/%d/%d %d:%d:%2d\r\n", u32year, rtc_date.month, rtc_date.date,
-			rtc_time.hrs, rtc_time.min, rtc_time.sec);
-#endif /* (true == DEBUG_ENABLED) */
-
     status = IRTC_SetDatetime(RTC, &time);
     if (0 != status)
     {
@@ -167,12 +142,6 @@ error_t TIME_SetTime(void)
 		/*lint +e40 */
     }
 
-
-#if (true == DEBUG_ENABLED)
-    IRTC_GetDatetime(RTC, &time);
-	PRINTF("DEBUG: Internal RTC=%d/%d/%d %d:%d:%2d\r\n", time.year, time.month, time.day,
-			time.hour, time.minute, time.second);
-#endif /* (true == DEBUG_ENABLED) */
 
 	/* MISRA Deviation Note:
 	 * Rule: MISRA 2012 Rule 1.3 [Required]
