@@ -129,8 +129,22 @@ void record_task(void *handle)
     uint32_t u32MaxBytes        = 0UL;
     uint32_t u32FreeSpaceSdCard = 0UL;
     uint32_t u32FreeSpaceLimit  = 0UL;
+    edma_config_t edmaConfig 	= { 0U };
+
     /* Initialize SD Card and File System */
     USB_DeviceModeInit();
+
+    /* Initialize DMA For I2C Communication With DS3231 */
+	edmaConfig.enableRoundRobinArbitration 	= false;
+	edmaConfig.enableHaltOnError 			= true;
+	edmaConfig.enableMasterIdReplication 	= false;
+	edmaConfig.enableDebugMode 				= false;
+	edmaConfig.enableGlobalChannelLink 		= true;
+	EDMA_Init(LPI2C_DMA_BASEADDR, &edmaConfig);
+
+
+    (void)CLOCK_SetupClk16KClocking((uint32_t)((uint32_t)kCLOCK_Clk16KToVbat | (uint32_t)kCLOCK_Clk16KToMain));
+    (void)TIME_InitIRTC();
 
     /* De-Inicialization of External RTC (After Initialization This RTC Is Not Needed */
 	RTC_Deinit();

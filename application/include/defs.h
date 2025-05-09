@@ -97,11 +97,17 @@
  * @brief Priority of LP_FLEXCOMM Interrupt (UART) For Rx Of Recorded Data.
  */
 #define UART_RECEIVE_PRIO			(6U)
-/*TODO: Add UART Interrupt Prio */
+
 /**
  * @brief Priority of Comparator Interrupt For Power Loss Detection.
  */
-#define PWRLOSS_DET_PRIO			(7U)
+#define PWRLOSS_DET_PRIO			(5U)
+
+/**
+ * @brief Priority of Comparator Interrupt For Power Loss Detection.
+ */
+#define PWRLOSS_TIMER_PRIO			(7U)
+
 
 /**
  * @brief Enables/Disables Temperature Recording.

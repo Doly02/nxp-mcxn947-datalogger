@@ -34,8 +34,6 @@
 
 void APP_InitBoard(void)
 {
-	irtc_config_t irtcCfg;
-	edma_config_t edmaConfig = { 0U };
 
     /* Attach FRO 12M to FLEXCOMM4 (debug console) */
     CLOCK_SetClkDiv(kCLOCK_DivFlexcom4Clk, 1u);
@@ -92,16 +90,8 @@ void APP_InitBoard(void)
 	PRINTF("INFO: Data Logger Initialization\r\n");
 #endif /* (true == INFO_ENABLED) */
 
-
-    /* Initialize DMA */
-	EDMA_GetDefaultConfig(&edmaConfig);
-	EDMA_Init(LPI2C_DMA_BASEADDR, &edmaConfig);
-
     (void)CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
     BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
-
-    (void)CLOCK_SetupClk16KClocking((uint32_t)((uint32_t)kCLOCK_Clk16KToVbat | (uint32_t)kCLOCK_Clk16KToMain));
-    (void)TIME_InitIRTC();
 
 #if (true == TEMPERATURE_MEAS_ENABLED)
     TMP_Init();
@@ -111,5 +101,4 @@ void APP_InitBoard(void)
 
     PWRLOSS_DetectionInit();
 #endif /* (true == PWRLOSS_DETECTION_ENABLED) */
-
 }
