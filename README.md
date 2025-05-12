@@ -6,8 +6,8 @@
 - Supervisor: Ing. Václav Šímek
 - Consultant: Ing. Martin Moštěk PhD.
 
-The Goal of This Project is To Developt Digital Data Logger That Captures Serial Data From a UART Peripheral, Timestamps It, and Stores The Logged Data on an SD card. 
-A Key Requirement of The Implementation is To Ensure Data Integrity by Preventing Loss in The Event of a Power Failure. This Digital Data Logger Was Developed Based on The Requirements Provided by The Wireless Charging Team at NXP Semiconductors. 
+The goal of this project is to develop a digital data logger that captures serial data from a UART peripheral, timestamps it, and stores the logged data on an SD card.
+A key requirement of the implementation is to ensure data integrity by preventing loss in the event of a power failure. This digital data logger was developed based on the requirements provided by the Wireless Charging Team at NXP Semiconductors.
 
 
 ### Table of Contents
@@ -30,7 +30,7 @@ A Key Requirement of The Implementation is To Ensure Data Integrity by Preventin
 - [References](#references)
 
 ### Requirements 
-To Build and Run `datalogger`, You Will Need The Following:
+To build and run `datalogger`, you will need the following:
 
 #### Hardware Components
 1. NXP FRDM-MCXN947 Development Board
@@ -83,32 +83,32 @@ To Build and Run `datalogger`, You Will Need The Following:
 
 #### Signal Diodes
 
-The Digital Data Logger is Equipped With Five Status LEDs (Labeled 1–5) Located On The Front Side of The Enclosure. These LEDs Visually Indicate The Current Operational State of The Logger.
+The digital data logger is equipped with five status LEDs (labeled 1–5) located on the front side of the enclosure. These LEDs visually indicate the current operational state of the logger.
 
-The Image Below Shows The Placement And Labeling of Each LED On The Front Panel of The Enclosure:
+The image below shows the placement and labeling of each LED on the front panel of the enclosure:
 
 <p align="center">
-  <img src="misc/signal-diodes-datalogger.jpg" alt="LEDs State During Recording" width="580"/><br>
-  <em>Data Logger Status LEDs </em><br>
+  <img src="misc/signal-diodes-datalogger.jpg" alt="Data logger status LEDs" width="580"/><br>
+  <em>Data logger status LEDs </em><br>
 </p>
 
-The Table Below Describes The Function of Each LED:
+The table below describes the function of each LED:
 
-| LED | Description        |
-|-----|--------------------|
-| 1   | Lights Up When The Available Free Space On The SD Card Falls Below The Limit Defined By The `free_space` Parameter in The Configuration File.|
-| 2   | Indicates an Error Condition. This LED Turns On If The Configuration File is Invalid or If a Critical Error Occurs During Data Recording (E.g., File Creation Failure or UART Framing Error).   |
-| 3   | Signals That The Data Logger is No Longer Actively Recording. This State Occurs, For Example, When The Monitored Device Stops Transmitting Data or is Disconnected.          |
-| 4   | Blinks During Active Data Recording To Indicate That Data is Being Received And Saved To The SD Card.       |
-| 5   | Lights Up Approximately 16 Seconds After Powering The Logger To Indicate That The Backup Capacitor is Sufficiently Charged. Once Lit, It is Safe To Disconnect The Device From Power Without Risking Data Loss.     |
+| LED | Description |
+|-----|-------------|
+| 1   | Lights up when the available free space on the SD card falls below the limit defined by the `free_space` parameter in the configuration file. |
+| 2   | Indicates an error condition. This LED turns on if the configuration file is invalid or if a critical error occurs during data recording (e.g., file creation failure or UART framing error). |
+| 3   | Signals that the data logger is no longer actively recording. This state occurs, for example, when the monitored device stops transmitting data or is disconnected. |
+| 4   | Blinks during active data recording to indicate that data is being received and saved to the SD card. |
+| 5   | Lights up approximately 16 seconds after powering the logger to indicate that the backup capacitor is sufficiently charged. Once lit, it is safe to disconnect the device from power without risking data loss. |
 
 #### Data Recording
-1. **(Optional But Recommended)** Prepare The Configuration File `config`, Which Should Be Placed in The Root Directory of The SD Card. 
-This File Allows You To Customize The Data Logger's Behavior Instead of Using The Default Configuration.
+1. **(Optional But Recommended)** Prepare the configuration file `config`, which should be placed in the root directory of the SD card.  
+This file allows you to customize the data logger's behavior instead of using the default configuration.
 
 <p align="center">
-  <img src="misc/config-file.jpg" alt="Location of The config File on The SD Card" width="480"/><br>
-  <em>Location of The config File on The SD Card</em><br>
+  <img src="misc/config-file.jpg" alt="Location of the config file on the SD card" width="480"/><br>
+  <em>Location of the config file on the SD card</em><br>
 </p>
 
 
@@ -122,10 +122,10 @@ data_bits=8
 parity=none
 free_space=50
 ```
-- **Note:** The Order of Parameters is Not Fixed.
+- **Note:** The order of parameters is not fixed.
 
-If Some of The Parameters in The Configuration File are Missing or The Configuration File is Missing Completely, 
-The Default Values Defined in The `defs.h` File are Used
+If some of the parameters in the configuration file are missing or the configuration file is missing completely,  
+the default values defined in the `defs.h` file are used.
 
 | Parameter      | Default Value                 | Data Type                      |
 |----------------|-------------------------------|--------------------------------|
@@ -137,89 +137,87 @@ The Default Values Defined in The `defs.h` File are Used
 | `free_space`   | `50`                          | uint32_t (in MiB)              |
 
 
-2. Insert The SD Card (Type SDHC) Into The Data Logger 
+2. Insert the SD card (type SDHC) into the data logger.
 
-3. Power On The Data Logger via USB or Another Power Source. The Data Logger Will Automatically:
+3. Power on the data logger via USB or another power source. The data logger will automatically:
+- Load the configuration from `config` (if present)
+- After startup, the data logger enters the recording mode by default. At the beginning of the record task, it initializes the SD card, and if a new or unformatted card is detected,  
+  the firmware will automatically format it and initialize the FAT file system with 32-bit LBA.
 
--  Load The Configuration From `config` (If Present)
--  After Startup, The Data Logger Enters The Recording Mode By Default. At The Beginning of Record Task, It Initializes The SD Card and If a New or Unformatted Card is Detected, 
-   The Firmware Will Automatically Formatted and The FAT File System With 32-bit LBA is Initialized.
+4. Wait until the LED 5 indicator turns on.  
+   This LED indicates that the digital data logger can be safely disconnected without the risk of data loss or file system corruption.
 
-4. Wait Until The 5 LED Indicator Turns On.  
-   This LED Indicates That The Digital Data Logger Can Be Safely Disconnected Without The Risk of Data Loss or File System Corruption.
+5. Connect the digital data logger to the monitored device that transmits serial data via UART.  
+   Once the data transmission starts, the data logger will indicate active reception by blinking a dedicated LED 4,  
+   which is shown in the following image.
 
-5. Connect The Digital Data Logger to The Monitored Device That Transmits Serial Data via UART.  
-   Once The Data Transmission Starts, The Data Logger Will Indicate Active Reception by Blinking a Dedicated LED 4,  
-   Which is Shown in The Following Image.
+6. At this point, the digital data logger is actively recording incoming UART data.  
+   During recording, the same LED continuously blinks to indicate that data logging is in progress.
 
-6. At This Point, The Digital Data Logger is Actively Recording Incoming UART Data.  
-   During Recording, The Same LED Continuously Blinks To Indicate That Data Logging is in Progress.
+7. If an error occurs during UART data reception (e.g. framing error),  
+   the digital data logger will illuminate a separate error LED 2  
+   to indicate that logging has been interrupted due to a fault.
 
-7. If an Error Occurs During UART Data Reception (e.g. Framing Error),  
-   The Digital Data Logger Will Illuminate a Separate Error LED 2  
-   to Indicate That Logging Has Been Interrupted Due to a Fault.
+   If the error prevents further data reception, an additional LED 3 will also light up  
+   to signal that the device can no longer continue logging until it is restarted or the error is resolved.
 
-   If the Error Prevents Further Data Reception, an Additional LED 3 Will Also Light Up  
-   to Signal That The Device Can No Longer Continue Logging Until It is Restarted or the Error is Resolved.
+8. To safely stop data logging, disconnect the digital data logger from the monitored device.  
+   At this point, all buffered data will be properly finalized and stored on the SD card.  
+   The status LED D3 will then light up to indicate that data reception has been halted  
+   and the device is in standby mode.
 
-8. To Safely Stop Data Logging, Disconnect The Digital Data Logger From The Monitored Device.  
-   At This Point, All Buffered Data Will Be Properly Finalized and Stored on The SD Card.  
-   The Status LED D3 Will Then Light Up To Indicate That Data Reception Has Been Halted  
-   And The Device is in Standby Mode.
+9. To resume data logging after it has been halted, simply reconnect the digital data logger  
+   to the monitored UART device. The logger will automatically return to recording mode  
+   (described in step 6) and continue capturing incoming data.
 
-9. To Resume Data Logging After It Has Been Halted, Simply Reconnect The Digital Data Logger  
-   to The Monitored UART Device. The Logger Will Automatically Return to Recording Mode  
-   (Described in Step 6) and Continue Capturing Incoming Data.
+10. In the event of a power disconnection during logging,  
+    the digital data logger detects the power loss and automatically saves all buffered data.  
+    The recording is then gracefully finalized to prevent data loss or file system corruption.
 
-10. In The Event of a Power Disconnection During Logging,  
-    The Digital Data Logger Detects The Power Loss and Automatically Saves All Buffered Data.  
-    The Recording is Then Gracefully Finalized To Prevent Data Loss or File System Corruption.
 
 #### Reading Data from the Data Logger
-To Read The Recorded Data From The Digital Data Logger, Simply Connect The Device To a Computer Using The USB1_HS Connector. 
-The Data Logger Will Automatically Switch Into Data Acess Mode (MSC mode), and The SD Card Will Be Exposed as a Standard Mass Storage Device, 
-Allowing The User To Copy The Recorded Data Files.
+To read the recorded data from the digital data logger, simply connect the device to a computer using the USB1_HS connector.  
+The data logger will automatically switch into data access mode (MSC mode), and the SD card will be exposed as a standard mass storage device,  
+allowing the user to copy the recorded data files.
 
 <p align="center">
-  <img src="misc/session-directories.jpg" alt="Organization of Session Directories With Logs on SD Cards" width="480"/><br>
-  <em>Organization of Session Directories With Logs on SD Cards</em><br>
+  <img src="misc/session-directories.jpg" alt="Organization of session directories with logs on SD cards" width="480"/><br>
+  <em>Organization of session directories with logs on SD cards</em><br>
 </p>
 
 #### Structure of Logged Data
-After Each Startup, The Data Logger Creates a New Session Directory in Which All The Logs From The Current Runtime are Stored. 
-These Session Folders are Organized By The Date and an Incrementing Counter in The Format:
+After each startup, the data logger creates a new session directory in which all the logs from the current runtime are stored.  
+These session folders are organized by the date and an incrementing counter in the format:
 
 ```
 YYYYMMDD_X/
 ```
 
-Where:
-- `YYYYMMDD` is The Date of The Session Creation
-- `X` is an Integer Session Index Used To Differentiate Multiple Sessions Created on The Same Day
+Where:  
+- `YYYYMMDD` is the date of the session creation  
+- `X` is an integer session index used to differentiate multiple sessions created on the same day
 
-After Data Has Been Recorded, Each Session Folder Contains Text-Based Log Files Storing The Data Collected During The Corresponding Session. 
-The Maximum Size of Each Log File is Determined by The `file_size` Parameter Defined in The Configuration File (See Chapter on Configuration). 
+After data has been recorded, each session folder contains text-based log files storing the data collected during the corresponding session.  
+The maximum size of each log file is determined by the `file_size` parameter defined in the configuration file (see chapter on configuration).  
 Log files are named using the following format:
 
 ```
 YYYYMMDD_HHMMSS_X.txt
 ```
 
-- `YYYYMMDD_HHMMSS` is The Timestamp When The Log File Was Created
-- `X` is an Index Used To Differentiate Multiple Files Created at The Same Second
+- `YYYYMMDD_HHMMSS` is the timestamp when the log file was created  
+- `X` is an index used to differentiate multiple files created at the same second
 
 #### Format of Logged Entries
-Each Logged Line Represents a Single Data Record Terminated By a Line Break Sequence (`\r\n`)
-Every Line is Prefixed With a Timestamp in The Format:
+Each logged line represents a single data record terminated by a line break sequence (`\r\n`).  
+Every line is prefixed with a timestamp in the format:
 
 ```
 (HH:MM:SS) Logged Message
 ```
-This Timestamp Represents The Time When The Specific Data Was Captured By The Logger. The Following Example Illustrates The Typical Appearance of Consecutive Logged Lines in a File:
 
-makefile
-Copy
-Edit
+This timestamp represents the time when the specific data was captured by the logger.  
+The following example illustrates the typical appearance of consecutive logged lines in a file:
 
 
 ```
@@ -235,34 +233,34 @@ Edit
 ```
 
 ### Developer Notes
-All Application-Level Source and Header Files are Located in The `source/` and `include/` Directories.
+All application-level source and header files are located in the `source/` and `include/` directories.
 
-The Firmware is Structured Into Several Functional Modules, Such as Recording Logic, Mass Storage Access, Power Loss Detection, And System Status Signaling.
-Many of These Modules Can Be Individually Enabled or Disabled as Needed. This Behavior is Achieved Through Conditional Compilation in ISO C and Logic Blocks are Active Only 
-If Enabled via Preprocessor Macros. These Settings are Centrally Managed in The Application Configuration Header File `defs.h`.
+The firmware is structured into several functional modules, such as recording logic, mass storage access, power loss detection, and system status signaling.  
+Many of these modules can be individually enabled or disabled as needed. This behavior is achieved through conditional compilation in ISO C, and logic blocks are active only  
+if enabled via preprocessor macros. These settings are centrally managed in the application configuration header file `defs.h`.
 
-The defs.h Configuration File Also Includes The Option To Control The Verbosity of Firmware Output Messages. The Firmware Supports Three Message Output Levels:
+The `defs.h` configuration file also includes the option to control the verbosity of firmware output messages. The firmware supports three message output levels:
 
-- **Error Messages** (Prefixed With `ERR:`) Reports Critical Conditions. This Level is Always Active and Can't Be Disabled.
+- **Error Messages** (prefixed with `ERR:`) report critical conditions. This level is always active and can't be disabled.
 
 ```
 PRINTF("ERR: Failed to Create File %s. Error=%d\r\n", u8FileName, (uint32_t)status);
 ```
 
-- **Informational Messages** (Prefixed With `INFO:`) Provide Context Such as Initialization Progress, Configuration File loading, Creation of Log, etc.
+- **Informational Messages** (prefixed with `INFO:`) provide context such as initialization progress, configuration file loading, creation of log, etc.
 
 ```
 PRINTF("INFO: Created Log %s.\r\n", u8FileName);
 ```
 
-- **Debug messages** (Prefixed With `DEBUG:`) Offers The Most Detailed Output and Include Additional Technical Details Useful During Development.
+- **Debug messages** (prefixed with `DEBUG:`) offer the most detailed output and include additional technical details useful during development.
 
 ```
 PRINTF("DEBUG: File System Not Found. Creating FAT File System...\r\n");
 ```
 
-All of These Outputs are Provided Through The UART Serial Interface. The firmware Uses The `LP_FLEXCOMM4` UART Peripheral Instance, 
-Configured With The Following Parameters:
+All of these outputs are provided through the UART serial interface. The firmware uses the `LP_FLEXCOMM4` UART peripheral instance,  
+configured with the following parameters:
 
 | Parameter      | Value    | 
 |----------------|----------|
@@ -271,67 +269,70 @@ Configured With The Following Parameters:
 | Stop Bit       | 1        |
 | Parity         | None     |
 
-The Firmware Runs on The FreeRTOS Real-Time Operating System. To Ensure Maximum Reliability and Predictability, Only Static Memory 
-Allocation is Used Throughout The Firmware. All Tasks and Synchronization Primitives are Created With Predefined Memory Sizes, 
-and Dynamic Memory Allocation is Fully Disabled in The FreeRTOS Configuration. Additionally, Specific Memory Allocation Functions 
-For System Tasks Such as The Idle Task and Timer Task Have Been Implemented to Support Fully Static Operation.
+The firmware runs on the FreeRTOS real-time operating system. To ensure maximum reliability and predictability, only static memory  
+allocation is used throughout the firmware. All tasks and synchronization primitives are created with predefined memory sizes,  
+and dynamic memory allocation is fully disabled in the FreeRTOS configuration. Additionally, specific memory allocation functions  
+for system tasks such as the idle task and timer task have been implemented to support fully static operation.
 
-The overall hardware and software initialization procedures are handled by `APP_InitBoard()` Function Declared in Header File _app_initialization.h_ and Defined 
-in Source File The _app_initialization.c_.
+The overall hardware and software initialization procedures are handled by the `APP_InitBoard()` function, declared in the header file _app_initialization.h_  
+and defined in the source file _app_initialization.c_.
 
-The Application Consists of two FreeRTOS Tasks - _record_task_ That is Responsible For Recording UART Data and _msc_task_ Responsible For Exposing The Recorded Data 
-via USB. These Tasks are Implemented in `app_tasks.c` and `pp_tasks.h`, and are Created and Started From Within The `main.c` File.
+The application consists of two FreeRTOS tasks – _record_task_, which is responsible for recording UART data, and _msc_task_, responsible for exposing the recorded data  
+via USB. These tasks are implemented in `app_tasks.c` and `pp_tasks.h`, and are created and started from within the `main.c` file.
 
 ### Modules
-The Application Files (`main.c`, `app_tasks.c`, and `app_initialization.c`) Utilize The Following Separate Modules, 
-Each Module Has Its Own Source and Header File:
+The application files (`main.c`, `app_tasks.c`, and `app_initialization.c`) utilize the following separate modules.  
+Each module has its own source and header file:
 
-- `error`  Handles Errors and Defines Error Codes.
-- `led`  Manages LED Indicators For System Status.
-- `mass_storage` – Provides Access To Log Files Over USB MSC.
-- `parser` – Parses the Configuration File (`config`) From The SD card.
-- `pwrloss_det` – Detects and Reacts on Power Loss.
-- `record` – Implements Logic For Recording Incoming Serial Data From UART.
-- `task_switching` – Includes The Method For Detection of Attach or Detached Application USB.
-- `time` – Provides Date/Time Handling For File Naming and Timestamping (External and Internal RTCs).
-- `uart` – Includes Intialization (+ Configuration), Enablement and Disablement of UART Periphery.
-- `temperature` – Extension For Temperature Measurement of The P3T1755 On-Board Temperature Sensor on FRDM-MCXN947.
+- `error` – Handles errors and defines error codes.  
+- `led` – Manages LED Indicators For System Status.
+- `mass_storage` – Provides access to log files over USB MSC.  
+- `parser` – Parses the configuration file (`config`) from the SD card.
+- `pwrloss_det` – Detects and reacts to power loss.
+- `record` – Implements logic for recording incoming serial data from UART.
+- `task_switching` – Includes the method for detection of attached or detached application USB.
+- `time` – Provides date/time handling for file naming and timestamping (external and internal RTCs).
+- `uart` – Includes initialization (+ configuration), enabling and disabling of the UART peripheral.  
+- `temperature` – Extension for temperature measurement using the P3T1755 on-board temperature sensor on the FRDM-MCXN947.
 
 ### Testing
 
 #### Functional Testing
-The Digital Data Logger Was Tested Using a Python Script Located in The tests/ Directory Under Name `serial_test.py`.
+The digital data logger was tested using a Python script located in the `tests/` directory under the name `serial_test.py`.
 
-The Script `serial_test.py` Simulates The Monitored Device By Reading The Test Text Files and Sending Their Contents as Serial Data Through The COM Port To The Digital Data Logger. 
-There is a Time Delay Between Each File Being Sent, Which Deliberately Causes The `CONSOLELOG_Flush()` Function To Be Called, So That Each Test Input is Recorded in a Separate File That Can Be Compared Against The Original Test File.
+The script `serial_test.py` simulates the monitored device by reading test text files and sending their contents as serial data through the COM port to the digital data logger.  
+There is a time delay between each file being sent, which deliberately causes the `CONSOLELOG_Flush()` function to be called,  
+so that each test input is recorded in a separate file that can be compared against the original test file.
 
-Scripted Testing Was Performed At Various Baud Rates, With Testing Primarily Focused on Baud Rates Corresponding To Actual Deployment Scenarios. 
-After The Test Was Completed, The Recorded Outputs Were Compared To The Original Test Files. The Results of The Comparison Confirmed That in All Cases Tested, 
-The Transfer Was Correct And There Was No Data Loss or Corruption.
+Scripted testing was performed at various baud rates, with testing primarily focused on baud rates corresponding to actual deployment scenarios.  
+After the test was completed, the recorded outputs were compared to the original test files. The results of the comparison confirmed that in all cases tested,  
+the transfer was correct and there was no data loss or corruption.
 
-The Digital Data Logger Was Also Successfully Verified Using `stress_test.py` Script That Contains a Stress Test. In This Test, Data Was Sent at 921600 baud. The Data Was First Collected Into a Circular Buffer of 4 KiB, From Which it Was Then Stored on The SD Card in Blocks of 4 KiB. The Resulting Recording Files Were 1 MiB in Size.
+The digital data logger was also successfully verified using the `stress_test.py` script that contains a stress test.  
+In this test, data was sent at 921600 baud. The data was first collected into a circular buffer of 4 KiB,  
+from which it was then stored on the SD card in blocks of 4 KiB. The resulting recording files were 1 MiB in size.
 
-Functional Testing Also Covered The Behavior  of The Digital Recorder in Non-Standard Scenarios That May Occur During Real-World Deployment. 
-The Results are Summarized in Table Below.
+Functional testing also covered the behavior of the digital recorder in non-standard scenarios that may occur during real-world deployment.The Results are Summarized in Table Below.
 
-| Test Description                                                      | Expected Result                                                                                   | Passed |
+| Test description                                                      | Expected result                                                                                   | Passed |
 |-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|--------|
-| Missing Configuration File                                            | Error Indication Using LED D2, Recording Interrupted                                              | Yes    |
-| Missing `baudrate` Value in Configuration                             | Start Recording With Default `baudrate` Value                                                     | Yes    |
-| Recording On a New Unformatted SD Card                                | SD Card is Formatted, File System Initialized, And Device Then Records Incoming Data              | Yes    |
-| Recording With File Size of 512 B                                     | File Created And Properly Closed Upon Reaching Limit                                              | Yes    |
-| Recording With File Size of 1 MB                                      | File Created And Properly Closed Upon Reaching Limit                                              | Yes    |
-| Low Free SD Card Capacity (i.e., Below Value of Parameter`free_space`)| Indication via LED                                                                                | Yes    |
-| Transfer of Recorded Data From The Digital Recorder                   | Records Transferred To Host Device From The Digital Recorder                                      | Yes    |
+| Missing configuration file                                            | Error indication using LED D2, recording interrupted                                              | Yes    |
+| Missing `baudrate` value in configuration                             | Start recording with default `baudrate` value                                                     | Yes    |
+| Recording on a new unformatted SD card                                | SD card is formatted, file system initialized, and device then records incoming data              | Yes    |
+| Recording with file size of 512 B                                     | File created and properly closed upon reaching limit                                              | Yes    |
+| Recording with file size of 1 MB                                      | File created and properly closed upon reaching limit                                              | Yes    |
+| Low free SD card capacity (i.e., below value of parameter `free_space`) | Indication via LED                                                                                | Yes    |
+| Transfer of recorded data from the digital recorder                   | Records transferred to host device from the digital recorder                                      | Yes    |
 
 
 #### Static Code Analysis
-In Addition To Functional Testing, Static Analysis of The Source Code Was Performed Using Rules From The MISRA (_Motor Industry Software Reliability Association_) Specification, Specifically MISRA C:2012. The Focus Was Primarily On Rules Classified as Required And Mandatory. All Detected Violations in These Categories Were Either Corrected or Justified Through Comments in The Source Code, Including a Reference To The Relevant Rule and a Rationale For The Exception.
+In addition to functional testing, static analysis of the source code was performed using rules from the MISRA (_Motor Industry Software Reliability Association_) specification, specifically MISRA C:2012. The focus was primarily on rules classified as required and mandatory. All detected violations in these categories were either corrected or justified through comments in the source code, including a reference to the relevant rule and a rationale for the exception.
 
-The Code Analysis Was Performed With Tool PC-lint Plus v2.2 Developed By Vector. [2]
+The code analysis was performed with tool PC-lint Plus v2.2 developed by Vector. [2]
+
 
 ### Known Issues
-No Issues Were Observed During Development, Testing, or Practical Usage of The Digital Data Logger.
+No issues were observed during development, testing, or practical usage of the digital data logger.
 
 #### References
 [1] "Nordic Semiconductors Power Profiler Kit II" [online]. [cited 2025-5-6]. Available at [https://www.nordicsemi.com/Products/Development-hardware/Power-Profiler-Kit-2](https://www.nordicsemi.com/Products/Development-hardware/Power-Profiler-Kit-2)
