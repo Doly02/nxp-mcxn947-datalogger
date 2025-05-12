@@ -37,9 +37,9 @@
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{temperature_8c_a8b469e59bd5f8cb08070ff2849b5d6af}{AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION}} (static uint8\+\_\+t g\+Rx\+Buff\+\_\+\+I2\+C5\mbox{[}\mbox{\hyperlink{temperature_8c_a6c7cd32e1bac137f05e4a752b4ad10af}{BUFF\+\_\+\+SIZE}}\mbox{]})
+\mbox{\hyperlink{temperature_8c_ab012c2d8730f13da3f0615ca9f93414d}{AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION}} (static uint8\+\_\+t g\+\_\+a\+Rx\+Buff\+\_\+\+I2\+C5\mbox{[}\mbox{\hyperlink{temperature_8c_a6c7cd32e1bac137f05e4a752b4ad10af}{BUFF\+\_\+\+SIZE}}\mbox{]})
 \begin{DoxyCompactList}\small\item\em Reception Buffer. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{temperature_8c_a0ef9a913df88496b9b93b6e4bcf0e23f}{AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION}} (static lpi2c\+\_\+master\+\_\+edma\+\_\+handle\+\_\+t g\+Edma\+Handle\+\_\+\+I2\+C5)
+\mbox{\hyperlink{temperature_8c_a15897befedf315a0700d50b60b6d4bda}{AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION}} (static lpi2c\+\_\+master\+\_\+edma\+\_\+handle\+\_\+t g\+\_\+\+Edma\+Handle\+\_\+\+I2\+C5)
 \begin{DoxyCompactList}\small\item\em e\+DMA Driver Handle Used For Non-\/\+Blocking DMA Transfer. \end{DoxyCompactList}\item 
 static void \mbox{\hyperlink{temperature_8c_a038e5a1da8a787ae48b1e279cab6df55}{lpi2c\+\_\+callback}} (LPI2\+C\+\_\+\+Type \texorpdfstring{$\ast$}{*}base, lpi2c\+\_\+master\+\_\+edma\+\_\+handle\+\_\+t \texorpdfstring{$\ast$}{*}handle, status\+\_\+t status, void \texorpdfstring{$\ast$}{*}user\+Data)
 \item 
@@ -56,13 +56,13 @@ uint8\+\_\+t \mbox{\hyperlink{temperature_8c_a147cb7fa3ec99aa1038a20fd3d5ed0c3}{
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-static edma\+\_\+handle\+\_\+t \mbox{\hyperlink{temperature_8c_a761568c3a46ef7368e1da37f51e67fc6}{g\+Edma\+Tx\+Handle\+\_\+\+I2\+C5}}
+static edma\+\_\+handle\+\_\+t \mbox{\hyperlink{temperature_8c_a50fdd2b8d8084e9a4e600ae8af2f258a}{g\+\_\+\+Edma\+Tx\+Handle\+\_\+\+I2\+C5}}
 \begin{DoxyCompactList}\small\item\em Tx e\+DMA Handle. \end{DoxyCompactList}\item 
-static edma\+\_\+handle\+\_\+t \mbox{\hyperlink{temperature_8c_aa8af0e0f6c65deb08c1339ec66dadcc1}{g\+Edma\+Rx\+Handle\+\_\+\+I2\+C5}}
+static edma\+\_\+handle\+\_\+t \mbox{\hyperlink{temperature_8c_a776091829eca10175ea2ede27a31c45b}{g\+\_\+\+Edma\+Rx\+Handle\+\_\+\+I2\+C5}}
 \begin{DoxyCompactList}\small\item\em Rx e\+DMA Handle. \end{DoxyCompactList}\item 
 static volatile bool \mbox{\hyperlink{temperature_8c_a5c2a41bb43d5c3f97eaeff90195f16e0}{g\+\_\+b\+Completion\+Flag\+\_\+\+I2\+C5}} = false
 \begin{DoxyCompactList}\small\item\em Flag Indicating Whether The Transfer Has Finished. \end{DoxyCompactList}\item 
-static lpi2c\+\_\+master\+\_\+transfer\+\_\+t \mbox{\hyperlink{temperature_8c_ab988e5e309a0682f20de092d3b15b272}{xfer\+\_\+\+I2\+C5}} = \{0\}
+static lpi2c\+\_\+master\+\_\+transfer\+\_\+t \mbox{\hyperlink{temperature_8c_a04223a52c21e3c74a057039cc4859680}{g\+\_\+\+Xfer\+\_\+\+I2\+C5}} = \{0\}
 \end{DoxyCompactItemize}
 
 
@@ -192,21 +192,21 @@ Temperature Register Address of P3\+T1755.
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{temperature_8c_a0ef9a913df88496b9b93b6e4bcf0e23f}\index{temperature.c@{temperature.c}!AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}}
+\Hypertarget{temperature_8c_a15897befedf315a0700d50b60b6d4bda}\index{temperature.c@{temperature.c}!AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}}
 \index{AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}!temperature.c@{temperature.c}}
 \doxysubsubsection{\texorpdfstring{AT\_NONCACHEABLE\_SECTION()}{AT\_NONCACHEABLE\_SECTION()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \label{temperature_8c_a0ef9a913df88496b9b93b6e4bcf0e23f} 
-AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION (\begin{DoxyParamCaption}\item[{static lpi2c\+\_\+master\+\_\+edma\+\_\+handle\+\_\+t}]{g\+Edma\+Handle\+\_\+\+I2\+C5}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{temperature_8c_a15897befedf315a0700d50b60b6d4bda} 
+AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION (\begin{DoxyParamCaption}\item[{static lpi2c\+\_\+master\+\_\+edma\+\_\+handle\+\_\+t}]{g\+\_\+\+Edma\+Handle\+\_\+\+I2\+C5}{}\end{DoxyParamCaption})}
 
 
 
 e\+DMA Driver Handle Used For Non-\/\+Blocking DMA Transfer. 
 
-\Hypertarget{temperature_8c_a8b469e59bd5f8cb08070ff2849b5d6af}\index{temperature.c@{temperature.c}!AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}}
+\Hypertarget{temperature_8c_ab012c2d8730f13da3f0615ca9f93414d}\index{temperature.c@{temperature.c}!AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}}
 \index{AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}!temperature.c@{temperature.c}}
 \doxysubsubsection{\texorpdfstring{AT\_NONCACHEABLE\_SECTION()}{AT\_NONCACHEABLE\_SECTION()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \label{temperature_8c_a8b469e59bd5f8cb08070ff2849b5d6af} 
-AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION (\begin{DoxyParamCaption}\item[{static uint8\+\_\+t}]{g\+Rx\+Buff\+\_\+\+I2\+C5}{\mbox{[}\+BUFF\+\_\+\+SIZE\mbox{]}}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{temperature_8c_ab012c2d8730f13da3f0615ca9f93414d} 
+AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION (\begin{DoxyParamCaption}\item[{static uint8\+\_\+t}]{g\+\_\+a\+Rx\+Buff\+\_\+\+I2\+C5}{\mbox{[}\+BUFF\+\_\+\+SIZE\mbox{]}}\end{DoxyParamCaption})}
 
 
 
@@ -304,29 +304,29 @@ volatile bool g\+\_\+b\+Completion\+Flag\+\_\+\+I2\+C5 = false\hspace{0.3cm}{\tt
 
 Flag Indicating Whether The Transfer Has Finished. 
 
-\Hypertarget{temperature_8c_aa8af0e0f6c65deb08c1339ec66dadcc1}\index{temperature.c@{temperature.c}!gEdmaRxHandle\_I2C5@{gEdmaRxHandle\_I2C5}}
-\index{gEdmaRxHandle\_I2C5@{gEdmaRxHandle\_I2C5}!temperature.c@{temperature.c}}
-\doxysubsubsection{\texorpdfstring{gEdmaRxHandle\_I2C5}{gEdmaRxHandle\_I2C5}}
-{\footnotesize\ttfamily \label{temperature_8c_aa8af0e0f6c65deb08c1339ec66dadcc1} 
-edma\+\_\+handle\+\_\+t g\+Edma\+Rx\+Handle\+\_\+\+I2\+C5\hspace{0.3cm}{\ttfamily [static]}}
+\Hypertarget{temperature_8c_a776091829eca10175ea2ede27a31c45b}\index{temperature.c@{temperature.c}!g\_EdmaRxHandle\_I2C5@{g\_EdmaRxHandle\_I2C5}}
+\index{g\_EdmaRxHandle\_I2C5@{g\_EdmaRxHandle\_I2C5}!temperature.c@{temperature.c}}
+\doxysubsubsection{\texorpdfstring{g\_EdmaRxHandle\_I2C5}{g\_EdmaRxHandle\_I2C5}}
+{\footnotesize\ttfamily \label{temperature_8c_a776091829eca10175ea2ede27a31c45b} 
+edma\+\_\+handle\+\_\+t g\+\_\+\+Edma\+Rx\+Handle\+\_\+\+I2\+C5\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
 Rx e\+DMA Handle. 
 
-\Hypertarget{temperature_8c_a761568c3a46ef7368e1da37f51e67fc6}\index{temperature.c@{temperature.c}!gEdmaTxHandle\_I2C5@{gEdmaTxHandle\_I2C5}}
-\index{gEdmaTxHandle\_I2C5@{gEdmaTxHandle\_I2C5}!temperature.c@{temperature.c}}
-\doxysubsubsection{\texorpdfstring{gEdmaTxHandle\_I2C5}{gEdmaTxHandle\_I2C5}}
-{\footnotesize\ttfamily \label{temperature_8c_a761568c3a46ef7368e1da37f51e67fc6} 
-edma\+\_\+handle\+\_\+t g\+Edma\+Tx\+Handle\+\_\+\+I2\+C5\hspace{0.3cm}{\ttfamily [static]}}
+\Hypertarget{temperature_8c_a50fdd2b8d8084e9a4e600ae8af2f258a}\index{temperature.c@{temperature.c}!g\_EdmaTxHandle\_I2C5@{g\_EdmaTxHandle\_I2C5}}
+\index{g\_EdmaTxHandle\_I2C5@{g\_EdmaTxHandle\_I2C5}!temperature.c@{temperature.c}}
+\doxysubsubsection{\texorpdfstring{g\_EdmaTxHandle\_I2C5}{g\_EdmaTxHandle\_I2C5}}
+{\footnotesize\ttfamily \label{temperature_8c_a50fdd2b8d8084e9a4e600ae8af2f258a} 
+edma\+\_\+handle\+\_\+t g\+\_\+\+Edma\+Tx\+Handle\+\_\+\+I2\+C5\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
 Tx e\+DMA Handle. 
 
-\Hypertarget{temperature_8c_ab988e5e309a0682f20de092d3b15b272}\index{temperature.c@{temperature.c}!xfer\_I2C5@{xfer\_I2C5}}
-\index{xfer\_I2C5@{xfer\_I2C5}!temperature.c@{temperature.c}}
-\doxysubsubsection{\texorpdfstring{xfer\_I2C5}{xfer\_I2C5}}
-{\footnotesize\ttfamily \label{temperature_8c_ab988e5e309a0682f20de092d3b15b272} 
-lpi2c\+\_\+master\+\_\+transfer\+\_\+t xfer\+\_\+\+I2\+C5 = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
+\Hypertarget{temperature_8c_a04223a52c21e3c74a057039cc4859680}\index{temperature.c@{temperature.c}!g\_Xfer\_I2C5@{g\_Xfer\_I2C5}}
+\index{g\_Xfer\_I2C5@{g\_Xfer\_I2C5}!temperature.c@{temperature.c}}
+\doxysubsubsection{\texorpdfstring{g\_Xfer\_I2C5}{g\_Xfer\_I2C5}}
+{\footnotesize\ttfamily \label{temperature_8c_a04223a52c21e3c74a057039cc4859680} 
+lpi2c\+\_\+master\+\_\+transfer\+\_\+t g\+\_\+\+Xfer\+\_\+\+I2\+C5 = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
 

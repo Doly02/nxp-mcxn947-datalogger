@@ -17,6 +17,7 @@ var defs_8h =
     [ "PWRLOSS_DET_PRIO", "defs_8h.html#adb153985b953cf1557608f13fdbd74f1", null ],
     [ "PWRLOSS_DETECTION_ENABLED", "defs_8h.html#a70ae7656d68a5c5e6ce6f867d0652007", null ],
     [ "PWRLOSS_TEST_GPIOS", "defs_8h.html#aa3252ba28db7a402d73243c25da84a06", null ],
+    [ "PWRLOSS_TIMER_PRIO", "defs_8h.html#a9833f31bb9cd2e701f52a6d805b76bad", null ],
     [ "RECORD_STACK_SIZE", "defs_8h.html#a596e2563f1ece6b4d9a86d20455183a1", null ],
     [ "TAU", "defs_8h.html#a3d8c9c145887af5174ba4cc6789862ad", null ],
     [ "TEMPERATURE_MEAS_ENABLED", "defs_8h.html#a2d4e809715243195fc8b939c5d923aaa", null ],

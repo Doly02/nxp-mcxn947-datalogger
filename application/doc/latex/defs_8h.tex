@@ -32,7 +32,9 @@
 \begin{DoxyCompactList}\small\item\em Time Interval When Power Loss Detection Became Active. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{defs_8h_a8f12c7ad5263aca7dc9115c3db453025}{UART\+\_\+\+RECEIVE\+\_\+\+PRIO}}~(6U)
 \begin{DoxyCompactList}\small\item\em Priority of LP\+\_\+\+FLEXCOMM Interrupt (UART) For Rx Of Recorded Data. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{defs_8h_adb153985b953cf1557608f13fdbd74f1}{PWRLOSS\+\_\+\+DET\+\_\+\+PRIO}}~(7U)
+\#define \mbox{\hyperlink{defs_8h_adb153985b953cf1557608f13fdbd74f1}{PWRLOSS\+\_\+\+DET\+\_\+\+PRIO}}~(5U)
+\begin{DoxyCompactList}\small\item\em Priority of Comparator Interrupt For Power Loss Detection. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a9833f31bb9cd2e701f52a6d805b76bad}{PWRLOSS\+\_\+\+TIMER\+\_\+\+PRIO}}~(7U)
 \begin{DoxyCompactList}\small\item\em Priority of Comparator Interrupt For Power Loss Detection. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{defs_8h_a2d4e809715243195fc8b939c5d923aaa}{TEMPERATURE\+\_\+\+MEAS\+\_\+\+ENABLED}}~(false)
 \begin{DoxyCompactList}\small\item\em Enables/\+Disables Temperature Recording. \end{DoxyCompactList}\item 
@@ -195,7 +197,7 @@ In Seconds. \Hypertarget{defs_8h_adb153985b953cf1557608f13fdbd74f1}\index{defs.h
 \index{PWRLOSS\_DET\_PRIO@{PWRLOSS\_DET\_PRIO}!defs.h@{defs.h}}
 \doxysubsubsection{\texorpdfstring{PWRLOSS\_DET\_PRIO}{PWRLOSS\_DET\_PRIO}}
 {\footnotesize\ttfamily \label{defs_8h_adb153985b953cf1557608f13fdbd74f1} 
-\#define PWRLOSS\+\_\+\+DET\+\_\+\+PRIO~(7U)}
+\#define PWRLOSS\+\_\+\+DET\+\_\+\+PRIO~(5U)}
 
 
 
@@ -220,6 +222,16 @@ Enables/\+Disables Power Loss Detection.
 
 
 Enables/\+Disables GPIO For Testing Power Loss Detection. 
+
+\Hypertarget{defs_8h_a9833f31bb9cd2e701f52a6d805b76bad}\index{defs.h@{defs.h}!PWRLOSS\_TIMER\_PRIO@{PWRLOSS\_TIMER\_PRIO}}
+\index{PWRLOSS\_TIMER\_PRIO@{PWRLOSS\_TIMER\_PRIO}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{PWRLOSS\_TIMER\_PRIO}{PWRLOSS\_TIMER\_PRIO}}
+{\footnotesize\ttfamily \label{defs_8h_a9833f31bb9cd2e701f52a6d805b76bad} 
+\#define PWRLOSS\+\_\+\+TIMER\+\_\+\+PRIO~(7U)}
+
+
+
+Priority of Comparator Interrupt For Power Loss Detection. 
 
 \Hypertarget{defs_8h_a596e2563f1ece6b4d9a86d20455183a1}\index{defs.h@{defs.h}!RECORD\_STACK\_SIZE@{RECORD\_STACK\_SIZE}}
 \index{RECORD\_STACK\_SIZE@{RECORD\_STACK\_SIZE}!defs.h@{defs.h}}

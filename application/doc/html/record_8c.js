@@ -20,7 +20,7 @@ var record_8c =
     [ "CONSOLELOG_Recording", "record_8c.html#a79da7903033034cac5a75923611657f6", null ],
     [ "get_fattime", "record_8c.html#af58b536abfd30f77213f4ecaf2ac52f5", null ],
     [ "LP_FLEXCOMM3_IRQHandler", "record_8c.html#aac632a55c01036580b0f0f2521de688b", null ],
-    [ "SDK_ALIGN", "group___recording.html#ga0139cb2c722dcb49d9d8aba34549b334", null ],
+    [ "SDK_ALIGN", "group___recording.html#ga1aa9629f7ba12059f55915fdfef8f6d7", null ],
     [ "SDK_ALIGN", "group___u_a_r_t.html#ga0f85dbf0cf3882e0ac219ed036b7e5df", null ],
     [ "g_bBackDmaBufferReady", "group___recording.html#gae04fc0a92699c2a249e59d827e037af9", null ],
     [ "g_bFlushCompleted", "group___recording.html#gafff17b721dd91f02d491dd4823fa38bb", null ],

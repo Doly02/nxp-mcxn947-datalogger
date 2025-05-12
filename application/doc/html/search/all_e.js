@@ -27,5 +27,6 @@ var searchData=
   ['pwrloss_5fdet_5fprio_24',['PWRLOSS_DET_PRIO',['../defs_8h.html#adb153985b953cf1557608f13fdbd74f1',1,'defs.h']]],
   ['pwrloss_5fdetection_5fenabled_25',['PWRLOSS_DETECTION_ENABLED',['../defs_8h.html#a70ae7656d68a5c5e6ce6f867d0652007',1,'defs.h']]],
   ['pwrloss_5fdetectioninit_26',['PWRLOSS_DetectionInit',['../pwrloss__det_8h.html#a640dcd500f29a2a077dbc83532cde9e5',1,'PWRLOSS_DetectionInit(void):&#160;pwrloss_det.c'],['../pwrloss__det_8c.html#a640dcd500f29a2a077dbc83532cde9e5',1,'PWRLOSS_DetectionInit(void):&#160;pwrloss_det.c']]],
-  ['pwrloss_5ftest_5fgpios_27',['PWRLOSS_TEST_GPIOS',['../defs_8h.html#aa3252ba28db7a402d73243c25da84a06',1,'defs.h']]]
+  ['pwrloss_5ftest_5fgpios_27',['PWRLOSS_TEST_GPIOS',['../defs_8h.html#aa3252ba28db7a402d73243c25da84a06',1,'defs.h']]],
+  ['pwrloss_5ftimer_5fprio_28',['PWRLOSS_TIMER_PRIO',['../defs_8h.html#a9833f31bb9cd2e701f52a6d805b76bad',1,'defs.h']]]
 ];

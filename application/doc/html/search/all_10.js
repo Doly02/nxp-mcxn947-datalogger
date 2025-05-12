@@ -1,7 +1,7 @@
 var searchData=
 [
   ['saturday_0',['SATURDAY',['../rtc__ds3231_8h.html#ab211cb1e7ca439c7d2c6cc675b0dcc88',1,'rtc_ds3231.h']]],
-  ['sdk_5falign_1',['SDK_ALIGN',['../group___recording.html#ga0139cb2c722dcb49d9d8aba34549b334',1,'SDK_ALIGN(static uint8_t g_pu8DmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE):&#160;record.c'],['../group___u_a_r_t.html#ga0f85dbf0cf3882e0ac219ed036b7e5df',1,'SDK_ALIGN(static volatile uint8_t g_au8CircBuffer[CIRCULAR_BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE):&#160;record.c']]],
+  ['sdk_5falign_1',['SDK_ALIGN',['../group___recording.html#ga1aa9629f7ba12059f55915fdfef8f6d7',1,'SDK_ALIGN(static uint8_t g_au8DmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE):&#160;record.c'],['../group___u_a_r_t.html#ga0f85dbf0cf3882e0ac219ed036b7e5df',1,'SDK_ALIGN(static volatile uint8_t g_au8CircBuffer[CIRCULAR_BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE):&#160;record.c']]],
   ['sec_2',['sec',['../struct_r_t_c__time__t.html#a4ecfa81bbb98bff8e267069bf097547d',1,'RTC_time_t']]],
   ['semihost_5fhardfault_2ec_3',['semihost_hardfault.c',['../semihost__hardfault_8c.html',1,'']]],
   ['sensor_5fdynamic_5faddr_4',['SENSOR_DYNAMIC_ADDR',['../temperature_8h.html#a40b4f22788a6584b24e4c85de488af5d',1,'temperature.h']]],

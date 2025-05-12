@@ -6,7 +6,7 @@ var rtc__ds3231_8c =
     [ "I2C_DATA_LENGTH", "rtc__ds3231_8c.html#a1d7cd4b7016538b77f3235ee3fcf06b3", null ],
     [ "OSF_STATE", "rtc__ds3231_8c.html#a33acbef8375c804a194e39ce12262c88", null ],
     [ "AT_NONCACHEABLE_SECTION", "rtc__ds3231_8c.html#ac8b71b782f019fcc2256073a817c48c7", null ],
-    [ "AT_NONCACHEABLE_SECTION", "rtc__ds3231_8c.html#a680f42be41e67e5e4cea9f6bc69d69f1", null ],
+    [ "AT_NONCACHEABLE_SECTION", "rtc__ds3231_8c.html#a6c52a80cd1bef716342dc62c4b4e3579", null ],
     [ "lpi2c_callback", "rtc__ds3231_8c.html#a038e5a1da8a787ae48b1e279cab6df55", null ],
     [ "RTC_ClearFlagAlarm1", "group___r_t_c.html#gaacb3e98a52f0d90ecd8affb36960cfc6", null ],
     [ "RTC_ClearFlagAlarm2", "group___r_t_c.html#ga2b8c5234e3d21ad10eb86b7a5b912dd3", null ],

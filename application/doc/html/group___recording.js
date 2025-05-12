@@ -1,6 +1,6 @@
 var group___recording =
 [
-    [ "SDK_ALIGN", "group___recording.html#ga0139cb2c722dcb49d9d8aba34549b334", null ],
+    [ "SDK_ALIGN", "group___recording.html#ga1aa9629f7ba12059f55915fdfef8f6d7", null ],
     [ "g_bBackDmaBufferReady", "group___recording.html#gae04fc0a92699c2a249e59d827e037af9", null ],
     [ "g_bFlushCompleted", "group___recording.html#gafff17b721dd91f02d491dd4823fa38bb", null ],
     [ "g_fileObject", "group___recording.html#ga6849136fb10da44df5884df6fc59588a", null ],

@@ -154,9 +154,12 @@ Macros</h2></td></tr>
 <tr class="memitem:a8f12c7ad5263aca7dc9115c3db453025" id="r_a8f12c7ad5263aca7dc9115c3db453025"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f12c7ad5263aca7dc9115c3db453025">UART_RECEIVE_PRIO</a>&#160;&#160;&#160;(6U)</td></tr>
 <tr class="memdesc:a8f12c7ad5263aca7dc9115c3db453025"><td class="mdescLeft">&#160;</td><td class="mdescRight">Priority of LP_FLEXCOMM Interrupt (UART) For Rx Of Recorded Data.  <br /></td></tr>
 <tr class="separator:a8f12c7ad5263aca7dc9115c3db453025"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb153985b953cf1557608f13fdbd74f1" id="r_adb153985b953cf1557608f13fdbd74f1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb153985b953cf1557608f13fdbd74f1">PWRLOSS_DET_PRIO</a>&#160;&#160;&#160;(7U)</td></tr>
+<tr class="memitem:adb153985b953cf1557608f13fdbd74f1" id="r_adb153985b953cf1557608f13fdbd74f1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb153985b953cf1557608f13fdbd74f1">PWRLOSS_DET_PRIO</a>&#160;&#160;&#160;(5U)</td></tr>
 <tr class="memdesc:adb153985b953cf1557608f13fdbd74f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Priority of Comparator Interrupt For Power Loss Detection.  <br /></td></tr>
 <tr class="separator:adb153985b953cf1557608f13fdbd74f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9833f31bb9cd2e701f52a6d805b76bad" id="r_a9833f31bb9cd2e701f52a6d805b76bad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9833f31bb9cd2e701f52a6d805b76bad">PWRLOSS_TIMER_PRIO</a>&#160;&#160;&#160;(7U)</td></tr>
+<tr class="memdesc:a9833f31bb9cd2e701f52a6d805b76bad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Priority of Comparator Interrupt For Power Loss Detection.  <br /></td></tr>
+<tr class="separator:a9833f31bb9cd2e701f52a6d805b76bad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d4e809715243195fc8b939c5d923aaa" id="r_a2d4e809715243195fc8b939c5d923aaa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d4e809715243195fc8b939c5d923aaa">TEMPERATURE_MEAS_ENABLED</a>&#160;&#160;&#160;(false)</td></tr>
 <tr class="memdesc:a2d4e809715243195fc8b939c5d923aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables/Disables Temperature Recording.  <br /></td></tr>
 <tr class="separator:a2d4e809715243195fc8b939c5d923aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -419,7 +422,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PWRLOSS_DET_PRIO&#160;&#160;&#160;(7U)</td>
+          <td class="memname">#define PWRLOSS_DET_PRIO&#160;&#160;&#160;(5U)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -457,6 +460,22 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enables/Disables GPIO For Testing Power Loss Detection. </p>
+
+</div>
+</div>
+<a id="a9833f31bb9cd2e701f52a6d805b76bad" name="a9833f31bb9cd2e701f52a6d805b76bad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9833f31bb9cd2e701f52a6d805b76bad">&#9670;&#160;</a></span>PWRLOSS_TIMER_PRIO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PWRLOSS_TIMER_PRIO&#160;&#160;&#160;(7U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Priority of Comparator Interrupt For Power Loss Detection. </p>
 
 </div>
 </div>

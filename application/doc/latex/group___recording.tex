@@ -8,7 +8,7 @@ Group Contains Variables For Management of Recording.
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{group___recording_ga0139cb2c722dcb49d9d8aba34549b334}{SDK\+\_\+\+ALIGN}} (static uint8\+\_\+t g\+\_\+pu8\+Dma\+Buffer1\mbox{[}\mbox{\hyperlink{record_8c_ad51ded0bbd705f02f73fc60c0b721ced}{BLOCK\+\_\+\+SIZE}}\mbox{]}, BOARD\+\_\+\+SDMMC\+\_\+\+DATA\+\_\+\+BUFFER\+\_\+\+ALIGN\+\_\+\+SIZE)
+\mbox{\hyperlink{group___recording_ga1aa9629f7ba12059f55915fdfef8f6d7}{SDK\+\_\+\+ALIGN}} (static uint8\+\_\+t g\+\_\+au8\+Dma\+Buffer1\mbox{[}\mbox{\hyperlink{record_8c_ad51ded0bbd705f02f73fc60c0b721ced}{BLOCK\+\_\+\+SIZE}}\mbox{]}, BOARD\+\_\+\+SDMMC\+\_\+\+DATA\+\_\+\+BUFFER\+\_\+\+ALIGN\+\_\+\+SIZE)
 \begin{DoxyCompactList}\small\item\em Buffer For Multi-\/\+Buffering -\/ In Particular Dual-\/\+Buffering, One Is Always Filled, The Other Is Processed. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -19,7 +19,7 @@ static FIL \mbox{\hyperlink{group___recording_ga6849136fb10da44df5884df6fc59588a
 \begin{DoxyCompactList}\small\item\em File Object. \end{DoxyCompactList}\item 
 static char \mbox{\hyperlink{group___recording_gac9f309262ccd3839f7daf0ba73be5005}{g\+\_\+u8\+Current\+Directory}} \mbox{[}32\mbox{]}
 \begin{DoxyCompactList}\small\item\em Name Of The Folder Where The Files (Logs) From The Current Session Are Stored. \end{DoxyCompactList}\item 
-static uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group___recording_gaac8be9babbe2654b3629e766c0b5e0b2}{g\+\_\+pu8\+Back\+Dma\+Buffer}} = g\+\_\+pu8\+Dma\+Buffer1
+static uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group___recording_gaac8be9babbe2654b3629e766c0b5e0b2}{g\+\_\+pu8\+Back\+Dma\+Buffer}} = g\+\_\+au8\+Dma\+Buffer1
 \begin{DoxyCompactList}\small\item\em Back Buffer Which Serves For Data Collection From Circular Buffer And Is Used For Data-\/\+Processing (Time Stamps Are Inserted To This Buffer). \end{DoxyCompactList}\item 
 static uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group___recording_ga6942269ddc23abb31caea237f570fc3e}{g\+\_\+pu8\+Front\+Dma\+Buffer}} = NULL
 \begin{DoxyCompactList}\small\item\em Front Buffer Which Serves For Storing Data Into SD Card. \end{DoxyCompactList}\item 
@@ -45,11 +45,11 @@ Group Contains Variables For Management of Recording.
 Includes DMA Buffers For Recording, Indexes, Pointers, ... 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{group___recording_ga0139cb2c722dcb49d9d8aba34549b334}\index{Buffers and Recording Management@{Buffers and Recording Management}!SDK\_ALIGN@{SDK\_ALIGN}}
+\Hypertarget{group___recording_ga1aa9629f7ba12059f55915fdfef8f6d7}\index{Buffers and Recording Management@{Buffers and Recording Management}!SDK\_ALIGN@{SDK\_ALIGN}}
 \index{SDK\_ALIGN@{SDK\_ALIGN}!Buffers and Recording Management@{Buffers and Recording Management}}
 \doxysubsubsection{\texorpdfstring{SDK\_ALIGN()}{SDK\_ALIGN()}}
-{\footnotesize\ttfamily \label{group___recording_ga0139cb2c722dcb49d9d8aba34549b334} 
-SDK\+\_\+\+ALIGN (\begin{DoxyParamCaption}\item[{static uint8\+\_\+t}]{g\+\_\+pu8\+Dma\+Buffer1}{\mbox{[}\+BLOCK\+\_\+\+SIZE\mbox{]}, }\item[{BOARD\+\_\+\+SDMMC\+\_\+\+DATA\+\_\+\+BUFFER\+\_\+\+ALIGN\+\_\+\+SIZE}]{}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{group___recording_ga1aa9629f7ba12059f55915fdfef8f6d7} 
+SDK\+\_\+\+ALIGN (\begin{DoxyParamCaption}\item[{static uint8\+\_\+t}]{g\+\_\+au8\+Dma\+Buffer1}{\mbox{[}\+BLOCK\+\_\+\+SIZE\mbox{]}, }\item[{BOARD\+\_\+\+SDMMC\+\_\+\+DATA\+\_\+\+BUFFER\+\_\+\+ALIGN\+\_\+\+SIZE}]{}{}\end{DoxyParamCaption})}
 
 
 
@@ -112,7 +112,7 @@ Value of Ticks When Last Character Was Received Thru LPUART.
 \index{g\_pu8BackDmaBuffer@{g\_pu8BackDmaBuffer}!Buffers and Recording Management@{Buffers and Recording Management}}
 \doxysubsubsection{\texorpdfstring{g\_pu8BackDmaBuffer}{g\_pu8BackDmaBuffer}}
 {\footnotesize\ttfamily \label{group___recording_gaac8be9babbe2654b3629e766c0b5e0b2} 
-uint8\+\_\+t\texorpdfstring{$\ast$}{*} g\+\_\+pu8\+Back\+Dma\+Buffer = g\+\_\+pu8\+Dma\+Buffer1\hspace{0.3cm}{\ttfamily [static]}}
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} g\+\_\+pu8\+Back\+Dma\+Buffer = g\+\_\+au8\+Dma\+Buffer1\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
