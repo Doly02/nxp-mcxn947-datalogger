@@ -3,7 +3,7 @@
  *  File Name:      init.c
  *  Author:         Tomas Dolak
  *  Date:           31.03.2025
- *  Description:    Implements Datalogger Application.
+ *  Description:    Implements Data Logger Initialization Phase.
  *
  * ****************************/
 
@@ -12,7 +12,7 @@
  *  @file           init.c
  *  @author         Tomas Dolak
  *  @date           31.03.2025
- *  @brief          Implements Datalogger Application.
+ *  @brief          Implements Data Logger Initialization Phase.
  * ****************************/
 
 /*******************************************************************************

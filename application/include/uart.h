@@ -42,7 +42,7 @@
  ******************************************************************************/
 
 /**
- * @brief 		Initializes LPUART7 For Recording.
+ * @brief 		Initializes LPUART For Recording.
  */
 void UART_Init(uint32_t baudrate);
 

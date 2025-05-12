@@ -31,7 +31,7 @@
  * Global Definitions
  ******************************************************************************/
 
-/*
+/**
  * @brief I2C Definitions.
  */
 #define LPI2C_DMA_BASEADDR 	(DMA0)
@@ -40,7 +40,7 @@
  * Prototypes
  ******************************************************************************/
 
-/*
+/**
  * @brief 	Initialize Internal And External Real-Time Circuits And Passes Timestamp
  * 			Information From The External To The Internal.
  */

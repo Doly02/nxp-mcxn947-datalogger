@@ -82,16 +82,16 @@
 #define PWRLOSS_TEST_GPIOS			(false)
 
 /**
- * @brief 	Constant Tau, When Back-Up Power Capacitor is Charged To 99%.
+ * @brief 	Constant 5 Tau, When Back-Up Power Capacitor is Charged To 99%.
  * @details In Seconds (It's Actualy 16s).
  */
-#define TAU							16UL
+#define TAU5						16UL
 
 /**
  * @brief 	Time Interval When Power Loss Detection Became Active.
  * @details	In Seconds.
  */
-#define PWRLOSS_DET_ACTIVE_IN_TIME	TAU
+#define PWRLOSS_DET_ACTIVE_IN_TIME	TAU5
 
 /**
  * @brief Priority of LP_FLEXCOMM Interrupt (UART) For Rx Of Recorded Data.

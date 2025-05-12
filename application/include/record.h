@@ -93,6 +93,7 @@ uint32_t CONSOLELOG_GetTransferedBytes(void);
  * @return		If Recording Is Ongoing That Return False.
  */
 bool CONSOLELOG_GetFlushCompleted(void);
+
 /**
  * @brief 		Clears Currently Received Bytes After LED Blinking.
  */

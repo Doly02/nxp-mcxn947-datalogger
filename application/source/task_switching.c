@@ -3,7 +3,7 @@
  *  File Name:      task_switching.c
  *  Author:         Tomas Dolak
  *  Date:           14.09.2024
- *  Description:    Includes Implementation of Task For FreeRTOS.
+ *  Description:    Includes Implementation of Task Switching (Record / USB Mass Storage).
  *
  * ****************************/
 
@@ -12,7 +12,7 @@
  *  @file           task_switching.c
  *  @author         Tomas Dolak
  *  @date           14.09.2024
- *  @brief          Includes Implementation of Task For FreeRTOS.
+ *  @brief          Includes Implementation of Task Switching (Record / USB Mass Storage).
  * ****************************/
 
 /*******************************************************************************

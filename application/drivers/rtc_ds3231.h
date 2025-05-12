@@ -30,6 +30,13 @@
  * @brief 	General Error Return Code.
  */
 #define E_FAULT 					1
+
+/**
+ * @brief 	Return Value If Operation Succeeded.
+ */
+#define APP_SUCCESS					0
+
+
 /**
  * @brief 	I2C DMA Channel For Transmission.
  */
@@ -55,74 +62,77 @@
  */
 #define I2C_MASTER 					((LPI2C_Type *)LPI2C2_BASE)
 
-/*
+/**
  * @brief Alarm Interrupt Enable Bits.
  */
-#define DS3231_A1IE				(0x00u)
-#define DS3231_A2IE				(0x1u)
-/*
+#define DS3231_A1IE					(0x00u)
+#define DS3231_A2IE					(0x1u)
+/**
  * @brief Interrupt Control Bit.
  */
-#define DS3231_INTCN			(0x2u)
-/*
+#define DS3231_INTCN				(0x2u)
+/**
  * @brief 	Alarm 1 & Alarm 2 Flags.
  * @details A Logic 1 in The Alarm 'x' Flag Bit Indicates That The Time Matched The Alarm 'x' Registers.
  */
-#define DS3231_A1F				(0x0u)
-#define DS3231_A2F				(0x1u)
+#define DS3231_A1F					(0x0u)
+#define DS3231_A2F					(0x1u)
 
-#define ALARM_DISABLED			(0x0u)
-/*
+#define ALARM_DISABLED				(0x0u)
+/**
  * @brief Indicates That Oscillator Has Stopped & Time Has To Updated.
  */
-#define OSC_STOPPED				(0x00u)
+#define OSC_STOPPED					(0x00u)
 
-/*
+/**
  * @brief Registers Addresses of DS3231.
  */
-#define DS3231_ADDR_SEC			(0x00U)
-#define DS3231_ADDR_MIN			(0x01U)
-#define DS3231_ADDR_HRS			(0x02U)
-#define DS3231_ADDR_DAY			(0x03U)
+#define DS3231_ADDR_SEC				(0x00U)		/**< Seconds Register 		*/
+#define DS3231_ADDR_MIN				(0x01U) 	/**< Minutes Register 		*/
+#define DS3231_ADDR_HRS				(0x02U) 	/**< Hours Register 		*/
+#define DS3231_ADDR_DAY				(0x03U) 	/**< Day of Week rRegister 	*/
 
-#define DS3231_ADDR_DATE		(0x04U)
-#define DS3231_ADDR_MONTH		(0x05U)
-#define DS3231_ADDR_YEAR		(0x06U)
-#define DS3231_ADDR_CENT		(0x07U)
-/*
+#define DS3231_ADDR_DATE			(0x04U) 	/**< Day of Month Register 	*/
+#define DS3231_ADDR_MONTH			(0x05U) 	/**< Month Register 		*/
+#define DS3231_ADDR_YEAR			(0x06U) 	/**< Year Register 			*/
+#define DS3231_ADDR_CENT			(0x07U) 	/**< Century Flag Bit 		*/
+
+/**
  * @brief Address of Status Register.
  */
-#define DS3231_REG_STATUS		(0x0Fu)
-/*
+#define DS3231_REG_STATUS			(0x0Fu)
+/**
  * @brief Address of Control Register.
  */
 
-#define DS3231_REG_CTRL 		(0x0Eu)
-/*
+#define DS3231_REG_CTRL 			(0x0Eu)
+/**
  * @brief Address of I2C Slave.
  */
-#define DS3231_ADDR_I2C			(0x68U)	//<! The Slave Address Byte Contains In 7-bit: 1101000
+#define DS3231_ADDR_I2C				(0x68U)	//<! The Slave Address Byte Contains In 7-bit: 1101000
 
-/*
- * @brief Definition of Dates.
+/**
+ * @brief 	Definition of Dates.
+ * @details From Sunday (0x1) To Saturday (0x7).
  */
-#define SUNDAY					(0x1)
-#define MONDAY					(0x2)
-#define TUESDAY					(0x3)
-#define WEDNESDAY				(0x4)
-#define THURSDAY				(0x5)
-#define FRIDAY					(0x6)
-#define SATURDAY				(0x7)
+#define SUNDAY						(0x1) 	/**< Sunday 		*/
+#define MONDAY						(0x2) 	/**< Monday 		*/
+#define TUESDAY						(0x3) 	/**< Tuesday 		*/
+#define WEDNESDAY					(0x4) 	/**< Wednesday 	*/
+#define THURSDAY					(0x5) 	/**< Thursday 	*/
+#define FRIDAY						(0x6) 	/**< Friday 		*/
+#define SATURDAY					(0x7) 	/**< Saturday 	*/
 
-/*
+/**
  * @brief Definitions For Time Format Handling.
  */
-#define TIM_CYCLE_12H			(0x0)
-#define TIM_CYCLE_12H_AM		(0x0)
-#define TIM_CYCLE_12H_PM		(0x1)
-#define TIM_CYCLE_24H			(0x2)
+#define TIM_CYCLE_12H				(0x0) 	/**< 12-Hour Format */
+#define TIM_CYCLE_12H_AM			(0x0)	/**< AM in 12-Hour Mode */
+#define TIM_CYCLE_12H_PM			(0x1)	/**< PM in 12-Hour Mode */
+#define TIM_CYCLE_24H				(0x2)	/**< 24-Hour Format */
 
-/*
+
+/**
  * @brief Application Configurable Items.
  */
 
@@ -133,8 +143,6 @@
  */
 #define I2C_BAUDRATE               	100000U
 
-
-#define APP_SUCCESS					0
 /*******************************************************************************
  * Structures
  ******************************************************************************/
@@ -144,9 +152,9 @@
 typedef struct
 {
 	uint8_t format;		/**< Time Format (e.g. AM/PM or 24H Cycle)				*/
-	uint8_t sec;		/**< Seconds 0..60										*/
-	uint8_t min;		/**< Minutes 0..60										*/
-	uint8_t hrs;		/**< Hours 0..12/0..24 Based on Parameter Time Format 	*/
+	uint8_t sec;		/**< Seconds (0..60)									*/
+	uint8_t min;		/**< Minutes (0..60)									*/
+	uint8_t hrs;		/**< Hours (0..12/0..24 Based on Parameter Time Format)	*/
 
 } RTC_time_t;
 
@@ -155,10 +163,10 @@ typedef struct
  */
 typedef struct
 {
-	uint8_t date;		/**< Day 1..31					*/
-	uint8_t day;		/**< Day 1..7					*/
-	uint8_t month;		/**< Month 1..12				*/
-	uint8_t year;		/**< Year From Base Year 2000 	*/
+	uint8_t date;		/**< Date (1 [SUNDAY] .. 31 [SATURDAY])		*/
+	uint8_t day;		/**< Day (1..7)								*/
+	uint8_t month;		/**< Month (1..12)							*/
+	uint8_t year;		/**< Year (From Base Year 2000)				*/
 
 } RTC_date_t;
 

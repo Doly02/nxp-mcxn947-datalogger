@@ -16,19 +16,30 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+/**
+ * @brief Length of I2C Rx Buffer.
+ */
 #define I2C_DATA_LENGTH            	(2) /* MAX is 256 */
 
 /*
  * @brief Other Definitions.
  */
-#define BYTE_1						(0U)
-#define BYTE_2						(1U)
-#define CLK_STATE(x)				(uint8_t)((x >> 7) & 0x1)
+
 /*
- * @brief 	OSF Bit (Oscillator Stop Flag) Indicates Whether The Oscillator Has Stopped.
- * 			If The Oscillator Has Stopped THe OSF Bit is Set To 1.
+ * @brief First Byte.
  */
-#define OSF_STATE(x)
+#define BYTE_1						(0U)
+
+/*
+ * @brief Seconds Byte.
+ */
+#define BYTE_2						(1U)
+
+/*
+ * @brief 	Returns The State of Internal Oscillator of DS3231.
+ * @details OK / Oscillator Has Been Stop.
+ */
+#define CLK_STATE(x)				(uint8_t)((x >> 7) & 0x1)
 
 /*******************************************************************************
  * Global Variables.
@@ -39,6 +50,10 @@
  */
 AT_NONCACHEABLE_SECTION(uint8_t g_aRxBuff[I2C_DATA_LENGTH]);
 
+/**
+ * @brief	Transmission Buffer.
+ * @details	Must Be In Non-Cacheable Memory Due To Usage of DMA.
+ */
 AT_NONCACHEABLE_SECTION(uint8_t gTxBuff[I2C_DATA_LENGTH]);
 
 /**
@@ -61,6 +76,10 @@ edma_handle_t gEdmaRxHandle;
  */
 volatile bool gCompletionFlag 	= false;
 
+/**
+ * @brief   Transfer Descriptor for I2C Communication.
+ * @details Used to Configure and Execute Data Transfer Operations With The DS3231 via LPI2C using EDMA.
+ */
 lpi2c_master_transfer_t xfer 	= {0};
 /*******************************************************************************
  * Callback Functions
@@ -81,6 +100,7 @@ uint8_t RTC_Init(void)
     lpi2c_master_config_t masterCfg;
     edma_config_t userCfg;
     status_t retVal = kStatus_Fail;
+
     /**
      * enableRoundRobinArbitration = false;
      * enableHaltOnError = true;

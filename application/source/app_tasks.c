@@ -3,7 +3,7 @@
  *  File Name:      tasks.c
  *  Author:         Tomas Dolak
  *  Date:           14.09.2024
- *  Description:    Includes Implementation of Task For FreeRTOS.
+ *  Description:    Includes Implementation of FreeRTOS Task.
  *
  * ****************************/
 
@@ -12,7 +12,7 @@
  *  @file           tasks.c
  *  @author         Tomas Dolak
  *  @date           14.09.2024
- *  @brief          Includes Implementation of Task For FreeRTOS.
+ *  @brief          Includes Implementation of FreeRTOS Task.
  * ****************************/
 
 /*******************************************************************************

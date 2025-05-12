@@ -34,7 +34,7 @@
  * @brief 	Trigger Voltage.
  * @details 2.91V
  */
-#define TRIGGER_VOLTAGE		0xE1u
+#define TRIGGER_VOLTAGE		0xE1
 
 /*******************************************************************************
  * Global Variables
@@ -79,9 +79,12 @@ void CTIMER4_IRQHandler(void)
 
     /* Enable the interrupt. */
 	(void)IRQ_ClearPendingIRQ(HSCMP1_IRQn);
-    (void)EnableIRQ(HSCMP1_IRQn);
-    LPCMP_EnableInterrupts(CMP1, (uint32_t)kLPCMP_OutputFallingInterruptEnable);
+	LPCMP_ClearStatusFlags(CMP1, (uint32_t)(kLPCMP_OutputRisingEventFlag | kLPCMP_OutputFallingEventFlag));
 
+	LPCMP_EnableInterrupts(CMP1, (uint32_t)kLPCMP_OutputFallingInterruptEnable);
+//    (void)IRQ_ClearPendingIRQ(HSCMP1_IRQn);
+
+    (void)EnableIRQWithPriority(HSCMP1_IRQn, PWRLOSS_DET_PRIO);
 }
 /*lint +e957 */
 
@@ -96,7 +99,7 @@ void CTIMER4_IRQHandler(void)
  */
 void HSCMP1_IRQHandler(void)
 {
-	LPCMP_ClearStatusFlags(DEMO_LPCMP_BASE, (uint32_t)kLPCMP_OutputFallingEventFlag);
+	LPCMP_ClearStatusFlags(LPCMP_BASE, (uint32_t)kLPCMP_OutputFallingEventFlag);
 
 
 	UART_Disable();						/* Disable Character Reception			*/
@@ -135,7 +138,7 @@ void PWRLOSS_DetectionInit(void)
      * in The Provided NXP SDK, and are Intended to Be Combined Using Bitwise OR.
      */
     /*lint -e9027 -e655 -e641 */
-    SPC_EnableActiveModeAnalogModules(DEMO_SPC_BASE, (uint32_t)(kSPC_controlCmp1 | kSPC_controlCmp1Dac));
+    SPC_EnableActiveModeAnalogModules(SPC_BASE, (uint32_t)(kSPC_controlCmp1 | kSPC_controlCmp1Dac));
     /*lint +e9027 +e655 +e641 */
 
     mLpcmpCfg.enableOutputPin     = false;
@@ -147,22 +150,22 @@ void PWRLOSS_DetectionInit(void)
     mLpcmpCfg.hysteresisMode = kLPCMP_HysteresisLevel2;
 
     /* Init the LPCMP module. */
-    LPCMP_Init(CMP1, &mLpcmpCfg);
+    LPCMP_Init(LPCMP_BASE, &mLpcmpCfg);
 
     /* Configure the internal DAC to output half of reference voltage. */
     mLpcmpDacConfigStruct.enableLowPowerMode		= false;
     mLpcmpDacConfigStruct.referenceVoltageSource	= kLPCMP_VrefSourceVin1;
-    mLpcmpDacConfigStruct.DACValue					= 0xE1;
-    LPCMP_SetDACConfig(DEMO_LPCMP_BASE, &mLpcmpDacConfigStruct);
+    mLpcmpDacConfigStruct.DACValue					= TRIGGER_VOLTAGE;
+    LPCMP_SetDACConfig(LPCMP_BASE, &mLpcmpDacConfigStruct);
 
     /* Configure LPCMP input channels. */
-    LPCMP_SetInputChannels(CMP1, 0x02, 0x07);
+    LPCMP_SetInputChannels(LPCMP_BASE, LPCMP_USER_CHANNEL, LPCMP_DAC_CHANNEL);
 
     CTIMER_GetDefaultConfig(&config);
 
     CTIMER_Init(CTIMER, &config);
 
-    u32TimerClkFreq = CLOCK_GetCTimerClkFreq(4U);
+    u32TimerClkFreq = CTIMER_CLK_FREQ;
     u32Match = (u32TimerClkFreq * PWRLOSS_DET_ACTIVE_IN_TIME);	/* 25 Seconds*/
 
     /* Configuration 0 */
@@ -173,12 +176,6 @@ void PWRLOSS_DetectionInit(void)
     matchConfig0.outPinInitState    = false;
     matchConfig0.enableInterrupt    = true;
 
-    /*
-     * Macros CTIMER_MAT0_OUT and CTIMER_MAT1_OUT are nominal match output, instead of
-     * hardware MR0 and MR1 register match output.
-     * So CTIMER_MAT0_OUT can be defined as kCTIMER_Match_1, CTIMER_MAT1_OUT can be defined
-     * as kCTIMER_Match_3, which means they are MR1 and MR3 register match output.
-     */
     CTIMER_SetupMatch(CTIMER, CTIMER_MAT0_OUT, &matchConfig0);
 
     (void)EnableIRQWithPriority(CTIMER4_IRQn, PWRLOSS_TIMER_PRIO);
