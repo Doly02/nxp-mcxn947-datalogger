@@ -104,29 +104,29 @@
  * @brief	Reception Buffer.
  * @details	Must Be In Non-Cacheable Memory Due To Usage of DMA.
  */
-AT_NONCACHEABLE_SECTION(static uint8_t gRxBuff_I2C5[BUFF_SIZE]);
+AT_NONCACHEABLE_SECTION(static uint8_t g_aRxBuff_I2C5[BUFF_SIZE]);
 
 /**
  * @brief	eDMA Driver Handle Used For Non-Blocking DMA Transfer.
  */
-AT_NONCACHEABLE_SECTION(static lpi2c_master_edma_handle_t gEdmaHandle_I2C5);
+AT_NONCACHEABLE_SECTION(static lpi2c_master_edma_handle_t g_EdmaHandle_I2C5);
 
 /**
  * @brief	Tx eDMA Handle.
  */
-static edma_handle_t gEdmaTxHandle_I2C5;
+static edma_handle_t g_EdmaTxHandle_I2C5;
 
 /**
  * @brief	Rx eDMA Handle.
  */
-static edma_handle_t gEdmaRxHandle_I2C5;
+static edma_handle_t g_EdmaRxHandle_I2C5;
 
 /**
  * @brief	Flag Indicating Whether The Transfer Has Finished.
  */
 static volatile bool g_bCompletionFlag_I2C5 	= false;
 
-static lpi2c_master_transfer_t xfer_I2C5 	= {0};
+static lpi2c_master_transfer_t g_Xfer_I2C5 	= {0};
 
 /*******************************************************************************
  * Callback Functions
@@ -170,15 +170,15 @@ uint8_t Write(uint8_t regAddress, uint8_t val[])
 {
 	status_t status 			 = 1;
 
-    xfer_I2C5.slaveAddress   = P3T1755_ADDR_7BIT;						/* Slave Address			*/
-    xfer_I2C5.direction      = kLPI2C_Write;							/* Direction (Read/Write)	*/
-    xfer_I2C5.subaddressSize = 0;										/* Sub-Address Size 		*/
-    xfer_I2C5.data           = val;										/* Transmitted Data			*/
-    xfer_I2C5.dataSize       = 1;										/* Size of Transmitted Data	*/
-    xfer_I2C5.flags          = (uint32_t)kLPI2C_TransferDefaultFlag;	/* Flags (e.g. Stop Flag) 	*/
+    g_Xfer_I2C5.slaveAddress   = P3T1755_ADDR_7BIT;						/* Slave Address			*/
+    g_Xfer_I2C5.direction      = kLPI2C_Write;							/* Direction (Read/Write)	*/
+    g_Xfer_I2C5.subaddressSize = 0;										/* Sub-Address Size 		*/
+    g_Xfer_I2C5.data           = val;										/* Transmitted Data			*/
+    g_Xfer_I2C5.dataSize       = 1;										/* Size of Transmitted Data	*/
+    g_Xfer_I2C5.flags          = (uint32_t)kLPI2C_TransferDefaultFlag;	/* Flags (e.g. Stop Flag) 	*/
 
     /* Send Data To Slave */
-    status = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &xfer_I2C5);
+    status = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &g_EdmaHandle_I2C5, &g_Xfer_I2C5);
     if (kStatus_Success != status)
     {
         return (0xFF);
@@ -198,15 +198,15 @@ uint16_t Read(uint8_t regAddress)
 	uint16_t u16rxVal		 = 0;
 	status_t status 		 = 1;
 
-	xfer_I2C5.slaveAddress   = P3T1755_ADDR_7BIT;						/* Slave Address			*/
-	xfer_I2C5.direction      = kLPI2C_Read;								/* Direction (Read/Write)	*/
-	xfer_I2C5.subaddressSize = 0;										/* Sub-Address Size 		*/
-	xfer_I2C5.data           = gRxBuff_I2C5;							/* Transmitted Data			*/
-	xfer_I2C5.dataSize       = 2;										/* Size of Transmitted Data	*/
-	xfer_I2C5.flags          = (uint32_t)kLPI2C_TransferDefaultFlag;	/* Flags (e.g. Stop Flag) 	*/
+	g_Xfer_I2C5.slaveAddress   = P3T1755_ADDR_7BIT;						/* Slave Address			*/
+	g_Xfer_I2C5.direction      = kLPI2C_Read;								/* Direction (Read/Write)	*/
+	g_Xfer_I2C5.subaddressSize = 0;										/* Sub-Address Size 		*/
+	g_Xfer_I2C5.data           = g_aRxBuff_I2C5;							/* Transmitted Data			*/
+	g_Xfer_I2C5.dataSize       = 2;										/* Size of Transmitted Data	*/
+	g_Xfer_I2C5.flags          = (uint32_t)kLPI2C_TransferDefaultFlag;	/* Flags (e.g. Stop Flag) 	*/
 
     /* Receive non-blocking data from slave */
-	status = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &xfer_I2C5);
+	status = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &g_EdmaHandle_I2C5, &g_Xfer_I2C5);
     if (kStatus_Success != status)
     {
         return (0xFFFF);
@@ -219,7 +219,7 @@ uint16_t Read(uint8_t regAddress)
 
     g_bCompletionFlag_I2C5 = false;							// Reset
 
-    u16rxVal = (((uint16_t)gRxBuff_I2C5[0]) << 8 | gRxBuff_I2C5[1]);
+    u16rxVal = (((uint16_t)g_aRxBuff_I2C5[0]) << 8 | g_aRxBuff_I2C5[1]);
     return u16rxVal;
 }
 
@@ -254,13 +254,13 @@ uint8_t TMP_Init(void)
     LPI2C_MasterInit(I2C_MASTER_I2C5, &masterCfg, CLOCK_GetLPFlexCommClkFreq(5u));
 
     /* Create The EDMA Channel Handles */
-    EDMA_CreateHandle(&gEdmaTxHandle_I2C5, DMA1, LPI2C_TX_DMA_CHANNEL);
-    EDMA_CreateHandle(&gEdmaRxHandle_I2C5, DMA1, LPI2C_RX_DMA_CHANNEL);
+    EDMA_CreateHandle(&g_EdmaTxHandle_I2C5, DMA1, LPI2C_TX_DMA_CHANNEL);
+    EDMA_CreateHandle(&g_EdmaRxHandle_I2C5, DMA1, LPI2C_RX_DMA_CHANNEL);
     EDMA_SetChannelMux(DMA1, LPI2C_TX_DMA_CHANNEL, LPI2C_TX_CHANNEL);
     EDMA_SetChannelMux(DMA1, LPI2C_RX_DMA_CHANNEL, LPI2C_RX_EDMA_CHANNEL);
 
     /* Create LPI2C Master DMA Driver Handle */
-    LPI2C_MasterCreateEDMAHandle(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &gEdmaRxHandle_I2C5, &gEdmaTxHandle_I2C5,
+    LPI2C_MasterCreateEDMAHandle(I2C_MASTER_I2C5, &g_EdmaHandle_I2C5, &g_EdmaRxHandle_I2C5, &g_EdmaTxHandle_I2C5,
                                  lpi2c_callback, NULL);
 
 

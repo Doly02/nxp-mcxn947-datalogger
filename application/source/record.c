@@ -84,7 +84,7 @@ static char g_u8CurrentDirectory[32];
  * 			Data Buffer Address Align Value. At The Same Time Buffer Address/Size Should Be Aligned To The Cache
  * 			Line Size.
  */
-SDK_ALIGN(static uint8_t g_pu8DmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+SDK_ALIGN(static uint8_t g_au8DmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
 /**
  * @brief 	Buffer For Multi-Buffering - In Particular Dual-Buffering,
@@ -94,13 +94,13 @@ SDK_ALIGN(static uint8_t g_pu8DmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_AL
  * 			Data Buffer Address Align Value. At The Same Time Buffer Address/Size Should Be Aligned To The Cache
  * 			Line Size.
  */
-SDK_ALIGN(static uint8_t g_pu8DmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+SDK_ALIGN(static uint8_t g_au8DmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
 
 /**
  * @brief 	Back Buffer Which Serves For Data Collection From Circular Buffer
  * 			And Is Used For Data-Processing (Time Stamps Are Inserted To This Buffer).
  */
-static uint8_t* g_pu8BackDmaBuffer 		= g_pu8DmaBuffer1;
+static uint8_t* g_pu8BackDmaBuffer 		= g_au8DmaBuffer1;
 
 /**
  * @brief 	Front Buffer Which Serves For Storing Data Into SD Card.
@@ -502,7 +502,7 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
                 	g_pu8FrontDmaBuffer = g_pu8BackDmaBuffer;
                 	g_bBackDmaBufferReady = true;
 
-                	g_pu8BackDmaBuffer = (g_pu8BackDmaBuffer == g_pu8DmaBuffer1) ? g_pu8DmaBuffer2 : g_pu8DmaBuffer1;
+                	g_pu8BackDmaBuffer = (g_pu8BackDmaBuffer == g_au8DmaBuffer1) ? g_au8DmaBuffer2 : g_au8DmaBuffer1;
                     g_u16BackDmaBufferIdx = 0;
 
                     /* Continue in Addition of Time Mark */
@@ -520,7 +520,7 @@ error_t CONSOLELOG_Recording(uint32_t file_size)
         	g_bBackDmaBufferReady = true;
 
             /* Switch on Next DMA Buffer */
-        	g_pu8BackDmaBuffer = (g_pu8BackDmaBuffer == g_pu8DmaBuffer1) ? g_pu8DmaBuffer2 : g_pu8DmaBuffer1;
+        	g_pu8BackDmaBuffer = (g_pu8BackDmaBuffer == g_au8DmaBuffer1) ? g_au8DmaBuffer2 : g_au8DmaBuffer1;
             g_u16BackDmaBufferIdx = 0;
         }
     }
@@ -614,7 +614,7 @@ error_t CONSOLELOG_Flush(void)
 		g_bBackDmaBufferReady 	= true;
 
 		// Switch To Second Buffer
-		g_pu8BackDmaBuffer 	= (g_pu8BackDmaBuffer == g_pu8DmaBuffer1) ? g_pu8DmaBuffer2 : g_pu8DmaBuffer1;
+		g_pu8BackDmaBuffer 	= (g_pu8BackDmaBuffer == g_au8DmaBuffer1) ? g_au8DmaBuffer2 : g_au8DmaBuffer1;
 		g_u16BackDmaBufferIdx	= 0;
 
 		if (NULL == g_fileObject.obj.fs)
@@ -703,7 +703,7 @@ error_t CONSOLELOG_PowerLossFlush(void)
 		g_bBackDmaBufferReady 	= true;
 
 		// Switch To Second Buffer
-		g_pu8BackDmaBuffer 	= (g_pu8BackDmaBuffer == g_pu8DmaBuffer1) ? g_pu8DmaBuffer2 : g_pu8DmaBuffer1;
+		g_pu8BackDmaBuffer 	= (g_pu8BackDmaBuffer == g_au8DmaBuffer1) ? g_au8DmaBuffer2 : g_au8DmaBuffer1;
 		g_u16BackDmaBufferIdx	= 0;
 
 		if (NULL == g_fileObject.obj.fs)
@@ -833,8 +833,8 @@ error_t CONSOLELOG_ReadConfig(void)
     				(void)f_closedir(&dir); 	// Close Root Directory
 					return ERROR_OPEN;
 				}
-    			(void)memset(g_pu8DmaBuffer1, 0, sizeof(g_pu8DmaBuffer1));
-    			error = f_read(&configFile, g_pu8DmaBuffer1, sizeof(g_pu8DmaBuffer1) - 1UL, &bytesRead);
+    			(void)memset(g_au8DmaBuffer1, 0, sizeof(g_au8DmaBuffer1));
+    			error = f_read(&configFile, g_au8DmaBuffer1, sizeof(g_au8DmaBuffer1) - 1UL, &bytesRead);
 				if (FR_OK != error)
 				{
 #if (CONTROL_LED_ENABLED == true)
@@ -847,7 +847,7 @@ error_t CONSOLELOG_ReadConfig(void)
 					return ERROR_READ;
 				}
 
-				if (ERROR_NONE != CONSOLELOG_ProccessConfigFile((const char *)g_pu8DmaBuffer1))
+				if (ERROR_NONE != CONSOLELOG_ProccessConfigFile((const char *)g_au8DmaBuffer1))
 				{
 #if (CONTROL_LED_ENABLED == true)
 					LED_SignalError();

@@ -37,7 +37,7 @@
  * @brief	Reception Buffer.
  * @details	Must Be In Non-Cacheable Memory Due To Usage of DMA.
  */
-AT_NONCACHEABLE_SECTION(uint8_t gRxBuff[I2C_DATA_LENGTH]);
+AT_NONCACHEABLE_SECTION(uint8_t g_aRxBuff[I2C_DATA_LENGTH]);
 
 AT_NONCACHEABLE_SECTION(uint8_t gTxBuff[I2C_DATA_LENGTH]);
 
@@ -262,7 +262,7 @@ uint8_t RTC_Read(uint8_t regAddress)
 	xfer.slaveAddress   = DS3231_ADDR_I2C;				/* Slave Address			*/
 	xfer.direction      = kLPI2C_Read;					/* Direction (Read/Write)	*/
 	xfer.subaddressSize = 0;							/* Sub-Address Size 		*/
-	xfer.data           = gRxBuff;						/* Transmitted Data			*/
+	xfer.data           = g_aRxBuff;						/* Transmitted Data			*/
 	xfer.dataSize       = 1;							/* Size of Transmitted Data	*/
 	xfer.flags          = kLPI2C_TransferDefaultFlag;	/* Flags (e.g. Stop Flag) 	*/
 
@@ -280,7 +280,7 @@ uint8_t RTC_Read(uint8_t regAddress)
 
     gCompletionFlag = false;							// Reset
 
-	rxVal = (gRxBuff[0]);
+	rxVal = (g_aRxBuff[0]);
     return rxVal;
 }
 
