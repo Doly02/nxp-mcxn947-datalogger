@@ -19,7 +19,7 @@ var defs_8h =
     [ "PWRLOSS_TEST_GPIOS", "defs_8h.html#aa3252ba28db7a402d73243c25da84a06", null ],
     [ "PWRLOSS_TIMER_PRIO", "defs_8h.html#a9833f31bb9cd2e701f52a6d805b76bad", null ],
     [ "RECORD_STACK_SIZE", "defs_8h.html#a596e2563f1ece6b4d9a86d20455183a1", null ],
-    [ "TAU", "defs_8h.html#a3d8c9c145887af5174ba4cc6789862ad", null ],
+    [ "TAU5", "defs_8h.html#a4a49c87e19c04996c7a1e35606802798", null ],
     [ "TEMPERATURE_MEAS_ENABLED", "defs_8h.html#a2d4e809715243195fc8b939c5d923aaa", null ],
     [ "UART_FIFO_ENABLED", "defs_8h.html#afce4b642de5f6181c410f35cffb92cfe", null ],
     [ "UART_FIFO_LENGHT", "defs_8h.html#a2cc80d434c5fb494b9c88cd7775f6059", null ],

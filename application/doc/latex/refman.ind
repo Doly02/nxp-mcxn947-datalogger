@@ -179,7 +179,7 @@
     \subitem {PWRLOSS\_TEST\_GPIOS}, \hyperpage{44}
     \subitem {PWRLOSS\_TIMER\_PRIO}, \hyperpage{45}
     \subitem {RECORD\_STACK\_SIZE}, \hyperpage{45}
-    \subitem {TAU}, \hyperpage{45}
+    \subitem {TAU5}, \hyperpage{45}
     \subitem {TEMPERATURE\_MEAS\_ENABLED}, \hyperpage{45}
     \subitem {UART\_FIFO\_ENABLED}, \hyperpage{45}
     \subitem {UART\_FIFO\_LENGHT}, \hyperpage{45}
@@ -962,7 +962,7 @@
   \item {task\_switching.h}
     \subitem {g\_msc}, \hyperpage{74}
     \subitem {USB\_State}, \hyperpage{74}
-  \item {TAU}
+  \item {TAU5}
     \subitem {defs.h}, \hyperpage{45}
   \item {temperature.c}
     \subitem {AT\_NONCACHEABLE\_SECTION}, \hyperpage{109}

@@ -293,8 +293,8 @@
 \indexentry{PWRLOSS\_TIMER\_PRIO@{PWRLOSS\_TIMER\_PRIO}!defs.h@{defs.h}|hyperpage}{45}
 \indexentry{defs.h@{defs.h}!RECORD\_STACK\_SIZE@{RECORD\_STACK\_SIZE}|hyperpage}{45}
 \indexentry{RECORD\_STACK\_SIZE@{RECORD\_STACK\_SIZE}!defs.h@{defs.h}|hyperpage}{45}
-\indexentry{defs.h@{defs.h}!TAU@{TAU}|hyperpage}{45}
-\indexentry{TAU@{TAU}!defs.h@{defs.h}|hyperpage}{45}
+\indexentry{defs.h@{defs.h}!TAU5@{TAU5}|hyperpage}{45}
+\indexentry{TAU5@{TAU5}!defs.h@{defs.h}|hyperpage}{45}
 \indexentry{defs.h@{defs.h}!TEMPERATURE\_MEAS\_ENABLED@{TEMPERATURE\_MEAS\_ENABLED}|hyperpage}{45}
 \indexentry{TEMPERATURE\_MEAS\_ENABLED@{TEMPERATURE\_MEAS\_ENABLED}!defs.h@{defs.h}|hyperpage}{45}
 \indexentry{defs.h@{defs.h}!UART\_FIFO\_ENABLED@{UART\_FIFO\_ENABLED}|hyperpage}{45}

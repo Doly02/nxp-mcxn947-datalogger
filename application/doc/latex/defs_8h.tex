@@ -26,9 +26,9 @@
 \begin{DoxyCompactList}\small\item\em Enables/\+Disables Power Loss Detection. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{defs_8h_aa3252ba28db7a402d73243c25da84a06}{PWRLOSS\+\_\+\+TEST\+\_\+\+GPIOS}}~(false)
 \begin{DoxyCompactList}\small\item\em Enables/\+Disables GPIO For Testing Power Loss Detection. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{defs_8h_a3d8c9c145887af5174ba4cc6789862ad}{TAU}}~16UL
-\begin{DoxyCompactList}\small\item\em Constant Tau, When Back-\/\+Up Power Capacitor is Charged To 99\%. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{defs_8h_adb3d2bcd621f551c6b54658940c42fa1}{PWRLOSS\+\_\+\+DET\+\_\+\+ACTIVE\+\_\+\+IN\+\_\+\+TIME}}~\mbox{\hyperlink{defs_8h_a3d8c9c145887af5174ba4cc6789862ad}{TAU}}
+\#define \mbox{\hyperlink{defs_8h_a4a49c87e19c04996c7a1e35606802798}{TAU5}}~16UL
+\begin{DoxyCompactList}\small\item\em Constant 5 Tau, When Back-\/\+Up Power Capacitor is Charged To 99\%. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_adb3d2bcd621f551c6b54658940c42fa1}{PWRLOSS\+\_\+\+DET\+\_\+\+ACTIVE\+\_\+\+IN\+\_\+\+TIME}}~\mbox{\hyperlink{defs_8h_a4a49c87e19c04996c7a1e35606802798}{TAU5}}
 \begin{DoxyCompactList}\small\item\em Time Interval When Power Loss Detection Became Active. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{defs_8h_a8f12c7ad5263aca7dc9115c3db453025}{UART\+\_\+\+RECEIVE\+\_\+\+PRIO}}~(6U)
 \begin{DoxyCompactList}\small\item\em Priority of LP\+\_\+\+FLEXCOMM Interrupt (UART) For Rx Of Recorded Data. \end{DoxyCompactList}\item 
@@ -187,7 +187,7 @@ Defines The Stack Size For Mass Storage Task.
 \index{PWRLOSS\_DET\_ACTIVE\_IN\_TIME@{PWRLOSS\_DET\_ACTIVE\_IN\_TIME}!defs.h@{defs.h}}
 \doxysubsubsection{\texorpdfstring{PWRLOSS\_DET\_ACTIVE\_IN\_TIME}{PWRLOSS\_DET\_ACTIVE\_IN\_TIME}}
 {\footnotesize\ttfamily \label{defs_8h_adb3d2bcd621f551c6b54658940c42fa1} 
-\#define PWRLOSS\+\_\+\+DET\+\_\+\+ACTIVE\+\_\+\+IN\+\_\+\+TIME~\mbox{\hyperlink{defs_8h_a3d8c9c145887af5174ba4cc6789862ad}{TAU}}}
+\#define PWRLOSS\+\_\+\+DET\+\_\+\+ACTIVE\+\_\+\+IN\+\_\+\+TIME~\mbox{\hyperlink{defs_8h_a4a49c87e19c04996c7a1e35606802798}{TAU5}}}
 
 
 
@@ -243,15 +243,15 @@ Priority of Comparator Interrupt For Power Loss Detection.
 
 Defines The Stack Size For Recording Task. 
 
-\Hypertarget{defs_8h_a3d8c9c145887af5174ba4cc6789862ad}\index{defs.h@{defs.h}!TAU@{TAU}}
-\index{TAU@{TAU}!defs.h@{defs.h}}
-\doxysubsubsection{\texorpdfstring{TAU}{TAU}}
-{\footnotesize\ttfamily \label{defs_8h_a3d8c9c145887af5174ba4cc6789862ad} 
-\#define TAU~16UL}
+\Hypertarget{defs_8h_a4a49c87e19c04996c7a1e35606802798}\index{defs.h@{defs.h}!TAU5@{TAU5}}
+\index{TAU5@{TAU5}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{TAU5}{TAU5}}
+{\footnotesize\ttfamily \label{defs_8h_a4a49c87e19c04996c7a1e35606802798} 
+\#define TAU5~16UL}
 
 
 
-Constant Tau, When Back-\/\+Up Power Capacitor is Charged To 99\%. 
+Constant 5 Tau, When Back-\/\+Up Power Capacitor is Charged To 99\%. 
 
 In Seconds (It\textquotesingle{}s Actualy 16s). \Hypertarget{defs_8h_a2d4e809715243195fc8b939c5d923aaa}\index{defs.h@{defs.h}!TEMPERATURE\_MEAS\_ENABLED@{TEMPERATURE\_MEAS\_ENABLED}}
 \index{TEMPERATURE\_MEAS\_ENABLED@{TEMPERATURE\_MEAS\_ENABLED}!defs.h@{defs.h}}

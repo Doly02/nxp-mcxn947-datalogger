@@ -4,7 +4,7 @@ var searchData=
   ['task_5fprio_1',['TASK_PRIO',['../app__tasks_8h.html#a2c6c08fc3284377444145fa6b627ac21',1,'app_tasks.h']]],
   ['task_5fswitching_2ec_2',['task_switching.c',['../task__switching_8c.html',1,'']]],
   ['task_5fswitching_2eh_3',['task_switching.h',['../task__switching_8h.html',1,'']]],
-  ['tau_4',['TAU',['../defs_8h.html#a3d8c9c145887af5174ba4cc6789862ad',1,'defs.h']]],
+  ['tau5_4',['TAU5',['../defs_8h.html#a4a49c87e19c04996c7a1e35606802798',1,'defs.h']]],
   ['temperature_2ec_5',['temperature.c',['../temperature_8c.html',1,'']]],
   ['temperature_2eh_6',['temperature.h',['../temperature_8h.html',1,'']]],
   ['temperature_5fmeas_5fenabled_7',['TEMPERATURE_MEAS_ENABLED',['../defs_8h.html#a2d4e809715243195fc8b939c5d923aaa',1,'defs.h']]],

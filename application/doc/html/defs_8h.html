@@ -145,10 +145,10 @@ Macros</h2></td></tr>
 <tr class="memitem:aa3252ba28db7a402d73243c25da84a06" id="r_aa3252ba28db7a402d73243c25da84a06"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3252ba28db7a402d73243c25da84a06">PWRLOSS_TEST_GPIOS</a>&#160;&#160;&#160;(false)</td></tr>
 <tr class="memdesc:aa3252ba28db7a402d73243c25da84a06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables/Disables GPIO For Testing Power Loss Detection.  <br /></td></tr>
 <tr class="separator:aa3252ba28db7a402d73243c25da84a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d8c9c145887af5174ba4cc6789862ad" id="r_a3d8c9c145887af5174ba4cc6789862ad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d8c9c145887af5174ba4cc6789862ad">TAU</a>&#160;&#160;&#160;16UL</td></tr>
-<tr class="memdesc:a3d8c9c145887af5174ba4cc6789862ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant Tau, When Back-Up Power Capacitor is Charged To 99%.  <br /></td></tr>
-<tr class="separator:a3d8c9c145887af5174ba4cc6789862ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb3d2bcd621f551c6b54658940c42fa1" id="r_adb3d2bcd621f551c6b54658940c42fa1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb3d2bcd621f551c6b54658940c42fa1">PWRLOSS_DET_ACTIVE_IN_TIME</a>&#160;&#160;&#160;<a class="el" href="#a3d8c9c145887af5174ba4cc6789862ad">TAU</a></td></tr>
+<tr class="memitem:a4a49c87e19c04996c7a1e35606802798" id="r_a4a49c87e19c04996c7a1e35606802798"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a49c87e19c04996c7a1e35606802798">TAU5</a>&#160;&#160;&#160;16UL</td></tr>
+<tr class="memdesc:a4a49c87e19c04996c7a1e35606802798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant 5 Tau, When Back-Up Power Capacitor is Charged To 99%.  <br /></td></tr>
+<tr class="separator:a4a49c87e19c04996c7a1e35606802798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb3d2bcd621f551c6b54658940c42fa1" id="r_adb3d2bcd621f551c6b54658940c42fa1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb3d2bcd621f551c6b54658940c42fa1">PWRLOSS_DET_ACTIVE_IN_TIME</a>&#160;&#160;&#160;<a class="el" href="#a4a49c87e19c04996c7a1e35606802798">TAU5</a></td></tr>
 <tr class="memdesc:adb3d2bcd621f551c6b54658940c42fa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time Interval When Power Loss Detection Became Active.  <br /></td></tr>
 <tr class="separator:adb3d2bcd621f551c6b54658940c42fa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f12c7ad5263aca7dc9115c3db453025" id="r_a8f12c7ad5263aca7dc9115c3db453025"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f12c7ad5263aca7dc9115c3db453025">UART_RECEIVE_PRIO</a>&#160;&#160;&#160;(6U)</td></tr>
@@ -405,7 +405,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PWRLOSS_DET_ACTIVE_IN_TIME&#160;&#160;&#160;<a class="el" href="#a3d8c9c145887af5174ba4cc6789862ad">TAU</a></td>
+          <td class="memname">#define PWRLOSS_DET_ACTIVE_IN_TIME&#160;&#160;&#160;<a class="el" href="#a4a49c87e19c04996c7a1e35606802798">TAU5</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -495,19 +495,19 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="a3d8c9c145887af5174ba4cc6789862ad" name="a3d8c9c145887af5174ba4cc6789862ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d8c9c145887af5174ba4cc6789862ad">&#9670;&#160;</a></span>TAU</h2>
+<a id="a4a49c87e19c04996c7a1e35606802798" name="a4a49c87e19c04996c7a1e35606802798"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a49c87e19c04996c7a1e35606802798">&#9670;&#160;</a></span>TAU5</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define TAU&#160;&#160;&#160;16UL</td>
+          <td class="memname">#define TAU5&#160;&#160;&#160;16UL</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constant Tau, When Back-Up Power Capacitor is Charged To 99%. </p>
+<p>Constant 5 Tau, When Back-Up Power Capacitor is Charged To 99%. </p>
 <p>In Seconds (It's Actualy 16s). </p>
 
 </div>

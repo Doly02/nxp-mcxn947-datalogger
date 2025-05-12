@@ -1,7 +1,7 @@
 var searchData=
 [
   ['task_5fprio_0',['TASK_PRIO',['../app__tasks_8h.html#a2c6c08fc3284377444145fa6b627ac21',1,'app_tasks.h']]],
-  ['tau_1',['TAU',['../defs_8h.html#a3d8c9c145887af5174ba4cc6789862ad',1,'defs.h']]],
+  ['tau5_1',['TAU5',['../defs_8h.html#a4a49c87e19c04996c7a1e35606802798',1,'defs.h']]],
   ['temperature_5fmeas_5fenabled_2',['TEMPERATURE_MEAS_ENABLED',['../defs_8h.html#a2d4e809715243195fc8b939c5d923aaa',1,'defs.h']]],
   ['thursday_3',['THURSDAY',['../rtc__ds3231_8h.html#a4383b2bef864f3be7c45bdbfced40e4d',1,'rtc_ds3231.h']]],
   ['tim_5fcycle_5f12h_4',['TIM_CYCLE_12H',['../rtc__ds3231_8h.html#a88a91c59ae35d9e115538b986a9e0801',1,'rtc_ds3231.h']]],

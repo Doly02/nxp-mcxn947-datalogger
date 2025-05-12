@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.11)  12 MAY 2025 20:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.11)  12 MAY 2025 21:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1435,7 +1435,7 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: E9DD3B630EBDFEA33EF7772CD43937CE;100854.
+(rerunfilecheck)             Checksum: C1E75DF3FA48D2914343C10B67488EE8;100859.
 
  ) 
 Here is how much of TeX's memory you used:
@@ -1458,7 +1458,7 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (138 pages, 447759 bytes).
+Output written on refman.pdf (138 pages, 447755 bytes).
 PDF statistics:
  5429 PDF objects out of 6186 (max. 8388607)
  5210 compressed objects within 53 object streams

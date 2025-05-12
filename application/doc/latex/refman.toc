@@ -185,7 +185,7 @@
 \contentsline {subsubsection}{\numberline {6.8.1.17}PWRLOSS\_TEST\_GPIOS}{45}{subsubsection.6.8.1.17}%
 \contentsline {subsubsection}{\numberline {6.8.1.18}PWRLOSS\_TIMER\_PRIO}{45}{subsubsection.6.8.1.18}%
 \contentsline {subsubsection}{\numberline {6.8.1.19}RECORD\_STACK\_SIZE}{45}{subsubsection.6.8.1.19}%
-\contentsline {subsubsection}{\numberline {6.8.1.20}TAU}{45}{subsubsection.6.8.1.20}%
+\contentsline {subsubsection}{\numberline {6.8.1.20}TAU5}{45}{subsubsection.6.8.1.20}%
 \contentsline {subsubsection}{\numberline {6.8.1.21}TEMPERATURE\_MEAS\_ENABLED}{45}{subsubsection.6.8.1.21}%
 \contentsline {subsubsection}{\numberline {6.8.1.22}UART\_FIFO\_ENABLED}{45}{subsubsection.6.8.1.22}%
 \contentsline {subsubsection}{\numberline {6.8.1.23}UART\_FIFO\_LENGHT}{45}{subsubsection.6.8.1.23}%
