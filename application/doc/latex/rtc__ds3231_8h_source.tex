@@ -30,175 +30,145 @@
 \DoxyCodeLine{00026\ \textcolor{comment}{\ *\ Definitions}}
 \DoxyCodeLine{00027\ \textcolor{comment}{\ ******************************************************************************/}}
 \DoxyCodeLine{00028\ }
-\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ E\_FAULT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}\textcolor{preprocessor}{}}
-\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ LPI2C\_TX\_DMA\_CHANNEL\ \ \ \ \ \ \ \ 0U}}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ LPI2C\_RX\_DMA\_CHANNEL\ \ \ \ \ \ \ \ 1U}}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ LPI2C\_TX\_CHANNEL\ \ \ \ \ \ \ \ \ \ \ \ kDma0RequestMuxLpFlexcomm2Tx}}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ LPI2C\_RX\_EDMA\_CHANNEL\ \ \ \ \ \ \ kDma0RequestMuxLpFlexcomm2Rx}}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ I2C\_MASTER\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((LPI2C\_Type\ *)LPI2C2\_BASE)}}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00059\ \textcolor{comment}{\ *\ @brief\ Alarm\ Interrupt\ Enable\ Bits.}}
-\DoxyCodeLine{00060\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ DS3231\_A1IE\ \ \ \ \ \ \ \ \ \ \ \ \ (0x00u)}}
-\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ DS3231\_A2IE\ \ \ \ \ \ \ \ \ \ \ \ \ (0x1u)}}
-\DoxyCodeLine{00063\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00064\ \textcolor{comment}{\ *\ @brief\ Interrupt\ Control\ Bit.}}
-\DoxyCodeLine{00065\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ DS3231\_INTCN\ \ \ \ \ \ \ \ \ \ \ \ (0x2u)}}
-\DoxyCodeLine{00067\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00068\ \textcolor{comment}{\ *\ @brief\ \ \ Alarm\ 1\ \&\ Alarm\ 2\ Flags.}}
-\DoxyCodeLine{00069\ \textcolor{comment}{\ *\ @details\ A\ Logic\ 1\ in\ The\ Alarm\ 'x'\ Flag\ Bit\ Indicates\ That\ The\ Time\ Matched\ The\ Alarm\ 'x'\ Registers.}}
-\DoxyCodeLine{00070\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ DS3231\_A1F\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0u)}}
-\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ DS3231\_A2F\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x1u)}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ ALARM\_DISABLED\ \ \ \ \ \ \ \ \ \ (0x0u)}}
-\DoxyCodeLine{00075\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00076\ \textcolor{comment}{\ *\ @brief\ Indicates\ That\ Oscillator\ Has\ Stopped\ \&\ Time\ Has\ To\ Updated.}}
-\DoxyCodeLine{00077\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ OSC\_STOPPED\ \ \ \ \ \ \ \ \ \ \ \ \ (0x00u)}}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00081\ \textcolor{comment}{\ *\ @brief\ Registers\ Addresses\ of\ DS3231.}}
-\DoxyCodeLine{00082\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_SEC\ \ \ \ \ \ \ \ \ (0x00U)}}
-\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_MIN\ \ \ \ \ \ \ \ \ (0x01U)}}
-\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_HRS\ \ \ \ \ \ \ \ \ (0x02U)}}
-\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_DAY\ \ \ \ \ \ \ \ \ (0x03U)}}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_DATE\ \ \ \ \ \ \ \ (0x04U)}}
-\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_MONTH\ \ \ \ \ \ \ (0x05U)}}
-\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_YEAR\ \ \ \ \ \ \ \ (0x06U)}}
-\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_CENT\ \ \ \ \ \ \ \ (0x07U)}}
-\DoxyCodeLine{00092\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00093\ \textcolor{comment}{\ *\ @brief\ Address\ of\ Status\ Register.}}
-\DoxyCodeLine{00094\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ DS3231\_REG\_STATUS\ \ \ \ \ \ \ (0x0Fu)}}
-\DoxyCodeLine{00096\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00097\ \textcolor{comment}{\ *\ @brief\ Address\ of\ Control\ Register.}}
-\DoxyCodeLine{00098\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ E\_FAULT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ APP\_SUCCESS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ LPI2C\_TX\_DMA\_CHANNEL\ \ \ \ \ \ \ \ 0U}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ LPI2C\_RX\_DMA\_CHANNEL\ \ \ \ \ \ \ \ 1U}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ LPI2C\_TX\_CHANNEL\ \ \ \ \ \ \ \ \ \ \ \ kDma0RequestMuxLpFlexcomm2Tx}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ LPI2C\_RX\_EDMA\_CHANNEL\ \ \ \ \ \ \ kDma0RequestMuxLpFlexcomm2Rx}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ I2C\_MASTER\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((LPI2C\_Type\ *)LPI2C2\_BASE)}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ DS3231\_A1IE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00u)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ DS3231\_A2IE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x1u)}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ DS3231\_INTCN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x2u)}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ DS3231\_A1F\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0u)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ DS3231\_A2F\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x1u)}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ ALARM\_DISABLED\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0u)}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ OSC\_STOPPED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00u)}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_SEC\ \ \ \ \ \ \ \ \ \ \ \ \ (0x00U)\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_MIN\ \ \ \ \ \ \ \ \ \ \ \ \ (0x01U)\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_HRS\ \ \ \ \ \ \ \ \ \ \ \ \ (0x02U)\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_DAY\ \ \ \ \ \ \ \ \ \ \ \ \ (0x03U)\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_DATE\ \ \ \ \ \ \ \ \ \ \ \ (0x04U)\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_MONTH\ \ \ \ \ \ \ \ \ \ \ (0x05U)\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_YEAR\ \ \ \ \ \ \ \ \ \ \ \ (0x06U)\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_CENT\ \ \ \ \ \ \ \ \ \ \ \ (0x07U)\ \ \ \ \ }\textcolor{preprocessor}{}}
 \DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ DS3231\_REG\_CTRL\ \ \ \ \ \ \ \ \ (0x0Eu)}}
-\DoxyCodeLine{00101\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00102\ \textcolor{comment}{\ *\ @brief\ Address\ of\ I2C\ Slave.}}
-\DoxyCodeLine{00103\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_I2C\ \ \ \ \ \ \ \ \ (0x68U)\ }\textcolor{comment}{//<!\ The\ Slave\ Address\ Byte\ Contains\ In\ 7-\/bit:\ 1101000}}
-\DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00107\ \textcolor{comment}{\ *\ @brief\ Definition\ of\ Dates.}}
-\DoxyCodeLine{00108\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ SUNDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x1)}}
-\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ MONDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x2)}}
-\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ TUESDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x3)}}
-\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ WEDNESDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x4)}}
-\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ THURSDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x5)}}
-\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ FRIDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x6)}}
-\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ SATURDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x7)}}
-\DoxyCodeLine{00116\ }
-\DoxyCodeLine{00117\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00118\ \textcolor{comment}{\ *\ @brief\ Definitions\ For\ Time\ Format\ Handling.}}
-\DoxyCodeLine{00119\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ TIM\_CYCLE\_12H\ \ \ \ \ \ \ \ \ \ \ (0x0)}}
-\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ TIM\_CYCLE\_12H\_AM\ \ \ \ \ \ \ \ (0x0)}}
-\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ TIM\_CYCLE\_12H\_PM\ \ \ \ \ \ \ \ (0x1)}}
-\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ TIM\_CYCLE\_24H\ \ \ \ \ \ \ \ \ \ \ (0x2)}}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00125\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00126\ \textcolor{comment}{\ *\ @brief\ Application\ Configurable\ Items.}}
-\DoxyCodeLine{00127\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ I2C\_BAUDRATE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100000U}}
-\DoxyCodeLine{00135\ }
-\DoxyCodeLine{00136\ }
-\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ APP\_SUCCESS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0}}
-\DoxyCodeLine{00138\ \textcolor{comment}{/*******************************************************************************}}
-\DoxyCodeLine{00139\ \textcolor{comment}{\ *\ Structures}}
-\DoxyCodeLine{00140\ \textcolor{comment}{\ ******************************************************************************/}}
-\DoxyCodeLine{00144\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
-\DoxyCodeLine{00145\ \{}
-\DoxyCodeLine{00146\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__time__t_ac99a42b95dc6cad5064b96c0a81bd321}{format}};\ \ \ \ \ \ \ }
-\DoxyCodeLine{00147\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__time__t_a4ecfa81bbb98bff8e267069bf097547d}{sec}};\ \ \ \ \ }
-\DoxyCodeLine{00148\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__time__t_a327539d3f18df0c4f5b08a6c14acad72}{min}};\ \ \ \ \ }
-\DoxyCodeLine{00149\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__time__t_a0140ca07f3b5ac7d02eb8a66d0951c87}{hrs}};\ \ \ \ \ }
-\DoxyCodeLine{00150\ }
-\DoxyCodeLine{00151\ \}\ \mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}};}
-\DoxyCodeLine{00152\ }
-\DoxyCodeLine{00156\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
-\DoxyCodeLine{00157\ \{}
-\DoxyCodeLine{00158\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__date__t_a938683f31ef2f431849bf9af8a49b37b}{date}};\ \ \ \ \ \ \ }
-\DoxyCodeLine{00159\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__date__t_a87bb95f26f00ac1efdd633f9849d150e}{day}};\ \ \ \ \ }
-\DoxyCodeLine{00160\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__date__t_abd53fac94d32b0ac8cd62d88cbfac422}{month}};\ \ \ \ \ }
-\DoxyCodeLine{00161\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__date__t_ae4d4f7bd9789416055d1648ade26f0f8}{year}};\ \ \ \ \ \ \ }
-\DoxyCodeLine{00162\ }
-\DoxyCodeLine{00163\ \}\ \mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}};}
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00168\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
-\DoxyCodeLine{00169\ \{}
-\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85eafad1cb5d550a3fbe542c4d07c83f4f26}{OSC\_OK}}\ =\ 0,\ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00171\ \ \ \ \ \mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85eafa69d445b0dd9dd85ffca4b4e4589166}{OSC\_INTERRUPTED}}\ \ \ \ \ \ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ DS3231\_REG\_STATUS\ \ \ \ \ \ \ \ \ \ \ (0x0Fu)}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ DS3231\_REG\_CTRL\ \ \ \ \ \ \ \ \ \ \ \ \ (0x0Eu)}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ DS3231\_ADDR\_I2C\ \ \ \ \ \ \ \ \ \ \ \ \ (0x68U)\ }\textcolor{comment}{//<!\ The\ Slave\ Address\ Byte\ Contains\ In\ 7-\/bit:\ 1101000}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ SUNDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x1)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ MONDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x2)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ TUESDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x3)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ WEDNESDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x4)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ THURSDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x5)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ FRIDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x6)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ SATURDAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x7)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ TIM\_CYCLE\_12H\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x0)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ TIM\_CYCLE\_12H\_AM\ \ \ \ \ \ \ \ \ \ \ \ (0x0)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ TIM\_CYCLE\_12H\_PM\ \ \ \ \ \ \ \ \ \ \ \ (0x1)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ TIM\_CYCLE\_24H\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x2)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ I2C\_BAUDRATE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100000U}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00147\ \textcolor{comment}{\ *\ Structures}}
+\DoxyCodeLine{00148\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00152\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00153\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__time__t_ac99a42b95dc6cad5064b96c0a81bd321}{format}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00155\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__time__t_a4ecfa81bbb98bff8e267069bf097547d}{sec}};\ \ \ \ \ }
+\DoxyCodeLine{00156\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__time__t_a327539d3f18df0c4f5b08a6c14acad72}{min}};\ \ \ \ \ }
+\DoxyCodeLine{00157\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__time__t_a0140ca07f3b5ac7d02eb8a66d0951c87}{hrs}};\ \ \ \ \ }
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \}\ \mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00165\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__date__t_a938683f31ef2f431849bf9af8a49b37b}{date}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00167\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__date__t_a87bb95f26f00ac1efdd633f9849d150e}{day}};\ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__date__t_abd53fac94d32b0ac8cd62d88cbfac422}{month}};\ \ \ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_r_t_c__date__t_ae4d4f7bd9789416055d1648ade26f0f8}{year}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \}\ \mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}};}
 \DoxyCodeLine{00172\ }
-\DoxyCodeLine{00173\ \}\ \mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\_osc\_state\_t}};}
-\DoxyCodeLine{00174\ }
-\DoxyCodeLine{00175\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00176\ \textcolor{comment}{\ *\ @brief\ An\ Enum\ For\ Interrupt\ Mode.}}
-\DoxyCodeLine{00177\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00178\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
-\DoxyCodeLine{00179\ \{}
-\DoxyCodeLine{00180\ \ \ \ \ \mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33a5557ce249a5d819c79a2e7b3813c7f65}{SQUARE\_WAVE\_INTERRUPT}}\ =\ 0,}
-\DoxyCodeLine{00181\ \ \ \ \ \mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33a5ad4f38dac2143e3c9c24b219abc8f5d}{ALARM\_INTERRUPT}}}
+\DoxyCodeLine{00176\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00177\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85eafad1cb5d550a3fbe542c4d07c83f4f26}{OSC\_OK}}\ =\ 0,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00179\ \ \ \ \ \mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85eafa69d445b0dd9dd85ffca4b4e4589166}{OSC\_INTERRUPTED}}\ \ \ \ \ \ }
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \}\ \mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\_osc\_state\_t}};}
 \DoxyCodeLine{00182\ }
-\DoxyCodeLine{00183\ \}\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\_interrupt\_mode\_t}};}
-\DoxyCodeLine{00184\ \textcolor{comment}{/*******************************************************************************}}
-\DoxyCodeLine{00185\ \textcolor{comment}{\ *\ Prototypes}}
-\DoxyCodeLine{00186\ \textcolor{comment}{\ ******************************************************************************/}}
-\DoxyCodeLine{00187\ }
-\DoxyCodeLine{00193\ }
-\DoxyCodeLine{00201\ uint8\_t\ \mbox{\hyperlink{group___r_t_c_ga416879c4510669c23007e9b0e8bcd219}{RTC\_Init}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00202\ }
-\DoxyCodeLine{00208\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga487d25d797a1fed2626ac9709ddac456}{RTC\_Deinit}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00209\ }
-\DoxyCodeLine{00215\ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{group___r_t_c_gab12090e402b342c7f8773f2094773394}{RTC\_ConvertToBCD}}(uint8\_t\ dec);}
-\DoxyCodeLine{00216\ }
-\DoxyCodeLine{00222\ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{group___r_t_c_ga87c0d6971d07785ee1a2abf9e24eeb3f}{RTC\_ConvertToDEC}}(uint8\_t\ bcd);}
-\DoxyCodeLine{00223\ }
-\DoxyCodeLine{00229\ uint8\_t\ \mbox{\hyperlink{group___r_t_c_ga18ceefab30bd070d2eafd74b0a7c9073}{RTC\_GetState}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00230\ }
-\DoxyCodeLine{00235\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_gada78757b2decedc79e0382b42e45a513}{RTC\_SetOscState}}(\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\_osc\_state\_t}}\ state);}
-\DoxyCodeLine{00236\ }
-\DoxyCodeLine{00243\ uint8\_t\ \mbox{\hyperlink{group___r_t_c_gac15d2cfbe2c4c9482e784f6a5aeed32a}{RTC\_Write}}(uint8\_t\ regAddress,\ uint8\_t\ val);}
+\DoxyCodeLine{00183\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00184\ \textcolor{comment}{\ *\ @brief\ An\ Enum\ For\ Interrupt\ Mode.}}
+\DoxyCodeLine{00185\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00186\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00187\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33a5557ce249a5d819c79a2e7b3813c7f65}{SQUARE\_WAVE\_INTERRUPT}}\ =\ 0,}
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33a5ad4f38dac2143e3c9c24b219abc8f5d}{ALARM\_INTERRUPT}}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \}\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\_interrupt\_mode\_t}};}
+\DoxyCodeLine{00192\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00193\ \textcolor{comment}{\ *\ Prototypes}}
+\DoxyCodeLine{00194\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00209\ uint8\_t\ \mbox{\hyperlink{group___r_t_c_ga416879c4510669c23007e9b0e8bcd219}{RTC\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00216\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga487d25d797a1fed2626ac9709ddac456}{RTC\_Deinit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{group___r_t_c_gab12090e402b342c7f8773f2094773394}{RTC\_ConvertToBCD}}(uint8\_t\ dec);}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00230\ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{group___r_t_c_ga87c0d6971d07785ee1a2abf9e24eeb3f}{RTC\_ConvertToDEC}}(uint8\_t\ bcd);}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00237\ uint8\_t\ \mbox{\hyperlink{group___r_t_c_ga18ceefab30bd070d2eafd74b0a7c9073}{RTC\_GetState}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00243\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_gada78757b2decedc79e0382b42e45a513}{RTC\_SetOscState}}(\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\_osc\_state\_t}}\ state);}
 \DoxyCodeLine{00244\ }
-\DoxyCodeLine{00250\ uint8\_t\ \mbox{\hyperlink{group___r_t_c_ga340e36eb16d87e6c82d26b051844060c}{RTC\_Read}}(uint8\_t\ regAddress);}
-\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00251\ uint8\_t\ \mbox{\hyperlink{group___r_t_c_gac15d2cfbe2c4c9482e784f6a5aeed32a}{RTC\_Write}}(uint8\_t\ regAddress,\ uint8\_t\ val);}
 \DoxyCodeLine{00252\ }
-\DoxyCodeLine{00257\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga37c611694906a21743c2ad7123a55f9f}{RTC\_SetTime}}(\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}}\ *pTime);}
-\DoxyCodeLine{00258\ }
-\DoxyCodeLine{00263\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga022d5dbffbbdba01d41f47d35dd2f411}{RTC\_GetTime}}(\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}}\ *pTime);}
-\DoxyCodeLine{00264\ }
-\DoxyCodeLine{00269\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_gaa91602eaabcb3a6e36c0da47980e76f8}{RTC\_SetDate}}(\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}}\ *pDate);}
-\DoxyCodeLine{00270\ }
-\DoxyCodeLine{00275\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_gaff981efc71adf20253068942e278b421}{RTC\_GetDate}}(\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}}\ *pDate);}
-\DoxyCodeLine{00276\ }
-\DoxyCodeLine{00281\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga1c9f11eaae27873a2bc415d53541594d}{RTC\_SetInterruptMode}}(\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\_interrupt\_mode\_t}}\ mode);}
-\DoxyCodeLine{00282\ }
-\DoxyCodeLine{00287\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga06995b923b484104afe590533698e8a1}{RTC\_CtrlAlarm1}}(uint8\_t\ enable);}
-\DoxyCodeLine{00288\ }
-\DoxyCodeLine{00292\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_gaacb3e98a52f0d90ecd8affb36960cfc6}{RTC\_ClearFlagAlarm1}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00293\ }
-\DoxyCodeLine{00298\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga86e1ffe598df20f7d90abe6ea4fb0135}{RTC\_CtrlAlarm2}}(uint8\_t\ enable);}
-\DoxyCodeLine{00299\ }
-\DoxyCodeLine{00303\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga2b8c5234e3d21ad10eb86b7a5b912dd3}{RTC\_ClearFlagAlarm2}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00304\ }
-\DoxyCodeLine{00309\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga61d57ebc0932c5610c8a7e8dd7d860f8}{RTC\_SetTimeDefault}}(\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}}\ *pTime);}
-\DoxyCodeLine{00310\ }
-\DoxyCodeLine{00315\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\_SetDateDefault}}(\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}}\ *pDate);}
-\DoxyCodeLine{00316\ \ \textcolor{comment}{//\ end\ of\ RTC\ group}}
+\DoxyCodeLine{00258\ uint8\_t\ \mbox{\hyperlink{group___r_t_c_ga340e36eb16d87e6c82d26b051844060c}{RTC\_Read}}(uint8\_t\ regAddress);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00265\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga37c611694906a21743c2ad7123a55f9f}{RTC\_SetTime}}(\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}}\ *pTime);}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00271\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga022d5dbffbbdba01d41f47d35dd2f411}{RTC\_GetTime}}(\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}}\ *pTime);}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00277\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_gaa91602eaabcb3a6e36c0da47980e76f8}{RTC\_SetDate}}(\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}}\ *pDate);}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00283\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_gaff981efc71adf20253068942e278b421}{RTC\_GetDate}}(\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}}\ *pDate);}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00289\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga1c9f11eaae27873a2bc415d53541594d}{RTC\_SetInterruptMode}}(\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\_interrupt\_mode\_t}}\ mode);}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00295\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga06995b923b484104afe590533698e8a1}{RTC\_CtrlAlarm1}}(uint8\_t\ enable);}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00300\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_gaacb3e98a52f0d90ecd8affb36960cfc6}{RTC\_ClearFlagAlarm1}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00306\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga86e1ffe598df20f7d90abe6ea4fb0135}{RTC\_CtrlAlarm2}}(uint8\_t\ enable);}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00311\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga2b8c5234e3d21ad10eb86b7a5b912dd3}{RTC\_ClearFlagAlarm2}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00317\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga61d57ebc0932c5610c8a7e8dd7d860f8}{RTC\_SetTimeDefault}}(\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\_time\_t}}\ *pTime);}
 \DoxyCodeLine{00318\ }
-\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ RTC\_DS3231\_H\_*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00323\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___r_t_c_ga6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\_SetDateDefault}}(\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\_date\_t}}\ *pDate);}
+\DoxyCodeLine{00324\ \ \textcolor{comment}{//\ end\ of\ RTC\ group}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ RTC\_DS3231\_H\_*/}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

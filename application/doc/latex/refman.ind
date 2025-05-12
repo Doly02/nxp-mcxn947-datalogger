@@ -1,56 +1,56 @@
 \begin{theindex}
 
   \item {\_\_attribute\_\_}
-    \subitem {semihost\_hardfault.c}, \hyperpage{102}
+    \subitem {semihost\_hardfault.c}, \hyperpage{105}
 
   \indexspace
 
   \item {ALARM\_DISABLED}
-    \subitem {rtc\_ds3231.h}, \hyperpage{28}
+    \subitem {rtc\_ds3231.h}, \hyperpage{29}
   \item {ALARM\_INTERRUPT}
-    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {rtc\_ds3231.h}, \hyperpage{34}
   \item {app\_init.c}
-    \subitem {APP\_InitBoard}, \hyperpage{80}
+    \subitem {APP\_InitBoard}, \hyperpage{82}
   \item {app\_init.h}
     \subitem {APP\_InitBoard}, \hyperpage{36}
   \item {APP\_InitBoard}
-    \subitem {app\_init.c}, \hyperpage{80}
+    \subitem {app\_init.c}, \hyperpage{82}
     \subitem {app\_init.h}, \hyperpage{36}
   \item {APP\_SUCCESS}
-    \subitem {rtc\_ds3231.h}, \hyperpage{28}
+    \subitem {rtc\_ds3231.h}, \hyperpage{29}
   \item {app\_tasks.c}
-    \subitem {msc\_task}, \hyperpage{81}
-    \subitem {record\_task}, \hyperpage{81}
-    \subitem {vApplicationGetIdleTaskMemory}, \hyperpage{81}
-    \subitem {vApplicationGetTimerTaskMemory}, \hyperpage{81}
+    \subitem {msc\_task}, \hyperpage{82}
+    \subitem {record\_task}, \hyperpage{83}
+    \subitem {vApplicationGetIdleTaskMemory}, \hyperpage{83}
+    \subitem {vApplicationGetTimerTaskMemory}, \hyperpage{83}
   \item {app\_tasks.h}
-    \subitem {g\_xMscTaskHandle}, \hyperpage{39}
-    \subitem {g\_xRecordTaskHandle}, \hyperpage{39}
-    \subitem {g\_xSemMassStorage}, \hyperpage{39}
-    \subitem {g\_xSemRecord}, \hyperpage{39}
-    \subitem {msc\_task}, \hyperpage{37}
+    \subitem {g\_xMscTaskHandle}, \hyperpage{40}
+    \subitem {g\_xRecordTaskHandle}, \hyperpage{40}
+    \subitem {g\_xSemMassStorage}, \hyperpage{40}
+    \subitem {g\_xSemRecord}, \hyperpage{40}
+    \subitem {msc\_task}, \hyperpage{38}
     \subitem {record\_task}, \hyperpage{38}
-    \subitem {TASK\_PRIO}, \hyperpage{37}
-    \subitem {vApplicationGetIdleTaskMemory}, \hyperpage{38}
-    \subitem {vApplicationGetTimerTaskMemory}, \hyperpage{38}
+    \subitem {TASK\_PRIO}, \hyperpage{38}
+    \subitem {vApplicationGetIdleTaskMemory}, \hyperpage{39}
+    \subitem {vApplicationGetTimerTaskMemory}, \hyperpage{39}
   \item {AT\_NONCACHEABLE\_SECTION}
     \subitem {rtc\_ds3231.c}, \hyperpage{25}
-    \subitem {temperature.c}, \hyperpage{106}
+    \subitem {temperature.c}, \hyperpage{109}
 
   \indexspace
 
   \item {BACKUP\_POWER\_LED\_PIN}
-    \subitem {led.h}, \hyperpage{50}
+    \subitem {led.h}, \hyperpage{52}
   \item {BACKUP\_POWER\_LED\_PORT}
-    \subitem {led.h}, \hyperpage{50}
+    \subitem {led.h}, \hyperpage{52}
   \item {baudrate}
     \subitem {REC\_config\_t}, \hyperpage{19}
   \item {BLOCK\_SIZE}
-    \subitem {record.c}, \hyperpage{97}
+    \subitem {record.c}, \hyperpage{100}
   \item {BUFF\_SIZE}
-    \subitem {temperature.c}, \hyperpage{104}
+    \subitem {temperature.c}, \hyperpage{107}
   \item {BUFFER\_SIZE}
-    \subitem {uart.c}, \hyperpage{109}
+    \subitem {uart.c}, \hyperpage{112}
   \item {Buffers and Recording Management}, \hyperpage{8}
     \subitem {g\_bBackDmaBufferReady}, \hyperpage{9}
     \subitem {g\_bFlushCompleted}, \hyperpage{9}
@@ -73,69 +73,69 @@
   \indexspace
 
   \item {CIRCULAR\_BUFFER\_SIZE}
-    \subitem {record.c}, \hyperpage{97}
+    \subitem {record.c}, \hyperpage{100}
   \item {CLK\_STATE}
     \subitem {rtc\_ds3231.c}, \hyperpage{24}
   \item {CONFIG\_FILE}
-    \subitem {defs.h}, \hyperpage{41}
+    \subitem {defs.h}, \hyperpage{42}
   \item {CONSOLELOG\_CheckFileSystem}
-    \subitem {record.c}, \hyperpage{97}
-    \subitem {record.h}, \hyperpage{67}
+    \subitem {record.c}, \hyperpage{100}
+    \subitem {record.h}, \hyperpage{69}
   \item {CONSOLELOG\_ClearTransferedBytes}
-    \subitem {record.c}, \hyperpage{97}
-    \subitem {record.h}, \hyperpage{67}
+    \subitem {record.c}, \hyperpage{100}
+    \subitem {record.h}, \hyperpage{69}
   \item {CONSOLELOG\_CreateDirectory}
-    \subitem {record.c}, \hyperpage{98}
-    \subitem {record.h}, \hyperpage{67}
+    \subitem {record.c}, \hyperpage{101}
+    \subitem {record.h}, \hyperpage{69}
   \item {CONSOLELOG\_CreateFile}
-    \subitem {record.c}, \hyperpage{98}
-    \subitem {record.h}, \hyperpage{67}
+    \subitem {record.c}, \hyperpage{101}
+    \subitem {record.h}, \hyperpage{69}
   \item {CONSOLELOG\_Deinit}
-    \subitem {record.c}, \hyperpage{98}
-    \subitem {record.h}, \hyperpage{67}
+    \subitem {record.c}, \hyperpage{101}
+    \subitem {record.h}, \hyperpage{69}
   \item {CONSOLELOG\_Flush}
-    \subitem {record.c}, \hyperpage{98}
-    \subitem {record.h}, \hyperpage{68}
-  \item {CONSOLELOG\_GetFlushCompleted}
-    \subitem {record.c}, \hyperpage{99}
-    \subitem {record.h}, \hyperpage{68}
-  \item {CONSOLELOG\_GetFreeSpaceMB}
-    \subitem {record.c}, \hyperpage{99}
-    \subitem {record.h}, \hyperpage{68}
-  \item {CONSOLELOG\_GetMaxBytes}
-    \subitem {record.h}, \hyperpage{68}
-  \item {CONSOLELOG\_GetTransferedBytes}
-    \subitem {record.c}, \hyperpage{99}
-    \subitem {record.h}, \hyperpage{69}
-  \item {CONSOLELOG\_Init}
-    \subitem {record.c}, \hyperpage{99}
-    \subitem {record.h}, \hyperpage{69}
-  \item {CONSOLELOG\_PowerLossFlush}
-    \subitem {record.c}, \hyperpage{100}
-    \subitem {record.h}, \hyperpage{69}
-  \item {CONSOLELOG\_ProccessConfigFile}
-    \subitem {record.c}, \hyperpage{100}
-    \subitem {record.h}, \hyperpage{69}
-  \item {CONSOLELOG\_ReadConfig}
-    \subitem {record.c}, \hyperpage{100}
-    \subitem {record.h}, \hyperpage{70}
-  \item {CONSOLELOG\_Recording}
     \subitem {record.c}, \hyperpage{101}
     \subitem {record.h}, \hyperpage{70}
+  \item {CONSOLELOG\_GetFlushCompleted}
+    \subitem {record.c}, \hyperpage{102}
+    \subitem {record.h}, \hyperpage{70}
+  \item {CONSOLELOG\_GetFreeSpaceMB}
+    \subitem {record.c}, \hyperpage{102}
+    \subitem {record.h}, \hyperpage{70}
+  \item {CONSOLELOG\_GetMaxBytes}
+    \subitem {record.h}, \hyperpage{70}
+  \item {CONSOLELOG\_GetTransferedBytes}
+    \subitem {record.c}, \hyperpage{102}
+    \subitem {record.h}, \hyperpage{71}
+  \item {CONSOLELOG\_Init}
+    \subitem {record.c}, \hyperpage{102}
+    \subitem {record.h}, \hyperpage{71}
+  \item {CONSOLELOG\_PowerLossFlush}
+    \subitem {record.c}, \hyperpage{103}
+    \subitem {record.h}, \hyperpage{71}
+  \item {CONSOLELOG\_ProccessConfigFile}
+    \subitem {record.c}, \hyperpage{103}
+    \subitem {record.h}, \hyperpage{71}
+  \item {CONSOLELOG\_ReadConfig}
+    \subitem {record.c}, \hyperpage{103}
+    \subitem {record.h}, \hyperpage{72}
+  \item {CONSOLELOG\_Recording}
+    \subitem {record.c}, \hyperpage{104}
+    \subitem {record.h}, \hyperpage{72}
   \item {CONTROL\_LED\_ENABLED}
-    \subitem {defs.h}, \hyperpage{41}
+    \subitem {defs.h}, \hyperpage{42}
   \item {CTIMER}
-    \subitem {pwrloss\_det.h}, \hyperpage{63}
+    \subitem {pwrloss\_det.h}, \hyperpage{65}
   \item {CTIMER0\_IRQHandler}
-    \subitem {temperature.c}, \hyperpage{106}
+    \subitem {temperature.c}, \hyperpage{109}
   \item {CTIMER4\_IRQHandler}
-    \subitem {pwrloss\_det.c}, \hyperpage{94}
+    \subitem {pwrloss\_det.c}, \hyperpage{97}
   \item {CTIMER\_CLK\_FREQ}
-    \subitem {pwrloss\_det.h}, \hyperpage{63}
+    \subitem {pwrloss\_det.h}, \hyperpage{65}
   \item {CTIMER\_EMT0\_OUT}
-    \subitem {pwrloss\_det.h}, \hyperpage{63}
+    \subitem {pwrloss\_det.h}, \hyperpage{65}
   \item {CTIMER\_MAT0\_OUT}
-    \subitem {pwrloss\_det.h}, \hyperpage{64}
+    \subitem {pwrloss\_det.h}, \hyperpage{65}
 
   \indexspace
 
@@ -146,61 +146,47 @@
   \item {day}
     \subitem {RTC\_date\_t}, \hyperpage{21}
   \item {DEBUG\_ENABLED}
-    \subitem {defs.h}, \hyperpage{41}
+    \subitem {defs.h}, \hyperpage{42}
   \item {DEFAULT\_BAUDRATE}
-    \subitem {defs.h}, \hyperpage{42}
+    \subitem {defs.h}, \hyperpage{43}
   \item {DEFAULT\_DATA\_BITS}
-    \subitem {defs.h}, \hyperpage{42}
+    \subitem {defs.h}, \hyperpage{43}
   \item {DEFAULT\_FREE\_SPACE}
-    \subitem {defs.h}, \hyperpage{42}
+    \subitem {defs.h}, \hyperpage{43}
   \item {DEFAULT\_MAX\_FILESIZE}
-    \subitem {defs.h}, \hyperpage{42}
+    \subitem {defs.h}, \hyperpage{43}
   \item {DEFAULT\_PARITY}
-    \subitem {defs.h}, \hyperpage{42}
+    \subitem {defs.h}, \hyperpage{43}
   \item {DEFAULT\_STOP\_BITS}
-    \subitem {defs.h}, \hyperpage{42}
+    \subitem {defs.h}, \hyperpage{43}
   \item {defs.h}
-    \subitem {CONFIG\_FILE}, \hyperpage{41}
-    \subitem {CONTROL\_LED\_ENABLED}, \hyperpage{41}
-    \subitem {DEBUG\_ENABLED}, \hyperpage{41}
-    \subitem {DEFAULT\_BAUDRATE}, \hyperpage{42}
-    \subitem {DEFAULT\_DATA\_BITS}, \hyperpage{42}
-    \subitem {DEFAULT\_FREE\_SPACE}, \hyperpage{42}
-    \subitem {DEFAULT\_MAX\_FILESIZE}, \hyperpage{42}
-    \subitem {DEFAULT\_PARITY}, \hyperpage{42}
-    \subitem {DEFAULT\_STOP\_BITS}, \hyperpage{42}
-    \subitem {INFO\_ENABLED}, \hyperpage{42}
-    \subitem {MSC\_ENABLED}, \hyperpage{43}
-    \subitem {MSC\_STACK\_SIZE}, \hyperpage{43}
-    \subitem {NOT\_IMPLEMENTED}, \hyperpage{43}
-    \subitem {PWRLOSS\_DET\_ACTIVE\_IN\_TIME}, \hyperpage{43}
-    \subitem {PWRLOSS\_DET\_PRIO}, \hyperpage{43}
-    \subitem {PWRLOSS\_DETECTION\_ENABLED}, \hyperpage{43}
-    \subitem {PWRLOSS\_TEST\_GPIOS}, \hyperpage{43}
-    \subitem {PWRLOSS\_TIMER\_PRIO}, \hyperpage{44}
-    \subitem {RECORD\_STACK\_SIZE}, \hyperpage{44}
-    \subitem {TAU}, \hyperpage{44}
-    \subitem {TEMPERATURE\_MEAS\_ENABLED}, \hyperpage{44}
-    \subitem {UART\_FIFO\_ENABLED}, \hyperpage{44}
-    \subitem {UART\_FIFO\_LENGHT}, \hyperpage{44}
-    \subitem {UART\_PRINT\_ENABLED}, \hyperpage{44}
-    \subitem {UART\_RECEIVE\_PRIO}, \hyperpage{45}
-  \item {DEMO\_LPCMP\_BASE}
-    \subitem {pwrloss\_det.h}, \hyperpage{64}
-  \item {DEMO\_LPCMP\_DAC\_CHANNEL}
-    \subitem {pwrloss\_det.h}, \hyperpage{64}
-  \item {DEMO\_LPCMP\_IRQ\_HANDLER\_FUNC}
-    \subitem {pwrloss\_det.h}, \hyperpage{64}
-  \item {DEMO\_LPCMP\_IRQ\_ID}
-    \subitem {pwrloss\_det.h}, \hyperpage{64}
-  \item {DEMO\_LPCMP\_USER\_CHANNEL}
-    \subitem {pwrloss\_det.h}, \hyperpage{64}
-  \item {DEMO\_SPC\_BASE}
-    \subitem {pwrloss\_det.h}, \hyperpage{64}
-  \item {DEMO\_VREF\_BASE}
-    \subitem {pwrloss\_det.h}, \hyperpage{64}
+    \subitem {CONFIG\_FILE}, \hyperpage{42}
+    \subitem {CONTROL\_LED\_ENABLED}, \hyperpage{42}
+    \subitem {DEBUG\_ENABLED}, \hyperpage{42}
+    \subitem {DEFAULT\_BAUDRATE}, \hyperpage{43}
+    \subitem {DEFAULT\_DATA\_BITS}, \hyperpage{43}
+    \subitem {DEFAULT\_FREE\_SPACE}, \hyperpage{43}
+    \subitem {DEFAULT\_MAX\_FILESIZE}, \hyperpage{43}
+    \subitem {DEFAULT\_PARITY}, \hyperpage{43}
+    \subitem {DEFAULT\_STOP\_BITS}, \hyperpage{43}
+    \subitem {INFO\_ENABLED}, \hyperpage{43}
+    \subitem {MSC\_ENABLED}, \hyperpage{44}
+    \subitem {MSC\_STACK\_SIZE}, \hyperpage{44}
+    \subitem {NOT\_IMPLEMENTED}, \hyperpage{44}
+    \subitem {PWRLOSS\_DET\_ACTIVE\_IN\_TIME}, \hyperpage{44}
+    \subitem {PWRLOSS\_DET\_PRIO}, \hyperpage{44}
+    \subitem {PWRLOSS\_DETECTION\_ENABLED}, \hyperpage{44}
+    \subitem {PWRLOSS\_TEST\_GPIOS}, \hyperpage{44}
+    \subitem {PWRLOSS\_TIMER\_PRIO}, \hyperpage{45}
+    \subitem {RECORD\_STACK\_SIZE}, \hyperpage{45}
+    \subitem {TAU}, \hyperpage{45}
+    \subitem {TEMPERATURE\_MEAS\_ENABLED}, \hyperpage{45}
+    \subitem {UART\_FIFO\_ENABLED}, \hyperpage{45}
+    \subitem {UART\_FIFO\_LENGHT}, \hyperpage{45}
+    \subitem {UART\_PRINT\_ENABLED}, \hyperpage{45}
+    \subitem {UART\_RECEIVE\_PRIO}, \hyperpage{46}
   \item {drivers/rtc\_ds3231.c}, \hyperpage{23}
-  \item {drivers/rtc\_ds3231.h}, \hyperpage{26}, \hyperpage{33}
+  \item {drivers/rtc\_ds3231.h}, \hyperpage{26}, \hyperpage{34}
   \item {DS3231 Real-\/Time Clock Driver}, \hyperpage{12}
     \subitem {RTC\_ClearFlagAlarm1}, \hyperpage{13}
     \subitem {RTC\_ClearFlagAlarm2}, \hyperpage{13}
@@ -222,7 +208,7 @@
     \subitem {RTC\_SetTimeDefault}, \hyperpage{17}
     \subitem {RTC\_Write}, \hyperpage{17}
   \item {DS3231\_A1F}
-    \subitem {rtc\_ds3231.h}, \hyperpage{28}
+    \subitem {rtc\_ds3231.h}, \hyperpage{29}
   \item {DS3231\_A1IE}
     \subitem {rtc\_ds3231.h}, \hyperpage{29}
   \item {DS3231\_A2F}
@@ -236,13 +222,13 @@
   \item {DS3231\_ADDR\_DAY}
     \subitem {rtc\_ds3231.h}, \hyperpage{29}
   \item {DS3231\_ADDR\_HRS}
-    \subitem {rtc\_ds3231.h}, \hyperpage{29}
+    \subitem {rtc\_ds3231.h}, \hyperpage{30}
   \item {DS3231\_ADDR\_I2C}
-    \subitem {rtc\_ds3231.h}, \hyperpage{29}
+    \subitem {rtc\_ds3231.h}, \hyperpage{30}
   \item {DS3231\_ADDR\_MIN}
-    \subitem {rtc\_ds3231.h}, \hyperpage{29}
+    \subitem {rtc\_ds3231.h}, \hyperpage{30}
   \item {DS3231\_ADDR\_MONTH}
-    \subitem {rtc\_ds3231.h}, \hyperpage{29}
+    \subitem {rtc\_ds3231.h}, \hyperpage{30}
   \item {DS3231\_ADDR\_SEC}
     \subitem {rtc\_ds3231.h}, \hyperpage{30}
   \item {DS3231\_ADDR\_YEAR}
@@ -250,104 +236,104 @@
   \item {DS3231\_INTCN}
     \subitem {rtc\_ds3231.h}, \hyperpage{30}
   \item {DS3231\_REG\_CTRL}
-    \subitem {rtc\_ds3231.h}, \hyperpage{30}
+    \subitem {rtc\_ds3231.h}, \hyperpage{31}
   \item {DS3231\_REG\_STATUS}
-    \subitem {rtc\_ds3231.h}, \hyperpage{30}
+    \subitem {rtc\_ds3231.h}, \hyperpage{31}
 
   \indexspace
 
   \item {E\_FAULT}
-    \subitem {rtc\_ds3231.h}, \hyperpage{30}
+    \subitem {rtc\_ds3231.h}, \hyperpage{31}
   \item {ERR\_HandleError}
-    \subitem {error.c}, \hyperpage{82}
-    \subitem {error.h}, \hyperpage{48}
-  \item {ERR\_Init}
-    \subitem {error.c}, \hyperpage{82}
-    \subitem {error.h}, \hyperpage{48}
-  \item {ERR\_SetState}
-    \subitem {error.c}, \hyperpage{82}
+    \subitem {error.c}, \hyperpage{84}
     \subitem {error.h}, \hyperpage{49}
+  \item {ERR\_Init}
+    \subitem {error.c}, \hyperpage{84}
+    \subitem {error.h}, \hyperpage{49}
+  \item {ERR\_SetState}
+    \subitem {error.c}, \hyperpage{84}
+    \subitem {error.h}, \hyperpage{50}
   \item {error}
-    \subitem {error.c}, \hyperpage{83}
+    \subitem {error.c}, \hyperpage{85}
   \item {error.c}
-    \subitem {ERR\_HandleError}, \hyperpage{82}
-    \subitem {ERR\_Init}, \hyperpage{82}
-    \subitem {ERR\_SetState}, \hyperpage{82}
-    \subitem {error}, \hyperpage{83}
+    \subitem {ERR\_HandleError}, \hyperpage{84}
+    \subitem {ERR\_Init}, \hyperpage{84}
+    \subitem {ERR\_SetState}, \hyperpage{84}
+    \subitem {error}, \hyperpage{85}
   \item {error.h}
-    \subitem {ERR\_HandleError}, \hyperpage{48}
-    \subitem {ERR\_Init}, \hyperpage{48}
-    \subitem {ERR\_SetState}, \hyperpage{49}
-    \subitem {ERROR\_ADMA}, \hyperpage{47}
-    \subitem {ERROR\_CLOSE}, \hyperpage{47}
-    \subitem {ERROR\_CONFIG}, \hyperpage{47}
-    \subitem {ERROR\_FILESYSTEM}, \hyperpage{47}
-    \subitem {ERROR\_IRTC}, \hyperpage{47}
-    \subitem {ERROR\_NONE}, \hyperpage{47}
-    \subitem {ERROR\_OPEN}, \hyperpage{47}
-    \subitem {ERROR\_OUT\_OF\_CYCLE}, \hyperpage{48}
-    \subitem {ERROR\_READ}, \hyperpage{48}
-    \subitem {ERROR\_RECORD}, \hyperpage{48}
-    \subitem {error\_t}, \hyperpage{48}
-    \subitem {ERROR\_UNKNOWN}, \hyperpage{48}
+    \subitem {ERR\_HandleError}, \hyperpage{49}
+    \subitem {ERR\_Init}, \hyperpage{49}
+    \subitem {ERR\_SetState}, \hyperpage{50}
+    \subitem {ERROR\_ADMA}, \hyperpage{48}
+    \subitem {ERROR\_CLOSE}, \hyperpage{48}
+    \subitem {ERROR\_CONFIG}, \hyperpage{48}
+    \subitem {ERROR\_FILESYSTEM}, \hyperpage{48}
+    \subitem {ERROR\_IRTC}, \hyperpage{48}
+    \subitem {ERROR\_NONE}, \hyperpage{48}
+    \subitem {ERROR\_OPEN}, \hyperpage{48}
+    \subitem {ERROR\_OUT\_OF\_CYCLE}, \hyperpage{49}
+    \subitem {ERROR\_READ}, \hyperpage{49}
+    \subitem {ERROR\_RECORD}, \hyperpage{49}
+    \subitem {error\_t}, \hyperpage{49}
+    \subitem {ERROR\_UNKNOWN}, \hyperpage{49}
   \item {ERROR\_ADMA}
-    \subitem {error.h}, \hyperpage{47}
+    \subitem {error.h}, \hyperpage{48}
   \item {ERROR\_CLOSE}
-    \subitem {error.h}, \hyperpage{47}
+    \subitem {error.h}, \hyperpage{48}
   \item {ERROR\_CONFIG}
-    \subitem {error.h}, \hyperpage{47}
+    \subitem {error.h}, \hyperpage{48}
   \item {ERROR\_FILESYSTEM}
-    \subitem {error.h}, \hyperpage{47}
+    \subitem {error.h}, \hyperpage{48}
   \item {ERROR\_IRTC}
-    \subitem {error.h}, \hyperpage{47}
+    \subitem {error.h}, \hyperpage{48}
   \item {ERROR\_LED\_PIN\_RECORD}
-    \subitem {led.h}, \hyperpage{50}
+    \subitem {led.h}, \hyperpage{52}
   \item {ERROR\_LED\_PORT}
-    \subitem {led.h}, \hyperpage{50}
+    \subitem {led.h}, \hyperpage{52}
   \item {ERROR\_NONE}
-    \subitem {error.h}, \hyperpage{47}
+    \subitem {error.h}, \hyperpage{48}
   \item {ERROR\_OPEN}
-    \subitem {error.h}, \hyperpage{47}
+    \subitem {error.h}, \hyperpage{48}
   \item {ERROR\_OUT\_OF\_CYCLE}
-    \subitem {error.h}, \hyperpage{48}
+    \subitem {error.h}, \hyperpage{49}
   \item {ERROR\_READ}
-    \subitem {error.h}, \hyperpage{48}
+    \subitem {error.h}, \hyperpage{49}
   \item {ERROR\_RECORD}
-    \subitem {error.h}, \hyperpage{48}
+    \subitem {error.h}, \hyperpage{49}
   \item {error\_t}
-    \subitem {error.h}, \hyperpage{48}
+    \subitem {error.h}, \hyperpage{49}
   \item {ERROR\_UNKNOWN}
-    \subitem {error.h}, \hyperpage{48}
+    \subitem {error.h}, \hyperpage{49}
   \item {EXTERNAL\_RTC\_TIME\_OFSET}
-    \subitem {time.c}, \hyperpage{108}
+    \subitem {time.c}, \hyperpage{111}
 
   \indexspace
 
   \item {FLUSH\_LED\_PORT}
-    \subitem {led.h}, \hyperpage{51}
+    \subitem {led.h}, \hyperpage{52}
   \item {FLUSH\_TIMEOUT\_TICKS}
-    \subitem {record.h}, \hyperpage{67}
+    \subitem {record.h}, \hyperpage{69}
   \item {format}
     \subitem {RTC\_time\_t}, \hyperpage{22}
   \item {free\_space\_limit\_mb}
     \subitem {REC\_config\_t}, \hyperpage{20}
   \item {FRIDAY}
-    \subitem {rtc\_ds3231.h}, \hyperpage{30}
+    \subitem {rtc\_ds3231.h}, \hyperpage{31}
 
   \indexspace
 
   \item {g\_bBackDmaBufferReady}
     \subitem {Buffers and Recording Management}, \hyperpage{9}
   \item {g\_bCompletionFlag\_I2C5}
-    \subitem {temperature.c}, \hyperpage{107}
+    \subitem {temperature.c}, \hyperpage{110}
   \item {g\_bFlushCompleted}
     \subitem {Buffers and Recording Management}, \hyperpage{9}
   \item {g\_config}
-    \subitem {parser.c}, \hyperpage{93}
+    \subitem {parser.c}, \hyperpage{96}
   \item {g\_EdmaRxHandle\_I2C5}
-    \subitem {temperature.c}, \hyperpage{107}
+    \subitem {temperature.c}, \hyperpage{110}
   \item {g\_EdmaTxHandle\_I2C5}
-    \subitem {temperature.c}, \hyperpage{107}
+    \subitem {temperature.c}, \hyperpage{110}
   \item {g\_fileObject}
     \subitem {Buffers and Recording Management}, \hyperpage{9}
   \item {g\_fileSystem}
@@ -355,8 +341,8 @@
   \item {g\_lastDataTick}
     \subitem {Buffers and Recording Management}, \hyperpage{10}
   \item {g\_msc}
-    \subitem {main.c}, \hyperpage{85}
-    \subitem {task\_switching.h}, \hyperpage{72}
+    \subitem {main.c}, \hyperpage{88}
+    \subitem {task\_switching.h}, \hyperpage{74}
   \item {g\_pu8BackDmaBuffer}
     \subitem {Buffers and Recording Management}, \hyperpage{10}
   \item {g\_pu8FrontDmaBuffer}
@@ -376,29 +362,29 @@
   \item {g\_u8CurrentDirectory}
     \subitem {Buffers and Recording Management}, \hyperpage{11}
   \item {g\_Xfer\_I2C5}
-    \subitem {temperature.c}, \hyperpage{107}
+    \subitem {temperature.c}, \hyperpage{110}
   \item {g\_xMscTaskHandle}
-    \subitem {app\_tasks.h}, \hyperpage{39}
-    \subitem {main.c}, \hyperpage{85}
+    \subitem {app\_tasks.h}, \hyperpage{40}
+    \subitem {main.c}, \hyperpage{88}
   \item {g\_xMscTaskStack}
-    \subitem {main.c}, \hyperpage{86}
+    \subitem {main.c}, \hyperpage{88}
   \item {g\_xMscTaskTCB}
-    \subitem {main.c}, \hyperpage{86}
+    \subitem {main.c}, \hyperpage{89}
   \item {g\_xRecordTaskHandle}
-    \subitem {app\_tasks.h}, \hyperpage{39}
-    \subitem {main.c}, \hyperpage{86}
+    \subitem {app\_tasks.h}, \hyperpage{40}
+    \subitem {main.c}, \hyperpage{89}
   \item {g\_xRecordTaskStack}
-    \subitem {main.c}, \hyperpage{86}
+    \subitem {main.c}, \hyperpage{89}
   \item {g\_xRecordTaskTCB}
-    \subitem {main.c}, \hyperpage{86}
+    \subitem {main.c}, \hyperpage{89}
   \item {g\_xSemMassStorage}
-    \subitem {app\_tasks.h}, \hyperpage{39}
-    \subitem {main.c}, \hyperpage{86}
-    \subitem {mass\_storage.c}, \hyperpage{88}
+    \subitem {app\_tasks.h}, \hyperpage{40}
+    \subitem {main.c}, \hyperpage{89}
+    \subitem {mass\_storage.c}, \hyperpage{91}
   \item {g\_xSemRecord}
-    \subitem {app\_tasks.h}, \hyperpage{39}
-    \subitem {main.c}, \hyperpage{86}
-    \subitem {mass\_storage.c}, \hyperpage{88}
+    \subitem {app\_tasks.h}, \hyperpage{40}
+    \subitem {main.c}, \hyperpage{89}
+    \subitem {mass\_storage.c}, \hyperpage{91}
   \item {gCompletionFlag}
     \subitem {rtc\_ds3231.c}, \hyperpage{26}
   \item {gEdmaRxHandle}
@@ -406,338 +392,342 @@
   \item {gEdmaTxHandle}
     \subitem {rtc\_ds3231.c}, \hyperpage{26}
   \item {GET\_CURRENT\_TIME\_MS}
-    \subitem {record.c}, \hyperpage{97}
+    \subitem {record.c}, \hyperpage{100}
   \item {get\_fattime}
-    \subitem {record.c}, \hyperpage{101}
+    \subitem {record.c}, \hyperpage{104}
   \item {GET\_WAIT\_INTERVAL}
-    \subitem {record.c}, \hyperpage{97}
+    \subitem {record.c}, \hyperpage{100}
 
   \indexspace
 
   \item {hrs}
     \subitem {RTC\_time\_t}, \hyperpage{22}
   \item {HSCMP1\_IRQHandler}
-    \subitem {pwrloss\_det.c}, \hyperpage{94}
+    \subitem {pwrloss\_det.c}, \hyperpage{97}
 
   \indexspace
 
   \item {I2C\_BAUDRATE}
-    \subitem {rtc\_ds3231.h}, \hyperpage{30}
-    \subitem {temperature.c}, \hyperpage{104}
+    \subitem {rtc\_ds3231.h}, \hyperpage{31}
+    \subitem {temperature.c}, \hyperpage{107}
   \item {I2C\_DATA\_LENGTH}
     \subitem {rtc\_ds3231.c}, \hyperpage{25}
   \item {I2C\_MASTER}
-    \subitem {rtc\_ds3231.h}, \hyperpage{30}
+    \subitem {rtc\_ds3231.h}, \hyperpage{31}
   \item {I2C\_MASTER\_I2C5}
-    \subitem {temperature.c}, \hyperpage{104}
-  \item {include/app\_init.h}, \hyperpage{35, 36}
-  \item {include/app\_tasks.h}, \hyperpage{37}, \hyperpage{39}
-  \item {include/defs.h}, \hyperpage{40}, \hyperpage{45}
-  \item {include/error.h}, \hyperpage{46}, \hyperpage{49}
-  \item {include/led.h}, \hyperpage{50}, \hyperpage{53}
-  \item {include/mass\_storage.h}, \hyperpage{54, 55}
-  \item {include/parser.h}, \hyperpage{56}, \hyperpage{62}
-  \item {include/pwrloss\_det.h}, \hyperpage{63}, \hyperpage{65}
-  \item {include/record.h}, \hyperpage{65}, \hyperpage{71}
-  \item {include/task\_switching.h}, \hyperpage{72, 73}
-  \item {include/temperature.h}, \hyperpage{73}, \hyperpage{75}
-  \item {include/time.h}, \hyperpage{75, 76}
-  \item {include/uart.h}, \hyperpage{77}, \hyperpage{79}
+    \subitem {temperature.c}, \hyperpage{107}
+  \item {include/app\_init.h}, \hyperpage{36, 37}
+  \item {include/app\_tasks.h}, \hyperpage{37}, \hyperpage{40}
+  \item {include/defs.h}, \hyperpage{41}, \hyperpage{46}
+  \item {include/error.h}, \hyperpage{47}, \hyperpage{50}
+  \item {include/led.h}, \hyperpage{51}, \hyperpage{55}
+  \item {include/mass\_storage.h}, \hyperpage{56, 57}
+  \item {include/parser.h}, \hyperpage{57}, \hyperpage{63}
+  \item {include/pwrloss\_det.h}, \hyperpage{64}, \hyperpage{67}
+  \item {include/record.h}, \hyperpage{67}, \hyperpage{73}
+  \item {include/task\_switching.h}, \hyperpage{74, 75}
+  \item {include/temperature.h}, \hyperpage{75}, \hyperpage{77}
+  \item {include/time.h}, \hyperpage{77, 78}
+  \item {include/uart.h}, \hyperpage{79}, \hyperpage{81}
   \item {INFO\_ENABLED}
-    \subitem {defs.h}, \hyperpage{42}
+    \subitem {defs.h}, \hyperpage{43}
   \item {INTERNAL\_RTC\_BASE\_YEAR}
-    \subitem {time.c}, \hyperpage{108}
+    \subitem {time.c}, \hyperpage{111}
 
   \indexspace
 
   \item {led.c}
-    \subitem {LED\_ClearSignalFlush}, \hyperpage{83}
-    \subitem {LED\_SetHigh}, \hyperpage{83}
-    \subitem {LED\_SetLow}, \hyperpage{83}
-    \subitem {LED\_SignalBackUpPowerAvailable}, \hyperpage{83}
-    \subitem {LED\_SignalError}, \hyperpage{84}
-    \subitem {LED\_SignalFlush}, \hyperpage{84}
-    \subitem {LED\_SignalLowMemory}, \hyperpage{84}
-    \subitem {LED\_SignalReady}, \hyperpage{84}
-    \subitem {LED\_SignalRecording}, \hyperpage{84}
-    \subitem {LED\_SignalRecordingStop}, \hyperpage{84}
+    \subitem {LED\_ClearSignalFlush}, \hyperpage{85}
+    \subitem {LED\_SetHigh}, \hyperpage{85}
+    \subitem {LED\_SetLow}, \hyperpage{86}
+    \subitem {LED\_SignalBackUpPowerAvailable}, \hyperpage{86}
+    \subitem {LED\_SignalError}, \hyperpage{86}
+    \subitem {LED\_SignalFlush}, \hyperpage{86}
+    \subitem {LED\_SignalLowMemory}, \hyperpage{86}
+    \subitem {LED\_SignalReady}, \hyperpage{86}
+    \subitem {LED\_SignalRecording}, \hyperpage{87}
+    \subitem {LED\_SignalRecordingStop}, \hyperpage{87}
   \item {led.h}
-    \subitem {BACKUP\_POWER\_LED\_PIN}, \hyperpage{50}
-    \subitem {BACKUP\_POWER\_LED\_PORT}, \hyperpage{50}
-    \subitem {ERROR\_LED\_PIN\_RECORD}, \hyperpage{50}
-    \subitem {ERROR\_LED\_PORT}, \hyperpage{50}
-    \subitem {FLUSH\_LED\_PORT}, \hyperpage{51}
-    \subitem {LED\_ClearSignalFlush}, \hyperpage{51}
-    \subitem {LED\_SetHigh}, \hyperpage{51}
-    \subitem {LED\_SetLow}, \hyperpage{51}
-    \subitem {LED\_SignalBackUpPowerAvailable}, \hyperpage{52}
-    \subitem {LED\_SignalError}, \hyperpage{52}
-    \subitem {LED\_SignalFlush}, \hyperpage{52}
-    \subitem {LED\_SignalLowMemory}, \hyperpage{52}
-    \subitem {LED\_SignalReady}, \hyperpage{52}
-    \subitem {LED\_SignalRecording}, \hyperpage{52}
-    \subitem {LED\_SignalRecordingStop}, \hyperpage{52}
-    \subitem {MEMORY\_LOW\_LED\_PIN}, \hyperpage{51}
-    \subitem {MEMORY\_LOW\_LED\_PORT}, \hyperpage{51}
-    \subitem {RECORD\_LED\_PIN}, \hyperpage{51}
-    \subitem {RECORD\_LED\_PIN\_FLUSH}, \hyperpage{51}
-    \subitem {RECORD\_LED\_PORT}, \hyperpage{51}
+    \subitem {BACKUP\_POWER\_LED\_PIN}, \hyperpage{52}
+    \subitem {BACKUP\_POWER\_LED\_PORT}, \hyperpage{52}
+    \subitem {ERROR\_LED\_PIN\_RECORD}, \hyperpage{52}
+    \subitem {ERROR\_LED\_PORT}, \hyperpage{52}
+    \subitem {FLUSH\_LED\_PORT}, \hyperpage{52}
+    \subitem {LED\_ClearSignalFlush}, \hyperpage{53}
+    \subitem {LED\_SetHigh}, \hyperpage{53}
+    \subitem {LED\_SetLow}, \hyperpage{54}
+    \subitem {LED\_SignalBackUpPowerAvailable}, \hyperpage{54}
+    \subitem {LED\_SignalError}, \hyperpage{54}
+    \subitem {LED\_SignalFlush}, \hyperpage{54}
+    \subitem {LED\_SignalLowMemory}, \hyperpage{54}
+    \subitem {LED\_SignalReady}, \hyperpage{54}
+    \subitem {LED\_SignalRecording}, \hyperpage{55}
+    \subitem {LED\_SignalRecordingStop}, \hyperpage{55}
+    \subitem {MEMORY\_LOW\_LED\_PIN}, \hyperpage{52}
+    \subitem {MEMORY\_LOW\_LED\_PORT}, \hyperpage{52}
+    \subitem {RECORD\_LED\_PIN}, \hyperpage{53}
+    \subitem {RECORD\_LED\_PIN\_FLUSH}, \hyperpage{53}
+    \subitem {RECORD\_LED\_PORT}, \hyperpage{53}
   \item {LED\_ClearSignalFlush}
-    \subitem {led.c}, \hyperpage{83}
-    \subitem {led.h}, \hyperpage{51}
+    \subitem {led.c}, \hyperpage{85}
+    \subitem {led.h}, \hyperpage{53}
   \item {LED\_SetHigh}
-    \subitem {led.c}, \hyperpage{83}
-    \subitem {led.h}, \hyperpage{51}
+    \subitem {led.c}, \hyperpage{85}
+    \subitem {led.h}, \hyperpage{53}
   \item {LED\_SetLow}
-    \subitem {led.c}, \hyperpage{83}
-    \subitem {led.h}, \hyperpage{51}
+    \subitem {led.c}, \hyperpage{86}
+    \subitem {led.h}, \hyperpage{54}
   \item {LED\_SignalBackUpPowerAvailable}
-    \subitem {led.c}, \hyperpage{83}
-    \subitem {led.h}, \hyperpage{52}
+    \subitem {led.c}, \hyperpage{86}
+    \subitem {led.h}, \hyperpage{54}
   \item {LED\_SignalError}
-    \subitem {led.c}, \hyperpage{84}
-    \subitem {led.h}, \hyperpage{52}
+    \subitem {led.c}, \hyperpage{86}
+    \subitem {led.h}, \hyperpage{54}
   \item {LED\_SignalFlush}
-    \subitem {led.c}, \hyperpage{84}
-    \subitem {led.h}, \hyperpage{52}
+    \subitem {led.c}, \hyperpage{86}
+    \subitem {led.h}, \hyperpage{54}
   \item {LED\_SignalLowMemory}
-    \subitem {led.c}, \hyperpage{84}
-    \subitem {led.h}, \hyperpage{52}
+    \subitem {led.c}, \hyperpage{86}
+    \subitem {led.h}, \hyperpage{54}
   \item {LED\_SignalReady}
-    \subitem {led.c}, \hyperpage{84}
-    \subitem {led.h}, \hyperpage{52}
+    \subitem {led.c}, \hyperpage{86}
+    \subitem {led.h}, \hyperpage{54}
   \item {LED\_SignalRecording}
-    \subitem {led.c}, \hyperpage{84}
-    \subitem {led.h}, \hyperpage{52}
+    \subitem {led.c}, \hyperpage{87}
+    \subitem {led.h}, \hyperpage{55}
   \item {LED\_SignalRecordingStop}
-    \subitem {led.c}, \hyperpage{84}
-    \subitem {led.h}, \hyperpage{52}
+    \subitem {led.c}, \hyperpage{87}
+    \subitem {led.h}, \hyperpage{55}
   \item {LP\_FLEXCOMM3\_IRQHandler}
-    \subitem {record.c}, \hyperpage{101}
+    \subitem {record.c}, \hyperpage{104}
+  \item {LPCMP\_BASE}
+    \subitem {pwrloss\_det.h}, \hyperpage{65}
+  \item {LPCMP\_DAC\_CHANNEL}
+    \subitem {pwrloss\_det.h}, \hyperpage{65}
+  \item {LPCMP\_IRQ\_ID}
+    \subitem {pwrloss\_det.h}, \hyperpage{66}
+  \item {LPCMP\_USER\_CHANNEL}
+    \subitem {pwrloss\_det.h}, \hyperpage{66}
   \item {lpi2c\_callback}
     \subitem {rtc\_ds3231.c}, \hyperpage{25}
-    \subitem {temperature.c}, \hyperpage{106}
+    \subitem {temperature.c}, \hyperpage{109}
   \item {LPI2C\_DMA\_BASEADDR}
-    \subitem {time.h}, \hyperpage{76}
+    \subitem {time.h}, \hyperpage{78}
   \item {LPI2C\_RX\_DMA\_CHANNEL}
     \subitem {rtc\_ds3231.h}, \hyperpage{31}
-    \subitem {temperature.c}, \hyperpage{104}
+    \subitem {temperature.c}, \hyperpage{107}
   \item {LPI2C\_RX\_EDMA\_CHANNEL}
-    \subitem {rtc\_ds3231.h}, \hyperpage{31}
-    \subitem {temperature.c}, \hyperpage{104}
+    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {temperature.c}, \hyperpage{107}
   \item {LPI2C\_TX\_CHANNEL}
-    \subitem {rtc\_ds3231.h}, \hyperpage{31}
-    \subitem {temperature.c}, \hyperpage{104}
+    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {temperature.c}, \hyperpage{107}
   \item {LPI2C\_TX\_DMA\_CHANNEL}
-    \subitem {rtc\_ds3231.h}, \hyperpage{31}
-    \subitem {temperature.c}, \hyperpage{105}
+    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {temperature.c}, \hyperpage{108}
   \item {LPUART3\_CLK\_FREQ}
-    \subitem {uart.h}, \hyperpage{77}
+    \subitem {uart.h}, \hyperpage{79}
 
   \indexspace
 
   \item {main}
-    \subitem {main.c}, \hyperpage{85}
+    \subitem {main.c}, \hyperpage{88}
   \item {main.c}
-    \subitem {g\_msc}, \hyperpage{85}
-    \subitem {g\_xMscTaskHandle}, \hyperpage{85}
-    \subitem {g\_xMscTaskStack}, \hyperpage{86}
-    \subitem {g\_xMscTaskTCB}, \hyperpage{86}
-    \subitem {g\_xRecordTaskHandle}, \hyperpage{86}
-    \subitem {g\_xRecordTaskStack}, \hyperpage{86}
-    \subitem {g\_xRecordTaskTCB}, \hyperpage{86}
-    \subitem {g\_xSemMassStorage}, \hyperpage{86}
-    \subitem {g\_xSemRecord}, \hyperpage{86}
-    \subitem {main}, \hyperpage{85}
+    \subitem {g\_msc}, \hyperpage{88}
+    \subitem {g\_xMscTaskHandle}, \hyperpage{88}
+    \subitem {g\_xMscTaskStack}, \hyperpage{88}
+    \subitem {g\_xMscTaskTCB}, \hyperpage{89}
+    \subitem {g\_xRecordTaskHandle}, \hyperpage{89}
+    \subitem {g\_xRecordTaskStack}, \hyperpage{89}
+    \subitem {g\_xRecordTaskTCB}, \hyperpage{89}
+    \subitem {g\_xSemMassStorage}, \hyperpage{89}
+    \subitem {g\_xSemRecord}, \hyperpage{89}
+    \subitem {main}, \hyperpage{88}
   \item {Management}, \hyperpage{11}
     \subitem {g\_u32ReadIndex}, \hyperpage{12}
     \subitem {g\_u32WriteIndex}, \hyperpage{12}
     \subitem {SDK\_ALIGN}, \hyperpage{12}
   \item {mass\_storage.c}
-    \subitem {g\_xSemMassStorage}, \hyperpage{88}
-    \subitem {g\_xSemRecord}, \hyperpage{88}
-    \subitem {MSC\_DeviceMscApp}, \hyperpage{87}
-    \subitem {MSC\_DeviceMscAppTask}, \hyperpage{87}
-    \subitem {USB1\_HS\_IRQHandler}, \hyperpage{87}
+    \subitem {g\_xSemMassStorage}, \hyperpage{91}
+    \subitem {g\_xSemRecord}, \hyperpage{91}
+    \subitem {MSC\_DeviceMscApp}, \hyperpage{90}
+    \subitem {MSC\_DeviceMscAppTask}, \hyperpage{90}
+    \subitem {USB1\_HS\_IRQHandler}, \hyperpage{90}
   \item {mass\_storage.h}
-    \subitem {MSC\_DeviceMscApp}, \hyperpage{55}
-    \subitem {MSC\_DeviceMscAppTask}, \hyperpage{55}
+    \subitem {MSC\_DeviceMscApp}, \hyperpage{56}
+    \subitem {MSC\_DeviceMscAppTask}, \hyperpage{56}
   \item {max\_bytes}
     \subitem {REC\_config\_t}, \hyperpage{20}
   \item {MEMORY\_LOW\_LED\_PIN}
-    \subitem {led.h}, \hyperpage{51}
+    \subitem {led.h}, \hyperpage{52}
   \item {MEMORY\_LOW\_LED\_PORT}
-    \subitem {led.h}, \hyperpage{51}
+    \subitem {led.h}, \hyperpage{52}
   \item {min}
     \subitem {RTC\_time\_t}, \hyperpage{22}
   \item {MONDAY}
-    \subitem {rtc\_ds3231.h}, \hyperpage{31}
+    \subitem {rtc\_ds3231.h}, \hyperpage{32}
   \item {month}
     \subitem {RTC\_date\_t}, \hyperpage{21}
   \item {MSC\_DeviceMscApp}
-    \subitem {mass\_storage.c}, \hyperpage{87}
-    \subitem {mass\_storage.h}, \hyperpage{55}
+    \subitem {mass\_storage.c}, \hyperpage{90}
+    \subitem {mass\_storage.h}, \hyperpage{56}
   \item {MSC\_DeviceMscAppTask}
-    \subitem {mass\_storage.c}, \hyperpage{87}
-    \subitem {mass\_storage.h}, \hyperpage{55}
+    \subitem {mass\_storage.c}, \hyperpage{90}
+    \subitem {mass\_storage.h}, \hyperpage{56}
   \item {MSC\_ENABLED}
-    \subitem {defs.h}, \hyperpage{43}
+    \subitem {defs.h}, \hyperpage{44}
   \item {MSC\_STACK\_SIZE}
-    \subitem {defs.h}, \hyperpage{43}
+    \subitem {defs.h}, \hyperpage{44}
   \item {msc\_task}
-    \subitem {app\_tasks.c}, \hyperpage{81}
-    \subitem {app\_tasks.h}, \hyperpage{37}
+    \subitem {app\_tasks.c}, \hyperpage{82}
+    \subitem {app\_tasks.h}, \hyperpage{38}
 
   \indexspace
 
   \item {NOT\_IMPLEMENTED}
-    \subitem {defs.h}, \hyperpage{43}
-
-  \indexspace
-
-  \item {OSC\_INTERRUPTED}
-    \subitem {rtc\_ds3231.h}, \hyperpage{33}
-  \item {OSC\_OK}
-    \subitem {rtc\_ds3231.h}, \hyperpage{33}
-  \item {OSC\_STOPPED}
-    \subitem {rtc\_ds3231.h}, \hyperpage{31}
-  \item {OSF\_STATE}
-    \subitem {rtc\_ds3231.c}, \hyperpage{25}
-
-  \indexspace
-
-  \item {P3T1755\_ADDR\_7BIT}
-    \subitem {temperature.c}, \hyperpage{105}
-  \item {parity}
-    \subitem {REC\_config\_t}, \hyperpage{20}
-  \item {parser.c}
-    \subitem {g\_config}, \hyperpage{93}
-    \subitem {PARSER\_ClearConfig}, \hyperpage{89}
-    \subitem {PARSER\_GetBaudrate}, \hyperpage{89}
-    \subitem {PARSER\_GetConfig}, \hyperpage{89}
-    \subitem {PARSER\_GetDataBits}, \hyperpage{90}
-    \subitem {PARSER\_GetFileSize}, \hyperpage{90}
-    \subitem {PARSER\_GetFreeSpaceLimitMB}, \hyperpage{90}
-    \subitem {PARSER\_GetMaxBytes}, \hyperpage{90}
-    \subitem {PARSER\_GetParity}, \hyperpage{91}
-    \subitem {PARSER\_GetStopBits}, \hyperpage{91}
-    \subitem {PARSER\_GetVersion}, \hyperpage{91}
-    \subitem {PARSER\_ParseBaudrate}, \hyperpage{91}
-    \subitem {PARSER\_ParseDataBits}, \hyperpage{92}
-    \subitem {PARSER\_ParseFileSize}, \hyperpage{92}
-    \subitem {PARSER\_ParseFreeSpace}, \hyperpage{92}
-    \subitem {PARSER\_ParseParity}, \hyperpage{93}
-    \subitem {PARSER\_ParseStopBits}, \hyperpage{93}
-    \subitem {RECORD\_LED\_TIME\_INTERVAL}, \hyperpage{89}
-  \item {parser.h}
-    \subitem {PARSER\_ClearConfig}, \hyperpage{57}
-    \subitem {PARSER\_GetBaudrate}, \hyperpage{57}
-    \subitem {PARSER\_GetConfig}, \hyperpage{57}
-    \subitem {PARSER\_GetDataBits}, \hyperpage{58}
-    \subitem {PARSER\_GetFileSize}, \hyperpage{58}
-    \subitem {PARSER\_GetFreeSpaceLimitMB}, \hyperpage{58}
-    \subitem {PARSER\_GetMaxBytes}, \hyperpage{58}
-    \subitem {PARSER\_GetParity}, \hyperpage{59}
-    \subitem {PARSER\_GetStopBits}, \hyperpage{59}
-    \subitem {PARSER\_GetVersion}, \hyperpage{59}
-    \subitem {PARSER\_ParseBaudrate}, \hyperpage{59}
-    \subitem {PARSER\_ParseDataBits}, \hyperpage{60}
-    \subitem {PARSER\_ParseFileSize}, \hyperpage{60}
-    \subitem {PARSER\_ParseFreeSpace}, \hyperpage{60}
-    \subitem {PARSER\_ParseParity}, \hyperpage{61}
-    \subitem {PARSER\_ParseStopBits}, \hyperpage{61}
-    \subitem {REC\_version\_t}, \hyperpage{57}
-    \subitem {WCT\_AUTOS1}, \hyperpage{57}
-    \subitem {WCT\_AUTOS2}, \hyperpage{57}
-    \subitem {WCT\_UNKOWN}, \hyperpage{57}
-  \item {PARSER\_ClearConfig}
-    \subitem {parser.c}, \hyperpage{89}
-    \subitem {parser.h}, \hyperpage{57}
-  \item {PARSER\_GetBaudrate}
-    \subitem {parser.c}, \hyperpage{89}
-    \subitem {parser.h}, \hyperpage{57}
-  \item {PARSER\_GetConfig}
-    \subitem {parser.c}, \hyperpage{89}
-    \subitem {parser.h}, \hyperpage{57}
-  \item {PARSER\_GetDataBits}
-    \subitem {parser.c}, \hyperpage{90}
-    \subitem {parser.h}, \hyperpage{58}
-  \item {PARSER\_GetFileSize}
-    \subitem {parser.c}, \hyperpage{90}
-    \subitem {parser.h}, \hyperpage{58}
-  \item {PARSER\_GetFreeSpaceLimitMB}
-    \subitem {parser.c}, \hyperpage{90}
-    \subitem {parser.h}, \hyperpage{58}
-  \item {PARSER\_GetMaxBytes}
-    \subitem {parser.c}, \hyperpage{90}
-    \subitem {parser.h}, \hyperpage{58}
-  \item {PARSER\_GetParity}
-    \subitem {parser.c}, \hyperpage{91}
-    \subitem {parser.h}, \hyperpage{59}
-  \item {PARSER\_GetStopBits}
-    \subitem {parser.c}, \hyperpage{91}
-    \subitem {parser.h}, \hyperpage{59}
-  \item {PARSER\_GetVersion}
-    \subitem {parser.c}, \hyperpage{91}
-    \subitem {parser.h}, \hyperpage{59}
-  \item {PARSER\_ParseBaudrate}
-    \subitem {parser.c}, \hyperpage{91}
-    \subitem {parser.h}, \hyperpage{59}
-  \item {PARSER\_ParseDataBits}
-    \subitem {parser.c}, \hyperpage{92}
-    \subitem {parser.h}, \hyperpage{60}
-  \item {PARSER\_ParseFileSize}
-    \subitem {parser.c}, \hyperpage{92}
-    \subitem {parser.h}, \hyperpage{60}
-  \item {PARSER\_ParseFreeSpace}
-    \subitem {parser.c}, \hyperpage{92}
-    \subitem {parser.h}, \hyperpage{60}
-  \item {PARSER\_ParseParity}
-    \subitem {parser.c}, \hyperpage{93}
-    \subitem {parser.h}, \hyperpage{61}
-  \item {PARSER\_ParseStopBits}
-    \subitem {parser.c}, \hyperpage{93}
-    \subitem {parser.h}, \hyperpage{61}
-  \item {PRINT\_REG\_OUTPUT}
-    \subitem {temperature.c}, \hyperpage{105}
-  \item {pwrloss\_det.c}
-    \subitem {CTIMER4\_IRQHandler}, \hyperpage{94}
-    \subitem {HSCMP1\_IRQHandler}, \hyperpage{94}
-    \subitem {PWRLOSS\_DetectionInit}, \hyperpage{94}
-    \subitem {REF\_VOLTAGE}, \hyperpage{94}
-    \subitem {TRIGGER\_VOLTAGE}, \hyperpage{94}
-  \item {pwrloss\_det.h}
-    \subitem {CTIMER}, \hyperpage{63}
-    \subitem {CTIMER\_CLK\_FREQ}, \hyperpage{63}
-    \subitem {CTIMER\_EMT0\_OUT}, \hyperpage{63}
-    \subitem {CTIMER\_MAT0\_OUT}, \hyperpage{64}
-    \subitem {DEMO\_LPCMP\_BASE}, \hyperpage{64}
-    \subitem {DEMO\_LPCMP\_DAC\_CHANNEL}, \hyperpage{64}
-    \subitem {DEMO\_LPCMP\_IRQ\_HANDLER\_FUNC}, \hyperpage{64}
-    \subitem {DEMO\_LPCMP\_IRQ\_ID}, \hyperpage{64}
-    \subitem {DEMO\_LPCMP\_USER\_CHANNEL}, \hyperpage{64}
-    \subitem {DEMO\_SPC\_BASE}, \hyperpage{64}
-    \subitem {DEMO\_VREF\_BASE}, \hyperpage{64}
-    \subitem {PWRLOSS\_DetectionInit}, \hyperpage{64}
-  \item {PWRLOSS\_DET\_ACTIVE\_IN\_TIME}
-    \subitem {defs.h}, \hyperpage{43}
-  \item {PWRLOSS\_DET\_PRIO}
-    \subitem {defs.h}, \hyperpage{43}
-  \item {PWRLOSS\_DETECTION\_ENABLED}
-    \subitem {defs.h}, \hyperpage{43}
-  \item {PWRLOSS\_DetectionInit}
-    \subitem {pwrloss\_det.c}, \hyperpage{94}
-    \subitem {pwrloss\_det.h}, \hyperpage{64}
-  \item {PWRLOSS\_TEST\_GPIOS}
-    \subitem {defs.h}, \hyperpage{43}
-  \item {PWRLOSS\_TIMER\_PRIO}
     \subitem {defs.h}, \hyperpage{44}
 
   \indexspace
 
+  \item {OSC\_INTERRUPTED}
+    \subitem {rtc\_ds3231.h}, \hyperpage{34}
+  \item {OSC\_OK}
+    \subitem {rtc\_ds3231.h}, \hyperpage{34}
+  \item {OSC\_STOPPED}
+    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+
+  \indexspace
+
+  \item {P3T1755\_ADDR\_7BIT}
+    \subitem {temperature.c}, \hyperpage{108}
+  \item {parity}
+    \subitem {REC\_config\_t}, \hyperpage{20}
+  \item {parser.c}
+    \subitem {g\_config}, \hyperpage{96}
+    \subitem {PARSER\_ClearConfig}, \hyperpage{92}
+    \subitem {PARSER\_GetBaudrate}, \hyperpage{92}
+    \subitem {PARSER\_GetConfig}, \hyperpage{92}
+    \subitem {PARSER\_GetDataBits}, \hyperpage{93}
+    \subitem {PARSER\_GetFileSize}, \hyperpage{93}
+    \subitem {PARSER\_GetFreeSpaceLimitMB}, \hyperpage{93}
+    \subitem {PARSER\_GetMaxBytes}, \hyperpage{93}
+    \subitem {PARSER\_GetParity}, \hyperpage{94}
+    \subitem {PARSER\_GetStopBits}, \hyperpage{94}
+    \subitem {PARSER\_GetVersion}, \hyperpage{94}
+    \subitem {PARSER\_ParseBaudrate}, \hyperpage{94}
+    \subitem {PARSER\_ParseDataBits}, \hyperpage{95}
+    \subitem {PARSER\_ParseFileSize}, \hyperpage{95}
+    \subitem {PARSER\_ParseFreeSpace}, \hyperpage{95}
+    \subitem {PARSER\_ParseParity}, \hyperpage{96}
+    \subitem {PARSER\_ParseStopBits}, \hyperpage{96}
+    \subitem {RECORD\_LED\_TIME\_INTERVAL}, \hyperpage{92}
+  \item {parser.h}
+    \subitem {PARSER\_ClearConfig}, \hyperpage{59}
+    \subitem {PARSER\_GetBaudrate}, \hyperpage{59}
+    \subitem {PARSER\_GetConfig}, \hyperpage{59}
+    \subitem {PARSER\_GetDataBits}, \hyperpage{59}
+    \subitem {PARSER\_GetFileSize}, \hyperpage{59}
+    \subitem {PARSER\_GetFreeSpaceLimitMB}, \hyperpage{60}
+    \subitem {PARSER\_GetMaxBytes}, \hyperpage{60}
+    \subitem {PARSER\_GetParity}, \hyperpage{60}
+    \subitem {PARSER\_GetStopBits}, \hyperpage{60}
+    \subitem {PARSER\_GetVersion}, \hyperpage{61}
+    \subitem {PARSER\_ParseBaudrate}, \hyperpage{61}
+    \subitem {PARSER\_ParseDataBits}, \hyperpage{61}
+    \subitem {PARSER\_ParseFileSize}, \hyperpage{61}
+    \subitem {PARSER\_ParseFreeSpace}, \hyperpage{62}
+    \subitem {PARSER\_ParseParity}, \hyperpage{62}
+    \subitem {PARSER\_ParseStopBits}, \hyperpage{62}
+    \subitem {REC\_version\_t}, \hyperpage{58}
+    \subitem {WCT\_AUTOS1}, \hyperpage{59}
+    \subitem {WCT\_AUTOS2}, \hyperpage{59}
+    \subitem {WCT\_UNKOWN}, \hyperpage{59}
+  \item {PARSER\_ClearConfig}
+    \subitem {parser.c}, \hyperpage{92}
+    \subitem {parser.h}, \hyperpage{59}
+  \item {PARSER\_GetBaudrate}
+    \subitem {parser.c}, \hyperpage{92}
+    \subitem {parser.h}, \hyperpage{59}
+  \item {PARSER\_GetConfig}
+    \subitem {parser.c}, \hyperpage{92}
+    \subitem {parser.h}, \hyperpage{59}
+  \item {PARSER\_GetDataBits}
+    \subitem {parser.c}, \hyperpage{93}
+    \subitem {parser.h}, \hyperpage{59}
+  \item {PARSER\_GetFileSize}
+    \subitem {parser.c}, \hyperpage{93}
+    \subitem {parser.h}, \hyperpage{59}
+  \item {PARSER\_GetFreeSpaceLimitMB}
+    \subitem {parser.c}, \hyperpage{93}
+    \subitem {parser.h}, \hyperpage{60}
+  \item {PARSER\_GetMaxBytes}
+    \subitem {parser.c}, \hyperpage{93}
+    \subitem {parser.h}, \hyperpage{60}
+  \item {PARSER\_GetParity}
+    \subitem {parser.c}, \hyperpage{94}
+    \subitem {parser.h}, \hyperpage{60}
+  \item {PARSER\_GetStopBits}
+    \subitem {parser.c}, \hyperpage{94}
+    \subitem {parser.h}, \hyperpage{60}
+  \item {PARSER\_GetVersion}
+    \subitem {parser.c}, \hyperpage{94}
+    \subitem {parser.h}, \hyperpage{61}
+  \item {PARSER\_ParseBaudrate}
+    \subitem {parser.c}, \hyperpage{94}
+    \subitem {parser.h}, \hyperpage{61}
+  \item {PARSER\_ParseDataBits}
+    \subitem {parser.c}, \hyperpage{95}
+    \subitem {parser.h}, \hyperpage{61}
+  \item {PARSER\_ParseFileSize}
+    \subitem {parser.c}, \hyperpage{95}
+    \subitem {parser.h}, \hyperpage{61}
+  \item {PARSER\_ParseFreeSpace}
+    \subitem {parser.c}, \hyperpage{95}
+    \subitem {parser.h}, \hyperpage{62}
+  \item {PARSER\_ParseParity}
+    \subitem {parser.c}, \hyperpage{96}
+    \subitem {parser.h}, \hyperpage{62}
+  \item {PARSER\_ParseStopBits}
+    \subitem {parser.c}, \hyperpage{96}
+    \subitem {parser.h}, \hyperpage{62}
+  \item {PRINT\_REG\_OUTPUT}
+    \subitem {temperature.c}, \hyperpage{108}
+  \item {pwrloss\_det.c}
+    \subitem {CTIMER4\_IRQHandler}, \hyperpage{97}
+    \subitem {HSCMP1\_IRQHandler}, \hyperpage{97}
+    \subitem {PWRLOSS\_DetectionInit}, \hyperpage{97}
+    \subitem {REF\_VOLTAGE}, \hyperpage{97}
+    \subitem {TRIGGER\_VOLTAGE}, \hyperpage{97}
+  \item {pwrloss\_det.h}
+    \subitem {CTIMER}, \hyperpage{65}
+    \subitem {CTIMER\_CLK\_FREQ}, \hyperpage{65}
+    \subitem {CTIMER\_EMT0\_OUT}, \hyperpage{65}
+    \subitem {CTIMER\_MAT0\_OUT}, \hyperpage{65}
+    \subitem {LPCMP\_BASE}, \hyperpage{65}
+    \subitem {LPCMP\_DAC\_CHANNEL}, \hyperpage{65}
+    \subitem {LPCMP\_IRQ\_ID}, \hyperpage{66}
+    \subitem {LPCMP\_USER\_CHANNEL}, \hyperpage{66}
+    \subitem {PWRLOSS\_DetectionInit}, \hyperpage{66}
+    \subitem {SPC\_BASE}, \hyperpage{66}
+  \item {PWRLOSS\_DET\_ACTIVE\_IN\_TIME}
+    \subitem {defs.h}, \hyperpage{44}
+  \item {PWRLOSS\_DET\_PRIO}
+    \subitem {defs.h}, \hyperpage{44}
+  \item {PWRLOSS\_DETECTION\_ENABLED}
+    \subitem {defs.h}, \hyperpage{44}
+  \item {PWRLOSS\_DetectionInit}
+    \subitem {pwrloss\_det.c}, \hyperpage{97}
+    \subitem {pwrloss\_det.h}, \hyperpage{66}
+  \item {PWRLOSS\_TEST\_GPIOS}
+    \subitem {defs.h}, \hyperpage{44}
+  \item {PWRLOSS\_TIMER\_PRIO}
+    \subitem {defs.h}, \hyperpage{45}
+
+  \indexspace
+
   \item {Read}
-    \subitem {temperature.c}, \hyperpage{106}
-    \subitem {temperature.h}, \hyperpage{74}
+    \subitem {temperature.c}, \hyperpage{109}
+    \subitem {temperature.h}, \hyperpage{75}
   \item {REC\_config\_t}, \hyperpage{19}
     \subitem {baudrate}, \hyperpage{19}
     \subitem {data\_bits}, \hyperpage{19}
@@ -748,68 +738,68 @@
     \subitem {stop\_bits}, \hyperpage{20}
     \subitem {version}, \hyperpage{20}
   \item {REC\_version\_t}
-    \subitem {parser.h}, \hyperpage{57}
+    \subitem {parser.h}, \hyperpage{58}
   \item {record.c}
-    \subitem {BLOCK\_SIZE}, \hyperpage{97}
-    \subitem {CIRCULAR\_BUFFER\_SIZE}, \hyperpage{97}
-    \subitem {CONSOLELOG\_CheckFileSystem}, \hyperpage{97}
-    \subitem {CONSOLELOG\_ClearTransferedBytes}, \hyperpage{97}
-    \subitem {CONSOLELOG\_CreateDirectory}, \hyperpage{98}
-    \subitem {CONSOLELOG\_CreateFile}, \hyperpage{98}
-    \subitem {CONSOLELOG\_Deinit}, \hyperpage{98}
-    \subitem {CONSOLELOG\_Flush}, \hyperpage{98}
-    \subitem {CONSOLELOG\_GetFlushCompleted}, \hyperpage{99}
-    \subitem {CONSOLELOG\_GetFreeSpaceMB}, \hyperpage{99}
-    \subitem {CONSOLELOG\_GetTransferedBytes}, \hyperpage{99}
-    \subitem {CONSOLELOG\_Init}, \hyperpage{99}
-    \subitem {CONSOLELOG\_PowerLossFlush}, \hyperpage{100}
-    \subitem {CONSOLELOG\_ProccessConfigFile}, \hyperpage{100}
-    \subitem {CONSOLELOG\_ReadConfig}, \hyperpage{100}
-    \subitem {CONSOLELOG\_Recording}, \hyperpage{101}
-    \subitem {GET\_CURRENT\_TIME\_MS}, \hyperpage{97}
-    \subitem {get\_fattime}, \hyperpage{101}
-    \subitem {GET\_WAIT\_INTERVAL}, \hyperpage{97}
-    \subitem {LP\_FLEXCOMM3\_IRQHandler}, \hyperpage{101}
+    \subitem {BLOCK\_SIZE}, \hyperpage{100}
+    \subitem {CIRCULAR\_BUFFER\_SIZE}, \hyperpage{100}
+    \subitem {CONSOLELOG\_CheckFileSystem}, \hyperpage{100}
+    \subitem {CONSOLELOG\_ClearTransferedBytes}, \hyperpage{100}
+    \subitem {CONSOLELOG\_CreateDirectory}, \hyperpage{101}
+    \subitem {CONSOLELOG\_CreateFile}, \hyperpage{101}
+    \subitem {CONSOLELOG\_Deinit}, \hyperpage{101}
+    \subitem {CONSOLELOG\_Flush}, \hyperpage{101}
+    \subitem {CONSOLELOG\_GetFlushCompleted}, \hyperpage{102}
+    \subitem {CONSOLELOG\_GetFreeSpaceMB}, \hyperpage{102}
+    \subitem {CONSOLELOG\_GetTransferedBytes}, \hyperpage{102}
+    \subitem {CONSOLELOG\_Init}, \hyperpage{102}
+    \subitem {CONSOLELOG\_PowerLossFlush}, \hyperpage{103}
+    \subitem {CONSOLELOG\_ProccessConfigFile}, \hyperpage{103}
+    \subitem {CONSOLELOG\_ReadConfig}, \hyperpage{103}
+    \subitem {CONSOLELOG\_Recording}, \hyperpage{104}
+    \subitem {GET\_CURRENT\_TIME\_MS}, \hyperpage{100}
+    \subitem {get\_fattime}, \hyperpage{104}
+    \subitem {GET\_WAIT\_INTERVAL}, \hyperpage{100}
+    \subitem {LP\_FLEXCOMM3\_IRQHandler}, \hyperpage{104}
   \item {record.h}
-    \subitem {CONSOLELOG\_CheckFileSystem}, \hyperpage{67}
-    \subitem {CONSOLELOG\_ClearTransferedBytes}, \hyperpage{67}
-    \subitem {CONSOLELOG\_CreateDirectory}, \hyperpage{67}
-    \subitem {CONSOLELOG\_CreateFile}, \hyperpage{67}
-    \subitem {CONSOLELOG\_Deinit}, \hyperpage{67}
-    \subitem {CONSOLELOG\_Flush}, \hyperpage{68}
-    \subitem {CONSOLELOG\_GetFlushCompleted}, \hyperpage{68}
-    \subitem {CONSOLELOG\_GetFreeSpaceMB}, \hyperpage{68}
-    \subitem {CONSOLELOG\_GetMaxBytes}, \hyperpage{68}
-    \subitem {CONSOLELOG\_GetTransferedBytes}, \hyperpage{69}
-    \subitem {CONSOLELOG\_Init}, \hyperpage{69}
-    \subitem {CONSOLELOG\_PowerLossFlush}, \hyperpage{69}
-    \subitem {CONSOLELOG\_ProccessConfigFile}, \hyperpage{69}
-    \subitem {CONSOLELOG\_ReadConfig}, \hyperpage{70}
-    \subitem {CONSOLELOG\_Recording}, \hyperpage{70}
-    \subitem {FLUSH\_TIMEOUT\_TICKS}, \hyperpage{67}
+    \subitem {CONSOLELOG\_CheckFileSystem}, \hyperpage{69}
+    \subitem {CONSOLELOG\_ClearTransferedBytes}, \hyperpage{69}
+    \subitem {CONSOLELOG\_CreateDirectory}, \hyperpage{69}
+    \subitem {CONSOLELOG\_CreateFile}, \hyperpage{69}
+    \subitem {CONSOLELOG\_Deinit}, \hyperpage{69}
+    \subitem {CONSOLELOG\_Flush}, \hyperpage{70}
+    \subitem {CONSOLELOG\_GetFlushCompleted}, \hyperpage{70}
+    \subitem {CONSOLELOG\_GetFreeSpaceMB}, \hyperpage{70}
+    \subitem {CONSOLELOG\_GetMaxBytes}, \hyperpage{70}
+    \subitem {CONSOLELOG\_GetTransferedBytes}, \hyperpage{71}
+    \subitem {CONSOLELOG\_Init}, \hyperpage{71}
+    \subitem {CONSOLELOG\_PowerLossFlush}, \hyperpage{71}
+    \subitem {CONSOLELOG\_ProccessConfigFile}, \hyperpage{71}
+    \subitem {CONSOLELOG\_ReadConfig}, \hyperpage{72}
+    \subitem {CONSOLELOG\_Recording}, \hyperpage{72}
+    \subitem {FLUSH\_TIMEOUT\_TICKS}, \hyperpage{69}
   \item {RECORD\_LED\_PIN}
-    \subitem {led.h}, \hyperpage{51}
+    \subitem {led.h}, \hyperpage{53}
   \item {RECORD\_LED\_PIN\_FLUSH}
-    \subitem {led.h}, \hyperpage{51}
+    \subitem {led.h}, \hyperpage{53}
   \item {RECORD\_LED\_PORT}
-    \subitem {led.h}, \hyperpage{51}
+    \subitem {led.h}, \hyperpage{53}
   \item {RECORD\_LED\_TIME\_INTERVAL}
-    \subitem {parser.c}, \hyperpage{89}
+    \subitem {parser.c}, \hyperpage{92}
   \item {RECORD\_STACK\_SIZE}
-    \subitem {defs.h}, \hyperpage{44}
+    \subitem {defs.h}, \hyperpage{45}
   \item {record\_task}
-    \subitem {app\_tasks.c}, \hyperpage{81}
+    \subitem {app\_tasks.c}, \hyperpage{83}
     \subitem {app\_tasks.h}, \hyperpage{38}
   \item {REF\_VOLTAGE}
-    \subitem {pwrloss\_det.c}, \hyperpage{94}
+    \subitem {pwrloss\_det.c}, \hyperpage{97}
   \item {REGISTER\_CONFIG}
-    \subitem {temperature.c}, \hyperpage{105}
+    \subitem {temperature.c}, \hyperpage{108}
   \item {REGISTER\_TEMPERATURE}
-    \subitem {temperature.c}, \hyperpage{105}
+    \subitem {temperature.c}, \hyperpage{108}
   \item {REGISTER\_THVST}
-    \subitem {temperature.c}, \hyperpage{105}
+    \subitem {temperature.c}, \hyperpage{108}
   \item {REGISTER\_TOS}
-    \subitem {temperature.c}, \hyperpage{105}
+    \subitem {temperature.c}, \hyperpage{108}
   \item {RTC\_ClearFlagAlarm1}
     \subitem {DS3231 Real-\/Time Clock Driver}, \hyperpage{13}
   \item {RTC\_ClearFlagAlarm2}
@@ -841,54 +831,53 @@
     \subitem {gEdmaTxHandle}, \hyperpage{26}
     \subitem {I2C\_DATA\_LENGTH}, \hyperpage{25}
     \subitem {lpi2c\_callback}, \hyperpage{25}
-    \subitem {OSF\_STATE}, \hyperpage{25}
     \subitem {RTC\_ConvertToBCD}, \hyperpage{25}
     \subitem {RTC\_ConvertToDEC}, \hyperpage{25}
     \subitem {xfer}, \hyperpage{26}
   \item {rtc\_ds3231.h}
-    \subitem {ALARM\_DISABLED}, \hyperpage{28}
-    \subitem {ALARM\_INTERRUPT}, \hyperpage{32}
-    \subitem {APP\_SUCCESS}, \hyperpage{28}
-    \subitem {DS3231\_A1F}, \hyperpage{28}
+    \subitem {ALARM\_DISABLED}, \hyperpage{29}
+    \subitem {ALARM\_INTERRUPT}, \hyperpage{34}
+    \subitem {APP\_SUCCESS}, \hyperpage{29}
+    \subitem {DS3231\_A1F}, \hyperpage{29}
     \subitem {DS3231\_A1IE}, \hyperpage{29}
     \subitem {DS3231\_A2F}, \hyperpage{29}
     \subitem {DS3231\_A2IE}, \hyperpage{29}
     \subitem {DS3231\_ADDR\_CENT}, \hyperpage{29}
     \subitem {DS3231\_ADDR\_DATE}, \hyperpage{29}
     \subitem {DS3231\_ADDR\_DAY}, \hyperpage{29}
-    \subitem {DS3231\_ADDR\_HRS}, \hyperpage{29}
-    \subitem {DS3231\_ADDR\_I2C}, \hyperpage{29}
-    \subitem {DS3231\_ADDR\_MIN}, \hyperpage{29}
-    \subitem {DS3231\_ADDR\_MONTH}, \hyperpage{29}
+    \subitem {DS3231\_ADDR\_HRS}, \hyperpage{30}
+    \subitem {DS3231\_ADDR\_I2C}, \hyperpage{30}
+    \subitem {DS3231\_ADDR\_MIN}, \hyperpage{30}
+    \subitem {DS3231\_ADDR\_MONTH}, \hyperpage{30}
     \subitem {DS3231\_ADDR\_SEC}, \hyperpage{30}
     \subitem {DS3231\_ADDR\_YEAR}, \hyperpage{30}
     \subitem {DS3231\_INTCN}, \hyperpage{30}
-    \subitem {DS3231\_REG\_CTRL}, \hyperpage{30}
-    \subitem {DS3231\_REG\_STATUS}, \hyperpage{30}
-    \subitem {E\_FAULT}, \hyperpage{30}
-    \subitem {FRIDAY}, \hyperpage{30}
-    \subitem {I2C\_BAUDRATE}, \hyperpage{30}
-    \subitem {I2C\_MASTER}, \hyperpage{30}
+    \subitem {DS3231\_REG\_CTRL}, \hyperpage{31}
+    \subitem {DS3231\_REG\_STATUS}, \hyperpage{31}
+    \subitem {E\_FAULT}, \hyperpage{31}
+    \subitem {FRIDAY}, \hyperpage{31}
+    \subitem {I2C\_BAUDRATE}, \hyperpage{31}
+    \subitem {I2C\_MASTER}, \hyperpage{31}
     \subitem {LPI2C\_RX\_DMA\_CHANNEL}, \hyperpage{31}
-    \subitem {LPI2C\_RX\_EDMA\_CHANNEL}, \hyperpage{31}
-    \subitem {LPI2C\_TX\_CHANNEL}, \hyperpage{31}
-    \subitem {LPI2C\_TX\_DMA\_CHANNEL}, \hyperpage{31}
-    \subitem {MONDAY}, \hyperpage{31}
-    \subitem {OSC\_INTERRUPTED}, \hyperpage{33}
-    \subitem {OSC\_OK}, \hyperpage{33}
-    \subitem {OSC\_STOPPED}, \hyperpage{31}
-    \subitem {RTC\_interrupt\_mode\_t}, \hyperpage{32}
-    \subitem {RTC\_osc\_state\_t}, \hyperpage{32}
-    \subitem {SATURDAY}, \hyperpage{31}
-    \subitem {SQUARE\_WAVE\_INTERRUPT}, \hyperpage{32}
-    \subitem {SUNDAY}, \hyperpage{31}
-    \subitem {THURSDAY}, \hyperpage{32}
-    \subitem {TIM\_CYCLE\_12H}, \hyperpage{32}
-    \subitem {TIM\_CYCLE\_12H\_AM}, \hyperpage{32}
-    \subitem {TIM\_CYCLE\_12H\_PM}, \hyperpage{32}
-    \subitem {TIM\_CYCLE\_24H}, \hyperpage{32}
-    \subitem {TUESDAY}, \hyperpage{32}
-    \subitem {WEDNESDAY}, \hyperpage{32}
+    \subitem {LPI2C\_RX\_EDMA\_CHANNEL}, \hyperpage{32}
+    \subitem {LPI2C\_TX\_CHANNEL}, \hyperpage{32}
+    \subitem {LPI2C\_TX\_DMA\_CHANNEL}, \hyperpage{32}
+    \subitem {MONDAY}, \hyperpage{32}
+    \subitem {OSC\_INTERRUPTED}, \hyperpage{34}
+    \subitem {OSC\_OK}, \hyperpage{34}
+    \subitem {OSC\_STOPPED}, \hyperpage{32}
+    \subitem {RTC\_interrupt\_mode\_t}, \hyperpage{33}
+    \subitem {RTC\_osc\_state\_t}, \hyperpage{34}
+    \subitem {SATURDAY}, \hyperpage{32}
+    \subitem {SQUARE\_WAVE\_INTERRUPT}, \hyperpage{34}
+    \subitem {SUNDAY}, \hyperpage{32}
+    \subitem {THURSDAY}, \hyperpage{33}
+    \subitem {TIM\_CYCLE\_12H}, \hyperpage{33}
+    \subitem {TIM\_CYCLE\_12H\_AM}, \hyperpage{33}
+    \subitem {TIM\_CYCLE\_12H\_PM}, \hyperpage{33}
+    \subitem {TIM\_CYCLE\_24H}, \hyperpage{33}
+    \subitem {TUESDAY}, \hyperpage{33}
+    \subitem {WEDNESDAY}, \hyperpage{33}
   \item {RTC\_GetDate}
     \subitem {DS3231 Real-\/Time Clock Driver}, \hyperpage{15}
   \item {RTC\_GetState}
@@ -898,9 +887,9 @@
   \item {RTC\_Init}
     \subitem {DS3231 Real-\/Time Clock Driver}, \hyperpage{15}
   \item {RTC\_interrupt\_mode\_t}
-    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {rtc\_ds3231.h}, \hyperpage{33}
   \item {RTC\_osc\_state\_t}
-    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {rtc\_ds3231.h}, \hyperpage{34}
   \item {RTC\_Read}
     \subitem {DS3231 Real-\/Time Clock Driver}, \hyperpage{16}
   \item {RTC\_SetDate}
@@ -926,40 +915,38 @@
   \indexspace
 
   \item {SATURDAY}
-    \subitem {rtc\_ds3231.h}, \hyperpage{31}
+    \subitem {rtc\_ds3231.h}, \hyperpage{32}
   \item {SDK\_ALIGN}
     \subitem {Buffers and Recording Management}, \hyperpage{9}
     \subitem {Management}, \hyperpage{12}
   \item {sec}
     \subitem {RTC\_time\_t}, \hyperpage{22}
   \item {semihost\_hardfault.c}
-    \subitem {\_\_attribute\_\_}, \hyperpage{102}
-  \item {SENSOR\_DYNAMIC\_ADDR}
-    \subitem {temperature.h}, \hyperpage{74}
-  \item {SENSOR\_STATIC\_ADDR}
-    \subitem {temperature.h}, \hyperpage{74}
+    \subitem {\_\_attribute\_\_}, \hyperpage{105}
   \item {size}
     \subitem {REC\_config\_t}, \hyperpage{20}
-  \item {source/app\_init.c}, \hyperpage{79}
-  \item {source/app\_tasks.c}, \hyperpage{80}
-  \item {source/error.c}, \hyperpage{82}
-  \item {source/led.c}, \hyperpage{83}
-  \item {source/main.c}, \hyperpage{84}
-  \item {source/mass\_storage.c}, \hyperpage{87}
-  \item {source/parser.c}, \hyperpage{88}
-  \item {source/pwrloss\_det.c}, \hyperpage{94}
-  \item {source/record.c}, \hyperpage{95}
-  \item {source/semihost\_hardfault.c}, \hyperpage{102}
-  \item {source/task\_switching.c}, \hyperpage{102}
-  \item {source/temperature.c}, \hyperpage{103}
-  \item {source/time.c}, \hyperpage{108}
-  \item {source/uart.c}, \hyperpage{109}
+  \item {source/app\_init.c}, \hyperpage{81}
+  \item {source/app\_tasks.c}, \hyperpage{82}
+  \item {source/error.c}, \hyperpage{84}
+  \item {source/led.c}, \hyperpage{85}
+  \item {source/main.c}, \hyperpage{87}
+  \item {source/mass\_storage.c}, \hyperpage{90}
+  \item {source/parser.c}, \hyperpage{91}
+  \item {source/pwrloss\_det.c}, \hyperpage{97}
+  \item {source/record.c}, \hyperpage{98}
+  \item {source/semihost\_hardfault.c}, \hyperpage{105}
+  \item {source/task\_switching.c}, \hyperpage{105}
+  \item {source/temperature.c}, \hyperpage{106}
+  \item {source/time.c}, \hyperpage{111}
+  \item {source/uart.c}, \hyperpage{112}
+  \item {SPC\_BASE}
+    \subitem {pwrloss\_det.h}, \hyperpage{66}
   \item {SQUARE\_WAVE\_INTERRUPT}
-    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {rtc\_ds3231.h}, \hyperpage{34}
   \item {stop\_bits}
     \subitem {REC\_config\_t}, \hyperpage{20}
   \item {SUNDAY}
-    \subitem {rtc\_ds3231.h}, \hyperpage{31}
+    \subitem {rtc\_ds3231.h}, \hyperpage{32}
 
   \indexspace
 
@@ -969,123 +956,121 @@
     \subitem {xIdleTaskTCB}, \hyperpage{8}
     \subitem {xTimerTaskTCB}, \hyperpage{8}
   \item {TASK\_PRIO}
-    \subitem {app\_tasks.h}, \hyperpage{37}
+    \subitem {app\_tasks.h}, \hyperpage{38}
   \item {task\_switching.c}
-    \subitem {USB\_State}, \hyperpage{102}
+    \subitem {USB\_State}, \hyperpage{105}
   \item {task\_switching.h}
-    \subitem {g\_msc}, \hyperpage{72}
-    \subitem {USB\_State}, \hyperpage{72}
+    \subitem {g\_msc}, \hyperpage{74}
+    \subitem {USB\_State}, \hyperpage{74}
   \item {TAU}
-    \subitem {defs.h}, \hyperpage{44}
+    \subitem {defs.h}, \hyperpage{45}
   \item {temperature.c}
-    \subitem {AT\_NONCACHEABLE\_SECTION}, \hyperpage{106}
-    \subitem {BUFF\_SIZE}, \hyperpage{104}
-    \subitem {CTIMER0\_IRQHandler}, \hyperpage{106}
-    \subitem {g\_bCompletionFlag\_I2C5}, \hyperpage{107}
-    \subitem {g\_EdmaRxHandle\_I2C5}, \hyperpage{107}
-    \subitem {g\_EdmaTxHandle\_I2C5}, \hyperpage{107}
-    \subitem {g\_Xfer\_I2C5}, \hyperpage{107}
-    \subitem {I2C\_BAUDRATE}, \hyperpage{104}
-    \subitem {I2C\_MASTER\_I2C5}, \hyperpage{104}
-    \subitem {lpi2c\_callback}, \hyperpage{106}
-    \subitem {LPI2C\_RX\_DMA\_CHANNEL}, \hyperpage{104}
-    \subitem {LPI2C\_RX\_EDMA\_CHANNEL}, \hyperpage{104}
-    \subitem {LPI2C\_TX\_CHANNEL}, \hyperpage{104}
-    \subitem {LPI2C\_TX\_DMA\_CHANNEL}, \hyperpage{105}
-    \subitem {P3T1755\_ADDR\_7BIT}, \hyperpage{105}
-    \subitem {PRINT\_REG\_OUTPUT}, \hyperpage{105}
-    \subitem {Read}, \hyperpage{106}
-    \subitem {REGISTER\_CONFIG}, \hyperpage{105}
-    \subitem {REGISTER\_TEMPERATURE}, \hyperpage{105}
-    \subitem {REGISTER\_THVST}, \hyperpage{105}
-    \subitem {REGISTER\_TOS}, \hyperpage{105}
-    \subitem {TMP\_GetTemperature}, \hyperpage{106}
-    \subitem {TMP\_Init}, \hyperpage{107}
-    \subitem {Write}, \hyperpage{107}
+    \subitem {AT\_NONCACHEABLE\_SECTION}, \hyperpage{109}
+    \subitem {BUFF\_SIZE}, \hyperpage{107}
+    \subitem {CTIMER0\_IRQHandler}, \hyperpage{109}
+    \subitem {g\_bCompletionFlag\_I2C5}, \hyperpage{110}
+    \subitem {g\_EdmaRxHandle\_I2C5}, \hyperpage{110}
+    \subitem {g\_EdmaTxHandle\_I2C5}, \hyperpage{110}
+    \subitem {g\_Xfer\_I2C5}, \hyperpage{110}
+    \subitem {I2C\_BAUDRATE}, \hyperpage{107}
+    \subitem {I2C\_MASTER\_I2C5}, \hyperpage{107}
+    \subitem {lpi2c\_callback}, \hyperpage{109}
+    \subitem {LPI2C\_RX\_DMA\_CHANNEL}, \hyperpage{107}
+    \subitem {LPI2C\_RX\_EDMA\_CHANNEL}, \hyperpage{107}
+    \subitem {LPI2C\_TX\_CHANNEL}, \hyperpage{107}
+    \subitem {LPI2C\_TX\_DMA\_CHANNEL}, \hyperpage{108}
+    \subitem {P3T1755\_ADDR\_7BIT}, \hyperpage{108}
+    \subitem {PRINT\_REG\_OUTPUT}, \hyperpage{108}
+    \subitem {Read}, \hyperpage{109}
+    \subitem {REGISTER\_CONFIG}, \hyperpage{108}
+    \subitem {REGISTER\_TEMPERATURE}, \hyperpage{108}
+    \subitem {REGISTER\_THVST}, \hyperpage{108}
+    \subitem {REGISTER\_TOS}, \hyperpage{108}
+    \subitem {TMP\_GetTemperature}, \hyperpage{109}
+    \subitem {TMP\_Init}, \hyperpage{110}
+    \subitem {Write}, \hyperpage{110}
   \item {temperature.h}
-    \subitem {Read}, \hyperpage{74}
-    \subitem {SENSOR\_DYNAMIC\_ADDR}, \hyperpage{74}
-    \subitem {SENSOR\_STATIC\_ADDR}, \hyperpage{74}
-    \subitem {TMP\_GetTemperature}, \hyperpage{74}
-    \subitem {TMP\_Init}, \hyperpage{74}
-    \subitem {Write}, \hyperpage{74}
+    \subitem {Read}, \hyperpage{75}
+    \subitem {TMP\_GetTemperature}, \hyperpage{76}
+    \subitem {TMP\_Init}, \hyperpage{76}
+    \subitem {Write}, \hyperpage{76}
   \item {TEMPERATURE\_MEAS\_ENABLED}
-    \subitem {defs.h}, \hyperpage{44}
+    \subitem {defs.h}, \hyperpage{45}
   \item {THURSDAY}
-    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {rtc\_ds3231.h}, \hyperpage{33}
   \item {TIM\_CYCLE\_12H}
-    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {rtc\_ds3231.h}, \hyperpage{33}
   \item {TIM\_CYCLE\_12H\_AM}
-    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {rtc\_ds3231.h}, \hyperpage{33}
   \item {TIM\_CYCLE\_12H\_PM}
-    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {rtc\_ds3231.h}, \hyperpage{33}
   \item {TIM\_CYCLE\_24H}
-    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {rtc\_ds3231.h}, \hyperpage{33}
   \item {time.c}
-    \subitem {EXTERNAL\_RTC\_TIME\_OFSET}, \hyperpage{108}
-    \subitem {INTERNAL\_RTC\_BASE\_YEAR}, \hyperpage{108}
-    \subitem {TIME\_InitIRTC}, \hyperpage{108}
+    \subitem {EXTERNAL\_RTC\_TIME\_OFSET}, \hyperpage{111}
+    \subitem {INTERNAL\_RTC\_BASE\_YEAR}, \hyperpage{111}
+    \subitem {TIME\_InitIRTC}, \hyperpage{111}
   \item {time.h}
-    \subitem {LPI2C\_DMA\_BASEADDR}, \hyperpage{76}
-    \subitem {TIME\_InitIRTC}, \hyperpage{76}
+    \subitem {LPI2C\_DMA\_BASEADDR}, \hyperpage{78}
+    \subitem {TIME\_InitIRTC}, \hyperpage{78}
   \item {TIME\_InitIRTC}
-    \subitem {time.c}, \hyperpage{108}
-    \subitem {time.h}, \hyperpage{76}
+    \subitem {time.c}, \hyperpage{111}
+    \subitem {time.h}, \hyperpage{78}
   \item {TMP\_GetTemperature}
-    \subitem {temperature.c}, \hyperpage{106}
-    \subitem {temperature.h}, \hyperpage{74}
+    \subitem {temperature.c}, \hyperpage{109}
+    \subitem {temperature.h}, \hyperpage{76}
   \item {TMP\_Init}
-    \subitem {temperature.c}, \hyperpage{107}
-    \subitem {temperature.h}, \hyperpage{74}
+    \subitem {temperature.c}, \hyperpage{110}
+    \subitem {temperature.h}, \hyperpage{76}
   \item {TRIGGER\_VOLTAGE}
-    \subitem {pwrloss\_det.c}, \hyperpage{94}
+    \subitem {pwrloss\_det.c}, \hyperpage{97}
   \item {TUESDAY}
-    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {rtc\_ds3231.h}, \hyperpage{33}
 
   \indexspace
 
   \item {uart.c}
-    \subitem {BUFFER\_SIZE}, \hyperpage{109}
-    \subitem {UART\_Deinit}, \hyperpage{109}
-    \subitem {UART\_Disable}, \hyperpage{109}
-    \subitem {UART\_Enable}, \hyperpage{109}
-    \subitem {UART\_Init}, \hyperpage{110}
-    \subitem {UART\_Print}, \hyperpage{110}
+    \subitem {BUFFER\_SIZE}, \hyperpage{112}
+    \subitem {UART\_Deinit}, \hyperpage{112}
+    \subitem {UART\_Disable}, \hyperpage{112}
+    \subitem {UART\_Enable}, \hyperpage{112}
+    \subitem {UART\_Init}, \hyperpage{113}
+    \subitem {UART\_Print}, \hyperpage{113}
   \item {uart.h}
-    \subitem {LPUART3\_CLK\_FREQ}, \hyperpage{77}
-    \subitem {UART\_Deinit}, \hyperpage{78}
-    \subitem {UART\_Disable}, \hyperpage{78}
-    \subitem {UART\_Enable}, \hyperpage{78}
-    \subitem {UART\_Init}, \hyperpage{78}
-    \subitem {UART\_Print}, \hyperpage{78}
+    \subitem {LPUART3\_CLK\_FREQ}, \hyperpage{79}
+    \subitem {UART\_Deinit}, \hyperpage{79}
+    \subitem {UART\_Disable}, \hyperpage{79}
+    \subitem {UART\_Enable}, \hyperpage{80}
+    \subitem {UART\_Init}, \hyperpage{80}
+    \subitem {UART\_Print}, \hyperpage{80}
   \item {UART\_Deinit}
-    \subitem {uart.c}, \hyperpage{109}
-    \subitem {uart.h}, \hyperpage{78}
+    \subitem {uart.c}, \hyperpage{112}
+    \subitem {uart.h}, \hyperpage{79}
   \item {UART\_Disable}
-    \subitem {uart.c}, \hyperpage{109}
-    \subitem {uart.h}, \hyperpage{78}
+    \subitem {uart.c}, \hyperpage{112}
+    \subitem {uart.h}, \hyperpage{79}
   \item {UART\_Enable}
-    \subitem {uart.c}, \hyperpage{109}
-    \subitem {uart.h}, \hyperpage{78}
+    \subitem {uart.c}, \hyperpage{112}
+    \subitem {uart.h}, \hyperpage{80}
   \item {UART\_FIFO\_ENABLED}
-    \subitem {defs.h}, \hyperpage{44}
-  \item {UART\_FIFO\_LENGHT}
-    \subitem {defs.h}, \hyperpage{44}
-  \item {UART\_Init}
-    \subitem {uart.c}, \hyperpage{110}
-    \subitem {uart.h}, \hyperpage{78}
-  \item {UART\_Print}
-    \subitem {uart.c}, \hyperpage{110}
-    \subitem {uart.h}, \hyperpage{78}
-  \item {UART\_PRINT\_ENABLED}
-    \subitem {defs.h}, \hyperpage{44}
-  \item {UART\_RECEIVE\_PRIO}
     \subitem {defs.h}, \hyperpage{45}
+  \item {UART\_FIFO\_LENGHT}
+    \subitem {defs.h}, \hyperpage{45}
+  \item {UART\_Init}
+    \subitem {uart.c}, \hyperpage{113}
+    \subitem {uart.h}, \hyperpage{80}
+  \item {UART\_Print}
+    \subitem {uart.c}, \hyperpage{113}
+    \subitem {uart.h}, \hyperpage{80}
+  \item {UART\_PRINT\_ENABLED}
+    \subitem {defs.h}, \hyperpage{45}
+  \item {UART\_RECEIVE\_PRIO}
+    \subitem {defs.h}, \hyperpage{46}
   \item {USB1\_HS\_IRQHandler}
-    \subitem {mass\_storage.c}, \hyperpage{87}
+    \subitem {mass\_storage.c}, \hyperpage{90}
   \item {USB\_State}
-    \subitem {task\_switching.c}, \hyperpage{102}
-    \subitem {task\_switching.h}, \hyperpage{72}
+    \subitem {task\_switching.c}, \hyperpage{105}
+    \subitem {task\_switching.h}, \hyperpage{74}
   \item {uxIdleTaskStack}
     \subitem {Task Management}, \hyperpage{7}
   \item {uxTimerTaskStack}
@@ -1094,27 +1079,27 @@
   \indexspace
 
   \item {vApplicationGetIdleTaskMemory}
-    \subitem {app\_tasks.c}, \hyperpage{81}
-    \subitem {app\_tasks.h}, \hyperpage{38}
+    \subitem {app\_tasks.c}, \hyperpage{83}
+    \subitem {app\_tasks.h}, \hyperpage{39}
   \item {vApplicationGetTimerTaskMemory}
-    \subitem {app\_tasks.c}, \hyperpage{81}
-    \subitem {app\_tasks.h}, \hyperpage{38}
+    \subitem {app\_tasks.c}, \hyperpage{83}
+    \subitem {app\_tasks.h}, \hyperpage{39}
   \item {version}
     \subitem {REC\_config\_t}, \hyperpage{20}
 
   \indexspace
 
   \item {WCT\_AUTOS1}
-    \subitem {parser.h}, \hyperpage{57}
+    \subitem {parser.h}, \hyperpage{59}
   \item {WCT\_AUTOS2}
-    \subitem {parser.h}, \hyperpage{57}
+    \subitem {parser.h}, \hyperpage{59}
   \item {WCT\_UNKOWN}
-    \subitem {parser.h}, \hyperpage{57}
+    \subitem {parser.h}, \hyperpage{59}
   \item {WEDNESDAY}
-    \subitem {rtc\_ds3231.h}, \hyperpage{32}
+    \subitem {rtc\_ds3231.h}, \hyperpage{33}
   \item {Write}
-    \subitem {temperature.c}, \hyperpage{107}
-    \subitem {temperature.h}, \hyperpage{74}
+    \subitem {temperature.c}, \hyperpage{110}
+    \subitem {temperature.h}, \hyperpage{76}
 
   \indexspace
 

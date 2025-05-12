@@ -92,7 +92,6 @@
 \contentsline {subsubsection}{\numberline {6.1.1.2}BYTE\_2}{24}{subsubsection.6.1.1.2}%
 \contentsline {subsubsection}{\numberline {6.1.1.3}CLK\_STATE}{25}{subsubsection.6.1.1.3}%
 \contentsline {subsubsection}{\numberline {6.1.1.4}I2C\_DATA\_LENGTH}{25}{subsubsection.6.1.1.4}%
-\contentsline {subsubsection}{\numberline {6.1.1.5}OSF\_STATE}{25}{subsubsection.6.1.1.5}%
 \contentsline {subsection}{\numberline {6.1.2}Function Documentation}{25}{subsection.6.1.2}%
 \contentsline {subsubsection}{\numberline {6.1.2.1}AT\_NONCACHEABLE\_SECTION()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{25}{subsubsection.6.1.2.1}%
 \contentsline {subsubsection}{\numberline {6.1.2.2}AT\_NONCACHEABLE\_SECTION()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{25}{subsubsection.6.1.2.2}%
@@ -105,382 +104,377 @@
 \contentsline {subsubsection}{\numberline {6.1.3.3}gEdmaTxHandle}{26}{subsubsection.6.1.3.3}%
 \contentsline {subsubsection}{\numberline {6.1.3.4}xfer}{26}{subsubsection.6.1.3.4}%
 \contentsline {section}{\numberline {6.2}drivers/rtc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ds3231.h File Reference}{26}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Macro Definition Documentation}{28}{subsection.6.2.1}%
-\contentsline {subsubsection}{\numberline {6.2.1.1}ALARM\_DISABLED}{28}{subsubsection.6.2.1.1}%
-\contentsline {subsubsection}{\numberline {6.2.1.2}APP\_SUCCESS}{28}{subsubsection.6.2.1.2}%
+\contentsline {subsection}{\numberline {6.2.1}Macro Definition Documentation}{29}{subsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.1.1}ALARM\_DISABLED}{29}{subsubsection.6.2.1.1}%
+\contentsline {subsubsection}{\numberline {6.2.1.2}APP\_SUCCESS}{29}{subsubsection.6.2.1.2}%
 \contentsline {subsubsection}{\numberline {6.2.1.3}DS3231\_A1F}{29}{subsubsection.6.2.1.3}%
 \contentsline {subsubsection}{\numberline {6.2.1.4}DS3231\_A1IE}{29}{subsubsection.6.2.1.4}%
 \contentsline {subsubsection}{\numberline {6.2.1.5}DS3231\_A2F}{29}{subsubsection.6.2.1.5}%
 \contentsline {subsubsection}{\numberline {6.2.1.6}DS3231\_A2IE}{29}{subsubsection.6.2.1.6}%
 \contentsline {subsubsection}{\numberline {6.2.1.7}DS3231\_ADDR\_CENT}{29}{subsubsection.6.2.1.7}%
 \contentsline {subsubsection}{\numberline {6.2.1.8}DS3231\_ADDR\_DATE}{29}{subsubsection.6.2.1.8}%
-\contentsline {subsubsection}{\numberline {6.2.1.9}DS3231\_ADDR\_DAY}{29}{subsubsection.6.2.1.9}%
-\contentsline {subsubsection}{\numberline {6.2.1.10}DS3231\_ADDR\_HRS}{29}{subsubsection.6.2.1.10}%
-\contentsline {subsubsection}{\numberline {6.2.1.11}DS3231\_ADDR\_I2C}{29}{subsubsection.6.2.1.11}%
-\contentsline {subsubsection}{\numberline {6.2.1.12}DS3231\_ADDR\_MIN}{29}{subsubsection.6.2.1.12}%
+\contentsline {subsubsection}{\numberline {6.2.1.9}DS3231\_ADDR\_DAY}{30}{subsubsection.6.2.1.9}%
+\contentsline {subsubsection}{\numberline {6.2.1.10}DS3231\_ADDR\_HRS}{30}{subsubsection.6.2.1.10}%
+\contentsline {subsubsection}{\numberline {6.2.1.11}DS3231\_ADDR\_I2C}{30}{subsubsection.6.2.1.11}%
+\contentsline {subsubsection}{\numberline {6.2.1.12}DS3231\_ADDR\_MIN}{30}{subsubsection.6.2.1.12}%
 \contentsline {subsubsection}{\numberline {6.2.1.13}DS3231\_ADDR\_MONTH}{30}{subsubsection.6.2.1.13}%
 \contentsline {subsubsection}{\numberline {6.2.1.14}DS3231\_ADDR\_SEC}{30}{subsubsection.6.2.1.14}%
 \contentsline {subsubsection}{\numberline {6.2.1.15}DS3231\_ADDR\_YEAR}{30}{subsubsection.6.2.1.15}%
-\contentsline {subsubsection}{\numberline {6.2.1.16}DS3231\_INTCN}{30}{subsubsection.6.2.1.16}%
-\contentsline {subsubsection}{\numberline {6.2.1.17}DS3231\_REG\_CTRL}{30}{subsubsection.6.2.1.17}%
-\contentsline {subsubsection}{\numberline {6.2.1.18}DS3231\_REG\_STATUS}{30}{subsubsection.6.2.1.18}%
-\contentsline {subsubsection}{\numberline {6.2.1.19}E\_FAULT}{30}{subsubsection.6.2.1.19}%
-\contentsline {subsubsection}{\numberline {6.2.1.20}FRIDAY}{30}{subsubsection.6.2.1.20}%
-\contentsline {subsubsection}{\numberline {6.2.1.21}I2C\_BAUDRATE}{30}{subsubsection.6.2.1.21}%
+\contentsline {subsubsection}{\numberline {6.2.1.16}DS3231\_INTCN}{31}{subsubsection.6.2.1.16}%
+\contentsline {subsubsection}{\numberline {6.2.1.17}DS3231\_REG\_CTRL}{31}{subsubsection.6.2.1.17}%
+\contentsline {subsubsection}{\numberline {6.2.1.18}DS3231\_REG\_STATUS}{31}{subsubsection.6.2.1.18}%
+\contentsline {subsubsection}{\numberline {6.2.1.19}E\_FAULT}{31}{subsubsection.6.2.1.19}%
+\contentsline {subsubsection}{\numberline {6.2.1.20}FRIDAY}{31}{subsubsection.6.2.1.20}%
+\contentsline {subsubsection}{\numberline {6.2.1.21}I2C\_BAUDRATE}{31}{subsubsection.6.2.1.21}%
 \contentsline {subsubsection}{\numberline {6.2.1.22}I2C\_MASTER}{31}{subsubsection.6.2.1.22}%
-\contentsline {subsubsection}{\numberline {6.2.1.23}LPI2C\_RX\_DMA\_CHANNEL}{31}{subsubsection.6.2.1.23}%
-\contentsline {subsubsection}{\numberline {6.2.1.24}LPI2C\_RX\_EDMA\_CHANNEL}{31}{subsubsection.6.2.1.24}%
-\contentsline {subsubsection}{\numberline {6.2.1.25}LPI2C\_TX\_CHANNEL}{31}{subsubsection.6.2.1.25}%
-\contentsline {subsubsection}{\numberline {6.2.1.26}LPI2C\_TX\_DMA\_CHANNEL}{31}{subsubsection.6.2.1.26}%
-\contentsline {subsubsection}{\numberline {6.2.1.27}MONDAY}{31}{subsubsection.6.2.1.27}%
-\contentsline {subsubsection}{\numberline {6.2.1.28}OSC\_STOPPED}{31}{subsubsection.6.2.1.28}%
-\contentsline {subsubsection}{\numberline {6.2.1.29}SATURDAY}{31}{subsubsection.6.2.1.29}%
-\contentsline {subsubsection}{\numberline {6.2.1.30}SUNDAY}{32}{subsubsection.6.2.1.30}%
-\contentsline {subsubsection}{\numberline {6.2.1.31}THURSDAY}{32}{subsubsection.6.2.1.31}%
-\contentsline {subsubsection}{\numberline {6.2.1.32}TIM\_CYCLE\_12H}{32}{subsubsection.6.2.1.32}%
-\contentsline {subsubsection}{\numberline {6.2.1.33}TIM\_CYCLE\_12H\_AM}{32}{subsubsection.6.2.1.33}%
-\contentsline {subsubsection}{\numberline {6.2.1.34}TIM\_CYCLE\_12H\_PM}{32}{subsubsection.6.2.1.34}%
-\contentsline {subsubsection}{\numberline {6.2.1.35}TIM\_CYCLE\_24H}{32}{subsubsection.6.2.1.35}%
-\contentsline {subsubsection}{\numberline {6.2.1.36}TUESDAY}{32}{subsubsection.6.2.1.36}%
-\contentsline {subsubsection}{\numberline {6.2.1.37}WEDNESDAY}{32}{subsubsection.6.2.1.37}%
-\contentsline {subsection}{\numberline {6.2.2}Enumeration Type Documentation}{32}{subsection.6.2.2}%
-\contentsline {subsubsection}{\numberline {6.2.2.1}RTC\_interrupt\_mode\_t}{32}{subsubsection.6.2.2.1}%
-\contentsline {subsubsection}{\numberline {6.2.2.2}RTC\_osc\_state\_t}{32}{subsubsection.6.2.2.2}%
-\contentsline {section}{\numberline {6.3}rtc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ds3231.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{33}{section.6.3}%
-\contentsline {section}{\numberline {6.4}include/app\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}init.h File Reference}{35}{section.6.4}%
+\contentsline {subsubsection}{\numberline {6.2.1.23}LPI2C\_RX\_DMA\_CHANNEL}{32}{subsubsection.6.2.1.23}%
+\contentsline {subsubsection}{\numberline {6.2.1.24}LPI2C\_RX\_EDMA\_CHANNEL}{32}{subsubsection.6.2.1.24}%
+\contentsline {subsubsection}{\numberline {6.2.1.25}LPI2C\_TX\_CHANNEL}{32}{subsubsection.6.2.1.25}%
+\contentsline {subsubsection}{\numberline {6.2.1.26}LPI2C\_TX\_DMA\_CHANNEL}{32}{subsubsection.6.2.1.26}%
+\contentsline {subsubsection}{\numberline {6.2.1.27}MONDAY}{32}{subsubsection.6.2.1.27}%
+\contentsline {subsubsection}{\numberline {6.2.1.28}OSC\_STOPPED}{32}{subsubsection.6.2.1.28}%
+\contentsline {subsubsection}{\numberline {6.2.1.29}SATURDAY}{32}{subsubsection.6.2.1.29}%
+\contentsline {subsubsection}{\numberline {6.2.1.30}SUNDAY}{33}{subsubsection.6.2.1.30}%
+\contentsline {subsubsection}{\numberline {6.2.1.31}THURSDAY}{33}{subsubsection.6.2.1.31}%
+\contentsline {subsubsection}{\numberline {6.2.1.32}TIM\_CYCLE\_12H}{33}{subsubsection.6.2.1.32}%
+\contentsline {subsubsection}{\numberline {6.2.1.33}TIM\_CYCLE\_12H\_AM}{33}{subsubsection.6.2.1.33}%
+\contentsline {subsubsection}{\numberline {6.2.1.34}TIM\_CYCLE\_12H\_PM}{33}{subsubsection.6.2.1.34}%
+\contentsline {subsubsection}{\numberline {6.2.1.35}TIM\_CYCLE\_24H}{33}{subsubsection.6.2.1.35}%
+\contentsline {subsubsection}{\numberline {6.2.1.36}TUESDAY}{33}{subsubsection.6.2.1.36}%
+\contentsline {subsubsection}{\numberline {6.2.1.37}WEDNESDAY}{33}{subsubsection.6.2.1.37}%
+\contentsline {subsection}{\numberline {6.2.2}Enumeration Type Documentation}{33}{subsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.2.1}RTC\_interrupt\_mode\_t}{33}{subsubsection.6.2.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2.2}RTC\_osc\_state\_t}{34}{subsubsection.6.2.2.2}%
+\contentsline {section}{\numberline {6.3}rtc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ds3231.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{34}{section.6.3}%
+\contentsline {section}{\numberline {6.4}include/app\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}init.h File Reference}{36}{section.6.4}%
 \contentsline {subsection}{\numberline {6.4.1}Function Documentation}{36}{subsection.6.4.1}%
 \contentsline {subsubsection}{\numberline {6.4.1.1}APP\_InitBoard()}{36}{subsubsection.6.4.1.1}%
-\contentsline {section}{\numberline {6.5}app\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}init.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{36}{section.6.5}%
+\contentsline {section}{\numberline {6.5}app\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}init.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{37}{section.6.5}%
 \contentsline {section}{\numberline {6.6}include/app\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tasks.h File Reference}{37}{section.6.6}%
-\contentsline {subsection}{\numberline {6.6.1}Macro Definition Documentation}{37}{subsection.6.6.1}%
-\contentsline {subsubsection}{\numberline {6.6.1.1}TASK\_PRIO}{37}{subsubsection.6.6.1.1}%
-\contentsline {subsection}{\numberline {6.6.2}Function Documentation}{37}{subsection.6.6.2}%
-\contentsline {subsubsection}{\numberline {6.6.2.1}msc\_task()}{37}{subsubsection.6.6.2.1}%
+\contentsline {subsection}{\numberline {6.6.1}Macro Definition Documentation}{38}{subsection.6.6.1}%
+\contentsline {subsubsection}{\numberline {6.6.1.1}TASK\_PRIO}{38}{subsubsection.6.6.1.1}%
+\contentsline {subsection}{\numberline {6.6.2}Function Documentation}{38}{subsection.6.6.2}%
+\contentsline {subsubsection}{\numberline {6.6.2.1}msc\_task()}{38}{subsubsection.6.6.2.1}%
 \contentsline {subsubsection}{\numberline {6.6.2.2}record\_task()}{38}{subsubsection.6.6.2.2}%
-\contentsline {subsubsection}{\numberline {6.6.2.3}vApplicationGetIdleTaskMemory()}{38}{subsubsection.6.6.2.3}%
-\contentsline {subsubsection}{\numberline {6.6.2.4}vApplicationGetTimerTaskMemory()}{38}{subsubsection.6.6.2.4}%
-\contentsline {subsection}{\numberline {6.6.3}Variable Documentation}{39}{subsection.6.6.3}%
-\contentsline {subsubsection}{\numberline {6.6.3.1}g\_xMscTaskHandle}{39}{subsubsection.6.6.3.1}%
-\contentsline {subsubsection}{\numberline {6.6.3.2}g\_xRecordTaskHandle}{39}{subsubsection.6.6.3.2}%
-\contentsline {subsubsection}{\numberline {6.6.3.3}g\_xSemMassStorage}{39}{subsubsection.6.6.3.3}%
-\contentsline {subsubsection}{\numberline {6.6.3.4}g\_xSemRecord}{39}{subsubsection.6.6.3.4}%
-\contentsline {section}{\numberline {6.7}app\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tasks.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{39}{section.6.7}%
-\contentsline {section}{\numberline {6.8}include/defs.h File Reference}{40}{section.6.8}%
-\contentsline {subsection}{\numberline {6.8.1}Macro Definition Documentation}{41}{subsection.6.8.1}%
-\contentsline {subsubsection}{\numberline {6.8.1.1}CONFIG\_FILE}{41}{subsubsection.6.8.1.1}%
-\contentsline {subsubsection}{\numberline {6.8.1.2}CONTROL\_LED\_ENABLED}{41}{subsubsection.6.8.1.2}%
-\contentsline {subsubsection}{\numberline {6.8.1.3}DEBUG\_ENABLED}{42}{subsubsection.6.8.1.3}%
-\contentsline {subsubsection}{\numberline {6.8.1.4}DEFAULT\_BAUDRATE}{42}{subsubsection.6.8.1.4}%
-\contentsline {subsubsection}{\numberline {6.8.1.5}DEFAULT\_DATA\_BITS}{42}{subsubsection.6.8.1.5}%
-\contentsline {subsubsection}{\numberline {6.8.1.6}DEFAULT\_FREE\_SPACE}{42}{subsubsection.6.8.1.6}%
-\contentsline {subsubsection}{\numberline {6.8.1.7}DEFAULT\_MAX\_FILESIZE}{42}{subsubsection.6.8.1.7}%
-\contentsline {subsubsection}{\numberline {6.8.1.8}DEFAULT\_PARITY}{42}{subsubsection.6.8.1.8}%
-\contentsline {subsubsection}{\numberline {6.8.1.9}DEFAULT\_STOP\_BITS}{42}{subsubsection.6.8.1.9}%
-\contentsline {subsubsection}{\numberline {6.8.1.10}INFO\_ENABLED}{43}{subsubsection.6.8.1.10}%
-\contentsline {subsubsection}{\numberline {6.8.1.11}MSC\_ENABLED}{43}{subsubsection.6.8.1.11}%
-\contentsline {subsubsection}{\numberline {6.8.1.12}MSC\_STACK\_SIZE}{43}{subsubsection.6.8.1.12}%
-\contentsline {subsubsection}{\numberline {6.8.1.13}NOT\_IMPLEMENTED}{43}{subsubsection.6.8.1.13}%
-\contentsline {subsubsection}{\numberline {6.8.1.14}PWRLOSS\_DET\_ACTIVE\_IN\_TIME}{43}{subsubsection.6.8.1.14}%
-\contentsline {subsubsection}{\numberline {6.8.1.15}PWRLOSS\_DET\_PRIO}{43}{subsubsection.6.8.1.15}%
-\contentsline {subsubsection}{\numberline {6.8.1.16}PWRLOSS\_DETECTION\_ENABLED}{43}{subsubsection.6.8.1.16}%
-\contentsline {subsubsection}{\numberline {6.8.1.17}PWRLOSS\_TEST\_GPIOS}{44}{subsubsection.6.8.1.17}%
-\contentsline {subsubsection}{\numberline {6.8.1.18}PWRLOSS\_TIMER\_PRIO}{44}{subsubsection.6.8.1.18}%
-\contentsline {subsubsection}{\numberline {6.8.1.19}RECORD\_STACK\_SIZE}{44}{subsubsection.6.8.1.19}%
-\contentsline {subsubsection}{\numberline {6.8.1.20}TAU}{44}{subsubsection.6.8.1.20}%
-\contentsline {subsubsection}{\numberline {6.8.1.21}TEMPERATURE\_MEAS\_ENABLED}{44}{subsubsection.6.8.1.21}%
-\contentsline {subsubsection}{\numberline {6.8.1.22}UART\_FIFO\_ENABLED}{44}{subsubsection.6.8.1.22}%
-\contentsline {subsubsection}{\numberline {6.8.1.23}UART\_FIFO\_LENGHT}{44}{subsubsection.6.8.1.23}%
-\contentsline {subsubsection}{\numberline {6.8.1.24}UART\_PRINT\_ENABLED}{45}{subsubsection.6.8.1.24}%
-\contentsline {subsubsection}{\numberline {6.8.1.25}UART\_RECEIVE\_PRIO}{45}{subsubsection.6.8.1.25}%
-\contentsline {section}{\numberline {6.9}defs.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{45}{section.6.9}%
-\contentsline {section}{\numberline {6.10}include/error.h File Reference}{46}{section.6.10}%
-\contentsline {subsection}{\numberline {6.10.1}Macro Definition Documentation}{47}{subsection.6.10.1}%
-\contentsline {subsubsection}{\numberline {6.10.1.1}ERROR\_ADMA}{47}{subsubsection.6.10.1.1}%
-\contentsline {subsubsection}{\numberline {6.10.1.2}ERROR\_CLOSE}{47}{subsubsection.6.10.1.2}%
-\contentsline {subsubsection}{\numberline {6.10.1.3}ERROR\_CONFIG}{47}{subsubsection.6.10.1.3}%
-\contentsline {subsubsection}{\numberline {6.10.1.4}ERROR\_FILESYSTEM}{47}{subsubsection.6.10.1.4}%
-\contentsline {subsubsection}{\numberline {6.10.1.5}ERROR\_IRTC}{47}{subsubsection.6.10.1.5}%
-\contentsline {subsubsection}{\numberline {6.10.1.6}ERROR\_NONE}{47}{subsubsection.6.10.1.6}%
-\contentsline {subsubsection}{\numberline {6.10.1.7}ERROR\_OPEN}{48}{subsubsection.6.10.1.7}%
-\contentsline {subsubsection}{\numberline {6.10.1.8}ERROR\_OUT\_OF\_CYCLE}{48}{subsubsection.6.10.1.8}%
-\contentsline {subsubsection}{\numberline {6.10.1.9}ERROR\_READ}{48}{subsubsection.6.10.1.9}%
-\contentsline {subsubsection}{\numberline {6.10.1.10}ERROR\_RECORD}{48}{subsubsection.6.10.1.10}%
-\contentsline {subsubsection}{\numberline {6.10.1.11}ERROR\_UNKNOWN}{48}{subsubsection.6.10.1.11}%
-\contentsline {subsection}{\numberline {6.10.2}Typedef Documentation}{48}{subsection.6.10.2}%
-\contentsline {subsubsection}{\numberline {6.10.2.1}error\_t}{48}{subsubsection.6.10.2.1}%
-\contentsline {subsection}{\numberline {6.10.3}Function Documentation}{48}{subsection.6.10.3}%
-\contentsline {subsubsection}{\numberline {6.10.3.1}ERR\_HandleError()}{48}{subsubsection.6.10.3.1}%
-\contentsline {subsubsection}{\numberline {6.10.3.2}ERR\_Init()}{49}{subsubsection.6.10.3.2}%
-\contentsline {subsubsection}{\numberline {6.10.3.3}ERR\_SetState()}{49}{subsubsection.6.10.3.3}%
-\contentsline {section}{\numberline {6.11}error.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{49}{section.6.11}%
-\contentsline {section}{\numberline {6.12}include/led.h File Reference}{50}{section.6.12}%
-\contentsline {subsection}{\numberline {6.12.1}Macro Definition Documentation}{50}{subsection.6.12.1}%
-\contentsline {subsubsection}{\numberline {6.12.1.1}BACKUP\_POWER\_LED\_PIN}{50}{subsubsection.6.12.1.1}%
-\contentsline {subsubsection}{\numberline {6.12.1.2}BACKUP\_POWER\_LED\_PORT}{50}{subsubsection.6.12.1.2}%
-\contentsline {subsubsection}{\numberline {6.12.1.3}ERROR\_LED\_PIN\_RECORD}{50}{subsubsection.6.12.1.3}%
-\contentsline {subsubsection}{\numberline {6.12.1.4}ERROR\_LED\_PORT}{51}{subsubsection.6.12.1.4}%
-\contentsline {subsubsection}{\numberline {6.12.1.5}FLUSH\_LED\_PORT}{51}{subsubsection.6.12.1.5}%
-\contentsline {subsubsection}{\numberline {6.12.1.6}MEMORY\_LOW\_LED\_PIN}{51}{subsubsection.6.12.1.6}%
-\contentsline {subsubsection}{\numberline {6.12.1.7}MEMORY\_LOW\_LED\_PORT}{51}{subsubsection.6.12.1.7}%
-\contentsline {subsubsection}{\numberline {6.12.1.8}RECORD\_LED\_PIN}{51}{subsubsection.6.12.1.8}%
-\contentsline {subsubsection}{\numberline {6.12.1.9}RECORD\_LED\_PIN\_FLUSH}{51}{subsubsection.6.12.1.9}%
-\contentsline {subsubsection}{\numberline {6.12.1.10}RECORD\_LED\_PORT}{51}{subsubsection.6.12.1.10}%
-\contentsline {subsection}{\numberline {6.12.2}Function Documentation}{51}{subsection.6.12.2}%
-\contentsline {subsubsection}{\numberline {6.12.2.1}LED\_ClearSignalFlush()}{51}{subsubsection.6.12.2.1}%
-\contentsline {subsubsection}{\numberline {6.12.2.2}LED\_SetHigh()}{51}{subsubsection.6.12.2.2}%
-\contentsline {subsubsection}{\numberline {6.12.2.3}LED\_SetLow()}{52}{subsubsection.6.12.2.3}%
-\contentsline {subsubsection}{\numberline {6.12.2.4}LED\_SignalBackUpPowerAvailable()}{52}{subsubsection.6.12.2.4}%
-\contentsline {subsubsection}{\numberline {6.12.2.5}LED\_SignalError()}{52}{subsubsection.6.12.2.5}%
-\contentsline {subsubsection}{\numberline {6.12.2.6}LED\_SignalFlush()}{52}{subsubsection.6.12.2.6}%
-\contentsline {subsubsection}{\numberline {6.12.2.7}LED\_SignalLowMemory()}{52}{subsubsection.6.12.2.7}%
-\contentsline {subsubsection}{\numberline {6.12.2.8}LED\_SignalReady()}{52}{subsubsection.6.12.2.8}%
-\contentsline {subsubsection}{\numberline {6.12.2.9}LED\_SignalRecording()}{52}{subsubsection.6.12.2.9}%
-\contentsline {subsubsection}{\numberline {6.12.2.10}LED\_SignalRecordingStop()}{52}{subsubsection.6.12.2.10}%
-\contentsline {section}{\numberline {6.13}led.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{53}{section.6.13}%
-\contentsline {section}{\numberline {6.14}include/mass\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}storage.h File Reference}{54}{section.6.14}%
-\contentsline {subsection}{\numberline {6.14.1}Function Documentation}{55}{subsection.6.14.1}%
-\contentsline {subsubsection}{\numberline {6.14.1.1}MSC\_DeviceMscApp()}{55}{subsubsection.6.14.1.1}%
-\contentsline {subsubsection}{\numberline {6.14.1.2}MSC\_DeviceMscAppTask()}{55}{subsubsection.6.14.1.2}%
-\contentsline {section}{\numberline {6.15}mass\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}storage.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{55}{section.6.15}%
-\contentsline {section}{\numberline {6.16}include/parser.h File Reference}{56}{section.6.16}%
-\contentsline {subsection}{\numberline {6.16.1}Enumeration Type Documentation}{57}{subsection.6.16.1}%
-\contentsline {subsubsection}{\numberline {6.16.1.1}REC\_version\_t}{57}{subsubsection.6.16.1.1}%
-\contentsline {subsection}{\numberline {6.16.2}Function Documentation}{57}{subsection.6.16.2}%
-\contentsline {subsubsection}{\numberline {6.16.2.1}PARSER\_ClearConfig()}{57}{subsubsection.6.16.2.1}%
-\contentsline {subsubsection}{\numberline {6.16.2.2}PARSER\_GetBaudrate()}{57}{subsubsection.6.16.2.2}%
-\contentsline {subsubsection}{\numberline {6.16.2.3}PARSER\_GetConfig()}{58}{subsubsection.6.16.2.3}%
-\contentsline {subsubsection}{\numberline {6.16.2.4}PARSER\_GetDataBits()}{58}{subsubsection.6.16.2.4}%
-\contentsline {subsubsection}{\numberline {6.16.2.5}PARSER\_GetFileSize()}{58}{subsubsection.6.16.2.5}%
-\contentsline {subsubsection}{\numberline {6.16.2.6}PARSER\_GetFreeSpaceLimitMB()}{58}{subsubsection.6.16.2.6}%
-\contentsline {subsubsection}{\numberline {6.16.2.7}PARSER\_GetMaxBytes()}{59}{subsubsection.6.16.2.7}%
-\contentsline {subsubsection}{\numberline {6.16.2.8}PARSER\_GetParity()}{59}{subsubsection.6.16.2.8}%
-\contentsline {subsubsection}{\numberline {6.16.2.9}PARSER\_GetStopBits()}{59}{subsubsection.6.16.2.9}%
-\contentsline {subsubsection}{\numberline {6.16.2.10}PARSER\_GetVersion()}{59}{subsubsection.6.16.2.10}%
-\contentsline {subsubsection}{\numberline {6.16.2.11}PARSER\_ParseBaudrate()}{59}{subsubsection.6.16.2.11}%
-\contentsline {subsubsection}{\numberline {6.16.2.12}PARSER\_ParseDataBits()}{60}{subsubsection.6.16.2.12}%
-\contentsline {subsubsection}{\numberline {6.16.2.13}PARSER\_ParseFileSize()}{60}{subsubsection.6.16.2.13}%
-\contentsline {subsubsection}{\numberline {6.16.2.14}PARSER\_ParseFreeSpace()}{60}{subsubsection.6.16.2.14}%
-\contentsline {subsubsection}{\numberline {6.16.2.15}PARSER\_ParseParity()}{61}{subsubsection.6.16.2.15}%
-\contentsline {subsubsection}{\numberline {6.16.2.16}PARSER\_ParseStopBits()}{61}{subsubsection.6.16.2.16}%
-\contentsline {section}{\numberline {6.17}parser.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{62}{section.6.17}%
-\contentsline {section}{\numberline {6.18}include/pwrloss\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}det.h File Reference}{63}{section.6.18}%
-\contentsline {subsection}{\numberline {6.18.1}Macro Definition Documentation}{63}{subsection.6.18.1}%
-\contentsline {subsubsection}{\numberline {6.18.1.1}CTIMER}{63}{subsubsection.6.18.1.1}%
-\contentsline {subsubsection}{\numberline {6.18.1.2}CTIMER\_CLK\_FREQ}{63}{subsubsection.6.18.1.2}%
-\contentsline {subsubsection}{\numberline {6.18.1.3}CTIMER\_EMT0\_OUT}{64}{subsubsection.6.18.1.3}%
-\contentsline {subsubsection}{\numberline {6.18.1.4}CTIMER\_MAT0\_OUT}{64}{subsubsection.6.18.1.4}%
-\contentsline {subsubsection}{\numberline {6.18.1.5}DEMO\_LPCMP\_BASE}{64}{subsubsection.6.18.1.5}%
-\contentsline {subsubsection}{\numberline {6.18.1.6}DEMO\_LPCMP\_DAC\_CHANNEL}{64}{subsubsection.6.18.1.6}%
-\contentsline {subsubsection}{\numberline {6.18.1.7}DEMO\_LPCMP\_IRQ\_HANDLER\_FUNC}{64}{subsubsection.6.18.1.7}%
-\contentsline {subsubsection}{\numberline {6.18.1.8}DEMO\_LPCMP\_IRQ\_ID}{64}{subsubsection.6.18.1.8}%
-\contentsline {subsubsection}{\numberline {6.18.1.9}DEMO\_LPCMP\_USER\_CHANNEL}{64}{subsubsection.6.18.1.9}%
-\contentsline {subsubsection}{\numberline {6.18.1.10}DEMO\_SPC\_BASE}{64}{subsubsection.6.18.1.10}%
-\contentsline {subsubsection}{\numberline {6.18.1.11}DEMO\_VREF\_BASE}{64}{subsubsection.6.18.1.11}%
-\contentsline {subsection}{\numberline {6.18.2}Function Documentation}{64}{subsection.6.18.2}%
-\contentsline {subsubsection}{\numberline {6.18.2.1}PWRLOSS\_DetectionInit()}{64}{subsubsection.6.18.2.1}%
-\contentsline {section}{\numberline {6.19}pwrloss\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}det.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{65}{section.6.19}%
-\contentsline {section}{\numberline {6.20}include/record.h File Reference}{65}{section.6.20}%
-\contentsline {subsection}{\numberline {6.20.1}Macro Definition Documentation}{67}{subsection.6.20.1}%
-\contentsline {subsubsection}{\numberline {6.20.1.1}FLUSH\_TIMEOUT\_TICKS}{67}{subsubsection.6.20.1.1}%
-\contentsline {subsection}{\numberline {6.20.2}Function Documentation}{67}{subsection.6.20.2}%
-\contentsline {subsubsection}{\numberline {6.20.2.1}CONSOLELOG\_CheckFileSystem()}{67}{subsubsection.6.20.2.1}%
-\contentsline {subsubsection}{\numberline {6.20.2.2}CONSOLELOG\_ClearTransferedBytes()}{67}{subsubsection.6.20.2.2}%
-\contentsline {subsubsection}{\numberline {6.20.2.3}CONSOLELOG\_CreateDirectory()}{67}{subsubsection.6.20.2.3}%
-\contentsline {subsubsection}{\numberline {6.20.2.4}CONSOLELOG\_CreateFile()}{67}{subsubsection.6.20.2.4}%
-\contentsline {subsubsection}{\numberline {6.20.2.5}CONSOLELOG\_Deinit()}{68}{subsubsection.6.20.2.5}%
-\contentsline {subsubsection}{\numberline {6.20.2.6}CONSOLELOG\_Flush()}{68}{subsubsection.6.20.2.6}%
-\contentsline {subsubsection}{\numberline {6.20.2.7}CONSOLELOG\_GetFlushCompleted()}{68}{subsubsection.6.20.2.7}%
-\contentsline {subsubsection}{\numberline {6.20.2.8}CONSOLELOG\_GetFreeSpaceMB()}{68}{subsubsection.6.20.2.8}%
-\contentsline {subsubsection}{\numberline {6.20.2.9}CONSOLELOG\_GetMaxBytes()}{69}{subsubsection.6.20.2.9}%
-\contentsline {subsubsection}{\numberline {6.20.2.10}CONSOLELOG\_GetTransferedBytes()}{69}{subsubsection.6.20.2.10}%
-\contentsline {subsubsection}{\numberline {6.20.2.11}CONSOLELOG\_Init()}{69}{subsubsection.6.20.2.11}%
-\contentsline {subsubsection}{\numberline {6.20.2.12}CONSOLELOG\_PowerLossFlush()}{69}{subsubsection.6.20.2.12}%
-\contentsline {subsubsection}{\numberline {6.20.2.13}CONSOLELOG\_ProccessConfigFile()}{69}{subsubsection.6.20.2.13}%
-\contentsline {subsubsection}{\numberline {6.20.2.14}CONSOLELOG\_ReadConfig()}{70}{subsubsection.6.20.2.14}%
-\contentsline {subsubsection}{\numberline {6.20.2.15}CONSOLELOG\_Recording()}{70}{subsubsection.6.20.2.15}%
-\contentsline {section}{\numberline {6.21}record.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{71}{section.6.21}%
-\contentsline {section}{\numberline {6.22}include/task\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}switching.h File Reference}{72}{section.6.22}%
-\contentsline {subsection}{\numberline {6.22.1}Function Documentation}{72}{subsection.6.22.1}%
-\contentsline {subsubsection}{\numberline {6.22.1.1}USB\_State()}{72}{subsubsection.6.22.1.1}%
-\contentsline {subsection}{\numberline {6.22.2}Variable Documentation}{72}{subsection.6.22.2}%
-\contentsline {subsubsection}{\numberline {6.22.2.1}g\_msc}{72}{subsubsection.6.22.2.1}%
-\contentsline {section}{\numberline {6.23}task\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}switching.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{73}{section.6.23}%
-\contentsline {section}{\numberline {6.24}include/temperature.h File Reference}{73}{section.6.24}%
-\contentsline {subsection}{\numberline {6.24.1}Macro Definition Documentation}{74}{subsection.6.24.1}%
-\contentsline {subsubsection}{\numberline {6.24.1.1}SENSOR\_DYNAMIC\_ADDR}{74}{subsubsection.6.24.1.1}%
-\contentsline {subsubsection}{\numberline {6.24.1.2}SENSOR\_STATIC\_ADDR}{74}{subsubsection.6.24.1.2}%
-\contentsline {subsection}{\numberline {6.24.2}Function Documentation}{74}{subsection.6.24.2}%
-\contentsline {subsubsection}{\numberline {6.24.2.1}Read()}{74}{subsubsection.6.24.2.1}%
-\contentsline {subsubsection}{\numberline {6.24.2.2}TMP\_GetTemperature()}{74}{subsubsection.6.24.2.2}%
-\contentsline {subsubsection}{\numberline {6.24.2.3}TMP\_Init()}{74}{subsubsection.6.24.2.3}%
-\contentsline {subsubsection}{\numberline {6.24.2.4}Write()}{74}{subsubsection.6.24.2.4}%
-\contentsline {section}{\numberline {6.25}temperature.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{75}{section.6.25}%
-\contentsline {section}{\numberline {6.26}include/time.h File Reference}{75}{section.6.26}%
-\contentsline {subsection}{\numberline {6.26.1}Macro Definition Documentation}{76}{subsection.6.26.1}%
-\contentsline {subsubsection}{\numberline {6.26.1.1}LPI2C\_DMA\_BASEADDR}{76}{subsubsection.6.26.1.1}%
-\contentsline {subsection}{\numberline {6.26.2}Function Documentation}{76}{subsection.6.26.2}%
-\contentsline {subsubsection}{\numberline {6.26.2.1}TIME\_InitIRTC()}{76}{subsubsection.6.26.2.1}%
-\contentsline {section}{\numberline {6.27}time.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{76}{section.6.27}%
-\contentsline {section}{\numberline {6.28}include/uart.h File Reference}{77}{section.6.28}%
-\contentsline {subsection}{\numberline {6.28.1}Macro Definition Documentation}{77}{subsection.6.28.1}%
-\contentsline {subsubsection}{\numberline {6.28.1.1}LPUART3\_CLK\_FREQ}{77}{subsubsection.6.28.1.1}%
-\contentsline {subsection}{\numberline {6.28.2}Function Documentation}{78}{subsection.6.28.2}%
-\contentsline {subsubsection}{\numberline {6.28.2.1}UART\_Deinit()}{78}{subsubsection.6.28.2.1}%
-\contentsline {subsubsection}{\numberline {6.28.2.2}UART\_Disable()}{78}{subsubsection.6.28.2.2}%
-\contentsline {subsubsection}{\numberline {6.28.2.3}UART\_Enable()}{78}{subsubsection.6.28.2.3}%
-\contentsline {subsubsection}{\numberline {6.28.2.4}UART\_Init()}{78}{subsubsection.6.28.2.4}%
-\contentsline {subsubsection}{\numberline {6.28.2.5}UART\_Print()}{78}{subsubsection.6.28.2.5}%
-\contentsline {section}{\numberline {6.29}uart.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{79}{section.6.29}%
-\contentsline {section}{\numberline {6.30}source/app\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}init.c File Reference}{79}{section.6.30}%
-\contentsline {subsection}{\numberline {6.30.1}Function Documentation}{80}{subsection.6.30.1}%
-\contentsline {subsubsection}{\numberline {6.30.1.1}APP\_InitBoard()}{80}{subsubsection.6.30.1.1}%
-\contentsline {section}{\numberline {6.31}source/app\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tasks.c File Reference}{80}{section.6.31}%
-\contentsline {subsection}{\numberline {6.31.1}Function Documentation}{81}{subsection.6.31.1}%
-\contentsline {subsubsection}{\numberline {6.31.1.1}msc\_task()}{81}{subsubsection.6.31.1.1}%
-\contentsline {subsubsection}{\numberline {6.31.1.2}record\_task()}{81}{subsubsection.6.31.1.2}%
-\contentsline {subsubsection}{\numberline {6.31.1.3}vApplicationGetIdleTaskMemory()}{81}{subsubsection.6.31.1.3}%
-\contentsline {subsubsection}{\numberline {6.31.1.4}vApplicationGetTimerTaskMemory()}{81}{subsubsection.6.31.1.4}%
-\contentsline {section}{\numberline {6.32}source/error.c File Reference}{82}{section.6.32}%
-\contentsline {subsection}{\numberline {6.32.1}Function Documentation}{82}{subsection.6.32.1}%
-\contentsline {subsubsection}{\numberline {6.32.1.1}ERR\_HandleError()}{82}{subsubsection.6.32.1.1}%
-\contentsline {subsubsection}{\numberline {6.32.1.2}ERR\_Init()}{82}{subsubsection.6.32.1.2}%
-\contentsline {subsubsection}{\numberline {6.32.1.3}ERR\_SetState()}{82}{subsubsection.6.32.1.3}%
-\contentsline {subsection}{\numberline {6.32.2}Variable Documentation}{83}{subsection.6.32.2}%
-\contentsline {subsubsection}{\numberline {6.32.2.1}error}{83}{subsubsection.6.32.2.1}%
-\contentsline {section}{\numberline {6.33}source/led.c File Reference}{83}{section.6.33}%
-\contentsline {subsection}{\numberline {6.33.1}Function Documentation}{83}{subsection.6.33.1}%
-\contentsline {subsubsection}{\numberline {6.33.1.1}LED\_ClearSignalFlush()}{83}{subsubsection.6.33.1.1}%
-\contentsline {subsubsection}{\numberline {6.33.1.2}LED\_SetHigh()}{83}{subsubsection.6.33.1.2}%
-\contentsline {subsubsection}{\numberline {6.33.1.3}LED\_SetLow()}{83}{subsubsection.6.33.1.3}%
-\contentsline {subsubsection}{\numberline {6.33.1.4}LED\_SignalBackUpPowerAvailable()}{84}{subsubsection.6.33.1.4}%
-\contentsline {subsubsection}{\numberline {6.33.1.5}LED\_SignalError()}{84}{subsubsection.6.33.1.5}%
-\contentsline {subsubsection}{\numberline {6.33.1.6}LED\_SignalFlush()}{84}{subsubsection.6.33.1.6}%
-\contentsline {subsubsection}{\numberline {6.33.1.7}LED\_SignalLowMemory()}{84}{subsubsection.6.33.1.7}%
-\contentsline {subsubsection}{\numberline {6.33.1.8}LED\_SignalReady()}{84}{subsubsection.6.33.1.8}%
-\contentsline {subsubsection}{\numberline {6.33.1.9}LED\_SignalRecording()}{84}{subsubsection.6.33.1.9}%
-\contentsline {subsubsection}{\numberline {6.33.1.10}LED\_SignalRecordingStop()}{84}{subsubsection.6.33.1.10}%
-\contentsline {section}{\numberline {6.34}source/main.c File Reference}{84}{section.6.34}%
-\contentsline {subsection}{\numberline {6.34.1}Function Documentation}{85}{subsection.6.34.1}%
-\contentsline {subsubsection}{\numberline {6.34.1.1}main()}{85}{subsubsection.6.34.1.1}%
-\contentsline {subsection}{\numberline {6.34.2}Variable Documentation}{85}{subsection.6.34.2}%
-\contentsline {subsubsection}{\numberline {6.34.2.1}g\_msc}{85}{subsubsection.6.34.2.1}%
-\contentsline {subsubsection}{\numberline {6.34.2.2}g\_xMscTaskHandle}{86}{subsubsection.6.34.2.2}%
-\contentsline {subsubsection}{\numberline {6.34.2.3}g\_xMscTaskStack}{86}{subsubsection.6.34.2.3}%
-\contentsline {subsubsection}{\numberline {6.34.2.4}g\_xMscTaskTCB}{86}{subsubsection.6.34.2.4}%
-\contentsline {subsubsection}{\numberline {6.34.2.5}g\_xRecordTaskHandle}{86}{subsubsection.6.34.2.5}%
-\contentsline {subsubsection}{\numberline {6.34.2.6}g\_xRecordTaskStack}{86}{subsubsection.6.34.2.6}%
-\contentsline {subsubsection}{\numberline {6.34.2.7}g\_xRecordTaskTCB}{86}{subsubsection.6.34.2.7}%
-\contentsline {subsubsection}{\numberline {6.34.2.8}g\_xSemMassStorage}{86}{subsubsection.6.34.2.8}%
-\contentsline {subsubsection}{\numberline {6.34.2.9}g\_xSemRecord}{87}{subsubsection.6.34.2.9}%
-\contentsline {section}{\numberline {6.35}source/mass\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}storage.c File Reference}{87}{section.6.35}%
-\contentsline {subsection}{\numberline {6.35.1}Function Documentation}{87}{subsection.6.35.1}%
-\contentsline {subsubsection}{\numberline {6.35.1.1}MSC\_DeviceMscApp()}{87}{subsubsection.6.35.1.1}%
-\contentsline {subsubsection}{\numberline {6.35.1.2}MSC\_DeviceMscAppTask()}{87}{subsubsection.6.35.1.2}%
-\contentsline {subsubsection}{\numberline {6.35.1.3}USB1\_HS\_IRQHandler()}{88}{subsubsection.6.35.1.3}%
-\contentsline {subsection}{\numberline {6.35.2}Variable Documentation}{88}{subsection.6.35.2}%
-\contentsline {subsubsection}{\numberline {6.35.2.1}g\_xSemMassStorage}{88}{subsubsection.6.35.2.1}%
-\contentsline {subsubsection}{\numberline {6.35.2.2}g\_xSemRecord}{88}{subsubsection.6.35.2.2}%
-\contentsline {section}{\numberline {6.36}source/parser.c File Reference}{88}{section.6.36}%
-\contentsline {subsection}{\numberline {6.36.1}Macro Definition Documentation}{89}{subsection.6.36.1}%
-\contentsline {subsubsection}{\numberline {6.36.1.1}RECORD\_LED\_TIME\_INTERVAL}{89}{subsubsection.6.36.1.1}%
-\contentsline {subsection}{\numberline {6.36.2}Function Documentation}{89}{subsection.6.36.2}%
-\contentsline {subsubsection}{\numberline {6.36.2.1}PARSER\_ClearConfig()}{89}{subsubsection.6.36.2.1}%
-\contentsline {subsubsection}{\numberline {6.36.2.2}PARSER\_GetBaudrate()}{89}{subsubsection.6.36.2.2}%
-\contentsline {subsubsection}{\numberline {6.36.2.3}PARSER\_GetConfig()}{90}{subsubsection.6.36.2.3}%
-\contentsline {subsubsection}{\numberline {6.36.2.4}PARSER\_GetDataBits()}{90}{subsubsection.6.36.2.4}%
-\contentsline {subsubsection}{\numberline {6.36.2.5}PARSER\_GetFileSize()}{90}{subsubsection.6.36.2.5}%
-\contentsline {subsubsection}{\numberline {6.36.2.6}PARSER\_GetFreeSpaceLimitMB()}{90}{subsubsection.6.36.2.6}%
-\contentsline {subsubsection}{\numberline {6.36.2.7}PARSER\_GetMaxBytes()}{91}{subsubsection.6.36.2.7}%
-\contentsline {subsubsection}{\numberline {6.36.2.8}PARSER\_GetParity()}{91}{subsubsection.6.36.2.8}%
-\contentsline {subsubsection}{\numberline {6.36.2.9}PARSER\_GetStopBits()}{91}{subsubsection.6.36.2.9}%
-\contentsline {subsubsection}{\numberline {6.36.2.10}PARSER\_GetVersion()}{91}{subsubsection.6.36.2.10}%
-\contentsline {subsubsection}{\numberline {6.36.2.11}PARSER\_ParseBaudrate()}{91}{subsubsection.6.36.2.11}%
-\contentsline {subsubsection}{\numberline {6.36.2.12}PARSER\_ParseDataBits()}{92}{subsubsection.6.36.2.12}%
-\contentsline {subsubsection}{\numberline {6.36.2.13}PARSER\_ParseFileSize()}{92}{subsubsection.6.36.2.13}%
-\contentsline {subsubsection}{\numberline {6.36.2.14}PARSER\_ParseFreeSpace()}{92}{subsubsection.6.36.2.14}%
-\contentsline {subsubsection}{\numberline {6.36.2.15}PARSER\_ParseParity()}{93}{subsubsection.6.36.2.15}%
-\contentsline {subsubsection}{\numberline {6.36.2.16}PARSER\_ParseStopBits()}{93}{subsubsection.6.36.2.16}%
-\contentsline {subsection}{\numberline {6.36.3}Variable Documentation}{93}{subsection.6.36.3}%
-\contentsline {subsubsection}{\numberline {6.36.3.1}g\_config}{93}{subsubsection.6.36.3.1}%
-\contentsline {section}{\numberline {6.37}source/pwrloss\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}det.c File Reference}{94}{section.6.37}%
-\contentsline {subsection}{\numberline {6.37.1}Macro Definition Documentation}{94}{subsection.6.37.1}%
-\contentsline {subsubsection}{\numberline {6.37.1.1}REF\_VOLTAGE}{94}{subsubsection.6.37.1.1}%
-\contentsline {subsubsection}{\numberline {6.37.1.2}TRIGGER\_VOLTAGE}{94}{subsubsection.6.37.1.2}%
-\contentsline {subsection}{\numberline {6.37.2}Function Documentation}{94}{subsection.6.37.2}%
-\contentsline {subsubsection}{\numberline {6.37.2.1}CTIMER4\_IRQHandler()}{94}{subsubsection.6.37.2.1}%
-\contentsline {subsubsection}{\numberline {6.37.2.2}HSCMP1\_IRQHandler()}{94}{subsubsection.6.37.2.2}%
-\contentsline {subsubsection}{\numberline {6.37.2.3}PWRLOSS\_DetectionInit()}{95}{subsubsection.6.37.2.3}%
-\contentsline {section}{\numberline {6.38}source/record.c File Reference}{95}{section.6.38}%
-\contentsline {subsection}{\numberline {6.38.1}Macro Definition Documentation}{97}{subsection.6.38.1}%
-\contentsline {subsubsection}{\numberline {6.38.1.1}BLOCK\_SIZE}{97}{subsubsection.6.38.1.1}%
-\contentsline {subsubsection}{\numberline {6.38.1.2}CIRCULAR\_BUFFER\_SIZE}{97}{subsubsection.6.38.1.2}%
-\contentsline {subsubsection}{\numberline {6.38.1.3}GET\_CURRENT\_TIME\_MS}{97}{subsubsection.6.38.1.3}%
-\contentsline {subsubsection}{\numberline {6.38.1.4}GET\_WAIT\_INTERVAL}{97}{subsubsection.6.38.1.4}%
-\contentsline {subsection}{\numberline {6.38.2}Function Documentation}{97}{subsection.6.38.2}%
-\contentsline {subsubsection}{\numberline {6.38.2.1}CONSOLELOG\_CheckFileSystem()}{97}{subsubsection.6.38.2.1}%
-\contentsline {subsubsection}{\numberline {6.38.2.2}CONSOLELOG\_ClearTransferedBytes()}{98}{subsubsection.6.38.2.2}%
-\contentsline {subsubsection}{\numberline {6.38.2.3}CONSOLELOG\_CreateDirectory()}{98}{subsubsection.6.38.2.3}%
-\contentsline {subsubsection}{\numberline {6.38.2.4}CONSOLELOG\_CreateFile()}{98}{subsubsection.6.38.2.4}%
-\contentsline {subsubsection}{\numberline {6.38.2.5}CONSOLELOG\_Deinit()}{98}{subsubsection.6.38.2.5}%
-\contentsline {subsubsection}{\numberline {6.38.2.6}CONSOLELOG\_Flush()}{99}{subsubsection.6.38.2.6}%
-\contentsline {subsubsection}{\numberline {6.38.2.7}CONSOLELOG\_GetFlushCompleted()}{99}{subsubsection.6.38.2.7}%
-\contentsline {subsubsection}{\numberline {6.38.2.8}CONSOLELOG\_GetFreeSpaceMB()}{99}{subsubsection.6.38.2.8}%
-\contentsline {subsubsection}{\numberline {6.38.2.9}CONSOLELOG\_GetTransferedBytes()}{99}{subsubsection.6.38.2.9}%
-\contentsline {subsubsection}{\numberline {6.38.2.10}CONSOLELOG\_Init()}{100}{subsubsection.6.38.2.10}%
-\contentsline {subsubsection}{\numberline {6.38.2.11}CONSOLELOG\_PowerLossFlush()}{100}{subsubsection.6.38.2.11}%
-\contentsline {subsubsection}{\numberline {6.38.2.12}CONSOLELOG\_ProccessConfigFile()}{100}{subsubsection.6.38.2.12}%
-\contentsline {subsubsection}{\numberline {6.38.2.13}CONSOLELOG\_ReadConfig()}{101}{subsubsection.6.38.2.13}%
-\contentsline {subsubsection}{\numberline {6.38.2.14}CONSOLELOG\_Recording()}{101}{subsubsection.6.38.2.14}%
-\contentsline {subsubsection}{\numberline {6.38.2.15}get\_fattime()}{101}{subsubsection.6.38.2.15}%
-\contentsline {subsubsection}{\numberline {6.38.2.16}LP\_FLEXCOMM3\_IRQHandler()}{101}{subsubsection.6.38.2.16}%
-\contentsline {section}{\numberline {6.39}source/semihost\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hardfault.c File Reference}{102}{section.6.39}%
-\contentsline {subsection}{\numberline {6.39.1}Function Documentation}{102}{subsection.6.39.1}%
-\contentsline {subsubsection}{\numberline {6.39.1.1}\_\_attribute\_\_()}{102}{subsubsection.6.39.1.1}%
-\contentsline {section}{\numberline {6.40}source/task\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}switching.c File Reference}{102}{section.6.40}%
-\contentsline {subsection}{\numberline {6.40.1}Function Documentation}{102}{subsection.6.40.1}%
-\contentsline {subsubsection}{\numberline {6.40.1.1}USB\_State()}{102}{subsubsection.6.40.1.1}%
-\contentsline {section}{\numberline {6.41}source/temperature.c File Reference}{103}{section.6.41}%
-\contentsline {subsection}{\numberline {6.41.1}Macro Definition Documentation}{104}{subsection.6.41.1}%
-\contentsline {subsubsection}{\numberline {6.41.1.1}BUFF\_SIZE}{104}{subsubsection.6.41.1.1}%
-\contentsline {subsubsection}{\numberline {6.41.1.2}I2C\_BAUDRATE}{104}{subsubsection.6.41.1.2}%
-\contentsline {subsubsection}{\numberline {6.41.1.3}I2C\_MASTER\_I2C5}{104}{subsubsection.6.41.1.3}%
-\contentsline {subsubsection}{\numberline {6.41.1.4}LPI2C\_RX\_DMA\_CHANNEL}{104}{subsubsection.6.41.1.4}%
-\contentsline {subsubsection}{\numberline {6.41.1.5}LPI2C\_RX\_EDMA\_CHANNEL}{104}{subsubsection.6.41.1.5}%
-\contentsline {subsubsection}{\numberline {6.41.1.6}LPI2C\_TX\_CHANNEL}{105}{subsubsection.6.41.1.6}%
-\contentsline {subsubsection}{\numberline {6.41.1.7}LPI2C\_TX\_DMA\_CHANNEL}{105}{subsubsection.6.41.1.7}%
-\contentsline {subsubsection}{\numberline {6.41.1.8}P3T1755\_ADDR\_7BIT}{105}{subsubsection.6.41.1.8}%
-\contentsline {subsubsection}{\numberline {6.41.1.9}PRINT\_REG\_OUTPUT}{105}{subsubsection.6.41.1.9}%
-\contentsline {subsubsection}{\numberline {6.41.1.10}REGISTER\_CONFIG}{105}{subsubsection.6.41.1.10}%
-\contentsline {subsubsection}{\numberline {6.41.1.11}REGISTER\_TEMPERATURE}{105}{subsubsection.6.41.1.11}%
-\contentsline {subsubsection}{\numberline {6.41.1.12}REGISTER\_THVST}{105}{subsubsection.6.41.1.12}%
-\contentsline {subsubsection}{\numberline {6.41.1.13}REGISTER\_TOS}{105}{subsubsection.6.41.1.13}%
-\contentsline {subsection}{\numberline {6.41.2}Function Documentation}{106}{subsection.6.41.2}%
-\contentsline {subsubsection}{\numberline {6.41.2.1}AT\_NONCACHEABLE\_SECTION()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{106}{subsubsection.6.41.2.1}%
-\contentsline {subsubsection}{\numberline {6.41.2.2}AT\_NONCACHEABLE\_SECTION()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{106}{subsubsection.6.41.2.2}%
-\contentsline {subsubsection}{\numberline {6.41.2.3}CTIMER0\_IRQHandler()}{106}{subsubsection.6.41.2.3}%
-\contentsline {subsubsection}{\numberline {6.41.2.4}lpi2c\_callback()}{106}{subsubsection.6.41.2.4}%
-\contentsline {subsubsection}{\numberline {6.41.2.5}Read()}{106}{subsubsection.6.41.2.5}%
-\contentsline {subsubsection}{\numberline {6.41.2.6}TMP\_GetTemperature()}{106}{subsubsection.6.41.2.6}%
-\contentsline {subsubsection}{\numberline {6.41.2.7}TMP\_Init()}{107}{subsubsection.6.41.2.7}%
-\contentsline {subsubsection}{\numberline {6.41.2.8}Write()}{107}{subsubsection.6.41.2.8}%
-\contentsline {subsection}{\numberline {6.41.3}Variable Documentation}{107}{subsection.6.41.3}%
-\contentsline {subsubsection}{\numberline {6.41.3.1}g\_bCompletionFlag\_I2C5}{107}{subsubsection.6.41.3.1}%
-\contentsline {subsubsection}{\numberline {6.41.3.2}g\_EdmaRxHandle\_I2C5}{107}{subsubsection.6.41.3.2}%
-\contentsline {subsubsection}{\numberline {6.41.3.3}g\_EdmaTxHandle\_I2C5}{107}{subsubsection.6.41.3.3}%
-\contentsline {subsubsection}{\numberline {6.41.3.4}g\_Xfer\_I2C5}{108}{subsubsection.6.41.3.4}%
-\contentsline {section}{\numberline {6.42}source/time.c File Reference}{108}{section.6.42}%
-\contentsline {subsection}{\numberline {6.42.1}Macro Definition Documentation}{108}{subsection.6.42.1}%
-\contentsline {subsubsection}{\numberline {6.42.1.1}EXTERNAL\_RTC\_TIME\_OFSET}{108}{subsubsection.6.42.1.1}%
-\contentsline {subsubsection}{\numberline {6.42.1.2}INTERNAL\_RTC\_BASE\_YEAR}{108}{subsubsection.6.42.1.2}%
-\contentsline {subsection}{\numberline {6.42.2}Function Documentation}{108}{subsection.6.42.2}%
-\contentsline {subsubsection}{\numberline {6.42.2.1}TIME\_InitIRTC()}{108}{subsubsection.6.42.2.1}%
-\contentsline {section}{\numberline {6.43}source/uart.c File Reference}{109}{section.6.43}%
-\contentsline {subsection}{\numberline {6.43.1}Macro Definition Documentation}{109}{subsection.6.43.1}%
-\contentsline {subsubsection}{\numberline {6.43.1.1}BUFFER\_SIZE}{109}{subsubsection.6.43.1.1}%
-\contentsline {subsection}{\numberline {6.43.2}Function Documentation}{109}{subsection.6.43.2}%
-\contentsline {subsubsection}{\numberline {6.43.2.1}UART\_Deinit()}{109}{subsubsection.6.43.2.1}%
-\contentsline {subsubsection}{\numberline {6.43.2.2}UART\_Disable()}{109}{subsubsection.6.43.2.2}%
-\contentsline {subsubsection}{\numberline {6.43.2.3}UART\_Enable()}{110}{subsubsection.6.43.2.3}%
-\contentsline {subsubsection}{\numberline {6.43.2.4}UART\_Init()}{110}{subsubsection.6.43.2.4}%
-\contentsline {subsubsection}{\numberline {6.43.2.5}UART\_Print()}{110}{subsubsection.6.43.2.5}%
-\contentsline {chapter}{Index}{111}{section*.70}%
+\contentsline {subsubsection}{\numberline {6.6.2.3}vApplicationGetIdleTaskMemory()}{39}{subsubsection.6.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.6.2.4}vApplicationGetTimerTaskMemory()}{39}{subsubsection.6.6.2.4}%
+\contentsline {subsection}{\numberline {6.6.3}Variable Documentation}{40}{subsection.6.6.3}%
+\contentsline {subsubsection}{\numberline {6.6.3.1}g\_xMscTaskHandle}{40}{subsubsection.6.6.3.1}%
+\contentsline {subsubsection}{\numberline {6.6.3.2}g\_xRecordTaskHandle}{40}{subsubsection.6.6.3.2}%
+\contentsline {subsubsection}{\numberline {6.6.3.3}g\_xSemMassStorage}{40}{subsubsection.6.6.3.3}%
+\contentsline {subsubsection}{\numberline {6.6.3.4}g\_xSemRecord}{40}{subsubsection.6.6.3.4}%
+\contentsline {section}{\numberline {6.7}app\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tasks.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{40}{section.6.7}%
+\contentsline {section}{\numberline {6.8}include/defs.h File Reference}{41}{section.6.8}%
+\contentsline {subsection}{\numberline {6.8.1}Macro Definition Documentation}{42}{subsection.6.8.1}%
+\contentsline {subsubsection}{\numberline {6.8.1.1}CONFIG\_FILE}{42}{subsubsection.6.8.1.1}%
+\contentsline {subsubsection}{\numberline {6.8.1.2}CONTROL\_LED\_ENABLED}{42}{subsubsection.6.8.1.2}%
+\contentsline {subsubsection}{\numberline {6.8.1.3}DEBUG\_ENABLED}{43}{subsubsection.6.8.1.3}%
+\contentsline {subsubsection}{\numberline {6.8.1.4}DEFAULT\_BAUDRATE}{43}{subsubsection.6.8.1.4}%
+\contentsline {subsubsection}{\numberline {6.8.1.5}DEFAULT\_DATA\_BITS}{43}{subsubsection.6.8.1.5}%
+\contentsline {subsubsection}{\numberline {6.8.1.6}DEFAULT\_FREE\_SPACE}{43}{subsubsection.6.8.1.6}%
+\contentsline {subsubsection}{\numberline {6.8.1.7}DEFAULT\_MAX\_FILESIZE}{43}{subsubsection.6.8.1.7}%
+\contentsline {subsubsection}{\numberline {6.8.1.8}DEFAULT\_PARITY}{43}{subsubsection.6.8.1.8}%
+\contentsline {subsubsection}{\numberline {6.8.1.9}DEFAULT\_STOP\_BITS}{43}{subsubsection.6.8.1.9}%
+\contentsline {subsubsection}{\numberline {6.8.1.10}INFO\_ENABLED}{44}{subsubsection.6.8.1.10}%
+\contentsline {subsubsection}{\numberline {6.8.1.11}MSC\_ENABLED}{44}{subsubsection.6.8.1.11}%
+\contentsline {subsubsection}{\numberline {6.8.1.12}MSC\_STACK\_SIZE}{44}{subsubsection.6.8.1.12}%
+\contentsline {subsubsection}{\numberline {6.8.1.13}NOT\_IMPLEMENTED}{44}{subsubsection.6.8.1.13}%
+\contentsline {subsubsection}{\numberline {6.8.1.14}PWRLOSS\_DET\_ACTIVE\_IN\_TIME}{44}{subsubsection.6.8.1.14}%
+\contentsline {subsubsection}{\numberline {6.8.1.15}PWRLOSS\_DET\_PRIO}{44}{subsubsection.6.8.1.15}%
+\contentsline {subsubsection}{\numberline {6.8.1.16}PWRLOSS\_DETECTION\_ENABLED}{44}{subsubsection.6.8.1.16}%
+\contentsline {subsubsection}{\numberline {6.8.1.17}PWRLOSS\_TEST\_GPIOS}{45}{subsubsection.6.8.1.17}%
+\contentsline {subsubsection}{\numberline {6.8.1.18}PWRLOSS\_TIMER\_PRIO}{45}{subsubsection.6.8.1.18}%
+\contentsline {subsubsection}{\numberline {6.8.1.19}RECORD\_STACK\_SIZE}{45}{subsubsection.6.8.1.19}%
+\contentsline {subsubsection}{\numberline {6.8.1.20}TAU}{45}{subsubsection.6.8.1.20}%
+\contentsline {subsubsection}{\numberline {6.8.1.21}TEMPERATURE\_MEAS\_ENABLED}{45}{subsubsection.6.8.1.21}%
+\contentsline {subsubsection}{\numberline {6.8.1.22}UART\_FIFO\_ENABLED}{45}{subsubsection.6.8.1.22}%
+\contentsline {subsubsection}{\numberline {6.8.1.23}UART\_FIFO\_LENGHT}{45}{subsubsection.6.8.1.23}%
+\contentsline {subsubsection}{\numberline {6.8.1.24}UART\_PRINT\_ENABLED}{46}{subsubsection.6.8.1.24}%
+\contentsline {subsubsection}{\numberline {6.8.1.25}UART\_RECEIVE\_PRIO}{46}{subsubsection.6.8.1.25}%
+\contentsline {section}{\numberline {6.9}defs.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{46}{section.6.9}%
+\contentsline {section}{\numberline {6.10}include/error.h File Reference}{47}{section.6.10}%
+\contentsline {subsection}{\numberline {6.10.1}Macro Definition Documentation}{48}{subsection.6.10.1}%
+\contentsline {subsubsection}{\numberline {6.10.1.1}ERROR\_ADMA}{48}{subsubsection.6.10.1.1}%
+\contentsline {subsubsection}{\numberline {6.10.1.2}ERROR\_CLOSE}{48}{subsubsection.6.10.1.2}%
+\contentsline {subsubsection}{\numberline {6.10.1.3}ERROR\_CONFIG}{48}{subsubsection.6.10.1.3}%
+\contentsline {subsubsection}{\numberline {6.10.1.4}ERROR\_FILESYSTEM}{48}{subsubsection.6.10.1.4}%
+\contentsline {subsubsection}{\numberline {6.10.1.5}ERROR\_IRTC}{48}{subsubsection.6.10.1.5}%
+\contentsline {subsubsection}{\numberline {6.10.1.6}ERROR\_NONE}{48}{subsubsection.6.10.1.6}%
+\contentsline {subsubsection}{\numberline {6.10.1.7}ERROR\_OPEN}{49}{subsubsection.6.10.1.7}%
+\contentsline {subsubsection}{\numberline {6.10.1.8}ERROR\_OUT\_OF\_CYCLE}{49}{subsubsection.6.10.1.8}%
+\contentsline {subsubsection}{\numberline {6.10.1.9}ERROR\_READ}{49}{subsubsection.6.10.1.9}%
+\contentsline {subsubsection}{\numberline {6.10.1.10}ERROR\_RECORD}{49}{subsubsection.6.10.1.10}%
+\contentsline {subsubsection}{\numberline {6.10.1.11}ERROR\_UNKNOWN}{49}{subsubsection.6.10.1.11}%
+\contentsline {subsection}{\numberline {6.10.2}Typedef Documentation}{49}{subsection.6.10.2}%
+\contentsline {subsubsection}{\numberline {6.10.2.1}error\_t}{49}{subsubsection.6.10.2.1}%
+\contentsline {subsection}{\numberline {6.10.3}Function Documentation}{49}{subsection.6.10.3}%
+\contentsline {subsubsection}{\numberline {6.10.3.1}ERR\_HandleError()}{49}{subsubsection.6.10.3.1}%
+\contentsline {subsubsection}{\numberline {6.10.3.2}ERR\_Init()}{50}{subsubsection.6.10.3.2}%
+\contentsline {subsubsection}{\numberline {6.10.3.3}ERR\_SetState()}{50}{subsubsection.6.10.3.3}%
+\contentsline {section}{\numberline {6.11}error.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{50}{section.6.11}%
+\contentsline {section}{\numberline {6.12}include/led.h File Reference}{51}{section.6.12}%
+\contentsline {subsection}{\numberline {6.12.1}Macro Definition Documentation}{52}{subsection.6.12.1}%
+\contentsline {subsubsection}{\numberline {6.12.1.1}BACKUP\_POWER\_LED\_PIN}{52}{subsubsection.6.12.1.1}%
+\contentsline {subsubsection}{\numberline {6.12.1.2}BACKUP\_POWER\_LED\_PORT}{52}{subsubsection.6.12.1.2}%
+\contentsline {subsubsection}{\numberline {6.12.1.3}ERROR\_LED\_PIN\_RECORD}{52}{subsubsection.6.12.1.3}%
+\contentsline {subsubsection}{\numberline {6.12.1.4}ERROR\_LED\_PORT}{52}{subsubsection.6.12.1.4}%
+\contentsline {subsubsection}{\numberline {6.12.1.5}FLUSH\_LED\_PORT}{52}{subsubsection.6.12.1.5}%
+\contentsline {subsubsection}{\numberline {6.12.1.6}MEMORY\_LOW\_LED\_PIN}{52}{subsubsection.6.12.1.6}%
+\contentsline {subsubsection}{\numberline {6.12.1.7}MEMORY\_LOW\_LED\_PORT}{53}{subsubsection.6.12.1.7}%
+\contentsline {subsubsection}{\numberline {6.12.1.8}RECORD\_LED\_PIN}{53}{subsubsection.6.12.1.8}%
+\contentsline {subsubsection}{\numberline {6.12.1.9}RECORD\_LED\_PIN\_FLUSH}{53}{subsubsection.6.12.1.9}%
+\contentsline {subsubsection}{\numberline {6.12.1.10}RECORD\_LED\_PORT}{53}{subsubsection.6.12.1.10}%
+\contentsline {subsection}{\numberline {6.12.2}Function Documentation}{53}{subsection.6.12.2}%
+\contentsline {subsubsection}{\numberline {6.12.2.1}LED\_ClearSignalFlush()}{53}{subsubsection.6.12.2.1}%
+\contentsline {subsubsection}{\numberline {6.12.2.2}LED\_SetHigh()}{53}{subsubsection.6.12.2.2}%
+\contentsline {subsubsection}{\numberline {6.12.2.3}LED\_SetLow()}{54}{subsubsection.6.12.2.3}%
+\contentsline {subsubsection}{\numberline {6.12.2.4}LED\_SignalBackUpPowerAvailable()}{54}{subsubsection.6.12.2.4}%
+\contentsline {subsubsection}{\numberline {6.12.2.5}LED\_SignalError()}{54}{subsubsection.6.12.2.5}%
+\contentsline {subsubsection}{\numberline {6.12.2.6}LED\_SignalFlush()}{54}{subsubsection.6.12.2.6}%
+\contentsline {subsubsection}{\numberline {6.12.2.7}LED\_SignalLowMemory()}{54}{subsubsection.6.12.2.7}%
+\contentsline {subsubsection}{\numberline {6.12.2.8}LED\_SignalReady()}{55}{subsubsection.6.12.2.8}%
+\contentsline {subsubsection}{\numberline {6.12.2.9}LED\_SignalRecording()}{55}{subsubsection.6.12.2.9}%
+\contentsline {subsubsection}{\numberline {6.12.2.10}LED\_SignalRecordingStop()}{55}{subsubsection.6.12.2.10}%
+\contentsline {section}{\numberline {6.13}led.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{55}{section.6.13}%
+\contentsline {section}{\numberline {6.14}include/mass\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}storage.h File Reference}{56}{section.6.14}%
+\contentsline {subsection}{\numberline {6.14.1}Function Documentation}{56}{subsection.6.14.1}%
+\contentsline {subsubsection}{\numberline {6.14.1.1}MSC\_DeviceMscApp()}{56}{subsubsection.6.14.1.1}%
+\contentsline {subsubsection}{\numberline {6.14.1.2}MSC\_DeviceMscAppTask()}{56}{subsubsection.6.14.1.2}%
+\contentsline {section}{\numberline {6.15}mass\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}storage.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{57}{section.6.15}%
+\contentsline {section}{\numberline {6.16}include/parser.h File Reference}{57}{section.6.16}%
+\contentsline {subsection}{\numberline {6.16.1}Enumeration Type Documentation}{58}{subsection.6.16.1}%
+\contentsline {subsubsection}{\numberline {6.16.1.1}REC\_version\_t}{58}{subsubsection.6.16.1.1}%
+\contentsline {subsection}{\numberline {6.16.2}Function Documentation}{59}{subsection.6.16.2}%
+\contentsline {subsubsection}{\numberline {6.16.2.1}PARSER\_ClearConfig()}{59}{subsubsection.6.16.2.1}%
+\contentsline {subsubsection}{\numberline {6.16.2.2}PARSER\_GetBaudrate()}{59}{subsubsection.6.16.2.2}%
+\contentsline {subsubsection}{\numberline {6.16.2.3}PARSER\_GetConfig()}{59}{subsubsection.6.16.2.3}%
+\contentsline {subsubsection}{\numberline {6.16.2.4}PARSER\_GetDataBits()}{59}{subsubsection.6.16.2.4}%
+\contentsline {subsubsection}{\numberline {6.16.2.5}PARSER\_GetFileSize()}{60}{subsubsection.6.16.2.5}%
+\contentsline {subsubsection}{\numberline {6.16.2.6}PARSER\_GetFreeSpaceLimitMB()}{60}{subsubsection.6.16.2.6}%
+\contentsline {subsubsection}{\numberline {6.16.2.7}PARSER\_GetMaxBytes()}{60}{subsubsection.6.16.2.7}%
+\contentsline {subsubsection}{\numberline {6.16.2.8}PARSER\_GetParity()}{60}{subsubsection.6.16.2.8}%
+\contentsline {subsubsection}{\numberline {6.16.2.9}PARSER\_GetStopBits()}{61}{subsubsection.6.16.2.9}%
+\contentsline {subsubsection}{\numberline {6.16.2.10}PARSER\_GetVersion()}{61}{subsubsection.6.16.2.10}%
+\contentsline {subsubsection}{\numberline {6.16.2.11}PARSER\_ParseBaudrate()}{61}{subsubsection.6.16.2.11}%
+\contentsline {subsubsection}{\numberline {6.16.2.12}PARSER\_ParseDataBits()}{61}{subsubsection.6.16.2.12}%
+\contentsline {subsubsection}{\numberline {6.16.2.13}PARSER\_ParseFileSize()}{61}{subsubsection.6.16.2.13}%
+\contentsline {subsubsection}{\numberline {6.16.2.14}PARSER\_ParseFreeSpace()}{62}{subsubsection.6.16.2.14}%
+\contentsline {subsubsection}{\numberline {6.16.2.15}PARSER\_ParseParity()}{62}{subsubsection.6.16.2.15}%
+\contentsline {subsubsection}{\numberline {6.16.2.16}PARSER\_ParseStopBits()}{62}{subsubsection.6.16.2.16}%
+\contentsline {section}{\numberline {6.17}parser.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{63}{section.6.17}%
+\contentsline {section}{\numberline {6.18}include/pwrloss\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}det.h File Reference}{64}{section.6.18}%
+\contentsline {subsection}{\numberline {6.18.1}Macro Definition Documentation}{65}{subsection.6.18.1}%
+\contentsline {subsubsection}{\numberline {6.18.1.1}CTIMER}{65}{subsubsection.6.18.1.1}%
+\contentsline {subsubsection}{\numberline {6.18.1.2}CTIMER\_CLK\_FREQ}{65}{subsubsection.6.18.1.2}%
+\contentsline {subsubsection}{\numberline {6.18.1.3}CTIMER\_EMT0\_OUT}{65}{subsubsection.6.18.1.3}%
+\contentsline {subsubsection}{\numberline {6.18.1.4}CTIMER\_MAT0\_OUT}{65}{subsubsection.6.18.1.4}%
+\contentsline {subsubsection}{\numberline {6.18.1.5}LPCMP\_BASE}{65}{subsubsection.6.18.1.5}%
+\contentsline {subsubsection}{\numberline {6.18.1.6}LPCMP\_DAC\_CHANNEL}{66}{subsubsection.6.18.1.6}%
+\contentsline {subsubsection}{\numberline {6.18.1.7}LPCMP\_IRQ\_ID}{66}{subsubsection.6.18.1.7}%
+\contentsline {subsubsection}{\numberline {6.18.1.8}LPCMP\_USER\_CHANNEL}{66}{subsubsection.6.18.1.8}%
+\contentsline {subsubsection}{\numberline {6.18.1.9}SPC\_BASE}{66}{subsubsection.6.18.1.9}%
+\contentsline {subsection}{\numberline {6.18.2}Function Documentation}{66}{subsection.6.18.2}%
+\contentsline {subsubsection}{\numberline {6.18.2.1}PWRLOSS\_DetectionInit()}{66}{subsubsection.6.18.2.1}%
+\contentsline {section}{\numberline {6.19}pwrloss\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}det.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{67}{section.6.19}%
+\contentsline {section}{\numberline {6.20}include/record.h File Reference}{67}{section.6.20}%
+\contentsline {subsection}{\numberline {6.20.1}Macro Definition Documentation}{69}{subsection.6.20.1}%
+\contentsline {subsubsection}{\numberline {6.20.1.1}FLUSH\_TIMEOUT\_TICKS}{69}{subsubsection.6.20.1.1}%
+\contentsline {subsection}{\numberline {6.20.2}Function Documentation}{69}{subsection.6.20.2}%
+\contentsline {subsubsection}{\numberline {6.20.2.1}CONSOLELOG\_CheckFileSystem()}{69}{subsubsection.6.20.2.1}%
+\contentsline {subsubsection}{\numberline {6.20.2.2}CONSOLELOG\_ClearTransferedBytes()}{69}{subsubsection.6.20.2.2}%
+\contentsline {subsubsection}{\numberline {6.20.2.3}CONSOLELOG\_CreateDirectory()}{69}{subsubsection.6.20.2.3}%
+\contentsline {subsubsection}{\numberline {6.20.2.4}CONSOLELOG\_CreateFile()}{69}{subsubsection.6.20.2.4}%
+\contentsline {subsubsection}{\numberline {6.20.2.5}CONSOLELOG\_Deinit()}{70}{subsubsection.6.20.2.5}%
+\contentsline {subsubsection}{\numberline {6.20.2.6}CONSOLELOG\_Flush()}{70}{subsubsection.6.20.2.6}%
+\contentsline {subsubsection}{\numberline {6.20.2.7}CONSOLELOG\_GetFlushCompleted()}{70}{subsubsection.6.20.2.7}%
+\contentsline {subsubsection}{\numberline {6.20.2.8}CONSOLELOG\_GetFreeSpaceMB()}{70}{subsubsection.6.20.2.8}%
+\contentsline {subsubsection}{\numberline {6.20.2.9}CONSOLELOG\_GetMaxBytes()}{71}{subsubsection.6.20.2.9}%
+\contentsline {subsubsection}{\numberline {6.20.2.10}CONSOLELOG\_GetTransferedBytes()}{71}{subsubsection.6.20.2.10}%
+\contentsline {subsubsection}{\numberline {6.20.2.11}CONSOLELOG\_Init()}{71}{subsubsection.6.20.2.11}%
+\contentsline {subsubsection}{\numberline {6.20.2.12}CONSOLELOG\_PowerLossFlush()}{71}{subsubsection.6.20.2.12}%
+\contentsline {subsubsection}{\numberline {6.20.2.13}CONSOLELOG\_ProccessConfigFile()}{71}{subsubsection.6.20.2.13}%
+\contentsline {subsubsection}{\numberline {6.20.2.14}CONSOLELOG\_ReadConfig()}{72}{subsubsection.6.20.2.14}%
+\contentsline {subsubsection}{\numberline {6.20.2.15}CONSOLELOG\_Recording()}{72}{subsubsection.6.20.2.15}%
+\contentsline {section}{\numberline {6.21}record.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{73}{section.6.21}%
+\contentsline {section}{\numberline {6.22}include/task\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}switching.h File Reference}{74}{section.6.22}%
+\contentsline {subsection}{\numberline {6.22.1}Function Documentation}{74}{subsection.6.22.1}%
+\contentsline {subsubsection}{\numberline {6.22.1.1}USB\_State()}{74}{subsubsection.6.22.1.1}%
+\contentsline {subsection}{\numberline {6.22.2}Variable Documentation}{74}{subsection.6.22.2}%
+\contentsline {subsubsection}{\numberline {6.22.2.1}g\_msc}{74}{subsubsection.6.22.2.1}%
+\contentsline {section}{\numberline {6.23}task\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}switching.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{75}{section.6.23}%
+\contentsline {section}{\numberline {6.24}include/temperature.h File Reference}{75}{section.6.24}%
+\contentsline {subsection}{\numberline {6.24.1}Function Documentation}{75}{subsection.6.24.1}%
+\contentsline {subsubsection}{\numberline {6.24.1.1}Read()}{75}{subsubsection.6.24.1.1}%
+\contentsline {subsubsection}{\numberline {6.24.1.2}TMP\_GetTemperature()}{76}{subsubsection.6.24.1.2}%
+\contentsline {subsubsection}{\numberline {6.24.1.3}TMP\_Init()}{76}{subsubsection.6.24.1.3}%
+\contentsline {subsubsection}{\numberline {6.24.1.4}Write()}{76}{subsubsection.6.24.1.4}%
+\contentsline {section}{\numberline {6.25}temperature.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{77}{section.6.25}%
+\contentsline {section}{\numberline {6.26}include/time.h File Reference}{77}{section.6.26}%
+\contentsline {subsection}{\numberline {6.26.1}Macro Definition Documentation}{78}{subsection.6.26.1}%
+\contentsline {subsubsection}{\numberline {6.26.1.1}LPI2C\_DMA\_BASEADDR}{78}{subsubsection.6.26.1.1}%
+\contentsline {subsection}{\numberline {6.26.2}Function Documentation}{78}{subsection.6.26.2}%
+\contentsline {subsubsection}{\numberline {6.26.2.1}TIME\_InitIRTC()}{78}{subsubsection.6.26.2.1}%
+\contentsline {section}{\numberline {6.27}time.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{78}{section.6.27}%
+\contentsline {section}{\numberline {6.28}include/uart.h File Reference}{79}{section.6.28}%
+\contentsline {subsection}{\numberline {6.28.1}Macro Definition Documentation}{79}{subsection.6.28.1}%
+\contentsline {subsubsection}{\numberline {6.28.1.1}LPUART3\_CLK\_FREQ}{79}{subsubsection.6.28.1.1}%
+\contentsline {subsection}{\numberline {6.28.2}Function Documentation}{79}{subsection.6.28.2}%
+\contentsline {subsubsection}{\numberline {6.28.2.1}UART\_Deinit()}{79}{subsubsection.6.28.2.1}%
+\contentsline {subsubsection}{\numberline {6.28.2.2}UART\_Disable()}{80}{subsubsection.6.28.2.2}%
+\contentsline {subsubsection}{\numberline {6.28.2.3}UART\_Enable()}{80}{subsubsection.6.28.2.3}%
+\contentsline {subsubsection}{\numberline {6.28.2.4}UART\_Init()}{80}{subsubsection.6.28.2.4}%
+\contentsline {subsubsection}{\numberline {6.28.2.5}UART\_Print()}{80}{subsubsection.6.28.2.5}%
+\contentsline {section}{\numberline {6.29}uart.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{81}{section.6.29}%
+\contentsline {section}{\numberline {6.30}source/app\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}init.c File Reference}{81}{section.6.30}%
+\contentsline {subsection}{\numberline {6.30.1}Function Documentation}{82}{subsection.6.30.1}%
+\contentsline {subsubsection}{\numberline {6.30.1.1}APP\_InitBoard()}{82}{subsubsection.6.30.1.1}%
+\contentsline {section}{\numberline {6.31}source/app\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tasks.c File Reference}{82}{section.6.31}%
+\contentsline {subsection}{\numberline {6.31.1}Function Documentation}{82}{subsection.6.31.1}%
+\contentsline {subsubsection}{\numberline {6.31.1.1}msc\_task()}{82}{subsubsection.6.31.1.1}%
+\contentsline {subsubsection}{\numberline {6.31.1.2}record\_task()}{83}{subsubsection.6.31.1.2}%
+\contentsline {subsubsection}{\numberline {6.31.1.3}vApplicationGetIdleTaskMemory()}{83}{subsubsection.6.31.1.3}%
+\contentsline {subsubsection}{\numberline {6.31.1.4}vApplicationGetTimerTaskMemory()}{83}{subsubsection.6.31.1.4}%
+\contentsline {section}{\numberline {6.32}source/error.c File Reference}{84}{section.6.32}%
+\contentsline {subsection}{\numberline {6.32.1}Function Documentation}{84}{subsection.6.32.1}%
+\contentsline {subsubsection}{\numberline {6.32.1.1}ERR\_HandleError()}{84}{subsubsection.6.32.1.1}%
+\contentsline {subsubsection}{\numberline {6.32.1.2}ERR\_Init()}{84}{subsubsection.6.32.1.2}%
+\contentsline {subsubsection}{\numberline {6.32.1.3}ERR\_SetState()}{84}{subsubsection.6.32.1.3}%
+\contentsline {subsection}{\numberline {6.32.2}Variable Documentation}{85}{subsection.6.32.2}%
+\contentsline {subsubsection}{\numberline {6.32.2.1}error}{85}{subsubsection.6.32.2.1}%
+\contentsline {section}{\numberline {6.33}source/led.c File Reference}{85}{section.6.33}%
+\contentsline {subsection}{\numberline {6.33.1}Function Documentation}{85}{subsection.6.33.1}%
+\contentsline {subsubsection}{\numberline {6.33.1.1}LED\_ClearSignalFlush()}{85}{subsubsection.6.33.1.1}%
+\contentsline {subsubsection}{\numberline {6.33.1.2}LED\_SetHigh()}{85}{subsubsection.6.33.1.2}%
+\contentsline {subsubsection}{\numberline {6.33.1.3}LED\_SetLow()}{86}{subsubsection.6.33.1.3}%
+\contentsline {subsubsection}{\numberline {6.33.1.4}LED\_SignalBackUpPowerAvailable()}{86}{subsubsection.6.33.1.4}%
+\contentsline {subsubsection}{\numberline {6.33.1.5}LED\_SignalError()}{86}{subsubsection.6.33.1.5}%
+\contentsline {subsubsection}{\numberline {6.33.1.6}LED\_SignalFlush()}{86}{subsubsection.6.33.1.6}%
+\contentsline {subsubsection}{\numberline {6.33.1.7}LED\_SignalLowMemory()}{86}{subsubsection.6.33.1.7}%
+\contentsline {subsubsection}{\numberline {6.33.1.8}LED\_SignalReady()}{87}{subsubsection.6.33.1.8}%
+\contentsline {subsubsection}{\numberline {6.33.1.9}LED\_SignalRecording()}{87}{subsubsection.6.33.1.9}%
+\contentsline {subsubsection}{\numberline {6.33.1.10}LED\_SignalRecordingStop()}{87}{subsubsection.6.33.1.10}%
+\contentsline {section}{\numberline {6.34}source/main.c File Reference}{87}{section.6.34}%
+\contentsline {subsection}{\numberline {6.34.1}Function Documentation}{88}{subsection.6.34.1}%
+\contentsline {subsubsection}{\numberline {6.34.1.1}main()}{88}{subsubsection.6.34.1.1}%
+\contentsline {subsection}{\numberline {6.34.2}Variable Documentation}{88}{subsection.6.34.2}%
+\contentsline {subsubsection}{\numberline {6.34.2.1}g\_msc}{88}{subsubsection.6.34.2.1}%
+\contentsline {subsubsection}{\numberline {6.34.2.2}g\_xMscTaskHandle}{88}{subsubsection.6.34.2.2}%
+\contentsline {subsubsection}{\numberline {6.34.2.3}g\_xMscTaskStack}{89}{subsubsection.6.34.2.3}%
+\contentsline {subsubsection}{\numberline {6.34.2.4}g\_xMscTaskTCB}{89}{subsubsection.6.34.2.4}%
+\contentsline {subsubsection}{\numberline {6.34.2.5}g\_xRecordTaskHandle}{89}{subsubsection.6.34.2.5}%
+\contentsline {subsubsection}{\numberline {6.34.2.6}g\_xRecordTaskStack}{89}{subsubsection.6.34.2.6}%
+\contentsline {subsubsection}{\numberline {6.34.2.7}g\_xRecordTaskTCB}{89}{subsubsection.6.34.2.7}%
+\contentsline {subsubsection}{\numberline {6.34.2.8}g\_xSemMassStorage}{89}{subsubsection.6.34.2.8}%
+\contentsline {subsubsection}{\numberline {6.34.2.9}g\_xSemRecord}{89}{subsubsection.6.34.2.9}%
+\contentsline {section}{\numberline {6.35}source/mass\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}storage.c File Reference}{90}{section.6.35}%
+\contentsline {subsection}{\numberline {6.35.1}Function Documentation}{90}{subsection.6.35.1}%
+\contentsline {subsubsection}{\numberline {6.35.1.1}MSC\_DeviceMscApp()}{90}{subsubsection.6.35.1.1}%
+\contentsline {subsubsection}{\numberline {6.35.1.2}MSC\_DeviceMscAppTask()}{90}{subsubsection.6.35.1.2}%
+\contentsline {subsubsection}{\numberline {6.35.1.3}USB1\_HS\_IRQHandler()}{90}{subsubsection.6.35.1.3}%
+\contentsline {subsection}{\numberline {6.35.2}Variable Documentation}{91}{subsection.6.35.2}%
+\contentsline {subsubsection}{\numberline {6.35.2.1}g\_xSemMassStorage}{91}{subsubsection.6.35.2.1}%
+\contentsline {subsubsection}{\numberline {6.35.2.2}g\_xSemRecord}{91}{subsubsection.6.35.2.2}%
+\contentsline {section}{\numberline {6.36}source/parser.c File Reference}{91}{section.6.36}%
+\contentsline {subsection}{\numberline {6.36.1}Macro Definition Documentation}{92}{subsection.6.36.1}%
+\contentsline {subsubsection}{\numberline {6.36.1.1}RECORD\_LED\_TIME\_INTERVAL}{92}{subsubsection.6.36.1.1}%
+\contentsline {subsection}{\numberline {6.36.2}Function Documentation}{92}{subsection.6.36.2}%
+\contentsline {subsubsection}{\numberline {6.36.2.1}PARSER\_ClearConfig()}{92}{subsubsection.6.36.2.1}%
+\contentsline {subsubsection}{\numberline {6.36.2.2}PARSER\_GetBaudrate()}{92}{subsubsection.6.36.2.2}%
+\contentsline {subsubsection}{\numberline {6.36.2.3}PARSER\_GetConfig()}{93}{subsubsection.6.36.2.3}%
+\contentsline {subsubsection}{\numberline {6.36.2.4}PARSER\_GetDataBits()}{93}{subsubsection.6.36.2.4}%
+\contentsline {subsubsection}{\numberline {6.36.2.5}PARSER\_GetFileSize()}{93}{subsubsection.6.36.2.5}%
+\contentsline {subsubsection}{\numberline {6.36.2.6}PARSER\_GetFreeSpaceLimitMB()}{93}{subsubsection.6.36.2.6}%
+\contentsline {subsubsection}{\numberline {6.36.2.7}PARSER\_GetMaxBytes()}{94}{subsubsection.6.36.2.7}%
+\contentsline {subsubsection}{\numberline {6.36.2.8}PARSER\_GetParity()}{94}{subsubsection.6.36.2.8}%
+\contentsline {subsubsection}{\numberline {6.36.2.9}PARSER\_GetStopBits()}{94}{subsubsection.6.36.2.9}%
+\contentsline {subsubsection}{\numberline {6.36.2.10}PARSER\_GetVersion()}{94}{subsubsection.6.36.2.10}%
+\contentsline {subsubsection}{\numberline {6.36.2.11}PARSER\_ParseBaudrate()}{94}{subsubsection.6.36.2.11}%
+\contentsline {subsubsection}{\numberline {6.36.2.12}PARSER\_ParseDataBits()}{95}{subsubsection.6.36.2.12}%
+\contentsline {subsubsection}{\numberline {6.36.2.13}PARSER\_ParseFileSize()}{95}{subsubsection.6.36.2.13}%
+\contentsline {subsubsection}{\numberline {6.36.2.14}PARSER\_ParseFreeSpace()}{95}{subsubsection.6.36.2.14}%
+\contentsline {subsubsection}{\numberline {6.36.2.15}PARSER\_ParseParity()}{96}{subsubsection.6.36.2.15}%
+\contentsline {subsubsection}{\numberline {6.36.2.16}PARSER\_ParseStopBits()}{96}{subsubsection.6.36.2.16}%
+\contentsline {subsection}{\numberline {6.36.3}Variable Documentation}{96}{subsection.6.36.3}%
+\contentsline {subsubsection}{\numberline {6.36.3.1}g\_config}{96}{subsubsection.6.36.3.1}%
+\contentsline {section}{\numberline {6.37}source/pwrloss\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}det.c File Reference}{97}{section.6.37}%
+\contentsline {subsection}{\numberline {6.37.1}Macro Definition Documentation}{97}{subsection.6.37.1}%
+\contentsline {subsubsection}{\numberline {6.37.1.1}REF\_VOLTAGE}{97}{subsubsection.6.37.1.1}%
+\contentsline {subsubsection}{\numberline {6.37.1.2}TRIGGER\_VOLTAGE}{97}{subsubsection.6.37.1.2}%
+\contentsline {subsection}{\numberline {6.37.2}Function Documentation}{97}{subsection.6.37.2}%
+\contentsline {subsubsection}{\numberline {6.37.2.1}CTIMER4\_IRQHandler()}{97}{subsubsection.6.37.2.1}%
+\contentsline {subsubsection}{\numberline {6.37.2.2}HSCMP1\_IRQHandler()}{97}{subsubsection.6.37.2.2}%
+\contentsline {subsubsection}{\numberline {6.37.2.3}PWRLOSS\_DetectionInit()}{98}{subsubsection.6.37.2.3}%
+\contentsline {section}{\numberline {6.38}source/record.c File Reference}{98}{section.6.38}%
+\contentsline {subsection}{\numberline {6.38.1}Macro Definition Documentation}{100}{subsection.6.38.1}%
+\contentsline {subsubsection}{\numberline {6.38.1.1}BLOCK\_SIZE}{100}{subsubsection.6.38.1.1}%
+\contentsline {subsubsection}{\numberline {6.38.1.2}CIRCULAR\_BUFFER\_SIZE}{100}{subsubsection.6.38.1.2}%
+\contentsline {subsubsection}{\numberline {6.38.1.3}GET\_CURRENT\_TIME\_MS}{100}{subsubsection.6.38.1.3}%
+\contentsline {subsubsection}{\numberline {6.38.1.4}GET\_WAIT\_INTERVAL}{100}{subsubsection.6.38.1.4}%
+\contentsline {subsection}{\numberline {6.38.2}Function Documentation}{100}{subsection.6.38.2}%
+\contentsline {subsubsection}{\numberline {6.38.2.1}CONSOLELOG\_CheckFileSystem()}{100}{subsubsection.6.38.2.1}%
+\contentsline {subsubsection}{\numberline {6.38.2.2}CONSOLELOG\_ClearTransferedBytes()}{101}{subsubsection.6.38.2.2}%
+\contentsline {subsubsection}{\numberline {6.38.2.3}CONSOLELOG\_CreateDirectory()}{101}{subsubsection.6.38.2.3}%
+\contentsline {subsubsection}{\numberline {6.38.2.4}CONSOLELOG\_CreateFile()}{101}{subsubsection.6.38.2.4}%
+\contentsline {subsubsection}{\numberline {6.38.2.5}CONSOLELOG\_Deinit()}{101}{subsubsection.6.38.2.5}%
+\contentsline {subsubsection}{\numberline {6.38.2.6}CONSOLELOG\_Flush()}{102}{subsubsection.6.38.2.6}%
+\contentsline {subsubsection}{\numberline {6.38.2.7}CONSOLELOG\_GetFlushCompleted()}{102}{subsubsection.6.38.2.7}%
+\contentsline {subsubsection}{\numberline {6.38.2.8}CONSOLELOG\_GetFreeSpaceMB()}{102}{subsubsection.6.38.2.8}%
+\contentsline {subsubsection}{\numberline {6.38.2.9}CONSOLELOG\_GetTransferedBytes()}{102}{subsubsection.6.38.2.9}%
+\contentsline {subsubsection}{\numberline {6.38.2.10}CONSOLELOG\_Init()}{103}{subsubsection.6.38.2.10}%
+\contentsline {subsubsection}{\numberline {6.38.2.11}CONSOLELOG\_PowerLossFlush()}{103}{subsubsection.6.38.2.11}%
+\contentsline {subsubsection}{\numberline {6.38.2.12}CONSOLELOG\_ProccessConfigFile()}{103}{subsubsection.6.38.2.12}%
+\contentsline {subsubsection}{\numberline {6.38.2.13}CONSOLELOG\_ReadConfig()}{104}{subsubsection.6.38.2.13}%
+\contentsline {subsubsection}{\numberline {6.38.2.14}CONSOLELOG\_Recording()}{104}{subsubsection.6.38.2.14}%
+\contentsline {subsubsection}{\numberline {6.38.2.15}get\_fattime()}{104}{subsubsection.6.38.2.15}%
+\contentsline {subsubsection}{\numberline {6.38.2.16}LP\_FLEXCOMM3\_IRQHandler()}{104}{subsubsection.6.38.2.16}%
+\contentsline {section}{\numberline {6.39}source/semihost\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hardfault.c File Reference}{105}{section.6.39}%
+\contentsline {subsection}{\numberline {6.39.1}Function Documentation}{105}{subsection.6.39.1}%
+\contentsline {subsubsection}{\numberline {6.39.1.1}\_\_attribute\_\_()}{105}{subsubsection.6.39.1.1}%
+\contentsline {section}{\numberline {6.40}source/task\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}switching.c File Reference}{105}{section.6.40}%
+\contentsline {subsection}{\numberline {6.40.1}Function Documentation}{105}{subsection.6.40.1}%
+\contentsline {subsubsection}{\numberline {6.40.1.1}USB\_State()}{105}{subsubsection.6.40.1.1}%
+\contentsline {section}{\numberline {6.41}source/temperature.c File Reference}{106}{section.6.41}%
+\contentsline {subsection}{\numberline {6.41.1}Macro Definition Documentation}{107}{subsection.6.41.1}%
+\contentsline {subsubsection}{\numberline {6.41.1.1}BUFF\_SIZE}{107}{subsubsection.6.41.1.1}%
+\contentsline {subsubsection}{\numberline {6.41.1.2}I2C\_BAUDRATE}{107}{subsubsection.6.41.1.2}%
+\contentsline {subsubsection}{\numberline {6.41.1.3}I2C\_MASTER\_I2C5}{107}{subsubsection.6.41.1.3}%
+\contentsline {subsubsection}{\numberline {6.41.1.4}LPI2C\_RX\_DMA\_CHANNEL}{107}{subsubsection.6.41.1.4}%
+\contentsline {subsubsection}{\numberline {6.41.1.5}LPI2C\_RX\_EDMA\_CHANNEL}{107}{subsubsection.6.41.1.5}%
+\contentsline {subsubsection}{\numberline {6.41.1.6}LPI2C\_TX\_CHANNEL}{108}{subsubsection.6.41.1.6}%
+\contentsline {subsubsection}{\numberline {6.41.1.7}LPI2C\_TX\_DMA\_CHANNEL}{108}{subsubsection.6.41.1.7}%
+\contentsline {subsubsection}{\numberline {6.41.1.8}P3T1755\_ADDR\_7BIT}{108}{subsubsection.6.41.1.8}%
+\contentsline {subsubsection}{\numberline {6.41.1.9}PRINT\_REG\_OUTPUT}{108}{subsubsection.6.41.1.9}%
+\contentsline {subsubsection}{\numberline {6.41.1.10}REGISTER\_CONFIG}{108}{subsubsection.6.41.1.10}%
+\contentsline {subsubsection}{\numberline {6.41.1.11}REGISTER\_TEMPERATURE}{108}{subsubsection.6.41.1.11}%
+\contentsline {subsubsection}{\numberline {6.41.1.12}REGISTER\_THVST}{108}{subsubsection.6.41.1.12}%
+\contentsline {subsubsection}{\numberline {6.41.1.13}REGISTER\_TOS}{108}{subsubsection.6.41.1.13}%
+\contentsline {subsection}{\numberline {6.41.2}Function Documentation}{109}{subsection.6.41.2}%
+\contentsline {subsubsection}{\numberline {6.41.2.1}AT\_NONCACHEABLE\_SECTION()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{109}{subsubsection.6.41.2.1}%
+\contentsline {subsubsection}{\numberline {6.41.2.2}AT\_NONCACHEABLE\_SECTION()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{109}{subsubsection.6.41.2.2}%
+\contentsline {subsubsection}{\numberline {6.41.2.3}CTIMER0\_IRQHandler()}{109}{subsubsection.6.41.2.3}%
+\contentsline {subsubsection}{\numberline {6.41.2.4}lpi2c\_callback()}{109}{subsubsection.6.41.2.4}%
+\contentsline {subsubsection}{\numberline {6.41.2.5}Read()}{109}{subsubsection.6.41.2.5}%
+\contentsline {subsubsection}{\numberline {6.41.2.6}TMP\_GetTemperature()}{109}{subsubsection.6.41.2.6}%
+\contentsline {subsubsection}{\numberline {6.41.2.7}TMP\_Init()}{110}{subsubsection.6.41.2.7}%
+\contentsline {subsubsection}{\numberline {6.41.2.8}Write()}{110}{subsubsection.6.41.2.8}%
+\contentsline {subsection}{\numberline {6.41.3}Variable Documentation}{110}{subsection.6.41.3}%
+\contentsline {subsubsection}{\numberline {6.41.3.1}g\_bCompletionFlag\_I2C5}{110}{subsubsection.6.41.3.1}%
+\contentsline {subsubsection}{\numberline {6.41.3.2}g\_EdmaRxHandle\_I2C5}{110}{subsubsection.6.41.3.2}%
+\contentsline {subsubsection}{\numberline {6.41.3.3}g\_EdmaTxHandle\_I2C5}{110}{subsubsection.6.41.3.3}%
+\contentsline {subsubsection}{\numberline {6.41.3.4}g\_Xfer\_I2C5}{111}{subsubsection.6.41.3.4}%
+\contentsline {section}{\numberline {6.42}source/time.c File Reference}{111}{section.6.42}%
+\contentsline {subsection}{\numberline {6.42.1}Macro Definition Documentation}{111}{subsection.6.42.1}%
+\contentsline {subsubsection}{\numberline {6.42.1.1}EXTERNAL\_RTC\_TIME\_OFSET}{111}{subsubsection.6.42.1.1}%
+\contentsline {subsubsection}{\numberline {6.42.1.2}INTERNAL\_RTC\_BASE\_YEAR}{111}{subsubsection.6.42.1.2}%
+\contentsline {subsection}{\numberline {6.42.2}Function Documentation}{111}{subsection.6.42.2}%
+\contentsline {subsubsection}{\numberline {6.42.2.1}TIME\_InitIRTC()}{111}{subsubsection.6.42.2.1}%
+\contentsline {section}{\numberline {6.43}source/uart.c File Reference}{112}{section.6.43}%
+\contentsline {subsection}{\numberline {6.43.1}Macro Definition Documentation}{112}{subsection.6.43.1}%
+\contentsline {subsubsection}{\numberline {6.43.1.1}BUFFER\_SIZE}{112}{subsubsection.6.43.1.1}%
+\contentsline {subsection}{\numberline {6.43.2}Function Documentation}{112}{subsection.6.43.2}%
+\contentsline {subsubsection}{\numberline {6.43.2.1}UART\_Deinit()}{112}{subsubsection.6.43.2.1}%
+\contentsline {subsubsection}{\numberline {6.43.2.2}UART\_Disable()}{112}{subsubsection.6.43.2.2}%
+\contentsline {subsubsection}{\numberline {6.43.2.3}UART\_Enable()}{113}{subsubsection.6.43.2.3}%
+\contentsline {subsubsection}{\numberline {6.43.2.4}UART\_Init()}{113}{subsubsection.6.43.2.4}%
+\contentsline {subsubsection}{\numberline {6.43.2.5}UART\_Print()}{113}{subsubsection.6.43.2.5}%
+\contentsline {chapter}{Index}{115}{section*.69}%

@@ -30,120 +30,49 @@
 \DoxyCodeLine{00026\ \textcolor{comment}{/*******************************************************************************}}
 \DoxyCodeLine{00027\ \textcolor{comment}{\ *\ Functions\ Macros}}
 \DoxyCodeLine{00028\ \textcolor{comment}{\ ******************************************************************************/}}
-\DoxyCodeLine{00029\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ @brief\ Error\ LED's\ Port\ Number.}}
-\DoxyCodeLine{00031\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ ERROR\_LED\_PORT\ \ \ \ \ \ \ \ \ \ GPIO0}}
 \DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00035\ \textcolor{comment}{\ *\ @brief\ \ \ Error\ LED's\ Pin\ 2.}}
-\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ @details\ P0\_9}}
-\DoxyCodeLine{00037\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ ERROR\_LED\_PIN\_RECORD\ \ \ \ 0x09}}
 \DoxyCodeLine{00039\ }
 \DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00042\ \textcolor{comment}{\ *\ @brief\ Low\ Memory\ LED's\ Port\ Number.}}
-\DoxyCodeLine{00043\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ MEMORY\_LOW\_LED\_PORT\ \ \ \ \ GPIO0}}
 \DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00047\ \textcolor{comment}{\ *\ @brief\ \ \ Error\ LED's\ Pin\ 1.}}
-\DoxyCodeLine{00048\ \textcolor{comment}{\ *\ @details\ P0\_7}}
-\DoxyCodeLine{00049\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ MEMORY\_LOW\_LED\_PIN\ \ \ \ \ \ 0x07}}
 \DoxyCodeLine{00051\ }
 \DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00054\ \textcolor{comment}{\ *\ @brief\ Flush\ LED's\ Port\ Number.}}
-\DoxyCodeLine{00055\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ FLUSH\_LED\_PORT\ \ \ \ \ \ GPIO0}}
 \DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00059\ \textcolor{comment}{\ *\ @brief\ \ \ Error\ LED's\ Pin\ 3.}}
-\DoxyCodeLine{00060\ \textcolor{comment}{\ *\ @details\ P0\_13}}
-\DoxyCodeLine{00061\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ RECORD\_LED\_PIN\_FLUSH\ \ \ \ 0x0D}}
 \DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00065\ \textcolor{comment}{\ *\ @brief\ \ \ Recording\ LED's\ Port\ Number.}}
-\DoxyCodeLine{00066\ \textcolor{comment}{\ *\ @details\ Signals\ That\ Device\ Records.}}
-\DoxyCodeLine{00067\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ RECORD\_LED\_PORT\ \ \ \ \ \ \ \ \ GPIO2}}
 \DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00071\ \textcolor{comment}{\ *\ @brief\ \ \ Record\ LED's\ Pin.}}
-\DoxyCodeLine{00072\ \textcolor{comment}{\ *\ @details\ P2\_11}}
-\DoxyCodeLine{00073\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ RECORD\_LED\_PIN\ \ \ \ \ \ \ \ \ \ 0x0B}}
 \DoxyCodeLine{00075\ }
-\DoxyCodeLine{00076\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00077\ \textcolor{comment}{\ *\ @brief\ \ \ Recording\ LED's\ Port\ Number.}}
-\DoxyCodeLine{00078\ \textcolor{comment}{\ *\ @details\ Signals\ That\ Device\ Records.}}
-\DoxyCodeLine{00079\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ BACKUP\_POWER\_LED\_PORT\ \ \ GPIO4}}
 \DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00083\ \textcolor{comment}{\ *\ @brief\ \ \ Record\ LED's\ Pin.}}
-\DoxyCodeLine{00084\ \textcolor{comment}{\ *\ @details\ P4\_17}}
-\DoxyCodeLine{00085\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ BACKUP\_POWER\_LED\_PIN\ \ \ \ 0x11}}
 \DoxyCodeLine{00087\ \textcolor{comment}{/*******************************************************************************}}
 \DoxyCodeLine{00088\ \textcolor{comment}{\ *\ Functions\ Definitions}}
 \DoxyCodeLine{00089\ \textcolor{comment}{\ ******************************************************************************/}}
 \DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00092\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ Sets\ Logic\ 1\ on\ GPIO\ Pin.}}
-\DoxyCodeLine{00093\ \textcolor{comment}{\ *\ @param\ port\_base\ Pointer\ to\ GPIO\ Instance.}}
-\DoxyCodeLine{00094\ \textcolor{comment}{\ *\ @param\ pin\ \ \ \ \ \ \ Pin.}}
-\DoxyCodeLine{00095\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00096\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{led_8h_a7455e287128129db10bb2ae70909ff7a}{LED\_SetHigh}}(GPIO\_Type\ *port\_base,\ uint32\_t\ pin);}
 \DoxyCodeLine{00097\ }
-\DoxyCodeLine{00098\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00099\ \textcolor{comment}{\ *\ @brief\ \ \ \ \ \ \ \ \ \ \ Sets\ Logic\ 0\ on\ GPIO\ Pin.}}
-\DoxyCodeLine{00100\ \textcolor{comment}{\ *\ @param\ port\_base\ Pointer\ to\ GPIO\ Instance.}}
-\DoxyCodeLine{00101\ \textcolor{comment}{\ *\ @param\ pin\ \ \ \ \ \ \ Pin.}}
-\DoxyCodeLine{00102\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00103\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{led_8h_ab02c6a3a312ce2e008f471310fef8f5b}{LED\_SetLow}}(GPIO\_Type\ *port\_base,\ uint32\_t\ pin);}
 \DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00106\ \textcolor{comment}{\ *\ @brief\ Indicates\ Ready\ State\ of\ The\ Recording\ Device.}}
-\DoxyCodeLine{00107\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00108\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{led_8h_a90d3262aad7d8e74c655aecba5bdb8b1}{LED\_SignalReady}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{00109\ }
-\DoxyCodeLine{00110\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00111\ \textcolor{comment}{\ *\ @brief\ Signals\ That\ Device\ Is\ Currently\ Receiving\ Bytes\ (Recording).}}
-\DoxyCodeLine{00112\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00113\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{led_8h_ae4d93582ce6f8960bbbe8771670864f2}{LED\_SignalRecording}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{00114\ }
-\DoxyCodeLine{00115\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00116\ \textcolor{comment}{\ *\ @brief\ Signals\ That\ Device\ Is\ Stopped\ Receiving\ Bytes\ (Recording).}}
-\DoxyCodeLine{00117\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00118\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{led_8h_a357ebead2af4aa7710b82477c78c3ae5}{LED\_SignalRecordingStop}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{00119\ }
-\DoxyCodeLine{00120\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00121\ \textcolor{comment}{\ *\ @brief\ Signals\ Configuration\ File\ Missing\ or\ Contains\ Unexpected\ Data.}}
-\DoxyCodeLine{00122\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00123\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{led_8h_a051c422ce8dcca2df8022a718fa9e85c}{LED\_SignalBackUpPowerAvailable}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{00124\ }
-\DoxyCodeLine{00125\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00126\ \textcolor{comment}{\ *\ @brief\ Signals\ That\ There\ Will\ Be\ Empty\ Space\ on\ SD\ Card.}}
-\DoxyCodeLine{00127\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00128\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{led_8h_aeab72eb69dcad626cad6ab8d18f5b7f7}{LED\_SignalLowMemory}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{00129\ }
-\DoxyCodeLine{00130\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00131\ \textcolor{comment}{\ *\ @brief\ Signals\ Error\ During\ Recording.}}
-\DoxyCodeLine{00132\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00133\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{led_8h_a13c3d29b05f96fd3490c9b7680f7df08}{LED\_SignalError}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{00134\ }
-\DoxyCodeLine{00135\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00136\ \textcolor{comment}{\ *\ @brief\ Signals\ That\ Flush\ Has\ Been\ Activated.}}
-\DoxyCodeLine{00137\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00138\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{led_8h_ac6978cdce3f5c99d7cd85a6991a5394a}{LED\_SignalFlush}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00141\ \textcolor{comment}{\ *\ @brief\ Clears\ Flush\ LED\ After\ UART\ Re-\/Inicialization.}}
-\DoxyCodeLine{00142\ \textcolor{comment}{\ */}}
 \DoxyCodeLine{00143\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{led_8h_a790afc5a8ed07437a4788698ca9afe45}{LED\_ClearSignalFlush}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{00144\ }
 \DoxyCodeLine{00145\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ LED\_H\_\ */}\textcolor{preprocessor}{}}

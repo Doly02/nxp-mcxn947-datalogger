@@ -29,7 +29,7 @@
 \DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}fsl\_lpcmp.h"{}}}
 \DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}fsl\_spc.h"{}}}
 \DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{led_8h}{led.h}}"{}}\ \ \ \ \ \ \ \textcolor{comment}{/*TODO:\ */}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{led_8h}{led.h}}"{}}}
 \DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8h}{defs.h}}"{}}}
 \DoxyCodeLine{00030\ }
 \DoxyCodeLine{00031\ }
@@ -37,25 +37,31 @@
 \DoxyCodeLine{00033\ \textcolor{comment}{/*******************************************************************************}}
 \DoxyCodeLine{00034\ \textcolor{comment}{\ *\ Global\ Definitions}}
 \DoxyCodeLine{00035\ \textcolor{comment}{\ ******************************************************************************/}}
-\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ DEMO\_LPCMP\_BASE\ \ \ \ \ \ \ \ \ \ \ \ \ CMP1}}
-\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ DEMO\_LPCMP\_USER\_CHANNEL\ \ \ \ \ 2U}}
-\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ DEMO\_LPCMP\_DAC\_CHANNEL\ \ \ \ \ \ 7U}}
-\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ DEMO\_LPCMP\_IRQ\_ID\ \ \ \ \ \ \ \ \ \ \ HSCMP1\_IRQn}}
-\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ DEMO\_LPCMP\_IRQ\_HANDLER\_FUNC\ HSCMP1\_IRQHandler}}
-\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ DEMO\_VREF\_BASE\ \ \ \ \ \ \ \ \ \ \ \ \ \ VREF0}}
-\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ DEMO\_SPC\_BASE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPC0}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ LPCMP\_BASE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CMP1}}
 \DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ CTIMER\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CTIMER4\ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Timer\ 4\ */}\textcolor{preprocessor}{}}
-\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ CTIMER\_MAT0\_OUT\ \ \ \ \ \ \ \ \ \ \ \ \ kCTIMER\_Match\_0\ }\textcolor{comment}{/*\ Match\ output\ 0\ */}\textcolor{preprocessor}{}}
-\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ CTIMER\_EMT0\_OUT\ \ \ \ \ \ \ \ \ \ \ \ \ (1u\ <<\ kCTIMER\_Match\_0)}}
-\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ CTIMER\_CLK\_FREQ\ \ \ \ \ \ \ \ \ \ \ \ \ CLOCK\_GetCTimerClkFreq(4U)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ LPCMP\_USER\_CHANNEL\ \ \ \ \ \ \ \ \ \ 0x02}}
 \DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \textcolor{comment}{/*******************************************************************************}}
-\DoxyCodeLine{00050\ \textcolor{comment}{\ *\ Prototypes}}
-\DoxyCodeLine{00051\ \textcolor{comment}{\ ******************************************************************************/}}
-\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pwrloss__det_8h_a640dcd500f29a2a077dbc83532cde9e5}{PWRLOSS\_DetectionInit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ LPCMP\_DAC\_CHANNEL\ \ \ \ \ \ \ \ \ \ \ 0x07}}
 \DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ PWRLOSS\_DET\_H\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ LPCMP\_IRQ\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HSCMP1\_IRQn}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ SPC\_BASE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPC0}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ CTIMER\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CTIMER4}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ CTIMER\_MAT0\_OUT\ \ \ \ \ \ \ \ \ \ \ \ \ kCTIMER\_Match\_0}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ CTIMER\_EMT0\_OUT\ \ \ \ \ \ \ \ \ \ \ \ \ (1u\ <<\ kCTIMER\_Match\_0)}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ CTIMER\_CLK\_FREQ\ \ \ \ \ \ \ \ \ \ \ \ \ CLOCK\_GetCTimerClkFreq(4U)}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ *\ Prototypes}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00098\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pwrloss__det_8h_a640dcd500f29a2a077dbc83532cde9e5}{PWRLOSS\_DetectionInit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ PWRLOSS\_DET\_H\_\ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

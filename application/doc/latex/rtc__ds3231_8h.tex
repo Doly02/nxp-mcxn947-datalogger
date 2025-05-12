@@ -17,6 +17,8 @@ struct \mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}}
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a91cecb961b28a69e041b8178f8f36da7}{E\+\_\+\+FAULT}}~1
 \begin{DoxyCompactList}\small\item\em General Error Return Code. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rtc__ds3231_8h_a32ccd130e05cdd06d702776652bc39e5}{APP\+\_\+\+SUCCESS}}~0
+\begin{DoxyCompactList}\small\item\em Return Value If Operation Succeeded. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_afcaf37eb8fb30d41d86b119127cb9368}{LPI2\+C\+\_\+\+TX\+\_\+\+DMA\+\_\+\+CHANNEL}}~0U
 \begin{DoxyCompactList}\small\item\em I2C DMA Channel For Transmission. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a1b99f71e2df43e2f7b57250dba60bc9a}{LPI2\+C\+\_\+\+RX\+\_\+\+DMA\+\_\+\+CHANNEL}}~1U
@@ -28,21 +30,21 @@ struct \mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}}
 \#define \mbox{\hyperlink{rtc__ds3231_8h_aa226465ed17b185a4da45c4792d309a8}{I2\+C\+\_\+\+MASTER}}~((LPI2\+C\+\_\+\+Type \texorpdfstring{$\ast$}{*})LPI2\+C2\+\_\+\+BASE)
 \begin{DoxyCompactList}\small\item\em Points To I2C Peripheral Unit (Specifically LPI2\+C2 Instance). \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a382b2c979ab5d8f307fc15367428df03}{DS3231\+\_\+\+A1\+IE}}~(0x00u)
-\item 
+\begin{DoxyCompactList}\small\item\em Alarm Interrupt Enable Bits. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a27f8842b4c48e55818d9788e0d998255}{DS3231\+\_\+\+A2\+IE}}~(0x1u)
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a4eb5e3c2a11a98b8b50e49dce11d79c1}{DS3231\+\_\+\+INTCN}}~(0x2u)
-\item 
+\begin{DoxyCompactList}\small\item\em Interrupt Control Bit. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a41748164a9ca059c268fe7cbf81fd262}{DS3231\+\_\+\+A1F}}~(0x0u)
-\item 
+\begin{DoxyCompactList}\small\item\em Alarm 1 \& Alarm 2 Flags. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a8bcacf50efed8e98443fed551ee4ad6c}{DS3231\+\_\+\+A2F}}~(0x1u)
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a7aaf4f3d08645bc1a79660aa516974b3}{ALARM\+\_\+\+DISABLED}}~(0x0u)
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a0d9e9754ad291b4cd60b8ffbe402a36a}{OSC\+\_\+\+STOPPED}}~(0x00u)
-\item 
+\begin{DoxyCompactList}\small\item\em Indicates That Oscillator Has Stopped \& Time Has To Updated. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_af155237c110a288f4f23d3d533bc4acc}{DS3231\+\_\+\+ADDR\+\_\+\+SEC}}~(0x00U)
-\item 
+\begin{DoxyCompactList}\small\item\em Registers Addresses of DS3231. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a6775e056ca5942521f393a1c7a7d6fd8}{DS3231\+\_\+\+ADDR\+\_\+\+MIN}}~(0x01U)
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a1d3ecafd8e62605b78b26f9b2e4cb8c0}{DS3231\+\_\+\+ADDR\+\_\+\+HRS}}~(0x02U)
@@ -58,13 +60,13 @@ struct \mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}}
 \#define \mbox{\hyperlink{rtc__ds3231_8h_af06d4c8b74ffacf8daaa5f534461d35a}{DS3231\+\_\+\+ADDR\+\_\+\+CENT}}~(0x07U)
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_aeee46891f279544efa92a99e15e8d023}{DS3231\+\_\+\+REG\+\_\+\+STATUS}}~(0x0\+Fu)
-\item 
+\begin{DoxyCompactList}\small\item\em Address of Status Register. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_aea14f214d3c7c4feaa29c2632fd92371}{DS3231\+\_\+\+REG\+\_\+\+CTRL}}~(0x0\+Eu)
-\item 
+\begin{DoxyCompactList}\small\item\em Address of Control Register. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_ab9d25b7f138bae49888b0a3007f4f460}{DS3231\+\_\+\+ADDR\+\_\+\+I2C}}~(0x68U)
-\item 
+\begin{DoxyCompactList}\small\item\em Address of I2C Slave. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a6764dc0bd7e59b4eca8d525f8136fd86}{SUNDAY}}~(0x1)
-\item 
+\begin{DoxyCompactList}\small\item\em Definition of Dates. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a7170de6ea0ab27a44b607e025eeda10b}{MONDAY}}~(0x2)
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a7e614639937b5dc668fb843882ddf895}{TUESDAY}}~(0x3)
@@ -78,7 +80,7 @@ struct \mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}}
 \#define \mbox{\hyperlink{rtc__ds3231_8h_ab211cb1e7ca439c7d2c6cc675b0dcc88}{SATURDAY}}~(0x7)
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a88a91c59ae35d9e115538b986a9e0801}{TIM\+\_\+\+CYCLE\+\_\+12H}}~(0x0)
-\item 
+\begin{DoxyCompactList}\small\item\em Definitions For Time Format Handling. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_ae0d2f82a4b295b23ffe31ee4b5e7205c}{TIM\+\_\+\+CYCLE\+\_\+12\+H\+\_\+\+AM}}~(0x0)
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a342f77b826bd7f780471c39b18ebbbfa}{TIM\+\_\+\+CYCLE\+\_\+12\+H\+\_\+\+PM}}~(0x1)
@@ -86,9 +88,7 @@ struct \mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}}
 \#define \mbox{\hyperlink{rtc__ds3231_8h_ad960ec8e54eccffc56322a760a630ecc}{TIM\+\_\+\+CYCLE\+\_\+24H}}~(0x2)
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8h_a31568ea8caf00a3ec699c01652c771d0}{I2\+C\+\_\+\+BAUDRATE}}~100000U
-\begin{DoxyCompactList}\small\item\em Desired Baud Rate For I2C Bus. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{rtc__ds3231_8h_a32ccd130e05cdd06d702776652bc39e5}{APP\+\_\+\+SUCCESS}}~0
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Application Configurable Items. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
@@ -156,17 +156,29 @@ void \mbox{\hyperlink{group___r_t_c_ga6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\+\_\
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a32ccd130e05cdd06d702776652bc39e5} 
 \#define APP\+\_\+\+SUCCESS~0}
 
+
+
+Return Value If Operation Succeeded. 
+
 \Hypertarget{rtc__ds3231_8h_a41748164a9ca059c268fe7cbf81fd262}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_A1F@{DS3231\_A1F}}
 \index{DS3231\_A1F@{DS3231\_A1F}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{DS3231\_A1F}{DS3231\_A1F}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a41748164a9ca059c268fe7cbf81fd262} 
 \#define DS3231\+\_\+\+A1F~(0x0u)}
 
-\Hypertarget{rtc__ds3231_8h_a382b2c979ab5d8f307fc15367428df03}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_A1IE@{DS3231\_A1IE}}
+
+
+Alarm 1 \& Alarm 2 Flags. 
+
+A Logic 1 in The Alarm \textquotesingle{}x\textquotesingle{} Flag Bit Indicates That The Time Matched The Alarm \textquotesingle{}x\textquotesingle{} Registers. \Hypertarget{rtc__ds3231_8h_a382b2c979ab5d8f307fc15367428df03}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_A1IE@{DS3231\_A1IE}}
 \index{DS3231\_A1IE@{DS3231\_A1IE}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{DS3231\_A1IE}{DS3231\_A1IE}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a382b2c979ab5d8f307fc15367428df03} 
 \#define DS3231\+\_\+\+A1\+IE~(0x00u)}
+
+
+
+Alarm Interrupt Enable Bits. 
 
 \Hypertarget{rtc__ds3231_8h_a8bcacf50efed8e98443fed551ee4ad6c}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_A2F@{DS3231\_A2F}}
 \index{DS3231\_A2F@{DS3231\_A2F}!rtc\_ds3231.h@{rtc\_ds3231.h}}
@@ -186,29 +198,33 @@ void \mbox{\hyperlink{group___r_t_c_ga6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\+\_\
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_af06d4c8b74ffacf8daaa5f534461d35a} 
 \#define DS3231\+\_\+\+ADDR\+\_\+\+CENT~(0x07U)}
 
-\Hypertarget{rtc__ds3231_8h_ab6cf8cbfc57d309cd5e038b8f1296657}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_DATE@{DS3231\_ADDR\_DATE}}
+Century Flag Bit \Hypertarget{rtc__ds3231_8h_ab6cf8cbfc57d309cd5e038b8f1296657}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_DATE@{DS3231\_ADDR\_DATE}}
 \index{DS3231\_ADDR\_DATE@{DS3231\_ADDR\_DATE}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{DS3231\_ADDR\_DATE}{DS3231\_ADDR\_DATE}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_ab6cf8cbfc57d309cd5e038b8f1296657} 
 \#define DS3231\+\_\+\+ADDR\+\_\+\+DATE~(0x04U)}
 
-\Hypertarget{rtc__ds3231_8h_a7b153e2cf7656f9f8dcadb66b438cc8a}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_DAY@{DS3231\_ADDR\_DAY}}
+Day of Month Register \Hypertarget{rtc__ds3231_8h_a7b153e2cf7656f9f8dcadb66b438cc8a}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_DAY@{DS3231\_ADDR\_DAY}}
 \index{DS3231\_ADDR\_DAY@{DS3231\_ADDR\_DAY}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{DS3231\_ADDR\_DAY}{DS3231\_ADDR\_DAY}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a7b153e2cf7656f9f8dcadb66b438cc8a} 
 \#define DS3231\+\_\+\+ADDR\+\_\+\+DAY~(0x03U)}
 
-\Hypertarget{rtc__ds3231_8h_a1d3ecafd8e62605b78b26f9b2e4cb8c0}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_HRS@{DS3231\_ADDR\_HRS}}
+Day of Week r\+Register \Hypertarget{rtc__ds3231_8h_a1d3ecafd8e62605b78b26f9b2e4cb8c0}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_HRS@{DS3231\_ADDR\_HRS}}
 \index{DS3231\_ADDR\_HRS@{DS3231\_ADDR\_HRS}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{DS3231\_ADDR\_HRS}{DS3231\_ADDR\_HRS}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a1d3ecafd8e62605b78b26f9b2e4cb8c0} 
 \#define DS3231\+\_\+\+ADDR\+\_\+\+HRS~(0x02U)}
 
-\Hypertarget{rtc__ds3231_8h_ab9d25b7f138bae49888b0a3007f4f460}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_I2C@{DS3231\_ADDR\_I2C}}
+Hours Register \Hypertarget{rtc__ds3231_8h_ab9d25b7f138bae49888b0a3007f4f460}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_I2C@{DS3231\_ADDR\_I2C}}
 \index{DS3231\_ADDR\_I2C@{DS3231\_ADDR\_I2C}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{DS3231\_ADDR\_I2C}{DS3231\_ADDR\_I2C}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_ab9d25b7f138bae49888b0a3007f4f460} 
 \#define DS3231\+\_\+\+ADDR\+\_\+\+I2C~(0x68U)}
+
+
+
+Address of I2C Slave. 
 
 \Hypertarget{rtc__ds3231_8h_a6775e056ca5942521f393a1c7a7d6fd8}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_MIN@{DS3231\_ADDR\_MIN}}
 \index{DS3231\_ADDR\_MIN@{DS3231\_ADDR\_MIN}!rtc\_ds3231.h@{rtc\_ds3231.h}}
@@ -216,29 +232,37 @@ void \mbox{\hyperlink{group___r_t_c_ga6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\+\_\
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a6775e056ca5942521f393a1c7a7d6fd8} 
 \#define DS3231\+\_\+\+ADDR\+\_\+\+MIN~(0x01U)}
 
-\Hypertarget{rtc__ds3231_8h_a643d8f0096a487bc5fe31e3507f7958f}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_MONTH@{DS3231\_ADDR\_MONTH}}
+Minutes Register \Hypertarget{rtc__ds3231_8h_a643d8f0096a487bc5fe31e3507f7958f}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_MONTH@{DS3231\_ADDR\_MONTH}}
 \index{DS3231\_ADDR\_MONTH@{DS3231\_ADDR\_MONTH}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{DS3231\_ADDR\_MONTH}{DS3231\_ADDR\_MONTH}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a643d8f0096a487bc5fe31e3507f7958f} 
 \#define DS3231\+\_\+\+ADDR\+\_\+\+MONTH~(0x05U)}
 
-\Hypertarget{rtc__ds3231_8h_af155237c110a288f4f23d3d533bc4acc}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_SEC@{DS3231\_ADDR\_SEC}}
+Month Register \Hypertarget{rtc__ds3231_8h_af155237c110a288f4f23d3d533bc4acc}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_SEC@{DS3231\_ADDR\_SEC}}
 \index{DS3231\_ADDR\_SEC@{DS3231\_ADDR\_SEC}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{DS3231\_ADDR\_SEC}{DS3231\_ADDR\_SEC}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_af155237c110a288f4f23d3d533bc4acc} 
 \#define DS3231\+\_\+\+ADDR\+\_\+\+SEC~(0x00U)}
 
-\Hypertarget{rtc__ds3231_8h_aa1509117a57f775583c30d1fdeba1b3c}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_YEAR@{DS3231\_ADDR\_YEAR}}
+
+
+Registers Addresses of DS3231. 
+
+Seconds Register \Hypertarget{rtc__ds3231_8h_aa1509117a57f775583c30d1fdeba1b3c}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_YEAR@{DS3231\_ADDR\_YEAR}}
 \index{DS3231\_ADDR\_YEAR@{DS3231\_ADDR\_YEAR}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{DS3231\_ADDR\_YEAR}{DS3231\_ADDR\_YEAR}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_aa1509117a57f775583c30d1fdeba1b3c} 
 \#define DS3231\+\_\+\+ADDR\+\_\+\+YEAR~(0x06U)}
 
-\Hypertarget{rtc__ds3231_8h_a4eb5e3c2a11a98b8b50e49dce11d79c1}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_INTCN@{DS3231\_INTCN}}
+Year Register \Hypertarget{rtc__ds3231_8h_a4eb5e3c2a11a98b8b50e49dce11d79c1}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_INTCN@{DS3231\_INTCN}}
 \index{DS3231\_INTCN@{DS3231\_INTCN}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{DS3231\_INTCN}{DS3231\_INTCN}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a4eb5e3c2a11a98b8b50e49dce11d79c1} 
 \#define DS3231\+\_\+\+INTCN~(0x2u)}
+
+
+
+Interrupt Control Bit. 
 
 \Hypertarget{rtc__ds3231_8h_aea14f214d3c7c4feaa29c2632fd92371}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_REG\_CTRL@{DS3231\_REG\_CTRL}}
 \index{DS3231\_REG\_CTRL@{DS3231\_REG\_CTRL}!rtc\_ds3231.h@{rtc\_ds3231.h}}
@@ -246,11 +270,19 @@ void \mbox{\hyperlink{group___r_t_c_ga6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\+\_\
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_aea14f214d3c7c4feaa29c2632fd92371} 
 \#define DS3231\+\_\+\+REG\+\_\+\+CTRL~(0x0\+Eu)}
 
+
+
+Address of Control Register. 
+
 \Hypertarget{rtc__ds3231_8h_aeee46891f279544efa92a99e15e8d023}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_REG\_STATUS@{DS3231\_REG\_STATUS}}
 \index{DS3231\_REG\_STATUS@{DS3231\_REG\_STATUS}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{DS3231\_REG\_STATUS}{DS3231\_REG\_STATUS}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_aeee46891f279544efa92a99e15e8d023} 
 \#define DS3231\+\_\+\+REG\+\_\+\+STATUS~(0x0\+Fu)}
+
+
+
+Address of Status Register. 
 
 \Hypertarget{rtc__ds3231_8h_a91cecb961b28a69e041b8178f8f36da7}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!E\_FAULT@{E\_FAULT}}
 \index{E\_FAULT@{E\_FAULT}!rtc\_ds3231.h@{rtc\_ds3231.h}}
@@ -268,7 +300,7 @@ General Error Return Code.
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_abe9db6f3a1fb60fa435c899c00dd0987} 
 \#define FRIDAY~(0x6)}
 
-\Hypertarget{rtc__ds3231_8h_a31568ea8caf00a3ec699c01652c771d0}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!I2C\_BAUDRATE@{I2C\_BAUDRATE}}
+Friday \Hypertarget{rtc__ds3231_8h_a31568ea8caf00a3ec699c01652c771d0}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!I2C\_BAUDRATE@{I2C\_BAUDRATE}}
 \index{I2C\_BAUDRATE@{I2C\_BAUDRATE}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{I2C\_BAUDRATE}{I2C\_BAUDRATE}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a31568ea8caf00a3ec699c01652c771d0} 
@@ -276,7 +308,9 @@ General Error Return Code.
 
 
 
-Desired Baud Rate For I2C Bus. 
+Application Configurable Items. 
+
+Desired Baud Rate For I2C Bus.
 
 Frequency -\/ 100k\+Hz (Up To 400k\+Hz -\/\texorpdfstring{$>$}{>} Defined By DS3231). \Hypertarget{rtc__ds3231_8h_aa226465ed17b185a4da45c4792d309a8}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!I2C\_MASTER@{I2C\_MASTER}}
 \index{I2C\_MASTER@{I2C\_MASTER}!rtc\_ds3231.h@{rtc\_ds3231.h}}
@@ -334,11 +368,15 @@ I2C DMA Channel For Transmission.
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a7170de6ea0ab27a44b607e025eeda10b} 
 \#define MONDAY~(0x2)}
 
-\Hypertarget{rtc__ds3231_8h_a0d9e9754ad291b4cd60b8ffbe402a36a}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!OSC\_STOPPED@{OSC\_STOPPED}}
+Monday \Hypertarget{rtc__ds3231_8h_a0d9e9754ad291b4cd60b8ffbe402a36a}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!OSC\_STOPPED@{OSC\_STOPPED}}
 \index{OSC\_STOPPED@{OSC\_STOPPED}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{OSC\_STOPPED}{OSC\_STOPPED}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a0d9e9754ad291b4cd60b8ffbe402a36a} 
 \#define OSC\+\_\+\+STOPPED~(0x00u)}
+
+
+
+Indicates That Oscillator Has Stopped \& Time Has To Updated. 
 
 \Hypertarget{rtc__ds3231_8h_ab211cb1e7ca439c7d2c6cc675b0dcc88}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!SATURDAY@{SATURDAY}}
 \index{SATURDAY@{SATURDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}}
@@ -346,55 +384,63 @@ I2C DMA Channel For Transmission.
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_ab211cb1e7ca439c7d2c6cc675b0dcc88} 
 \#define SATURDAY~(0x7)}
 
-\Hypertarget{rtc__ds3231_8h_a6764dc0bd7e59b4eca8d525f8136fd86}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!SUNDAY@{SUNDAY}}
+Saturday \Hypertarget{rtc__ds3231_8h_a6764dc0bd7e59b4eca8d525f8136fd86}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!SUNDAY@{SUNDAY}}
 \index{SUNDAY@{SUNDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{SUNDAY}{SUNDAY}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a6764dc0bd7e59b4eca8d525f8136fd86} 
 \#define SUNDAY~(0x1)}
 
-\Hypertarget{rtc__ds3231_8h_a4383b2bef864f3be7c45bdbfced40e4d}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!THURSDAY@{THURSDAY}}
+
+
+Definition of Dates. 
+
+From Sunday (0x1) To Saturday (0x7). Sunday \Hypertarget{rtc__ds3231_8h_a4383b2bef864f3be7c45bdbfced40e4d}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!THURSDAY@{THURSDAY}}
 \index{THURSDAY@{THURSDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{THURSDAY}{THURSDAY}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a4383b2bef864f3be7c45bdbfced40e4d} 
 \#define THURSDAY~(0x5)}
 
-\Hypertarget{rtc__ds3231_8h_a88a91c59ae35d9e115538b986a9e0801}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!TIM\_CYCLE\_12H@{TIM\_CYCLE\_12H}}
+Thursday \Hypertarget{rtc__ds3231_8h_a88a91c59ae35d9e115538b986a9e0801}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!TIM\_CYCLE\_12H@{TIM\_CYCLE\_12H}}
 \index{TIM\_CYCLE\_12H@{TIM\_CYCLE\_12H}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{TIM\_CYCLE\_12H}{TIM\_CYCLE\_12H}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a88a91c59ae35d9e115538b986a9e0801} 
 \#define TIM\+\_\+\+CYCLE\+\_\+12H~(0x0)}
 
-\Hypertarget{rtc__ds3231_8h_ae0d2f82a4b295b23ffe31ee4b5e7205c}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!TIM\_CYCLE\_12H\_AM@{TIM\_CYCLE\_12H\_AM}}
+
+
+Definitions For Time Format Handling. 
+
+12-\/Hour Format \Hypertarget{rtc__ds3231_8h_ae0d2f82a4b295b23ffe31ee4b5e7205c}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!TIM\_CYCLE\_12H\_AM@{TIM\_CYCLE\_12H\_AM}}
 \index{TIM\_CYCLE\_12H\_AM@{TIM\_CYCLE\_12H\_AM}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{TIM\_CYCLE\_12H\_AM}{TIM\_CYCLE\_12H\_AM}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_ae0d2f82a4b295b23ffe31ee4b5e7205c} 
 \#define TIM\+\_\+\+CYCLE\+\_\+12\+H\+\_\+\+AM~(0x0)}
 
-\Hypertarget{rtc__ds3231_8h_a342f77b826bd7f780471c39b18ebbbfa}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!TIM\_CYCLE\_12H\_PM@{TIM\_CYCLE\_12H\_PM}}
+AM in 12-\/Hour Mode \Hypertarget{rtc__ds3231_8h_a342f77b826bd7f780471c39b18ebbbfa}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!TIM\_CYCLE\_12H\_PM@{TIM\_CYCLE\_12H\_PM}}
 \index{TIM\_CYCLE\_12H\_PM@{TIM\_CYCLE\_12H\_PM}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{TIM\_CYCLE\_12H\_PM}{TIM\_CYCLE\_12H\_PM}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a342f77b826bd7f780471c39b18ebbbfa} 
 \#define TIM\+\_\+\+CYCLE\+\_\+12\+H\+\_\+\+PM~(0x1)}
 
-\Hypertarget{rtc__ds3231_8h_ad960ec8e54eccffc56322a760a630ecc}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!TIM\_CYCLE\_24H@{TIM\_CYCLE\_24H}}
+PM in 12-\/Hour Mode \Hypertarget{rtc__ds3231_8h_ad960ec8e54eccffc56322a760a630ecc}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!TIM\_CYCLE\_24H@{TIM\_CYCLE\_24H}}
 \index{TIM\_CYCLE\_24H@{TIM\_CYCLE\_24H}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{TIM\_CYCLE\_24H}{TIM\_CYCLE\_24H}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_ad960ec8e54eccffc56322a760a630ecc} 
 \#define TIM\+\_\+\+CYCLE\+\_\+24H~(0x2)}
 
-\Hypertarget{rtc__ds3231_8h_a7e614639937b5dc668fb843882ddf895}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!TUESDAY@{TUESDAY}}
+24-\/Hour Format \Hypertarget{rtc__ds3231_8h_a7e614639937b5dc668fb843882ddf895}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!TUESDAY@{TUESDAY}}
 \index{TUESDAY@{TUESDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{TUESDAY}{TUESDAY}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_a7e614639937b5dc668fb843882ddf895} 
 \#define TUESDAY~(0x3)}
 
-\Hypertarget{rtc__ds3231_8h_abc50400fb4fc6d0b982a22b5e9644a8c}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!WEDNESDAY@{WEDNESDAY}}
+Tuesday \Hypertarget{rtc__ds3231_8h_abc50400fb4fc6d0b982a22b5e9644a8c}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!WEDNESDAY@{WEDNESDAY}}
 \index{WEDNESDAY@{WEDNESDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}}
 \doxysubsubsection{\texorpdfstring{WEDNESDAY}{WEDNESDAY}}
 {\footnotesize\ttfamily \label{rtc__ds3231_8h_abc50400fb4fc6d0b982a22b5e9644a8c} 
 \#define WEDNESDAY~(0x4)}
 
-
+Wednesday 
 
 \doxysubsection{Enumeration Type Documentation}
 \Hypertarget{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}\index{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_interrupt\_mode\_t@{RTC\_interrupt\_mode\_t}}

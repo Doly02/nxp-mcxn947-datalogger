@@ -114,6 +114,7 @@ $(function(){initNavTree('rtc__ds3231_8c.html',''); initResizable(true); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a1d7cd4b7016538b77f3235ee3fcf06b3" id="r_a1d7cd4b7016538b77f3235ee3fcf06b3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d7cd4b7016538b77f3235ee3fcf06b3">I2C_DATA_LENGTH</a>&#160;&#160;&#160;(2) /* MAX is 256 */</td></tr>
+<tr class="memdesc:a1d7cd4b7016538b77f3235ee3fcf06b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of I2C Rx Buffer.  <br /></td></tr>
 <tr class="separator:a1d7cd4b7016538b77f3235ee3fcf06b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9a0d70cb746f776adf784200005e0a1" id="r_ab9a0d70cb746f776adf784200005e0a1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9a0d70cb746f776adf784200005e0a1">BYTE_1</a>&#160;&#160;&#160;(0U)</td></tr>
 <tr class="separator:ab9a0d70cb746f776adf784200005e0a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,8 +122,6 @@ Macros</h2></td></tr>
 <tr class="separator:a8478fde7b3478e18f57a71255db28c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb449618453be08beb854cf0122c16a1" id="r_aeb449618453be08beb854cf0122c16a1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb449618453be08beb854cf0122c16a1">CLK_STATE</a>(x)</td></tr>
 <tr class="separator:aeb449618453be08beb854cf0122c16a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33acbef8375c804a194e39ce12262c88" id="r_a33acbef8375c804a194e39ce12262c88"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33acbef8375c804a194e39ce12262c88">OSF_STATE</a>(x)</td></tr>
-<tr class="separator:a33acbef8375c804a194e39ce12262c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -202,6 +201,7 @@ Variables</h2></td></tr>
 <tr class="memdesc:ab6d7adecec71e697f12bf437aa7bb168"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag Indicating Whether The Transfer Has Finished.  <br /></td></tr>
 <tr class="separator:ab6d7adecec71e697f12bf437aa7bb168"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af210093caf29792f8f940201ddd0cfec" id="r_af210093caf29792f8f940201ddd0cfec"><td class="memItemLeft" align="right" valign="top">lpi2c_master_transfer_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af210093caf29792f8f940201ddd0cfec">xfer</a> = {0}</td></tr>
+<tr class="memdesc:af210093caf29792f8f940201ddd0cfec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfer Descriptor for I2C Communication.  <br /></td></tr>
 <tr class="separator:af210093caf29792f8f940201ddd0cfec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -263,22 +263,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a33acbef8375c804a194e39ce12262c88" name="a33acbef8375c804a194e39ce12262c88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33acbef8375c804a194e39ce12262c88">&#9670;&#160;</a></span>OSF_STATE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define OSF_STATE</td>
-          <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Length of I2C Rx Buffer. </p>
 
 </div>
 </div>
@@ -318,6 +303,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reception Buffer. </p>
+<p>Transmission Buffer.</p>
 <p>Must Be In Non-Cacheable Memory Due To Usage of DMA. </p>
 
 </div>
@@ -471,6 +457,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Transfer Descriptor for I2C Communication. </p>
+<p>Used to Configure and Execute Data Transfer Operations With The DS3231 via LPI2C using EDMA. </p>
 
 </div>
 </div>

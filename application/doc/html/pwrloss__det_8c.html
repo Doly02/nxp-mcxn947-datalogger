@@ -115,7 +115,7 @@ $(function(){initNavTree('pwrloss__det_8c.html',''); initResizable(true); });
 Macros</h2></td></tr>
 <tr class="memitem:ab87b58674d2ede9f6589fd9a90e27c90" id="r_ab87b58674d2ede9f6589fd9a90e27c90"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab87b58674d2ede9f6589fd9a90e27c90">REF_VOLTAGE</a>&#160;&#160;&#160;0xFFu</td></tr>
 <tr class="separator:ab87b58674d2ede9f6589fd9a90e27c90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1076ce1f23d35e63137e2b4133f499da" id="r_a1076ce1f23d35e63137e2b4133f499da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1076ce1f23d35e63137e2b4133f499da">TRIGGER_VOLTAGE</a>&#160;&#160;&#160;0xE1u</td></tr>
+<tr class="memitem:a1076ce1f23d35e63137e2b4133f499da" id="r_a1076ce1f23d35e63137e2b4133f499da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1076ce1f23d35e63137e2b4133f499da">TRIGGER_VOLTAGE</a>&#160;&#160;&#160;0xE1</td></tr>
 <tr class="separator:a1076ce1f23d35e63137e2b4133f499da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -125,6 +125,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a91fcfb8aaaf84fcc82fcbc7ca6837ca9" id="r_a91fcfb8aaaf84fcc82fcbc7ca6837ca9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91fcfb8aaaf84fcc82fcbc7ca6837ca9">HSCMP1_IRQHandler</a> (void)</td></tr>
 <tr class="separator:a91fcfb8aaaf84fcc82fcbc7ca6837ca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a640dcd500f29a2a077dbc83532cde9e5" id="r_a640dcd500f29a2a077dbc83532cde9e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a640dcd500f29a2a077dbc83532cde9e5">PWRLOSS_DetectionInit</a> (void)</td></tr>
+<tr class="memdesc:a640dcd500f29a2a077dbc83532cde9e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes Power Loss Detection Components.  <br /></td></tr>
 <tr class="separator:a640dcd500f29a2a077dbc83532cde9e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -149,7 +150,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define TRIGGER_VOLTAGE&#160;&#160;&#160;0xE1u</td>
+          <td class="memname">#define TRIGGER_VOLTAGE&#160;&#160;&#160;0xE1</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -206,6 +207,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initializes Power Loss Detection Components. </p>
+<p>This Function Configures The Comparator (LPCMP) for Monitoring The 5V Power Rail and The Timer (CTIMER4) That Delays The Activation of The Comparator Until The Backup Capacitor Is Fully Charged (~5tau). After Initialization, The Timer is Started and The Comparator Will Be Enabled Upon Timer Match Event. </p>
 
 </div>
 </div>

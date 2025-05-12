@@ -129,6 +129,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:afc4213d2d4926914e58ecd69e8a2ad08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task Responsible For Mass Storage Functionality in Device Mode.  <br /></td></tr>
 <tr class="separator:afc4213d2d4926914e58ecd69e8a2ad08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fc052f631f3c48fe52fd49e056785bd" id="r_a6fc052f631f3c48fe52fd49e056785bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fc052f631f3c48fe52fd49e056785bd">record_task</a> (void *handle)</td></tr>
+<tr class="memdesc:a6fc052f631f3c48fe52fd49e056785bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task Recording Serial Data.  <br /></td></tr>
 <tr class="separator:a6fc052f631f3c48fe52fd49e056785bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1988aa923b19fa6f31c93afa7773f793" id="r_a1988aa923b19fa6f31c93afa7773f793"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1988aa923b19fa6f31c93afa7773f793">vApplicationGetIdleTaskMemory</a> (StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize)</td></tr>
 <tr class="memdesc:a1988aa923b19fa6f31c93afa7773f793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hook Function to Provide Memory For The Idle Task in FreeRTOS.  <br /></td></tr>
@@ -208,6 +209,15 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Task Recording Serial Data. </p>
+<p>The Task Provides Data Reception, Data Processing (For Example, Adding Time Stamps) And Also Data Storage. In Case The Monitored Device Is Disconnected From The Data Logger, All The Buffered Data In RAM Is Stored On The Memory Card.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>Pointer to The Device Handle Used For The USB Operations. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -7,7 +7,7 @@
 \item 
 \#define \mbox{\hyperlink{pwrloss__det_8c_ab87b58674d2ede9f6589fd9a90e27c90}{REF\+\_\+\+VOLTAGE}}~0x\+FFu
 \item 
-\#define \mbox{\hyperlink{pwrloss__det_8c_a1076ce1f23d35e63137e2b4133f499da}{TRIGGER\+\_\+\+VOLTAGE}}~0x\+E1u
+\#define \mbox{\hyperlink{pwrloss__det_8c_a1076ce1f23d35e63137e2b4133f499da}{TRIGGER\+\_\+\+VOLTAGE}}~0x\+E1
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -17,7 +17,7 @@ void \mbox{\hyperlink{pwrloss__det_8c_a959b3da8b96385f685f18d445102163c}{CTIMER4
 void \mbox{\hyperlink{pwrloss__det_8c_a91fcfb8aaaf84fcc82fcbc7ca6837ca9}{HSCMP1\+\_\+\+IRQHandler}} (void)
 \item 
 void \mbox{\hyperlink{pwrloss__det_8c_a640dcd500f29a2a077dbc83532cde9e5}{PWRLOSS\+\_\+\+Detection\+Init}} (void)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Initializes Power Loss Detection Components. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -31,7 +31,7 @@ void \mbox{\hyperlink{pwrloss__det_8c_a640dcd500f29a2a077dbc83532cde9e5}{PWRLOSS
 \index{TRIGGER\_VOLTAGE@{TRIGGER\_VOLTAGE}!pwrloss\_det.c@{pwrloss\_det.c}}
 \doxysubsubsection{\texorpdfstring{TRIGGER\_VOLTAGE}{TRIGGER\_VOLTAGE}}
 {\footnotesize\ttfamily \label{pwrloss__det_8c_a1076ce1f23d35e63137e2b4133f499da} 
-\#define TRIGGER\+\_\+\+VOLTAGE~0x\+E1u}
+\#define TRIGGER\+\_\+\+VOLTAGE~0x\+E1}
 
 
 
@@ -54,3 +54,8 @@ void HSCMP1\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{Dox
 {\footnotesize\ttfamily \label{pwrloss__det_8c_a640dcd500f29a2a077dbc83532cde9e5} 
 void PWRLOSS\+\_\+\+Detection\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
+
+
+Initializes Power Loss Detection Components. 
+
+This Function Configures The Comparator (LPCMP) for Monitoring The 5V Power Rail and The Timer (CTIMER4) That Delays The Activation of The Comparator Until The Backup Capacitor Is Fully Charged (\texorpdfstring{$\sim$}{\string~}5tau). After Initialization, The Timer is Started and The Comparator Will Be Enabled Upon Timer Match Event. 

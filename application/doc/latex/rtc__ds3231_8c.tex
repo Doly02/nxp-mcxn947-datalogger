@@ -5,14 +5,12 @@
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8c_a1d7cd4b7016538b77f3235ee3fcf06b3}{I2\+C\+\_\+\+DATA\+\_\+\+LENGTH}}~(2) /\texorpdfstring{$\ast$}{*} MAX is 256 \texorpdfstring{$\ast$}{*}/
-\item 
+\begin{DoxyCompactList}\small\item\em Length of I2C Rx Buffer. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{rtc__ds3231_8c_ab9a0d70cb746f776adf784200005e0a1}{BYTE\+\_\+1}}~(0U)
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8c_a8478fde7b3478e18f57a71255db28c8a}{BYTE\+\_\+2}}~(1U)
 \item 
 \#define \mbox{\hyperlink{rtc__ds3231_8c_aeb449618453be08beb854cf0122c16a1}{CLK\+\_\+\+STATE}}(x)
-\item 
-\#define \mbox{\hyperlink{rtc__ds3231_8c_a33acbef8375c804a194e39ce12262c88}{OSF\+\_\+\+STATE}}(x)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -71,7 +69,7 @@ edma\+\_\+handle\+\_\+t \mbox{\hyperlink{rtc__ds3231_8c_af154a23f818a55047504f0c
 volatile bool \mbox{\hyperlink{rtc__ds3231_8c_ab6d7adecec71e697f12bf437aa7bb168}{g\+Completion\+Flag}} = false
 \begin{DoxyCompactList}\small\item\em Flag Indicating Whether The Transfer Has Finished. \end{DoxyCompactList}\item 
 lpi2c\+\_\+master\+\_\+transfer\+\_\+t \mbox{\hyperlink{rtc__ds3231_8c_af210093caf29792f8f940201ddd0cfec}{xfer}} = \{0\}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Transfer Descriptor for I2C Communication. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -104,11 +102,9 @@ lpi2c\+\_\+master\+\_\+transfer\+\_\+t \mbox{\hyperlink{rtc__ds3231_8c_af210093c
 {\footnotesize\ttfamily \label{rtc__ds3231_8c_a1d7cd4b7016538b77f3235ee3fcf06b3} 
 \#define I2\+C\+\_\+\+DATA\+\_\+\+LENGTH~(2) /\texorpdfstring{$\ast$}{*} MAX is 256 \texorpdfstring{$\ast$}{*}/}
 
-\Hypertarget{rtc__ds3231_8c_a33acbef8375c804a194e39ce12262c88}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!OSF\_STATE@{OSF\_STATE}}
-\index{OSF\_STATE@{OSF\_STATE}!rtc\_ds3231.c@{rtc\_ds3231.c}}
-\doxysubsubsection{\texorpdfstring{OSF\_STATE}{OSF\_STATE}}
-{\footnotesize\ttfamily \label{rtc__ds3231_8c_a33acbef8375c804a194e39ce12262c88} 
-\#define OSF\+\_\+\+STATE(\begin{DoxyParamCaption}\item[{}]{x}{}\end{DoxyParamCaption})}
+
+
+Length of I2C Rx Buffer. 
 
 
 
@@ -132,6 +128,8 @@ AT\+\_\+\+NONCACHEABLE\+\_\+\+SECTION (\begin{DoxyParamCaption}\item[{uint8\+\_\
 
 
 Reception Buffer. 
+
+Transmission Buffer.
 
 Must Be In Non-\/\+Cacheable Memory Due To Usage of DMA. \Hypertarget{rtc__ds3231_8c_a038e5a1da8a787ae48b1e279cab6df55}\index{rtc\_ds3231.c@{rtc\_ds3231.c}!lpi2c\_callback@{lpi2c\_callback}}
 \index{lpi2c\_callback@{lpi2c\_callback}!rtc\_ds3231.c@{rtc\_ds3231.c}}
@@ -190,3 +188,8 @@ Tx e\+DMA Handle.
 {\footnotesize\ttfamily \label{rtc__ds3231_8c_af210093caf29792f8f940201ddd0cfec} 
 lpi2c\+\_\+master\+\_\+transfer\+\_\+t xfer = \{0\}}
 
+
+
+Transfer Descriptor for I2C Communication. 
+
+Used to Configure and Execute Data Transfer Operations With The DS3231 via LPI2C using EDMA. 
