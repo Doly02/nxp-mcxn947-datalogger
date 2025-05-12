@@ -193,7 +193,7 @@ void LP_FLEXCOMM3_IRQHandler(void)
 
     /* Check For New Data */
     u32Stat = LPUART_GetStatusFlags(LPUART3);
-    if (0U != ((uint32_t)kLPUART_RxDataRegFullFlag & u32Stat))	// TODO:
+    if (0U != ((uint32_t)kLPUART_RxDataRegFullFlag & u32Stat))
     {
     	u8Data = LPUART_ReadByte(LPUART3);
         /* Add Data To FIFO */

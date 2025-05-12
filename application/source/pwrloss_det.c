@@ -82,7 +82,6 @@ void CTIMER4_IRQHandler(void)
 	LPCMP_ClearStatusFlags(CMP1, (uint32_t)(kLPCMP_OutputRisingEventFlag | kLPCMP_OutputFallingEventFlag));
 
 	LPCMP_EnableInterrupts(CMP1, (uint32_t)kLPCMP_OutputFallingInterruptEnable);
-//    (void)IRQ_ClearPendingIRQ(HSCMP1_IRQn);
 
     (void)EnableIRQWithPriority(HSCMP1_IRQn, PWRLOSS_DET_PRIO);
 }
