@@ -93,7 +93,7 @@ uint32_t PARSER_GetMaxBytes(void)
 void PARSER_ClearConfig(void)
 {
 	g_config.baudrate  	= DEFAULT_BAUDRATE;
-	g_config.max_bytes 	= 0UL;
+	g_config.max_bytes = (uint32_t)((DEFAULT_BAUDRATE / 1000UL) * RECORD_LED_TIME_INTERVAL);
 	g_config.version 	= WCT_UNKOWN;
 
 	g_config.parity 	= DEFAULT_PARITY;
