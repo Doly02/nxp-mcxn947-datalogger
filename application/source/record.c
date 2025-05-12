@@ -303,7 +303,8 @@ error_t CONSOLELOG_CreateFile(void)
     /*lint +e9027 */
 
     /* Setup of File Meta-Data */
-    /* MISRA Deviation Note:
+    /**
+     * MISRA Deviation Note:
      * The Following Expression is Intentionally Written in a Compact and Readable Form
      * For Setting FAT File Time Stamps. All Shifts and Bitwise Operations Are Used Correctly,
      * Even Though They Trigger MISRA Rule 10.1, 10.3, 10.4, 10.7, 12.2 Warnings.
@@ -346,11 +347,16 @@ error_t CONSOLELOG_CreateDirectory(void)
     /* Attempt to Create a New Folder With a Unique Name (Date + Cnt) */
     do
     {
-        /* @note snprintf() Is Depricated But There Is No Better Equivalent */
-        //lint -save -e586
+        /**
+         * MISRA Deviation: Rule 21.6 [Advisory]
+         * Suppress: Use Of Standard Library Function 'snprintf()' Which Is Not Fully Bounded In All Environments.
+         * Justification: The Use Of 'snprintf()' Is Intentional And Acceptable In This Context,
+         * The Format String And All Input Values Are Controlled and Predictable.
+         */
+    	/*lint -e586 */
     	(void)snprintf(u8DirectoryName, sizeof(u8DirectoryName), "/%04d%02d%02d_%u",
                  datetimeGet.year, datetimeGet.month, datetimeGet.day, counter++);
-        //lint -restore
+    	/*lint +e586 */
         status = f_mkdir(u8DirectoryName);
     } while ((FR_EXIST == status) && (counter < 1000UL));
 
@@ -360,10 +366,15 @@ error_t CONSOLELOG_CreateDirectory(void)
         return ERROR_FILESYSTEM;
     }
 
-    /* @note snprintf() Is Depricated But There Is No Better Equivalent */
-    //lint -save -e586
+    /**
+     * MISRA Deviation: Rule 21.6 [Advisory]
+     * Suppress: Use Of Standard Library Function 'snprintf()' Which Is Not Fully Bounded In All Environments.
+     * Justification: The Use Of 'snprintf()' Is Intentional And Acceptable In This Context,
+     * The Format String And All Input Values Are Controlled and Predictable.
+     */
+    /*lint -e586 */
     (void)snprintf(g_u8CurrentDirectory, sizeof(g_u8CurrentDirectory), "%s", u8DirectoryName);
-    //lint -restore
+    /*lint +e586 */
 
 #if (true == INFO_ENABLED)
     PRINTF("INFO: Created Directory %s.\r\n", g_u8CurrentDirectory);

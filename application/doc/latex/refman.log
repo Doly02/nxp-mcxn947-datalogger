@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.11)  12 MAY 2025 21:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.11)  12 MAY 2025 21:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1117,102 +1117,102 @@ Underfull \hbox (badness 10000) detected at line 106
  []
 
 
-Underfull \hbox (badness 10000) detected at line 119
+Underfull \hbox (badness 10000) detected at line 121
 [][][]
  []
 
 [69]
-Underfull \hbox (badness 10000) detected at line 134
+Underfull \hbox (badness 10000) detected at line 138
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 149
+Underfull \hbox (badness 10000) detected at line 153
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 162
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 175
+Underfull \hbox (badness 10000) detected at line 166
 [][][]
  []
 
 [70]
-Underfull \hbox (badness 10000) detected at line 198
+Underfull \hbox (badness 10000) detected at line 179
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 219
+Underfull \hbox (badness 10000) detected at line 202
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 234
+Underfull \hbox (badness 10000) detected at line 223
 [][][]
  []
 
 [71]
-Underfull \hbox (badness 10000) detected at line 252
+Underfull \hbox (badness 10000) detected at line 238
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 267
+Underfull \hbox (badness 10000) detected at line 256
+[][][]
+ []
+
+[72]
+Underfull \hbox (badness 10000) detected at line 271
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 282
+Underfull \hbox (badness 10000) detected at line 286
 [][][]
  []
 
-) (./record_8h_source.tex [72] [73]) (./task__switching_8h.tex
+) (./record_8h_source.tex [73]) (./task__switching_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-
+[74]
 Underfull \hbox (badness 10000) detected at line 32
 [][][]
  []
 
-) (./task__switching_8h_source.tex [74]) (./temperature_8h.tex
+) (./task__switching_8h_source.tex [75]) (./temperature_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--7
 
  []
 
-[75]) (./temperature_8h_source.tex [76]) (./time_8h.tex
+[76]) (./temperature_8h_source.tex [77]) (./time_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--7
 
  []
 
-[77]) (./time_8h_source.tex) (./uart_8h.tex
+[78]) (./time_8h_source.tex) (./uart_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--9
 
  []
 
-[78] [79]) (./uart_8h_source.tex [80]) (./app__init_8c.tex
+[79] [80]) (./uart_8h_source.tex [81]) (./app__init_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
  []
 
-) (./app__tasks_8c.tex [81]
+) (./app__tasks_8c.tex [82]
 Underfull \hbox (badness 10000) in paragraph at lines 3--9
 
  []
 
-[82]
+[83]
 Underfull \hbox (badness 1389) in paragraph at lines 89--91
 []\T1/phv/m/n/10 MISRA Deviation[]: Rule 10.[]8 []Required[] Suppress[]: Con-ve
 r-sion From Signed Macro To Un-signed Type.
  []
 
-[83]) (./error_8c.tex
+[84]) (./error_8c.tex
 Underfull \hbox (badness 1389) in paragraph at lines 110--1
 []\T1/phv/m/n/10 MISRA Deviation[]: Rule 10.[]8 []Required[] Suppress[]: Con-ve
 r-sion From Signed Macro To Un-signed Type.
@@ -1228,22 +1228,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[84] [85] [86]) (./main_8c.tex
+[85] [86] [87]) (./main_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--12
 
  []
 
-[87] [88]) (./mass__storage_8c.tex
+[88] [89]) (./mass__storage_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
  []
 
-[89]) (./parser_8c.tex [90]
+[90]) (./parser_8c.tex [91]
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[91]
+[92]
 Underfull \hbox (badness 10000) detected at line 81
 [][][]
  []
@@ -1253,7 +1253,7 @@ Underfull \hbox (badness 10000) detected at line 96
 [][][]
  []
 
-[92]
+[93]
 Underfull \hbox (badness 10000) detected at line 109
 [][][]
  []
@@ -1273,7 +1273,7 @@ Underfull \hbox (badness 10000) detected at line 148
 [][][]
  []
 
-[93]
+[94]
 Underfull \hbox (badness 10000) detected at line 161
 [][][]
  []
@@ -1288,7 +1288,7 @@ Underfull \hbox (badness 10000) detected at line 187
 [][][]
  []
 
-[94]
+[95]
 Underfull \hbox (badness 10000) detected at line 205
 [][][]
  []
@@ -1303,7 +1303,7 @@ Underfull \hbox (badness 10000) detected at line 241
 [][][]
  []
 
-[95]
+[96]
 Underfull \hbox (badness 10000) detected at line 259
 [][][]
  []
@@ -1323,82 +1323,82 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
  []
 
-[96]) (./record_8c.tex
+[97]) (./record_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--6
 
  []
 
-[97] [98] [99]
+[98] [99] [100]
 Underfull \hbox (badness 10000) detected at line 141
 [][][]
  []
 
-[100]
+[101]
 Underfull \hbox (badness 10000) detected at line 177
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 190
+Underfull \hbox (badness 10000) detected at line 192
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 205
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 220
-[][][]
- []
-
-[101]
-Underfull \hbox (badness 10000) detected at line 233
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 246
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 259
+Underfull \hbox (badness 10000) detected at line 209
 [][][]
  []
 
 [102]
-Underfull \hbox (badness 10000) detected at line 280
+Underfull \hbox (badness 10000) detected at line 224
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 295
+Underfull \hbox (badness 10000) detected at line 237
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 313
+Underfull \hbox (badness 10000) detected at line 250
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 263
 [][][]
  []
 
 [103]
-Underfull \hbox (badness 10000) detected at line 328
+Underfull \hbox (badness 10000) detected at line 284
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 343
+Underfull \hbox (badness 10000) detected at line 299
 [][][]
  []
 
-) (./semihost__hardfault_8c.tex) (./task__switching_8c.tex
+[104]
+Underfull \hbox (badness 10000) detected at line 317
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 332
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 347
+[][][]
+ []
+
+) (./semihost__hardfault_8c.tex [105]) (./task__switching_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[104]
+
 Underfull \hbox (badness 10000) detected at line 27
 [][][]
  []
@@ -1408,26 +1408,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--8
 
  []
 
-[105] [106] [107] [108] [109]) (./time_8c.tex
+[106] [107] [108] [109] [110]) (./time_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--8
 
  []
 
-[110]) (./uart_8c.tex
+[111]) (./uart_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--6
 
  []
 
-[111] [112]) [113] [114
-
-] (./refman.ind
+[112] [113]) [114] (./refman.ind
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 22.39185pt on input line 1.
  [115
 
 
-] [116] [117] [118] [119] [120]
-[121] [122] [123] [124
+
+] [116] [117] [118] [119] [120] [121]
+[122] [123] [124
 
 ]) (./refman.aux)
  ***********
@@ -1458,7 +1457,7 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (138 pages, 447755 bytes).
+Output written on refman.pdf (138 pages, 449264 bytes).
 PDF statistics:
  5429 PDF objects out of 6186 (max. 8388607)
  5210 compressed objects within 53 object streams

@@ -258,6 +258,8 @@ Functions</h2></td></tr>
 
 <p>Creates Directory Based Actual Date. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns Zero If Directory Creation Succeeded. </dd></dl>
+<p>MISRA Deviation: Rule 21.6 [Advisory] Suppress: Use Of Standard Library Function 'snprintf()' Which Is Not Fully Bounded In All Environments. Justification: The Use Of 'snprintf()' Is Intentional And Acceptable In This Context, The Format String And All Input Values Are Controlled and Predictable.</p>
+<p>MISRA Deviation: Rule 21.6 [Advisory] Suppress: Use Of Standard Library Function 'snprintf()' Which Is Not Fully Bounded In All Environments. Justification: The Use Of 'snprintf()' Is Intentional And Acceptable In This Context, The Format String And All Input Values Are Controlled and Predictable.</p>
 
 </div>
 </div>
@@ -280,6 +282,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Returns Zero If File Creation Succeeded. </dd></dl>
 <p>MISRA Deviation: Rule 21.6 Suppress: Use Of Standard Library Function 'Snprintf'. Justification: 'Snprintf' Is Deprecated But There Is No Better Equivalent For Safe String Formatting.</p>
 <p>MISRA Deviation: Rule 10.1 [Required] Suppress: Bitwise Operation on Composite Constant Expression. Justification: FA_WRITE and FA_CREATE_ALWAYS are Standard Bitmask Flags Defined By The FatFs Library. These Constants Are Designed To Be Combined Using Bitwise OR, and The Use is Safe and Intentional.</p>
+<p>MISRA Deviation Note: The Following Expression is Intentionally Written in a Compact and Readable Form For Setting FAT File Time Stamps. All Shifts and Bitwise Operations Are Used Correctly, Even Though They Trigger MISRA Rule 10.1, 10.3, 10.4, 10.7, 12.2 Warnings. These are Suppressed Here For Clarity and Maintainability.</p>
 
 </div>
 </div>

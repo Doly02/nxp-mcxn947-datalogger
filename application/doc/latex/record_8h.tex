@@ -106,7 +106,9 @@ Creates Directory Based Actual Date.
 \begin{DoxyReturn}{Returns}
 Returns Zero If Directory Creation Succeeded. 
 \end{DoxyReturn}
-\Hypertarget{record_8h_a023ab61eb71b7b74e227c7347196791e}\index{record.h@{record.h}!CONSOLELOG\_CreateFile@{CONSOLELOG\_CreateFile}}
+MISRA Deviation\+: Rule 21.\+6 \mbox{[}Advisory\mbox{]} Suppress\+: Use Of Standard Library Function \textquotesingle{}snprintf()\textquotesingle{} Which Is Not Fully Bounded In All Environments. Justification\+: The Use Of \textquotesingle{}snprintf()\textquotesingle{} Is Intentional And Acceptable In This Context, The Format String And All Input Values Are Controlled and Predictable.
+
+MISRA Deviation\+: Rule 21.\+6 \mbox{[}Advisory\mbox{]} Suppress\+: Use Of Standard Library Function \textquotesingle{}snprintf()\textquotesingle{} Which Is Not Fully Bounded In All Environments. Justification\+: The Use Of \textquotesingle{}snprintf()\textquotesingle{} Is Intentional And Acceptable In This Context, The Format String And All Input Values Are Controlled and Predictable.\Hypertarget{record_8h_a023ab61eb71b7b74e227c7347196791e}\index{record.h@{record.h}!CONSOLELOG\_CreateFile@{CONSOLELOG\_CreateFile}}
 \index{CONSOLELOG\_CreateFile@{CONSOLELOG\_CreateFile}!record.h@{record.h}}
 \doxysubsubsection{\texorpdfstring{CONSOLELOG\_CreateFile()}{CONSOLELOG\_CreateFile()}}
 {\footnotesize\ttfamily \label{record_8h_a023ab61eb71b7b74e227c7347196791e} 
@@ -121,7 +123,9 @@ Returns Zero If File Creation Succeeded.
 \end{DoxyReturn}
 MISRA Deviation\+: Rule 21.\+6 Suppress\+: Use Of Standard Library Function \textquotesingle{}Snprintf\textquotesingle{}. Justification\+: \textquotesingle{}Snprintf\textquotesingle{} Is Deprecated But There Is No Better Equivalent For Safe String Formatting.
 
-MISRA Deviation\+: Rule 10.\+1 \mbox{[}Required\mbox{]} Suppress\+: Bitwise Operation on Composite Constant Expression. Justification\+: FA\+\_\+\+WRITE and FA\+\_\+\+CREATE\+\_\+\+ALWAYS are Standard Bitmask Flags Defined By The Fat\+Fs Library. These Constants Are Designed To Be Combined Using Bitwise OR, and The Use is Safe and Intentional.\Hypertarget{record_8h_a310ec37130ed3dad88f57c14e72a3ed7}\index{record.h@{record.h}!CONSOLELOG\_Deinit@{CONSOLELOG\_Deinit}}
+MISRA Deviation\+: Rule 10.\+1 \mbox{[}Required\mbox{]} Suppress\+: Bitwise Operation on Composite Constant Expression. Justification\+: FA\+\_\+\+WRITE and FA\+\_\+\+CREATE\+\_\+\+ALWAYS are Standard Bitmask Flags Defined By The Fat\+Fs Library. These Constants Are Designed To Be Combined Using Bitwise OR, and The Use is Safe and Intentional.
+
+MISRA Deviation Note\+: The Following Expression is Intentionally Written in a Compact and Readable Form For Setting FAT File Time Stamps. All Shifts and Bitwise Operations Are Used Correctly, Even Though They Trigger MISRA Rule 10.\+1, 10.\+3, 10.\+4, 10.\+7, 12.\+2 Warnings. These are Suppressed Here For Clarity and Maintainability.\Hypertarget{record_8h_a310ec37130ed3dad88f57c14e72a3ed7}\index{record.h@{record.h}!CONSOLELOG\_Deinit@{CONSOLELOG\_Deinit}}
 \index{CONSOLELOG\_Deinit@{CONSOLELOG\_Deinit}!record.h@{record.h}}
 \doxysubsubsection{\texorpdfstring{CONSOLELOG\_Deinit()}{CONSOLELOG\_Deinit()}}
 {\footnotesize\ttfamily \label{record_8h_a310ec37130ed3dad88f57c14e72a3ed7} 
