@@ -64,7 +64,8 @@ To build and run `datalogger`, you will need the following:
 │       ├── parsers/             # Contains Parsers That Filter Rule-Breakings MISRA Rules From The Required and Mandatory Categories.
 │       ├── lint_config.lnt      # Configuration File of PC Lint Plus.
 │       └── sources.lst          # Defines a Set of Files To Be Analyzed by PC Lint Plus.
-├── thesis/
+│
+├── thesis/                                     # Sub-Module
 │   ├── project.tex                             # Main LaTeX Project of Technical Report.
 │   ├── project-01-kapitoly-chapters.tex        # Chapters LaTeX Project of Technical Report.
 │   ├── project-20-literatura-bibliography.bib  # Bibliography of Technical Report.
@@ -334,7 +335,7 @@ The code analysis was performed with tool PC-lint Plus v2.2 developed by Vector.
 ### Known Issues
 No issues were observed during development, testing, or practical usage of the digital data logger.
 
-#### References
+### References
 [1] "Nordic Semiconductors Power Profiler Kit II" [online]. [cited 2025-5-6]. Available at [https://www.nordicsemi.com/Products/Development-hardware/Power-Profiler-Kit-2](https://www.nordicsemi.com/Products/Development-hardware/Power-Profiler-Kit-2)
 
 [2] "PC-lint Plus 2.2 Static Code Analysis Tool for C and C++ Source Code" [online]. [cited 2025-5-6]. Available at [https://pclintplus.com/](https://pclintplus.com/)
