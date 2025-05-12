@@ -80,6 +80,8 @@ void CTIMER4_IRQHandler(void)
     /* Enable the interrupt. */
 	(void)IRQ_ClearPendingIRQ(HSCMP1_IRQn);
     (void)EnableIRQ(HSCMP1_IRQn);
+    LPCMP_EnableInterrupts(CMP1, (uint32_t)kLPCMP_OutputFallingInterruptEnable);
+
 }
 /*lint +e957 */
 
@@ -116,7 +118,7 @@ void HSCMP1_IRQHandler(void)
 void PWRLOSS_DetectionInit(void)
 {
 
-    lpcmp_config_t mLpcmpCfg;
+    lpcmp_config_t mLpcmpCfg = { 0U };
     lpcmp_dac_config_t mLpcmpDacConfigStruct;
     ctimer_config_t config;
     ctimer_match_config_t matchConfig0;			/* Match Configuration for Channel 0 */
@@ -136,16 +138,12 @@ void PWRLOSS_DetectionInit(void)
     SPC_EnableActiveModeAnalogModules(DEMO_SPC_BASE, (uint32_t)(kSPC_controlCmp1 | kSPC_controlCmp1Dac));
     /*lint +e9027 +e655 +e641 */
 
-    /*
-     *   k_LpcmpConfigStruct->enableStopMode      	= false;
-     *   k_LpcmpConfigStruct->enableOutputPin     	= false;
-     *   k_LpcmpConfigStruct->useUnfilteredOutput 	= false;
-     *   k_LpcmpConfigStruct->enableInvertOutput  	= false;
-     *   k_LpcmpConfigStruct->hysteresisMode      	= kLPCMP_HysteresisLevel0;
-     *   k_LpcmpConfigStruct->powerMode           	= kLPCMP_LowSpeedPowerMode;
-     *   k_LpcmpConfigStruct->functionalSourceClock = kLPCMP_FunctionalClockSource0;
-     */
-    LPCMP_GetDefaultConfig(&mLpcmpCfg);
+    mLpcmpCfg.enableOutputPin     = false;
+    mLpcmpCfg.useUnfilteredOutput = false;
+    mLpcmpCfg.enableInvertOutput  = false;
+    mLpcmpCfg.hysteresisMode      = kLPCMP_HysteresisLevel0;
+    mLpcmpCfg.powerMode           = kLPCMP_LowSpeedPowerMode;
+    mLpcmpCfg.functionalSourceClock = kLPCMP_FunctionalClockSource0;
     mLpcmpCfg.hysteresisMode = kLPCMP_HysteresisLevel2;
 
     /* Init the LPCMP module. */
@@ -159,11 +157,6 @@ void PWRLOSS_DetectionInit(void)
 
     /* Configure LPCMP input channels. */
     LPCMP_SetInputChannels(CMP1, 0x02, 0x07);
-
-    /* Enable the interrupt. */
-    (void)EnableIRQ(HSCMP1_IRQn);
-    //(void)EnableIRQWithPriority(HSCMP1_IRQn, POWERLOSS_DET_PRIO);
-    LPCMP_EnableInterrupts(CMP1, (uint32_t)kLPCMP_OutputFallingInterruptEnable);
 
     CTIMER_GetDefaultConfig(&config);
 
@@ -188,7 +181,7 @@ void PWRLOSS_DetectionInit(void)
      */
     CTIMER_SetupMatch(CTIMER, CTIMER_MAT0_OUT, &matchConfig0);
 
-    (void)EnableIRQWithPriority(CTIMER4_IRQn, 0x2);
+    (void)EnableIRQWithPriority(CTIMER4_IRQn, PWRLOSS_TIMER_PRIO);
 
     CTIMER_StartTimer(CTIMER);
 

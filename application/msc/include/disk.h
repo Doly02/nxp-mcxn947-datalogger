@@ -51,7 +51,7 @@
 	#endif
 #endif
 
-#define USB_DEVICE_INTERRUPT_PRIORITY (4U)
+#define USB_DEVICE_INTERRUPT_PRIORITY (3U)
 
 /*! @brief enable the write task. 1U supported, 0U not supported . if this macro is enable ,the \
 USB_DEVICE_CONFIG_USE_TASK macro should also be enable.*/

@@ -91,7 +91,7 @@ void APP_InitBoard(void)
 #endif /* (true == INFO_ENABLED) */
 
     (void)CLOCK_SetupExtClocking(BOARD_XTAL0_CLK_HZ);
-    BOARD_USB_Disk_Config(USB_DEVICE_INTERRUPT_PRIORITY);
+    BOARD_USB_Disk_Config(0x02);
 
 #if (true == TEMPERATURE_MEAS_ENABLED)
     TMP_Init();
