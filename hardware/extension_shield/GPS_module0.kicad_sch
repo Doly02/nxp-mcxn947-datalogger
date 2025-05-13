@@ -5,7 +5,7 @@
 	(uuid "e4ee9a00-c510-4290-90b6-e70e5a139f5d")
 	(paper "A4")
 	(title_block
-		(title "Datalogger Expansion Shield")
+		(title "Data Logger Expansion Shield")
 		(date "2025-02-26")
 		(rev "1.2")
 		(company "Tomáš Dolák")
@@ -451,6 +451,16 @@
 			(type default)
 		)
 		(uuid "efc0f8ec-4120-4d2f-b1cb-eb1f3c322d84")
+	)
+	(text "Zapojení GPS modulu"
+		(exclude_from_sim no)
+		(at 199.39 66.294 0)
+		(effects
+			(font
+				(size 3.048 3.048)
+			)
+		)
+		(uuid "550dff04-bf4a-4801-9e92-020b8b078b1c")
 	)
 	(hierarchical_label "GPS_PPS"
 		(shape output)

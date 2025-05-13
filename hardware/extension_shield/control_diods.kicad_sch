@@ -5,7 +5,7 @@
 	(uuid "fb85144d-69b9-4d2d-b8ca-c6f9f3bc7308")
 	(paper "A4")
 	(title_block
-		(title "Datalogger Expansion Shield")
+		(title "Data Logger Expansion Shield")
 		(date "2025-02-26")
 		(rev "1.2")
 		(company "Tomáš Dolák")
@@ -1308,6 +1308,16 @@
 			(type default)
 		)
 		(uuid "f44dca27-fed8-4f57-849e-a69e133e99cc")
+	)
+	(text "Obvody pro ovládání diod typu LED"
+		(exclude_from_sim no)
+		(at 157.734 26.416 0)
+		(effects
+			(font
+				(size 3.048 3.048)
+			)
+		)
+		(uuid "ecf6e9aa-1a30-4900-ada2-9bee68f042b1")
 	)
 	(label "LED_Q2"
 		(at 208.28 135.89 180)

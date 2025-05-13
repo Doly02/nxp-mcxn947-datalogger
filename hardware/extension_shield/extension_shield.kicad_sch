@@ -5,7 +5,7 @@
 	(uuid "eb423e93-ba35-4986-b1f5-42479ae2bfa7")
 	(paper "A4")
 	(title_block
-		(title "Datalogger Expansion Shield")
+		(title "Data Logger Expansion Shield")
 		(date "2025-02-26")
 		(rev "1.2")
 		(company "Tomáš Dolák")
@@ -1056,7 +1056,17 @@
 		)
 		(uuid "fa54d579-747d-4376-8828-9985dd6eead9")
 	)
-	(global_label "P1-0"
+	(text "Zálohované napájení s detekcí výpadku napájecího napětí"
+		(exclude_from_sim no)
+		(at 94.234 22.606 0)
+		(effects
+			(font
+				(size 3.048 3.048)
+			)
+		)
+		(uuid "13fff686-2cde-4f8f-9f24-8d0aa95dcc56")
+	)
+	(global_label "P1-0{slash}TSI0_CH0"
 		(shape input)
 		(at 198.12 97.79 0)
 		(fields_autoplaced yes)
@@ -1068,7 +1078,7 @@
 		)
 		(uuid "320a3d8b-48d2-44a8-8875-d92a4d2df1a2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 206.3666 97.79 0)
+			(at 216.4661 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1100,7 +1110,7 @@
 			)
 		)
 	)
-	(global_label "P4-1"
+	(global_label "P4-1{slash}P1-17"
 		(shape input)
 		(at 120.65 101.6 180)
 		(fields_autoplaced yes)
@@ -1112,7 +1122,7 @@
 		)
 		(uuid "8483da0c-28a6-4edb-b8c5-1524fe4ae67d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 112.4034 101.6 0)
+			(at 99.2197 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1122,7 +1132,7 @@
 			)
 		)
 	)
-	(global_label "P4-0"
+	(global_label "P4-0{slash}P1-16"
 		(shape input)
 		(at 120.65 97.79 180)
 		(fields_autoplaced yes)
@@ -1134,7 +1144,7 @@
 		)
 		(uuid "892f500e-4dec-4c46-9176-46fe5bcac6de")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 112.4034 97.79 0)
+			(at 99.2197 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1144,7 +1154,7 @@
 			)
 		)
 	)
-	(global_label "P1-1"
+	(global_label "P1-1{slash}TSI0_CH1"
 		(shape input)
 		(at 198.12 101.6 0)
 		(fields_autoplaced yes)
@@ -1156,7 +1166,7 @@
 		)
 		(uuid "f03e1c25-690f-446d-b610-a97353465e75")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 206.3666 101.6 0)
+			(at 216.4661 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
