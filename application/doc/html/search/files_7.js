@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['semihost_5fhardfault_2ec_0',['semihost_hardfault.c',['../semihost__hardfault_8c.html',1,'']]]
+  ['task_5fswitching_2eh_0',['task_switching.h',['../task__switching_8h.html',1,'']]],
+  ['temperature_2eh_1',['temperature.h',['../temperature_8h.html',1,'']]],
+  ['time_2eh_2',['time.h',['../time_8h.html',1,'']]]
 ];

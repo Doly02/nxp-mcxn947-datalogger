@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['hrs_0',['hrs',['../struct_r_t_c__time__t.html#a0140ca07f3b5ac7d02eb8a66d0951c87',1,'RTC_time_t']]],
-  ['hscmp1_5firqhandler_1',['HSCMP1_IRQHandler',['../pwrloss__det_8c.html#a91fcfb8aaaf84fcc82fcbc7ca6837ca9',1,'pwrloss_det.c']]]
+  ['i2c_5fbaudrate_0',['I2C_BAUDRATE',['../rtc__ds3231_8h.html#a31568ea8caf00a3ec699c01652c771d0',1,'rtc_ds3231.h']]],
+  ['i2c_5fdata_5flength_1',['I2C_DATA_LENGTH',['../rtc__ds3231_8c.html#a1d7cd4b7016538b77f3235ee3fcf06b3',1,'rtc_ds3231.c']]],
+  ['i2c_5fmaster_2',['I2C_MASTER',['../rtc__ds3231_8h.html#aa226465ed17b185a4da45c4792d309a8',1,'rtc_ds3231.h']]],
+  ['info_5fenabled_3',['INFO_ENABLED',['../defs_8h.html#a580f977f97ee7f7ceb91b1c42306f537',1,'defs.h']]]
 ];
