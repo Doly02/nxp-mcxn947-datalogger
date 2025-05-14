@@ -13,5 +13,6 @@ var searchData=
   ['error_5fout_5fof_5fcycle_10',['ERROR_OUT_OF_CYCLE',['../error_8h.html#a92760c86f0bbe85190302f39bf9e3682',1,'error.h']]],
   ['error_5fread_11',['ERROR_READ',['../error_8h.html#ab1d43b8f2795d4e0be3b8a1baa48d732',1,'error.h']]],
   ['error_5frecord_12',['ERROR_RECORD',['../error_8h.html#a15dd31d9e60a08b1222465d70bdc16ae',1,'error.h']]],
-  ['error_5funknown_13',['ERROR_UNKNOWN',['../error_8h.html#ade5d86f955604ec489f0c144f47226fc',1,'error.h']]]
+  ['error_5funknown_13',['ERROR_UNKNOWN',['../error_8h.html#ade5d86f955604ec489f0c144f47226fc',1,'error.h']]],
+  ['external_5frtc_5ftime_5fofset_14',['EXTERNAL_RTC_TIME_OFSET',['../time_8c.html#a8dacc3203a8fa5c4fc74d9fbe0c7597d',1,'time.c']]]
 ];

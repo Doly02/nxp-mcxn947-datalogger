@@ -1,13 +1,9 @@
 var searchData=
 [
-  ['lpcmp_5fbase_0',['LPCMP_BASE',['../pwrloss__det_8h.html#a7342461d1fcb9a6c8c3ae456bafa61d5',1,'pwrloss_det.h']]],
-  ['lpcmp_5fdac_5fchannel_1',['LPCMP_DAC_CHANNEL',['../pwrloss__det_8h.html#a4f642f96675b7192c91d864dbf7dcb38',1,'pwrloss_det.h']]],
-  ['lpcmp_5firq_5fid_2',['LPCMP_IRQ_ID',['../pwrloss__det_8h.html#a648509c09a6537239f18c77e34597db7',1,'pwrloss_det.h']]],
-  ['lpcmp_5fuser_5fchannel_3',['LPCMP_USER_CHANNEL',['../pwrloss__det_8h.html#af9b640fbdea56d26a90253d0fe4fc220',1,'pwrloss_det.h']]],
-  ['lpi2c_5fdma_5fbaseaddr_4',['LPI2C_DMA_BASEADDR',['../time_8h.html#a58062985d9778449f989ddad35f49ab4',1,'time.h']]],
-  ['lpi2c_5frx_5fdma_5fchannel_5',['LPI2C_RX_DMA_CHANNEL',['../rtc__ds3231_8h.html#a1b99f71e2df43e2f7b57250dba60bc9a',1,'rtc_ds3231.h']]],
-  ['lpi2c_5frx_5fedma_5fchannel_6',['LPI2C_RX_EDMA_CHANNEL',['../rtc__ds3231_8h.html#aef436e53172ccba5c0370cc9e48d1989',1,'rtc_ds3231.h']]],
-  ['lpi2c_5ftx_5fchannel_7',['LPI2C_TX_CHANNEL',['../rtc__ds3231_8h.html#ae02f1575c21c401c357de6456cb0b472',1,'rtc_ds3231.h']]],
-  ['lpi2c_5ftx_5fdma_5fchannel_8',['LPI2C_TX_DMA_CHANNEL',['../rtc__ds3231_8h.html#afcaf37eb8fb30d41d86b119127cb9368',1,'rtc_ds3231.h']]],
-  ['lpuart3_5fclk_5ffreq_9',['LPUART3_CLK_FREQ',['../uart_8h.html#af3c50a22bec945f271789dc87c4304ea',1,'uart.h']]]
+  ['i2c_5fbaudrate_0',['I2C_BAUDRATE',['../temperature_8c.html#a31568ea8caf00a3ec699c01652c771d0',1,'I2C_BAUDRATE:&#160;temperature.c'],['../rtc__ds3231_8h.html#a31568ea8caf00a3ec699c01652c771d0',1,'I2C_BAUDRATE:&#160;rtc_ds3231.h']]],
+  ['i2c_5fdata_5flength_1',['I2C_DATA_LENGTH',['../rtc__ds3231_8c.html#a1d7cd4b7016538b77f3235ee3fcf06b3',1,'rtc_ds3231.c']]],
+  ['i2c_5fmaster_2',['I2C_MASTER',['../rtc__ds3231_8h.html#aa226465ed17b185a4da45c4792d309a8',1,'rtc_ds3231.h']]],
+  ['i2c_5fmaster_5fi2c5_3',['I2C_MASTER_I2C5',['../temperature_8c.html#a886f2dadbf959e761f53d4c0572158e7',1,'temperature.c']]],
+  ['info_5fenabled_4',['INFO_ENABLED',['../defs_8h.html#a580f977f97ee7f7ceb91b1c42306f537',1,'defs.h']]],
+  ['internal_5frtc_5fbase_5fyear_5',['INTERNAL_RTC_BASE_YEAR',['../time_8c.html#a6ecf250fd49fb5d762e524581b551cbb',1,'time.c']]]
 ];

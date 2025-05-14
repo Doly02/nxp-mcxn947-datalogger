@@ -1,8 +1,25 @@
 var searchData=
 [
-  ['flush_5fled_5fport_0',['FLUSH_LED_PORT',['../led_8h.html#a58fc08140f1f3f414c40ca7a59258ab8',1,'led.h']]],
-  ['flush_5ftimeout_5fticks_1',['FLUSH_TIMEOUT_TICKS',['../record_8h.html#a0d397cd5b778e16fe6d884e5af5ee942',1,'record.h']]],
-  ['format_2',['format',['../struct_r_t_c__time__t.html#ac99a42b95dc6cad5064b96c0a81bd321',1,'RTC_time_t']]],
-  ['free_5fspace_5flimit_5fmb_3',['free_space_limit_mb',['../struct_r_e_c__config__t.html#a0ccf4d5bb2568ac1a483b39bf6246bf0',1,'REC_config_t']]],
-  ['friday_4',['FRIDAY',['../rtc__ds3231_8h.html#abe9db6f3a1fb60fa435c899c00dd0987',1,'rtc_ds3231.h']]]
+  ['e_5ffault_0',['E_FAULT',['../rtc__ds3231_8h.html#a91cecb961b28a69e041b8178f8f36da7',1,'rtc_ds3231.h']]],
+  ['err_5fhandleerror_1',['ERR_HandleError',['../error_8h.html#af4eef9ea59c45d3b142fd0d24ff5302b',1,'ERR_HandleError(void):&#160;error.c'],['../error_8c.html#af93db7a2755579082a1ddfa5a9df4a1f',1,'ERR_HandleError():&#160;error.c']]],
+  ['err_5finit_2',['ERR_Init',['../error_8h.html#af4611406000b04903048e22f2ac41654',1,'ERR_Init():&#160;error.c'],['../error_8c.html#af4611406000b04903048e22f2ac41654',1,'ERR_Init():&#160;error.c']]],
+  ['err_5fsetstate_3',['ERR_SetState',['../error_8h.html#a7c9d4519c77f7f681492bf229ec8e43a',1,'ERR_SetState(error_t err):&#160;error.c'],['../error_8c.html#a7c9d4519c77f7f681492bf229ec8e43a',1,'ERR_SetState(error_t err):&#160;error.c']]],
+  ['error_4',['error',['../error_8c.html#a5798ff116cd549740fcaa6c6c1589ca1',1,'error.c']]],
+  ['error_2ec_5',['error.c',['../error_8c.html',1,'']]],
+  ['error_2eh_6',['error.h',['../error_8h.html',1,'']]],
+  ['error_5fadma_7',['ERROR_ADMA',['../error_8h.html#a2443aa0469107ec4e5e1d2517e4f6d6b',1,'error.h']]],
+  ['error_5fclose_8',['ERROR_CLOSE',['../error_8h.html#a0252789fc5878797a9e8e4add9b8cb79',1,'error.h']]],
+  ['error_5fconfig_9',['ERROR_CONFIG',['../error_8h.html#a18c5dd2fafa8a862632c9d61fd796d9b',1,'error.h']]],
+  ['error_5ffilesystem_10',['ERROR_FILESYSTEM',['../error_8h.html#a7a823d18530c4366603a5d1f4e73eb51',1,'error.h']]],
+  ['error_5firtc_11',['ERROR_IRTC',['../error_8h.html#abe377e971802c0d6457fab75817a0f50',1,'error.h']]],
+  ['error_5fled_5fpin_5frecord_12',['ERROR_LED_PIN_RECORD',['../led_8h.html#a24b5595c4f500e96c463709e93f372df',1,'led.h']]],
+  ['error_5fled_5fport_13',['ERROR_LED_PORT',['../led_8h.html#a84357dafca10c0bedd27ddf562ec038f',1,'led.h']]],
+  ['error_5fnone_14',['ERROR_NONE',['../error_8h.html#abe670cc5ceed3fad3be682fc0c1bb62e',1,'error.h']]],
+  ['error_5fopen_15',['ERROR_OPEN',['../error_8h.html#a3bfc56f55ae00909881ff0c69ea508c3',1,'error.h']]],
+  ['error_5fout_5fof_5fcycle_16',['ERROR_OUT_OF_CYCLE',['../error_8h.html#a92760c86f0bbe85190302f39bf9e3682',1,'error.h']]],
+  ['error_5fread_17',['ERROR_READ',['../error_8h.html#ab1d43b8f2795d4e0be3b8a1baa48d732',1,'error.h']]],
+  ['error_5frecord_18',['ERROR_RECORD',['../error_8h.html#a15dd31d9e60a08b1222465d70bdc16ae',1,'error.h']]],
+  ['error_5ft_19',['error_t',['../error_8h.html#aeaf3178f631e362a9238a50fcdcaa039',1,'error.h']]],
+  ['error_5funknown_20',['ERROR_UNKNOWN',['../error_8h.html#ade5d86f955604ec489f0c144f47226fc',1,'error.h']]],
+  ['external_5frtc_5ftime_5fofset_21',['EXTERNAL_RTC_TIME_OFSET',['../time_8c.html#a8dacc3203a8fa5c4fc74d9fbe0c7597d',1,'time.c']]]
 ];

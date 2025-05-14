@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.11)  14 MAY 2025 11:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.11)  14 MAY 2025 13:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -856,7 +856,7 @@ LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 6.29996pt on input line 230.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 6.29996pt on input line 230.
- [1]
+ [1] [2]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 7.19995pt on input line 230.
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 23
@@ -864,8 +864,8 @@ LaTeX Font Info:    Trying to load font information for T1+pcr on input line 23
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [2] [3] [4] [5]
-[6] [7] [8]
+) [3] [4] [5] [6]
+[7] [8] [9] [10] [11] [12]
 Package hyperref Info: Option `pageanchor' set `true' on input line 233.
 
 Chapter 1.
@@ -893,10 +893,11 @@ Chapter 3.
 
 ]
 Chapter 4.
-(./group___r_t_c.tex
+(./group___task_management.tex
 LaTeX Font Info:    Trying to load font information for TS1+phv on input line 1
 1.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
@@ -908,109 +909,124 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 8.09995pt on input line 12.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 14.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 12.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.29996pt on input line 14.
-[7]
+(Font)              scaled to size 6.29996pt on input line 12.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 51.
+(Font)              scaled to size 10.79993pt on input line 21.
+ [7])
+(./group___recording.tex [8]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 61.
-
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 52.
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 52.
+ [9]) (./group___u_a_r_t.tex [10] [11])
+(./group___r_t_c.tex [12] [13]
 Underfull \hbox (badness 10000) detected at line 92
 [][][]
  []
 
-[8]
+
 Underfull \hbox (badness 10000) detected at line 110
 [][][]
  []
 
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 162.
-[9]
+[14]
 Underfull \hbox (badness 10000) detected at line 183
 [][][]
  []
 
-[10]
+[15]
 Underfull \hbox (badness 10000) detected at line 231
 [][][]
  []
 
-[11]
+[16] [17]
 Underfull \hbox (badness 10000) detected at line 341
 [][][]
  []
 
-) [12]
+) [18]
 Chapter 5.
-(./struct_r_e_c__config__t.tex [13
+(./struct_r_e_c__config__t.tex [19
 
-]) (./struct_r_t_c__date__t.tex [14])
-(./struct_r_t_c__time__t.tex [15]) [16]
+]) (./struct_r_t_c__date__t.tex [20])
+(./struct_r_t_c__time__t.tex [21]) [22]
 Chapter 6.
 (./rtc__ds3231_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[17
+[23
 
-] [18]
+] [24]
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 7.19995pt on input line 114.
- [19]) (./rtc__ds3231_8h.tex
+ [25]) (./rtc__ds3231_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--8
 
  []
 
-[20] [21] [22] [23] [24] [25] [26] [27]) (./rtc__ds3231_8h_source.tex [28]
-[29]) (./app__init_8h.tex
+[26] [27] [28] [29] [30] [31] [32] [33]) (./rtc__ds3231_8h_source.tex [34]
+[35]) (./app__init_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--15
 
  []
 
-) (./app__init_8h_source.tex [30]) (./app__tasks_8h.tex
+) (./app__init_8h_source.tex [36]) (./app__tasks_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--9
 
  []
 
-[31] [32]) (./app__tasks_8h_source.tex [33] [34]) (./defs_8h.tex
+[37] [38]
+Underfull \hbox (badness 1389) in paragraph at lines 103--105
+[]\T1/phv/m/n/10 MISRA Deviation[]: Rule 10.[]8 []Required[] Suppress[]: Con-ve
+r-sion From Signed Macro To Un-signed Type.
+ []
+
+
+Underfull \hbox (badness 1389) in paragraph at lines 124--125
+[]\T1/phv/m/n/10 MISRA Deviation[]: Rule 10.[]8 []Required[] Suppress[]: Con-ve
+r-sion From Signed Macro To Un-signed Type.
+ []
+
+[39]) (./app__tasks_8h_source.tex [40]) (./defs_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[35] [36] [37] [38]) (./defs_8h_source.tex [39]) (./error_8h.tex
+[41] [42] [43] [44]) (./defs_8h_source.tex [45] [46]) (./error_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[40] [41] [42]) (./error_8h_source.tex [43]) (./led_8h.tex
+[47] [48]) (./error_8h_source.tex [49]) (./led_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
  []
 
+[50]
 LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <9> not available
 (Font)              Font shape `TS1/phv/m/sl' tried instead on input line 9.
 LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
 (Font)              scaled to size 8.09995pt on input line 9.
-[44] [45] [46] [47] [48]) (./led_8h_source.tex [49]) (./mass__storage_8h.tex
+ [51] [52] [53] [54]) (./led_8h_source.tex [55]) (./mass__storage_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-) (./mass__storage_8h_source.tex [50]) (./parser_8h.tex
+) (./mass__storage_8h_source.tex [56]) (./parser_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--11
 
  []
 
-[51]
+[57]
 Underfull \hbox (badness 10000) detected at line 74
 [][][]
  []
 
-[52]
+[58]
 Underfull \hbox (badness 10000) detected at line 114
 [][][]
  []
@@ -1025,7 +1041,7 @@ Underfull \hbox (badness 10000) detected at line 142
 [][][]
  []
 
-[53]
+[59]
 Underfull \hbox (badness 10000) detected at line 155
 [][][]
  []
@@ -1050,7 +1066,7 @@ Underfull \hbox (badness 10000) detected at line 207
 [][][]
  []
 
-[54]
+[60]
 Underfull \hbox (badness 10000) detected at line 220
 [][][]
  []
@@ -1065,7 +1081,7 @@ Underfull \hbox (badness 10000) detected at line 256
 [][][]
  []
 
-[55]
+[61]
 Underfull \hbox (badness 10000) detected at line 274
 [][][]
  []
@@ -1080,116 +1096,337 @@ Underfull \hbox (badness 10000) detected at line 310
 [][][]
  []
 
-[56]
+[62]
 Underfull \hbox (badness 10000) detected at line 328
 [][][]
  []
 
-) (./parser_8h_source.tex [57]) (./pwrloss__det_8h.tex
+) (./parser_8h_source.tex [63]) (./pwrloss__det_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--8
 
  []
 
-[58] [59]) (./pwrloss__det_8h_source.tex [60]) (./record_8h.tex
+[64] [65]) (./pwrloss__det_8h_source.tex [66]) (./record_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--22
 
  []
 
-[61] [62]
+[67] [68]
 Underfull \hbox (badness 10000) detected at line 106
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 119
+Underfull \hbox (badness 10000) detected at line 121
+[][][]
+ []
+
+[69]
+Underfull \hbox (badness 10000) detected at line 138
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 132
-[][][]
- []
-
-[63]
-Underfull \hbox (badness 10000) detected at line 147
+Underfull \hbox (badness 10000) detected at line 153
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 160
+Underfull \hbox (badness 10000) detected at line 166
+[][][]
+ []
+
+[70]
+Underfull \hbox (badness 10000) detected at line 179
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 173
-[][][]
- []
-
-[64]
-Underfull \hbox (badness 10000) detected at line 196
+Underfull \hbox (badness 10000) detected at line 202
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 217
+Underfull \hbox (badness 10000) detected at line 223
+[][][]
+ []
+
+[71]
+Underfull \hbox (badness 10000) detected at line 238
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 232
+Underfull \hbox (badness 10000) detected at line 256
 [][][]
  []
 
-[65]
+[72]
+Underfull \hbox (badness 10000) detected at line 271
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 286
+[][][]
+ []
+
+) (./record_8h_source.tex [73]) (./task__switching_8h.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+[74]
+Underfull \hbox (badness 10000) detected at line 32
+[][][]
+ []
+
+) (./task__switching_8h_source.tex [75]) (./temperature_8h.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--7
+
+ []
+
+[76]) (./temperature_8h_source.tex [77]) (./time_8h.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--7
+
+ []
+
+[78]) (./time_8h_source.tex) (./uart_8h.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--9
+
+ []
+
+[79] [80]) (./uart_8h_source.tex [81]) (./app__init_8c.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--5
+
+ []
+
+) (./app__tasks_8c.tex [82]
+Underfull \hbox (badness 10000) in paragraph at lines 3--9
+
+ []
+
+[83]
+Underfull \hbox (badness 1389) in paragraph at lines 89--91
+[]\T1/phv/m/n/10 MISRA Deviation[]: Rule 10.[]8 []Required[] Suppress[]: Con-ve
+r-sion From Signed Macro To Un-signed Type.
+ []
+
+[84]) (./error_8c.tex
+Underfull \hbox (badness 1389) in paragraph at lines 110--1
+[]\T1/phv/m/n/10 MISRA Deviation[]: Rule 10.[]8 []Required[] Suppress[]: Con-ve
+r-sion From Signed Macro To Un-signed Type.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--5
+
+ []
+
+) (./led_8c.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+[85] [86] [87]) (./main_8c.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--12
+
+ []
+
+[88] [89]) (./mass__storage_8c.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--5
+
+ []
+
+[90]) (./parser_8c.tex [91]
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+[92]
+Underfull \hbox (badness 10000) detected at line 81
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 96
+[][][]
+ []
+
+[93]
+Underfull \hbox (badness 10000) detected at line 109
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 122
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 135
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 148
+[][][]
+ []
+
+[94]
+Underfull \hbox (badness 10000) detected at line 161
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 174
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 187
+[][][]
+ []
+
+[95]
+Underfull \hbox (badness 10000) detected at line 205
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 223
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 241
+[][][]
+ []
+
+[96]
+Underfull \hbox (badness 10000) detected at line 259
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 277
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 295
+[][][]
+ []
+
+) (./pwrloss__det_8c.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--5
+
+ []
+
+[97]) (./record_8c.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+[98] [99] [100]
+Underfull \hbox (badness 10000) detected at line 141
+[][][]
+ []
+
+[101]
+Underfull \hbox (badness 10000) detected at line 177
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 192
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 209
+[][][]
+ []
+
+[102]
+Underfull \hbox (badness 10000) detected at line 224
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 237
+[][][]
+ []
+
+
 Underfull \hbox (badness 10000) detected at line 250
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 265
+Underfull \hbox (badness 10000) detected at line 263
+[][][]
+ []
+
+[103]
+Underfull \hbox (badness 10000) detected at line 284
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 280
+Underfull \hbox (badness 10000) detected at line 299
 [][][]
  []
 
-) (./record_8h_source.tex [66]) (./task__switching_8h.tex
+[104]
+Underfull \hbox (badness 10000) detected at line 317
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 332
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 347
+[][][]
+ []
+
+) (./semihost__hardfault_8c.tex [105]) (./task__switching_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[67]
-Underfull \hbox (badness 10000) detected at line 32
+
+Underfull \hbox (badness 10000) detected at line 27
 [][][]
  []
 
-) (./task__switching_8h_source.tex [68]) (./temperature_8h.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--7
+) (./temperature_8c.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--8
 
  []
 
-[69]) (./temperature_8h_source.tex [70]) (./time_8h.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--7
+[106] [107] [108] [109] [110]) (./time_8c.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--8
 
  []
 
-[71]) (./time_8h_source.tex) (./uart_8h.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--9
+[111]) (./uart_8c.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
 
  []
 
-[72] [73]) (./uart_8h_source.tex [74]) [75] [76
-
-] (./refman.ind
+[112] [113]) [114] (./refman.ind
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 22.39185pt on input line 1.
- [77
+ [115
 
 
-] [78]
-[79] [80] [81] [82] [83
+
+] [116] [117] [118] [119] [120] [121]
+[122] [123] [124
 
 ]) (./refman.aux)
  ***********
@@ -1197,13 +1434,14 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: A9AA5070793EAEB73F36DF6152368267;60304.
+(rerunfilecheck)             Checksum: 338BE0EAC45E0238B0094D7A0439A445;100649.
+
  ) 
 Here is how much of TeX's memory you used:
- 19320 strings out of 475277
- 323633 string characters out of 5768622
+ 20223 strings out of 475277
+ 348065 string characters out of 5768622
  1956975 words of memory out of 5000000
- 40283 multiletter control sequences out of 15000+600000
+ 40722 multiletter control sequences out of 15000+600000
  615018 words of font info for 107 fonts, out of 8000000 for 9000
  473 hyphenation exceptions out of 8191
  101i,16n,117p,763b,750s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1219,10 +1457,10 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (93 pages, 331224 bytes).
+Output written on refman.pdf (138 pages, 449241 bytes).
 PDF statistics:
- 3491 PDF objects out of 3580 (max. 8388607)
- 3336 compressed objects within 34 object streams
- 712 named destinations out of 1000 (max. 500000)
- 2369 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 5429 PDF objects out of 6186 (max. 8388607)
+ 5210 compressed objects within 53 object streams
+ 1139 named destinations out of 1200 (max. 500000)
+ 3833 words of extra memory for PDF output out of 10000 (max. 10000000)
 

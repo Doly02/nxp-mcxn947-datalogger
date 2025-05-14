@@ -1,25 +1,9 @@
 var searchData=
 [
-  ['led_2eh_0',['led.h',['../led_8h.html',1,'']]],
-  ['led_5fclearsignalflush_1',['LED_ClearSignalFlush',['../led_8h.html#a790afc5a8ed07437a4788698ca9afe45',1,'led.h']]],
-  ['led_5fsethigh_2',['LED_SetHigh',['../led_8h.html#a7455e287128129db10bb2ae70909ff7a',1,'led.h']]],
-  ['led_5fsetlow_3',['LED_SetLow',['../led_8h.html#ab02c6a3a312ce2e008f471310fef8f5b',1,'led.h']]],
-  ['led_5fsignalbackuppoweravailable_4',['LED_SignalBackUpPowerAvailable',['../led_8h.html#a051c422ce8dcca2df8022a718fa9e85c',1,'led.h']]],
-  ['led_5fsignalerror_5',['LED_SignalError',['../led_8h.html#a13c3d29b05f96fd3490c9b7680f7df08',1,'led.h']]],
-  ['led_5fsignalflush_6',['LED_SignalFlush',['../led_8h.html#ac6978cdce3f5c99d7cd85a6991a5394a',1,'led.h']]],
-  ['led_5fsignallowmemory_7',['LED_SignalLowMemory',['../led_8h.html#aeab72eb69dcad626cad6ab8d18f5b7f7',1,'led.h']]],
-  ['led_5fsignalready_8',['LED_SignalReady',['../led_8h.html#a90d3262aad7d8e74c655aecba5bdb8b1',1,'led.h']]],
-  ['led_5fsignalrecording_9',['LED_SignalRecording',['../led_8h.html#ae4d93582ce6f8960bbbe8771670864f2',1,'led.h']]],
-  ['led_5fsignalrecordingstop_10',['LED_SignalRecordingStop',['../led_8h.html#a357ebead2af4aa7710b82477c78c3ae5',1,'led.h']]],
-  ['lpcmp_5fbase_11',['LPCMP_BASE',['../pwrloss__det_8h.html#a7342461d1fcb9a6c8c3ae456bafa61d5',1,'pwrloss_det.h']]],
-  ['lpcmp_5fdac_5fchannel_12',['LPCMP_DAC_CHANNEL',['../pwrloss__det_8h.html#a4f642f96675b7192c91d864dbf7dcb38',1,'pwrloss_det.h']]],
-  ['lpcmp_5firq_5fid_13',['LPCMP_IRQ_ID',['../pwrloss__det_8h.html#a648509c09a6537239f18c77e34597db7',1,'pwrloss_det.h']]],
-  ['lpcmp_5fuser_5fchannel_14',['LPCMP_USER_CHANNEL',['../pwrloss__det_8h.html#af9b640fbdea56d26a90253d0fe4fc220',1,'pwrloss_det.h']]],
-  ['lpi2c_5fcallback_15',['lpi2c_callback',['../rtc__ds3231_8c.html#a038e5a1da8a787ae48b1e279cab6df55',1,'rtc_ds3231.c']]],
-  ['lpi2c_5fdma_5fbaseaddr_16',['LPI2C_DMA_BASEADDR',['../time_8h.html#a58062985d9778449f989ddad35f49ab4',1,'time.h']]],
-  ['lpi2c_5frx_5fdma_5fchannel_17',['LPI2C_RX_DMA_CHANNEL',['../rtc__ds3231_8h.html#a1b99f71e2df43e2f7b57250dba60bc9a',1,'rtc_ds3231.h']]],
-  ['lpi2c_5frx_5fedma_5fchannel_18',['LPI2C_RX_EDMA_CHANNEL',['../rtc__ds3231_8h.html#aef436e53172ccba5c0370cc9e48d1989',1,'rtc_ds3231.h']]],
-  ['lpi2c_5ftx_5fchannel_19',['LPI2C_TX_CHANNEL',['../rtc__ds3231_8h.html#ae02f1575c21c401c357de6456cb0b472',1,'rtc_ds3231.h']]],
-  ['lpi2c_5ftx_5fdma_5fchannel_20',['LPI2C_TX_DMA_CHANNEL',['../rtc__ds3231_8h.html#afcaf37eb8fb30d41d86b119127cb9368',1,'rtc_ds3231.h']]],
-  ['lpuart3_5fclk_5ffreq_21',['LPUART3_CLK_FREQ',['../uart_8h.html#af3c50a22bec945f271789dc87c4304ea',1,'uart.h']]]
+  ['i2c_5fbaudrate_0',['I2C_BAUDRATE',['../temperature_8c.html#a31568ea8caf00a3ec699c01652c771d0',1,'I2C_BAUDRATE:&#160;temperature.c'],['../rtc__ds3231_8h.html#a31568ea8caf00a3ec699c01652c771d0',1,'I2C_BAUDRATE:&#160;rtc_ds3231.h']]],
+  ['i2c_5fdata_5flength_1',['I2C_DATA_LENGTH',['../rtc__ds3231_8c.html#a1d7cd4b7016538b77f3235ee3fcf06b3',1,'rtc_ds3231.c']]],
+  ['i2c_5fmaster_2',['I2C_MASTER',['../rtc__ds3231_8h.html#aa226465ed17b185a4da45c4792d309a8',1,'rtc_ds3231.h']]],
+  ['i2c_5fmaster_5fi2c5_3',['I2C_MASTER_I2C5',['../temperature_8c.html#a886f2dadbf959e761f53d4c0572158e7',1,'temperature.c']]],
+  ['info_5fenabled_4',['INFO_ENABLED',['../defs_8h.html#a580f977f97ee7f7ceb91b1c42306f537',1,'defs.h']]],
+  ['internal_5frtc_5fbase_5fyear_5',['INTERNAL_RTC_BASE_YEAR',['../time_8c.html#a6ecf250fd49fb5d762e524581b551cbb',1,'time.c']]]
 ];

@@ -1,18 +1,5 @@
 var searchData=
 [
-  ['consolelog_5fcheckfilesystem_0',['CONSOLELOG_CheckFileSystem',['../record_8h.html#a7569eaf79c91368fad87f25507fb8614',1,'record.h']]],
-  ['consolelog_5fcleartransferedbytes_1',['CONSOLELOG_ClearTransferedBytes',['../record_8h.html#a52b8002dd4c2a6b13860c0a0cf52a0a8',1,'record.h']]],
-  ['consolelog_5fcreatedirectory_2',['CONSOLELOG_CreateDirectory',['../record_8h.html#ac1fa0a8fc8347a2972c4eb356d002b43',1,'record.h']]],
-  ['consolelog_5fcreatefile_3',['CONSOLELOG_CreateFile',['../record_8h.html#a023ab61eb71b7b74e227c7347196791e',1,'record.h']]],
-  ['consolelog_5fdeinit_4',['CONSOLELOG_Deinit',['../record_8h.html#a310ec37130ed3dad88f57c14e72a3ed7',1,'record.h']]],
-  ['consolelog_5fflush_5',['CONSOLELOG_Flush',['../record_8h.html#ae36046c53443afa593218c41f4b834fa',1,'record.h']]],
-  ['consolelog_5fgetflushcompleted_6',['CONSOLELOG_GetFlushCompleted',['../record_8h.html#af54d270ec7ba86c38b2903c41eca3676',1,'record.h']]],
-  ['consolelog_5fgetfreespacemb_7',['CONSOLELOG_GetFreeSpaceMB',['../record_8h.html#a68675110803994cd2f323d7b5ec22204',1,'record.h']]],
-  ['consolelog_5fgetmaxbytes_8',['CONSOLELOG_GetMaxBytes',['../record_8h.html#a6e4fa4434e7651d5dac0285ba7cecac3',1,'record.h']]],
-  ['consolelog_5fgettransferedbytes_9',['CONSOLELOG_GetTransferedBytes',['../record_8h.html#a956fc952a186ae09ce21409b7354cde7',1,'record.h']]],
-  ['consolelog_5finit_10',['CONSOLELOG_Init',['../record_8h.html#a7c874f2c9b56aa801cf2bee5565975f1',1,'record.h']]],
-  ['consolelog_5fpowerlossflush_11',['CONSOLELOG_PowerLossFlush',['../record_8h.html#a91b1773f5158d67d12e9c6d40394b841',1,'record.h']]],
-  ['consolelog_5fproccessconfigfile_12',['CONSOLELOG_ProccessConfigFile',['../record_8h.html#aeb7fb616b1f69f6cf4903a6058da06df',1,'record.h']]],
-  ['consolelog_5freadconfig_13',['CONSOLELOG_ReadConfig',['../record_8h.html#af2718c8ac24b83f237cbd1dc970af06d',1,'record.h']]],
-  ['consolelog_5frecording_14',['CONSOLELOG_Recording',['../record_8h.html#a79da7903033034cac5a75923611657f6',1,'record.h']]]
+  ['app_5finitboard_0',['APP_InitBoard',['../app__init_8h.html#af08640c49c85139dcc18b9e69d4ffd0c',1,'APP_InitBoard(void):&#160;app_init.c'],['../app__init_8c.html#af08640c49c85139dcc18b9e69d4ffd0c',1,'APP_InitBoard(void):&#160;app_init.c']]],
+  ['at_5fnoncacheable_5fsection_1',['AT_NONCACHEABLE_SECTION',['../temperature_8c.html#ab012c2d8730f13da3f0615ca9f93414d',1,'AT_NONCACHEABLE_SECTION(static uint8_t g_aRxBuff_I2C5[BUFF_SIZE]):&#160;temperature.c'],['../temperature_8c.html#a15897befedf315a0700d50b60b6d4bda',1,'AT_NONCACHEABLE_SECTION(static lpi2c_master_edma_handle_t g_EdmaHandle_I2C5):&#160;temperature.c'],['../rtc__ds3231_8c.html#a6c52a80cd1bef716342dc62c4b4e3579',1,'AT_NONCACHEABLE_SECTION(uint8_t g_aRxBuff[I2C_DATA_LENGTH]):&#160;rtc_ds3231.c'],['../rtc__ds3231_8c.html#ac8b71b782f019fcc2256073a817c48c7',1,'AT_NONCACHEABLE_SECTION(lpi2c_master_edma_handle_t gEdmaHandle):&#160;rtc_ds3231.c']]]
 ];

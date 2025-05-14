@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['driver_0',['DS3231 Real-Time Clock Driver',['../group___r_t_c.html',1,'']]],
-  ['ds3231_20real_20time_20clock_20driver_1',['DS3231 Real-Time Clock Driver',['../group___r_t_c.html',1,'']]]
+  ['buffers_20and_20recording_20management_0',['Buffers and Recording Management',['../group___recording.html',1,'']]]
 ];
