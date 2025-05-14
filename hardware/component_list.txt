@@ -1,0 +1,69 @@
+Caption:
+-----------------------------------------------------------------------------------------------------------------------------------
+Note: Basic Resistors and Capacitors Are Not Included In This Component List.
+-----------------------------------
+- Quantity Name (Other Information)
+	- link (mouser): ...
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Pin Headers:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- 2pcs SSQ-108-03-G-D (16 pin)
+	- link (vendor): 	https://kinetictest.samtec.com/partnumber/ssq-108-03-g-d?vendor=
+	- link (mouser):	https://cz.mouser.com/ProductDetail/Samtec/SSQ-108-03-G-D?qs=rU5fayqh%252BE0RwWDEJ6pPUQ%3D%3D
+	- MOUSER number: 	200-SSQ10803GD
+
+- 1pcs SSQ-106-03-S-D (12 Pin)
+	- link (vendor): 	https://kinetictest.samtec.com/partnumber/ssq-106-03-s-d?vendor=
+	- link (mouser):	https://cz.mouser.com/ProductDetail/Samtec/SSQ-106-03-T-D?qs=rU5fayqh%252BE1nrbBaxRMk2g%3D%3D
+	- MOUSER number:	200-SSQ10603SD
+
+- 1pcs SSQ-114-03-T-D (28 pin)
+	- link (vendor): 	https://kinetictest.samtec.com/partnumber/ssq-114-03-g-d?vendor=
+	- link (mouser):	https://cz.mouser.com/ProductDetail/Samtec/SSQ-114-03-T-D?qs=rU5fayqh%252BE3GMP3i4Q9eOA%3D%3D
+	- MOUSER number:	200-SSQ11403TD
+
+- 1pcs SSQ-116-01-G-D (32 pin)
+	- link (vendor): 	https://kinetictest.samtec.com/partnumber/ssq-116-01-g-d
+	- link (mouser):	https://cz.mouser.com/ProductDetail/Samtec/SSQ-116-01-G-D?qs=rU5fayqh%252BE0IfimSEbywwg%3D%3D
+	- MOUSER number:	200-SSQ11601GD
+
+- 1pcs SSQ-110-03-T-D
+	- link (vendor): 	https://kinetictest.samtec.com/partnumber/ssq-110-03-t-d
+	- link (mouser):	https://cz.mouser.com/ProductDetail/Samtec/SSQ-110-03-T-D?qs=rU5fayqh%252BE2PVxAFHKyYdw%3D%3D
+	- MOUSER number:	200-SSQ11003TD
+
+- 1pcs M20-7830342 (10 pin) [For Control LEDs]
+	- link (mouser):	https://cz.mouser.com/ProductDetail/Harwin/M20-7830342?qs=Jph8NoUxIfXRffijnsn9uQ%3D%3D
+	- MOUSER number:	855-M20-7830342
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Real-Time Circuit:
+------------------------------------------------------	----------------------------------------------------------------------------------------------------------------
+- 2pcs DS3231M+:
+	- link (mouser):	https://cz.mouser.com/ProductDetail/Analog-Devices-Maxim-Integrated/DS3231M%2b?qs=Bakm8ERcljpd4MQpcnSykw%3D%3D
+	- MOUSER number:	700-DS3231M+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Back-Up Power:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- 3pcs KYOCERA AVX - SCMR14G334SRBB0
+	- link (mouser): 	https://cz.mouser.com/ProductDetail/KYOCERA-AVX/SCMR14G334SRBB0?qs=qSfuJ%252Bfl%2Fd4Npf0NpjEggg%3D%3D
+	- MOUSER number:	581-SCMR14G334SRBB0
+
+- 4pcs RSX301L-30DDTE25
+	- link (mouser): 	https://cz.mouser.com/ProductDetail/ROHM-Semiconductor/RSX301L-30DDTE25?qs=YCa%2FAAYMW01WyKek9N1fLg%3D%3D
+	- MOUSER number:	755-RSX301L-30DDTE25
+
+- 7pcs BC546
+	- link (mouser): 	https://cz.mouser.com/ProductDetail/onsemi-Fairchild/BC546ABU?qs=4YdYnegEbZUO%2FGL%2FQQD%2FXw%3D%3D
+	- MOUSER number:	512-BC546ABU
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SDHC Card Slot:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- 2pcs MEM2075-00-140-01-A
+	- link (mouser): 	https://cz.mouser.com/ProductDetail/GCT/MEM2075-00-140-01-A?qs=KUoIvG%2F9IlZvfWpeERlq3Q%3D%3D
+	- MOUSER number:	640-MEM20750014001A
+
+
+
