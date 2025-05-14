@@ -46,13 +46,13 @@
 
 /**
  * @brief 	Enables/Disables Debug Mode
- * @details If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console.
+ * @details If Info Mode Is Enabled Then Informational Logs Are Printed Into Debug Console.
  */
 #define INFO_ENABLED				(false)
 
 /**
  * @brief 	Enables/Disables Debug Mode
- * @details If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console.
+ * @details If Debug Mode Is Enabled Then More Logs Are Printed Into Debug Console.
  */
 #define DEBUG_ENABLED				(false)
 
@@ -83,7 +83,7 @@
 
 /**
  * @brief 	Constant 5 Tau, When Back-Up Power Capacitor is Charged To 99%.
- * @details In Seconds (It's Actualy 16.5s).
+ * @details In Seconds (It's Actually 16.5s).
  */
 #define TAU5						16.5
 
