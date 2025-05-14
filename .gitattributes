@@ -1,1 +1,7 @@
 * text eol=crlf
+
+*.sal binary
+*.ppk2 binary
+*.jpg binary
+*.png binary
+*.zip binary
