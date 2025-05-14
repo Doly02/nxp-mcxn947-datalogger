@@ -1,0 +1,110 @@
+\doxysection{src/app\+\_\+tasks.c File Reference}
+\hypertarget{app__tasks_8c}{}\label{app__tasks_8c}\index{src/app\_tasks.c@{src/app\_tasks.c}}
+{\ttfamily \#include "{}app\+\_\+tasks.\+h"{}}\newline
+{\ttfamily \#include "{}rtc\+\_\+ds3231.\+h"{}}\newline
+{\ttfamily \#include "{}mass\+\_\+storage.\+h"{}}\newline
+{\ttfamily \#include "{}task\+\_\+switching.\+h"{}}\newline
+{\ttfamily \#include "{}record.\+h"{}}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{app__tasks_8c_afc4213d2d4926914e58ecd69e8a2ad08}{msc\+\_\+task}} (void \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em Task Responsible For Mass Storage Functionality in Device Mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{app__tasks_8c_a6fc052f631f3c48fe52fd49e056785bd}{record\+\_\+task}} (void \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em Task Recording Serial Data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{app__tasks_8c_a1988aa923b19fa6f31c93afa7773f793}{v\+Application\+Get\+Idle\+Task\+Memory}} (Static\+Task\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ppx\+Idle\+Task\+TCBBuffer, Stack\+Type\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ppx\+Idle\+Task\+Stack\+Buffer, uint32\+\_\+t \texorpdfstring{$\ast$}{*}pul\+Idle\+Task\+Stack\+Size)
+\begin{DoxyCompactList}\small\item\em Hook Function to Provide Memory For The Idle Task in Free\+RTOS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{app__tasks_8c_a1e80ecbd3fc2d04f18d6409ffa893a86}{v\+Application\+Get\+Timer\+Task\+Memory}} (Static\+Task\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ppx\+Timer\+Task\+TCBBuffer, Stack\+Type\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ppx\+Timer\+Task\+Stack\+Buffer, uint32\+\_\+t \texorpdfstring{$\ast$}{*}pul\+Timer\+Task\+Stack\+Size)
+\begin{DoxyCompactList}\small\item\em Hook Function to Provide Memory For The Timer Task in Free\+RTOS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static Static\+Task\+\_\+t \mbox{\hyperlink{group___task_management_gae4cad385712053d9a712350bfaa6a609}{x\+Idle\+Task\+TCB}}
+\begin{DoxyCompactList}\small\item\em TCB (Task Control Block) -\/ Meta-\/\+Data of IDLE Task. \end{DoxyCompactList}\item 
+static Stack\+Type\+\_\+t \mbox{\hyperlink{group___task_management_ga14cdc368a30f8ae63554506a3b52ac93}{ux\+Idle\+Task\+Stack}} \mbox{[}config\+MINIMAL\+\_\+\+STACK\+\_\+\+SIZE\mbox{]}
+\begin{DoxyCompactList}\small\item\em Stack for Static Idle Task. \end{DoxyCompactList}\item 
+static Static\+Task\+\_\+t \mbox{\hyperlink{group___task_management_gacc894c54ff9d2500bb480c6c87146d98}{x\+Timer\+Task\+TCB}}
+\begin{DoxyCompactList}\small\item\em TCB (Task Control Block) -\/ Meta-\/\+Data of Timer Task. \end{DoxyCompactList}\item 
+static Stack\+Type\+\_\+t \mbox{\hyperlink{group___task_management_gaf9fe642f3d18526be6f8488df25ac3ce}{ux\+Timer\+Task\+Stack}} \mbox{[}config\+TIMER\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+DEPTH\mbox{]}
+\begin{DoxyCompactList}\small\item\em Stack for Static Timer Task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{app__tasks_8c_afc4213d2d4926914e58ecd69e8a2ad08}\index{app\_tasks.c@{app\_tasks.c}!msc\_task@{msc\_task}}
+\index{msc\_task@{msc\_task}!app\_tasks.c@{app\_tasks.c}}
+\doxysubsubsection{\texorpdfstring{msc\_task()}{msc\_task()}}
+{\footnotesize\ttfamily \label{app__tasks_8c_afc4213d2d4926914e58ecd69e8a2ad08} 
+void msc\+\_\+task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Task Responsible For Mass Storage Functionality in Device Mode. 
+
+This Task Implements USB Mass Storage Class (MSC) Operations, Allowing The System to Act As a Mass Storage Device. It Handles Communication With The Host and Manages Read/\+Write Operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to The Device Handle Used For The USB Operations. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{app__tasks_8c_a6fc052f631f3c48fe52fd49e056785bd}\index{app\_tasks.c@{app\_tasks.c}!record\_task@{record\_task}}
+\index{record\_task@{record\_task}!app\_tasks.c@{app\_tasks.c}}
+\doxysubsubsection{\texorpdfstring{record\_task()}{record\_task()}}
+{\footnotesize\ttfamily \label{app__tasks_8c_a6fc052f631f3c48fe52fd49e056785bd} 
+void record\+\_\+task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Task Recording Serial Data. 
+
+The Task Provides Data Reception, Data Processing (For Example, Adding Time Stamps) And Also Data Storage. In Case The Monitored Device Is Disconnected From The Data Logger, All The Buffered Data In RAM Is Stored On The Memory Card.
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to The Device Handle Used For The USB Operations. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{app__tasks_8c_a1988aa923b19fa6f31c93afa7773f793}\index{app\_tasks.c@{app\_tasks.c}!vApplicationGetIdleTaskMemory@{vApplicationGetIdleTaskMemory}}
+\index{vApplicationGetIdleTaskMemory@{vApplicationGetIdleTaskMemory}!app\_tasks.c@{app\_tasks.c}}
+\doxysubsubsection{\texorpdfstring{vApplicationGetIdleTaskMemory()}{vApplicationGetIdleTaskMemory()}}
+{\footnotesize\ttfamily \label{app__tasks_8c_a1988aa923b19fa6f31c93afa7773f793} 
+void v\+Application\+Get\+Idle\+Task\+Memory (\begin{DoxyParamCaption}\item[{Static\+Task\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ppx\+Idle\+Task\+TCBBuffer}{, }\item[{Stack\+Type\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ppx\+Idle\+Task\+Stack\+Buffer}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{pul\+Idle\+Task\+Stack\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Hook Function to Provide Memory For The Idle Task in Free\+RTOS. 
+
+This Hook Function Provides The Memory Needed For The Idle Task, Which Is Statically Allocated When config\+SUPPORT\+\_\+\+STATIC\+\_\+\+ALLOCATION Is Set to 1. The Free\+RTOS Scheduler Calls This Function to Get The Task Control Block (TCB) and Stack For The Idle Task.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em ppx\+Idle\+Task\+TCBBuffer} & Pointer to The TCB Buffer For The Idle Task. \\
+\hline
+\mbox{\texttt{ out}}  & {\em ppx\+Idle\+Task\+Stack\+Buffer} & Pointer to The Stack Buffer For The Idle Task. \\
+\hline
+\mbox{\texttt{ out}}  & {\em pul\+Idle\+Task\+Stack\+Size} & Pointer to a Variable Holding The Stack Size. \\
+\hline
+\end{DoxyParams}
+MISRA Deviation\+: Rule 10.\+8 \mbox{[}Required\mbox{]} Suppress\+: Conversion From Signed Macro To Unsigned Type. Justification\+: \textquotesingle{}Config\+MINIMAL\+\_\+\+STACK\+\_\+\+SIZE\textquotesingle{} Is Defined By Free\+RTOS As A Signed Macro. The Conversion To \textquotesingle{}Uint32\+\_\+t\textquotesingle{} Is Intentional And Safe In This Context. Fixing The Definition is Not Possible.\Hypertarget{app__tasks_8c_a1e80ecbd3fc2d04f18d6409ffa893a86}\index{app\_tasks.c@{app\_tasks.c}!vApplicationGetTimerTaskMemory@{vApplicationGetTimerTaskMemory}}
+\index{vApplicationGetTimerTaskMemory@{vApplicationGetTimerTaskMemory}!app\_tasks.c@{app\_tasks.c}}
+\doxysubsubsection{\texorpdfstring{vApplicationGetTimerTaskMemory()}{vApplicationGetTimerTaskMemory()}}
+{\footnotesize\ttfamily \label{app__tasks_8c_a1e80ecbd3fc2d04f18d6409ffa893a86} 
+void v\+Application\+Get\+Timer\+Task\+Memory (\begin{DoxyParamCaption}\item[{Static\+Task\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ppx\+Timer\+Task\+TCBBuffer}{, }\item[{Stack\+Type\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ppx\+Timer\+Task\+Stack\+Buffer}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{pul\+Timer\+Task\+Stack\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Hook Function to Provide Memory For The Timer Task in Free\+RTOS. 
+
+This Hook Function Provides The Memory Needed For The Timer Task, Which Is Statically Allocated When config\+SUPPORT\+\_\+\+STATIC\+\_\+\+ALLOCATION Is Set To 1 And config\+USE\+\_\+\+TIMERS Is Enabled. The Free\+RTOS Scheduler Calls This Function to Get The Task Control Block (TCB) And Stack For The Timer Task.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em ppx\+Timer\+Task\+TCBBuffer} & Pointer to The TCB Buffer For The Timer Task. \\
+\hline
+\mbox{\texttt{ out}}  & {\em ppx\+Timer\+Task\+Stack\+Buffer} & Pointer to The Stack Buffer For The Timer Task. \\
+\hline
+\mbox{\texttt{ out}}  & {\em pul\+Timer\+Task\+Stack\+Size} & Pointer to a Variable Holding The Stack Size. \\
+\hline
+\end{DoxyParams}
+MISRA Deviation\+: Rule 10.\+8 \mbox{[}Required\mbox{]} Suppress\+: Conversion From Signed Macro To Unsigned Type. Justification\+: \textquotesingle{}config\+TIMER\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+DEPTH\textquotesingle{} Is Defined By Free\+RTOS As A Signed Macro. The Conversion To \textquotesingle{}Uint32\+\_\+t\textquotesingle{} Is Intentional And Safe In This Context. Fixing The Definition is Not Possible.

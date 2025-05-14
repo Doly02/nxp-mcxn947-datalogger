@@ -1,0 +1,67 @@
+\doxysection{pwrloss\+\_\+det.\+h}
+\hypertarget{pwrloss__det_8h_source}{}\label{pwrloss__det_8h_source}\index{include/pwrloss\_det.h@{include/pwrloss\_det.h}}
+\mbox{\hyperlink{pwrloss__det_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/******************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ Project:\ \ \ \ \ \ \ \ NXP\ MCXN947\ Datalogger}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ File\ Name:\ \ \ \ \ \ pwrloss\_det.h}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Author:\ \ \ \ \ \ \ \ \ Tomas\ Dolak}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Date:\ \ \ \ \ \ \ \ \ \ \ 01.02.2024}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ Description:\ \ \ \ Implements\ The\ Logic\ Of\ Power\ Loss\ Detection.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ ****************************/}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{/******************************}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ @package\ \ \ \ \ \ \ \ NXP\ MCXN947\ Datalogger}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ @file\ \ \ \ \ \ \ \ \ \ \ pwrloss\_det.h}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ @author\ \ \ \ \ \ \ \ \ Tomas\ Dolak}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ @date\ \ \ \ \ \ \ \ \ \ \ 01.02.2024}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ @brief\ \ \ \ \ \ \ \ \ \ Implements\ The\ Logic\ Of\ Power\ Loss\ Detection.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ ****************************/}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ PWRLOSS\_DET\_H\_}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ PWRLOSS\_DET\_H\_}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ Includes}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}fsl\_lpcmp.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}fsl\_spc.h"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{led_8h}{led.h}}"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8h}{defs.h}}"{}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}fsl\_ctimer.h"{}}}
+\DoxyCodeLine{00033\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ Global\ Definitions}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ LPCMP\_BASE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CMP1}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ LPCMP\_USER\_CHANNEL\ \ \ \ \ \ \ \ \ \ 0x02}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ LPCMP\_DAC\_CHANNEL\ \ \ \ \ \ \ \ \ \ \ 0x07}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ LPCMP\_IRQ\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HSCMP1\_IRQn}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ SPC\_BASE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPC0}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ CTIMER\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CTIMER4}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ CTIMER\_MAT0\_OUT\ \ \ \ \ \ \ \ \ \ \ \ \ kCTIMER\_Match\_0}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ CTIMER\_EMT0\_OUT\ \ \ \ \ \ \ \ \ \ \ \ \ (1u\ <<\ kCTIMER\_Match\_0)}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ CTIMER\_CLK\_FREQ\ \ \ \ \ \ \ \ \ \ \ \ \ CLOCK\_GetCTimerClkFreq(4U)}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ *\ Prototypes}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00098\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pwrloss__det_8h_a640dcd500f29a2a077dbc83532cde9e5}{PWRLOSS\_DetectionInit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ PWRLOSS\_DET\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

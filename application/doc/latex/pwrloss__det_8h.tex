@@ -1,0 +1,140 @@
+\doxysection{include/pwrloss\+\_\+det.h File Reference}
+\hypertarget{pwrloss__det_8h}{}\label{pwrloss__det_8h}\index{include/pwrloss\_det.h@{include/pwrloss\_det.h}}
+{\ttfamily \#include "{}fsl\+\_\+lpcmp.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+spc.\+h"{}}\newline
+{\ttfamily \#include "{}led.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}fsl\+\_\+ctimer.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a7342461d1fcb9a6c8c3ae456bafa61d5}{LPCMP\+\_\+\+BASE}}~CMP1
+\begin{DoxyCompactList}\small\item\em Base Address of The Low-\/\+Power Comparator (LPCMP). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_af9b640fbdea56d26a90253d0fe4fc220}{LPCMP\+\_\+\+USER\+\_\+\+CHANNEL}}~0x02
+\begin{DoxyCompactList}\small\item\em Comparator Input Channel Used For 5V Monitoring. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a4f642f96675b7192c91d864dbf7dcb38}{LPCMP\+\_\+\+DAC\+\_\+\+CHANNEL}}~0x07
+\begin{DoxyCompactList}\small\item\em Comparator Internal DAC Reference Channel. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a648509c09a6537239f18c77e34597db7}{LPCMP\+\_\+\+IRQ\+\_\+\+ID}}~HSCMP1\+\_\+\+IRQn
+\begin{DoxyCompactList}\small\item\em IRQ Number for The Comparator Peripheral. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a23e04ddbaa1a9179a401e01986f5bbea}{SPC\+\_\+\+BASE}}~SPC0
+\begin{DoxyCompactList}\small\item\em Base Address of The Supply Power Controller (SPC). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_ab7786fe5adcd1d885491257b0ebc27b8}{CTIMER}}~CTIMER4
+\begin{DoxyCompactList}\small\item\em Timer Used To Control Delayed Activation of Power Loss Detection. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a31628cf818c8dea7d3311a53c65cb924}{CTIMER\+\_\+\+MAT0\+\_\+\+OUT}}~k\+CTIMER\+\_\+\+Match\+\_\+0
+\begin{DoxyCompactList}\small\item\em Timer Match Output Channel 0. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a54ee2e0d23f2366ac80ccbdda3808b70}{CTIMER\+\_\+\+EMT0\+\_\+\+OUT}}~(1u $<$$<$ k\+CTIMER\+\_\+\+Match\+\_\+0)
+\begin{DoxyCompactList}\small\item\em Timer External Match Output Mask For Channel 0. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pwrloss__det_8h_a282d828757fa193e5c9a4e671867cf34}{CTIMER\+\_\+\+CLK\+\_\+\+FREQ}}~CLOCK\+\_\+\+Get\+CTimer\+Clk\+Freq(4U)
+\begin{DoxyCompactList}\small\item\em Clock Frequency Retrieval Macro For The Timer Instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pwrloss__det_8h_a640dcd500f29a2a077dbc83532cde9e5}{PWRLOSS\+\_\+\+Detection\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initializes Power Loss Detection Components. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{pwrloss__det_8h_ab7786fe5adcd1d885491257b0ebc27b8}\index{pwrloss\_det.h@{pwrloss\_det.h}!CTIMER@{CTIMER}}
+\index{CTIMER@{CTIMER}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{CTIMER}{CTIMER}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_ab7786fe5adcd1d885491257b0ebc27b8} 
+\#define CTIMER~CTIMER4}
+
+
+
+Timer Used To Control Delayed Activation of Power Loss Detection. 
+
+The Comparator is Enabled After a Delay of 5tau, Which Corresponds To The Time Needed For The Backup Capacitor To Become Fully Charged. This Delay Ensures Valid Detection of Power Drop Events and Avoids False Triggering During Startup. \Hypertarget{pwrloss__det_8h_a282d828757fa193e5c9a4e671867cf34}\index{pwrloss\_det.h@{pwrloss\_det.h}!CTIMER\_CLK\_FREQ@{CTIMER\_CLK\_FREQ}}
+\index{CTIMER\_CLK\_FREQ@{CTIMER\_CLK\_FREQ}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{CTIMER\_CLK\_FREQ}{CTIMER\_CLK\_FREQ}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a282d828757fa193e5c9a4e671867cf34} 
+\#define CTIMER\+\_\+\+CLK\+\_\+\+FREQ~CLOCK\+\_\+\+Get\+CTimer\+Clk\+Freq(4U)}
+
+
+
+Clock Frequency Retrieval Macro For The Timer Instance. 
+
+\Hypertarget{pwrloss__det_8h_a54ee2e0d23f2366ac80ccbdda3808b70}\index{pwrloss\_det.h@{pwrloss\_det.h}!CTIMER\_EMT0\_OUT@{CTIMER\_EMT0\_OUT}}
+\index{CTIMER\_EMT0\_OUT@{CTIMER\_EMT0\_OUT}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{CTIMER\_EMT0\_OUT}{CTIMER\_EMT0\_OUT}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a54ee2e0d23f2366ac80ccbdda3808b70} 
+\#define CTIMER\+\_\+\+EMT0\+\_\+\+OUT~(1u $<$$<$ k\+CTIMER\+\_\+\+Match\+\_\+0)}
+
+
+
+Timer External Match Output Mask For Channel 0. 
+
+\Hypertarget{pwrloss__det_8h_a31628cf818c8dea7d3311a53c65cb924}\index{pwrloss\_det.h@{pwrloss\_det.h}!CTIMER\_MAT0\_OUT@{CTIMER\_MAT0\_OUT}}
+\index{CTIMER\_MAT0\_OUT@{CTIMER\_MAT0\_OUT}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{CTIMER\_MAT0\_OUT}{CTIMER\_MAT0\_OUT}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a31628cf818c8dea7d3311a53c65cb924} 
+\#define CTIMER\+\_\+\+MAT0\+\_\+\+OUT~k\+CTIMER\+\_\+\+Match\+\_\+0}
+
+
+
+Timer Match Output Channel 0. 
+
+\Hypertarget{pwrloss__det_8h_a7342461d1fcb9a6c8c3ae456bafa61d5}\index{pwrloss\_det.h@{pwrloss\_det.h}!LPCMP\_BASE@{LPCMP\_BASE}}
+\index{LPCMP\_BASE@{LPCMP\_BASE}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{LPCMP\_BASE}{LPCMP\_BASE}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a7342461d1fcb9a6c8c3ae456bafa61d5} 
+\#define LPCMP\+\_\+\+BASE~CMP1}
+
+
+
+Base Address of The Low-\/\+Power Comparator (LPCMP). 
+
+Used To Detect Loss of Primary 5V Supply. If The Voltage Drops Below a Defined Threshold, It Triggers a Transition To Backup Power Mode for Safe Data Preservation. \Hypertarget{pwrloss__det_8h_a4f642f96675b7192c91d864dbf7dcb38}\index{pwrloss\_det.h@{pwrloss\_det.h}!LPCMP\_DAC\_CHANNEL@{LPCMP\_DAC\_CHANNEL}}
+\index{LPCMP\_DAC\_CHANNEL@{LPCMP\_DAC\_CHANNEL}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{LPCMP\_DAC\_CHANNEL}{LPCMP\_DAC\_CHANNEL}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a4f642f96675b7192c91d864dbf7dcb38} 
+\#define LPCMP\+\_\+\+DAC\+\_\+\+CHANNEL~0x07}
+
+
+
+Comparator Internal DAC Reference Channel. 
+
+\Hypertarget{pwrloss__det_8h_a648509c09a6537239f18c77e34597db7}\index{pwrloss\_det.h@{pwrloss\_det.h}!LPCMP\_IRQ\_ID@{LPCMP\_IRQ\_ID}}
+\index{LPCMP\_IRQ\_ID@{LPCMP\_IRQ\_ID}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{LPCMP\_IRQ\_ID}{LPCMP\_IRQ\_ID}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a648509c09a6537239f18c77e34597db7} 
+\#define LPCMP\+\_\+\+IRQ\+\_\+\+ID~HSCMP1\+\_\+\+IRQn}
+
+
+
+IRQ Number for The Comparator Peripheral. 
+
+\Hypertarget{pwrloss__det_8h_af9b640fbdea56d26a90253d0fe4fc220}\index{pwrloss\_det.h@{pwrloss\_det.h}!LPCMP\_USER\_CHANNEL@{LPCMP\_USER\_CHANNEL}}
+\index{LPCMP\_USER\_CHANNEL@{LPCMP\_USER\_CHANNEL}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{LPCMP\_USER\_CHANNEL}{LPCMP\_USER\_CHANNEL}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_af9b640fbdea56d26a90253d0fe4fc220} 
+\#define LPCMP\+\_\+\+USER\+\_\+\+CHANNEL~0x02}
+
+
+
+Comparator Input Channel Used For 5V Monitoring. 
+
+\Hypertarget{pwrloss__det_8h_a23e04ddbaa1a9179a401e01986f5bbea}\index{pwrloss\_det.h@{pwrloss\_det.h}!SPC\_BASE@{SPC\_BASE}}
+\index{SPC\_BASE@{SPC\_BASE}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{SPC\_BASE}{SPC\_BASE}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a23e04ddbaa1a9179a401e01986f5bbea} 
+\#define SPC\+\_\+\+BASE~SPC0}
+
+
+
+Base Address of The Supply Power Controller (SPC). 
+
+For Activation Analog Modules. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pwrloss__det_8h_a640dcd500f29a2a077dbc83532cde9e5}\index{pwrloss\_det.h@{pwrloss\_det.h}!PWRLOSS\_DetectionInit@{PWRLOSS\_DetectionInit}}
+\index{PWRLOSS\_DetectionInit@{PWRLOSS\_DetectionInit}!pwrloss\_det.h@{pwrloss\_det.h}}
+\doxysubsubsection{\texorpdfstring{PWRLOSS\_DetectionInit()}{PWRLOSS\_DetectionInit()}}
+{\footnotesize\ttfamily \label{pwrloss__det_8h_a640dcd500f29a2a077dbc83532cde9e5} 
+void PWRLOSS\+\_\+\+Detection\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes Power Loss Detection Components. 
+
+This Function Configures The Comparator (LPCMP) for Monitoring The 5V Power Rail and The Timer (CTIMER4) That Delays The Activation of The Comparator Until The Backup Capacitor Is Fully Charged (\texorpdfstring{$\sim$}{\string~}5tau). After Initialization, The Timer is Started and The Comparator Will Be Enabled Upon Timer Match Event. 

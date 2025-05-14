@@ -3,7 +3,7 @@
  *  File Name:      uart.h
  *  Author:         Tomas Dolak
  *  Date:           25.11.2024
- *  Description:    Implements the UART peripheral support.
+ *  Description:    Header File For The UART Peripheral Support.
  *
  * ****************************/
 
@@ -12,7 +12,7 @@
  *  @file           uart.h
  *  @author         Tomas Dolak
  *  @date           25.11.2024
- *  @brief          Implements the UART peripheral support.
+ *  @brief          Header File For The UART Peripheral Support.
  * ****************************/
 
 #ifndef UART_H_
@@ -34,7 +34,7 @@
 /**
  * @brief Frequency of LPUART7.
  */
-#define LPUART7_CLK_FREQ   CLOCK_GetLPFlexCommClkFreq(7u)
+#define LPUART3_CLK_FREQ   CLOCK_GetLPFlexCommClkFreq(3u)
 
 
 /*******************************************************************************
@@ -42,7 +42,7 @@
  ******************************************************************************/
 
 /**
- * @brief 		Initializes LPUART7 For Recording.
+ * @brief 		Initializes LPUART For Recording.
  */
 void UART_Init(uint32_t baudrate);
 
@@ -54,14 +54,20 @@ void UART_Init(uint32_t baudrate);
 void UART_Print(uint8_t ch);
 
 /**
- * @brief 		Enables Interrupt For Application LPUART7.
+ * @brief 		Enables Interrupt For Application LPUART.
  */
 void UART_Enable(void);
 
 /**
- * @brief 		Disables Interrupt For Application LPUART7.
+ * @brief 		Disables Interrupt For Application LPUART.
  */
 void UART_Disable(void);
+
+/**
+ * @brief 		De-Initialize LPUART.
+ * @details		The Pins Should Be De-Initialized After This Function.
+ */
+void UART_Deinit(void);
 
 #endif /* UART_H_ */
 

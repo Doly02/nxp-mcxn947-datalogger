@@ -1,0 +1,7 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "SSQ-xxx-03-T-D")(type "KiCad")(uri "${KIPRJMOD}/Libs/SSQ-xxx-03-T-D/SSQ-xxx-03-T-D")(options "")(descr ""))
+  (lib (name "CR2032")(type "KiCad")(uri "${KIPRJMOD}/Libs/CR2032")(options "")(descr ""))
+  (lib (name "Neo7M_Module_Lib")(type "KiCad")(uri "${KIPRJMOD}/Libs/Neo7M_Module_Lib.pretty")(options "")(descr ""))
+  (lib (name "SuperCapacitors")(type "KiCad")(uri "${KIPRJMOD}/SuperCapacitors.pretty")(options "")(descr ""))
+)

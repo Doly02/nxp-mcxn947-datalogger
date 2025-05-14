@@ -9,8 +9,6 @@
  * 		@filename		rtc_ds3231.c
  */
 
-
-
 /*******************************************************************************
  * Includes
  ******************************************************************************/
@@ -18,55 +16,115 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+/**
+ * @brief Length of I2C Rx Buffer.
+ */
 #define I2C_DATA_LENGTH            	(2) /* MAX is 256 */
 
 /*
  * @brief Other Definitions.
  */
-#define BYTE_1						(0U)
-#define BYTE_2						(1U)
-#define CLK_STATE(x)				(uint8_t)((x >> 7) & 0x1)
+
 /*
- * @brief 	OSF Bit (Oscillator Stop Flag) Indicates Whether The Oscillator Has Stopped.
- * 			If The Oscillator Has Stopped THe OSF Bit is Set To 1.
+ * @brief First Byte.
  */
-#define OSF_STATE(x)
+#define BYTE_1						(0U)
+
+/*
+ * @brief Seconds Byte.
+ */
+#define BYTE_2						(1U)
+
+/*
+ * @brief 	Returns The State of Internal Oscillator of DS3231.
+ * @details OK / Oscillator Has Been Stop.
+ */
+#define CLK_STATE(x)				(uint8_t)((x >> 7) & 0x1)
 
 /*******************************************************************************
  * Global Variables.
  ******************************************************************************/
-AT_NONCACHEABLE_SECTION(uint8_t g_master_txBuff[I2C_DATA_LENGTH]);
-AT_NONCACHEABLE_SECTION(uint8_t g_master_rxBuff[I2C_DATA_LENGTH]);
-volatile bool g_MasterCompletionFlag = false;
-ARM_DRIVER_I2C *i2cDriver;
+/**
+ * @brief	Reception Buffer.
+ * @details	Must Be In Non-Cacheable Memory Due To Usage of DMA.
+ */
+AT_NONCACHEABLE_SECTION(uint8_t g_aRxBuff[I2C_DATA_LENGTH]);
 
+/**
+ * @brief	Transmission Buffer.
+ * @details	Must Be In Non-Cacheable Memory Due To Usage of DMA.
+ */
+AT_NONCACHEABLE_SECTION(uint8_t gTxBuff[I2C_DATA_LENGTH]);
+
+/**
+ * @brief	eDMA Driver Handle Used For Non-Blocking DMA Transfer.
+ */
+AT_NONCACHEABLE_SECTION(lpi2c_master_edma_handle_t gEdmaHandle);
+
+/**
+ * @brief	Tx eDMA Handle.
+ */
+edma_handle_t gEdmaTxHandle;
+
+/**
+ * @brief	Rx eDMA Handle.
+ */
+edma_handle_t gEdmaRxHandle;
+
+/**
+ * @brief	Flag Indicating Whether The Transfer Has Finished.
+ */
+volatile bool gCompletionFlag 	= false;
+
+/**
+ * @brief   Transfer Descriptor for I2C Communication.
+ * @details Used to Configure and Execute Data Transfer Operations With The DS3231 via LPI2C using EDMA.
+ */
+lpi2c_master_transfer_t xfer 	= {0};
 /*******************************************************************************
- * Implementation of Functions
+ * Callback Functions
  ******************************************************************************/
-static void I2C_MasterCallback(uint32_t event)
+static void lpi2c_callback(LPI2C_Type *base, lpi2c_master_edma_handle_t *handle, status_t status, void *userData)
 {
-    switch (event)
+    /* Signal transfer success when received success status. */
+	if (kStatus_Success == status)
     {
-        /* The master has sent a stop transition on the bus */
-        case ARM_I2C_EVENT_TRANSFER_DONE:
-            g_MasterCompletionFlag = true;
-            break;
-
-        default:
-            break;
+    	gCompletionFlag = true;
     }
 }
-
-uint8_t RTC_Init(ARM_DRIVER_I2C *pI2c)
+/*******************************************************************************
+ * Functions
+ ******************************************************************************/
+uint8_t RTC_Init(void)
 {
-	/* Initialize Peripherals */
-	i2cDriver = pI2c;
-	/* Initialize the I2C Bus */
-	i2cDriver->Initialize(I2C_MasterCallback);
-	i2cDriver->PowerControl(ARM_POWER_FULL);
+    lpi2c_master_config_t masterCfg;
+    edma_config_t userCfg;
+    status_t retVal = kStatus_Fail;
 
-    /* Change the default baudrate configuration */
-	i2cDriver->Control(ARM_I2C_BUS_SPEED, ARM_I2C_BUS_SPEED_STANDARD);
+    /**
+     * enableRoundRobinArbitration = false;
+     * enableHaltOnError = true;
+     * enableContinuousLinkMode = false;
+     * enableDebugMode = false;
+     **/
+    EDMA_GetDefaultConfig(&userCfg);
+    EDMA_Init(DMA0, &userCfg);
+
+    LPI2C_MasterGetDefaultConfig(&masterCfg);
+    masterCfg.baudRate_Hz = I2C_BAUDRATE;
+
+    /* Initialize The LPI2C Master */
+    LPI2C_MasterInit(I2C_MASTER, &masterCfg, CLOCK_GetLPFlexCommClkFreq(2u));
+
+    /* Create The EDMA Channel Handles */
+    EDMA_CreateHandle(&gEdmaTxHandle, DMA0, LPI2C_TX_DMA_CHANNEL);
+    EDMA_CreateHandle(&gEdmaRxHandle, DMA0, LPI2C_RX_DMA_CHANNEL);
+    EDMA_SetChannelMux(DMA0, LPI2C_TX_DMA_CHANNEL, LPI2C_TX_CHANNEL);
+    EDMA_SetChannelMux(DMA0, LPI2C_RX_DMA_CHANNEL, LPI2C_RX_EDMA_CHANNEL);
+
+    /* Create LPI2C Master DMA Driver Handle */
+    LPI2C_MasterCreateEDMAHandle(I2C_MASTER, &gEdmaHandle, &gEdmaRxHandle, &gEdmaTxHandle,
+                                 lpi2c_callback, NULL);
 
 	/* Disable Alarms */
 	RTC_CtrlAlarm1(ALARM_DISABLED);
@@ -77,8 +135,25 @@ uint8_t RTC_Init(ARM_DRIVER_I2C *pI2c)
 	/* Set Interrupt Mode */
 	RTC_SetInterruptMode(ALARM_INTERRUPT);
 
-	return SUCCESS;
+	return APP_SUCCESS;
 
+}
+
+void RTC_Deinit(void)
+{
+	/* Abort Tx & Rx */
+    EDMA_AbortTransfer(&gEdmaTxHandle);
+    EDMA_AbortTransfer(&gEdmaRxHandle);
+
+    /* De-Initialization of I2C */
+    LPI2C_MasterDeinit(I2C_MASTER);
+
+    /* De-Initialization of DMA */
+    EDMA_Deinit(DMA0);
+
+    CLOCK_EnableClock(kCLOCK_Port4);
+
+    /*De-Inicialization of Pins Are Not Handled By The Driver, It's Board Specific */
 }
 
 /*
@@ -149,46 +224,84 @@ void RTC_SetOscState(RTC_osc_state_t state)
 /*
  * @brief RTC Specific Functions.
  */
-void RTC_Write(uint8_t regAddress, uint8_t val)
+uint8_t RTC_Write(uint8_t regAddress, uint8_t val)
 {
-	g_master_txBuff[BYTE_1] = regAddress;
-	g_master_txBuff[BYTE_2] = val;
+	gTxBuff[BYTE_1] = regAddress;
+	gTxBuff[BYTE_2] = val;
+	uint8_t retVal 	= 1;
 
-	/* Transmit Data To The RTC Slave */
-	i2cDriver->MasterTransmit(DS3231_ADDR_I2C, g_master_txBuff, I2C_DATA_LENGTH, false);
+    xfer.slaveAddress   = DS3231_ADDR_I2C;				/* Slave Address			*/
+    xfer.direction      = kLPI2C_Write;					/* Direction (Read/Write)	*/
+    xfer.subaddressSize = 0;							/* Sub-Address Size 		*/
+    xfer.data           = gTxBuff;						/* Transmitted Data			*/
+    xfer.dataSize       = 2;							/* Size of Transmitted Data	*/
+    xfer.flags          = kLPI2C_TransferDefaultFlag;	/* Flags (e.g. Stop Flag) 	*/
 
-	/*wait for master complete*/
-    while (!g_MasterCompletionFlag)
+    /* Send master non-blocking data to slave */
+    retVal = LPI2C_MasterTransferEDMA(I2C_MASTER, &gEdmaHandle, &xfer);
+    if ((uint8_t)kStatus_Success != retVal)
     {
+        return (0xFF);
     }
 
-    /*  Reset master completion flag to false. */
-    g_MasterCompletionFlag = false;
-
-	return;
+    /*  Wait for transfer completed. */
+	while (false == gCompletionFlag)
+	{
+		; /* Wait For Slave Complete */
+	}
+    gCompletionFlag = false;							// Reset
+    return 0;
 }
 
 uint8_t RTC_Read(uint8_t regAddress)
 {
-	uint8_t ui8ReceivedData = 0xFFU;
+	uint16_t rxVal		= 0;
+	uint8_t retVal 		= 1;
 
-	i2cDriver->MasterTransmit(DS3231_ADDR_I2C, &regAddress, 1, false);
-    while (!g_MasterCompletionFlag)
+    xfer.slaveAddress   = DS3231_ADDR_I2C;				/* Slave Address			*/
+    xfer.direction      = kLPI2C_Write;					/* Direction (Read/Write)	*/
+    xfer.subaddressSize = 0;							/* Sub-Address Size 		*/
+    xfer.data           = &regAddress;					/* Transmitted Data			*/
+    xfer.dataSize       = 1;							/* Size of Transmitted Data	*/
+    xfer.flags          = kLPI2C_TransferDefaultFlag;	/* Flags (e.g. Stop Flag) 	*/
+    /* Receive non-blocking data from slave */
+    retVal = LPI2C_MasterTransferEDMA(I2C_MASTER, &gEdmaHandle, &xfer);
+    if ((uint8_t)kStatus_Success != retVal)
     {
+        return (0xFF);
     }
-    /*  Reset master completion flag to false. */
-    g_MasterCompletionFlag = false;
 
-    i2cDriver->MasterReceive(DS3231_ADDR_I2C, &ui8ReceivedData, 1, false);
+	while (false == gCompletionFlag)
+	{
+		; /* Wait For Slave Complete */
+	}
 
-	/*wait for master complete*/
-    while (!g_MasterCompletionFlag)
+    gCompletionFlag = false;							// Reset
+
+
+	xfer.slaveAddress   = DS3231_ADDR_I2C;				/* Slave Address			*/
+	xfer.direction      = kLPI2C_Read;					/* Direction (Read/Write)	*/
+	xfer.subaddressSize = 0;							/* Sub-Address Size 		*/
+	xfer.data           = g_aRxBuff;						/* Transmitted Data			*/
+	xfer.dataSize       = 1;							/* Size of Transmitted Data	*/
+	xfer.flags          = kLPI2C_TransferDefaultFlag;	/* Flags (e.g. Stop Flag) 	*/
+
+    /* Receive non-blocking data from slave */
+    retVal = LPI2C_MasterTransferEDMA(I2C_MASTER, &gEdmaHandle, &xfer);
+    if ((uint8_t)kStatus_Success != retVal)
     {
+        return (0xFF);
     }
 
-    /*  Reset master completion flag to false. */
-    g_MasterCompletionFlag = false;
-	return ui8ReceivedData;
+	while (false == gCompletionFlag)
+	{
+		; /* Wait For Slave Complete */
+	}
+
+    gCompletionFlag = false;							// Reset
+
+	rxVal = (g_aRxBuff[0]);
+    return rxVal;
 }
 
 
@@ -306,9 +419,8 @@ void RTC_SetTimeDefault(RTC_time_t *pTime)
 
 void RTC_SetDateDefault(RTC_date_t *pDate)
 {
-	pDate->date = 6;
-	pDate->month = 9;
+	pDate->date = 4;
+	pDate->month = 6;
 	pDate->year = 2;
 	pDate->day = FRIDAY;
 }
-

@@ -1,18 +1,18 @@
 /******************************
  *  Project:        NXP MCXN947 Datalogger
- *  File Name:      tasks.c
+ *  File Name:      app_tasks.c
  *  Author:         Tomas Dolak
  *  Date:           14.09.2024
- *  Description:    Includes Implementation of Task For FreeRTOS.
+ *  Description:    Header File For Implementation of FreeRTOS Task.
  *
  * ****************************/
 
 /******************************
  *  @package        NXP MCXN947 Datalogger
- *  @file           tasks.c
+ *  @file           app_tasks.c
  *  @author         Tomas Dolak
  *  @date           14.09.2024
- *  @brief          Includes Implementation of Task For FreeRTOS.
+ *  @brief          Header File For Implementation of FreeRTOS Task.
  * ****************************/
 
 #ifndef APP_TASKS_H_
@@ -21,30 +21,41 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#include <mass_storage.h>
-#include <mass_storage.h>
+
+/* FreeRTOS Include */
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
 #include "timers.h"
 
+/* Mass Storage Includes */
+#include <disk.h>
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
 #define TASK_PRIO		(configMAX_PRIORITIES - 1) //<! Task Priorities.
 
 /*******************************************************************************
- * Variables
+ * Global Variables
  ******************************************************************************/
 
+/* Task Handles 	*/
+extern TaskHandle_t g_xMscTaskHandle;
+
+extern TaskHandle_t g_xRecordTaskHandle;
+
+/* Semaphores	 	*/
+extern SemaphoreHandle_t g_xSemRecord;
+
+extern SemaphoreHandle_t g_xSemMassStorage;
 
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
 
 
-/*!
+/**
  * @brief 	Task Responsible For Mass Storage Functionality in Device Mode.
  *
  * @details	This Task Implements USB Mass Storage Class (MSC) Operations, Allowing
@@ -55,8 +66,18 @@
  */
 void msc_task(void *handle);
 
+/**
+ * @brief 	Task Recording Serial Data.
+ *
+ * @details	The Task Provides Data Reception, Data Processing (For Example, Adding Time Stamps) And Also Data Storage.
+ *  		In Case The Monitored Device Is Disconnected From The Data Logger, All The Buffered Data In RAM Is Stored
+ *  		On The Memory Card.
+ *
+ * @param 	handle Pointer to The Device Handle Used For The USB Operations.
+ */
 void record_task(void *handle);
-/*!
+
+/**
  * @brief 	Hook Function to Provide Memory For The Idle Task in FreeRTOS.
  *
  * @details This Hook Function Provides The Memory Needed For The Idle Task, Which Is
@@ -72,7 +93,7 @@ void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
                                    StackType_t **ppxIdleTaskStackBuffer,
                                    uint32_t *pulIdleTaskStackSize);
 
-/*!
+/**
  * @brief Hook Function to Provide Memory For The Timer Task in FreeRTOS.
  *
  * @details This Hook Function Provides The Memory Needed For The Timer Task, Which Is

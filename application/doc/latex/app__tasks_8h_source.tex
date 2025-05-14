@@ -1,0 +1,76 @@
+\doxysection{app\+\_\+tasks.\+h}
+\hypertarget{app__tasks_8h_source}{}\label{app__tasks_8h_source}\index{include/app\_tasks.h@{include/app\_tasks.h}}
+\mbox{\hyperlink{app__tasks_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/******************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ Project:\ \ \ \ \ \ \ \ NXP\ MCXN947\ Datalogger}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ File\ Name:\ \ \ \ \ \ app\_tasks.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Author:\ \ \ \ \ \ \ \ \ Tomas\ Dolak}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Date:\ \ \ \ \ \ \ \ \ \ \ 14.09.2024}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ Description:\ \ \ \ Header\ File\ For\ Implementation\ of\ FreeRTOS\ Task.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ ****************************/}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{/******************************}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ @package\ \ \ \ \ \ \ \ NXP\ MCXN947\ Datalogger}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ @file\ \ \ \ \ \ \ \ \ \ \ app\_tasks.c}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ @author\ \ \ \ \ \ \ \ \ Tomas\ Dolak}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ @date\ \ \ \ \ \ \ \ \ \ \ 14.09.2024}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ @brief\ \ \ \ \ \ \ \ \ \ Header\ File\ For\ Implementation\ of\ FreeRTOS\ Task.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ ****************************/}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ APP\_TASKS\_H\_}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ APP\_TASKS\_H\_}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ Includes}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{/*\ FreeRTOS\ Include\ */}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}FreeRTOS.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}task.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}queue.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}semphr.h"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}timers.h"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{/*\ Mass\ Storage\ Includes\ */}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <disk.h>}}
+\DoxyCodeLine{00034\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *\ Definitions}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ TASK\_PRIO\ \ \ \ \ \ \ (configMAX\_PRIORITIES\ -\/\ 1)\ }\textcolor{comment}{//<!\ Task\ Priorities.}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ Global\ Variables}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{/*\ Task\ Handles\ \ \ \ \ */}}
+\DoxyCodeLine{00044\ \textcolor{keyword}{extern}\ TaskHandle\_t\ \mbox{\hyperlink{app__tasks_8h_a728d33fa6714c81e0ddb020328ac36ee}{g\_xMscTaskHandle}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{extern}\ TaskHandle\_t\ \mbox{\hyperlink{app__tasks_8h_a95134cbd8723a2c8b0cdd33f75d979fb}{g\_xRecordTaskHandle}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{/*\ Semaphores\ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{extern}\ SemaphoreHandle\_t\ \mbox{\hyperlink{app__tasks_8h_af59d7418386068624f2b915e32fe23ff}{g\_xSemRecord}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{extern}\ SemaphoreHandle\_t\ \mbox{\hyperlink{app__tasks_8h_a286a007f0c94c51fa505aa600c488122}{g\_xSemMassStorage}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ *\ Prototypes}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00067\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__tasks_8h_afc4213d2d4926914e58ecd69e8a2ad08}{msc\_task}}(\textcolor{keywordtype}{void}\ *handle);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__tasks_8h_a6fc052f631f3c48fe52fd49e056785bd}{record\_task}}(\textcolor{keywordtype}{void}\ *handle);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__tasks_8h_a1988aa923b19fa6f31c93afa7773f793}{vApplicationGetIdleTaskMemory}}(StaticTask\_t\ **ppxIdleTaskTCBBuffer,}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StackType\_t\ **ppxIdleTaskStackBuffer,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ *pulIdleTaskStackSize);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__tasks_8h_a1e80ecbd3fc2d04f18d6409ffa893a86}{vApplicationGetTimerTaskMemory}}(StaticTask\_t\ **ppxTimerTaskTCBBuffer,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StackType\_t\ **ppxTimerTaskStackBuffer,}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ *pulTimerTaskStackSize);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ APP\_TASKS\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

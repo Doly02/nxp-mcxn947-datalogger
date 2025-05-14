@@ -1,0 +1,91 @@
+\doxysection{REC\+\_\+config\+\_\+t Struct Reference}
+\hypertarget{struct_r_e_c__config__t}{}\label{struct_r_e_c__config__t}\index{REC\_config\_t@{REC\_config\_t}}
+
+
+Configuration structure for the recording system.  
+
+
+
+
+{\ttfamily \#include $<$parser.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130d}{REC\+\_\+version\+\_\+t}} \mbox{\hyperlink{struct_r_e_c__config__t_a619a311e1af3ae0b753b905110b4af33}{version}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_r_e_c__config__t_a00680a4f434815ac2af0ac1886007791}{baudrate}}
+\item 
+lpuart\+\_\+stop\+\_\+bit\+\_\+count\+\_\+t \mbox{\hyperlink{struct_r_e_c__config__t_ae90899b16678c6cf48b6b86861c2fcfa}{stop\+\_\+bits}}
+\item 
+lpuart\+\_\+data\+\_\+bits\+\_\+t \mbox{\hyperlink{struct_r_e_c__config__t_a48aab1fc2a9b37ed33b3d5903d64d709}{data\+\_\+bits}}
+\item 
+lpuart\+\_\+parity\+\_\+mode\+\_\+t \mbox{\hyperlink{struct_r_e_c__config__t_ae589e569d19f0b2a4087e62fd7597c05}{parity}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_r_e_c__config__t_a692ed5a2e735639979177aa44adca6ea}{size}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_r_e_c__config__t_a48bc68033f7c1569fe9dc476e8b925d5}{max\+\_\+bytes}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_r_e_c__config__t_a0ccf4d5bb2568ac1a483b39bf6246bf0}{free\+\_\+space\+\_\+limit\+\_\+mb}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration structure for the recording system. 
+
+Structure Holds The Configuration Parameters Required For Initializing The Recording System, Including The Board Version and Baud Rate... 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_r_e_c__config__t_a00680a4f434815ac2af0ac1886007791}\index{REC\_config\_t@{REC\_config\_t}!baudrate@{baudrate}}
+\index{baudrate@{baudrate}!REC\_config\_t@{REC\_config\_t}}
+\doxysubsubsection{\texorpdfstring{baudrate}{baudrate}}
+{\footnotesize\ttfamily \label{struct_r_e_c__config__t_a00680a4f434815ac2af0ac1886007791} 
+uint32\+\_\+t REC\+\_\+config\+\_\+t\+::baudrate}
+
+Desired Baudrate \Hypertarget{struct_r_e_c__config__t_a48aab1fc2a9b37ed33b3d5903d64d709}\index{REC\_config\_t@{REC\_config\_t}!data\_bits@{data\_bits}}
+\index{data\_bits@{data\_bits}!REC\_config\_t@{REC\_config\_t}}
+\doxysubsubsection{\texorpdfstring{data\_bits}{data\_bits}}
+{\footnotesize\ttfamily \label{struct_r_e_c__config__t_a48aab1fc2a9b37ed33b3d5903d64d709} 
+lpuart\+\_\+data\+\_\+bits\+\_\+t REC\+\_\+config\+\_\+t\+::data\+\_\+bits}
+
+Number of Data Bit \Hypertarget{struct_r_e_c__config__t_a0ccf4d5bb2568ac1a483b39bf6246bf0}\index{REC\_config\_t@{REC\_config\_t}!free\_space\_limit\_mb@{free\_space\_limit\_mb}}
+\index{free\_space\_limit\_mb@{free\_space\_limit\_mb}!REC\_config\_t@{REC\_config\_t}}
+\doxysubsubsection{\texorpdfstring{free\_space\_limit\_mb}{free\_space\_limit\_mb}}
+{\footnotesize\ttfamily \label{struct_r_e_c__config__t_a0ccf4d5bb2568ac1a483b39bf6246bf0} 
+uint32\+\_\+t REC\+\_\+config\+\_\+t\+::free\+\_\+space\+\_\+limit\+\_\+mb}
+
+Defines The Threshold Level of Free Memory on The SD card, Below Which The Lack of Memory is Indicated. \Hypertarget{struct_r_e_c__config__t_a48bc68033f7c1569fe9dc476e8b925d5}\index{REC\_config\_t@{REC\_config\_t}!max\_bytes@{max\_bytes}}
+\index{max\_bytes@{max\_bytes}!REC\_config\_t@{REC\_config\_t}}
+\doxysubsubsection{\texorpdfstring{max\_bytes}{max\_bytes}}
+{\footnotesize\ttfamily \label{struct_r_e_c__config__t_a48bc68033f7c1569fe9dc476e8b925d5} 
+uint32\+\_\+t REC\+\_\+config\+\_\+t\+::max\+\_\+bytes}
+
+Number of Bytes Between LED Signal \Hypertarget{struct_r_e_c__config__t_ae589e569d19f0b2a4087e62fd7597c05}\index{REC\_config\_t@{REC\_config\_t}!parity@{parity}}
+\index{parity@{parity}!REC\_config\_t@{REC\_config\_t}}
+\doxysubsubsection{\texorpdfstring{parity}{parity}}
+{\footnotesize\ttfamily \label{struct_r_e_c__config__t_ae589e569d19f0b2a4087e62fd7597c05} 
+lpuart\+\_\+parity\+\_\+mode\+\_\+t REC\+\_\+config\+\_\+t\+::parity}
+
+Parity Bit \Hypertarget{struct_r_e_c__config__t_a692ed5a2e735639979177aa44adca6ea}\index{REC\_config\_t@{REC\_config\_t}!size@{size}}
+\index{size@{size}!REC\_config\_t@{REC\_config\_t}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily \label{struct_r_e_c__config__t_a692ed5a2e735639979177aa44adca6ea} 
+uint32\+\_\+t REC\+\_\+config\+\_\+t\+::size}
+
+Maximum File Size Maximal Log. Time In Per File \Hypertarget{struct_r_e_c__config__t_ae90899b16678c6cf48b6b86861c2fcfa}\index{REC\_config\_t@{REC\_config\_t}!stop\_bits@{stop\_bits}}
+\index{stop\_bits@{stop\_bits}!REC\_config\_t@{REC\_config\_t}}
+\doxysubsubsection{\texorpdfstring{stop\_bits}{stop\_bits}}
+{\footnotesize\ttfamily \label{struct_r_e_c__config__t_ae90899b16678c6cf48b6b86861c2fcfa} 
+lpuart\+\_\+stop\+\_\+bit\+\_\+count\+\_\+t REC\+\_\+config\+\_\+t\+::stop\+\_\+bits}
+
+Number of Stop Bit \Hypertarget{struct_r_e_c__config__t_a619a311e1af3ae0b753b905110b4af33}\index{REC\_config\_t@{REC\_config\_t}!version@{version}}
+\index{version@{version}!REC\_config\_t@{REC\_config\_t}}
+\doxysubsubsection{\texorpdfstring{version}{version}}
+{\footnotesize\ttfamily \label{struct_r_e_c__config__t_a619a311e1af3ae0b753b905110b4af33} 
+\mbox{\hyperlink{parser_8h_ad61424a2558a5157fc217223acfd130d}{REC\+\_\+version\+\_\+t}} REC\+\_\+config\+\_\+t\+::version}
+
+NXP Board That Will Be Recorded 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{parser_8h}{parser.\+h}}\end{DoxyCompactItemize}

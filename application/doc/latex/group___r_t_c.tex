@@ -1,0 +1,343 @@
+\doxysection{DS3231 Real-\/\+Time Clock Driver}
+\hypertarget{group___r_t_c}{}\label{group___r_t_c}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+
+
+Real-\/\+Time Circuit Related Functions.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group___r_t_c_ga416879c4510669c23007e9b0e8bcd219}{RTC\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize The RTC DS3231. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga487d25d797a1fed2626ac9709ddac456}{RTC\+\_\+\+Deinit}} (void)
+\begin{DoxyCompactList}\small\item\em De-\/\+Initialize The RTC DS3231. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___r_t_c_gab12090e402b342c7f8773f2094773394}{RTC\+\_\+\+Convert\+To\+BCD}} (uint8\+\_\+t dec)
+\begin{DoxyCompactList}\small\item\em Converts Numbers From Decimal Base To BCD Base. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{group___r_t_c_ga87c0d6971d07785ee1a2abf9e24eeb3f}{RTC\+\_\+\+Convert\+To\+DEC}} (uint8\+\_\+t bcd)
+\begin{DoxyCompactList}\small\item\em Converts Numbers From BCD Base To Decimal Base. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group___r_t_c_ga18ceefab30bd070d2eafd74b0a7c9073}{RTC\+\_\+\+Get\+State}} (void)
+\begin{DoxyCompactList}\small\item\em This Function Checks If The Oscillator Is Still Running. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_gada78757b2decedc79e0382b42e45a513}{RTC\+\_\+\+Set\+Osc\+State}} (\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\+\_\+osc\+\_\+state\+\_\+t}} state)
+\begin{DoxyCompactList}\small\item\em Sets The Oscillator Stop Flag (OSF). \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group___r_t_c_gac15d2cfbe2c4c9482e784f6a5aeed32a}{RTC\+\_\+\+Write}} (uint8\+\_\+t reg\+Address, uint8\+\_\+t val)
+\begin{DoxyCompactList}\small\item\em Writes Value Into RTC Registers. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group___r_t_c_ga340e36eb16d87e6c82d26b051844060c}{RTC\+\_\+\+Read}} (uint8\+\_\+t reg\+Address)
+\begin{DoxyCompactList}\small\item\em Reads Value From RTC Register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga37c611694906a21743c2ad7123a55f9f}{RTC\+\_\+\+Set\+Time}} (\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Time)
+\begin{DoxyCompactList}\small\item\em Sets Time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga022d5dbffbbdba01d41f47d35dd2f411}{RTC\+\_\+\+Get\+Time}} (\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Time)
+\begin{DoxyCompactList}\small\item\em Gets Time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_gaa91602eaabcb3a6e36c0da47980e76f8}{RTC\+\_\+\+Set\+Date}} (\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Date)
+\begin{DoxyCompactList}\small\item\em Sets Date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_gaff981efc71adf20253068942e278b421}{RTC\+\_\+\+Get\+Date}} (\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Date)
+\begin{DoxyCompactList}\small\item\em Gets Date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga1c9f11eaae27873a2bc415d53541594d}{RTC\+\_\+\+Set\+Interrupt\+Mode}} (\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\+\_\+interrupt\+\_\+mode\+\_\+t}} mode)
+\begin{DoxyCompactList}\small\item\em Sets The INTCN Bit in Control Register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga06995b923b484104afe590533698e8a1}{RTC\+\_\+\+Ctrl\+Alarm1}} (uint8\+\_\+t enable)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables The Alarm 1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_gaacb3e98a52f0d90ecd8affb36960cfc6}{RTC\+\_\+\+Clear\+Flag\+Alarm1}} (void)
+\begin{DoxyCompactList}\small\item\em Clears The A1F Flag in Control Register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga86e1ffe598df20f7d90abe6ea4fb0135}{RTC\+\_\+\+Ctrl\+Alarm2}} (uint8\+\_\+t enable)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables The Alarm 2. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga2b8c5234e3d21ad10eb86b7a5b912dd3}{RTC\+\_\+\+Clear\+Flag\+Alarm2}} (void)
+\begin{DoxyCompactList}\small\item\em Clears The A1F Flag in Control Register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga61d57ebc0932c5610c8a7e8dd7d860f8}{RTC\+\_\+\+Set\+Time\+Default}} (\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Time)
+\begin{DoxyCompactList}\small\item\em Sets Time To Default. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___r_t_c_ga6a3b9bda0f1f1fdff2c4ae91f180021e}{RTC\+\_\+\+Set\+Date\+Default}} (\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}p\+Date)
+\begin{DoxyCompactList}\small\item\em Sets Date To Default. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Real-\/\+Time Circuit Related Functions. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group___r_t_c_gaacb3e98a52f0d90ecd8affb36960cfc6}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_ClearFlagAlarm1@{RTC\_ClearFlagAlarm1}}
+\index{RTC\_ClearFlagAlarm1@{RTC\_ClearFlagAlarm1}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_ClearFlagAlarm1()}{RTC\_ClearFlagAlarm1()}}
+{\footnotesize\ttfamily \label{group___r_t_c_gaacb3e98a52f0d90ecd8affb36960cfc6} 
+void RTC\+\_\+\+Clear\+Flag\+Alarm1 (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Clears The A1F Flag in Control Register. 
+
+\Hypertarget{group___r_t_c_ga2b8c5234e3d21ad10eb86b7a5b912dd3}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_ClearFlagAlarm2@{RTC\_ClearFlagAlarm2}}
+\index{RTC\_ClearFlagAlarm2@{RTC\_ClearFlagAlarm2}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_ClearFlagAlarm2()}{RTC\_ClearFlagAlarm2()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga2b8c5234e3d21ad10eb86b7a5b912dd3} 
+void RTC\+\_\+\+Clear\+Flag\+Alarm2 (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Clears The A1F Flag in Control Register. 
+
+\Hypertarget{group___r_t_c_gab12090e402b342c7f8773f2094773394}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_ConvertToBCD@{RTC\_ConvertToBCD}}
+\index{RTC\_ConvertToBCD@{RTC\_ConvertToBCD}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_ConvertToBCD()}{RTC\_ConvertToBCD()}}
+{\footnotesize\ttfamily \label{group___r_t_c_gab12090e402b342c7f8773f2094773394} 
+static uint8\+\_\+t RTC\+\_\+\+Convert\+To\+BCD (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dec}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts Numbers From Decimal Base To BCD Base. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dec} & Decimal Number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number in Binary Coded Decimal. 
+\end{DoxyReturn}
+\Hypertarget{group___r_t_c_ga87c0d6971d07785ee1a2abf9e24eeb3f}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_ConvertToDEC@{RTC\_ConvertToDEC}}
+\index{RTC\_ConvertToDEC@{RTC\_ConvertToDEC}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_ConvertToDEC()}{RTC\_ConvertToDEC()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga87c0d6971d07785ee1a2abf9e24eeb3f} 
+static uint8\+\_\+t RTC\+\_\+\+Convert\+To\+DEC (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{bcd}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts Numbers From BCD Base To Decimal Base. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bcd} & Binary-\/\+Coded Decimal Number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number in Decimal Base. 
+\end{DoxyReturn}
+\Hypertarget{group___r_t_c_ga06995b923b484104afe590533698e8a1}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_CtrlAlarm1@{RTC\_CtrlAlarm1}}
+\index{RTC\_CtrlAlarm1@{RTC\_CtrlAlarm1}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_CtrlAlarm1()}{RTC\_CtrlAlarm1()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga06995b923b484104afe590533698e8a1} 
+void RTC\+\_\+\+Ctrl\+Alarm1 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{enable}{}\end{DoxyParamCaption})}
+
+
+
+Enables/\+Disables The Alarm 1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & Specifies If The Alarm Will Be Enabled or Not. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group___r_t_c_ga86e1ffe598df20f7d90abe6ea4fb0135}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_CtrlAlarm2@{RTC\_CtrlAlarm2}}
+\index{RTC\_CtrlAlarm2@{RTC\_CtrlAlarm2}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_CtrlAlarm2()}{RTC\_CtrlAlarm2()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga86e1ffe598df20f7d90abe6ea4fb0135} 
+void RTC\+\_\+\+Ctrl\+Alarm2 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{enable}{}\end{DoxyParamCaption})}
+
+
+
+Enables/\+Disables The Alarm 2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & Specifies If The Alarm Will Be Enabled or Not. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group___r_t_c_ga487d25d797a1fed2626ac9709ddac456}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_Deinit@{RTC\_Deinit}}
+\index{RTC\_Deinit@{RTC\_Deinit}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_Deinit()}{RTC\_Deinit()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga487d25d797a1fed2626ac9709ddac456} 
+void RTC\+\_\+\+Deinit (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+De-\/\+Initialize The RTC DS3231. 
+
+Pins Should Also Be De-\/\+Initialised Lately. 
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group___r_t_c_gaff981efc71adf20253068942e278b421}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_GetDate@{RTC\_GetDate}}
+\index{RTC\_GetDate@{RTC\_GetDate}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_GetDate()}{RTC\_GetDate()}}
+{\footnotesize\ttfamily \label{group___r_t_c_gaff981efc71adf20253068942e278b421} 
+void RTC\+\_\+\+Get\+Date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Gets Date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Date} & Pointer To Date Structure. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group___r_t_c_ga18ceefab30bd070d2eafd74b0a7c9073}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_GetState@{RTC\_GetState}}
+\index{RTC\_GetState@{RTC\_GetState}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_GetState()}{RTC\_GetState()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga18ceefab30bd070d2eafd74b0a7c9073} 
+uint8\+\_\+t RTC\+\_\+\+Get\+State (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+This Function Checks If The Oscillator Is Still Running. 
+
+\begin{DoxyReturn}{Returns}
+Function Returns 1 If The Oscillator Is Running. If The Oscillator Has Stopped Returns 0. 
+\end{DoxyReturn}
+\Hypertarget{group___r_t_c_ga022d5dbffbbdba01d41f47d35dd2f411}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_GetTime@{RTC\_GetTime}}
+\index{RTC\_GetTime@{RTC\_GetTime}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_GetTime()}{RTC\_GetTime()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga022d5dbffbbdba01d41f47d35dd2f411} 
+void RTC\+\_\+\+Get\+Time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Gets Time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Time} & Pointer To Time Structure. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group___r_t_c_ga416879c4510669c23007e9b0e8bcd219}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_Init@{RTC\_Init}}
+\index{RTC\_Init@{RTC\_Init}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_Init()}{RTC\_Init()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga416879c4510669c23007e9b0e8bcd219} 
+uint8\+\_\+t RTC\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize The RTC DS3231. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+Before Calling of RTC\+\_\+\+Init Function Is Important To Prepare I2C (To Keep The Driver As Universal As Possible, e.\+g To Use I2C With DMA, Interrupt/\+Polling Mode,...). enable\+Round\+Robin\+Arbitration = false; enable\+Halt\+On\+Error = true; enable\+Continuous\+Link\+Mode = false; enable\+Debug\+Mode = false;\Hypertarget{group___r_t_c_ga340e36eb16d87e6c82d26b051844060c}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_Read@{RTC\_Read}}
+\index{RTC\_Read@{RTC\_Read}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_Read()}{RTC\_Read()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga340e36eb16d87e6c82d26b051844060c} 
+uint8\+\_\+t RTC\+\_\+\+Read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+Address}{}\end{DoxyParamCaption})}
+
+
+
+Reads Value From RTC Register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg\+Address} & Address of Register From Which Will Be Read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Read Value. 
+\end{DoxyReturn}
+\Hypertarget{group___r_t_c_gaa91602eaabcb3a6e36c0da47980e76f8}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_SetDate@{RTC\_SetDate}}
+\index{RTC\_SetDate@{RTC\_SetDate}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_SetDate()}{RTC\_SetDate()}}
+{\footnotesize\ttfamily \label{group___r_t_c_gaa91602eaabcb3a6e36c0da47980e76f8} 
+void RTC\+\_\+\+Set\+Date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Sets Date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Date} & Pointer To Date Structure. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group___r_t_c_ga6a3b9bda0f1f1fdff2c4ae91f180021e}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_SetDateDefault@{RTC\_SetDateDefault}}
+\index{RTC\_SetDateDefault@{RTC\_SetDateDefault}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_SetDateDefault()}{RTC\_SetDateDefault()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga6a3b9bda0f1f1fdff2c4ae91f180021e} 
+void RTC\+\_\+\+Set\+Date\+Default (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{RTC\+\_\+date\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Sets Date To Default. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Date} & Pointer to Date Structure That Will Be Configured To Default. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group___r_t_c_ga1c9f11eaae27873a2bc415d53541594d}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_SetInterruptMode@{RTC\_SetInterruptMode}}
+\index{RTC\_SetInterruptMode@{RTC\_SetInterruptMode}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_SetInterruptMode()}{RTC\_SetInterruptMode()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga1c9f11eaae27873a2bc415d53541594d} 
+void RTC\+\_\+\+Set\+Interrupt\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtc__ds3231_8h_a55977ad6752ee23796c4bf536312de33}{RTC\+\_\+interrupt\+\_\+mode\+\_\+t}}}]{mode}{}\end{DoxyParamCaption})}
+
+
+
+Sets The INTCN Bit in Control Register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & Interrupt Mode. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group___r_t_c_gada78757b2decedc79e0382b42e45a513}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_SetOscState@{RTC\_SetOscState}}
+\index{RTC\_SetOscState@{RTC\_SetOscState}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_SetOscState()}{RTC\_SetOscState()}}
+{\footnotesize\ttfamily \label{group___r_t_c_gada78757b2decedc79e0382b42e45a513} 
+void RTC\+\_\+\+Set\+Osc\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtc__ds3231_8h_adc8809c345071ca2fd7a68359dbba85e}{RTC\+\_\+osc\+\_\+state\+\_\+t}}}]{state}{}\end{DoxyParamCaption})}
+
+
+
+Sets The Oscillator Stop Flag (OSF). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & State of The Flag. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group___r_t_c_ga37c611694906a21743c2ad7123a55f9f}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_SetTime@{RTC\_SetTime}}
+\index{RTC\_SetTime@{RTC\_SetTime}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_SetTime()}{RTC\_SetTime()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga37c611694906a21743c2ad7123a55f9f} 
+void RTC\+\_\+\+Set\+Time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Sets Time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Time} & Pointer To Time Structure. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group___r_t_c_ga61d57ebc0932c5610c8a7e8dd7d860f8}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_SetTimeDefault@{RTC\_SetTimeDefault}}
+\index{RTC\_SetTimeDefault@{RTC\_SetTimeDefault}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_SetTimeDefault()}{RTC\_SetTimeDefault()}}
+{\footnotesize\ttfamily \label{group___r_t_c_ga61d57ebc0932c5610c8a7e8dd7d860f8} 
+void RTC\+\_\+\+Set\+Time\+Default (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__time__t}{RTC\+\_\+time\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Sets Time To Default. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Time} & Pointer to Time Structure That Will Be Configured To Default. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group___r_t_c_gac15d2cfbe2c4c9482e784f6a5aeed32a}\index{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_Write@{RTC\_Write}}
+\index{RTC\_Write@{RTC\_Write}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}}
+\doxysubsubsection{\texorpdfstring{RTC\_Write()}{RTC\_Write()}}
+{\footnotesize\ttfamily \label{group___r_t_c_gac15d2cfbe2c4c9482e784f6a5aeed32a} 
+uint8\+\_\+t RTC\+\_\+\+Write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+Address}{, }\item[{uint8\+\_\+t}]{val}{}\end{DoxyParamCaption})}
+
+
+
+Writes Value Into RTC Registers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg\+Address} & Address of Register To Which Will Be Value Written. \\
+\hline
+{\em val} & Value That Will Be Writen Into Register. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}

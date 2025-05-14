@@ -1,0 +1,166 @@
+\doxysection{include/app\+\_\+tasks.h File Reference}
+\hypertarget{app__tasks_8h}{}\label{app__tasks_8h}\index{include/app\_tasks.h@{include/app\_tasks.h}}
+{\ttfamily \#include "{}Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}task.\+h"{}}\newline
+{\ttfamily \#include "{}queue.\+h"{}}\newline
+{\ttfamily \#include "{}semphr.\+h"{}}\newline
+{\ttfamily \#include "{}timers.\+h"{}}\newline
+{\ttfamily \#include $<$disk.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{app__tasks_8h_a2c6c08fc3284377444145fa6b627ac21}{TASK\+\_\+\+PRIO}}~(config\+MAX\+\_\+\+PRIORITIES -\/ 1)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{app__tasks_8h_afc4213d2d4926914e58ecd69e8a2ad08}{msc\+\_\+task}} (void \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em Task Responsible For Mass Storage Functionality in Device Mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{app__tasks_8h_a6fc052f631f3c48fe52fd49e056785bd}{record\+\_\+task}} (void \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em Task Recording Serial Data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{app__tasks_8h_a1988aa923b19fa6f31c93afa7773f793}{v\+Application\+Get\+Idle\+Task\+Memory}} (Static\+Task\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ppx\+Idle\+Task\+TCBBuffer, Stack\+Type\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ppx\+Idle\+Task\+Stack\+Buffer, uint32\+\_\+t \texorpdfstring{$\ast$}{*}pul\+Idle\+Task\+Stack\+Size)
+\begin{DoxyCompactList}\small\item\em Hook Function to Provide Memory For The Idle Task in Free\+RTOS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{app__tasks_8h_a1e80ecbd3fc2d04f18d6409ffa893a86}{v\+Application\+Get\+Timer\+Task\+Memory}} (Static\+Task\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ppx\+Timer\+Task\+TCBBuffer, Stack\+Type\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ppx\+Timer\+Task\+Stack\+Buffer, uint32\+\_\+t \texorpdfstring{$\ast$}{*}pul\+Timer\+Task\+Stack\+Size)
+\begin{DoxyCompactList}\small\item\em Hook Function to Provide Memory For The Timer Task in Free\+RTOS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Task\+Handle\+\_\+t \mbox{\hyperlink{app__tasks_8h_a728d33fa6714c81e0ddb020328ac36ee}{g\+\_\+x\+Msc\+Task\+Handle}}
+\begin{DoxyCompactList}\small\item\em USB Mass Storage Task Handle. \end{DoxyCompactList}\item 
+Task\+Handle\+\_\+t \mbox{\hyperlink{app__tasks_8h_a95134cbd8723a2c8b0cdd33f75d979fb}{g\+\_\+x\+Record\+Task\+Handle}}
+\begin{DoxyCompactList}\small\item\em Record Task Handle. \end{DoxyCompactList}\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{app__tasks_8h_af59d7418386068624f2b915e32fe23ff}{g\+\_\+x\+Sem\+Record}}
+\begin{DoxyCompactList}\small\item\em Semaphore For Record Task Management. \end{DoxyCompactList}\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{app__tasks_8h_a286a007f0c94c51fa505aa600c488122}{g\+\_\+x\+Sem\+Mass\+Storage}}
+\begin{DoxyCompactList}\small\item\em Semaphore For USB Mass Storage Task Management. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{app__tasks_8h_a2c6c08fc3284377444145fa6b627ac21}\index{app\_tasks.h@{app\_tasks.h}!TASK\_PRIO@{TASK\_PRIO}}
+\index{TASK\_PRIO@{TASK\_PRIO}!app\_tasks.h@{app\_tasks.h}}
+\doxysubsubsection{\texorpdfstring{TASK\_PRIO}{TASK\_PRIO}}
+{\footnotesize\ttfamily \label{app__tasks_8h_a2c6c08fc3284377444145fa6b627ac21} 
+\#define TASK\+\_\+\+PRIO~(config\+MAX\+\_\+\+PRIORITIES -\/ 1)}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{app__tasks_8h_afc4213d2d4926914e58ecd69e8a2ad08}\index{app\_tasks.h@{app\_tasks.h}!msc\_task@{msc\_task}}
+\index{msc\_task@{msc\_task}!app\_tasks.h@{app\_tasks.h}}
+\doxysubsubsection{\texorpdfstring{msc\_task()}{msc\_task()}}
+{\footnotesize\ttfamily \label{app__tasks_8h_afc4213d2d4926914e58ecd69e8a2ad08} 
+void msc\+\_\+task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Task Responsible For Mass Storage Functionality in Device Mode. 
+
+This Task Implements USB Mass Storage Class (MSC) Operations, Allowing The System to Act As a Mass Storage Device. It Handles Communication With The Host and Manages Read/\+Write Operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to The Device Handle Used For The USB Operations. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{app__tasks_8h_a6fc052f631f3c48fe52fd49e056785bd}\index{app\_tasks.h@{app\_tasks.h}!record\_task@{record\_task}}
+\index{record\_task@{record\_task}!app\_tasks.h@{app\_tasks.h}}
+\doxysubsubsection{\texorpdfstring{record\_task()}{record\_task()}}
+{\footnotesize\ttfamily \label{app__tasks_8h_a6fc052f631f3c48fe52fd49e056785bd} 
+void record\+\_\+task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Task Recording Serial Data. 
+
+The Task Provides Data Reception, Data Processing (For Example, Adding Time Stamps) And Also Data Storage. In Case The Monitored Device Is Disconnected From The Data Logger, All The Buffered Data In RAM Is Stored On The Memory Card.
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to The Device Handle Used For The USB Operations. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{app__tasks_8h_a1988aa923b19fa6f31c93afa7773f793}\index{app\_tasks.h@{app\_tasks.h}!vApplicationGetIdleTaskMemory@{vApplicationGetIdleTaskMemory}}
+\index{vApplicationGetIdleTaskMemory@{vApplicationGetIdleTaskMemory}!app\_tasks.h@{app\_tasks.h}}
+\doxysubsubsection{\texorpdfstring{vApplicationGetIdleTaskMemory()}{vApplicationGetIdleTaskMemory()}}
+{\footnotesize\ttfamily \label{app__tasks_8h_a1988aa923b19fa6f31c93afa7773f793} 
+void v\+Application\+Get\+Idle\+Task\+Memory (\begin{DoxyParamCaption}\item[{Static\+Task\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ppx\+Idle\+Task\+TCBBuffer}{, }\item[{Stack\+Type\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ppx\+Idle\+Task\+Stack\+Buffer}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{pul\+Idle\+Task\+Stack\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Hook Function to Provide Memory For The Idle Task in Free\+RTOS. 
+
+This Hook Function Provides The Memory Needed For The Idle Task, Which Is Statically Allocated When config\+SUPPORT\+\_\+\+STATIC\+\_\+\+ALLOCATION Is Set to 1. The Free\+RTOS Scheduler Calls This Function to Get The Task Control Block (TCB) and Stack For The Idle Task.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em ppx\+Idle\+Task\+TCBBuffer} & Pointer to The TCB Buffer For The Idle Task. \\
+\hline
+\mbox{\texttt{ out}}  & {\em ppx\+Idle\+Task\+Stack\+Buffer} & Pointer to The Stack Buffer For The Idle Task. \\
+\hline
+\mbox{\texttt{ out}}  & {\em pul\+Idle\+Task\+Stack\+Size} & Pointer to a Variable Holding The Stack Size. \\
+\hline
+\end{DoxyParams}
+MISRA Deviation\+: Rule 10.\+8 \mbox{[}Required\mbox{]} Suppress\+: Conversion From Signed Macro To Unsigned Type. Justification\+: \textquotesingle{}Config\+MINIMAL\+\_\+\+STACK\+\_\+\+SIZE\textquotesingle{} Is Defined By Free\+RTOS As A Signed Macro. The Conversion To \textquotesingle{}Uint32\+\_\+t\textquotesingle{} Is Intentional And Safe In This Context. Fixing The Definition is Not Possible.\Hypertarget{app__tasks_8h_a1e80ecbd3fc2d04f18d6409ffa893a86}\index{app\_tasks.h@{app\_tasks.h}!vApplicationGetTimerTaskMemory@{vApplicationGetTimerTaskMemory}}
+\index{vApplicationGetTimerTaskMemory@{vApplicationGetTimerTaskMemory}!app\_tasks.h@{app\_tasks.h}}
+\doxysubsubsection{\texorpdfstring{vApplicationGetTimerTaskMemory()}{vApplicationGetTimerTaskMemory()}}
+{\footnotesize\ttfamily \label{app__tasks_8h_a1e80ecbd3fc2d04f18d6409ffa893a86} 
+void v\+Application\+Get\+Timer\+Task\+Memory (\begin{DoxyParamCaption}\item[{Static\+Task\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ppx\+Timer\+Task\+TCBBuffer}{, }\item[{Stack\+Type\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ppx\+Timer\+Task\+Stack\+Buffer}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{pul\+Timer\+Task\+Stack\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Hook Function to Provide Memory For The Timer Task in Free\+RTOS. 
+
+This Hook Function Provides The Memory Needed For The Timer Task, Which Is Statically Allocated When config\+SUPPORT\+\_\+\+STATIC\+\_\+\+ALLOCATION Is Set To 1 And config\+USE\+\_\+\+TIMERS Is Enabled. The Free\+RTOS Scheduler Calls This Function to Get The Task Control Block (TCB) And Stack For The Timer Task.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em ppx\+Timer\+Task\+TCBBuffer} & Pointer to The TCB Buffer For The Timer Task. \\
+\hline
+\mbox{\texttt{ out}}  & {\em ppx\+Timer\+Task\+Stack\+Buffer} & Pointer to The Stack Buffer For The Timer Task. \\
+\hline
+\mbox{\texttt{ out}}  & {\em pul\+Timer\+Task\+Stack\+Size} & Pointer to a Variable Holding The Stack Size. \\
+\hline
+\end{DoxyParams}
+MISRA Deviation\+: Rule 10.\+8 \mbox{[}Required\mbox{]} Suppress\+: Conversion From Signed Macro To Unsigned Type. Justification\+: \textquotesingle{}config\+TIMER\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+DEPTH\textquotesingle{} Is Defined By Free\+RTOS As A Signed Macro. The Conversion To \textquotesingle{}Uint32\+\_\+t\textquotesingle{} Is Intentional And Safe In This Context. Fixing The Definition is Not Possible.
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{app__tasks_8h_a728d33fa6714c81e0ddb020328ac36ee}\index{app\_tasks.h@{app\_tasks.h}!g\_xMscTaskHandle@{g\_xMscTaskHandle}}
+\index{g\_xMscTaskHandle@{g\_xMscTaskHandle}!app\_tasks.h@{app\_tasks.h}}
+\doxysubsubsection{\texorpdfstring{g\_xMscTaskHandle}{g\_xMscTaskHandle}}
+{\footnotesize\ttfamily \label{app__tasks_8h_a728d33fa6714c81e0ddb020328ac36ee} 
+Task\+Handle\+\_\+t g\+\_\+x\+Msc\+Task\+Handle\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+USB Mass Storage Task Handle. 
+
+\Hypertarget{app__tasks_8h_a95134cbd8723a2c8b0cdd33f75d979fb}\index{app\_tasks.h@{app\_tasks.h}!g\_xRecordTaskHandle@{g\_xRecordTaskHandle}}
+\index{g\_xRecordTaskHandle@{g\_xRecordTaskHandle}!app\_tasks.h@{app\_tasks.h}}
+\doxysubsubsection{\texorpdfstring{g\_xRecordTaskHandle}{g\_xRecordTaskHandle}}
+{\footnotesize\ttfamily \label{app__tasks_8h_a95134cbd8723a2c8b0cdd33f75d979fb} 
+Task\+Handle\+\_\+t g\+\_\+x\+Record\+Task\+Handle\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Record Task Handle. 
+
+\Hypertarget{app__tasks_8h_a286a007f0c94c51fa505aa600c488122}\index{app\_tasks.h@{app\_tasks.h}!g\_xSemMassStorage@{g\_xSemMassStorage}}
+\index{g\_xSemMassStorage@{g\_xSemMassStorage}!app\_tasks.h@{app\_tasks.h}}
+\doxysubsubsection{\texorpdfstring{g\_xSemMassStorage}{g\_xSemMassStorage}}
+{\footnotesize\ttfamily \label{app__tasks_8h_a286a007f0c94c51fa505aa600c488122} 
+Semaphore\+Handle\+\_\+t g\+\_\+x\+Sem\+Mass\+Storage\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Semaphore For USB Mass Storage Task Management. 
+
+\Hypertarget{app__tasks_8h_af59d7418386068624f2b915e32fe23ff}\index{app\_tasks.h@{app\_tasks.h}!g\_xSemRecord@{g\_xSemRecord}}
+\index{g\_xSemRecord@{g\_xSemRecord}!app\_tasks.h@{app\_tasks.h}}
+\doxysubsubsection{\texorpdfstring{g\_xSemRecord}{g\_xSemRecord}}
+{\footnotesize\ttfamily \label{app__tasks_8h_af59d7418386068624f2b915e32fe23ff} 
+Semaphore\+Handle\+\_\+t g\+\_\+x\+Sem\+Record\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Semaphore For Record Task Management. 
+

@@ -1,0 +1,92 @@
+﻿// === Paths To Header Files ===
+-i"C:\nxp\MCUXpressoIDE_11.10.0_3148\ide\plugins\com.nxp.mcuxpresso.tools.win32_11.10.0.202311280810\tools\redlib\include"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\fatfs\source\fsl_sd_disk"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\configuration\fatfs"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\msc\include"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\configuration\freertos"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\fatfs\source"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\freertos\freertos-kernel\include"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\source"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\freertos\freertos-kernel\portable\GCC\ARM_CM33_NTZ\non_secure"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\freertos\freertos-kernel"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\component\gpio"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\CMSIS"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\CMSIS\driver"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\drivers"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\sdmmc\host"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\sdmmc\inc"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\usb\phy"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\usb\device\include"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\usb"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\usb\device\source"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\usb\device\source\ehci"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\usb\include"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\device"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\startup"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\utilities"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\component\uart"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\component\serial_manager"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\component\lists"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\sdmmc\osa"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\component\osa"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\board"
+-i"C:\Users\x\__GIT\nxp-mcxn947-datalogger\application\include"
+// === Setup For arm-none-eabi-gcc ===
+-d__GNUC__=9
+-d__GNUC_MINOR__=3
+-d__GNUC_PATCHLEVEL__=1
+-d__ARM_ARCH=8
+-d__ARM_ARCH_7EM__
+-d__arm__
+-d__ARM_EABI__
+-d__ARM_ARCH_PROFILE='M'
+-d__ARM_FP=4
+-d__ARMEL__
+-d__FPU_PRESENT=1
+-d__VFP_FP__
+-d__SOFTFP__
+-d__thumb__
+-d__thumb2__
+-d__attribute__(x)=
+-d__asm__=
+
+// === Activation MISRA-C:2012 ===
+"c:\lintplus\pclp\lnt\au-misra3.lnt"
+
+// === Compilation Definitions ===
+-d__REDLIB__
+-dCPU_MCXN947VDF
+-dCPU_MCXN947VDF_cm33
+-dCPU_MCXN947VDF_cm33_core0
+-dUSB_STACK_FREERTOS
+-dUSB_STACK_FREERTOS_HEAP_SIZE=32768
+-dFSL_OSA_BM_TASK_ENABLE=0
+-dFSL_OSA_BM_TIMER_CONFIG=0
+-dMCUXPRESSO_SDK
+-dSD_ENABLED
+-dSERIAL_PORT_TYPE_UART=1
+-dSDK_OS_FREE_RTOS
+-dSDK_DEBUGCONSOLE=1
+-dCR_INTEGER_PRINTF
+-dPRINTF_FLOAT_ENABLE=1
+-d__MCUXPRESSO
+-d__USE_CMSIS
+-dDEBUG
+
+
+-message(4, "OnlyShowThisFile")   
+
++elib(123)      // Suppress Informational Message
++elib(4)        // Suppress Notes
++elib(829)      // Suppress System Header Warning
++elib(451)      // Suppress Redundant Includes
+
+// === Suppression of Problem Warnings  ===
+// esym(960, __attribute__)
+-esym(9023, __asm__)
+-esym(9026, uint32_t)
+-esym(123, __packed)
+
+// === Output Format ===
+-h4
+-width(0)

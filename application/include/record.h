@@ -21,102 +21,88 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
+#include <led.h>
 #include <string.h>
 #include "fsl_sd.h"
 #include "ff.h"						/*<! File System */
 #include "ffconf.h"					/*<! File System Configuration */
 #include <stdio.h>
 
-#include "fsl_debug_console.h"
-#include "diskio.h"
 #include "fsl_sd_disk.h"
+#include "fsl_common.h"
+#include "diskio.h"
 #include "pin_mux.h"
 #include "clock_config.h"
 #include "board.h"
 #include "sdmmc_config.h"
-#include "fsl_common.h"
 #include "rtc_ds3231.h"
+#include "fsl_common_arm.h"
+
+#include "task.h"
 
 #include "error.h"
 #include "uart.h"
+#include "parser.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+/**
+ * @brief Timeout Interval Before Flush If No New Data Were Received [In Mili-Seconds].
+ */
 #define FLUSH_TIMEOUT_TICKS pdMS_TO_TICKS(3000)
 
 /*******************************************************************************
  * Structures
  ******************************************************************************/
-/**
- * @brief 	Enumeration of recording board versions.
- *
- * @details This enum defines the possible versions of the board for which the recording
- * 			system is configured.
- *
- * @note	Difference Between AUTOS1 and AUTOS2 Is In Baudrate.
- *
- */
-typedef enum
-{
-	WCT_UNKOWN = 0,		/**< Unknown board version. 	*/
-	WCT_AUTOS1,			/**< AUTOS1 Reference Board. 	*/
-	WCT_AUTOS2			/**< AUTOS2 Reference Board. 	*/
 
-} REC_version_t;
-
-/**
- * @brief 	Configuration structure for the recording system.
- *
- * @details	Structure Holds The Configuration Parameters Required For Initializing
- * 			The Recording System, Including The Board Version and Baudrate.
- */
-typedef struct
-{
-	REC_version_t 	version;	/**< Board That Will Be Recorded	*/
-	uint32_t 		baudrate;	/**< Desired Baudrate				*/
-	uint32_t		size;		/**< Maximum File Size 				*/
-								/**< Maximal Log. Time In Per File	*/
-
-} REC_config_t;
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
 
-/** TODO:
+/**
+ * @brief 		Gets Free Space on SD Card.
+ *
+ * @return		Returns Free Space on SD Card.
+ */
+uint32_t CONSOLELOG_GetFreeSpaceMB(void);
+
+/**
  * @brief 		Creates Directory Based Actual Date.
  *
- * @return		Return Pointer to Created File Descriptor.
+ * @return		Returns Zero If Directory Creation Succeeded.
+ */
+error_t CONSOLELOG_CreateDirectory(void);
+
+/**
+ * @brief 		Creates File Based Actual Date and Counter Value.
+ *
+ * @return		Returns Zero If File Creation Succeeded.
  */
 error_t CONSOLELOG_CreateFile(void);
 
-
-error_t CONSOLELOG_CreateFile(void)
 /**
- * @brief 		Returns Active Configuration.
+ * @brief 		Returns Currently Received Bytes Between LED Blinking.
  *
- * @details 	This Function Returns The Global Configuration Structure That Contains
- * 				The Settings For The Recording, Such as Baudrate, Version,
- * 				And Other Relevant Parameters.
- *
- * @return		REC_config_t The Current Recording Configuration.
+ * @return		uint32_t Received Bytes Between LED Blinking.
  */
-REC_config_t CONSOLELOG_GetConfig(void);
+uint32_t CONSOLELOG_GetTransferedBytes(void);
 
 /**
- * @brief 		Returns the Version of The Device Being Recorded.
+ * @brief 		Returns If Flush Was Completed or Not.
  *
- * @return		REC_version_t Current Version of Recorded Device
- * 				(WCT_UNKOWN, WCT_AUTOS1 or WCT_AUTOS2).
+ * @return		If Recording Is Ongoing That Return False.
  */
-REC_version_t CONSOLELOG_GetVersion(void);
+bool CONSOLELOG_GetFlushCompleted(void);
 
 /**
- * @brief 		Returns the Baudrate of The Device Being Recorded.
- *
- * @return		uint32_t Baud Rate of Recorded Device
- *
+ * @brief 		Clears Currently Received Bytes After LED Blinking.
  */
-uint32_t CONSOLELOG_GetBaudrate(void);
+void CONSOLELOG_ClearTransferedBytes(void);
+
+/**
+ * @brief 		Maximal Received Bytes Between LED Blinking.
+ */
+uint32_t CONSOLELOG_GetMaxBytes(void);
 
 /**
  * @brief		Checks If The File System Is Initialized
@@ -156,11 +142,20 @@ error_t CONSOLELOG_Recording(uint32_t file_size);
  * 				By The Time Specified By TIMEOUT Macro.
  * @details		If The Data Does Not Arrive By The Time Specified By The TIMEOUT Macro,
  * 				Then This Function Flushes All The Data So Far Stored In The DMA Buffer,
- * 				Saves It To a File on The Physical Media and Closes The File
+ * 				Saves It To a File on The Physical Media and Closes The File.
  *
  * @return		error_t Returns 0 on Success, Otherwise Returns a Non-Zero Value.
  */
 error_t CONSOLELOG_Flush(void);
+
+/**
+ * @brief 		Flushes Collected Data To The File If Power Loss Was Detected.
+ * @details		If Power Loss Was Detected, Then This Function Flushes All The Data
+ * 				So Far Stored In The DMA Buffer, Saves It To a File on The Physical Media and Closes The File.
+ *
+ * @return		error_t Returns 0 on Success, Otherwise Returns a Non-Zero Value.
+ */
+error_t CONSOLELOG_PowerLossFlush(void);
 
 /**
  * @brief 		De-Initializes The Recording System and Un-Mounts The File System.
@@ -184,7 +179,7 @@ error_t CONSOLELOG_ReadConfig(void);
  * @brief 		Processes The Content of The Configuration File To Extract
  * 				and Validate The Baudrate.
  *
- * @param[in] 	Content The Content of The Configuration File as a Null-Terminated
+ * @param[in] 	content Content The Content of The Configuration File as a Null-Terminated
  * 				String.
  *
  * @return 		error_t Returns 0 If Configuration File Is Correctly Processed,

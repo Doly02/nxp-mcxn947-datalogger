@@ -1,0 +1,27 @@
+Pin Headers:
+- 2x SSQ-108-03-G-D (16 pin)
+	- link: https://kinetictest.samtec.com/partnumber/ssq-108-03-g-d?vendor=
+	- link: https://cz.mouser.com/ProductDetail/Samtec/SSQ-108-03-G-D?qs=rU5fayqh%252BE0RwWDEJ6pPUQ%3D%3D
+- 1x SSQ-106-03-S-D (12 Pin)
+	- link: https://kinetictest.samtec.com/partnumber/ssq-106-03-s-d?vendor=
+	- link: https://cz.mouser.com/ProductDetail/Samtec/SSQ-106-03-T-D?qs=rU5fayqh%252BE1nrbBaxRMk2g%3D%3D
+- 1x SSQ-114-03-T-D (28 pin)
+	- link: https://kinetictest.samtec.com/partnumber/ssq-114-03-g-d?vendor=
+	- link: https://cz.mouser.com/ProductDetail/Samtec/SSQ-114-03-T-D?qs=rU5fayqh%252BE3GMP3i4Q9eOA%3D%3D
+- 1x SSQ-116-01-G-D (32 pin)
+	- link: https://kinetictest.samtec.com/partnumber/ssq-116-01-g-d
+	- link: https://cz.mouser.com/ProductDetail/Samtec/SSQ-116-01-G-D?qs=rU5fayqh%252BE0IfimSEbywwg%3D%3D
+- 1x SSQ-110-03-T-D
+	- link: https://kinetictest.samtec.com/partnumber/ssq-108-03-t-d?vendor=
+	- link: https://cz.mouser.com/ProductDetail/Samtec/SSQ-110-03-T-D?qs=rU5fayqh%252BE2PVxAFHKyYdw%3D%3D
+
+Real-Time Circuit
+- 1x DS3231M+:
+	- link: https://cz.mouser.com/ProductDetail/Analog-Devices-Maxim-Integrated/DS3231M%2b?qs=Bakm8ERcljpd4MQpcnSykw%3D%3D
+
+
+Back-Up Power:
+- KYOCERA AVX - SCMR14G334SRBB0
+	- link: https://cz.mouser.com/ProductDetail/KYOCERA-AVX/SCMR14G334SRBB0?qs=qSfuJ%252Bfl%2Fd4Npf0NpjEggg%3D%3D
+- KYOCERA AVX - SCMR14G334SRBA0
+	- link: https://cz.mouser.com/ProductDetail/KYOCERA-AVX/SCMR14G334SRBA0?qs=qSfuJ%252Bfl%2Fd5ygRCUu015BA%3D%3D

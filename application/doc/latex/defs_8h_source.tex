@@ -1,0 +1,88 @@
+\doxysection{defs.\+h}
+\hypertarget{defs_8h_source}{}\label{defs_8h_source}\index{include/defs.h@{include/defs.h}}
+\mbox{\hyperlink{defs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/******************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ Project:\ \ \ \ \ \ \ \ NXP\ MCXN947\ Datalogger}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ File\ Name:\ \ \ \ \ \ defs.h}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Author:\ \ \ \ \ \ \ \ \ Tomas\ Dolak}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Date:\ \ \ \ \ \ \ \ \ \ \ 22.09.2024}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ Description:\ \ \ \ Header\ File\ Providing\ Definitions\ To\ Set\ Up\ The\ Project.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ ****************************/}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{/******************************}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ @package\ \ \ \ \ \ \ \ NXP\ MCXN947\ Datalogger}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ @file\ \ \ \ \ \ \ \ \ \ \ defs.h}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ @author\ \ \ \ \ \ \ \ \ Tomas\ Dolak}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ @date\ \ \ \ \ \ \ \ \ \ \ 22.09.2024}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ @brief\ \ \ \ \ \ \ \ \ \ Header\ File\ Providing\ Definitions\ To\ Set\ Up\ The\ Project.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ ****************************/}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ DEFS\_H\_}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ DEFS\_H\_}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ Includes}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ Definitions}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ NOT\_IMPLEMENTED\ \ \ \ \ \ \ \ \ \ \ \ \ \#error\ "{}This\ Feature\ Is\ Not\ Implemented!"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ MSC\_STACK\_SIZE\ \ \ \ \ \ \ \ ((uint32\_t)(5000UL\ /\ (uint32\_t)sizeof(portSTACK\_TYPE)))}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ RECORD\_STACK\_SIZE\ \ \ \ \ ((uint32\_t)(5000UL\ /\ (uint32\_t)sizeof(portSTACK\_TYPE)))}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ MSC\_ENABLED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (true)}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ INFO\_ENABLED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (false)}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ DEBUG\_ENABLED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (false)}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ UART\_FIFO\_ENABLED\ \ \ \ \ \ \ \ \ \ \ (true)}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ UART\_FIFO\_LENGHT\ \ \ \ \ \ \ \ \ \ \ \ (4u)}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ UART\_PRINT\_ENABLED\ \ \ \ \ \ \ \ \ \ (false)}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ PWRLOSS\_DETECTION\_ENABLED\ \ \ (true)}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ PWRLOSS\_TEST\_GPIOS\ \ \ \ \ \ \ \ \ \ (false)}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ TAU5\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 16.5}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ PWRLOSS\_DET\_ACTIVE\_IN\_TIME\ \ TAU5}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ UART\_RECEIVE\_PRIO\ \ \ \ \ \ \ \ \ \ \ (6U)}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ PWRLOSS\_DET\_PRIO\ \ \ \ \ \ \ \ \ \ \ \ (5U)}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ PWRLOSS\_TIMER\_PRIO\ \ \ \ \ \ \ \ \ \ (7U)}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ TEMPERATURE\_MEAS\_ENABLED\ \ \ \ (false)}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ CONTROL\_LED\_ENABLED\ \ \ \ \ \ \ \ \ (true)}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ DEFAULT\_MAX\_FILESIZE\ \ \ \ \ \ \ \ 8192}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ CONFIG\_FILE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}config"{}}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ DEFAULT\_BAUDRATE\ \ \ \ \ \ \ \ \ \ \ \ 230400UL}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ DEFAULT\_DATA\_BITS\ \ \ \ \ \ \ \ \ \ \ kLPUART\_EightDataBits}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ DEFAULT\_STOP\_BITS\ \ \ \ \ \ \ \ \ \ \ kLPUART\_OneStopBit}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ DEFAULT\_PARITY\ \ \ \ \ \ \ \ \ \ \ \ \ \ kLPUART\_ParityDisabled}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#define\ DEFAULT\_FREE\_SPACE\ \ \ \ \ \ \ \ \ \ 50UL}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ DEFS\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,143 @@
+\doxysection{src/led.c File Reference}
+\hypertarget{led_8c}{}\label{led_8c}\index{src/led.c@{src/led.c}}
+{\ttfamily \#include $<$led.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{led_8c_a7455e287128129db10bb2ae70909ff7a}{LED\+\_\+\+Set\+High}} (GPIO\+\_\+\+Type \texorpdfstring{$\ast$}{*}port\+\_\+base, uint32\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Sets Logic 1 on GPIO Pin. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{led_8c_ab02c6a3a312ce2e008f471310fef8f5b}{LED\+\_\+\+Set\+Low}} (GPIO\+\_\+\+Type \texorpdfstring{$\ast$}{*}port\+\_\+base, uint32\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Sets Logic 0 on GPIO Pin. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{led_8c_a90d3262aad7d8e74c655aecba5bdb8b1}{LED\+\_\+\+Signal\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Indicates Ready State of The Recording Device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{led_8c_ae4d93582ce6f8960bbbe8771670864f2}{LED\+\_\+\+Signal\+Recording}} (void)
+\begin{DoxyCompactList}\small\item\em Signals That Device Is Currently Receiving Bytes (Recording). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{led_8c_a357ebead2af4aa7710b82477c78c3ae5}{LED\+\_\+\+Signal\+Recording\+Stop}} (void)
+\begin{DoxyCompactList}\small\item\em Signals That Device Is Stopped Receiving Bytes (Recording). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{led_8c_a051c422ce8dcca2df8022a718fa9e85c}{LED\+\_\+\+Signal\+Back\+Up\+Power\+Available}} (void)
+\begin{DoxyCompactList}\small\item\em Signals Configuration File Missing or Contains Unexpected Data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{led_8c_aeab72eb69dcad626cad6ab8d18f5b7f7}{LED\+\_\+\+Signal\+Low\+Memory}} (void)
+\begin{DoxyCompactList}\small\item\em Signals That There Will Be Empty Space on SD Card. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{led_8c_a13c3d29b05f96fd3490c9b7680f7df08}{LED\+\_\+\+Signal\+Error}} (void)
+\begin{DoxyCompactList}\small\item\em Signals Error During Recording. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{led_8c_ac6978cdce3f5c99d7cd85a6991a5394a}{LED\+\_\+\+Signal\+Flush}} (void)
+\begin{DoxyCompactList}\small\item\em Signals That Flush Has Been Activated. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{led_8c_a790afc5a8ed07437a4788698ca9afe45}{LED\+\_\+\+Clear\+Signal\+Flush}} (void)
+\begin{DoxyCompactList}\small\item\em Clears Flush LED After UART Re-\/\+Inicialization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{led_8c_a790afc5a8ed07437a4788698ca9afe45}\index{led.c@{led.c}!LED\_ClearSignalFlush@{LED\_ClearSignalFlush}}
+\index{LED\_ClearSignalFlush@{LED\_ClearSignalFlush}!led.c@{led.c}}
+\doxysubsubsection{\texorpdfstring{LED\_ClearSignalFlush()}{LED\_ClearSignalFlush()}}
+{\footnotesize\ttfamily \label{led_8c_a790afc5a8ed07437a4788698ca9afe45} 
+void LED\+\_\+\+Clear\+Signal\+Flush (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Clears Flush LED After UART Re-\/\+Inicialization. 
+
+\Hypertarget{led_8c_a7455e287128129db10bb2ae70909ff7a}\index{led.c@{led.c}!LED\_SetHigh@{LED\_SetHigh}}
+\index{LED\_SetHigh@{LED\_SetHigh}!led.c@{led.c}}
+\doxysubsubsection{\texorpdfstring{LED\_SetHigh()}{LED\_SetHigh()}}
+{\footnotesize\ttfamily \label{led_8c_a7455e287128129db10bb2ae70909ff7a} 
+void LED\+\_\+\+Set\+High (\begin{DoxyParamCaption}\item[{GPIO\+\_\+\+Type \texorpdfstring{$\ast$}{*}}]{port\+\_\+base}{, }\item[{uint32\+\_\+t}]{pin}{}\end{DoxyParamCaption})}
+
+
+
+Sets Logic 1 on GPIO Pin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port\+\_\+base} & Pointer to GPIO Instance. \\
+\hline
+{\em pin} & Pin. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{led_8c_ab02c6a3a312ce2e008f471310fef8f5b}\index{led.c@{led.c}!LED\_SetLow@{LED\_SetLow}}
+\index{LED\_SetLow@{LED\_SetLow}!led.c@{led.c}}
+\doxysubsubsection{\texorpdfstring{LED\_SetLow()}{LED\_SetLow()}}
+{\footnotesize\ttfamily \label{led_8c_ab02c6a3a312ce2e008f471310fef8f5b} 
+void LED\+\_\+\+Set\+Low (\begin{DoxyParamCaption}\item[{GPIO\+\_\+\+Type \texorpdfstring{$\ast$}{*}}]{port\+\_\+base}{, }\item[{uint32\+\_\+t}]{pin}{}\end{DoxyParamCaption})}
+
+
+
+Sets Logic 0 on GPIO Pin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port\+\_\+base} & Pointer to GPIO Instance. \\
+\hline
+{\em pin} & Pin. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{led_8c_a051c422ce8dcca2df8022a718fa9e85c}\index{led.c@{led.c}!LED\_SignalBackUpPowerAvailable@{LED\_SignalBackUpPowerAvailable}}
+\index{LED\_SignalBackUpPowerAvailable@{LED\_SignalBackUpPowerAvailable}!led.c@{led.c}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalBackUpPowerAvailable()}{LED\_SignalBackUpPowerAvailable()}}
+{\footnotesize\ttfamily \label{led_8c_a051c422ce8dcca2df8022a718fa9e85c} 
+void LED\+\_\+\+Signal\+Back\+Up\+Power\+Available (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Signals Configuration File Missing or Contains Unexpected Data. 
+
+\Hypertarget{led_8c_a13c3d29b05f96fd3490c9b7680f7df08}\index{led.c@{led.c}!LED\_SignalError@{LED\_SignalError}}
+\index{LED\_SignalError@{LED\_SignalError}!led.c@{led.c}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalError()}{LED\_SignalError()}}
+{\footnotesize\ttfamily \label{led_8c_a13c3d29b05f96fd3490c9b7680f7df08} 
+void LED\+\_\+\+Signal\+Error (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Signals Error During Recording. 
+
+\Hypertarget{led_8c_ac6978cdce3f5c99d7cd85a6991a5394a}\index{led.c@{led.c}!LED\_SignalFlush@{LED\_SignalFlush}}
+\index{LED\_SignalFlush@{LED\_SignalFlush}!led.c@{led.c}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalFlush()}{LED\_SignalFlush()}}
+{\footnotesize\ttfamily \label{led_8c_ac6978cdce3f5c99d7cd85a6991a5394a} 
+void LED\+\_\+\+Signal\+Flush (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Signals That Flush Has Been Activated. 
+
+\Hypertarget{led_8c_aeab72eb69dcad626cad6ab8d18f5b7f7}\index{led.c@{led.c}!LED\_SignalLowMemory@{LED\_SignalLowMemory}}
+\index{LED\_SignalLowMemory@{LED\_SignalLowMemory}!led.c@{led.c}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalLowMemory()}{LED\_SignalLowMemory()}}
+{\footnotesize\ttfamily \label{led_8c_aeab72eb69dcad626cad6ab8d18f5b7f7} 
+void LED\+\_\+\+Signal\+Low\+Memory (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Signals That There Will Be Empty Space on SD Card. 
+
+\Hypertarget{led_8c_a90d3262aad7d8e74c655aecba5bdb8b1}\index{led.c@{led.c}!LED\_SignalReady@{LED\_SignalReady}}
+\index{LED\_SignalReady@{LED\_SignalReady}!led.c@{led.c}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalReady()}{LED\_SignalReady()}}
+{\footnotesize\ttfamily \label{led_8c_a90d3262aad7d8e74c655aecba5bdb8b1} 
+void LED\+\_\+\+Signal\+Ready (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Indicates Ready State of The Recording Device. 
+
+\Hypertarget{led_8c_ae4d93582ce6f8960bbbe8771670864f2}\index{led.c@{led.c}!LED\_SignalRecording@{LED\_SignalRecording}}
+\index{LED\_SignalRecording@{LED\_SignalRecording}!led.c@{led.c}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalRecording()}{LED\_SignalRecording()}}
+{\footnotesize\ttfamily \label{led_8c_ae4d93582ce6f8960bbbe8771670864f2} 
+void LED\+\_\+\+Signal\+Recording (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Signals That Device Is Currently Receiving Bytes (Recording). 
+
+\Hypertarget{led_8c_a357ebead2af4aa7710b82477c78c3ae5}\index{led.c@{led.c}!LED\_SignalRecordingStop@{LED\_SignalRecordingStop}}
+\index{LED\_SignalRecordingStop@{LED\_SignalRecordingStop}!led.c@{led.c}}
+\doxysubsubsection{\texorpdfstring{LED\_SignalRecordingStop()}{LED\_SignalRecordingStop()}}
+{\footnotesize\ttfamily \label{led_8c_a357ebead2af4aa7710b82477c78c3ae5} 
+void LED\+\_\+\+Signal\+Recording\+Stop (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Signals That Device Is Stopped Receiving Bytes (Recording). 
+

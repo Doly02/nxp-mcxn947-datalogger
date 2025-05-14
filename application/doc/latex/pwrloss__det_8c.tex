@@ -1,0 +1,61 @@
+\doxysection{src/pwrloss\+\_\+det.c File Reference}
+\hypertarget{pwrloss__det_8c}{}\label{pwrloss__det_8c}\index{src/pwrloss\_det.c@{src/pwrloss\_det.c}}
+{\ttfamily \#include "{}pwrloss\+\_\+det.\+h"{}}\newline
+{\ttfamily \#include "{}record.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8c_ab87b58674d2ede9f6589fd9a90e27c90}{REF\+\_\+\+VOLTAGE}}~0x\+FFu
+\item 
+\#define \mbox{\hyperlink{pwrloss__det_8c_a1076ce1f23d35e63137e2b4133f499da}{TRIGGER\+\_\+\+VOLTAGE}}~0x\+E1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pwrloss__det_8c_a959b3da8b96385f685f18d445102163c}{CTIMER4\+\_\+\+IRQHandler}} (void)
+\item 
+void \mbox{\hyperlink{pwrloss__det_8c_a91fcfb8aaaf84fcc82fcbc7ca6837ca9}{HSCMP1\+\_\+\+IRQHandler}} (void)
+\item 
+void \mbox{\hyperlink{pwrloss__det_8c_a640dcd500f29a2a077dbc83532cde9e5}{PWRLOSS\+\_\+\+Detection\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initializes Power Loss Detection Components. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{pwrloss__det_8c_ab87b58674d2ede9f6589fd9a90e27c90}\index{pwrloss\_det.c@{pwrloss\_det.c}!REF\_VOLTAGE@{REF\_VOLTAGE}}
+\index{REF\_VOLTAGE@{REF\_VOLTAGE}!pwrloss\_det.c@{pwrloss\_det.c}}
+\doxysubsubsection{\texorpdfstring{REF\_VOLTAGE}{REF\_VOLTAGE}}
+{\footnotesize\ttfamily \label{pwrloss__det_8c_ab87b58674d2ede9f6589fd9a90e27c90} 
+\#define REF\+\_\+\+VOLTAGE~0x\+FFu}
+
+\Hypertarget{pwrloss__det_8c_a1076ce1f23d35e63137e2b4133f499da}\index{pwrloss\_det.c@{pwrloss\_det.c}!TRIGGER\_VOLTAGE@{TRIGGER\_VOLTAGE}}
+\index{TRIGGER\_VOLTAGE@{TRIGGER\_VOLTAGE}!pwrloss\_det.c@{pwrloss\_det.c}}
+\doxysubsubsection{\texorpdfstring{TRIGGER\_VOLTAGE}{TRIGGER\_VOLTAGE}}
+{\footnotesize\ttfamily \label{pwrloss__det_8c_a1076ce1f23d35e63137e2b4133f499da} 
+\#define TRIGGER\+\_\+\+VOLTAGE~0x\+E1}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pwrloss__det_8c_a959b3da8b96385f685f18d445102163c}\index{pwrloss\_det.c@{pwrloss\_det.c}!CTIMER4\_IRQHandler@{CTIMER4\_IRQHandler}}
+\index{CTIMER4\_IRQHandler@{CTIMER4\_IRQHandler}!pwrloss\_det.c@{pwrloss\_det.c}}
+\doxysubsubsection{\texorpdfstring{CTIMER4\_IRQHandler()}{CTIMER4\_IRQHandler()}}
+{\footnotesize\ttfamily \label{pwrloss__det_8c_a959b3da8b96385f685f18d445102163c} 
+void CTIMER4\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+MISRA Deviation\+: Rule 10.\+3 \mbox{[}Required\mbox{]} Suppress\+: Conversion From enum To unsigned32. Justification\+: The Enum Value is Part of The NXP SDK and is Intentionally Used in Context as a Bitmask Flag For Hardware Status Registers.\Hypertarget{pwrloss__det_8c_a91fcfb8aaaf84fcc82fcbc7ca6837ca9}\index{pwrloss\_det.c@{pwrloss\_det.c}!HSCMP1\_IRQHandler@{HSCMP1\_IRQHandler}}
+\index{HSCMP1\_IRQHandler@{HSCMP1\_IRQHandler}!pwrloss\_det.c@{pwrloss\_det.c}}
+\doxysubsubsection{\texorpdfstring{HSCMP1\_IRQHandler()}{HSCMP1\_IRQHandler()}}
+{\footnotesize\ttfamily \label{pwrloss__det_8c_a91fcfb8aaaf84fcc82fcbc7ca6837ca9} 
+void HSCMP1\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{pwrloss__det_8c_a640dcd500f29a2a077dbc83532cde9e5}\index{pwrloss\_det.c@{pwrloss\_det.c}!PWRLOSS\_DetectionInit@{PWRLOSS\_DetectionInit}}
+\index{PWRLOSS\_DetectionInit@{PWRLOSS\_DetectionInit}!pwrloss\_det.c@{pwrloss\_det.c}}
+\doxysubsubsection{\texorpdfstring{PWRLOSS\_DetectionInit()}{PWRLOSS\_DetectionInit()}}
+{\footnotesize\ttfamily \label{pwrloss__det_8c_a640dcd500f29a2a077dbc83532cde9e5} 
+void PWRLOSS\+\_\+\+Detection\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes Power Loss Detection Components. 
+
+This Function Configures The Comparator (LPCMP) for Monitoring The 5V Power Rail and The Timer (CTIMER4) That Delays The Activation of The Comparator Until The Backup Capacitor Is Fully Charged (\texorpdfstring{$\sim$}{\string~}5tau). After Initialization, The Timer is Started and The Comparator Will Be Enabled Upon Timer Match Event. 

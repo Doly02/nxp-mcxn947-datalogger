@@ -1,0 +1,90 @@
+\doxysection{src/uart.c File Reference}
+\hypertarget{uart_8c}{}\label{uart_8c}\index{src/uart.c@{src/uart.c}}
+{\ttfamily \#include "{}uart.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}parser.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{uart_8c_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~(200)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{uart_8c_a6ee3953aba06a9d3e1695bb3ba147c18}{UART\+\_\+\+Print}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Prints Character on The Terminal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{uart_8c_ad6f6f2234554d7faf55db52b66f45bc5}{UART\+\_\+\+Init}} (uint32\+\_\+t baudrate)
+\begin{DoxyCompactList}\small\item\em Initializes LPUART For Recording. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{uart_8c_ae2d34afb9a8bd33f0229eb6b34c57df2}{UART\+\_\+\+Enable}} (void)
+\begin{DoxyCompactList}\small\item\em Enables Interrupt For Application LPUART. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{uart_8c_a76482cf7e9eb69dba68afd26b53b7f37}{UART\+\_\+\+Disable}} (void)
+\begin{DoxyCompactList}\small\item\em Disables Interrupt For Application LPUART. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{uart_8c_a28f24a41744d2b956de47ae6318d9c05}{UART\+\_\+\+Deinit}} (void)
+\begin{DoxyCompactList}\small\item\em De-\/\+Initialize LPUART. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{uart_8c_a6b20d41d6252e9871430c242cb1a56e7}\index{uart.c@{uart.c}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \label{uart_8c_a6b20d41d6252e9871430c242cb1a56e7} 
+\#define BUFFER\+\_\+\+SIZE~(200)}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{uart_8c_a28f24a41744d2b956de47ae6318d9c05}\index{uart.c@{uart.c}!UART\_Deinit@{UART\_Deinit}}
+\index{UART\_Deinit@{UART\_Deinit}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{UART\_Deinit()}{UART\_Deinit()}}
+{\footnotesize\ttfamily \label{uart_8c_a28f24a41744d2b956de47ae6318d9c05} 
+void UART\+\_\+\+Deinit (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+De-\/\+Initialize LPUART. 
+
+The Pins Should Be De-\/\+Initialized After This Function. \Hypertarget{uart_8c_a76482cf7e9eb69dba68afd26b53b7f37}\index{uart.c@{uart.c}!UART\_Disable@{UART\_Disable}}
+\index{UART\_Disable@{UART\_Disable}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{UART\_Disable()}{UART\_Disable()}}
+{\footnotesize\ttfamily \label{uart_8c_a76482cf7e9eb69dba68afd26b53b7f37} 
+void UART\+\_\+\+Disable (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Disables Interrupt For Application LPUART. 
+
+\Hypertarget{uart_8c_ae2d34afb9a8bd33f0229eb6b34c57df2}\index{uart.c@{uart.c}!UART\_Enable@{UART\_Enable}}
+\index{UART\_Enable@{UART\_Enable}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{UART\_Enable()}{UART\_Enable()}}
+{\footnotesize\ttfamily \label{uart_8c_ae2d34afb9a8bd33f0229eb6b34c57df2} 
+void UART\+\_\+\+Enable (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Enables Interrupt For Application LPUART. 
+
+MISRA Deviation Note\+: Rule 10.\+3\+: Cannot Assign \textquotesingle{}enum\textquotesingle{} to a Different Essential Type Such As \textquotesingle{}unsigned32\textquotesingle{}. \mbox{[}Required\mbox{]} Rule 11.\+4\+: Conversion Between Object Pointer Type and Integer Type. \mbox{[}Required\mbox{]} Justification\+: This Code Follows The Usage Pattern Provided By The NXP SDK.\Hypertarget{uart_8c_ad6f6f2234554d7faf55db52b66f45bc5}\index{uart.c@{uart.c}!UART\_Init@{UART\_Init}}
+\index{UART\_Init@{UART\_Init}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{UART\_Init()}{UART\_Init()}}
+{\footnotesize\ttfamily \label{uart_8c_ad6f6f2234554d7faf55db52b66f45bc5} 
+void UART\+\_\+\+Init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{baudrate}{}\end{DoxyParamCaption})}
+
+
+
+Initializes LPUART For Recording. 
+
+MISRA Deviation\+: Rule 11.\+4 \mbox{[}Required\mbox{]} Suppress\+: Conversion Between Object Pointer Type \textquotesingle{}LPUART\+\_\+\+Type \texorpdfstring{$\ast$}{*}\textquotesingle{} and Integer Type \textquotesingle{}Unsigned Int\textquotesingle{}. Justification\+: LPUART3 Is a Hardware Peripheral Base Address Defined In The NXP SDK. This Code Follows The Usage Pattern Provided By The NXP SDK.\Hypertarget{uart_8c_a6ee3953aba06a9d3e1695bb3ba147c18}\index{uart.c@{uart.c}!UART\_Print@{UART\_Print}}
+\index{UART\_Print@{UART\_Print}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{UART\_Print()}{UART\_Print()}}
+{\footnotesize\ttfamily \label{uart_8c_a6ee3953aba06a9d3e1695bb3ba147c18} 
+void UART\+\_\+\+Print (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})}
+
+
+
+Prints Character on The Terminal. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ch} & Character in uint8\+\_\+t. \\
+\hline
+\end{DoxyParams}

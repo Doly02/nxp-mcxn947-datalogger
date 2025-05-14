@@ -1,0 +1,1268 @@
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 39
+        LED_SetHigh(GPIO0, 7);
+                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 40
+    LED_SetHigh(GPIO0, 9);
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 41
+    LED_SetHigh(GPIO0, 13);
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 42
+    LED_SetHigh(GPIO2, 11);
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 43
+    LED_SetHigh(GPIO4, 17);
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 45
+    LED_SetLow(GPIO0, 7);
+               ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 46
+    LED_SetLow(GPIO0, 9);
+               ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 47
+    LED_SetLow(GPIO0, 13);
+               ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 48
+    LED_SetLow(GPIO2, 11);
+               ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 49
+    LED_SetLow(GPIO4, 17);
+               ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 54
+        GPIO_PortToggle(RECORD_LED_PORT, 1UL << RECORD_LED_PIN);
+                        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 59
+        LED_SetHigh(RECORD_LED_PORT, RECORD_LED_PIN);
+                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 64
+        LED_SetHigh(BACKUP_POWER_LED_PORT, BACKUP_POWER_LED_PIN);
+                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 69
+        LED_SetHigh(MEMORY_LOW_LED_PORT, MEMORY_LOW_LED_PIN);
+                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 74
+        LED_SetHigh(ERROR_LED_PORT, ERROR_LED_PIN_RECORD);
+                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 79
+        LED_SetHigh(FLUSH_LED_PORT, RECORD_LED_PIN_FLUSH);
+                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 84
+        LED_SetLow(FLUSH_LED_PORT, RECORD_LED_PIN_FLUSH);
+                   ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 82
+void LED_ClearSignalFlush(void)
+     ^
+    info 714: external symbol 'LED_ClearSignalFlush' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 82
+void LED_ClearSignalFlush(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 27
+void LED_SetHigh(GPIO_Type *port_base, uint32_t pin)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 32
+void LED_SetLow(GPIO_Type *port_base, uint32_t pin)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 62
+void LED_SignalBackUpPowerAvailable(void)
+     ^
+    info 714: external symbol 'LED_SignalBackUpPowerAvailable' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 62
+void LED_SignalBackUpPowerAvailable(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 72
+void LED_SignalError(void)
+     ^
+    info 714: external symbol 'LED_SignalError' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 72
+void LED_SignalError(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 77
+void LED_SignalFlush(void)
+     ^
+    info 714: external symbol 'LED_SignalFlush' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 77
+void LED_SignalFlush(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 67
+void LED_SignalLowMemory(void)
+     ^
+    info 714: external symbol 'LED_SignalLowMemory' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 67
+void LED_SignalLowMemory(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 37
+void LED_SignalReady(void)
+     ^
+    info 714: external symbol 'LED_SignalReady' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 37
+void LED_SignalReady(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 52
+void LED_SignalRecording(void)
+     ^
+    info 714: external symbol 'LED_SignalRecording' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 52
+void LED_SignalRecording(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 57
+void LED_SignalRecordingStop(void)
+     ^
+    info 714: external symbol 'LED_SignalRecordingStop' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\led.c, Line 57
+void LED_SignalRecordingStop(void)
+     ^
+lint_config.lnt  75  error 72: bad option '-message': expected 1 argument, 
+    received 2
+^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 153
+        float fTemp = TMP_GetTemperature();
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 226
+float TMP_GetTemperature(void)
+^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 235
+        return ((float)u16Val / 256.0f);
+                 ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 68
+#define PRINT_REG_OUTPUT                        true
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 83
+#define REGISTER_CONFIG                         0x01
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 88
+#define REGISTER_THVST                          0x02
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 92
+#define REGISTER_TOS                            0x03
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 134
+static void lpi2c_callback(LPI2C_Type *base, lpi2c_master_edma_handle_t *handle, status_t status, void *userData)
+                                       ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 134
+static void lpi2c_callback(LPI2C_Type *base, lpi2c_master_edma_handle_t *handle, status_t status, void *userData)
+                                                                         ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 134
+static void lpi2c_callback(LPI2C_Type *base, lpi2c_master_edma_handle_t *handle, status_t status, void *userData)
+                                                                                                        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 162
+        CTIMER_ClearStatusFlags(CTIMER0, (uint32_t)kCTIMER_Match0Flag);
+                                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 181
+    status = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &xfer_I2C5);
+           ^
+    info 838: previous value assigned to 'status' not used
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 171
+        status_t status                          = 1;
+                 ^
+    supplemental 891: previous assignment is here
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 184
+        return (0xFF);
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 188
+        while (false == g_bCompletionFlag_I2C5)
+        ^
+    warning 539: unexpected positive indentation
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 182
+    if (kStatus_Success != status)
+    ^
+    supplemental 891: statement is not controlled by preceding control structure
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 181
+    status = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &xfer_I2C5);
+                                      ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 53
+#define I2C_MASTER_I2C5                         ((LPI2C_Type *)LPI2C5_BASE)
+                                                 ^
+    supplemental 893: expanded from macro 'I2C_MASTER_I2C5'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 169
+uint8_t Write(uint8_t regAddress, uint8_t val[])
+                      ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 209
+        status = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &xfer_I2C5);
+               ^
+    info 838: previous value assigned to 'status' not used
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 199
+        status_t status                  = 1;
+                 ^
+    supplemental 891: previous assignment is here
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 222
+    u16rxVal = (((uint16_t)gRxBuff_I2C5[0]) << 8 | gRxBuff_I2C5[1]);
+             ^
+    info 838: previous value assigned to 'u16rxVal' not used
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 198
+        uint16_t u16rxVal                = 0;
+                 ^
+    supplemental 891: previous assignment is here
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 212
+        return (0xFFFF);
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 215
+        while (false == g_bCompletionFlag_I2C5)
+        ^
+    warning 539: unexpected positive indentation
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 210
+    if (kStatus_Success != status)
+    ^
+    supplemental 891: statement is not controlled by preceding control structure
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 209
+        status = LPI2C_MasterTransferEDMA(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &xfer_I2C5);
+                                          ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 53
+#define I2C_MASTER_I2C5                         ((LPI2C_Type *)LPI2C5_BASE)
+                                                 ^
+    supplemental 893: expanded from macro 'I2C_MASTER_I2C5'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 222
+    u16rxVal = (((uint16_t)gRxBuff_I2C5[0]) << 8 | gRxBuff_I2C5[1]);
+             ^
+    info 732: loss of sign (assignment) ('int' to 'uint16_t' (aka 'unsigned short'))
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 222
+    u16rxVal = (((uint16_t)gRxBuff_I2C5[0]) << 8 | gRxBuff_I2C5[1]);
+                                            ~~   ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 196
+uint16_t Read(uint8_t regAddress)
+                      ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 248
+    EDMA_Init(DMA1, &userCfg);
+              ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 254
+    LPI2C_MasterInit(I2C_MASTER_I2C5, &masterCfg, CLOCK_GetLPFlexCommClkFreq(5u));
+                     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 53
+#define I2C_MASTER_I2C5                         ((LPI2C_Type *)LPI2C5_BASE)
+                                                 ^
+    supplemental 893: expanded from macro 'I2C_MASTER_I2C5'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 257
+    EDMA_CreateHandle(&gEdmaTxHandle_I2C5, DMA1, LPI2C_TX_DMA_CHANNEL);
+                                           ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 258
+    EDMA_CreateHandle(&gEdmaRxHandle_I2C5, DMA1, LPI2C_RX_DMA_CHANNEL);
+                                           ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 259
+    EDMA_SetChannelMux(DMA1, LPI2C_TX_DMA_CHANNEL, LPI2C_TX_CHANNEL);
+                       ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 260
+    EDMA_SetChannelMux(DMA1, LPI2C_RX_DMA_CHANNEL, LPI2C_RX_EDMA_CHANNEL);
+                       ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 263
+    LPI2C_MasterCreateEDMAHandle(I2C_MASTER_I2C5, &gEdmaHandle_I2C5, &gEdmaRxHandle_I2C5, &gEdmaTxHandle_I2C5,
+                                 ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 53
+#define I2C_MASTER_I2C5                         ((LPI2C_Type *)LPI2C5_BASE)
+                                                 ^
+    supplemental 893: expanded from macro 'I2C_MASTER_I2C5'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 272
+        CTIMER_Init(CTIMER0, &config);
+                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 281
+        CTIMER_SetupMatch(CTIMER0, kCTIMER_Match_0, &matchConfig);
+                          ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 287
+        CTIMER_StartTimer(CTIMER0);
+                          ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 151
+void CTIMER0_IRQHandler(void)
+     ^
+    info 714: external symbol 'CTIMER0_IRQHandler' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 151
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 196
+uint16_t Read(uint8_t regAddress)
+         ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 226
+float TMP_GetTemperature(void)
+      ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 239
+uint8_t TMP_Init(void)
+        ^
+    info 714: external symbol 'TMP_Init' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 239
+uint8_t TMP_Init(void)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 169
+uint8_t Write(uint8_t regAddress, uint8_t val[])
+        ^
+    info 714: external symbol 'Write' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\temperature.c, Line 169
+uint8_t Write(uint8_t regAddress, uint8_t val[])
+        ^
+lint_config.lnt  75  error 72: bad option '-message': expected 1 argument, 
+    received 2
+^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 87
+SDK_ALIGN(static uint8_t g_pu8DmaBuffer1[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+^
+    warning 2666: expression with side effects passed to unexpanded parameter 1 of macro '__attribute__': parameter is not referenced in the expansion
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 97
+SDK_ALIGN(static uint8_t g_pu8DmaBuffer2[BLOCK_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+^
+    warning 2666: expression with side effects passed to unexpanded parameter 1 of macro '__attribute__': parameter is not referenced in the expansion
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 160
+SDK_ALIGN(static volatile uint8_t g_au8CircBuffer[CIRCULAR_BUFFER_SIZE], BOARD_SDMMC_DATA_BUFFER_ALIGN_SIZE);
+^
+    warning 2666: expression with side effects passed to unexpanded parameter 1 of macro '__attribute__': parameter is not referenced in the expansion
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 256
+        PRINTF("ERR: Failed To Get Free Space ERR=%d\r\n", (int)res);
+                                                            ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 312
+    /*lint -e9027 -e9029 -e9032 -e9034 -e9033 -e9053 -e701 -e10.1 -e10.3 -e10.4 -e10.7 -e12.2 */
+    ^
+    error 72: bad option '-e10.1': '10.1' is not a valid message pattern
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 312
+    error 72: bad option '-e10.3': '10.3' is not a valid message pattern
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 312
+    error 72: bad option '-e10.4': '10.4' is not a valid message pattern
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 312
+    error 72: bad option '-e10.7': '10.7' is not a valid message pattern
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 312
+    error 72: bad option '-e12.2': '12.2' is not a valid message pattern
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 315
+    /*lint +e9027 +e9029 +e9032 +e9034 +e9033 +e9053 +e701 +e10.1 +e10.3 +e10.4 +e10.7 +e12.2 */
+    ^
+    error 72: bad option '+e10.1': '10.1' is not a valid message pattern
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 315
+    error 72: bad option '+e10.3': '10.3' is not a valid message pattern
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 315
+    error 72: bad option '+e10.4': '10.4' is not a valid message pattern
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 315
+    error 72: bad option '+e10.7': '10.7' is not a valid message pattern
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 315
+    error 72: bad option '+e12.2': '12.2' is not a valid message pattern
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 44
+#define GET_WAIT_INTERVAL(seconds)  ((seconds) * 1000 / configTICK_RATE_HZ)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 46
+#define GET_CURRENT_TIME_MS()  (xTaskGetTickCount() * portTICK_PERIOD_MS)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 44
+#define GET_WAIT_INTERVAL(seconds)  ((seconds) * 1000 / configTICK_RATE_HZ)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 46
+#define GET_CURRENT_TIME_MS()  (xTaskGetTickCount() * portTICK_PERIOD_MS)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 195
+    u32Stat = LPUART_GetStatusFlags(LPUART3);
+                                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 198
+        u8Data = LPUART_ReadByte(LPUART3);
+                                 ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 214
+    (void)LPUART_ClearStatusFlags(LPUART3, (uint32_t)kLPUART_RxDataRegFullFlag);
+                                  ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 234
+    IRTC_GetDatetime(RTC, &datetime);
+                     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 257
+        return 0;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 301
+        return ERROR_OPEN;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 324
+            return ERROR_CLOSE;
+            ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 326
+        return ERROR_FILESYSTEM;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 274
+    IRTC_GetDatetime(RTC, &datetimeGet);
+                     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 286
+             g_u32FileCounter++);
+             ~~~~~~~~~~~~~~~~^~~
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 286
+             g_u32FileCounter++);
+             ^~~~~~~~~~~~~~~~~~
+    info 705: format '%u' specifies type 'unsigned int' which is nominally inconsistent with argument no. 11 of promoted type 'int'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 313
+    fno.fdate = ((datetimeGet.year - 1980) << 9) | (datetimeGet.month << 5) | (datetimeGet.day);
+              ^
+    info 734: loss of precision (assignment) from 25 bits to 16 bits
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 313
+    info 732: loss of sign (assignment) ('int' to 'WORD' (aka 'unsigned short'))
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 314
+    fno.ftime = (datetimeGet.hour << 11) | (datetimeGet.minute << 5) | (datetimeGet.second / 2);
+              ^
+    info 734: loss of precision (assignment) from 19 bits to 16 bits
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 320
+        PRINTF("ERR: Failed to Set Meta-Data for %s. Error=%d\r\n", u8FileName, status);
+                                                                                ^
+    warning 641: implicit conversion of enum 'FRESULT' to integral type 'unsigned int'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 360
+        return ERROR_FILESYSTEM;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 344
+    IRTC_GetDatetime(RTC, &datetimeGet);
+                     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 352
+                 datetimeGet.year, datetimeGet.month, datetimeGet.day, counter++);
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 415
+                return ERROR_FILESYSTEM;
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 425
+        return ERROR_FILESYSTEM;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 444
+            return ERROR_FILESYSTEM;
+            ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 454
+        return ERROR_FILESYSTEM;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 441
+        if (FR_OK != f_mkfs(sLogicDisk, NULL, work, sizeof work))
+                                                           ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 536
+                return ERROR_OPEN;
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 554
+            return ERROR_ADMA;
+            ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 477
+        g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx++] = currentChar;
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 486
+                IRTC_GetDatetime(RTC, &datetimeGet);
+                                 ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 497
+                        g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx++] = (uint8_t)timeString[i];
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 509
+                    g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx++] = (uint8_t)timeString[i];
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 597
+            ((CurrentTick - LastTick) > FLUSH_TIMEOUT_TICKS) &&
+                          ^ ~~~~~~~~
+    info 845: the right operand to - always evaluates to 0
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 578
+        TickType_t LastTick     = 0;
+        ~~~~~~~~~~~^~~~~~~~~~~~~~~~
+    supplemental 831: initialization yields 0
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 578
+        TickType_t LastTick     = 0;
+                                  ^
+    supplemental 831: integral conversion yields 0
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 672
+            ((CurrentTick - LastTick) > FLUSH_TIMEOUT_TICKS))
+                          ^ ~~~~~~~~
+    info 845: the right operand to - always evaluates to 0
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 578
+        TickType_t LastTick     = 0;
+        ~~~~~~~~~~~^~~~~~~~~~~~~~~~
+    supplemental 831: initialization yields 0
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 578
+        TickType_t LastTick     = 0;
+                                  ^
+    supplemental 831: integral conversion yields 0
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 625
+                                return ERROR_RECORD;
+                                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 649
+                        return ERROR_ADMA;
+                        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 654
+                        return (error_t)error;
+                        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 610
+                        g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx++] = (uint8_t)' ';
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 714
+                                return ERROR_RECORD;
+                                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 738
+                        return ERROR_ADMA;
+                        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 699
+                        g_pu8BackDmaBuffer[g_u16BackDmaBufferIdx++] = (uint8_t)' ';
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 771
+            return ERROR_CLOSE;
+            ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 781
+                return ERROR_RECORD;
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 777
+        error = f_mount(NULL, "", 0);
+        ^
+    warning 539: unexpected positive indentation
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 765
+    if (NULL != g_fileObject.obj.fs)
+    ^
+    supplemental 891: statement is not controlled by preceding control structure
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 770
+            PRINTF("ERR: Failed to Close File. ERR=%d\r\n", error);
+                                                            ^
+    warning 641: implicit conversion of enum 'FRESULT' to integral type 'unsigned int'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 780
+                PRINTF("ERR: Failed To Unmount File System. Error=%d\r\n", error);
+                                                                           ^
+    warning 641: implicit conversion of enum 'FRESULT' to integral type 'unsigned int'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 807
+        return ERROR_OPEN;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 833
+                                        return ERROR_OPEN;
+                                        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 846
+                                        return ERROR_READ;
+                                        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 858
+                                        return ERROR_READ;
+                                        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 864
+                                return ERROR_NONE;
+                                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 806
+        PRINTF("ERR: Failed to Open Root Dir. ERR=%d\r\n", error);
+                                                           ^
+    warning 641: implicit conversion of enum 'FRESULT' to integral type 'unsigned int'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 810
+    while (true)
+           ^
+    info 716: infinite loop via while
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 813
+        if (FR_OK != error || 0UL == (uint32_t)fno.fname[0])
+            ~~~~~          ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 813
+        if (FR_OK != error || 0UL == (uint32_t)fno.fname[0])
+                           ^  ~~~
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 813
+        if (FR_OK != error || 0UL == (uint32_t)fno.fname[0])
+                                     ^
+    warning 571: cast from 'TCHAR' (aka 'char') to 'uint32_t' (aka 'unsigned int') results in sign extension
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 831
+                                PRINTF("ERR: Failed to open .config file. ERR=%d\r\n", error);
+                                                                                       ^
+    warning 641: implicit conversion of enum 'FRESULT' to integral type 'unsigned int'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 843
+                                        PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
+                                                                                               ^
+    warning 641: implicit conversion of enum 'FRESULT' to integral type 'unsigned int'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 855
+                                        PRINTF("ERR: Failed To Read .config File. ERR=%d\r\n", error);
+                                                                                               ^
+    warning 641: implicit conversion of enum 'FRESULT' to integral type 'unsigned int'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 883
+        return error;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 892
+        return error;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 901
+        return error;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 910
+        return error;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 919
+        return error;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 928
+                return error;
+                ^
+--- Module Wrap-up
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 123
+static TickType_t g_lastDataTick                = 0;
+                  ^
+    warning 551: static variable 'g_lastDataTick' not accessed
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 505
+                        g_pu8BackDmaBuffer = (g_pu8BackDmaBuffer == g_pu8DmaBuffer1) ? g_pu8DmaBuffer2 : g_pu8DmaBuffer1;
+                                                                                       ^
+    info 728: file scope static variable 'g_pu8DmaBuffer2' not explicitly initialized
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 108
+static uint8_t* g_pu8FrontDmaBuffer     = NULL;
+                ^
+--- Global Wrap-up
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 389
+FRESULT CONSOLELOG_CheckFileSystem(void)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 384
+void CONSOLELOG_ClearTransferedBytes(void)
+     ^
+    info 714: external symbol 'CONSOLELOG_ClearTransferedBytes' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 384
+void CONSOLELOG_ClearTransferedBytes(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 337
+error_t CONSOLELOG_CreateDirectory(void)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 266
+error_t CONSOLELOG_CreateFile(void)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 757
+error_t CONSOLELOG_Deinit(void)
+        ^
+    info 714: external symbol 'CONSOLELOG_Deinit' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 757
+error_t CONSOLELOG_Deinit(void)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 574
+error_t CONSOLELOG_Flush(void)
+        ^
+    info 714: external symbol 'CONSOLELOG_Flush' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 574
+error_t CONSOLELOG_Flush(void)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 379
+bool CONSOLELOG_GetFlushCompleted(void)
+     ^
+    info 714: external symbol 'CONSOLELOG_GetFlushCompleted' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 379
+bool CONSOLELOG_GetFlushCompleted(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 245
+uint32_t CONSOLELOG_GetFreeSpaceMB(void)
+         ^
+    info 714: external symbol 'CONSOLELOG_GetFreeSpaceMB' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 245
+uint32_t CONSOLELOG_GetFreeSpaceMB(void)
+         ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 374
+uint32_t CONSOLELOG_GetTransferedBytes(void)
+         ^
+    info 714: external symbol 'CONSOLELOG_GetTransferedBytes' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 374
+uint32_t CONSOLELOG_GetTransferedBytes(void)
+         ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 401
+error_t CONSOLELOG_Init(void)
+        ^
+    info 714: external symbol 'CONSOLELOG_Init' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 401
+error_t CONSOLELOG_Init(void)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 684
+error_t CONSOLELOG_PowerLossFlush(void)
+        ^
+    info 714: external symbol 'CONSOLELOG_PowerLossFlush' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 684
+error_t CONSOLELOG_PowerLossFlush(void)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 873
+error_t CONSOLELOG_ProccessConfigFile(const char *content)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 791
+error_t CONSOLELOG_ReadConfig(void)
+        ^
+    info 714: external symbol 'CONSOLELOG_ReadConfig' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 791
+error_t CONSOLELOG_ReadConfig(void)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 460
+error_t CONSOLELOG_Recording(uint32_t file_size)
+        ^
+    info 714: external symbol 'CONSOLELOG_Recording' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 460
+error_t CONSOLELOG_Recording(uint32_t file_size)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 188
+void LP_FLEXCOMM3_IRQHandler(void)
+     ^
+    info 714: external symbol 'LP_FLEXCOMM3_IRQHandler' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 188
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 222
+DWORD get_fattime(void)
+      ^
+    info 714: external symbol 'get_fattime' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\record.c, Line 222
+DWORD get_fattime(void)
+      ^
+lint_config.lnt  75  error 72: bad option '-message': expected 1 argument, 
+    received 2
+^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 28
+extern SemaphoreHandle_t g_xSemRecord;
+                         ^
+    info 2701: variable 'g_xSemRecord' declared outside of header is not defined in the same source file
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 30
+extern SemaphoreHandle_t g_xSemMassStorage;
+                         ^
+    info 2701: variable 'g_xSemMassStorage' declared outside of header is not defined in the same source file
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 47
+    if (USB_State(g_msc.deviceHandle) == kUSB_DeviceNotifyAttach)
+                  ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 67
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+    ^
+    info 717: monocarpic do-while used to group statements
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 85
+        return;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 92
+    MSC_DeviceMscApp();
+    ^
+    warning 523: expression statement involving function 'MSC_DeviceMscApp' lacks side effects
+--- Module Wrap-up
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 75
+void MSC_DeviceMscApp(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 81
+void MSC_DeviceMscAppTask(void)
+     ^
+    info 714: external symbol 'MSC_DeviceMscAppTask' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 81
+void MSC_DeviceMscAppTask(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 41
+void USB1_HS_IRQHandler(void)
+     ^
+    info 714: external symbol 'USB1_HS_IRQHandler' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 41
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 30
+extern SemaphoreHandle_t g_xSemMassStorage;
+                         ^
+    warning 526: symbol 'g_xSemMassStorage' is not defined
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\mass_storage.c, Line 28
+extern SemaphoreHandle_t g_xSemRecord;
+                         ^
+    warning 526: symbol 'g_xSemRecord' is not defined
+lint_config.lnt  75  error 72: bad option '-message': expected 1 argument, 
+    received 2
+^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 31
+#define REF_VOLTAGE                     0xFFu
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 37
+#define TRIGGER_VOLTAGE         0xE1u
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 60
+        LED_SetHigh(GPIO0, 15);
+                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 61
+        LED_SetLow(GPIO0, 23);
+                   ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 72
+        CTIMER_ClearStatusFlags(CTIMER4, kCTIMER_Match0Flag);
+                                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 77
+        CTIMER_StopTimer(CTIMER);
+                         ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 97
+        LPCMP_ClearStatusFlags(DEMO_LPCMP_BASE, (uint32_t)kLPCMP_OutputFallingEventFlag);
+                               ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 104
+        LED_SetHigh(GPIO0, 23);                         /* Signal Power Loss                                    */
+                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 105
+        LED_SetLow(GPIO0, 15);
+                   ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 136
+    SPC_EnableActiveModeAnalogModules(DEMO_SPC_BASE, (uint32_t)(kSPC_controlCmp1 | kSPC_controlCmp1Dac));
+                                      ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 152
+    LPCMP_Init(CMP1, &mLpcmpCfg);
+               ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 158
+    LPCMP_SetDACConfig(DEMO_LPCMP_BASE, &mLpcmpDacConfigStruct);
+                       ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 161
+    LPCMP_SetInputChannels(CMP1, 0x02, 0x07);
+                           ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 166
+    LPCMP_EnableInterrupts(CMP1, (uint32_t)kLPCMP_OutputFallingInterruptEnable);
+                           ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 170
+    CTIMER_Init(CTIMER, &config);
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 189
+    CTIMER_SetupMatch(CTIMER, CTIMER_MAT0_OUT, &matchConfig0);
+                      ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 193
+    CTIMER_StartTimer(CTIMER);
+                      ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 196
+    LED_SetLow(GPIO0, 23);
+               ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 197
+    LED_SetLow(GPIO0, 15);
+               ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 57
+void CTIMER4_IRQHandler(void)
+     ^
+    info 714: external symbol 'CTIMER4_IRQHandler' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 57
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 95
+void HSCMP1_IRQHandler(void)
+     ^
+    info 714: external symbol 'HSCMP1_IRQHandler' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 95
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 116
+void PWRLOSS_DetectionInit(void)
+     ^
+    info 714: external symbol 'PWRLOSS_DetectionInit' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\pwrloss_det.c, Line 116
+void PWRLOSS_DetectionInit(void)
+     ^
+lint_config.lnt  75  error 72: bad option '-message': expected 1 argument, 
+    received 2
+^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\error.c, Line 40
+{
+^
+    info 2707: function 'ERR_HandleError' could be declared as 'noreturn'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\error.c, Line 41
+        while(true)
+              ^
+    info 716: infinite loop via while
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\error.c, Line 39
+void ERR_HandleError()
+     ^
+    info 714: external symbol 'ERR_HandleError' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\error.c, Line 39
+void ERR_HandleError()
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\error.c, Line 53
+void ERR_Init()
+     ^
+    info 714: external symbol 'ERR_Init' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\error.c, Line 53
+void ERR_Init()
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\error.c, Line 59
+void ERR_SetState(error_t err)
+     ^
+    info 714: external symbol 'ERR_SetState' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\error.c, Line 59
+void ERR_SetState(error_t err)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\error.c, Line 34
+error_t error;
+        ^
+    warning 552: external variable 'error' not accessed
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\error.c, Line 34
+lint_config.lnt  75  error 72: bad option '-message': expected 1 argument, 
+    received 2
+^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_init.c, Line 98
+        EDMA_Init(LPI2C_DMA_BASEADDR, &edmaConfig);
+                  ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_init.c, Line 37
+        irtc_config_t irtcCfg;
+                      ^
+    warning 529: local variable 'irtcCfg' declared in 'APP_InitBoard' not subsequently referenced
+--- Module Wrap-up
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_init.c, Line 35
+void APP_InitBoard(void)
+     ^
+    info 714: external symbol 'APP_InitBoard' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_init.c, Line 35
+void APP_InitBoard(void)
+     ^
+lint_config.lnt  75  error 72: bad option '-message': expected 1 argument, 
+    received 2
+^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 52
+static StackType_t uxIdleTaskStack[configMINIMAL_STACK_SIZE];
+                                   ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 52
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 70
+static StackType_t uxTimerTaskStack[configTIMER_TASK_STACK_DEPTH];
+                                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 70
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 248
+    *pulIdleTaskStackSize = (uint32_t)configMINIMAL_STACK_SIZE;
+                                      ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 248
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 267
+    *pulTimerTaskStackSize = (uint32_t)configTIMER_TASK_STACK_DEPTH;
+                                       ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 267
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 86
+    while (true)
+           ^
+    info 716: infinite loop via while
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 102
+        while (true)
+               ^
+    info 716: infinite loop via while
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 107
+            if (USB_State(g_msc.deviceHandle) == kUSB_DeviceNotifyDetach)
+                          ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 84
+void msc_task(void *handle)
+                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 158
+    retVal = CONSOLELOG_Init();
+           ^
+    info 838: previous value assigned to 'retVal' not used
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 125
+    error_t  retVal             = ERROR_UNKNOWN;
+             ^
+    supplemental 891: previous assignment is here
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 149
+                return;
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 162
+                return;
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 154
+        RTC_Deinit();
+        ^
+    warning 539: unexpected positive indentation
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 146
+    if(ERROR_NONE != TIME_SetTime())
+    ^
+    supplemental 891: statement is not controlled by preceding control structure
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 146
+    if(ERROR_NONE != TIME_SetTime())
+                     ^
+    info 737: loss of sign in promotion from 'int' to 'unsigned int'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 146
+    info 746: call to function 'TIME_SetTime()' not made in the presence of a prototype
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 176
+    while (true)
+           ^
+    info 716: infinite loop via while
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 185
+        while (kUSB_DeviceNotifyAttach != USB_State(g_msc.deviceHandle))
+                                                    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 123
+void record_task(void *handle)
+                       ^
+--- Module Wrap-up
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 84
+void msc_task(void *handle)
+     ^
+    info 714: external symbol 'msc_task' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 84
+void msc_task(void *handle)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 123
+void record_task(void *handle)
+     ^
+    info 714: external symbol 'record_task' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 123
+void record_task(void *handle)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 233
+void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
+     ^
+    info 714: external symbol 'vApplicationGetIdleTaskMemory' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 233
+void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 252
+void vApplicationGetTimerTaskMemory(StaticTask_t **ppxTimerTaskTCBBuffer,
+     ^
+    info 714: external symbol 'vApplicationGetTimerTaskMemory' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\app_tasks.c, Line 252
+void vApplicationGetTimerTaskMemory(StaticTask_t **ppxTimerTaskTCBBuffer,
+     ^
+lint_config.lnt  75  error 72: bad option '-message': expected 1 argument, 
+    received 2
+^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\time.c, Line 53
+error_t TIME_InitIRTC(void)
+^
+    error 5915: unknown type name 'error_t'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\time.c, Line 105
+error_t TIME_SetTime(void)
+^
+    error 5915: unknown type name 'error_t'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\time.c, Line 43
+#define INTERNAL_RTC_BASE_YEAR                  2112
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\time.c, Line 48
+#define EXTERNAL_RTC_TIME_OFSET                 2000
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 35
+#define FIFO_BUFFER_LENGHT              (16U)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 118
+        LPUART_DisableInterrupts(LPUART3, (uint32_t)kLPUART_RxDataRegFullInterruptEnable);
+                                 ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 120
+        LPUART_Deinit(LPUART3);
+                      ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 115
+void UART_Deinit(void)
+     ^
+    info 714: external symbol 'UART_Deinit' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 115
+void UART_Deinit(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 110
+void UART_Disable(void)
+     ^
+    info 714: external symbol 'UART_Disable' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 110
+void UART_Disable(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 93
+void UART_Enable(void)
+     ^
+    info 714: external symbol 'UART_Enable' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 93
+void UART_Enable(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 57
+void UART_Init(uint32_t baudrate)
+     ^
+    info 714: external symbol 'UART_Init' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 57
+void UART_Init(uint32_t baudrate)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 52
+void UART_Print(uint8_t ch)
+     ^
+    info 714: external symbol 'UART_Print' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\uart.c, Line 52
+void UART_Print(uint8_t ch)
+     ^
+lint_config.lnt  75  error 72: bad option '-message': expected 1 argument, 
+    received 2
+^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\task_switching.c, Line 40
+                return kUSB_DeviceNotifyDetach;
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\task_switching.c, Line 44
+                return kUSB_DeviceNotifyAttach;
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\task_switching.c, Line 36
+        ehciState = (usb_device_ehci_state_struct_t *)(pDeviceHandle->controllerHandle);
+                    ^
+--- Module Wrap-up
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\task_switching.c, Line 35
+        usb_device_ehci_state_struct_t *ehciState;
+                                        ^
+--- Global Wrap-up
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\task_switching.c, Line 33
+usb_device_notification_t USB_State(usb_device_struct_t *pDeviceHandle)
+                          ^
+    info 714: external symbol 'USB_State' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\task_switching.c, Line 33
+lint_config.lnt  75  error 72: bad option '-message': expected 1 argument, 
+    received 2
+^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\main.c, Line 25
+#include "fsl_clock.h"
+^
+    warning 537: repeated include file 'fsl_clock.h'
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\main.c, Line 169
+    while (true)
+           ^
+    info 716: infinite loop via while
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\main.c, Line 79
+usb_msc_struct_t g_msc;
+                 ^
+    info 714: external symbol 'g_msc' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\main.c, Line 79
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\main.c, Line 85
+TaskHandle_t g_xMscTaskHandle    = NULL;
+             ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\main.c, Line 85
+TaskHandle_t g_xMscTaskHandle    = NULL;
+             ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\main.c, Line 95
+TaskHandle_t g_xRecordTaskHandle = NULL;
+             ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\main.c, Line 95
+TaskHandle_t g_xRecordTaskHandle = NULL;
+             ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\main.c, Line 90
+SemaphoreHandle_t g_xSemMassStorage;
+                  ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\main.c, Line 90
+SemaphoreHandle_t g_xSemMassStorage;
+                  ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\main.c, Line 100
+SemaphoreHandle_t g_xSemRecord;
+                  ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\main.c, Line 100
+SemaphoreHandle_t g_xSemRecord;
+                  ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 336
+    unsigned long ulParsedValue = strtoul(chFound, &endptr, 10);
+    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 336
+    unsigned long ulParsedValue = strtoul(chFound, &endptr, 10);
+             ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 338
+    int s32LocalErrno = errno;
+    ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 113
+        return ERROR_READ;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 130
+        return ERROR_READ;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 116
+    chFound += strlen(chKey);
+            ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 180
+                        return ERROR_READ;
+                        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 166
+                chFound += strlen(chKey);
+                        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 206
+        return ERROR_NONE;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 226
+        return ERROR_READ;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 209
+    chFound += strlen(chKeyParity);
+            ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 239
+        return ERROR_NONE;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 255
+        return ERROR_NONE;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 260
+                return ERROR_NONE;
+                ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 242
+    chFound += strlen(chKeyStopBits);
+            ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 280
+        return ERROR_NONE;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 296
+        return ERROR_NONE;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 301
+        return ERROR_NONE;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 283
+    chFound += strlen(chKeyDataBits);
+            ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 321
+        return ERROR_NONE;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 344
+        return ERROR_READ;
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 324
+    chFound += strlen(chKey);
+            ^
+--- Module Wrap-up
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 109
+    char *chFound = strstr(chContent, chKey);
+          ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 157
+    char *chFound = strstr(chContent, chKey);
+          ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 235
+    char *chFound = strstr(chContent, chKeyStopBits);
+          ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 276
+    char *chFound = strstr(chContent, chKeyDataBits);
+          ^
+--- Global Wrap-up
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 93
+void PARSER_ClearConfig(void)
+     ^
+    info 714: external symbol 'PARSER_ClearConfig' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 93
+void PARSER_ClearConfig(void)
+     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 58
+uint32_t PARSER_GetBaudrate(void)
+         ^
+    info 714: external symbol 'PARSER_GetBaudrate' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 58
+uint32_t PARSER_GetBaudrate(void)
+         ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 48
+REC_config_t PARSER_GetConfig(void)
+             ^
+    info 714: external symbol 'PARSER_GetConfig' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 48
+REC_config_t PARSER_GetConfig(void)
+             ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 68
+lpuart_data_bits_t PARSER_GetDataBits(void)
+                   ^
+    info 714: external symbol 'PARSER_GetDataBits' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 68
+lpuart_data_bits_t PARSER_GetDataBits(void)
+                   ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 63
+uint32_t PARSER_GetFileSize(void)
+         ^
+    info 714: external symbol 'PARSER_GetFileSize' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 63
+uint32_t PARSER_GetFileSize(void)
+         ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 83
+uint32_t PARSER_GetFreeSpaceLimitMB(void)
+         ^
+    info 714: external symbol 'PARSER_GetFreeSpaceLimitMB' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 83
+uint32_t PARSER_GetFreeSpaceLimitMB(void)
+         ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 88
+uint32_t PARSER_GetMaxBytes(void)
+         ^
+    info 714: external symbol 'PARSER_GetMaxBytes' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 88
+uint32_t PARSER_GetMaxBytes(void)
+         ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 73
+lpuart_parity_mode_t PARSER_GetParity(void)
+                     ^
+    info 714: external symbol 'PARSER_GetParity' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 73
+lpuart_parity_mode_t PARSER_GetParity(void)
+                     ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 78
+lpuart_stop_bit_count_t PARSER_GetStopBits(void)
+                        ^
+    info 714: external symbol 'PARSER_GetStopBits' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 78
+lpuart_stop_bit_count_t PARSER_GetStopBits(void)
+                        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 53
+REC_version_t PARSER_GetVersion(void)
+              ^
+    info 714: external symbol 'PARSER_GetVersion' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 53
+REC_version_t PARSER_GetVersion(void)
+              ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 106
+error_t PARSER_ParseBaudrate(const char *chContent)
+        ^
+    info 714: external symbol 'PARSER_ParseBaudrate' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 106
+error_t PARSER_ParseBaudrate(const char *chContent)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 273
+error_t PARSER_ParseDataBits(const char *chContent)
+        ^
+    info 714: external symbol 'PARSER_ParseDataBits' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 273
+error_t PARSER_ParseDataBits(const char *chContent)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 152
+error_t PARSER_ParseFileSize(const char *chContent)
+        ^
+    info 714: external symbol 'PARSER_ParseFileSize' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 152
+error_t PARSER_ParseFileSize(const char *chContent)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 313
+error_t PARSER_ParseFreeSpace(const char *chContent)
+        ^
+    info 714: external symbol 'PARSER_ParseFreeSpace' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 313
+error_t PARSER_ParseFreeSpace(const char *chContent)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 199
+error_t PARSER_ParseParity(const char *chContent)
+        ^
+    info 714: external symbol 'PARSER_ParseParity' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 199
+error_t PARSER_ParseParity(const char *chContent)
+        ^
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 232
+error_t PARSER_ParseStopBits(const char *chContent)
+        ^
+    info 714: external symbol 'PARSER_ParseStopBits' was defined but not referenced
+File C:\Users\tomas\Documents\__GIT\nxp-mcxn947-datalogger\application\source\parser.c, Line 232
+error_t PARSER_ParseStopBits(const char *chContent)
+        ^
+lint_config.lnt  75  error 72: bad option '-message': expected 1 argument, 
+    received 2
+^
+lint_config.lnt  75  error 72: bad option '-message': expected 1 argument, 
+    received 2
+^

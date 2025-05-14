@@ -8,10 +8,13 @@
 *.elf
 
 # Personal files
-hardware/
 logs/
-tests/
+editor/
+application/.settings/language.settings.xml
+/application/.settings
 
+# 700MB File!
+/tests/static_analysis/outputs/lint.log
 
 # Linker output
 *.ilk
@@ -56,5 +59,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-tests/
 logs/

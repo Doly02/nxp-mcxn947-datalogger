@@ -1,0 +1,61 @@
+\doxysection{app\+\_\+init.\+h}
+\hypertarget{app__init_8h_source}{}\label{app__init_8h_source}\index{include/app\_init.h@{include/app\_init.h}}
+\mbox{\hyperlink{app__init_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/******************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ Project:\ \ \ \ \ \ \ \ NXP\ MCXN947\ Datalogger}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ File\ Name:\ \ \ \ \ \ init.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Author:\ \ \ \ \ \ \ \ \ Tomas\ Dolak}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Date:\ \ \ \ \ \ \ \ \ \ \ 31.03.2025}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ Description:\ \ \ \ Implements\ Datalogger\ Application.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ ****************************/}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{/******************************}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ @package\ \ \ \ \ \ \ \ NXP\ MCXN947\ Datalogger}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ @file\ \ \ \ \ \ \ \ \ \ \ init.c}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ @author\ \ \ \ \ \ \ \ \ Tomas\ Dolak}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ @date\ \ \ \ \ \ \ \ \ \ \ 31.03.2025}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ @brief\ \ \ \ \ \ \ \ \ \ Implements\ Datalogger\ Application.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ ****************************/}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ APP\_INIT\_H\_}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ APP\_INIT\_H\_}}
+\DoxyCodeLine{00020\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ Includes}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00023\ \textcolor{comment}{/*\ NXP\ Board\ Specific\ */}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}fsl\_device\_registers.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}fsl\_debug\_console.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}fsl\_clock.h"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}pin\_mux.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}clock\_config.h"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}board.h"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{/*\ Application\ Includes\ */}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{led_8h}{led.h}}"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Control\ LEDs\ Module}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{uart_8h}{uart.h}}"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ UART\ Module}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{time_8h}{time.h}}"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Time\ Module}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{error_8h}{error.h}}"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Error\ Handling}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{temperature_8h}{temperature.h}}"{}}\ \ \ \ \ \ \ \textcolor{comment}{//\ Temperature\ Measurement\ Module}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pwrloss__det_8h}{pwrloss\_det.h}}"{}}\ \ \ \ \ \ \ \textcolor{comment}{//\ Power\ Loss\ Detection\ Module}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ Global\ Definitions}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ *\ Global\ Structures}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ *\ Function\ Prototypes}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__init_8h_af08640c49c85139dcc18b9e69d4ffd0c}{APP\_InitBoard}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ APP\_INIT\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

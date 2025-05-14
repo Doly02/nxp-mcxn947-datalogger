@@ -1,0 +1,52 @@
+\doxysection{temperature.\+h}
+\hypertarget{temperature_8h_source}{}\label{temperature_8h_source}\index{include/temperature.h@{include/temperature.h}}
+\mbox{\hyperlink{temperature_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/******************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ Project:\ \ \ \ \ \ \ \ NXP\ MCXN947\ Datalogger}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ File\ Name:\ \ \ \ \ \ temperature.h}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Author:\ \ \ \ \ \ \ \ \ Tomas\ Dolak}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Date:\ \ \ \ \ \ \ \ \ \ \ 11.02.2025}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ Description:\ \ \ \ Implements\ The\ Logic\ For\ Temperature\ Measurement.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ ****************************/}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{/******************************}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ @package\ \ \ \ \ \ \ \ NXP\ MCXN947\ Datalogger}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ @file\ \ \ \ \ \ \ \ \ \ \ temperature.h}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ @author\ \ \ \ \ \ \ \ \ Tomas\ Dolak}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ @date\ \ \ \ \ \ \ \ \ \ \ 11.02.2025}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ @brief\ \ \ \ \ \ \ \ \ \ Implements\ The\ Logic\ For\ Temperature\ Measurement.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ ****************************/}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ TEMPERATURE\_H\_}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ TEMPERATURE\_H\_}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ Includes}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{error_8h}{error.h}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}fsl\_lpi2c.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}fsl\_lpi2c\_edma.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}fsl\_edma.h"{}}}
+\DoxyCodeLine{00030\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ Global\ Definitions}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ Prototypes}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00046\ uint8\_t\ \mbox{\hyperlink{temperature_8h_ad79223f453fb5cb3b14b0504b78c3b65}{Write}}(uint8\_t\ regAddress,\ uint8\_t\ val[]);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00055\ uint16\_t\ \mbox{\hyperlink{temperature_8h_af7ebaac8aebcb5a7b3147b378d4d1e82}{Read}}(uint8\_t\ regAddress);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{temperature_8h_a0b017c2ac439a408d7b0d2bb07c2c3af}{TMP\_GetTemperature}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ uint8\_t\ \mbox{\hyperlink{temperature_8h_a147cb7fa3ec99aa1038a20fd3d5ed0c3}{TMP\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ TEMPERATURE\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

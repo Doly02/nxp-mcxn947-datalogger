@@ -1,0 +1,305 @@
+\doxysection{include/defs.h File Reference}
+\hypertarget{defs_8h}{}\label{defs_8h}\index{include/defs.h@{include/defs.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{defs_8h_aec2bcbab7ad208b42215cf4225e259e1}{NOT\+\_\+\+IMPLEMENTED}}~\#\mbox{\hyperlink{error_8c_a5798ff116cd549740fcaa6c6c1589ca1}{error}} "{}This Feature Is Not Implemented!"{}
+\item 
+\#define \mbox{\hyperlink{defs_8h_a8e3b191086204c5a914ecb42010d79b7}{MSC\+\_\+\+STACK\+\_\+\+SIZE}}~((uint32\+\_\+t)(5000\+UL / (uint32\+\_\+t)sizeof(port\+STACK\+\_\+\+TYPE)))
+\begin{DoxyCompactList}\small\item\em Defines The Stack Size For Mass Storage Task. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a596e2563f1ece6b4d9a86d20455183a1}{RECORD\+\_\+\+STACK\+\_\+\+SIZE}}~((uint32\+\_\+t)(5000\+UL / (uint32\+\_\+t)sizeof(port\+STACK\+\_\+\+TYPE)))
+\begin{DoxyCompactList}\small\item\em Defines The Stack Size For Recording Task. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a8a9cca2657f8a210b60490573042babc}{MSC\+\_\+\+ENABLED}}~(true)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables Mass Storage Functionality. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a580f977f97ee7f7ceb91b1c42306f537}{INFO\+\_\+\+ENABLED}}~(false)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables Debug Mode. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a7d2ae674cad5299a52b0e7dceac10087}{DEBUG\+\_\+\+ENABLED}}~(false)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables Debug Mode. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_afce4b642de5f6181c410f35cffb92cfe}{UART\+\_\+\+FIFO\+\_\+\+ENABLED}}~(true)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables HW FIFO Queue on Application LPUART. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a2cc80d434c5fb494b9c88cd7775f6059}{UART\+\_\+\+FIFO\+\_\+\+LENGHT}}~(4u)
+\begin{DoxyCompactList}\small\item\em Defines The Size of HW FIFO Queue. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a2c770b4d1c45e582fe15305dd53bc832}{UART\+\_\+\+PRINT\+\_\+\+ENABLED}}~(false)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables Print of Received Bytes From Application LPUART To Console. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a70ae7656d68a5c5e6ce6f867d0652007}{PWRLOSS\+\_\+\+DETECTION\+\_\+\+ENABLED}}~(true)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables Power Loss Detection. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_aa3252ba28db7a402d73243c25da84a06}{PWRLOSS\+\_\+\+TEST\+\_\+\+GPIOS}}~(false)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables GPIO For Testing Power Loss Detection. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a4a49c87e19c04996c7a1e35606802798}{TAU5}}~16.\+5
+\begin{DoxyCompactList}\small\item\em Constant 5 Tau, When Back-\/\+Up Power Capacitor is Charged To 99\%. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_adb3d2bcd621f551c6b54658940c42fa1}{PWRLOSS\+\_\+\+DET\+\_\+\+ACTIVE\+\_\+\+IN\+\_\+\+TIME}}~\mbox{\hyperlink{defs_8h_a4a49c87e19c04996c7a1e35606802798}{TAU5}}
+\begin{DoxyCompactList}\small\item\em Time Interval When Power Loss Detection Became Active. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a8f12c7ad5263aca7dc9115c3db453025}{UART\+\_\+\+RECEIVE\+\_\+\+PRIO}}~(6U)
+\begin{DoxyCompactList}\small\item\em Priority of LP\+\_\+\+FLEXCOMM Interrupt (UART) For Rx Of Recorded Data. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_adb153985b953cf1557608f13fdbd74f1}{PWRLOSS\+\_\+\+DET\+\_\+\+PRIO}}~(5U)
+\begin{DoxyCompactList}\small\item\em Priority of Comparator Interrupt For Power Loss Detection. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a9833f31bb9cd2e701f52a6d805b76bad}{PWRLOSS\+\_\+\+TIMER\+\_\+\+PRIO}}~(7U)
+\begin{DoxyCompactList}\small\item\em Priority of Comparator Interrupt For Power Loss Detection. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a2d4e809715243195fc8b939c5d923aaa}{TEMPERATURE\+\_\+\+MEAS\+\_\+\+ENABLED}}~(false)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables Temperature Recording. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_aa3506ff4730ee7e3991d94b6c9cd8775}{CONTROL\+\_\+\+LED\+\_\+\+ENABLED}}~(true)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables Signaling By LEDs. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a725b92a6209ddcd32e9a3365f4bbb2c9}{DEFAULT\+\_\+\+MAX\+\_\+\+FILESIZE}}~8192
+\begin{DoxyCompactList}\small\item\em Default Maximal File Size If The Configuration File Could Not Be Read Properly. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a42bf63540ee0039a3a23db1b5ec3202b}{CONFIG\+\_\+\+FILE}}~"{}config"{}
+\begin{DoxyCompactList}\small\item\em Configuration File. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_affa2c3ad646ea14cf1a034c341caf19c}{DEFAULT\+\_\+\+BAUDRATE}}~230400\+UL
+\begin{DoxyCompactList}\small\item\em Default Baud Rate If The Configuration File Could Not Be Read Properly. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a46bd477a00070e71bc80db7a292dc3bd}{DEFAULT\+\_\+\+DATA\+\_\+\+BITS}}~k\+LPUART\+\_\+\+Eight\+Data\+Bits
+\begin{DoxyCompactList}\small\item\em Default Number of Data Bits If The Configuration File Could Not Be Read Properly. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_ac7c5493765f96597e37aa3aa26a629f9}{DEFAULT\+\_\+\+STOP\+\_\+\+BITS}}~k\+LPUART\+\_\+\+One\+Stop\+Bit
+\begin{DoxyCompactList}\small\item\em Default Number of Stop Bits If The Configuration File Could Not Be Read Properly. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a939612a13947b5bb9fc848e3222a231d}{DEFAULT\+\_\+\+PARITY}}~k\+LPUART\+\_\+\+Parity\+Disabled
+\begin{DoxyCompactList}\small\item\em Default UART Parity If The Configuration File Could Not Be Read Properly. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defs_8h_a261f35b47dc206df57ba54ba5adbc739}{DEFAULT\+\_\+\+FREE\+\_\+\+SPACE}}~50\+UL
+\begin{DoxyCompactList}\small\item\em Defines The Threshold Level of Free Memory on The SD card, Below Which The Lack of Memory is Indicated. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{defs_8h_a42bf63540ee0039a3a23db1b5ec3202b}\index{defs.h@{defs.h}!CONFIG\_FILE@{CONFIG\_FILE}}
+\index{CONFIG\_FILE@{CONFIG\_FILE}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{CONFIG\_FILE}{CONFIG\_FILE}}
+{\footnotesize\ttfamily \label{defs_8h_a42bf63540ee0039a3a23db1b5ec3202b} 
+\#define CONFIG\+\_\+\+FILE~"{}config"{}}
+
+
+
+Configuration File. 
+
+\Hypertarget{defs_8h_aa3506ff4730ee7e3991d94b6c9cd8775}\index{defs.h@{defs.h}!CONTROL\_LED\_ENABLED@{CONTROL\_LED\_ENABLED}}
+\index{CONTROL\_LED\_ENABLED@{CONTROL\_LED\_ENABLED}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{CONTROL\_LED\_ENABLED}{CONTROL\_LED\_ENABLED}}
+{\footnotesize\ttfamily \label{defs_8h_aa3506ff4730ee7e3991d94b6c9cd8775} 
+\#define CONTROL\+\_\+\+LED\+\_\+\+ENABLED~(true)}
+
+
+
+Enables/\+Disables Signaling By LEDs. 
+
+\Hypertarget{defs_8h_a7d2ae674cad5299a52b0e7dceac10087}\index{defs.h@{defs.h}!DEBUG\_ENABLED@{DEBUG\_ENABLED}}
+\index{DEBUG\_ENABLED@{DEBUG\_ENABLED}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_ENABLED}{DEBUG\_ENABLED}}
+{\footnotesize\ttfamily \label{defs_8h_a7d2ae674cad5299a52b0e7dceac10087} 
+\#define DEBUG\+\_\+\+ENABLED~(false)}
+
+
+
+Enables/\+Disables Debug Mode. 
+
+If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console. \Hypertarget{defs_8h_affa2c3ad646ea14cf1a034c341caf19c}\index{defs.h@{defs.h}!DEFAULT\_BAUDRATE@{DEFAULT\_BAUDRATE}}
+\index{DEFAULT\_BAUDRATE@{DEFAULT\_BAUDRATE}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_BAUDRATE}{DEFAULT\_BAUDRATE}}
+{\footnotesize\ttfamily \label{defs_8h_affa2c3ad646ea14cf1a034c341caf19c} 
+\#define DEFAULT\+\_\+\+BAUDRATE~230400\+UL}
+
+
+
+Default Baud Rate If The Configuration File Could Not Be Read Properly. 
+
+\Hypertarget{defs_8h_a46bd477a00070e71bc80db7a292dc3bd}\index{defs.h@{defs.h}!DEFAULT\_DATA\_BITS@{DEFAULT\_DATA\_BITS}}
+\index{DEFAULT\_DATA\_BITS@{DEFAULT\_DATA\_BITS}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_DATA\_BITS}{DEFAULT\_DATA\_BITS}}
+{\footnotesize\ttfamily \label{defs_8h_a46bd477a00070e71bc80db7a292dc3bd} 
+\#define DEFAULT\+\_\+\+DATA\+\_\+\+BITS~k\+LPUART\+\_\+\+Eight\+Data\+Bits}
+
+
+
+Default Number of Data Bits If The Configuration File Could Not Be Read Properly. 
+
+\Hypertarget{defs_8h_a261f35b47dc206df57ba54ba5adbc739}\index{defs.h@{defs.h}!DEFAULT\_FREE\_SPACE@{DEFAULT\_FREE\_SPACE}}
+\index{DEFAULT\_FREE\_SPACE@{DEFAULT\_FREE\_SPACE}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_FREE\_SPACE}{DEFAULT\_FREE\_SPACE}}
+{\footnotesize\ttfamily \label{defs_8h_a261f35b47dc206df57ba54ba5adbc739} 
+\#define DEFAULT\+\_\+\+FREE\+\_\+\+SPACE~50\+UL}
+
+
+
+Defines The Threshold Level of Free Memory on The SD card, Below Which The Lack of Memory is Indicated. 
+
+In Megabytes. \Hypertarget{defs_8h_a725b92a6209ddcd32e9a3365f4bbb2c9}\index{defs.h@{defs.h}!DEFAULT\_MAX\_FILESIZE@{DEFAULT\_MAX\_FILESIZE}}
+\index{DEFAULT\_MAX\_FILESIZE@{DEFAULT\_MAX\_FILESIZE}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_MAX\_FILESIZE}{DEFAULT\_MAX\_FILESIZE}}
+{\footnotesize\ttfamily \label{defs_8h_a725b92a6209ddcd32e9a3365f4bbb2c9} 
+\#define DEFAULT\+\_\+\+MAX\+\_\+\+FILESIZE~8192}
+
+
+
+Default Maximal File Size If The Configuration File Could Not Be Read Properly. 
+
+\Hypertarget{defs_8h_a939612a13947b5bb9fc848e3222a231d}\index{defs.h@{defs.h}!DEFAULT\_PARITY@{DEFAULT\_PARITY}}
+\index{DEFAULT\_PARITY@{DEFAULT\_PARITY}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_PARITY}{DEFAULT\_PARITY}}
+{\footnotesize\ttfamily \label{defs_8h_a939612a13947b5bb9fc848e3222a231d} 
+\#define DEFAULT\+\_\+\+PARITY~k\+LPUART\+\_\+\+Parity\+Disabled}
+
+
+
+Default UART Parity If The Configuration File Could Not Be Read Properly. 
+
+\Hypertarget{defs_8h_ac7c5493765f96597e37aa3aa26a629f9}\index{defs.h@{defs.h}!DEFAULT\_STOP\_BITS@{DEFAULT\_STOP\_BITS}}
+\index{DEFAULT\_STOP\_BITS@{DEFAULT\_STOP\_BITS}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_STOP\_BITS}{DEFAULT\_STOP\_BITS}}
+{\footnotesize\ttfamily \label{defs_8h_ac7c5493765f96597e37aa3aa26a629f9} 
+\#define DEFAULT\+\_\+\+STOP\+\_\+\+BITS~k\+LPUART\+\_\+\+One\+Stop\+Bit}
+
+
+
+Default Number of Stop Bits If The Configuration File Could Not Be Read Properly. 
+
+\Hypertarget{defs_8h_a580f977f97ee7f7ceb91b1c42306f537}\index{defs.h@{defs.h}!INFO\_ENABLED@{INFO\_ENABLED}}
+\index{INFO\_ENABLED@{INFO\_ENABLED}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{INFO\_ENABLED}{INFO\_ENABLED}}
+{\footnotesize\ttfamily \label{defs_8h_a580f977f97ee7f7ceb91b1c42306f537} 
+\#define INFO\+\_\+\+ENABLED~(false)}
+
+
+
+Enables/\+Disables Debug Mode. 
+
+If Debug Mode Is Enabled Then Extended Logs Are Printed Into Debug Console. \Hypertarget{defs_8h_a8a9cca2657f8a210b60490573042babc}\index{defs.h@{defs.h}!MSC\_ENABLED@{MSC\_ENABLED}}
+\index{MSC\_ENABLED@{MSC\_ENABLED}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{MSC\_ENABLED}{MSC\_ENABLED}}
+{\footnotesize\ttfamily \label{defs_8h_a8a9cca2657f8a210b60490573042babc} 
+\#define MSC\+\_\+\+ENABLED~(true)}
+
+
+
+Enables/\+Disables Mass Storage Functionality. 
+
+\Hypertarget{defs_8h_a8e3b191086204c5a914ecb42010d79b7}\index{defs.h@{defs.h}!MSC\_STACK\_SIZE@{MSC\_STACK\_SIZE}}
+\index{MSC\_STACK\_SIZE@{MSC\_STACK\_SIZE}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{MSC\_STACK\_SIZE}{MSC\_STACK\_SIZE}}
+{\footnotesize\ttfamily \label{defs_8h_a8e3b191086204c5a914ecb42010d79b7} 
+\#define MSC\+\_\+\+STACK\+\_\+\+SIZE~((uint32\+\_\+t)(5000\+UL / (uint32\+\_\+t)sizeof(port\+STACK\+\_\+\+TYPE)))}
+
+
+
+Defines The Stack Size For Mass Storage Task. 
+
+\Hypertarget{defs_8h_aec2bcbab7ad208b42215cf4225e259e1}\index{defs.h@{defs.h}!NOT\_IMPLEMENTED@{NOT\_IMPLEMENTED}}
+\index{NOT\_IMPLEMENTED@{NOT\_IMPLEMENTED}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{NOT\_IMPLEMENTED}{NOT\_IMPLEMENTED}}
+{\footnotesize\ttfamily \label{defs_8h_aec2bcbab7ad208b42215cf4225e259e1} 
+\#define NOT\+\_\+\+IMPLEMENTED~\#\mbox{\hyperlink{error_8c_a5798ff116cd549740fcaa6c6c1589ca1}{error}} "{}This Feature Is Not Implemented!"{}}
+
+\Hypertarget{defs_8h_adb3d2bcd621f551c6b54658940c42fa1}\index{defs.h@{defs.h}!PWRLOSS\_DET\_ACTIVE\_IN\_TIME@{PWRLOSS\_DET\_ACTIVE\_IN\_TIME}}
+\index{PWRLOSS\_DET\_ACTIVE\_IN\_TIME@{PWRLOSS\_DET\_ACTIVE\_IN\_TIME}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{PWRLOSS\_DET\_ACTIVE\_IN\_TIME}{PWRLOSS\_DET\_ACTIVE\_IN\_TIME}}
+{\footnotesize\ttfamily \label{defs_8h_adb3d2bcd621f551c6b54658940c42fa1} 
+\#define PWRLOSS\+\_\+\+DET\+\_\+\+ACTIVE\+\_\+\+IN\+\_\+\+TIME~\mbox{\hyperlink{defs_8h_a4a49c87e19c04996c7a1e35606802798}{TAU5}}}
+
+
+
+Time Interval When Power Loss Detection Became Active. 
+
+In Seconds. \Hypertarget{defs_8h_adb153985b953cf1557608f13fdbd74f1}\index{defs.h@{defs.h}!PWRLOSS\_DET\_PRIO@{PWRLOSS\_DET\_PRIO}}
+\index{PWRLOSS\_DET\_PRIO@{PWRLOSS\_DET\_PRIO}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{PWRLOSS\_DET\_PRIO}{PWRLOSS\_DET\_PRIO}}
+{\footnotesize\ttfamily \label{defs_8h_adb153985b953cf1557608f13fdbd74f1} 
+\#define PWRLOSS\+\_\+\+DET\+\_\+\+PRIO~(5U)}
+
+
+
+Priority of Comparator Interrupt For Power Loss Detection. 
+
+\Hypertarget{defs_8h_a70ae7656d68a5c5e6ce6f867d0652007}\index{defs.h@{defs.h}!PWRLOSS\_DETECTION\_ENABLED@{PWRLOSS\_DETECTION\_ENABLED}}
+\index{PWRLOSS\_DETECTION\_ENABLED@{PWRLOSS\_DETECTION\_ENABLED}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{PWRLOSS\_DETECTION\_ENABLED}{PWRLOSS\_DETECTION\_ENABLED}}
+{\footnotesize\ttfamily \label{defs_8h_a70ae7656d68a5c5e6ce6f867d0652007} 
+\#define PWRLOSS\+\_\+\+DETECTION\+\_\+\+ENABLED~(true)}
+
+
+
+Enables/\+Disables Power Loss Detection. 
+
+\Hypertarget{defs_8h_aa3252ba28db7a402d73243c25da84a06}\index{defs.h@{defs.h}!PWRLOSS\_TEST\_GPIOS@{PWRLOSS\_TEST\_GPIOS}}
+\index{PWRLOSS\_TEST\_GPIOS@{PWRLOSS\_TEST\_GPIOS}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{PWRLOSS\_TEST\_GPIOS}{PWRLOSS\_TEST\_GPIOS}}
+{\footnotesize\ttfamily \label{defs_8h_aa3252ba28db7a402d73243c25da84a06} 
+\#define PWRLOSS\+\_\+\+TEST\+\_\+\+GPIOS~(false)}
+
+
+
+Enables/\+Disables GPIO For Testing Power Loss Detection. 
+
+\Hypertarget{defs_8h_a9833f31bb9cd2e701f52a6d805b76bad}\index{defs.h@{defs.h}!PWRLOSS\_TIMER\_PRIO@{PWRLOSS\_TIMER\_PRIO}}
+\index{PWRLOSS\_TIMER\_PRIO@{PWRLOSS\_TIMER\_PRIO}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{PWRLOSS\_TIMER\_PRIO}{PWRLOSS\_TIMER\_PRIO}}
+{\footnotesize\ttfamily \label{defs_8h_a9833f31bb9cd2e701f52a6d805b76bad} 
+\#define PWRLOSS\+\_\+\+TIMER\+\_\+\+PRIO~(7U)}
+
+
+
+Priority of Comparator Interrupt For Power Loss Detection. 
+
+\Hypertarget{defs_8h_a596e2563f1ece6b4d9a86d20455183a1}\index{defs.h@{defs.h}!RECORD\_STACK\_SIZE@{RECORD\_STACK\_SIZE}}
+\index{RECORD\_STACK\_SIZE@{RECORD\_STACK\_SIZE}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{RECORD\_STACK\_SIZE}{RECORD\_STACK\_SIZE}}
+{\footnotesize\ttfamily \label{defs_8h_a596e2563f1ece6b4d9a86d20455183a1} 
+\#define RECORD\+\_\+\+STACK\+\_\+\+SIZE~((uint32\+\_\+t)(5000\+UL / (uint32\+\_\+t)sizeof(port\+STACK\+\_\+\+TYPE)))}
+
+
+
+Defines The Stack Size For Recording Task. 
+
+\Hypertarget{defs_8h_a4a49c87e19c04996c7a1e35606802798}\index{defs.h@{defs.h}!TAU5@{TAU5}}
+\index{TAU5@{TAU5}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{TAU5}{TAU5}}
+{\footnotesize\ttfamily \label{defs_8h_a4a49c87e19c04996c7a1e35606802798} 
+\#define TAU5~16.\+5}
+
+
+
+Constant 5 Tau, When Back-\/\+Up Power Capacitor is Charged To 99\%. 
+
+In Seconds (It\textquotesingle{}s Actualy 16.\+5s). \Hypertarget{defs_8h_a2d4e809715243195fc8b939c5d923aaa}\index{defs.h@{defs.h}!TEMPERATURE\_MEAS\_ENABLED@{TEMPERATURE\_MEAS\_ENABLED}}
+\index{TEMPERATURE\_MEAS\_ENABLED@{TEMPERATURE\_MEAS\_ENABLED}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{TEMPERATURE\_MEAS\_ENABLED}{TEMPERATURE\_MEAS\_ENABLED}}
+{\footnotesize\ttfamily \label{defs_8h_a2d4e809715243195fc8b939c5d923aaa} 
+\#define TEMPERATURE\+\_\+\+MEAS\+\_\+\+ENABLED~(false)}
+
+
+
+Enables/\+Disables Temperature Recording. 
+
+\Hypertarget{defs_8h_afce4b642de5f6181c410f35cffb92cfe}\index{defs.h@{defs.h}!UART\_FIFO\_ENABLED@{UART\_FIFO\_ENABLED}}
+\index{UART\_FIFO\_ENABLED@{UART\_FIFO\_ENABLED}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{UART\_FIFO\_ENABLED}{UART\_FIFO\_ENABLED}}
+{\footnotesize\ttfamily \label{defs_8h_afce4b642de5f6181c410f35cffb92cfe} 
+\#define UART\+\_\+\+FIFO\+\_\+\+ENABLED~(true)}
+
+
+
+Enables/\+Disables HW FIFO Queue on Application LPUART. 
+
+\Hypertarget{defs_8h_a2cc80d434c5fb494b9c88cd7775f6059}\index{defs.h@{defs.h}!UART\_FIFO\_LENGHT@{UART\_FIFO\_LENGHT}}
+\index{UART\_FIFO\_LENGHT@{UART\_FIFO\_LENGHT}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{UART\_FIFO\_LENGHT}{UART\_FIFO\_LENGHT}}
+{\footnotesize\ttfamily \label{defs_8h_a2cc80d434c5fb494b9c88cd7775f6059} 
+\#define UART\+\_\+\+FIFO\+\_\+\+LENGHT~(4u)}
+
+
+
+Defines The Size of HW FIFO Queue. 
+
+\Hypertarget{defs_8h_a2c770b4d1c45e582fe15305dd53bc832}\index{defs.h@{defs.h}!UART\_PRINT\_ENABLED@{UART\_PRINT\_ENABLED}}
+\index{UART\_PRINT\_ENABLED@{UART\_PRINT\_ENABLED}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{UART\_PRINT\_ENABLED}{UART\_PRINT\_ENABLED}}
+{\footnotesize\ttfamily \label{defs_8h_a2c770b4d1c45e582fe15305dd53bc832} 
+\#define UART\+\_\+\+PRINT\+\_\+\+ENABLED~(false)}
+
+
+
+Enables/\+Disables Print of Received Bytes From Application LPUART To Console. 
+
+\Hypertarget{defs_8h_a8f12c7ad5263aca7dc9115c3db453025}\index{defs.h@{defs.h}!UART\_RECEIVE\_PRIO@{UART\_RECEIVE\_PRIO}}
+\index{UART\_RECEIVE\_PRIO@{UART\_RECEIVE\_PRIO}!defs.h@{defs.h}}
+\doxysubsubsection{\texorpdfstring{UART\_RECEIVE\_PRIO}{UART\_RECEIVE\_PRIO}}
+{\footnotesize\ttfamily \label{defs_8h_a8f12c7ad5263aca7dc9115c3db453025} 
+\#define UART\+\_\+\+RECEIVE\+\_\+\+PRIO~(6U)}
+
+
+
+Priority of LP\+\_\+\+FLEXCOMM Interrupt (UART) For Rx Of Recorded Data. 
+

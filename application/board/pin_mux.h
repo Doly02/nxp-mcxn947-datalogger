@@ -37,6 +37,12 @@ void BOARD_InitBootPins(void);
  */
 void BOARD_InitPins(void);
 
+/*!
+ * @brief Deinitializes the LPI2C2 pins.
+ *
+ */
+void LPI2C2_DeinitPins(void);
+
 #if defined(__cplusplus)
 }
 #endif

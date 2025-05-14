@@ -1,0 +1,72 @@
+\doxysection{src/mass\+\_\+storage.c File Reference}
+\hypertarget{mass__storage_8c}{}\label{mass__storage_8c}\index{src/mass\_storage.c@{src/mass\_storage.c}}
+{\ttfamily \#include "{}mass\+\_\+storage.\+h"{}}\newline
+{\ttfamily \#include "{}task\+\_\+switching.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{mass__storage_8c_a555a4f751322c876f3b3ef054948cdf4}{USB1\+\_\+\+HS\+\_\+\+IRQHandler}} (void)
+\item 
+void \mbox{\hyperlink{mass__storage_8c_a7230a66107a162007ea190ec8e6206e8}{MSC\+\_\+\+Device\+Msc\+App}} (void)
+\begin{DoxyCompactList}\small\item\em Process Extension to Mass Storage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mass__storage_8c_a4dfd65334aae991eac3b8d58e92f6c2f}{MSC\+\_\+\+Device\+Msc\+App\+Task}} (void)
+\begin{DoxyCompactList}\small\item\em Handles Mass Storage Application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{mass__storage_8c_af59d7418386068624f2b915e32fe23ff}{g\+\_\+x\+Sem\+Record}}
+\begin{DoxyCompactList}\small\item\em Semaphore For Record Task Management. \end{DoxyCompactList}\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{mass__storage_8c_a286a007f0c94c51fa505aa600c488122}{g\+\_\+x\+Sem\+Mass\+Storage}}
+\begin{DoxyCompactList}\small\item\em Semaphore For USB Mass Storage Task Management. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{mass__storage_8c_a7230a66107a162007ea190ec8e6206e8}\index{mass\_storage.c@{mass\_storage.c}!MSC\_DeviceMscApp@{MSC\_DeviceMscApp}}
+\index{MSC\_DeviceMscApp@{MSC\_DeviceMscApp}!mass\_storage.c@{mass\_storage.c}}
+\doxysubsubsection{\texorpdfstring{MSC\_DeviceMscApp()}{MSC\_DeviceMscApp()}}
+{\footnotesize\ttfamily \label{mass__storage_8c_a7230a66107a162007ea190ec8e6206e8} 
+void MSC\+\_\+\+Device\+Msc\+App (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Process Extension to Mass Storage. 
+
+\Hypertarget{mass__storage_8c_a4dfd65334aae991eac3b8d58e92f6c2f}\index{mass\_storage.c@{mass\_storage.c}!MSC\_DeviceMscAppTask@{MSC\_DeviceMscAppTask}}
+\index{MSC\_DeviceMscAppTask@{MSC\_DeviceMscAppTask}!mass\_storage.c@{mass\_storage.c}}
+\doxysubsubsection{\texorpdfstring{MSC\_DeviceMscAppTask()}{MSC\_DeviceMscAppTask()}}
+{\footnotesize\ttfamily \label{mass__storage_8c_a4dfd65334aae991eac3b8d58e92f6c2f} 
+void MSC\+\_\+\+Device\+Msc\+App\+Task (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Handles Mass Storage Application. 
+
+Communication and Data Transport Is Handled By USB1\+\_\+\+HS ISR. MISRA Deviation\+: Rule 2.\+2 Justification\+: Function \textquotesingle{}MSC\+\_\+\+Device\+Msc\+App\textquotesingle{} is Called Periodically and Allows To Expand USB Mass Storage.\Hypertarget{mass__storage_8c_a555a4f751322c876f3b3ef054948cdf4}\index{mass\_storage.c@{mass\_storage.c}!USB1\_HS\_IRQHandler@{USB1\_HS\_IRQHandler}}
+\index{USB1\_HS\_IRQHandler@{USB1\_HS\_IRQHandler}!mass\_storage.c@{mass\_storage.c}}
+\doxysubsubsection{\texorpdfstring{USB1\_HS\_IRQHandler()}{USB1\_HS\_IRQHandler()}}
+{\footnotesize\ttfamily \label{mass__storage_8c_a555a4f751322c876f3b3ef054948cdf4} 
+void USB1\+\_\+\+HS\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Switch The Context From ISR To a Higher Priority Task, Without Waiting For The Next Scheduler Tick.
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{mass__storage_8c_a286a007f0c94c51fa505aa600c488122}\index{mass\_storage.c@{mass\_storage.c}!g\_xSemMassStorage@{g\_xSemMassStorage}}
+\index{g\_xSemMassStorage@{g\_xSemMassStorage}!mass\_storage.c@{mass\_storage.c}}
+\doxysubsubsection{\texorpdfstring{g\_xSemMassStorage}{g\_xSemMassStorage}}
+{\footnotesize\ttfamily \label{mass__storage_8c_a286a007f0c94c51fa505aa600c488122} 
+Semaphore\+Handle\+\_\+t g\+\_\+x\+Sem\+Mass\+Storage\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Semaphore For USB Mass Storage Task Management. 
+
+\Hypertarget{mass__storage_8c_af59d7418386068624f2b915e32fe23ff}\index{mass\_storage.c@{mass\_storage.c}!g\_xSemRecord@{g\_xSemRecord}}
+\index{g\_xSemRecord@{g\_xSemRecord}!mass\_storage.c@{mass\_storage.c}}
+\doxysubsubsection{\texorpdfstring{g\_xSemRecord}{g\_xSemRecord}}
+{\footnotesize\ttfamily \label{mass__storage_8c_af59d7418386068624f2b915e32fe23ff} 
+Semaphore\+Handle\+\_\+t g\+\_\+x\+Sem\+Record\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Semaphore For Record Task Management. 
+

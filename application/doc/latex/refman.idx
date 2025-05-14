@@ -1,0 +1,762 @@
+\indexentry{Task Management@{Task Management}|hyperpage}{7}
+\indexentry{Task Management@{Task Management}!uxIdleTaskStack@{uxIdleTaskStack}|hyperpage}{7}
+\indexentry{uxIdleTaskStack@{uxIdleTaskStack}!Task Management@{Task Management}|hyperpage}{7}
+\indexentry{Task Management@{Task Management}!uxTimerTaskStack@{uxTimerTaskStack}|hyperpage}{7}
+\indexentry{uxTimerTaskStack@{uxTimerTaskStack}!Task Management@{Task Management}|hyperpage}{7}
+\indexentry{Task Management@{Task Management}!xIdleTaskTCB@{xIdleTaskTCB}|hyperpage}{8}
+\indexentry{xIdleTaskTCB@{xIdleTaskTCB}!Task Management@{Task Management}|hyperpage}{8}
+\indexentry{Task Management@{Task Management}!xTimerTaskTCB@{xTimerTaskTCB}|hyperpage}{8}
+\indexentry{xTimerTaskTCB@{xTimerTaskTCB}!Task Management@{Task Management}|hyperpage}{8}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{8}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!SDK\_ALIGN@{SDK\_ALIGN}|hyperpage}{9}
+\indexentry{SDK\_ALIGN@{SDK\_ALIGN}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{9}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!g\_bBackDmaBufferReady@{g\_bBackDmaBufferReady}|hyperpage}{9}
+\indexentry{g\_bBackDmaBufferReady@{g\_bBackDmaBufferReady}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{9}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!g\_bFlushCompleted@{g\_bFlushCompleted}|hyperpage}{9}
+\indexentry{g\_bFlushCompleted@{g\_bFlushCompleted}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{9}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!g\_fileObject@{g\_fileObject}|hyperpage}{9}
+\indexentry{g\_fileObject@{g\_fileObject}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{9}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!g\_fileSystem@{g\_fileSystem}|hyperpage}{10}
+\indexentry{g\_fileSystem@{g\_fileSystem}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{10}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!g\_lastDataTick@{g\_lastDataTick}|hyperpage}{10}
+\indexentry{g\_lastDataTick@{g\_lastDataTick}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{10}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!g\_pu8BackDmaBuffer@{g\_pu8BackDmaBuffer}|hyperpage}{10}
+\indexentry{g\_pu8BackDmaBuffer@{g\_pu8BackDmaBuffer}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{10}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!g\_pu8FrontDmaBuffer@{g\_pu8FrontDmaBuffer}|hyperpage}{10}
+\indexentry{g\_pu8FrontDmaBuffer@{g\_pu8FrontDmaBuffer}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{10}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!g\_u16BackDmaBufferIdx@{g\_u16BackDmaBufferIdx}|hyperpage}{10}
+\indexentry{g\_u16BackDmaBufferIdx@{g\_u16BackDmaBufferIdx}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{10}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!g\_u32BytesTransfered@{g\_u32BytesTransfered}|hyperpage}{10}
+\indexentry{g\_u32BytesTransfered@{g\_u32BytesTransfered}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{10}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!g\_u32CurrentFileSize@{g\_u32CurrentFileSize}|hyperpage}{10}
+\indexentry{g\_u32CurrentFileSize@{g\_u32CurrentFileSize}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{10}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!g\_u32FileCounter@{g\_u32FileCounter}|hyperpage}{11}
+\indexentry{g\_u32FileCounter@{g\_u32FileCounter}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{11}
+\indexentry{Buffers and Recording Management@{Buffers and Recording Management}!g\_u8CurrentDirectory@{g\_u8CurrentDirectory}|hyperpage}{11}
+\indexentry{g\_u8CurrentDirectory@{g\_u8CurrentDirectory}!Buffers and Recording Management@{Buffers and Recording Management}|hyperpage}{11}
+\indexentry{Management@{Management}|hyperpage}{11}
+\indexentry{Management@{Management}!SDK\_ALIGN@{SDK\_ALIGN}|hyperpage}{12}
+\indexentry{SDK\_ALIGN@{SDK\_ALIGN}!Management@{Management}|hyperpage}{12}
+\indexentry{Management@{Management}!g\_u32ReadIndex@{g\_u32ReadIndex}|hyperpage}{12}
+\indexentry{g\_u32ReadIndex@{g\_u32ReadIndex}!Management@{Management}|hyperpage}{12}
+\indexentry{Management@{Management}!g\_u32WriteIndex@{g\_u32WriteIndex}|hyperpage}{12}
+\indexentry{g\_u32WriteIndex@{g\_u32WriteIndex}!Management@{Management}|hyperpage}{12}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{12}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_ClearFlagAlarm1@{RTC\_ClearFlagAlarm1}|hyperpage}{13}
+\indexentry{RTC\_ClearFlagAlarm1@{RTC\_ClearFlagAlarm1}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{13}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_ClearFlagAlarm2@{RTC\_ClearFlagAlarm2}|hyperpage}{13}
+\indexentry{RTC\_ClearFlagAlarm2@{RTC\_ClearFlagAlarm2}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{13}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_ConvertToBCD@{RTC\_ConvertToBCD}|hyperpage}{13}
+\indexentry{RTC\_ConvertToBCD@{RTC\_ConvertToBCD}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{13}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_ConvertToDEC@{RTC\_ConvertToDEC}|hyperpage}{14}
+\indexentry{RTC\_ConvertToDEC@{RTC\_ConvertToDEC}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{14}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_CtrlAlarm1@{RTC\_CtrlAlarm1}|hyperpage}{14}
+\indexentry{RTC\_CtrlAlarm1@{RTC\_CtrlAlarm1}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{14}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_CtrlAlarm2@{RTC\_CtrlAlarm2}|hyperpage}{14}
+\indexentry{RTC\_CtrlAlarm2@{RTC\_CtrlAlarm2}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{14}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_Deinit@{RTC\_Deinit}|hyperpage}{14}
+\indexentry{RTC\_Deinit@{RTC\_Deinit}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{14}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_GetDate@{RTC\_GetDate}|hyperpage}{15}
+\indexentry{RTC\_GetDate@{RTC\_GetDate}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{15}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_GetState@{RTC\_GetState}|hyperpage}{15}
+\indexentry{RTC\_GetState@{RTC\_GetState}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{15}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_GetTime@{RTC\_GetTime}|hyperpage}{15}
+\indexentry{RTC\_GetTime@{RTC\_GetTime}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{15}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_Init@{RTC\_Init}|hyperpage}{15}
+\indexentry{RTC\_Init@{RTC\_Init}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{15}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_Read@{RTC\_Read}|hyperpage}{16}
+\indexentry{RTC\_Read@{RTC\_Read}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{16}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_SetDate@{RTC\_SetDate}|hyperpage}{16}
+\indexentry{RTC\_SetDate@{RTC\_SetDate}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{16}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_SetDateDefault@{RTC\_SetDateDefault}|hyperpage}{16}
+\indexentry{RTC\_SetDateDefault@{RTC\_SetDateDefault}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{16}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_SetInterruptMode@{RTC\_SetInterruptMode}|hyperpage}{16}
+\indexentry{RTC\_SetInterruptMode@{RTC\_SetInterruptMode}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{16}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_SetOscState@{RTC\_SetOscState}|hyperpage}{17}
+\indexentry{RTC\_SetOscState@{RTC\_SetOscState}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{17}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_SetTime@{RTC\_SetTime}|hyperpage}{17}
+\indexentry{RTC\_SetTime@{RTC\_SetTime}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{17}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_SetTimeDefault@{RTC\_SetTimeDefault}|hyperpage}{17}
+\indexentry{RTC\_SetTimeDefault@{RTC\_SetTimeDefault}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{17}
+\indexentry{DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}!RTC\_Write@{RTC\_Write}|hyperpage}{17}
+\indexentry{RTC\_Write@{RTC\_Write}!DS3231 Real-\/Time Clock Driver@{DS3231 Real-\/Time Clock Driver}|hyperpage}{17}
+\indexentry{REC\_config\_t@{REC\_config\_t}|hyperpage}{19}
+\indexentry{REC\_config\_t@{REC\_config\_t}!baudrate@{baudrate}|hyperpage}{19}
+\indexentry{baudrate@{baudrate}!REC\_config\_t@{REC\_config\_t}|hyperpage}{19}
+\indexentry{REC\_config\_t@{REC\_config\_t}!data\_bits@{data\_bits}|hyperpage}{19}
+\indexentry{data\_bits@{data\_bits}!REC\_config\_t@{REC\_config\_t}|hyperpage}{19}
+\indexentry{REC\_config\_t@{REC\_config\_t}!free\_space\_limit\_mb@{free\_space\_limit\_mb}|hyperpage}{20}
+\indexentry{free\_space\_limit\_mb@{free\_space\_limit\_mb}!REC\_config\_t@{REC\_config\_t}|hyperpage}{20}
+\indexentry{REC\_config\_t@{REC\_config\_t}!max\_bytes@{max\_bytes}|hyperpage}{20}
+\indexentry{max\_bytes@{max\_bytes}!REC\_config\_t@{REC\_config\_t}|hyperpage}{20}
+\indexentry{REC\_config\_t@{REC\_config\_t}!parity@{parity}|hyperpage}{20}
+\indexentry{parity@{parity}!REC\_config\_t@{REC\_config\_t}|hyperpage}{20}
+\indexentry{REC\_config\_t@{REC\_config\_t}!size@{size}|hyperpage}{20}
+\indexentry{size@{size}!REC\_config\_t@{REC\_config\_t}|hyperpage}{20}
+\indexentry{REC\_config\_t@{REC\_config\_t}!stop\_bits@{stop\_bits}|hyperpage}{20}
+\indexentry{stop\_bits@{stop\_bits}!REC\_config\_t@{REC\_config\_t}|hyperpage}{20}
+\indexentry{REC\_config\_t@{REC\_config\_t}!version@{version}|hyperpage}{20}
+\indexentry{version@{version}!REC\_config\_t@{REC\_config\_t}|hyperpage}{20}
+\indexentry{RTC\_date\_t@{RTC\_date\_t}|hyperpage}{21}
+\indexentry{RTC\_date\_t@{RTC\_date\_t}!date@{date}|hyperpage}{21}
+\indexentry{date@{date}!RTC\_date\_t@{RTC\_date\_t}|hyperpage}{21}
+\indexentry{RTC\_date\_t@{RTC\_date\_t}!day@{day}|hyperpage}{21}
+\indexentry{day@{day}!RTC\_date\_t@{RTC\_date\_t}|hyperpage}{21}
+\indexentry{RTC\_date\_t@{RTC\_date\_t}!month@{month}|hyperpage}{21}
+\indexentry{month@{month}!RTC\_date\_t@{RTC\_date\_t}|hyperpage}{21}
+\indexentry{RTC\_date\_t@{RTC\_date\_t}!year@{year}|hyperpage}{21}
+\indexentry{year@{year}!RTC\_date\_t@{RTC\_date\_t}|hyperpage}{21}
+\indexentry{RTC\_time\_t@{RTC\_time\_t}|hyperpage}{22}
+\indexentry{RTC\_time\_t@{RTC\_time\_t}!format@{format}|hyperpage}{22}
+\indexentry{format@{format}!RTC\_time\_t@{RTC\_time\_t}|hyperpage}{22}
+\indexentry{RTC\_time\_t@{RTC\_time\_t}!hrs@{hrs}|hyperpage}{22}
+\indexentry{hrs@{hrs}!RTC\_time\_t@{RTC\_time\_t}|hyperpage}{22}
+\indexentry{RTC\_time\_t@{RTC\_time\_t}!min@{min}|hyperpage}{22}
+\indexentry{min@{min}!RTC\_time\_t@{RTC\_time\_t}|hyperpage}{22}
+\indexentry{RTC\_time\_t@{RTC\_time\_t}!sec@{sec}|hyperpage}{22}
+\indexentry{sec@{sec}!RTC\_time\_t@{RTC\_time\_t}|hyperpage}{22}
+\indexentry{drivers/rtc\_ds3231.c@{drivers/rtc\_ds3231.c}|hyperpage}{23}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!BYTE\_1@{BYTE\_1}|hyperpage}{24}
+\indexentry{BYTE\_1@{BYTE\_1}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{24}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!BYTE\_2@{BYTE\_2}|hyperpage}{24}
+\indexentry{BYTE\_2@{BYTE\_2}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{24}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!CLK\_STATE@{CLK\_STATE}|hyperpage}{24}
+\indexentry{CLK\_STATE@{CLK\_STATE}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{24}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!I2C\_DATA\_LENGTH@{I2C\_DATA\_LENGTH}|hyperpage}{25}
+\indexentry{I2C\_DATA\_LENGTH@{I2C\_DATA\_LENGTH}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{25}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}|hyperpage}{25}
+\indexentry{AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{25}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}|hyperpage}{25}
+\indexentry{AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{25}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!lpi2c\_callback@{lpi2c\_callback}|hyperpage}{25}
+\indexentry{lpi2c\_callback@{lpi2c\_callback}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{25}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_ConvertToBCD@{RTC\_ConvertToBCD}|hyperpage}{25}
+\indexentry{RTC\_ConvertToBCD@{RTC\_ConvertToBCD}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{25}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!RTC\_ConvertToDEC@{RTC\_ConvertToDEC}|hyperpage}{25}
+\indexentry{RTC\_ConvertToDEC@{RTC\_ConvertToDEC}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{25}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!gCompletionFlag@{gCompletionFlag}|hyperpage}{26}
+\indexentry{gCompletionFlag@{gCompletionFlag}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{26}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!gEdmaRxHandle@{gEdmaRxHandle}|hyperpage}{26}
+\indexentry{gEdmaRxHandle@{gEdmaRxHandle}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{26}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!gEdmaTxHandle@{gEdmaTxHandle}|hyperpage}{26}
+\indexentry{gEdmaTxHandle@{gEdmaTxHandle}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{26}
+\indexentry{rtc\_ds3231.c@{rtc\_ds3231.c}!xfer@{xfer}|hyperpage}{26}
+\indexentry{xfer@{xfer}!rtc\_ds3231.c@{rtc\_ds3231.c}|hyperpage}{26}
+\indexentry{drivers/rtc\_ds3231.h@{drivers/rtc\_ds3231.h}|hyperpage}{26}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!ALARM\_DISABLED@{ALARM\_DISABLED}|hyperpage}{29}
+\indexentry{ALARM\_DISABLED@{ALARM\_DISABLED}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{29}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!APP\_SUCCESS@{APP\_SUCCESS}|hyperpage}{29}
+\indexentry{APP\_SUCCESS@{APP\_SUCCESS}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{29}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_A1F@{DS3231\_A1F}|hyperpage}{29}
+\indexentry{DS3231\_A1F@{DS3231\_A1F}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{29}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_A1IE@{DS3231\_A1IE}|hyperpage}{29}
+\indexentry{DS3231\_A1IE@{DS3231\_A1IE}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{29}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_A2F@{DS3231\_A2F}|hyperpage}{29}
+\indexentry{DS3231\_A2F@{DS3231\_A2F}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{29}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_A2IE@{DS3231\_A2IE}|hyperpage}{29}
+\indexentry{DS3231\_A2IE@{DS3231\_A2IE}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{29}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_CENT@{DS3231\_ADDR\_CENT}|hyperpage}{29}
+\indexentry{DS3231\_ADDR\_CENT@{DS3231\_ADDR\_CENT}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{29}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_DATE@{DS3231\_ADDR\_DATE}|hyperpage}{29}
+\indexentry{DS3231\_ADDR\_DATE@{DS3231\_ADDR\_DATE}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{29}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_DAY@{DS3231\_ADDR\_DAY}|hyperpage}{29}
+\indexentry{DS3231\_ADDR\_DAY@{DS3231\_ADDR\_DAY}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{29}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_HRS@{DS3231\_ADDR\_HRS}|hyperpage}{30}
+\indexentry{DS3231\_ADDR\_HRS@{DS3231\_ADDR\_HRS}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{30}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_I2C@{DS3231\_ADDR\_I2C}|hyperpage}{30}
+\indexentry{DS3231\_ADDR\_I2C@{DS3231\_ADDR\_I2C}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{30}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_MIN@{DS3231\_ADDR\_MIN}|hyperpage}{30}
+\indexentry{DS3231\_ADDR\_MIN@{DS3231\_ADDR\_MIN}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{30}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_MONTH@{DS3231\_ADDR\_MONTH}|hyperpage}{30}
+\indexentry{DS3231\_ADDR\_MONTH@{DS3231\_ADDR\_MONTH}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{30}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_SEC@{DS3231\_ADDR\_SEC}|hyperpage}{30}
+\indexentry{DS3231\_ADDR\_SEC@{DS3231\_ADDR\_SEC}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{30}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_ADDR\_YEAR@{DS3231\_ADDR\_YEAR}|hyperpage}{30}
+\indexentry{DS3231\_ADDR\_YEAR@{DS3231\_ADDR\_YEAR}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{30}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_INTCN@{DS3231\_INTCN}|hyperpage}{30}
+\indexentry{DS3231\_INTCN@{DS3231\_INTCN}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{30}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_REG\_CTRL@{DS3231\_REG\_CTRL}|hyperpage}{31}
+\indexentry{DS3231\_REG\_CTRL@{DS3231\_REG\_CTRL}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{31}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!DS3231\_REG\_STATUS@{DS3231\_REG\_STATUS}|hyperpage}{31}
+\indexentry{DS3231\_REG\_STATUS@{DS3231\_REG\_STATUS}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{31}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!E\_FAULT@{E\_FAULT}|hyperpage}{31}
+\indexentry{E\_FAULT@{E\_FAULT}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{31}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!FRIDAY@{FRIDAY}|hyperpage}{31}
+\indexentry{FRIDAY@{FRIDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{31}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!I2C\_BAUDRATE@{I2C\_BAUDRATE}|hyperpage}{31}
+\indexentry{I2C\_BAUDRATE@{I2C\_BAUDRATE}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{31}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!I2C\_MASTER@{I2C\_MASTER}|hyperpage}{31}
+\indexentry{I2C\_MASTER@{I2C\_MASTER}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{31}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!LPI2C\_RX\_DMA\_CHANNEL@{LPI2C\_RX\_DMA\_CHANNEL}|hyperpage}{31}
+\indexentry{LPI2C\_RX\_DMA\_CHANNEL@{LPI2C\_RX\_DMA\_CHANNEL}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{31}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!LPI2C\_RX\_EDMA\_CHANNEL@{LPI2C\_RX\_EDMA\_CHANNEL}|hyperpage}{32}
+\indexentry{LPI2C\_RX\_EDMA\_CHANNEL@{LPI2C\_RX\_EDMA\_CHANNEL}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{32}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!LPI2C\_TX\_CHANNEL@{LPI2C\_TX\_CHANNEL}|hyperpage}{32}
+\indexentry{LPI2C\_TX\_CHANNEL@{LPI2C\_TX\_CHANNEL}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{32}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!LPI2C\_TX\_DMA\_CHANNEL@{LPI2C\_TX\_DMA\_CHANNEL}|hyperpage}{32}
+\indexentry{LPI2C\_TX\_DMA\_CHANNEL@{LPI2C\_TX\_DMA\_CHANNEL}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{32}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!MONDAY@{MONDAY}|hyperpage}{32}
+\indexentry{MONDAY@{MONDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{32}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!OSC\_STOPPED@{OSC\_STOPPED}|hyperpage}{32}
+\indexentry{OSC\_STOPPED@{OSC\_STOPPED}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{32}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!SATURDAY@{SATURDAY}|hyperpage}{32}
+\indexentry{SATURDAY@{SATURDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{32}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!SUNDAY@{SUNDAY}|hyperpage}{32}
+\indexentry{SUNDAY@{SUNDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{32}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!THURSDAY@{THURSDAY}|hyperpage}{33}
+\indexentry{THURSDAY@{THURSDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{33}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!TIM\_CYCLE\_12H@{TIM\_CYCLE\_12H}|hyperpage}{33}
+\indexentry{TIM\_CYCLE\_12H@{TIM\_CYCLE\_12H}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{33}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!TIM\_CYCLE\_12H\_AM@{TIM\_CYCLE\_12H\_AM}|hyperpage}{33}
+\indexentry{TIM\_CYCLE\_12H\_AM@{TIM\_CYCLE\_12H\_AM}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{33}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!TIM\_CYCLE\_12H\_PM@{TIM\_CYCLE\_12H\_PM}|hyperpage}{33}
+\indexentry{TIM\_CYCLE\_12H\_PM@{TIM\_CYCLE\_12H\_PM}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{33}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!TIM\_CYCLE\_24H@{TIM\_CYCLE\_24H}|hyperpage}{33}
+\indexentry{TIM\_CYCLE\_24H@{TIM\_CYCLE\_24H}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{33}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!TUESDAY@{TUESDAY}|hyperpage}{33}
+\indexentry{TUESDAY@{TUESDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{33}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!WEDNESDAY@{WEDNESDAY}|hyperpage}{33}
+\indexentry{WEDNESDAY@{WEDNESDAY}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{33}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_interrupt\_mode\_t@{RTC\_interrupt\_mode\_t}|hyperpage}{33}
+\indexentry{RTC\_interrupt\_mode\_t@{RTC\_interrupt\_mode\_t}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{33}
+\indexentry{SQUARE\_WAVE\_INTERRUPT@{SQUARE\_WAVE\_INTERRUPT}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{34}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!SQUARE\_WAVE\_INTERRUPT@{SQUARE\_WAVE\_INTERRUPT}|hyperpage}{34}
+\indexentry{ALARM\_INTERRUPT@{ALARM\_INTERRUPT}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{34}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!ALARM\_INTERRUPT@{ALARM\_INTERRUPT}|hyperpage}{34}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!RTC\_osc\_state\_t@{RTC\_osc\_state\_t}|hyperpage}{34}
+\indexentry{RTC\_osc\_state\_t@{RTC\_osc\_state\_t}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{34}
+\indexentry{OSC\_OK@{OSC\_OK}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{34}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!OSC\_OK@{OSC\_OK}|hyperpage}{34}
+\indexentry{OSC\_INTERRUPTED@{OSC\_INTERRUPTED}!rtc\_ds3231.h@{rtc\_ds3231.h}|hyperpage}{34}
+\indexentry{rtc\_ds3231.h@{rtc\_ds3231.h}!OSC\_INTERRUPTED@{OSC\_INTERRUPTED}|hyperpage}{34}
+\indexentry{drivers/rtc\_ds3231.h@{drivers/rtc\_ds3231.h}|hyperpage}{34}
+\indexentry{include/app\_init.h@{include/app\_init.h}|hyperpage}{36}
+\indexentry{app\_init.h@{app\_init.h}!APP\_InitBoard@{APP\_InitBoard}|hyperpage}{36}
+\indexentry{APP\_InitBoard@{APP\_InitBoard}!app\_init.h@{app\_init.h}|hyperpage}{36}
+\indexentry{include/app\_init.h@{include/app\_init.h}|hyperpage}{37}
+\indexentry{include/app\_tasks.h@{include/app\_tasks.h}|hyperpage}{37}
+\indexentry{app\_tasks.h@{app\_tasks.h}!TASK\_PRIO@{TASK\_PRIO}|hyperpage}{38}
+\indexentry{TASK\_PRIO@{TASK\_PRIO}!app\_tasks.h@{app\_tasks.h}|hyperpage}{38}
+\indexentry{app\_tasks.h@{app\_tasks.h}!msc\_task@{msc\_task}|hyperpage}{38}
+\indexentry{msc\_task@{msc\_task}!app\_tasks.h@{app\_tasks.h}|hyperpage}{38}
+\indexentry{app\_tasks.h@{app\_tasks.h}!record\_task@{record\_task}|hyperpage}{38}
+\indexentry{record\_task@{record\_task}!app\_tasks.h@{app\_tasks.h}|hyperpage}{38}
+\indexentry{app\_tasks.h@{app\_tasks.h}!vApplicationGetIdleTaskMemory@{vApplicationGetIdleTaskMemory}|hyperpage}{39}
+\indexentry{vApplicationGetIdleTaskMemory@{vApplicationGetIdleTaskMemory}!app\_tasks.h@{app\_tasks.h}|hyperpage}{39}
+\indexentry{app\_tasks.h@{app\_tasks.h}!vApplicationGetTimerTaskMemory@{vApplicationGetTimerTaskMemory}|hyperpage}{39}
+\indexentry{vApplicationGetTimerTaskMemory@{vApplicationGetTimerTaskMemory}!app\_tasks.h@{app\_tasks.h}|hyperpage}{39}
+\indexentry{app\_tasks.h@{app\_tasks.h}!g\_xMscTaskHandle@{g\_xMscTaskHandle}|hyperpage}{40}
+\indexentry{g\_xMscTaskHandle@{g\_xMscTaskHandle}!app\_tasks.h@{app\_tasks.h}|hyperpage}{40}
+\indexentry{app\_tasks.h@{app\_tasks.h}!g\_xRecordTaskHandle@{g\_xRecordTaskHandle}|hyperpage}{40}
+\indexentry{g\_xRecordTaskHandle@{g\_xRecordTaskHandle}!app\_tasks.h@{app\_tasks.h}|hyperpage}{40}
+\indexentry{app\_tasks.h@{app\_tasks.h}!g\_xSemMassStorage@{g\_xSemMassStorage}|hyperpage}{40}
+\indexentry{g\_xSemMassStorage@{g\_xSemMassStorage}!app\_tasks.h@{app\_tasks.h}|hyperpage}{40}
+\indexentry{app\_tasks.h@{app\_tasks.h}!g\_xSemRecord@{g\_xSemRecord}|hyperpage}{40}
+\indexentry{g\_xSemRecord@{g\_xSemRecord}!app\_tasks.h@{app\_tasks.h}|hyperpage}{40}
+\indexentry{include/app\_tasks.h@{include/app\_tasks.h}|hyperpage}{40}
+\indexentry{include/defs.h@{include/defs.h}|hyperpage}{41}
+\indexentry{defs.h@{defs.h}!CONFIG\_FILE@{CONFIG\_FILE}|hyperpage}{42}
+\indexentry{CONFIG\_FILE@{CONFIG\_FILE}!defs.h@{defs.h}|hyperpage}{42}
+\indexentry{defs.h@{defs.h}!CONTROL\_LED\_ENABLED@{CONTROL\_LED\_ENABLED}|hyperpage}{42}
+\indexentry{CONTROL\_LED\_ENABLED@{CONTROL\_LED\_ENABLED}!defs.h@{defs.h}|hyperpage}{42}
+\indexentry{defs.h@{defs.h}!DEBUG\_ENABLED@{DEBUG\_ENABLED}|hyperpage}{42}
+\indexentry{DEBUG\_ENABLED@{DEBUG\_ENABLED}!defs.h@{defs.h}|hyperpage}{42}
+\indexentry{defs.h@{defs.h}!DEFAULT\_BAUDRATE@{DEFAULT\_BAUDRATE}|hyperpage}{43}
+\indexentry{DEFAULT\_BAUDRATE@{DEFAULT\_BAUDRATE}!defs.h@{defs.h}|hyperpage}{43}
+\indexentry{defs.h@{defs.h}!DEFAULT\_DATA\_BITS@{DEFAULT\_DATA\_BITS}|hyperpage}{43}
+\indexentry{DEFAULT\_DATA\_BITS@{DEFAULT\_DATA\_BITS}!defs.h@{defs.h}|hyperpage}{43}
+\indexentry{defs.h@{defs.h}!DEFAULT\_FREE\_SPACE@{DEFAULT\_FREE\_SPACE}|hyperpage}{43}
+\indexentry{DEFAULT\_FREE\_SPACE@{DEFAULT\_FREE\_SPACE}!defs.h@{defs.h}|hyperpage}{43}
+\indexentry{defs.h@{defs.h}!DEFAULT\_MAX\_FILESIZE@{DEFAULT\_MAX\_FILESIZE}|hyperpage}{43}
+\indexentry{DEFAULT\_MAX\_FILESIZE@{DEFAULT\_MAX\_FILESIZE}!defs.h@{defs.h}|hyperpage}{43}
+\indexentry{defs.h@{defs.h}!DEFAULT\_PARITY@{DEFAULT\_PARITY}|hyperpage}{43}
+\indexentry{DEFAULT\_PARITY@{DEFAULT\_PARITY}!defs.h@{defs.h}|hyperpage}{43}
+\indexentry{defs.h@{defs.h}!DEFAULT\_STOP\_BITS@{DEFAULT\_STOP\_BITS}|hyperpage}{43}
+\indexentry{DEFAULT\_STOP\_BITS@{DEFAULT\_STOP\_BITS}!defs.h@{defs.h}|hyperpage}{43}
+\indexentry{defs.h@{defs.h}!INFO\_ENABLED@{INFO\_ENABLED}|hyperpage}{43}
+\indexentry{INFO\_ENABLED@{INFO\_ENABLED}!defs.h@{defs.h}|hyperpage}{43}
+\indexentry{defs.h@{defs.h}!MSC\_ENABLED@{MSC\_ENABLED}|hyperpage}{44}
+\indexentry{MSC\_ENABLED@{MSC\_ENABLED}!defs.h@{defs.h}|hyperpage}{44}
+\indexentry{defs.h@{defs.h}!MSC\_STACK\_SIZE@{MSC\_STACK\_SIZE}|hyperpage}{44}
+\indexentry{MSC\_STACK\_SIZE@{MSC\_STACK\_SIZE}!defs.h@{defs.h}|hyperpage}{44}
+\indexentry{defs.h@{defs.h}!NOT\_IMPLEMENTED@{NOT\_IMPLEMENTED}|hyperpage}{44}
+\indexentry{NOT\_IMPLEMENTED@{NOT\_IMPLEMENTED}!defs.h@{defs.h}|hyperpage}{44}
+\indexentry{defs.h@{defs.h}!PWRLOSS\_DET\_ACTIVE\_IN\_TIME@{PWRLOSS\_DET\_ACTIVE\_IN\_TIME}|hyperpage}{44}
+\indexentry{PWRLOSS\_DET\_ACTIVE\_IN\_TIME@{PWRLOSS\_DET\_ACTIVE\_IN\_TIME}!defs.h@{defs.h}|hyperpage}{44}
+\indexentry{defs.h@{defs.h}!PWRLOSS\_DET\_PRIO@{PWRLOSS\_DET\_PRIO}|hyperpage}{44}
+\indexentry{PWRLOSS\_DET\_PRIO@{PWRLOSS\_DET\_PRIO}!defs.h@{defs.h}|hyperpage}{44}
+\indexentry{defs.h@{defs.h}!PWRLOSS\_DETECTION\_ENABLED@{PWRLOSS\_DETECTION\_ENABLED}|hyperpage}{44}
+\indexentry{PWRLOSS\_DETECTION\_ENABLED@{PWRLOSS\_DETECTION\_ENABLED}!defs.h@{defs.h}|hyperpage}{44}
+\indexentry{defs.h@{defs.h}!PWRLOSS\_TEST\_GPIOS@{PWRLOSS\_TEST\_GPIOS}|hyperpage}{44}
+\indexentry{PWRLOSS\_TEST\_GPIOS@{PWRLOSS\_TEST\_GPIOS}!defs.h@{defs.h}|hyperpage}{44}
+\indexentry{defs.h@{defs.h}!PWRLOSS\_TIMER\_PRIO@{PWRLOSS\_TIMER\_PRIO}|hyperpage}{45}
+\indexentry{PWRLOSS\_TIMER\_PRIO@{PWRLOSS\_TIMER\_PRIO}!defs.h@{defs.h}|hyperpage}{45}
+\indexentry{defs.h@{defs.h}!RECORD\_STACK\_SIZE@{RECORD\_STACK\_SIZE}|hyperpage}{45}
+\indexentry{RECORD\_STACK\_SIZE@{RECORD\_STACK\_SIZE}!defs.h@{defs.h}|hyperpage}{45}
+\indexentry{defs.h@{defs.h}!TAU5@{TAU5}|hyperpage}{45}
+\indexentry{TAU5@{TAU5}!defs.h@{defs.h}|hyperpage}{45}
+\indexentry{defs.h@{defs.h}!TEMPERATURE\_MEAS\_ENABLED@{TEMPERATURE\_MEAS\_ENABLED}|hyperpage}{45}
+\indexentry{TEMPERATURE\_MEAS\_ENABLED@{TEMPERATURE\_MEAS\_ENABLED}!defs.h@{defs.h}|hyperpage}{45}
+\indexentry{defs.h@{defs.h}!UART\_FIFO\_ENABLED@{UART\_FIFO\_ENABLED}|hyperpage}{45}
+\indexentry{UART\_FIFO\_ENABLED@{UART\_FIFO\_ENABLED}!defs.h@{defs.h}|hyperpage}{45}
+\indexentry{defs.h@{defs.h}!UART\_FIFO\_LENGHT@{UART\_FIFO\_LENGHT}|hyperpage}{45}
+\indexentry{UART\_FIFO\_LENGHT@{UART\_FIFO\_LENGHT}!defs.h@{defs.h}|hyperpage}{45}
+\indexentry{defs.h@{defs.h}!UART\_PRINT\_ENABLED@{UART\_PRINT\_ENABLED}|hyperpage}{45}
+\indexentry{UART\_PRINT\_ENABLED@{UART\_PRINT\_ENABLED}!defs.h@{defs.h}|hyperpage}{45}
+\indexentry{defs.h@{defs.h}!UART\_RECEIVE\_PRIO@{UART\_RECEIVE\_PRIO}|hyperpage}{46}
+\indexentry{UART\_RECEIVE\_PRIO@{UART\_RECEIVE\_PRIO}!defs.h@{defs.h}|hyperpage}{46}
+\indexentry{include/defs.h@{include/defs.h}|hyperpage}{46}
+\indexentry{include/error.h@{include/error.h}|hyperpage}{47}
+\indexentry{error.h@{error.h}!ERROR\_ADMA@{ERROR\_ADMA}|hyperpage}{48}
+\indexentry{ERROR\_ADMA@{ERROR\_ADMA}!error.h@{error.h}|hyperpage}{48}
+\indexentry{error.h@{error.h}!ERROR\_CLOSE@{ERROR\_CLOSE}|hyperpage}{48}
+\indexentry{ERROR\_CLOSE@{ERROR\_CLOSE}!error.h@{error.h}|hyperpage}{48}
+\indexentry{error.h@{error.h}!ERROR\_CONFIG@{ERROR\_CONFIG}|hyperpage}{48}
+\indexentry{ERROR\_CONFIG@{ERROR\_CONFIG}!error.h@{error.h}|hyperpage}{48}
+\indexentry{error.h@{error.h}!ERROR\_FILESYSTEM@{ERROR\_FILESYSTEM}|hyperpage}{48}
+\indexentry{ERROR\_FILESYSTEM@{ERROR\_FILESYSTEM}!error.h@{error.h}|hyperpage}{48}
+\indexentry{error.h@{error.h}!ERROR\_IRTC@{ERROR\_IRTC}|hyperpage}{48}
+\indexentry{ERROR\_IRTC@{ERROR\_IRTC}!error.h@{error.h}|hyperpage}{48}
+\indexentry{error.h@{error.h}!ERROR\_NONE@{ERROR\_NONE}|hyperpage}{48}
+\indexentry{ERROR\_NONE@{ERROR\_NONE}!error.h@{error.h}|hyperpage}{48}
+\indexentry{error.h@{error.h}!ERROR\_OPEN@{ERROR\_OPEN}|hyperpage}{48}
+\indexentry{ERROR\_OPEN@{ERROR\_OPEN}!error.h@{error.h}|hyperpage}{48}
+\indexentry{error.h@{error.h}!ERROR\_OUT\_OF\_CYCLE@{ERROR\_OUT\_OF\_CYCLE}|hyperpage}{49}
+\indexentry{ERROR\_OUT\_OF\_CYCLE@{ERROR\_OUT\_OF\_CYCLE}!error.h@{error.h}|hyperpage}{49}
+\indexentry{error.h@{error.h}!ERROR\_READ@{ERROR\_READ}|hyperpage}{49}
+\indexentry{ERROR\_READ@{ERROR\_READ}!error.h@{error.h}|hyperpage}{49}
+\indexentry{error.h@{error.h}!ERROR\_RECORD@{ERROR\_RECORD}|hyperpage}{49}
+\indexentry{ERROR\_RECORD@{ERROR\_RECORD}!error.h@{error.h}|hyperpage}{49}
+\indexentry{error.h@{error.h}!ERROR\_UNKNOWN@{ERROR\_UNKNOWN}|hyperpage}{49}
+\indexentry{ERROR\_UNKNOWN@{ERROR\_UNKNOWN}!error.h@{error.h}|hyperpage}{49}
+\indexentry{error.h@{error.h}!error\_t@{error\_t}|hyperpage}{49}
+\indexentry{error\_t@{error\_t}!error.h@{error.h}|hyperpage}{49}
+\indexentry{error.h@{error.h}!ERR\_HandleError@{ERR\_HandleError}|hyperpage}{49}
+\indexentry{ERR\_HandleError@{ERR\_HandleError}!error.h@{error.h}|hyperpage}{49}
+\indexentry{error.h@{error.h}!ERR\_Init@{ERR\_Init}|hyperpage}{49}
+\indexentry{ERR\_Init@{ERR\_Init}!error.h@{error.h}|hyperpage}{49}
+\indexentry{error.h@{error.h}!ERR\_SetState@{ERR\_SetState}|hyperpage}{50}
+\indexentry{ERR\_SetState@{ERR\_SetState}!error.h@{error.h}|hyperpage}{50}
+\indexentry{include/error.h@{include/error.h}|hyperpage}{50}
+\indexentry{include/led.h@{include/led.h}|hyperpage}{51}
+\indexentry{led.h@{led.h}!BACKUP\_POWER\_LED\_PIN@{BACKUP\_POWER\_LED\_PIN}|hyperpage}{52}
+\indexentry{BACKUP\_POWER\_LED\_PIN@{BACKUP\_POWER\_LED\_PIN}!led.h@{led.h}|hyperpage}{52}
+\indexentry{led.h@{led.h}!BACKUP\_POWER\_LED\_PORT@{BACKUP\_POWER\_LED\_PORT}|hyperpage}{52}
+\indexentry{BACKUP\_POWER\_LED\_PORT@{BACKUP\_POWER\_LED\_PORT}!led.h@{led.h}|hyperpage}{52}
+\indexentry{led.h@{led.h}!ERROR\_LED\_PIN\_RECORD@{ERROR\_LED\_PIN\_RECORD}|hyperpage}{52}
+\indexentry{ERROR\_LED\_PIN\_RECORD@{ERROR\_LED\_PIN\_RECORD}!led.h@{led.h}|hyperpage}{52}
+\indexentry{led.h@{led.h}!ERROR\_LED\_PORT@{ERROR\_LED\_PORT}|hyperpage}{52}
+\indexentry{ERROR\_LED\_PORT@{ERROR\_LED\_PORT}!led.h@{led.h}|hyperpage}{52}
+\indexentry{led.h@{led.h}!FLUSH\_LED\_PORT@{FLUSH\_LED\_PORT}|hyperpage}{52}
+\indexentry{FLUSH\_LED\_PORT@{FLUSH\_LED\_PORT}!led.h@{led.h}|hyperpage}{52}
+\indexentry{led.h@{led.h}!MEMORY\_LOW\_LED\_PIN@{MEMORY\_LOW\_LED\_PIN}|hyperpage}{52}
+\indexentry{MEMORY\_LOW\_LED\_PIN@{MEMORY\_LOW\_LED\_PIN}!led.h@{led.h}|hyperpage}{52}
+\indexentry{led.h@{led.h}!MEMORY\_LOW\_LED\_PORT@{MEMORY\_LOW\_LED\_PORT}|hyperpage}{52}
+\indexentry{MEMORY\_LOW\_LED\_PORT@{MEMORY\_LOW\_LED\_PORT}!led.h@{led.h}|hyperpage}{52}
+\indexentry{led.h@{led.h}!RECORD\_LED\_PIN@{RECORD\_LED\_PIN}|hyperpage}{53}
+\indexentry{RECORD\_LED\_PIN@{RECORD\_LED\_PIN}!led.h@{led.h}|hyperpage}{53}
+\indexentry{led.h@{led.h}!RECORD\_LED\_PIN\_FLUSH@{RECORD\_LED\_PIN\_FLUSH}|hyperpage}{53}
+\indexentry{RECORD\_LED\_PIN\_FLUSH@{RECORD\_LED\_PIN\_FLUSH}!led.h@{led.h}|hyperpage}{53}
+\indexentry{led.h@{led.h}!RECORD\_LED\_PORT@{RECORD\_LED\_PORT}|hyperpage}{53}
+\indexentry{RECORD\_LED\_PORT@{RECORD\_LED\_PORT}!led.h@{led.h}|hyperpage}{53}
+\indexentry{led.h@{led.h}!LED\_ClearSignalFlush@{LED\_ClearSignalFlush}|hyperpage}{53}
+\indexentry{LED\_ClearSignalFlush@{LED\_ClearSignalFlush}!led.h@{led.h}|hyperpage}{53}
+\indexentry{led.h@{led.h}!LED\_SetHigh@{LED\_SetHigh}|hyperpage}{53}
+\indexentry{LED\_SetHigh@{LED\_SetHigh}!led.h@{led.h}|hyperpage}{53}
+\indexentry{led.h@{led.h}!LED\_SetLow@{LED\_SetLow}|hyperpage}{54}
+\indexentry{LED\_SetLow@{LED\_SetLow}!led.h@{led.h}|hyperpage}{54}
+\indexentry{led.h@{led.h}!LED\_SignalBackUpPowerAvailable@{LED\_SignalBackUpPowerAvailable}|hyperpage}{54}
+\indexentry{LED\_SignalBackUpPowerAvailable@{LED\_SignalBackUpPowerAvailable}!led.h@{led.h}|hyperpage}{54}
+\indexentry{led.h@{led.h}!LED\_SignalError@{LED\_SignalError}|hyperpage}{54}
+\indexentry{LED\_SignalError@{LED\_SignalError}!led.h@{led.h}|hyperpage}{54}
+\indexentry{led.h@{led.h}!LED\_SignalFlush@{LED\_SignalFlush}|hyperpage}{54}
+\indexentry{LED\_SignalFlush@{LED\_SignalFlush}!led.h@{led.h}|hyperpage}{54}
+\indexentry{led.h@{led.h}!LED\_SignalLowMemory@{LED\_SignalLowMemory}|hyperpage}{54}
+\indexentry{LED\_SignalLowMemory@{LED\_SignalLowMemory}!led.h@{led.h}|hyperpage}{54}
+\indexentry{led.h@{led.h}!LED\_SignalReady@{LED\_SignalReady}|hyperpage}{54}
+\indexentry{LED\_SignalReady@{LED\_SignalReady}!led.h@{led.h}|hyperpage}{54}
+\indexentry{led.h@{led.h}!LED\_SignalRecording@{LED\_SignalRecording}|hyperpage}{55}
+\indexentry{LED\_SignalRecording@{LED\_SignalRecording}!led.h@{led.h}|hyperpage}{55}
+\indexentry{led.h@{led.h}!LED\_SignalRecordingStop@{LED\_SignalRecordingStop}|hyperpage}{55}
+\indexentry{LED\_SignalRecordingStop@{LED\_SignalRecordingStop}!led.h@{led.h}|hyperpage}{55}
+\indexentry{include/led.h@{include/led.h}|hyperpage}{55}
+\indexentry{include/mass\_storage.h@{include/mass\_storage.h}|hyperpage}{56}
+\indexentry{mass\_storage.h@{mass\_storage.h}!MSC\_DeviceMscApp@{MSC\_DeviceMscApp}|hyperpage}{56}
+\indexentry{MSC\_DeviceMscApp@{MSC\_DeviceMscApp}!mass\_storage.h@{mass\_storage.h}|hyperpage}{56}
+\indexentry{mass\_storage.h@{mass\_storage.h}!MSC\_DeviceMscAppTask@{MSC\_DeviceMscAppTask}|hyperpage}{56}
+\indexentry{MSC\_DeviceMscAppTask@{MSC\_DeviceMscAppTask}!mass\_storage.h@{mass\_storage.h}|hyperpage}{56}
+\indexentry{include/mass\_storage.h@{include/mass\_storage.h}|hyperpage}{57}
+\indexentry{include/parser.h@{include/parser.h}|hyperpage}{57}
+\indexentry{parser.h@{parser.h}!REC\_version\_t@{REC\_version\_t}|hyperpage}{58}
+\indexentry{REC\_version\_t@{REC\_version\_t}!parser.h@{parser.h}|hyperpage}{58}
+\indexentry{WCT\_UNKOWN@{WCT\_UNKOWN}!parser.h@{parser.h}|hyperpage}{59}
+\indexentry{parser.h@{parser.h}!WCT\_UNKOWN@{WCT\_UNKOWN}|hyperpage}{59}
+\indexentry{WCT\_AUTOS1@{WCT\_AUTOS1}!parser.h@{parser.h}|hyperpage}{59}
+\indexentry{parser.h@{parser.h}!WCT\_AUTOS1@{WCT\_AUTOS1}|hyperpage}{59}
+\indexentry{WCT\_AUTOS2@{WCT\_AUTOS2}!parser.h@{parser.h}|hyperpage}{59}
+\indexentry{parser.h@{parser.h}!WCT\_AUTOS2@{WCT\_AUTOS2}|hyperpage}{59}
+\indexentry{parser.h@{parser.h}!PARSER\_ClearConfig@{PARSER\_ClearConfig}|hyperpage}{59}
+\indexentry{PARSER\_ClearConfig@{PARSER\_ClearConfig}!parser.h@{parser.h}|hyperpage}{59}
+\indexentry{parser.h@{parser.h}!PARSER\_GetBaudrate@{PARSER\_GetBaudrate}|hyperpage}{59}
+\indexentry{PARSER\_GetBaudrate@{PARSER\_GetBaudrate}!parser.h@{parser.h}|hyperpage}{59}
+\indexentry{parser.h@{parser.h}!PARSER\_GetConfig@{PARSER\_GetConfig}|hyperpage}{59}
+\indexentry{PARSER\_GetConfig@{PARSER\_GetConfig}!parser.h@{parser.h}|hyperpage}{59}
+\indexentry{parser.h@{parser.h}!PARSER\_GetDataBits@{PARSER\_GetDataBits}|hyperpage}{59}
+\indexentry{PARSER\_GetDataBits@{PARSER\_GetDataBits}!parser.h@{parser.h}|hyperpage}{59}
+\indexentry{parser.h@{parser.h}!PARSER\_GetFileSize@{PARSER\_GetFileSize}|hyperpage}{59}
+\indexentry{PARSER\_GetFileSize@{PARSER\_GetFileSize}!parser.h@{parser.h}|hyperpage}{59}
+\indexentry{parser.h@{parser.h}!PARSER\_GetFreeSpaceLimitMB@{PARSER\_GetFreeSpaceLimitMB}|hyperpage}{60}
+\indexentry{PARSER\_GetFreeSpaceLimitMB@{PARSER\_GetFreeSpaceLimitMB}!parser.h@{parser.h}|hyperpage}{60}
+\indexentry{parser.h@{parser.h}!PARSER\_GetMaxBytes@{PARSER\_GetMaxBytes}|hyperpage}{60}
+\indexentry{PARSER\_GetMaxBytes@{PARSER\_GetMaxBytes}!parser.h@{parser.h}|hyperpage}{60}
+\indexentry{parser.h@{parser.h}!PARSER\_GetParity@{PARSER\_GetParity}|hyperpage}{60}
+\indexentry{PARSER\_GetParity@{PARSER\_GetParity}!parser.h@{parser.h}|hyperpage}{60}
+\indexentry{parser.h@{parser.h}!PARSER\_GetStopBits@{PARSER\_GetStopBits}|hyperpage}{60}
+\indexentry{PARSER\_GetStopBits@{PARSER\_GetStopBits}!parser.h@{parser.h}|hyperpage}{60}
+\indexentry{parser.h@{parser.h}!PARSER\_GetVersion@{PARSER\_GetVersion}|hyperpage}{61}
+\indexentry{PARSER\_GetVersion@{PARSER\_GetVersion}!parser.h@{parser.h}|hyperpage}{61}
+\indexentry{parser.h@{parser.h}!PARSER\_ParseBaudrate@{PARSER\_ParseBaudrate}|hyperpage}{61}
+\indexentry{PARSER\_ParseBaudrate@{PARSER\_ParseBaudrate}!parser.h@{parser.h}|hyperpage}{61}
+\indexentry{parser.h@{parser.h}!PARSER\_ParseDataBits@{PARSER\_ParseDataBits}|hyperpage}{61}
+\indexentry{PARSER\_ParseDataBits@{PARSER\_ParseDataBits}!parser.h@{parser.h}|hyperpage}{61}
+\indexentry{parser.h@{parser.h}!PARSER\_ParseFileSize@{PARSER\_ParseFileSize}|hyperpage}{61}
+\indexentry{PARSER\_ParseFileSize@{PARSER\_ParseFileSize}!parser.h@{parser.h}|hyperpage}{61}
+\indexentry{parser.h@{parser.h}!PARSER\_ParseFreeSpace@{PARSER\_ParseFreeSpace}|hyperpage}{62}
+\indexentry{PARSER\_ParseFreeSpace@{PARSER\_ParseFreeSpace}!parser.h@{parser.h}|hyperpage}{62}
+\indexentry{parser.h@{parser.h}!PARSER\_ParseParity@{PARSER\_ParseParity}|hyperpage}{62}
+\indexentry{PARSER\_ParseParity@{PARSER\_ParseParity}!parser.h@{parser.h}|hyperpage}{62}
+\indexentry{parser.h@{parser.h}!PARSER\_ParseStopBits@{PARSER\_ParseStopBits}|hyperpage}{62}
+\indexentry{PARSER\_ParseStopBits@{PARSER\_ParseStopBits}!parser.h@{parser.h}|hyperpage}{62}
+\indexentry{include/parser.h@{include/parser.h}|hyperpage}{63}
+\indexentry{include/pwrloss\_det.h@{include/pwrloss\_det.h}|hyperpage}{64}
+\indexentry{pwrloss\_det.h@{pwrloss\_det.h}!CTIMER@{CTIMER}|hyperpage}{65}
+\indexentry{CTIMER@{CTIMER}!pwrloss\_det.h@{pwrloss\_det.h}|hyperpage}{65}
+\indexentry{pwrloss\_det.h@{pwrloss\_det.h}!CTIMER\_CLK\_FREQ@{CTIMER\_CLK\_FREQ}|hyperpage}{65}
+\indexentry{CTIMER\_CLK\_FREQ@{CTIMER\_CLK\_FREQ}!pwrloss\_det.h@{pwrloss\_det.h}|hyperpage}{65}
+\indexentry{pwrloss\_det.h@{pwrloss\_det.h}!CTIMER\_EMT0\_OUT@{CTIMER\_EMT0\_OUT}|hyperpage}{65}
+\indexentry{CTIMER\_EMT0\_OUT@{CTIMER\_EMT0\_OUT}!pwrloss\_det.h@{pwrloss\_det.h}|hyperpage}{65}
+\indexentry{pwrloss\_det.h@{pwrloss\_det.h}!CTIMER\_MAT0\_OUT@{CTIMER\_MAT0\_OUT}|hyperpage}{65}
+\indexentry{CTIMER\_MAT0\_OUT@{CTIMER\_MAT0\_OUT}!pwrloss\_det.h@{pwrloss\_det.h}|hyperpage}{65}
+\indexentry{pwrloss\_det.h@{pwrloss\_det.h}!LPCMP\_BASE@{LPCMP\_BASE}|hyperpage}{65}
+\indexentry{LPCMP\_BASE@{LPCMP\_BASE}!pwrloss\_det.h@{pwrloss\_det.h}|hyperpage}{65}
+\indexentry{pwrloss\_det.h@{pwrloss\_det.h}!LPCMP\_DAC\_CHANNEL@{LPCMP\_DAC\_CHANNEL}|hyperpage}{65}
+\indexentry{LPCMP\_DAC\_CHANNEL@{LPCMP\_DAC\_CHANNEL}!pwrloss\_det.h@{pwrloss\_det.h}|hyperpage}{65}
+\indexentry{pwrloss\_det.h@{pwrloss\_det.h}!LPCMP\_IRQ\_ID@{LPCMP\_IRQ\_ID}|hyperpage}{66}
+\indexentry{LPCMP\_IRQ\_ID@{LPCMP\_IRQ\_ID}!pwrloss\_det.h@{pwrloss\_det.h}|hyperpage}{66}
+\indexentry{pwrloss\_det.h@{pwrloss\_det.h}!LPCMP\_USER\_CHANNEL@{LPCMP\_USER\_CHANNEL}|hyperpage}{66}
+\indexentry{LPCMP\_USER\_CHANNEL@{LPCMP\_USER\_CHANNEL}!pwrloss\_det.h@{pwrloss\_det.h}|hyperpage}{66}
+\indexentry{pwrloss\_det.h@{pwrloss\_det.h}!SPC\_BASE@{SPC\_BASE}|hyperpage}{66}
+\indexentry{SPC\_BASE@{SPC\_BASE}!pwrloss\_det.h@{pwrloss\_det.h}|hyperpage}{66}
+\indexentry{pwrloss\_det.h@{pwrloss\_det.h}!PWRLOSS\_DetectionInit@{PWRLOSS\_DetectionInit}|hyperpage}{66}
+\indexentry{PWRLOSS\_DetectionInit@{PWRLOSS\_DetectionInit}!pwrloss\_det.h@{pwrloss\_det.h}|hyperpage}{66}
+\indexentry{include/pwrloss\_det.h@{include/pwrloss\_det.h}|hyperpage}{67}
+\indexentry{include/record.h@{include/record.h}|hyperpage}{67}
+\indexentry{record.h@{record.h}!FLUSH\_TIMEOUT\_TICKS@{FLUSH\_TIMEOUT\_TICKS}|hyperpage}{69}
+\indexentry{FLUSH\_TIMEOUT\_TICKS@{FLUSH\_TIMEOUT\_TICKS}!record.h@{record.h}|hyperpage}{69}
+\indexentry{record.h@{record.h}!CONSOLELOG\_CheckFileSystem@{CONSOLELOG\_CheckFileSystem}|hyperpage}{69}
+\indexentry{CONSOLELOG\_CheckFileSystem@{CONSOLELOG\_CheckFileSystem}!record.h@{record.h}|hyperpage}{69}
+\indexentry{record.h@{record.h}!CONSOLELOG\_ClearTransferedBytes@{CONSOLELOG\_ClearTransferedBytes}|hyperpage}{69}
+\indexentry{CONSOLELOG\_ClearTransferedBytes@{CONSOLELOG\_ClearTransferedBytes}!record.h@{record.h}|hyperpage}{69}
+\indexentry{record.h@{record.h}!CONSOLELOG\_CreateDirectory@{CONSOLELOG\_CreateDirectory}|hyperpage}{69}
+\indexentry{CONSOLELOG\_CreateDirectory@{CONSOLELOG\_CreateDirectory}!record.h@{record.h}|hyperpage}{69}
+\indexentry{record.h@{record.h}!CONSOLELOG\_CreateFile@{CONSOLELOG\_CreateFile}|hyperpage}{69}
+\indexentry{CONSOLELOG\_CreateFile@{CONSOLELOG\_CreateFile}!record.h@{record.h}|hyperpage}{69}
+\indexentry{record.h@{record.h}!CONSOLELOG\_Deinit@{CONSOLELOG\_Deinit}|hyperpage}{70}
+\indexentry{CONSOLELOG\_Deinit@{CONSOLELOG\_Deinit}!record.h@{record.h}|hyperpage}{70}
+\indexentry{record.h@{record.h}!CONSOLELOG\_Flush@{CONSOLELOG\_Flush}|hyperpage}{70}
+\indexentry{CONSOLELOG\_Flush@{CONSOLELOG\_Flush}!record.h@{record.h}|hyperpage}{70}
+\indexentry{record.h@{record.h}!CONSOLELOG\_GetFlushCompleted@{CONSOLELOG\_GetFlushCompleted}|hyperpage}{70}
+\indexentry{CONSOLELOG\_GetFlushCompleted@{CONSOLELOG\_GetFlushCompleted}!record.h@{record.h}|hyperpage}{70}
+\indexentry{record.h@{record.h}!CONSOLELOG\_GetFreeSpaceMB@{CONSOLELOG\_GetFreeSpaceMB}|hyperpage}{71}
+\indexentry{CONSOLELOG\_GetFreeSpaceMB@{CONSOLELOG\_GetFreeSpaceMB}!record.h@{record.h}|hyperpage}{71}
+\indexentry{record.h@{record.h}!CONSOLELOG\_GetMaxBytes@{CONSOLELOG\_GetMaxBytes}|hyperpage}{71}
+\indexentry{CONSOLELOG\_GetMaxBytes@{CONSOLELOG\_GetMaxBytes}!record.h@{record.h}|hyperpage}{71}
+\indexentry{record.h@{record.h}!CONSOLELOG\_GetTransferedBytes@{CONSOLELOG\_GetTransferedBytes}|hyperpage}{71}
+\indexentry{CONSOLELOG\_GetTransferedBytes@{CONSOLELOG\_GetTransferedBytes}!record.h@{record.h}|hyperpage}{71}
+\indexentry{record.h@{record.h}!CONSOLELOG\_Init@{CONSOLELOG\_Init}|hyperpage}{71}
+\indexentry{CONSOLELOG\_Init@{CONSOLELOG\_Init}!record.h@{record.h}|hyperpage}{71}
+\indexentry{record.h@{record.h}!CONSOLELOG\_PowerLossFlush@{CONSOLELOG\_PowerLossFlush}|hyperpage}{72}
+\indexentry{CONSOLELOG\_PowerLossFlush@{CONSOLELOG\_PowerLossFlush}!record.h@{record.h}|hyperpage}{72}
+\indexentry{record.h@{record.h}!CONSOLELOG\_ProccessConfigFile@{CONSOLELOG\_ProccessConfigFile}|hyperpage}{72}
+\indexentry{CONSOLELOG\_ProccessConfigFile@{CONSOLELOG\_ProccessConfigFile}!record.h@{record.h}|hyperpage}{72}
+\indexentry{record.h@{record.h}!CONSOLELOG\_ReadConfig@{CONSOLELOG\_ReadConfig}|hyperpage}{72}
+\indexentry{CONSOLELOG\_ReadConfig@{CONSOLELOG\_ReadConfig}!record.h@{record.h}|hyperpage}{72}
+\indexentry{record.h@{record.h}!CONSOLELOG\_Recording@{CONSOLELOG\_Recording}|hyperpage}{73}
+\indexentry{CONSOLELOG\_Recording@{CONSOLELOG\_Recording}!record.h@{record.h}|hyperpage}{73}
+\indexentry{include/record.h@{include/record.h}|hyperpage}{73}
+\indexentry{include/task\_switching.h@{include/task\_switching.h}|hyperpage}{74}
+\indexentry{task\_switching.h@{task\_switching.h}!USB\_State@{USB\_State}|hyperpage}{75}
+\indexentry{USB\_State@{USB\_State}!task\_switching.h@{task\_switching.h}|hyperpage}{75}
+\indexentry{task\_switching.h@{task\_switching.h}!g\_msc@{g\_msc}|hyperpage}{75}
+\indexentry{g\_msc@{g\_msc}!task\_switching.h@{task\_switching.h}|hyperpage}{75}
+\indexentry{include/task\_switching.h@{include/task\_switching.h}|hyperpage}{76}
+\indexentry{include/temperature.h@{include/temperature.h}|hyperpage}{76}
+\indexentry{temperature.h@{temperature.h}!Read@{Read}|hyperpage}{76}
+\indexentry{Read@{Read}!temperature.h@{temperature.h}|hyperpage}{76}
+\indexentry{temperature.h@{temperature.h}!TMP\_GetTemperature@{TMP\_GetTemperature}|hyperpage}{77}
+\indexentry{TMP\_GetTemperature@{TMP\_GetTemperature}!temperature.h@{temperature.h}|hyperpage}{77}
+\indexentry{temperature.h@{temperature.h}!TMP\_Init@{TMP\_Init}|hyperpage}{77}
+\indexentry{TMP\_Init@{TMP\_Init}!temperature.h@{temperature.h}|hyperpage}{77}
+\indexentry{temperature.h@{temperature.h}!Write@{Write}|hyperpage}{77}
+\indexentry{Write@{Write}!temperature.h@{temperature.h}|hyperpage}{77}
+\indexentry{include/temperature.h@{include/temperature.h}|hyperpage}{78}
+\indexentry{include/time.h@{include/time.h}|hyperpage}{78}
+\indexentry{time.h@{time.h}!LPI2C\_DMA\_BASEADDR@{LPI2C\_DMA\_BASEADDR}|hyperpage}{79}
+\indexentry{LPI2C\_DMA\_BASEADDR@{LPI2C\_DMA\_BASEADDR}!time.h@{time.h}|hyperpage}{79}
+\indexentry{time.h@{time.h}!TIME\_InitIRTC@{TIME\_InitIRTC}|hyperpage}{79}
+\indexentry{TIME\_InitIRTC@{TIME\_InitIRTC}!time.h@{time.h}|hyperpage}{79}
+\indexentry{include/time.h@{include/time.h}|hyperpage}{79}
+\indexentry{include/uart.h@{include/uart.h}|hyperpage}{80}
+\indexentry{uart.h@{uart.h}!LPUART3\_CLK\_FREQ@{LPUART3\_CLK\_FREQ}|hyperpage}{80}
+\indexentry{LPUART3\_CLK\_FREQ@{LPUART3\_CLK\_FREQ}!uart.h@{uart.h}|hyperpage}{80}
+\indexentry{uart.h@{uart.h}!UART\_Deinit@{UART\_Deinit}|hyperpage}{80}
+\indexentry{UART\_Deinit@{UART\_Deinit}!uart.h@{uart.h}|hyperpage}{80}
+\indexentry{uart.h@{uart.h}!UART\_Disable@{UART\_Disable}|hyperpage}{80}
+\indexentry{UART\_Disable@{UART\_Disable}!uart.h@{uart.h}|hyperpage}{80}
+\indexentry{uart.h@{uart.h}!UART\_Enable@{UART\_Enable}|hyperpage}{81}
+\indexentry{UART\_Enable@{UART\_Enable}!uart.h@{uart.h}|hyperpage}{81}
+\indexentry{uart.h@{uart.h}!UART\_Init@{UART\_Init}|hyperpage}{81}
+\indexentry{UART\_Init@{UART\_Init}!uart.h@{uart.h}|hyperpage}{81}
+\indexentry{uart.h@{uart.h}!UART\_Print@{UART\_Print}|hyperpage}{81}
+\indexentry{UART\_Print@{UART\_Print}!uart.h@{uart.h}|hyperpage}{81}
+\indexentry{include/uart.h@{include/uart.h}|hyperpage}{82}
+\indexentry{src/app\_init.c@{src/app\_init.c}|hyperpage}{82}
+\indexentry{app\_init.c@{app\_init.c}!APP\_InitBoard@{APP\_InitBoard}|hyperpage}{83}
+\indexentry{APP\_InitBoard@{APP\_InitBoard}!app\_init.c@{app\_init.c}|hyperpage}{83}
+\indexentry{src/app\_tasks.c@{src/app\_tasks.c}|hyperpage}{83}
+\indexentry{app\_tasks.c@{app\_tasks.c}!msc\_task@{msc\_task}|hyperpage}{83}
+\indexentry{msc\_task@{msc\_task}!app\_tasks.c@{app\_tasks.c}|hyperpage}{83}
+\indexentry{app\_tasks.c@{app\_tasks.c}!record\_task@{record\_task}|hyperpage}{84}
+\indexentry{record\_task@{record\_task}!app\_tasks.c@{app\_tasks.c}|hyperpage}{84}
+\indexentry{app\_tasks.c@{app\_tasks.c}!vApplicationGetIdleTaskMemory@{vApplicationGetIdleTaskMemory}|hyperpage}{84}
+\indexentry{vApplicationGetIdleTaskMemory@{vApplicationGetIdleTaskMemory}!app\_tasks.c@{app\_tasks.c}|hyperpage}{84}
+\indexentry{app\_tasks.c@{app\_tasks.c}!vApplicationGetTimerTaskMemory@{vApplicationGetTimerTaskMemory}|hyperpage}{84}
+\indexentry{vApplicationGetTimerTaskMemory@{vApplicationGetTimerTaskMemory}!app\_tasks.c@{app\_tasks.c}|hyperpage}{84}
+\indexentry{src/error.c@{src/error.c}|hyperpage}{85}
+\indexentry{error.c@{error.c}!ERR\_HandleError@{ERR\_HandleError}|hyperpage}{85}
+\indexentry{ERR\_HandleError@{ERR\_HandleError}!error.c@{error.c}|hyperpage}{85}
+\indexentry{error.c@{error.c}!ERR\_Init@{ERR\_Init}|hyperpage}{85}
+\indexentry{ERR\_Init@{ERR\_Init}!error.c@{error.c}|hyperpage}{85}
+\indexentry{error.c@{error.c}!ERR\_SetState@{ERR\_SetState}|hyperpage}{85}
+\indexentry{ERR\_SetState@{ERR\_SetState}!error.c@{error.c}|hyperpage}{85}
+\indexentry{error.c@{error.c}!error@{error}|hyperpage}{86}
+\indexentry{error@{error}!error.c@{error.c}|hyperpage}{86}
+\indexentry{src/led.c@{src/led.c}|hyperpage}{86}
+\indexentry{led.c@{led.c}!LED\_ClearSignalFlush@{LED\_ClearSignalFlush}|hyperpage}{86}
+\indexentry{LED\_ClearSignalFlush@{LED\_ClearSignalFlush}!led.c@{led.c}|hyperpage}{86}
+\indexentry{led.c@{led.c}!LED\_SetHigh@{LED\_SetHigh}|hyperpage}{86}
+\indexentry{LED\_SetHigh@{LED\_SetHigh}!led.c@{led.c}|hyperpage}{86}
+\indexentry{led.c@{led.c}!LED\_SetLow@{LED\_SetLow}|hyperpage}{87}
+\indexentry{LED\_SetLow@{LED\_SetLow}!led.c@{led.c}|hyperpage}{87}
+\indexentry{led.c@{led.c}!LED\_SignalBackUpPowerAvailable@{LED\_SignalBackUpPowerAvailable}|hyperpage}{87}
+\indexentry{LED\_SignalBackUpPowerAvailable@{LED\_SignalBackUpPowerAvailable}!led.c@{led.c}|hyperpage}{87}
+\indexentry{led.c@{led.c}!LED\_SignalError@{LED\_SignalError}|hyperpage}{87}
+\indexentry{LED\_SignalError@{LED\_SignalError}!led.c@{led.c}|hyperpage}{87}
+\indexentry{led.c@{led.c}!LED\_SignalFlush@{LED\_SignalFlush}|hyperpage}{87}
+\indexentry{LED\_SignalFlush@{LED\_SignalFlush}!led.c@{led.c}|hyperpage}{87}
+\indexentry{led.c@{led.c}!LED\_SignalLowMemory@{LED\_SignalLowMemory}|hyperpage}{87}
+\indexentry{LED\_SignalLowMemory@{LED\_SignalLowMemory}!led.c@{led.c}|hyperpage}{87}
+\indexentry{led.c@{led.c}!LED\_SignalReady@{LED\_SignalReady}|hyperpage}{87}
+\indexentry{LED\_SignalReady@{LED\_SignalReady}!led.c@{led.c}|hyperpage}{87}
+\indexentry{led.c@{led.c}!LED\_SignalRecording@{LED\_SignalRecording}|hyperpage}{88}
+\indexentry{LED\_SignalRecording@{LED\_SignalRecording}!led.c@{led.c}|hyperpage}{88}
+\indexentry{led.c@{led.c}!LED\_SignalRecordingStop@{LED\_SignalRecordingStop}|hyperpage}{88}
+\indexentry{LED\_SignalRecordingStop@{LED\_SignalRecordingStop}!led.c@{led.c}|hyperpage}{88}
+\indexentry{src/main.c@{src/main.c}|hyperpage}{88}
+\indexentry{main.c@{main.c}!main@{main}|hyperpage}{89}
+\indexentry{main@{main}!main.c@{main.c}|hyperpage}{89}
+\indexentry{main.c@{main.c}!g\_msc@{g\_msc}|hyperpage}{89}
+\indexentry{g\_msc@{g\_msc}!main.c@{main.c}|hyperpage}{89}
+\indexentry{main.c@{main.c}!g\_xMscTaskHandle@{g\_xMscTaskHandle}|hyperpage}{89}
+\indexentry{g\_xMscTaskHandle@{g\_xMscTaskHandle}!main.c@{main.c}|hyperpage}{89}
+\indexentry{main.c@{main.c}!g\_xMscTaskStack@{g\_xMscTaskStack}|hyperpage}{89}
+\indexentry{g\_xMscTaskStack@{g\_xMscTaskStack}!main.c@{main.c}|hyperpage}{89}
+\indexentry{main.c@{main.c}!g\_xMscTaskTCB@{g\_xMscTaskTCB}|hyperpage}{90}
+\indexentry{g\_xMscTaskTCB@{g\_xMscTaskTCB}!main.c@{main.c}|hyperpage}{90}
+\indexentry{main.c@{main.c}!g\_xRecordTaskHandle@{g\_xRecordTaskHandle}|hyperpage}{90}
+\indexentry{g\_xRecordTaskHandle@{g\_xRecordTaskHandle}!main.c@{main.c}|hyperpage}{90}
+\indexentry{main.c@{main.c}!g\_xRecordTaskStack@{g\_xRecordTaskStack}|hyperpage}{90}
+\indexentry{g\_xRecordTaskStack@{g\_xRecordTaskStack}!main.c@{main.c}|hyperpage}{90}
+\indexentry{main.c@{main.c}!g\_xRecordTaskTCB@{g\_xRecordTaskTCB}|hyperpage}{90}
+\indexentry{g\_xRecordTaskTCB@{g\_xRecordTaskTCB}!main.c@{main.c}|hyperpage}{90}
+\indexentry{main.c@{main.c}!g\_xSemMassStorage@{g\_xSemMassStorage}|hyperpage}{90}
+\indexentry{g\_xSemMassStorage@{g\_xSemMassStorage}!main.c@{main.c}|hyperpage}{90}
+\indexentry{main.c@{main.c}!g\_xSemRecord@{g\_xSemRecord}|hyperpage}{90}
+\indexentry{g\_xSemRecord@{g\_xSemRecord}!main.c@{main.c}|hyperpage}{90}
+\indexentry{src/mass\_storage.c@{src/mass\_storage.c}|hyperpage}{91}
+\indexentry{mass\_storage.c@{mass\_storage.c}!MSC\_DeviceMscApp@{MSC\_DeviceMscApp}|hyperpage}{91}
+\indexentry{MSC\_DeviceMscApp@{MSC\_DeviceMscApp}!mass\_storage.c@{mass\_storage.c}|hyperpage}{91}
+\indexentry{mass\_storage.c@{mass\_storage.c}!MSC\_DeviceMscAppTask@{MSC\_DeviceMscAppTask}|hyperpage}{91}
+\indexentry{MSC\_DeviceMscAppTask@{MSC\_DeviceMscAppTask}!mass\_storage.c@{mass\_storage.c}|hyperpage}{91}
+\indexentry{mass\_storage.c@{mass\_storage.c}!USB1\_HS\_IRQHandler@{USB1\_HS\_IRQHandler}|hyperpage}{91}
+\indexentry{USB1\_HS\_IRQHandler@{USB1\_HS\_IRQHandler}!mass\_storage.c@{mass\_storage.c}|hyperpage}{91}
+\indexentry{mass\_storage.c@{mass\_storage.c}!g\_xSemMassStorage@{g\_xSemMassStorage}|hyperpage}{92}
+\indexentry{g\_xSemMassStorage@{g\_xSemMassStorage}!mass\_storage.c@{mass\_storage.c}|hyperpage}{92}
+\indexentry{mass\_storage.c@{mass\_storage.c}!g\_xSemRecord@{g\_xSemRecord}|hyperpage}{92}
+\indexentry{g\_xSemRecord@{g\_xSemRecord}!mass\_storage.c@{mass\_storage.c}|hyperpage}{92}
+\indexentry{src/parser.c@{src/parser.c}|hyperpage}{92}
+\indexentry{parser.c@{parser.c}!RECORD\_LED\_TIME\_INTERVAL@{RECORD\_LED\_TIME\_INTERVAL}|hyperpage}{93}
+\indexentry{RECORD\_LED\_TIME\_INTERVAL@{RECORD\_LED\_TIME\_INTERVAL}!parser.c@{parser.c}|hyperpage}{93}
+\indexentry{parser.c@{parser.c}!PARSER\_ClearConfig@{PARSER\_ClearConfig}|hyperpage}{93}
+\indexentry{PARSER\_ClearConfig@{PARSER\_ClearConfig}!parser.c@{parser.c}|hyperpage}{93}
+\indexentry{parser.c@{parser.c}!PARSER\_GetBaudrate@{PARSER\_GetBaudrate}|hyperpage}{93}
+\indexentry{PARSER\_GetBaudrate@{PARSER\_GetBaudrate}!parser.c@{parser.c}|hyperpage}{93}
+\indexentry{parser.c@{parser.c}!PARSER\_GetConfig@{PARSER\_GetConfig}|hyperpage}{93}
+\indexentry{PARSER\_GetConfig@{PARSER\_GetConfig}!parser.c@{parser.c}|hyperpage}{93}
+\indexentry{parser.c@{parser.c}!PARSER\_GetDataBits@{PARSER\_GetDataBits}|hyperpage}{94}
+\indexentry{PARSER\_GetDataBits@{PARSER\_GetDataBits}!parser.c@{parser.c}|hyperpage}{94}
+\indexentry{parser.c@{parser.c}!PARSER\_GetFileSize@{PARSER\_GetFileSize}|hyperpage}{94}
+\indexentry{PARSER\_GetFileSize@{PARSER\_GetFileSize}!parser.c@{parser.c}|hyperpage}{94}
+\indexentry{parser.c@{parser.c}!PARSER\_GetFreeSpaceLimitMB@{PARSER\_GetFreeSpaceLimitMB}|hyperpage}{94}
+\indexentry{PARSER\_GetFreeSpaceLimitMB@{PARSER\_GetFreeSpaceLimitMB}!parser.c@{parser.c}|hyperpage}{94}
+\indexentry{parser.c@{parser.c}!PARSER\_GetMaxBytes@{PARSER\_GetMaxBytes}|hyperpage}{94}
+\indexentry{PARSER\_GetMaxBytes@{PARSER\_GetMaxBytes}!parser.c@{parser.c}|hyperpage}{94}
+\indexentry{parser.c@{parser.c}!PARSER\_GetParity@{PARSER\_GetParity}|hyperpage}{95}
+\indexentry{PARSER\_GetParity@{PARSER\_GetParity}!parser.c@{parser.c}|hyperpage}{95}
+\indexentry{parser.c@{parser.c}!PARSER\_GetStopBits@{PARSER\_GetStopBits}|hyperpage}{95}
+\indexentry{PARSER\_GetStopBits@{PARSER\_GetStopBits}!parser.c@{parser.c}|hyperpage}{95}
+\indexentry{parser.c@{parser.c}!PARSER\_GetVersion@{PARSER\_GetVersion}|hyperpage}{95}
+\indexentry{PARSER\_GetVersion@{PARSER\_GetVersion}!parser.c@{parser.c}|hyperpage}{95}
+\indexentry{parser.c@{parser.c}!PARSER\_ParseBaudrate@{PARSER\_ParseBaudrate}|hyperpage}{95}
+\indexentry{PARSER\_ParseBaudrate@{PARSER\_ParseBaudrate}!parser.c@{parser.c}|hyperpage}{95}
+\indexentry{parser.c@{parser.c}!PARSER\_ParseDataBits@{PARSER\_ParseDataBits}|hyperpage}{96}
+\indexentry{PARSER\_ParseDataBits@{PARSER\_ParseDataBits}!parser.c@{parser.c}|hyperpage}{96}
+\indexentry{parser.c@{parser.c}!PARSER\_ParseFileSize@{PARSER\_ParseFileSize}|hyperpage}{96}
+\indexentry{PARSER\_ParseFileSize@{PARSER\_ParseFileSize}!parser.c@{parser.c}|hyperpage}{96}
+\indexentry{parser.c@{parser.c}!PARSER\_ParseFreeSpace@{PARSER\_ParseFreeSpace}|hyperpage}{96}
+\indexentry{PARSER\_ParseFreeSpace@{PARSER\_ParseFreeSpace}!parser.c@{parser.c}|hyperpage}{96}
+\indexentry{parser.c@{parser.c}!PARSER\_ParseParity@{PARSER\_ParseParity}|hyperpage}{97}
+\indexentry{PARSER\_ParseParity@{PARSER\_ParseParity}!parser.c@{parser.c}|hyperpage}{97}
+\indexentry{parser.c@{parser.c}!PARSER\_ParseStopBits@{PARSER\_ParseStopBits}|hyperpage}{97}
+\indexentry{PARSER\_ParseStopBits@{PARSER\_ParseStopBits}!parser.c@{parser.c}|hyperpage}{97}
+\indexentry{parser.c@{parser.c}!g\_config@{g\_config}|hyperpage}{97}
+\indexentry{g\_config@{g\_config}!parser.c@{parser.c}|hyperpage}{97}
+\indexentry{src/pwrloss\_det.c@{src/pwrloss\_det.c}|hyperpage}{98}
+\indexentry{pwrloss\_det.c@{pwrloss\_det.c}!REF\_VOLTAGE@{REF\_VOLTAGE}|hyperpage}{98}
+\indexentry{REF\_VOLTAGE@{REF\_VOLTAGE}!pwrloss\_det.c@{pwrloss\_det.c}|hyperpage}{98}
+\indexentry{pwrloss\_det.c@{pwrloss\_det.c}!TRIGGER\_VOLTAGE@{TRIGGER\_VOLTAGE}|hyperpage}{98}
+\indexentry{TRIGGER\_VOLTAGE@{TRIGGER\_VOLTAGE}!pwrloss\_det.c@{pwrloss\_det.c}|hyperpage}{98}
+\indexentry{pwrloss\_det.c@{pwrloss\_det.c}!CTIMER4\_IRQHandler@{CTIMER4\_IRQHandler}|hyperpage}{98}
+\indexentry{CTIMER4\_IRQHandler@{CTIMER4\_IRQHandler}!pwrloss\_det.c@{pwrloss\_det.c}|hyperpage}{98}
+\indexentry{pwrloss\_det.c@{pwrloss\_det.c}!HSCMP1\_IRQHandler@{HSCMP1\_IRQHandler}|hyperpage}{98}
+\indexentry{HSCMP1\_IRQHandler@{HSCMP1\_IRQHandler}!pwrloss\_det.c@{pwrloss\_det.c}|hyperpage}{98}
+\indexentry{pwrloss\_det.c@{pwrloss\_det.c}!PWRLOSS\_DetectionInit@{PWRLOSS\_DetectionInit}|hyperpage}{98}
+\indexentry{PWRLOSS\_DetectionInit@{PWRLOSS\_DetectionInit}!pwrloss\_det.c@{pwrloss\_det.c}|hyperpage}{98}
+\indexentry{src/record.c@{src/record.c}|hyperpage}{99}
+\indexentry{record.c@{record.c}!BLOCK\_SIZE@{BLOCK\_SIZE}|hyperpage}{101}
+\indexentry{BLOCK\_SIZE@{BLOCK\_SIZE}!record.c@{record.c}|hyperpage}{101}
+\indexentry{record.c@{record.c}!CIRCULAR\_BUFFER\_SIZE@{CIRCULAR\_BUFFER\_SIZE}|hyperpage}{101}
+\indexentry{CIRCULAR\_BUFFER\_SIZE@{CIRCULAR\_BUFFER\_SIZE}!record.c@{record.c}|hyperpage}{101}
+\indexentry{record.c@{record.c}!GET\_CURRENT\_TIME\_MS@{GET\_CURRENT\_TIME\_MS}|hyperpage}{101}
+\indexentry{GET\_CURRENT\_TIME\_MS@{GET\_CURRENT\_TIME\_MS}!record.c@{record.c}|hyperpage}{101}
+\indexentry{record.c@{record.c}!GET\_WAIT\_INTERVAL@{GET\_WAIT\_INTERVAL}|hyperpage}{101}
+\indexentry{GET\_WAIT\_INTERVAL@{GET\_WAIT\_INTERVAL}!record.c@{record.c}|hyperpage}{101}
+\indexentry{record.c@{record.c}!CONSOLELOG\_CheckFileSystem@{CONSOLELOG\_CheckFileSystem}|hyperpage}{101}
+\indexentry{CONSOLELOG\_CheckFileSystem@{CONSOLELOG\_CheckFileSystem}!record.c@{record.c}|hyperpage}{101}
+\indexentry{record.c@{record.c}!CONSOLELOG\_ClearTransferedBytes@{CONSOLELOG\_ClearTransferedBytes}|hyperpage}{101}
+\indexentry{CONSOLELOG\_ClearTransferedBytes@{CONSOLELOG\_ClearTransferedBytes}!record.c@{record.c}|hyperpage}{101}
+\indexentry{record.c@{record.c}!CONSOLELOG\_CreateDirectory@{CONSOLELOG\_CreateDirectory}|hyperpage}{102}
+\indexentry{CONSOLELOG\_CreateDirectory@{CONSOLELOG\_CreateDirectory}!record.c@{record.c}|hyperpage}{102}
+\indexentry{record.c@{record.c}!CONSOLELOG\_CreateFile@{CONSOLELOG\_CreateFile}|hyperpage}{102}
+\indexentry{CONSOLELOG\_CreateFile@{CONSOLELOG\_CreateFile}!record.c@{record.c}|hyperpage}{102}
+\indexentry{record.c@{record.c}!CONSOLELOG\_Deinit@{CONSOLELOG\_Deinit}|hyperpage}{102}
+\indexentry{CONSOLELOG\_Deinit@{CONSOLELOG\_Deinit}!record.c@{record.c}|hyperpage}{102}
+\indexentry{record.c@{record.c}!CONSOLELOG\_Flush@{CONSOLELOG\_Flush}|hyperpage}{103}
+\indexentry{CONSOLELOG\_Flush@{CONSOLELOG\_Flush}!record.c@{record.c}|hyperpage}{103}
+\indexentry{record.c@{record.c}!CONSOLELOG\_GetFlushCompleted@{CONSOLELOG\_GetFlushCompleted}|hyperpage}{103}
+\indexentry{CONSOLELOG\_GetFlushCompleted@{CONSOLELOG\_GetFlushCompleted}!record.c@{record.c}|hyperpage}{103}
+\indexentry{record.c@{record.c}!CONSOLELOG\_GetFreeSpaceMB@{CONSOLELOG\_GetFreeSpaceMB}|hyperpage}{103}
+\indexentry{CONSOLELOG\_GetFreeSpaceMB@{CONSOLELOG\_GetFreeSpaceMB}!record.c@{record.c}|hyperpage}{103}
+\indexentry{record.c@{record.c}!CONSOLELOG\_GetTransferedBytes@{CONSOLELOG\_GetTransferedBytes}|hyperpage}{103}
+\indexentry{CONSOLELOG\_GetTransferedBytes@{CONSOLELOG\_GetTransferedBytes}!record.c@{record.c}|hyperpage}{103}
+\indexentry{record.c@{record.c}!CONSOLELOG\_Init@{CONSOLELOG\_Init}|hyperpage}{104}
+\indexentry{CONSOLELOG\_Init@{CONSOLELOG\_Init}!record.c@{record.c}|hyperpage}{104}
+\indexentry{record.c@{record.c}!CONSOLELOG\_PowerLossFlush@{CONSOLELOG\_PowerLossFlush}|hyperpage}{104}
+\indexentry{CONSOLELOG\_PowerLossFlush@{CONSOLELOG\_PowerLossFlush}!record.c@{record.c}|hyperpage}{104}
+\indexentry{record.c@{record.c}!CONSOLELOG\_ProccessConfigFile@{CONSOLELOG\_ProccessConfigFile}|hyperpage}{104}
+\indexentry{CONSOLELOG\_ProccessConfigFile@{CONSOLELOG\_ProccessConfigFile}!record.c@{record.c}|hyperpage}{104}
+\indexentry{record.c@{record.c}!CONSOLELOG\_ReadConfig@{CONSOLELOG\_ReadConfig}|hyperpage}{105}
+\indexentry{CONSOLELOG\_ReadConfig@{CONSOLELOG\_ReadConfig}!record.c@{record.c}|hyperpage}{105}
+\indexentry{record.c@{record.c}!CONSOLELOG\_Recording@{CONSOLELOG\_Recording}|hyperpage}{105}
+\indexentry{CONSOLELOG\_Recording@{CONSOLELOG\_Recording}!record.c@{record.c}|hyperpage}{105}
+\indexentry{record.c@{record.c}!get\_fattime@{get\_fattime}|hyperpage}{105}
+\indexentry{get\_fattime@{get\_fattime}!record.c@{record.c}|hyperpage}{105}
+\indexentry{record.c@{record.c}!LP\_FLEXCOMM3\_IRQHandler@{LP\_FLEXCOMM3\_IRQHandler}|hyperpage}{105}
+\indexentry{LP\_FLEXCOMM3\_IRQHandler@{LP\_FLEXCOMM3\_IRQHandler}!record.c@{record.c}|hyperpage}{105}
+\indexentry{src/semihost\_hardfault.c@{src/semihost\_hardfault.c}|hyperpage}{106}
+\indexentry{semihost\_hardfault.c@{semihost\_hardfault.c}!\_\_attribute\_\_@{\_\_attribute\_\_}|hyperpage}{106}
+\indexentry{\_\_attribute\_\_@{\_\_attribute\_\_}!semihost\_hardfault.c@{semihost\_hardfault.c}|hyperpage}{106}
+\indexentry{src/task\_switching.c@{src/task\_switching.c}|hyperpage}{106}
+\indexentry{task\_switching.c@{task\_switching.c}!USB\_State@{USB\_State}|hyperpage}{106}
+\indexentry{USB\_State@{USB\_State}!task\_switching.c@{task\_switching.c}|hyperpage}{106}
+\indexentry{src/temperature.c@{src/temperature.c}|hyperpage}{107}
+\indexentry{temperature.c@{temperature.c}!BUFF\_SIZE@{BUFF\_SIZE}|hyperpage}{108}
+\indexentry{BUFF\_SIZE@{BUFF\_SIZE}!temperature.c@{temperature.c}|hyperpage}{108}
+\indexentry{temperature.c@{temperature.c}!I2C\_BAUDRATE@{I2C\_BAUDRATE}|hyperpage}{108}
+\indexentry{I2C\_BAUDRATE@{I2C\_BAUDRATE}!temperature.c@{temperature.c}|hyperpage}{108}
+\indexentry{temperature.c@{temperature.c}!I2C\_MASTER\_I2C5@{I2C\_MASTER\_I2C5}|hyperpage}{108}
+\indexentry{I2C\_MASTER\_I2C5@{I2C\_MASTER\_I2C5}!temperature.c@{temperature.c}|hyperpage}{108}
+\indexentry{temperature.c@{temperature.c}!LPI2C\_RX\_DMA\_CHANNEL@{LPI2C\_RX\_DMA\_CHANNEL}|hyperpage}{108}
+\indexentry{LPI2C\_RX\_DMA\_CHANNEL@{LPI2C\_RX\_DMA\_CHANNEL}!temperature.c@{temperature.c}|hyperpage}{108}
+\indexentry{temperature.c@{temperature.c}!LPI2C\_RX\_EDMA\_CHANNEL@{LPI2C\_RX\_EDMA\_CHANNEL}|hyperpage}{108}
+\indexentry{LPI2C\_RX\_EDMA\_CHANNEL@{LPI2C\_RX\_EDMA\_CHANNEL}!temperature.c@{temperature.c}|hyperpage}{108}
+\indexentry{temperature.c@{temperature.c}!LPI2C\_TX\_CHANNEL@{LPI2C\_TX\_CHANNEL}|hyperpage}{108}
+\indexentry{LPI2C\_TX\_CHANNEL@{LPI2C\_TX\_CHANNEL}!temperature.c@{temperature.c}|hyperpage}{108}
+\indexentry{temperature.c@{temperature.c}!LPI2C\_TX\_DMA\_CHANNEL@{LPI2C\_TX\_DMA\_CHANNEL}|hyperpage}{109}
+\indexentry{LPI2C\_TX\_DMA\_CHANNEL@{LPI2C\_TX\_DMA\_CHANNEL}!temperature.c@{temperature.c}|hyperpage}{109}
+\indexentry{temperature.c@{temperature.c}!P3T1755\_ADDR\_7BIT@{P3T1755\_ADDR\_7BIT}|hyperpage}{109}
+\indexentry{P3T1755\_ADDR\_7BIT@{P3T1755\_ADDR\_7BIT}!temperature.c@{temperature.c}|hyperpage}{109}
+\indexentry{temperature.c@{temperature.c}!PRINT\_REG\_OUTPUT@{PRINT\_REG\_OUTPUT}|hyperpage}{109}
+\indexentry{PRINT\_REG\_OUTPUT@{PRINT\_REG\_OUTPUT}!temperature.c@{temperature.c}|hyperpage}{109}
+\indexentry{temperature.c@{temperature.c}!REGISTER\_CONFIG@{REGISTER\_CONFIG}|hyperpage}{109}
+\indexentry{REGISTER\_CONFIG@{REGISTER\_CONFIG}!temperature.c@{temperature.c}|hyperpage}{109}
+\indexentry{temperature.c@{temperature.c}!REGISTER\_TEMPERATURE@{REGISTER\_TEMPERATURE}|hyperpage}{109}
+\indexentry{REGISTER\_TEMPERATURE@{REGISTER\_TEMPERATURE}!temperature.c@{temperature.c}|hyperpage}{109}
+\indexentry{temperature.c@{temperature.c}!REGISTER\_THVST@{REGISTER\_THVST}|hyperpage}{109}
+\indexentry{REGISTER\_THVST@{REGISTER\_THVST}!temperature.c@{temperature.c}|hyperpage}{109}
+\indexentry{temperature.c@{temperature.c}!REGISTER\_TOS@{REGISTER\_TOS}|hyperpage}{109}
+\indexentry{REGISTER\_TOS@{REGISTER\_TOS}!temperature.c@{temperature.c}|hyperpage}{109}
+\indexentry{temperature.c@{temperature.c}!AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}|hyperpage}{110}
+\indexentry{AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}!temperature.c@{temperature.c}|hyperpage}{110}
+\indexentry{temperature.c@{temperature.c}!AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}|hyperpage}{110}
+\indexentry{AT\_NONCACHEABLE\_SECTION@{AT\_NONCACHEABLE\_SECTION}!temperature.c@{temperature.c}|hyperpage}{110}
+\indexentry{temperature.c@{temperature.c}!CTIMER0\_IRQHandler@{CTIMER0\_IRQHandler}|hyperpage}{110}
+\indexentry{CTIMER0\_IRQHandler@{CTIMER0\_IRQHandler}!temperature.c@{temperature.c}|hyperpage}{110}
+\indexentry{temperature.c@{temperature.c}!lpi2c\_callback@{lpi2c\_callback}|hyperpage}{110}
+\indexentry{lpi2c\_callback@{lpi2c\_callback}!temperature.c@{temperature.c}|hyperpage}{110}
+\indexentry{temperature.c@{temperature.c}!Read@{Read}|hyperpage}{110}
+\indexentry{Read@{Read}!temperature.c@{temperature.c}|hyperpage}{110}
+\indexentry{temperature.c@{temperature.c}!TMP\_GetTemperature@{TMP\_GetTemperature}|hyperpage}{110}
+\indexentry{TMP\_GetTemperature@{TMP\_GetTemperature}!temperature.c@{temperature.c}|hyperpage}{110}
+\indexentry{temperature.c@{temperature.c}!TMP\_Init@{TMP\_Init}|hyperpage}{111}
+\indexentry{TMP\_Init@{TMP\_Init}!temperature.c@{temperature.c}|hyperpage}{111}
+\indexentry{temperature.c@{temperature.c}!Write@{Write}|hyperpage}{111}
+\indexentry{Write@{Write}!temperature.c@{temperature.c}|hyperpage}{111}
+\indexentry{temperature.c@{temperature.c}!g\_bCompletionFlag\_I2C5@{g\_bCompletionFlag\_I2C5}|hyperpage}{111}
+\indexentry{g\_bCompletionFlag\_I2C5@{g\_bCompletionFlag\_I2C5}!temperature.c@{temperature.c}|hyperpage}{111}
+\indexentry{temperature.c@{temperature.c}!g\_EdmaRxHandle\_I2C5@{g\_EdmaRxHandle\_I2C5}|hyperpage}{111}
+\indexentry{g\_EdmaRxHandle\_I2C5@{g\_EdmaRxHandle\_I2C5}!temperature.c@{temperature.c}|hyperpage}{111}
+\indexentry{temperature.c@{temperature.c}!g\_EdmaTxHandle\_I2C5@{g\_EdmaTxHandle\_I2C5}|hyperpage}{111}
+\indexentry{g\_EdmaTxHandle\_I2C5@{g\_EdmaTxHandle\_I2C5}!temperature.c@{temperature.c}|hyperpage}{111}
+\indexentry{temperature.c@{temperature.c}!g\_Xfer\_I2C5@{g\_Xfer\_I2C5}|hyperpage}{111}
+\indexentry{g\_Xfer\_I2C5@{g\_Xfer\_I2C5}!temperature.c@{temperature.c}|hyperpage}{111}
+\indexentry{src/time.c@{src/time.c}|hyperpage}{112}
+\indexentry{time.c@{time.c}!EXTERNAL\_RTC\_TIME\_OFSET@{EXTERNAL\_RTC\_TIME\_OFSET}|hyperpage}{112}
+\indexentry{EXTERNAL\_RTC\_TIME\_OFSET@{EXTERNAL\_RTC\_TIME\_OFSET}!time.c@{time.c}|hyperpage}{112}
+\indexentry{time.c@{time.c}!INTERNAL\_RTC\_BASE\_YEAR@{INTERNAL\_RTC\_BASE\_YEAR}|hyperpage}{112}
+\indexentry{INTERNAL\_RTC\_BASE\_YEAR@{INTERNAL\_RTC\_BASE\_YEAR}!time.c@{time.c}|hyperpage}{112}
+\indexentry{time.c@{time.c}!TIME\_InitIRTC@{TIME\_InitIRTC}|hyperpage}{112}
+\indexentry{TIME\_InitIRTC@{TIME\_InitIRTC}!time.c@{time.c}|hyperpage}{112}
+\indexentry{src/uart.c@{src/uart.c}|hyperpage}{113}
+\indexentry{uart.c@{uart.c}!BUFFER\_SIZE@{BUFFER\_SIZE}|hyperpage}{113}
+\indexentry{BUFFER\_SIZE@{BUFFER\_SIZE}!uart.c@{uart.c}|hyperpage}{113}
+\indexentry{uart.c@{uart.c}!UART\_Deinit@{UART\_Deinit}|hyperpage}{113}
+\indexentry{UART\_Deinit@{UART\_Deinit}!uart.c@{uart.c}|hyperpage}{113}
+\indexentry{uart.c@{uart.c}!UART\_Disable@{UART\_Disable}|hyperpage}{113}
+\indexentry{UART\_Disable@{UART\_Disable}!uart.c@{uart.c}|hyperpage}{113}
+\indexentry{uart.c@{uart.c}!UART\_Enable@{UART\_Enable}|hyperpage}{113}
+\indexentry{UART\_Enable@{UART\_Enable}!uart.c@{uart.c}|hyperpage}{113}
+\indexentry{uart.c@{uart.c}!UART\_Init@{UART\_Init}|hyperpage}{114}
+\indexentry{UART\_Init@{UART\_Init}!uart.c@{uart.c}|hyperpage}{114}
+\indexentry{uart.c@{uart.c}!UART\_Print@{UART\_Print}|hyperpage}{114}
+\indexentry{UART\_Print@{UART\_Print}!uart.c@{uart.c}|hyperpage}{114}

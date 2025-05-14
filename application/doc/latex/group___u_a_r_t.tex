@@ -1,0 +1,60 @@
+\doxysection{Management}
+\hypertarget{group___u_a_r_t}{}\label{group___u_a_r_t}\index{Management@{Management}}
+
+
+Group Contains Variables For Recording From UART.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___u_a_r_t_ga0f85dbf0cf3882e0ac219ed036b7e5df}{SDK\+\_\+\+ALIGN}} (static volatile uint8\+\_\+t g\+\_\+au8\+Circ\+Buffer\mbox{[}\mbox{\hyperlink{record_8c_a501f5c21d6fe4e60dc984cdaba5e892f}{CIRCULAR\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}, BOARD\+\_\+\+SDMMC\+\_\+\+DATA\+\_\+\+BUFFER\+\_\+\+ALIGN\+\_\+\+SIZE)
+\begin{DoxyCompactList}\small\item\em Circular Buffer For Reception of Data From UART Interrupt Service Routine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static volatile uint32\+\_\+t \mbox{\hyperlink{group___u_a_r_t_ga4f4eced93ae5dcb56588db472d653230}{g\+\_\+u32\+Write\+Index}} = 0
+\begin{DoxyCompactList}\small\item\em Index For Writing Into FIFO. \end{DoxyCompactList}\item 
+static volatile uint32\+\_\+t \mbox{\hyperlink{group___u_a_r_t_ga0d9f0760ea8067a59144a9de9a20872e}{g\+\_\+u32\+Read\+Index}} = 0
+\begin{DoxyCompactList}\small\item\em Index For Reading From FIFO. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Group Contains Variables For Recording From UART. 
+
+Data From UART Are Stored Into FIFO (Circular Buffer). 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group___u_a_r_t_ga0f85dbf0cf3882e0ac219ed036b7e5df}\index{Management@{Management}!SDK\_ALIGN@{SDK\_ALIGN}}
+\index{SDK\_ALIGN@{SDK\_ALIGN}!Management@{Management}}
+\doxysubsubsection{\texorpdfstring{SDK\_ALIGN()}{SDK\_ALIGN()}}
+{\footnotesize\ttfamily \label{group___u_a_r_t_ga0f85dbf0cf3882e0ac219ed036b7e5df} 
+SDK\+\_\+\+ALIGN (\begin{DoxyParamCaption}\item[{static volatile uint8\+\_\+t}]{g\+\_\+au8\+Circ\+Buffer}{\mbox{[}\+CIRCULAR\+\_\+\+BUFFER\+\_\+\+SIZE\mbox{]}, }\item[{BOARD\+\_\+\+SDMMC\+\_\+\+DATA\+\_\+\+BUFFER\+\_\+\+ALIGN\+\_\+\+SIZE}]{}{}\end{DoxyParamCaption})}
+
+
+
+Circular Buffer For Reception of Data From UART Interrupt Service Routine. 
+
+Filled in LP\+\_\+\+FLEXCOMM3\+\_\+\+IRQHandler Interrupt Service Routine. 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{group___u_a_r_t_ga0d9f0760ea8067a59144a9de9a20872e}\index{Management@{Management}!g\_u32ReadIndex@{g\_u32ReadIndex}}
+\index{g\_u32ReadIndex@{g\_u32ReadIndex}!Management@{Management}}
+\doxysubsubsection{\texorpdfstring{g\_u32ReadIndex}{g\_u32ReadIndex}}
+{\footnotesize\ttfamily \label{group___u_a_r_t_ga0d9f0760ea8067a59144a9de9a20872e} 
+volatile uint32\+\_\+t g\+\_\+u32\+Read\+Index = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Index For Reading From FIFO. 
+
+\Hypertarget{group___u_a_r_t_ga4f4eced93ae5dcb56588db472d653230}\index{Management@{Management}!g\_u32WriteIndex@{g\_u32WriteIndex}}
+\index{g\_u32WriteIndex@{g\_u32WriteIndex}!Management@{Management}}
+\doxysubsubsection{\texorpdfstring{g\_u32WriteIndex}{g\_u32WriteIndex}}
+{\footnotesize\ttfamily \label{group___u_a_r_t_ga4f4eced93ae5dcb56588db472d653230} 
+volatile uint32\+\_\+t g\+\_\+u32\+Write\+Index = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Index For Writing Into FIFO. 
+
