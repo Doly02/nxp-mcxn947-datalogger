@@ -1,3 +1,5 @@
 [submodule "thesis"]
 	path = thesis
 	url = https://github.com/Doly02/thesis
+	branch = master
+	
