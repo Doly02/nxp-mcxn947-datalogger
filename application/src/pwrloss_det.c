@@ -165,7 +165,7 @@ void PWRLOSS_DetectionInit(void)
     CTIMER_Init(CTIMER, &config);
 
     u32TimerClkFreq = CTIMER_CLK_FREQ;
-    u32Match = (u32TimerClkFreq * PWRLOSS_DET_ACTIVE_IN_TIME);	/* 25 Seconds*/
+    u32Match = (uint32_t)((float)u32TimerClkFreq * PWRLOSS_DET_ACTIVE_IN_TIME);
 
     /* Configuration 0 */
     matchConfig0.enableCounterReset = true;

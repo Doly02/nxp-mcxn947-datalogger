@@ -83,9 +83,9 @@
 
 /**
  * @brief 	Constant 5 Tau, When Back-Up Power Capacitor is Charged To 99%.
- * @details In Seconds (It's Actualy 16s).
+ * @details In Seconds (It's Actualy 16.5s).
  */
-#define TAU5						16UL
+#define TAU5						16.5
 
 /**
  * @brief 	Time Interval When Power Loss Detection Became Active.
