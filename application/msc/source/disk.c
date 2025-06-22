@@ -1018,9 +1018,6 @@ void USB_DeviceModeInit(void)
     g_mscHandle->cbwPrimeFlag = 0;
     g_mscHandle->cswPrimeFlag = 0;
 
-    USB_DeviceIsrEnable();
-
     /*Add one delay here to make the DP pull down long enough to allow host to detect the previous disconnection.*/
     SDK_DelayAtLeastUs(5000, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
-    USB_DeviceRun(g_msc.deviceHandle);
 }

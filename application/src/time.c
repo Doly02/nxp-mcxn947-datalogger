@@ -1,17 +1,17 @@
 /******************************
  *  Project:        NXP MCXN947 Datalogger
- *  File Name:      mainc.c
+ *  File Name:      time.c
  *  Author:         Tomas Dolak
- *  Date:           07.08.2024
+ *  Date:           11.11.2024
  *  Description:    Implements The Logic Of Time-Keeping.
  *
  * ****************************/
 
 /******************************
  *  @package        NXP MCXN947 Datalogger
- *  @file           main.c
+ *  @file           time.c
  *  @author         Tomas Dolak
- *  @date           07.08.2024
+ *  @date           11.11.2024
  *  @brief          Implements The Logic Of Time-Keeping.
  * ****************************/
 

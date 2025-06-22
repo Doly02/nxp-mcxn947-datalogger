@@ -118,18 +118,18 @@
 #define SUNDAY						(0x1) 	/**< Sunday 		*/
 #define MONDAY						(0x2) 	/**< Monday 		*/
 #define TUESDAY						(0x3) 	/**< Tuesday 		*/
-#define WEDNESDAY					(0x4) 	/**< Wednesday 	*/
-#define THURSDAY					(0x5) 	/**< Thursday 	*/
+#define WEDNESDAY					(0x4) 	/**< Wednesday 		*/
+#define THURSDAY					(0x5) 	/**< Thursday 		*/
 #define FRIDAY						(0x6) 	/**< Friday 		*/
-#define SATURDAY					(0x7) 	/**< Saturday 	*/
+#define SATURDAY					(0x7) 	/**< Saturday 		*/
 
 /**
  * @brief Definitions For Time Format Handling.
  */
-#define TIM_CYCLE_12H				(0x0) 	/**< 12-Hour Format */
+#define TIM_CYCLE_12H				(0x0) 	/**< 12-Hour Format 	*/
 #define TIM_CYCLE_12H_AM			(0x0)	/**< AM in 12-Hour Mode */
 #define TIM_CYCLE_12H_PM			(0x1)	/**< PM in 12-Hour Mode */
-#define TIM_CYCLE_24H				(0x2)	/**< 24-Hour Format */
+#define TIM_CYCLE_24H				(0x2)	/**< 24-Hour Format 	*/
 
 
 /**
@@ -201,7 +201,6 @@ typedef enum
 
 /**
  * @brief 				Initialize The RTC DS3231.
- * @param 				void
  * @details				Before Calling of RTC_Init Function Is Important To Prepare I2C
  * 						(To Keep The Driver As Universal As Possible, e.g To Use I2C With DMA,
  * 						Interrupt/Polling Mode,...).
@@ -211,7 +210,6 @@ uint8_t RTC_Init(void);
 /**
  * @brief 				De-Initialize The RTC DS3231.
  * @details				Pins Should Also Be De-Initialised Lately.
- * @param 				void
  */
 void RTC_Deinit(void);
 

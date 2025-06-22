@@ -46,7 +46,8 @@
 
 /**
  * @brief 	Enables/Disables Debug Mode
- * @details If Info Mode Is Enabled Then Informational Logs Are Printed Into Debug Console.
+ * @details If Info Mode Is Enabled Then Basic Logs (Init. Progress, Configuration File Loading,...)
+ * 			Are Printed Into Debug Console.
  */
 #define INFO_ENABLED				(false)
 
@@ -83,7 +84,7 @@
 
 /**
  * @brief 	Constant 5 Tau, When Back-Up Power Capacitor is Charged To 99%.
- * @details In Seconds (It's Actually 16.5s).
+ * @details In Seconds.
  */
 #define TAU5						16.5
 
@@ -108,7 +109,6 @@
  */
 #define PWRLOSS_TIMER_PRIO			(7U)
 
-
 /**
  * @brief Enables/Disables Temperature Recording.
  */
@@ -118,7 +118,6 @@
  * @brief Enables/Disables Signaling By LEDs.
  */
 #define CONTROL_LED_ENABLED			(true)
-
 
 /**
  * @brief	Default Maximal File Size If The Configuration File Could

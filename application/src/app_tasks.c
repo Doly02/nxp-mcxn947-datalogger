@@ -81,6 +81,10 @@ static StackType_t uxTimerTaskStack[configTIMER_TASK_STACK_DEPTH];
  * Implementation of Functions
  ******************************************************************************/
 
+/*******************************************************************************
+ * Implementation of Functions
+ ******************************************************************************/
+
 void msc_task(void *handle)
 {
     while (true)
@@ -91,6 +95,7 @@ void msc_task(void *handle)
 
         /* Disable Recording & Close Current Record If It's Opened */
         UART_Disable();
+
 #if (true == INFO_ENABLED)
         PRINTF("INFO: Disabled LPUART7\r\n");
 #endif /* (true == INFO_ENABLED) */
@@ -157,6 +162,9 @@ void record_task(void *handle)
 		return;
 	}
 
+    USB_DeviceRun(g_msc.deviceHandle);
+    USB_DeviceIsrEnable();
+
     if (CONSOLELOG_ReadConfig() != ERROR_NONE)
     {
         u32Baudrate = DEFAULT_BAUDRATE;
@@ -167,6 +175,8 @@ void record_task(void *handle)
         u32Baudrate = PARSER_GetBaudrate();
         u32FileSize = PARSER_GetFileSize();
     }
+
+
 
     while (true)
     {

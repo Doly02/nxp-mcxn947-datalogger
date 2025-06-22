@@ -75,15 +75,15 @@ void CTIMER4_IRQHandler(void)
 	/* Signal To The User That Back-Up Power Is Available */
 	LED_SignalBackUpPowerAvailable();
 	CTIMER_StopTimer(CTIMER);
-	(void)DisableIRQ(CTIMER4_IRQn);
+	(void)DisableIRQ(CTIMER_IRQ_ID);
 
     /* Enable the interrupt. */
-	(void)IRQ_ClearPendingIRQ(HSCMP1_IRQn);
-	LPCMP_ClearStatusFlags(CMP1, (uint32_t)(kLPCMP_OutputRisingEventFlag | kLPCMP_OutputFallingEventFlag));
+	(void)IRQ_ClearPendingIRQ(LPCMP_IRQ_ID);
+	LPCMP_ClearStatusFlags(LPCMP_BASE, (uint32_t)(kLPCMP_OutputRisingEventFlag | kLPCMP_OutputFallingEventFlag));
 
-	LPCMP_EnableInterrupts(CMP1, (uint32_t)kLPCMP_OutputFallingInterruptEnable);
+	LPCMP_EnableInterrupts(LPCMP_BASE, (uint32_t)kLPCMP_OutputFallingInterruptEnable);
 
-    (void)EnableIRQWithPriority(HSCMP1_IRQn, PWRLOSS_DET_PRIO);
+    (void)EnableIRQWithPriority(LPCMP_IRQ_ID, PWRLOSS_DET_PRIO);
 }
 /*lint +e957 */
 
@@ -177,7 +177,7 @@ void PWRLOSS_DetectionInit(void)
 
     CTIMER_SetupMatch(CTIMER, CTIMER_MAT0_OUT, &matchConfig0);
 
-    (void)EnableIRQWithPriority(CTIMER4_IRQn, PWRLOSS_TIMER_PRIO);
+    (void)EnableIRQWithPriority(CTIMER_IRQ_ID, PWRLOSS_TIMER_PRIO);
 
     CTIMER_StartTimer(CTIMER);
 

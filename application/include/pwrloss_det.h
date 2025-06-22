@@ -85,6 +85,10 @@
  */
 #define CTIMER_CLK_FREQ				CLOCK_GetCTimerClkFreq(4U)
 
+/**
+ * @brief IRQ Number for The CTIMER Peripheral.
+ */
+#define CTIMER_IRQ_ID           	CTIMER4_IRQn
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
