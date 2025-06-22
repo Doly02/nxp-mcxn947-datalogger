@@ -47,10 +47,12 @@ void USB1_HS_IRQHandler(void)
     if (USB_State(g_msc.deviceHandle) == kUSB_DeviceNotifyAttach)
 	{
 		(void)xSemaphoreGiveFromISR(g_xSemMassStorage, &xHigherPriorityTaskWoken);
+		MSC_SetUSBAttached(true);
 	}
 	else
 	{
     	(void)xSemaphoreGiveFromISR(g_xSemRecord, &xHigherPriorityTaskWoken);
+    	MSC_SetUSBAttached(false);
 	}
 
     /**

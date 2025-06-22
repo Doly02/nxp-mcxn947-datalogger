@@ -33,6 +33,11 @@ extern usb_msc_struct_t g_msc;
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
+
+bool MSC_GetUSBAttached(void);
+
+void MSC_SetUSBAttached(bool state);
+
 /**
  * @brief 		Checks If Application USB Is Attached To Digital Data Logger.
  * @details		Checks Thru USB OTG (USB On-To-Go) SC Register.

@@ -20,10 +20,20 @@
  ******************************************************************************/
 #include "mass_storage.h"
 
-
+bool usbAttached = false;
 /*******************************************************************************
  * Functions
  ******************************************************************************/
+
+bool MSC_GetUSBAttached()
+{
+	return usbAttached;
+}
+
+void MSC_SetUSBAttached(bool state)
+{
+	usbAttached = state;
+}
 /*
  * MISRA Deviation: Rule 8.4
  * Suppress: Function 'USB_State' Defined Without A Prototype In Scope.
